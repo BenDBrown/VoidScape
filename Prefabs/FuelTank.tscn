@@ -1,17 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://g6ol5kk4dhjd"]
 
-[ext_resource type="Texture2D" uid="uid://dp108b3nkgh0t" path="res://Assets/Ship/TankPlaceHolder.png" id="1_u804v"]
-[ext_resource type="Script" path="res://Scripts/Ship/FuelTank.cs" id="2_s8nau"]
+[ext_resource type="Script" path="res://Scripts/Ship/Generator.cs" id="1_14rhs"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="3_h1adt"]
+[ext_resource type="Texture2D" uid="uid://b344p6v117sbg" path="res://Assets/Ship/GeneratorPlaceHolder.png" id="3_xxb3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
-[node name="FuelTank" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo")]
+[node name="Generator" type="RigidBody2D"]
 gravity_scale = 0.0
-script = ExtResource("2_s8nau")
-defenseInfo = NodePath("DefenseInfo")
-fuelCapacity = 1000
+script = ExtResource("1_14rhs")
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("3_h1adt")
@@ -23,4 +21,4 @@ defense = 10
 shape = SubResource("RectangleShape2D_n32tx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u804v")
+texture = ExtResource("3_xxb3p")

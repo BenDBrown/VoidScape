@@ -1,12 +1,15 @@
 using Godot;
 using System;
 
-public partial class FuelTank : Node2D, IShipComponent
+public partial class Generator : Node2D, IShipComponent
 {
     [Export]
     private DefenseInfo defenseInfo;
-    [Export]
-    public int fuelCapacity {get; private set;}
+
+	[Export]
+	private float efficiency;
+
+	private int fuelConsumption = 10;
 
     public DefenseInfo GetDefenseInfo() => defenseInfo;
 }
