@@ -12,9 +12,14 @@ config_version=5
 
 config/name="May Game Jam"
 config/tags=PackedStringArray("gamejam")
-config/features=PackedStringArray("4.2", "Forward Plus")
+run/main_scene="res://Prefabs/FuelTank.tscn"
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Desktop"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
