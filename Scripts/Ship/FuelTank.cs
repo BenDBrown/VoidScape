@@ -3,6 +3,9 @@ using System;
 
 public partial class FuelTank : Node2D, IShipComponent
 {
+    [Signal]
+    public delegate void DestroyedEventHandler(FuelTank fuelTank);
+
     [Export]
     private DefenseInfo defenseInfo;
     [Export]
@@ -13,9 +16,5 @@ public partial class FuelTank : Node2D, IShipComponent
         GD.Print(defenseInfo.ToString());
     }
 
-
     public DefenseInfo GetDefenseInfo() => defenseInfo;
-
-    [Signal]
-    public delegate void DestroyedEventHandler(FuelTank fuelTank);
 }
