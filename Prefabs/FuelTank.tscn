@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://g6ol5kk4dhjd"]
+
+[ext_resource type="Texture2D" uid="uid://dp108b3nkgh0t" path="res://Assets/Ship/TankPlaceHolder.png" id="1_u804v"]
+[ext_resource type="Script" path="res://Scripts/Ship/FuelTank.cs" id="2_s8nau"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_u804v")
+script = ExtResource("2_s8nau")
