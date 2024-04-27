@@ -12,8 +12,8 @@ config_version=5
 
 config/name="May Game Jam"
 config/tags=PackedStringArray("gamejam")
-run/main_scene="res://Prefabs/FuelTank.tscn"
-config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+run/main_scene="res://Scenes/start_menu.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
