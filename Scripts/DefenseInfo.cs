@@ -2,11 +2,6 @@ using Godot;
 
 public partial class DefenseInfo : Node
 {
-    public override void _Ready()
-    {
-        currentHealth = maxHealth;
-    }
-
     [Export]
     public int maxHealth {get; set;}
 
@@ -15,6 +10,11 @@ public partial class DefenseInfo : Node
 
     [Export]
     public int defense {get; set;}
+
+        public override void _Ready()
+    {
+        currentHealth = maxHealth;
+    }
 
     public override string ToString()
     {
