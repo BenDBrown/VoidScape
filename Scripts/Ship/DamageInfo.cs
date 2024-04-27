@@ -1,12 +1,8 @@
 using Godot;
 using System;
 
-public struct DamageInfo
+public partial class DamageInfo : Node
 {
+	[Export]
 	public int damage { get; set; }
-
-	public DamageInfo(int damage)
-	{
-		this.damage = damage;
-	}
 }
