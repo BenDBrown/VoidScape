@@ -1,20 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://g6ol5kk4dhjd"]
+[gd_scene load_steps=5 format=3 uid="uid://mgusdg18822t"]
 
-[ext_resource type="Texture2D" uid="uid://dp108b3nkgh0t" path="res://Assets/Ship/TankPlaceHolder.png" id="1_u804v"]
-[ext_resource type="Script" path="res://Scripts/Ship/FuelTank.cs" id="2_s8nau"]
-[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="3_h1adt"]
+[ext_resource type="Script" path="res://Scripts/Ship/Hull.cs" id="1_co7ui"]
+[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_w7ueu"]
+[ext_resource type="Texture2D" uid="uid://bl5o2e35e0wju" path="res://Assets/Ship/HullPlaceHolder.png" id="3_yfu5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
 [node name="Hull" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo")]
 gravity_scale = 0.0
-script = ExtResource("2_s8nau")
+script = ExtResource("1_co7ui")
 defenseInfo = NodePath("DefenseInfo")
-fuelCapacity = 1000
 
 [node name="DefenseInfo" type="Node" parent="."]
-script = ExtResource("3_h1adt")
+script = ExtResource("2_w7ueu")
 maxHealth = 100
 currentHealth = 100
 defense = 10
@@ -23,4 +22,4 @@ defense = 10
 shape = SubResource("RectangleShape2D_n32tx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u804v")
+texture = ExtResource("3_yfu5u")
