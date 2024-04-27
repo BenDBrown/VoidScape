@@ -16,6 +16,11 @@ run/main_scene="res://Scenes/start_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://Global/game.gd"
+Utils="*res://Global/utils.gd"
+
 [dotnet]
 
 project/assembly_name="Desktop"
