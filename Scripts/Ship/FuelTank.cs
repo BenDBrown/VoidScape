@@ -1,35 +1,21 @@
 using Godot;
 using System;
 
-public partial class FuelTank : Node, IShipComponent
+public partial class FuelTank : Node2D, IShipComponent
 {
-    private int maxHealth;
-    private int currentHealth;
-    private long fuel;
-
-
-    [Signal]
-    public delegate void DestroyedEventHandler(FuelTank fuelTank);
+    [Export]
+    private DefenseInfo defenseInfo;
+    [Export]
+    public int fuelCapacity {get; private set;}
 
     public override void _Ready()
     {
-        currentHealth = maxHealth;
+        GD.Print(defenseInfo.ToString());
     }
 
-    public override void TakeDamage(DamageInfo damageInfo)
-    {
-        currentHealth -= damageInfo.damage;
-        if (currentHealth <= 0) 
-        {
-            currentHealth = 0;
-            EmitSignal(SignalName.Destroyed, this);
-        }
-    }
 
-    public override void Heal(int healing)
-    {
-        currentHealth += healing;
-        if (currentHealth > maxHealth) { currentHealth = maxHealth; }
-    }
+    public DefenseInfo GetDefenseInfo() => defenseInfo;
 
+    [Signal]
+    public delegate void DestroyedEventHandler(FuelTank fuelTank);
 }

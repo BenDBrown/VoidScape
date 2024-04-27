@@ -1,10 +1,9 @@
 using Godot;
 using System;
 
-public partial interface IShipComponent
+public interface IShipComponent
 {
-	public abstract void TakeDamage(DamageInfo damageInfo);
+	DefenseInfo GetDefenseInfo();
 
-	public abstract void Heal(int healing);
-
+	public delegate void DestroyedEventHandler(IShipComponent shipComponent);
 }
