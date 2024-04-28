@@ -1,3 +1,20 @@
 [gd_scene format=3 uid="uid://pu7ejs5guhlq"]
 
 [node name="StartScene" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 274.0
+offset_right = 710.0
+offset_bottom = 389.0
+text = "Hello"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 502.0
+offset_top = 390.0
+offset_right = 602.0
+offset_bottom = 507.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

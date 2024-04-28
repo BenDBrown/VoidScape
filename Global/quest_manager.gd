@@ -1,13 +1,18 @@
 extends Node
 
 @export var questLimit = 10
-@export var quests = []
+@export var quests: Array[Quest] = []
 
-func try_add_quest(quest):
+func try_add_quest(quest: Quest):
 	if quests.size() >= questLimit:
 		return false;
 	quests.append(quest);
-	
-func on_death(ship):
-	pass
+	return true;
 
+func get_quests():
+	return quests;
+
+func check(target):
+	for quest in quests:
+		quest.check_target(target)
+		
