@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
-[node name="Hull" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo")]
+[node name="FuelTank" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo")]
 gravity_scale = 0.0
 script = ExtResource("2_s8nau")
 defenseInfo = NodePath("DefenseInfo")

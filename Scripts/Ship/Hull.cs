@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Hull : Node2D
+public partial class Hull : Node2D, IShipComponent
 {
 	[Export]
     private DefenseInfo defenseInfo;

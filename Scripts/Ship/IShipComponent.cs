@@ -3,7 +3,5 @@ using System;
 
 public interface IShipComponent
 {
-	DefenseInfo GetDefenseInfo();
-
-	public delegate void DestroyedEventHandler(IShipComponent shipComponent);
+	DefenseInfo GetDefenseInfo();	
 }
