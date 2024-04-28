@@ -14,3 +14,6 @@ func get_save_data():
 	}
 	var jstr = JSON.stringify(json);
 	return jstr;
+
+func on_enemy_death():
+	pass

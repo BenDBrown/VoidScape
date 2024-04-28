@@ -21,6 +21,12 @@ config/icon="res://icon.svg"
 Game="*res://Global/game.gd"
 Utils="*res://Global/utils.gd"
 QuestManager="*res://Global/quest_manager.gd"
+Enums="*res://Global/enums.gd"
+
+[display]
+
+window/size/mode=3
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

@@ -15,7 +15,7 @@ func _on_new_game_pressed():
 
 func _on_continue_pressed():
 	pass
-
+	
 func _on_settings_pressed():
 	settingsMenu.show();
 	mainScreen.hide();
