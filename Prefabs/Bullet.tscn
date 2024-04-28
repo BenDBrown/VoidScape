@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dw3ptd40xnabi"]
 
-[ext_resource type="Script" path="res://Scripts/Ship/bullet.cs" id="1_jhfn2"]
+[ext_resource type="Script" path="res://Scripts/Ship/Bullet.cs" id="1_pd1wh"]
 [ext_resource type="Texture2D" uid="uid://rblv0g2af774" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_c8anf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ifwps"]
@@ -22,7 +22,8 @@ animations = [{
 radius = 4.0
 
 [node name="Bullet" type="RigidBody2D"]
-script = ExtResource("1_jhfn2")
+gravity_scale = 0.0
+script = ExtResource("1_pd1wh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7omld")

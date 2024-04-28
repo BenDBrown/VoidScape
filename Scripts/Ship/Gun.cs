@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Gun : Node2D, IShipComponent, IPowerable
+public partial class Gun : RigidBody2D, IShipComponent, IPowerable
 {
 	[Export]
     private DefenseInfo defenseInfo;
@@ -25,11 +25,10 @@ public partial class Gun : Node2D, IShipComponent, IPowerable
 
     public void Shoot()
     {
-        var bulletNode = ammo.Instantiate();
-        if(bulletNode is Bullet){GD.Print("is bullet");}
-        // bullet.damageInfo = damageInfo;
-        // bullet.speed = bulletSpeed;
-        // bullet.Shoot();
+        Bullet bullet = ammo.Instantiate() as Bullet;
+        bullet.damageInfo = damageInfo;
+        bullet.speed = bulletSpeed;
+        bullet.Shoot();
     }
 
     public DefenseInfo GetDefenseInfo() => defenseInfo;
