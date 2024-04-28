@@ -3,21 +3,36 @@ using System;
 
 public partial class Gun : Node2D, IShipComponent, IPowerable
 {
-	public override void _Ready()
-	{
-	}
+	[Export]
+    private DefenseInfo defenseInfo;
 
-	public override void _Process(double delta)
-	{
-	}
+	[Export]
+	private int powerdraw;
 
-    public DefenseInfo GetDefenseInfo()
+    [Export]
+    private PackedScene ammo;
+
+    [Export]
+    private DamageInfo damageInfo;
+
+    [Export]
+    private float bulletSpeed;
+
+    public override void _Ready()
     {
-        throw new NotImplementedException();
+        Shoot();
     }
 
-    public int GetPowerDraw()
+    public void Shoot()
     {
-        throw new NotImplementedException();
+        var bulletNode = ammo.Instantiate();
+        if(bulletNode is Bullet){GD.Print("is bullet");}
+        // bullet.damageInfo = damageInfo;
+        // bullet.speed = bulletSpeed;
+        // bullet.Shoot();
     }
+
+    public DefenseInfo GetDefenseInfo() => defenseInfo;
+
+    public int GetPowerDraw() => powerdraw;
 }
