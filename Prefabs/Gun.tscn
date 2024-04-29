@@ -10,7 +10,9 @@
 size = Vector2(32, 32)
 
 [node name="Gun" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo", "damageInfo")]
-position = Vector2(580, 326)
+position = Vector2(589, 327)
+collision_layer = 0
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_cygbu")
 defenseInfo = NodePath("DefenseInfo")
@@ -30,7 +32,9 @@ script = ExtResource("4_8n3fx")
 damage = 20
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_n32tx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
 texture = ExtResource("5_xkmnr")

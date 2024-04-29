@@ -26,9 +26,10 @@ public partial class Gun : RigidBody2D, IShipComponent, IPowerable
     public void Shoot()
     {
         Bullet bullet = ammo.Instantiate() as Bullet;
+        this.AddChild(bullet);
         bullet.damageInfo = damageInfo;
-        bullet.speed = bulletSpeed;
-        bullet.Shoot();
+        bullet.ConstantForce = Vector2.Up * 100;
+        GD.Print(bullet.ConstantForce);
     }
 
     public DefenseInfo GetDefenseInfo() => defenseInfo;
