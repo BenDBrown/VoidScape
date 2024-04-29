@@ -1,10 +1,7 @@
 using Godot;
 using System;
 
-public partial class Cockpit : RigidBody2D
+public partial class Cockpit : ShipComponent
 {
-	[Export]
-    private DefenseInfo defenseInfo;
-
-    public DefenseInfo GetDefenseInfo() => defenseInfo;
+	//insert destroy overrides
 }

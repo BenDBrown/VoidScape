@@ -9,22 +9,23 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
-[node name="Gun" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo", "damageInfo")]
+[node name="Gun" type="RigidBody2D" node_paths=PackedStringArray("damageInfo", "defenseInfo")]
 position = Vector2(589, 327)
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_cygbu")
-defenseInfo = NodePath("DefenseInfo")
 powerdraw = 1
 ammo = ExtResource("2_7xmuv")
 damageInfo = NodePath("DamageInfo")
-bulletSpeed = 5.0
+bulletSpeed = 300.0
+defenseInfo = NodePath("DefenseInfo")
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_ylwoa")
 maxHealth = 100
-currentHealth = 100
 defense = 10
 
 [node name="DamageInfo" type="Node" parent="."]

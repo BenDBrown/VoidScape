@@ -9,14 +9,15 @@ size = Vector2(32, 32)
 
 [node name="FuelTank" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo")]
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("2_s8nau")
-defenseInfo = NodePath("DefenseInfo")
 fuelCapacity = 1000
+defenseInfo = NodePath("DefenseInfo")
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("3_h1adt")
 maxHealth = 100
-currentHealth = 100
 defense = 10
 
 [node name="Collider" type="CollisionShape2D" parent="."]
