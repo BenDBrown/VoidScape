@@ -9,7 +9,11 @@ public partial class ShipComponent: RigidBody2D, IHittable
 	[Export]
     private DefenseInfo defenseInfo;
 
+	private bool destroyed = false;
+
 	DefenseInfo GetDefenseInfo() => defenseInfo;
+	public bool IsDestroyed() => destroyed;
+
 
     public void TakeDamage(DamageInfo damageInfo)
 	{
@@ -19,8 +23,16 @@ public partial class ShipComponent: RigidBody2D, IHittable
 		if(newHealth < defenseInfo.currentHealth)
 		{ 
 			defenseInfo.currentHealth = newHealth;
-			if(defenseInfo.currentHealth <= 0) { EmitSignal(SignalName.OnDestroyed, this);}
+			if(defenseInfo.currentHealth <= 0) { Destroyed(); }
 		}
 	}
 
+	private void Destroyed()
+	{
+		destroyed = true;
+		CollisionLayer = 0;
+		CollisionMask = 0;
+		Hide();
+		EmitSignal(SignalName.OnDestroyed, this);
+	}
 }

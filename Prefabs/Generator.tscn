@@ -10,13 +10,13 @@ size = Vector2(32, 32)
 [node name="Generator" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo")]
 gravity_scale = 0.0
 script = ExtResource("1_1dbup")
-defenseInfo = NodePath("DefenseInfo")
 efficiency = 1.0
+maxPowerGenerated = 500
+defenseInfo = NodePath("DefenseInfo")
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_3qq63")
 maxHealth = 100
-currentHealth = 100
 defense = 10
 
 [node name="Collider" type="CollisionShape2D" parent="."]

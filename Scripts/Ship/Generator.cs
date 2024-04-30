@@ -4,7 +4,8 @@ using System;
 public partial class Generator : ShipComponent
 {
 	[Export]
-	private float efficiency;
+	public float efficiency {get; private set;}
 
-	private int fuelConsumption = 10;
+	[Export]
+	public int maxPowerGenerated {get; private set;}
 }
