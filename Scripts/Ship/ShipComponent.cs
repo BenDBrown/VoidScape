@@ -35,4 +35,12 @@ public partial class ShipComponent: RigidBody2D, IHittable
 		Hide();
 		EmitSignal(SignalName.OnDestroyed, this);
 	}
+
+	private void Revived()
+	{
+		CollisionLayer = 0b00000000_00000000_00000000_00000001;
+		CollisionMask = 0b00000000_00000000_00000000_00000001;
+		destroyed = false;
+		Visible = true;	
+	}
 }

@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3tk4yekp2wpm"]
+[gd_scene load_steps=4 format=3 uid="uid://c3tk4yekp2wpm"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Ship.cs" id="1_5tt1w"]
+[ext_resource type="Script" path="res://Scripts/Ship/CargoManager.cs" id="2_ics3o"]
+[ext_resource type="Script" path="res://Scripts/Ship/PowerManager.cs" id="3_uocbq"]
 
-[node name="Ship" type="Node2D"]
+[node name="Ship" type="Node2D" node_paths=PackedStringArray("powerManager", "cargoManager", "timer")]
 script = ExtResource("1_5tt1w")
+powerManager = NodePath("PowerManager")
+cargoManager = NodePath("CargoManager")
+timer = NodePath("Timer")
+
+[node name="CargoManager" type="Node" parent="."]
+script = ExtResource("2_ics3o")
+
+[node name="PowerManager" type="Node" parent="."]
+script = ExtResource("3_uocbq")
+
+[node name="Timer" type="Timer" parent="."]

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PowerManager
+public partial class PowerManager : Node
 {
 	private List<Generator> generators = new List<Generator>();
 
@@ -14,7 +14,7 @@ public class PowerManager
 		return maxPowerGenerated;
 	}
 
-	public void UsePower(int powerWanted, int fuelAvailable, out int fuelUsed, out bool enoughPower, out bool enoughFuel)
+	public void TryUsePower(int powerWanted, int fuelAvailable, out int fuelUsed, out bool enoughPower, out bool enoughFuel)
 	{
 		fuelUsed = 0;
 		enoughPower = false;
