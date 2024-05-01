@@ -227,12 +227,6 @@ public partial class PlayerShip : CharacterBody2D, IShip
 
 	public bool TryTakeCargo(Cargo cargo, int quantity) { return cargoManager.TryTakeCargo(cargo, quantity); }
 
-	private enum ThrustDirection
-	{
-		forward,
-		back,
-		none
-	}
 
 }
 
