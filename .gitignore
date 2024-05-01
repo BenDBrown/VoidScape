@@ -3,4 +3,4 @@
 [Tt]est/*
 .vs/*
 .sln
-.csproj
+.csproj*

@@ -5,7 +5,6 @@ public partial class DefenseInfo : Node
     [Export]
     public int maxHealth {get; set;}
 
-    [Export]
     public int currentHealth {get; set;}
 
     [Export]

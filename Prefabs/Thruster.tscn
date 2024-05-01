@@ -1,28 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://g6ol5kk4dhjd"]
+[gd_scene load_steps=5 format=3 uid="uid://cppvvg6wmwcbb"]
 
-[ext_resource type="Texture2D" uid="uid://dp108b3nkgh0t" path="res://Assets/Ship/TankPlaceHolder.png" id="1_u804v"]
-[ext_resource type="Script" path="res://Scripts/Ship/FuelTank.cs" id="2_s8nau"]
-[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="3_h1adt"]
+[ext_resource type="Script" path="res://Scripts/Ship/Thruster.cs" id="1_qteyv"]
+[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_j4frq"]
+[ext_resource type="Texture2D" uid="uid://do57ap00202ot" path="res://Assets/Ship/ThrusterPlaceHolder.png" id="3_sxp6y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1fg5"]
 size = Vector2(32, 32)
 
-[node name="FuelTank" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
-script = ExtResource("2_s8nau")
-fuelCapacity = 1000
+[node name="Thruster" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
+script = ExtResource("1_qteyv")
+powerdraw = 1
+thrust = 100.0
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 
 [node name="DefenseInfo" type="Node" parent="."]
-script = ExtResource("3_h1adt")
+script = ExtResource("2_j4frq")
 maxHealth = 100
 defense = 10
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_n32tx")
+shape = SubResource("RectangleShape2D_v1fg5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u804v")
+texture = ExtResource("3_sxp6y")
 
 [node name="VerticeTopLeft" type="Node2D" parent="."]
 position = Vector2(-16, -16)

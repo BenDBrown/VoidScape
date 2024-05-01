@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1u0qe1ybo2q2"]
+
+[ext_resource type="Script" path="res://Scripts/Ship/Gun.cs" id="1_cygbu"]
+[ext_resource type="PackedScene" uid="uid://dw3ptd40xnabi" path="res://Prefabs/Bullet.tscn" id="2_7xmuv"]
+[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_ylwoa"]
+[ext_resource type="Script" path="res://Scripts/Ship/DamageInfo.cs" id="4_8n3fx"]
+[ext_resource type="Texture2D" uid="uid://wm3t8l5sj5v7" path="res://Assets/Ship/GunPlaceHolder.png" id="5_xkmnr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
+size = Vector2(32, 32)
+
+[node name="Gun" type="Area2D" node_paths=PackedStringArray("damageInfo", "timer", "defenseInfo", "vertices")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_cygbu")
+powerdraw = 1
+ammo = ExtResource("2_7xmuv")
+damageInfo = NodePath("DamageInfo")
+timer = NodePath("Timer")
+bulletSpeed = 300.0
+defenseInfo = NodePath("DefenseInfo")
+vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+
+[node name="DefenseInfo" type="Node" parent="."]
+script = ExtResource("2_ylwoa")
+maxHealth = 100
+defense = 10
+
+[node name="DamageInfo" type="Node" parent="."]
+script = ExtResource("4_8n3fx")
+damage = 20
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_n32tx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
+texture = ExtResource("5_xkmnr")
+
+[node name="VerticeTopLeft" type="Node2D" parent="."]
+position = Vector2(-17, -17)
+
+[node name="VerticeTopRight" type="Node2D" parent="."]
+position = Vector2(15, -17)
+
+[node name="VerticeBotRight" type="Node2D" parent="."]
+position = Vector2(15, 15)
+
+[node name="VerticeBotLeft" type="Node2D" parent="."]
+position = Vector2(-17, 15)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="CollideWithBody"]
