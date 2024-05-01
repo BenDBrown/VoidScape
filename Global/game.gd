@@ -17,3 +17,7 @@ func get_save_data():
 
 func on_enemy_death():
 	pass
+
+func _process(_delta):
+	if Input.is_key_pressed(KEY_F4):
+		get_tree().quit();
