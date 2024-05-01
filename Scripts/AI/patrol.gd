@@ -40,3 +40,7 @@ func go_to_point(delta):
 func timeout():
 	timer.stop();
 	point_reached = true;
+
+func exit():
+	super.exit();
+	point_reached = true;

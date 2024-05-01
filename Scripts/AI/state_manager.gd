@@ -48,6 +48,7 @@ func init_states():
 	state_changed.connect(patrolState.exit);
 	state_changed.connect(idleState.exit);
 	idleState.on_exit.connect(on_idle_exit);
+	followState.on_exit.connect(on_follow_exit);
 
 func _on_area_2d_body_entered(body):
 	if body == parent: return;
@@ -60,9 +61,12 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body == parent: return;
 	if !(body is CharacterBody2D): return;
-	var pos = (body as Node2D).position;
-	followState.target = pos;
+	followState.target = (body as Node2D).position;
 
+func on_follow_exit():
+	state_changed.emit();
+	idleState.enter();
+	
 func on_idle_exit():
 	state_changed.emit();
 	patrolState.enter();
