@@ -2,12 +2,16 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Ship : Node2D
+public partial class Ship : CharacterBody2D
 {
-	//in seconds
-	private const int POWER_TICK_RATE = 1;
+
+
+	private const float THRUST_WEIGHT_MOD = 0.3f;
 
 	public int fuelCapacity {get; private set;} = 0;
+
+	[Export]
+	private CollisionPolygon2D collider;
 
  	[Export]
 	private PowerManager powerManager;
@@ -15,28 +19,34 @@ public partial class Ship : Node2D
 	[Export]
 	private CargoManager cargoManager;
 
-	[Export]
-	private Timer timer;
-
 	private List<ShipComponent> shipComponents = new();
 
 	private List<Gun> guns = new();
 
-	private Dictionary<IPowerable, bool> powerables = new();
+	private List<Thruster> thrusters= new();
 
-	private bool stalling = false;
+	private bool thrusting = false;
 
-	private int fuel = 0;
+	float thrust;
+
+	private float fuel = 0;
 
 
     public override void _Ready()
     {
-		timer.Start(POWER_TICK_RATE);
-		timer.Timeout += PowerTick;
 		TryBuildShip();
     }
 
-	public void ShipDestroyed()
+    public override void _PhysicsProcess(double delta)
+    {
+        if(thrusting) 
+		{
+			Vector2 moveVector = new Vector2(0, (float)(delta * (thrust * -1)));
+			MoveAndCollide(moveVector);
+		}
+    }
+
+    public void ShipDestroyed()
 	{
 		GD.Print("ship destroyed");
 	}
@@ -49,26 +59,40 @@ public partial class Ship : Node2D
 
 	public void Shoot() 
 	{ 
-		if(!stalling) 
-		{
-			foreach(Gun gun in guns) 
-			{ 
-				UsePowerable(gun);
-				gun.Shoot(); 
-			} 
+		foreach(Gun gun in guns) 
+		{ 
+			if(TryUsePowerable(gun)) { gun.Shoot();  }
 		} 
 	}
 
-		private bool TryBuildShip()
+	public void ForwardThrust()
+	{
+		GD.Print("thrusting");
+		thrust = 0;
+		foreach (Thruster thruster in thrusters)
+		{
+			if(TryUsePowerable(thruster)) { thrust += thruster.GetThrust(); }
+			else{GD.Print("couldnt thrust");}
+		}
+		thrust /= shipComponents.Count * THRUST_WEIGHT_MOD;
+		thrusting = true;
+	}
+
+	public void StopThrusting() { GD.Print("not thrusting"); thrusting = false; }
+
+
+	private bool TryBuildShip()
 	{
 		bool hasFuelTank = false;
 		bool hasGenerator = false;
 		bool hasThruster = false;
 		bool thrusterPowerUsageUnderMaxPower = false;
 		int thrustPowerNeeded = 0;
-		int maxPowerGenerated;
+		float maxPowerGenerated;
 		int cargoCapacity = 0;
 		
+		List<Vector2> unpackedVectors = new();
+
         foreach(Node node in GetChildren())
 		{
 			switch(node)
@@ -89,53 +113,42 @@ public partial class Ship : Node2D
 					break;
 				case Thruster thruster:
 					thrustPowerNeeded += thruster.GetPowerDraw();
+					thrusters.Add(thruster);
 					hasThruster = true;
 					break;
 				default: break;
 			}
-			if(node is IPowerable) { powerables.Add(node as IPowerable, false); }
 			if(node is ShipComponent) 
 			{ 
 				ShipComponent shipComponent = node as ShipComponent;
 				shipComponents.Add(shipComponent); 
 				shipComponent.OnDestroyed += ComponentDestroyed;
-			}
-			cargoManager.cargoCapacity = cargoCapacity;
 
-			maxPowerGenerated = powerManager.GetMaxPowerGenerated();
-			thrusterPowerUsageUnderMaxPower = maxPowerGenerated >= thrustPowerNeeded;
+				foreach (Vector2 v2 in shipComponent.GetVertices()){ unpackedVectors.Add(v2); GD.Print("vector: " + v2.ToString()); }
+			}
+			
 		}
+		ConvexPolygonShape2D convexPolygon = new ();
+		convexPolygon.SetPointCloud(unpackedVectors.ToArray());
+		collider.Polygon = convexPolygon.Points;
+		cargoManager.cargoCapacity = cargoCapacity;
+		maxPowerGenerated = powerManager.GetMaxPowerGenerated();
+		thrusterPowerUsageUnderMaxPower = maxPowerGenerated >= thrustPowerNeeded;
+		fuel = fuelCapacity; // remove this line later so that fuel doesnt reset when a ship is re-instantiated
+
 		return hasFuelTank && hasGenerator && hasThruster && thrusterPowerUsageUnderMaxPower;
 	}
+	
 
-	private void PowerTick()
+	private bool TryUsePowerable(IPowerable powerable)
 	{
-		if(stalling){ stalling = false; }
-		int stallTimer = 5;
-		int powerWanted = 0;
-		foreach(IPowerable powerable in powerables.Keys)
-		{
-			if(powerables[powerable]) { powerWanted += powerable.GetPowerDraw(); powerables[powerable] = false;}
-		}
-		powerManager.TryUsePower(powerWanted, fuel, out int fuelUsed, out bool enoughPower, out bool enoughFuel);
+		if(powerManager.stalling) { return false; }
+		powerManager.TryUsePower(powerable.GetPowerDraw(), fuel, out float fuelUsed, out bool enoughPower, out bool enoughFuel);
+		GD.Print("power wanted: " + powerable.GetPowerDraw() + ", fuel: " + fuel + ", fuel used: " + fuelUsed + ", enoughPower: " + enoughPower + ", enoughFuel: " + enoughFuel);
+		if(!enoughFuel){ShipDestroyed(); return false; }
+		else if(!enoughPower) {powerManager.stalling = true;}
 		fuel -= fuelUsed;
-		if(fuel < 0) {fuel = 0;}
-		if(!enoughFuel) { ShipDestroyed(); }
-		if(enoughPower) { timer.Start(POWER_TICK_RATE); }
-		else
-		{ 
-			stalling = true;
-			timer.Start(stallTimer);
-		}
-	}
-
-	private void UsePowerable(IPowerable powerable)
-	{
-		if(powerables.ContainsKey(powerable))
-		{
-			powerables[powerable] = true;
-		}
-		else { GD.Print("powerable was not in powerable list"); }
+		return enoughPower && enoughFuel;
 	}
 	
 	public bool TryAddCargo(Cargo cargo, int quantity, out int cargoAdded) 

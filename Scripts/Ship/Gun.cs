@@ -19,7 +19,7 @@ public partial class Gun : ShipComponent, IPowerable
     {
         Bullet bullet = ammo.Instantiate() as Bullet;
         this.AddChild(bullet);
-        bullet.damageInfo = damageInfo;
+        bullet.SetDamageInfo(damageInfo);
         bullet.speed = bulletSpeed;
     }
 

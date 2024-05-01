@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Bullet : Area2D
+public partial class Bullet : CharacterBody2D, IDamager
 {
 	[Export]
 	private Timer timer;
@@ -11,7 +11,11 @@ public partial class Bullet : Area2D
 
 	public float speed {get; set;}
 
-	public DamageInfo damageInfo {get; set;}
+	private DamageInfo damageInfo;
+
+    public DamageInfo GetDamageInfo() => damageInfo;
+
+    public void SetDamageInfo(DamageInfo damageInfo) { this.damageInfo = damageInfo; }
 
     public override void _Ready()
     {
@@ -21,16 +25,6 @@ public partial class Bullet : Area2D
 
     public override void _Process(double delta)
     {
-        Position = new Vector2(Position.X, Position.Y + ((float)delta * -speed));
+        MoveAndCollide(new Vector2(0, (float)(delta * (-speed * 1 ))));
     }
-
-    public void Hit(Node node)
-	{
-		if(node is IHittable)
-		{
-			IHittable hittable = node as IHittable;
-			hittable.TakeDamage(damageInfo);
-		}
-		this.QueueFree();
-	}
 }

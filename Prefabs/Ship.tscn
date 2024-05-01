@@ -4,16 +4,19 @@
 [ext_resource type="Script" path="res://Scripts/Ship/CargoManager.cs" id="2_ics3o"]
 [ext_resource type="Script" path="res://Scripts/Ship/PowerManager.cs" id="3_uocbq"]
 
-[node name="Ship" type="Node2D" node_paths=PackedStringArray("powerManager", "cargoManager", "timer")]
+[node name="Ship" type="CharacterBody2D" node_paths=PackedStringArray("collider", "powerManager", "cargoManager")]
 script = ExtResource("1_5tt1w")
+collider = NodePath("CollisionPolygon2D")
 powerManager = NodePath("PowerManager")
 cargoManager = NodePath("CargoManager")
-timer = NodePath("Timer")
 
 [node name="CargoManager" type="Node" parent="."]
 script = ExtResource("2_ics3o")
 
-[node name="PowerManager" type="Node" parent="."]
+[node name="PowerManager" type="Node" parent="." node_paths=PackedStringArray("timer")]
 script = ExtResource("3_uocbq")
+timer = NodePath("Timer")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="PowerManager"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

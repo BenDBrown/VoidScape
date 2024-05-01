@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fvufl"]
 radius = 4.0
 
-[node name="Bullet" type="Area2D" node_paths=PackedStringArray("timer")]
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("timer")]
 script = ExtResource("1_pd1wh")
 timer = NodePath("Timer")
 
@@ -33,5 +33,3 @@ sprite_frames = SubResource("SpriteFrames_7omld")
 shape = SubResource("CircleShape2D_fvufl")
 
 [node name="Timer" type="Timer" parent="."]
-
-[connection signal="body_entered" from="." to="." method="Hit"]

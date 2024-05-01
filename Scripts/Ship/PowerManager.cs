@@ -5,40 +5,83 @@ using System.Linq;
 
 public partial class PowerManager : Node
 {
-	private List<Generator> generators = new List<Generator>();
+	//in seconds
+	private const int POWER_TICK_RATE = 1;
 
-	public int GetMaxPowerGenerated()
+	private const int STALL_TIMER = 5;
+
+	public bool stalling {get; set;}
+
+	[Export]
+	private Timer timer;
+
+	private Dictionary<Generator, float> generatorPowerUsedDict = new ();
+
+	private float maxPower = 0;
+
+	private float power = 0;
+
+    public override void _Ready()
+    {
+        timer.Start(POWER_TICK_RATE);
+		timer.Timeout += PowerTick;
+    }
+
+    public float GetMaxPowerGenerated()
 	{
-		int maxPowerGenerated = 0;
-		foreach (Generator generator in generators){ maxPowerGenerated += generator.maxPowerGenerated; }
+		float maxPowerGenerated = 0;
+		foreach (Generator generator in generatorPowerUsedDict.Keys){ maxPowerGenerated += generator.maxPowerGenerated; }
 		return maxPowerGenerated;
 	}
 
-	public void TryUsePower(int powerWanted, int fuelAvailable, out int fuelUsed, out bool enoughPower, out bool enoughFuel)
+	public void TryUsePower(float powerWanted, float fuelAvailable, out float fuelUsed, out bool enoughPower, out bool enoughFuel)
 	{
 		fuelUsed = 0;
 		enoughPower = false;
 		enoughFuel = false;
-		for(int i = 0; i < generators.Count; i++)
+		float powerGenerated = 0;
+		if(powerWanted > power) { enoughFuel = true; return; }
+		foreach(Generator generator in GetOrderedGenerators())
 		{
-			if(powerWanted > generators[i].maxPowerGenerated)
+			if(generator.maxPowerGenerated >= generatorPowerUsedDict[generator]) 
 			{
-				fuelUsed += Mathf.RoundToInt(generators[i].maxPowerGenerated / generators[i].efficiency);
-				powerWanted -= generators[i].maxPowerGenerated;
+				float maxPowerChunk = generator.maxPowerGenerated - generatorPowerUsedDict[generator];
+				float powerChunk = powerWanted - powerGenerated;
+				if(powerChunk > maxPowerChunk) { powerChunk = maxPowerChunk; }
+				generatorPowerUsedDict[generator] += powerChunk;
+				powerGenerated += powerChunk;
+				fuelUsed += powerChunk / generator.efficiency;
+				power -= powerChunk;
 			}
-			else
+			if(powerGenerated >= powerWanted)
 			{
-				fuelUsed += Mathf.RoundToInt(powerWanted / generators[i].efficiency);
+				if(fuelAvailable >= fuelUsed) {enoughFuel = true;}
 				enoughPower = true;
-				powerWanted = 0;
+				return;
 			}
 		}
-		if(fuelAvailable >= fuelUsed) { enoughFuel = true; }
+		if(fuelAvailable >= fuelUsed)
+		{
+			stalling = true;
+		}
 	}
 
-	public void AddGenerator(Generator generator) {generators.Add(generator); UpdateGeneratorOrder(); }
+	public void AddGenerator(Generator generator) 
+	{
+		generatorPowerUsedDict.Add(generator, 0); 
+		maxPower = GetMaxPowerGenerated();
+		power = maxPower;
+		GetOrderedGenerators(); 
+	}
 
-	public void RemoveGenerator(Generator generator) {generators.Remove(generator); }
+	public void RemoveGenerator(Generator generator) {generatorPowerUsedDict.Remove(generator); }
 
-	private void UpdateGeneratorOrder() { generators = generators.OrderByDescending(Generator => Generator.efficiency).ToList(); }
+	private void PowerTick()
+	{
+		if(stalling) { timer.Start(STALL_TIMER); stalling = false; return; }
+		power = maxPower;
+		timer.Start(POWER_TICK_RATE);
+	}
+
+	private List<Generator> GetOrderedGenerators() { return generatorPowerUsedDict.Keys.OrderByDescending(Generator => Generator.efficiency).ToList(); }
 }

@@ -7,15 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
-[node name="Cockpit" type="RigidBody2D" node_paths=PackedStringArray("defenseInfo")]
-gravity_scale = 0.0
+[node name="Cockpit" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
 script = ExtResource("1_s082n")
 defenseInfo = NodePath("DefenseInfo")
+vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_07jmt")
 maxHealth = 100
-currentHealth = 100
 defense = 10
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -23,3 +22,17 @@ shape = SubResource("RectangleShape2D_n32tx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_j3amt")
+
+[node name="VerticeTopLeft" type="Node2D" parent="."]
+position = Vector2(-16, -16)
+
+[node name="VerticeTopRight" type="Node2D" parent="."]
+position = Vector2(16, -16)
+
+[node name="VerticeBotRight" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="VerticeBotLeft" type="Node2D" parent="."]
+position = Vector2(-16, 16)
+
+[connection signal="body_entered" from="." to="." method="CollideWithBody"]
