@@ -62,6 +62,8 @@ public partial class PowerManager : Node
 		}
 		if(fuelAvailable >= fuelUsed)
 		{
+			GD.Print("max power: " + maxPower + ", power: " + power);
+			enoughFuel = true;
 			stalling = true;
 		}
 	}
@@ -80,6 +82,7 @@ public partial class PowerManager : Node
 	{
 		if(stalling) { timer.Start(STALL_TIMER); stalling = false; return; }
 		power = maxPower;
+		foreach(Generator generator in generatorPowerUsedDict.Keys){ generatorPowerUsedDict[generator] = 0; }
 		timer.Start(POWER_TICK_RATE);
 	}
 

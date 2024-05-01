@@ -10,7 +10,7 @@ size = Vector2(32, 32)
 [node name="Thruster" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
 script = ExtResource("1_qteyv")
 powerdraw = 1
-thrust = 5.0
+thrust = 100.0
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 

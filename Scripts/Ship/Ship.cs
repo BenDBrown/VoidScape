@@ -27,7 +27,9 @@ public partial class Ship : CharacterBody2D
 
 	private bool thrusting = false;
 
-	float thrust;
+	private float thrust;
+
+	private float thrustPowerDraw;
 
 	private float fuel = 0;
 
@@ -41,8 +43,11 @@ public partial class Ship : CharacterBody2D
     {
         if(thrusting) 
 		{
-			Vector2 moveVector = new Vector2(0, (float)(delta * (thrust * -1)));
-			MoveAndCollide(moveVector);
+			if(TryUsePowerable(thrustPowerDraw))
+			{
+				Vector2 moveVector = new Vector2(0, (float)(delta * (thrust * -1)));
+				MoveAndCollide(moveVector);
+			}
 		}
     }
 
@@ -69,10 +74,11 @@ public partial class Ship : CharacterBody2D
 	{
 		GD.Print("thrusting");
 		thrust = 0;
+		thrustPowerDraw = 0;
 		foreach (Thruster thruster in thrusters)
 		{
-			if(TryUsePowerable(thruster)) { thrust += thruster.GetThrust(); }
-			else{GD.Print("couldnt thrust");}
+			thrustPowerDraw += thruster.GetPowerDraw();
+			thrust += thruster.GetThrust();
 		}
 		thrust /= shipComponents.Count * THRUST_WEIGHT_MOD;
 		thrusting = true;
@@ -142,9 +148,14 @@ public partial class Ship : CharacterBody2D
 
 	private bool TryUsePowerable(IPowerable powerable)
 	{
+		return TryUsePowerable(powerable.GetPowerDraw());
+	}
+
+		private bool TryUsePowerable(float powerWanted)
+	{
 		if(powerManager.stalling) { return false; }
-		powerManager.TryUsePower(powerable.GetPowerDraw(), fuel, out float fuelUsed, out bool enoughPower, out bool enoughFuel);
-		GD.Print("power wanted: " + powerable.GetPowerDraw() + ", fuel: " + fuel + ", fuel used: " + fuelUsed + ", enoughPower: " + enoughPower + ", enoughFuel: " + enoughFuel);
+		powerManager.TryUsePower(powerWanted, fuel, out float fuelUsed, out bool enoughPower, out bool enoughFuel);
+		GD.Print("power wanted: " + powerWanted + ", fuel: " + fuel + ", fuel used: " + fuelUsed + ", enoughPower: " + enoughPower + ", enoughFuel: " + enoughFuel);
 		if(!enoughFuel){ShipDestroyed(); return false; }
 		else if(!enoughPower) {powerManager.stalling = true;}
 		fuel -= fuelUsed;
