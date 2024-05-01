@@ -55,12 +55,14 @@ public partial class PlayerShip : CharacterBody2D, IShip
 		{
 			if(TryUsePowerable((float)(thrustPowerDraw * delta)))
 			{
-				if(thrustDirection == T)
-				Vector2 moveVector = thrustDirection * (float)(thrust * delta);
+				Vector2 thrustVector;
+				if(thrustDirection == ThrustDirection.forward) { thrustVector = -Transform.Y; }
+				else {thrustVector = Transform.Y; }
+				Vector2 moveVector = thrustVector * (float)(thrust * delta);
 				MoveAndCollide(moveVector);
 				MoveAndSlide();
 			}
-			else { thrustDirection = Vector2.Zero; }
+			else { thrustDirection = ThrustDirection.none; }
 		}
 		if(shooting)
 		{
@@ -103,17 +105,17 @@ public partial class PlayerShip : CharacterBody2D, IShip
 	public void ForwardThrust()
 	{
 		CalculateThrust();
-		thrustDirection = Vector2.Up;
+		thrustDirection = ThrustDirection.forward;
 	}
 
 	public void BackThrust()
 	{
 		CalculateThrust();
 		thrust *= THRUST_BACK_MOD;
-		thrustDirection = Vector2.Down;	
+		thrustDirection = ThrustDirection.back;	
 	}
 
-	public void StopThrusting() { thrustDirection = Vector2.Zero; }
+	public void StopThrusting() { thrustDirection = ThrustDirection.none; }
 
 	public void StartTurningClockwise()
 	{
