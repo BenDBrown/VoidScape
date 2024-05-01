@@ -2,9 +2,13 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Ship : CharacterBody2D
+public partial class PlayerShip : CharacterBody2D, IShip
 {
 	private const float THRUST_WEIGHT_MOD = 0.3f;
+
+	private const float THRUST_BACK_MOD = 0.5f;
+
+	private const float MAX_ROTATION_SPEED = 3;
 
 	public int fuelCapacity {get; private set;} = 0;
 
@@ -27,13 +31,17 @@ public partial class Ship : CharacterBody2D
 
 	private float shootPowerDraw;
 
-	private bool thrusting = false;
+	private Vector2 thrustDirection = Vector2.Zero;
 
 	private float thrust;
 
 	private float thrustPowerDraw;
 
 	private float fuel = 0;
+
+	private float rotationDirection = 0;
+
+	private float rotationSpeed;
 
 
     public override void _Ready()
@@ -43,18 +51,23 @@ public partial class Ship : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if(thrusting) 
+        if(thrustDirection != Vector2.Zero) 
 		{
 			if(TryUsePowerable((float)(thrustPowerDraw * delta)))
 			{
-				Vector2 moveVector = new Vector2(0, (float)(delta * (thrust * -1)));
+				Vector2 moveVector = thrustDirection * (float)(thrust * delta);
 				MoveAndCollide(moveVector);
+				MoveAndSlide();
 			}
-			else { thrusting = false; }
+			else { thrustDirection = Vector2.Zero; }
 		}
 		if(shooting)
 		{
 			if(!TryUsePowerable((float)(shootPowerDraw * delta))) { StopShooting(); }
+		}
+		if(rotationDirection != 0)
+		{
+			Rotation += (float)(rotationDirection * rotationSpeed * delta);
 		}
     }
 
@@ -82,28 +95,45 @@ public partial class Ship : CharacterBody2D
 
 	public void StopShooting() 
 	{
-		 shooting = false; 
-		 foreach(Gun gun in guns) { gun.StopShooting(); }
+		shooting = false; 
+		foreach(Gun gun in guns) { gun.StopShooting(); }
 	}
 
 	public void ForwardThrust()
 	{
-		GD.Print("thrusting");
-		thrust = 0;
-		thrustPowerDraw = 0;
-		foreach (Thruster thruster in thrusters)
-		{
-			thrustPowerDraw += thruster.GetPowerDraw();
-			thrust += thruster.GetThrust();
-		}
-		thrust /= shipComponents.Count * THRUST_WEIGHT_MOD;
-		thrusting = true;
+		CalculateThrust();
+		thrustDirection = Vector2.Up;
 	}
 
-	public void StopThrusting() { GD.Print("not thrusting"); thrusting = false; }
+	public void BackThrust()
+	{
+		CalculateThrust();
+		thrust *= THRUST_BACK_MOD;
+		thrustDirection = Vector2.Down;	
+	}
+
+	public void StopThrusting() { thrustDirection = Vector2.Zero; }
+
+	public void StartTurningClockwise()
+	{
+		rotationDirection = 1;
+		CalculateThrust();
+		rotationSpeed = thrust;
+		if(rotationSpeed > MAX_ROTATION_SPEED) { rotationSpeed = MAX_ROTATION_SPEED; }
+	}
+	
+	public void StartTurningCounterClockwise()
+	{
+		rotationDirection = -1;
+		CalculateThrust();
+		rotationSpeed = thrust;
+		if(rotationSpeed > MAX_ROTATION_SPEED) { rotationSpeed = MAX_ROTATION_SPEED; }
+	}
+
+	public void StopTurning() { rotationDirection = 0; }
 
 
-	private bool TryBuildShip()
+	public bool TryBuildShip()
 	{
 		bool hasFuelTank = false;
 		bool hasGenerator = false;
@@ -165,6 +195,18 @@ public partial class Ship : CharacterBody2D
 		fuel = fuelCapacity; // remove this line later so that fuel doesnt reset when a ship is re-instantiated
 
 		return hasFuelTank && hasGenerator && hasThruster && thrusterPowerUsageUnderMaxPower;
+	}
+
+	private void CalculateThrust()
+	{
+		thrust = 0;
+		thrustPowerDraw = 0;
+		foreach (Thruster thruster in thrusters)
+		{
+			thrustPowerDraw += thruster.GetPowerDraw();
+			thrust += thruster.GetThrust();
+		}
+		thrust /= shipComponents.Count * THRUST_WEIGHT_MOD;
 	}
 
 	private bool TryUsePowerable(float powerWanted)
