@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public partial class Ship : CharacterBody2D
 {
-
-
 	private const float THRUST_WEIGHT_MOD = 0.3f;
 
 	public int fuelCapacity {get; private set;} = 0;
@@ -25,6 +23,10 @@ public partial class Ship : CharacterBody2D
 
 	private List<Thruster> thrusters= new();
 
+	private bool shooting = false;
+
+	private float shootPowerDraw;
+
 	private bool thrusting = false;
 
 	private float thrust;
@@ -43,11 +45,16 @@ public partial class Ship : CharacterBody2D
     {
         if(thrusting) 
 		{
-			if(TryUsePowerable(thrustPowerDraw))
+			if(TryUsePowerable((float)(thrustPowerDraw * delta)))
 			{
 				Vector2 moveVector = new Vector2(0, (float)(delta * (thrust * -1)));
 				MoveAndCollide(moveVector);
 			}
+			else { thrusting = false; }
+		}
+		if(shooting)
+		{
+			if(!TryUsePowerable((float)(shootPowerDraw * delta))) { StopShooting(); }
 		}
     }
 
@@ -62,12 +69,21 @@ public partial class Ship : CharacterBody2D
 		GD.Print(shipComponent.Name + " destroyed");
 	}
 
-	public void Shoot() 
+	public void StartShooting() 
 	{ 
+		shootPowerDraw = 0;
 		foreach(Gun gun in guns) 
 		{ 
-			if(TryUsePowerable(gun)) { gun.Shoot();  }
-		} 
+			shootPowerDraw += gun.GetPowerDraw();
+			gun.StartShooting();
+		}
+		shooting = true;
+	}
+
+	public void StopShooting() 
+	{
+		 shooting = false; 
+		 foreach(Gun gun in guns) { gun.StopShooting(); }
 	}
 
 	public void ForwardThrust()
@@ -129,14 +145,20 @@ public partial class Ship : CharacterBody2D
 				ShipComponent shipComponent = node as ShipComponent;
 				shipComponents.Add(shipComponent); 
 				shipComponent.OnDestroyed += ComponentDestroyed;
-
-				foreach (Vector2 v2 in shipComponent.GetVertices()){ unpackedVectors.Add(v2); GD.Print("vector: " + v2.ToString()); }
+				
+				foreach (Vector2 v2 in shipComponent.GetVertices())
+				{ 
+					Vector2 localPositon = ToLocal(v2);
+					unpackedVectors.Add(localPositon);
+				}
 			}
 			
 		}
 		ConvexPolygonShape2D convexPolygon = new ();
 		convexPolygon.SetPointCloud(unpackedVectors.ToArray());
 		collider.Polygon = convexPolygon.Points;
+		
+
 		cargoManager.cargoCapacity = cargoCapacity;
 		maxPowerGenerated = powerManager.GetMaxPowerGenerated();
 		thrusterPowerUsageUnderMaxPower = maxPowerGenerated >= thrustPowerNeeded;
@@ -144,14 +166,8 @@ public partial class Ship : CharacterBody2D
 
 		return hasFuelTank && hasGenerator && hasThruster && thrusterPowerUsageUnderMaxPower;
 	}
-	
 
-	private bool TryUsePowerable(IPowerable powerable)
-	{
-		return TryUsePowerable(powerable.GetPowerDraw());
-	}
-
-		private bool TryUsePowerable(float powerWanted)
+	private bool TryUsePowerable(float powerWanted)
 	{
 		if(powerManager.stalling) { return false; }
 		powerManager.TryUsePower(powerWanted, fuel, out float fuelUsed, out bool enoughPower, out bool enoughFuel);

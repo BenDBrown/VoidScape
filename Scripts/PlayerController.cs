@@ -11,6 +11,7 @@ public partial class PlayerController : Node
 	{
 		if(Input.IsActionJustPressed("forward")) { ship.ForwardThrust(); }
 		else if(Input.IsActionJustReleased("forward")) { ship.StopThrusting(); }
-		if(Input.IsActionJustReleased("shoot")) { ship.Shoot(); }
+		if(Input.IsActionJustPressed("shoot")) { ship.StartShooting(); }
+		else if(Input.IsActionJustReleased("shoot")) { ship.StopShooting(); }
 	}
 }

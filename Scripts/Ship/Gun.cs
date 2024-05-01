@@ -13,7 +13,22 @@ public partial class Gun : ShipComponent, IPowerable
     private DamageInfo damageInfo;
 
     [Export]
+    private Timer timer;
+
+    [Export]
     private float bulletSpeed;
+
+    [Export] // lower values = faster
+    private double fireInterval = 1;
+
+    public override void _Ready()
+    {
+		timer.Timeout += Shoot;
+    }
+
+    public void StartShooting() { Shoot(); }
+
+    public void StopShooting(){ timer.Stop(); }
 
     public void Shoot()
     {
@@ -21,6 +36,7 @@ public partial class Gun : ShipComponent, IPowerable
         this.AddChild(bullet);
         bullet.SetDamageInfo(damageInfo);
         bullet.speed = bulletSpeed;
+        timer.Start(fireInterval);
     }
 
     public int GetPowerDraw() => powerdraw;

@@ -45,7 +45,7 @@ public partial class ShipComponent: Area2D
 		Vector2[] v2Vertices = new Vector2[vertices.Length];
 		for(int i = 0; i < vertices.Length; i++)
 		{
-			Vector2 v2 = vertices[i].Position;
+			Vector2 v2 = vertices[i].GlobalPosition;
 			v2Vertices[i] = v2;
 		}
 		return v2Vertices;

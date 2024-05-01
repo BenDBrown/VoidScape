@@ -9,14 +9,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
-[node name="Gun" type="Area2D" node_paths=PackedStringArray("damageInfo", "defenseInfo", "vertices")]
-position = Vector2(589, 327)
+[node name="Gun" type="Area2D" node_paths=PackedStringArray("damageInfo", "timer", "defenseInfo", "vertices")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_cygbu")
 powerdraw = 1
 ammo = ExtResource("2_7xmuv")
 damageInfo = NodePath("DamageInfo")
+timer = NodePath("Timer")
 bulletSpeed = 300.0
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
@@ -49,5 +49,7 @@ position = Vector2(15, 15)
 
 [node name="VerticeBotLeft" type="Node2D" parent="."]
 position = Vector2(-17, 15)
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="CollideWithBody"]
