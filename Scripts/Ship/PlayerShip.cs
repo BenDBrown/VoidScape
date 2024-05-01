@@ -31,7 +31,7 @@ public partial class PlayerShip : CharacterBody2D, IShip
 
 	private float shootPowerDraw;
 
-	private Vector2 thrustDirection = Vector2.Zero;
+	private ThrustDirection thrustDirection = ThrustDirection.none;
 
 	private float thrust;
 
@@ -51,10 +51,11 @@ public partial class PlayerShip : CharacterBody2D, IShip
 
     public override void _PhysicsProcess(double delta)
     {
-        if(thrustDirection != Vector2.Zero) 
+        if(thrustDirection != ThrustDirection.none) 
 		{
 			if(TryUsePowerable((float)(thrustPowerDraw * delta)))
 			{
+				if(thrustDirection == T)
 				Vector2 moveVector = thrustDirection * (float)(thrust * delta);
 				MoveAndCollide(moveVector);
 				MoveAndSlide();
@@ -229,4 +230,12 @@ public partial class PlayerShip : CharacterBody2D, IShip
 
 	public bool TryTakeCargo(Cargo cargo, int quantity) { return cargoManager.TryTakeCargo(cargo, quantity); }
 
+	private enum ThrustDirection
+	{
+		forward,
+		back,
+		none
+	}
+
 }
+
