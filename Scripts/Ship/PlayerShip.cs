@@ -215,19 +215,15 @@ public partial class PlayerShip : CharacterBody2D, IShip
 	private bool TryUsePowerable(float powerWanted)
 	{
 		if(powerManager.stalling) { return false; }
-		powerManager.TryUsePower(powerWanted, fuel, out float fuelUsed, out bool enoughPower, out bool enoughFuel);
-		GD.Print("power wanted: " + powerWanted + ", fuel: " + fuel + ", fuel used: " + fuelUsed + ", enoughPower: " + enoughPower + ", enoughFuel: " + enoughFuel);
-		if(!enoughFuel){ShipDestroyed(); return false; }
-		else if(!enoughPower) {powerManager.stalling = true;}
+		bool result = powerManager.TryUsePower(powerWanted, fuel, out float fuelUsed, out bool hasEnoughFuel);
+		if(!hasEnoughFuel){ShipDestroyed(); return false; }
 		fuel -= fuelUsed;
-		return enoughPower && enoughFuel;
+		return result;
 	}
 	
 	public bool TryAddCargo(Cargo cargo, int quantity, out int cargoAdded) 
 	{ 
-		bool success = cargoManager.TryAddCargo(cargo, quantity, out int cargoAddedToManager); 
-		cargoAdded = cargoAddedToManager;
-		return success;
+		return cargoManager.TryAddCargo(cargo, quantity, out cargoAdded); 
 	}
 
 	public bool TryTakeCargo(Cargo cargo, int quantity) { return cargoManager.TryTakeCargo(cargo, quantity); }

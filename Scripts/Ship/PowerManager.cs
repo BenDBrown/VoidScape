@@ -34,13 +34,13 @@ public partial class PowerManager : Node
 		return maxPowerGenerated;
 	}
 
-	public void TryUsePower(float powerWanted, float fuelAvailable, out float fuelUsed, out bool enoughPower, out bool enoughFuel)
+	public bool TryUsePower(float powerWanted, float fuelAvailable, out float fuelUsed, out bool hasEnoughFuel)
 	{
 		fuelUsed = 0;
-		enoughPower = false;
-		enoughFuel = false;
+		bool enoughPower = false;
+		hasEnoughFuel = false;
 		float powerGenerated = 0;
-		if(powerWanted > power) { enoughFuel = true; return; }
+		if(powerWanted > power) { hasEnoughFuel = true; return enoughPower && hasEnoughFuel; }
 		foreach(Generator generator in GetOrderedGenerators())
 		{
 			if(generator.maxPowerGenerated >= generatorPowerUsedDict[generator]) 
@@ -55,17 +55,18 @@ public partial class PowerManager : Node
 			}
 			if(powerGenerated >= powerWanted)
 			{
-				if(fuelAvailable >= fuelUsed) {enoughFuel = true;}
+				if(fuelAvailable >= fuelUsed) {hasEnoughFuel = true;}
 				enoughPower = true;
-				return;
+				return enoughPower && hasEnoughFuel;
 			}
 		}
 		if(fuelAvailable >= fuelUsed)
 		{
 			GD.Print("max power: " + maxPower + ", power: " + power);
-			enoughFuel = true;
+			hasEnoughFuel = true;
 			stalling = true;
 		}
+		return enoughPower && hasEnoughFuel;
 	}
 
 	public void AddGenerator(Generator generator) 
