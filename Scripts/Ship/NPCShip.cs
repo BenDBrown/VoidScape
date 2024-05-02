@@ -67,6 +67,7 @@ public partial class NPCShip : CharacterBody2D, IShip
 
 	public void StartShooting() 
 	{ 
+		if(shooting) { return; }
 		foreach(Gun gun in guns) 
 		{ 
 			gun.StartShooting();

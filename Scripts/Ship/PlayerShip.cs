@@ -86,6 +86,7 @@ public partial class PlayerShip : CharacterBody2D, IShip
 
 	public void StartShooting() 
 	{ 
+		if(shooting) { return; }
 		shootPowerDraw = 0;
 		foreach(Gun gun in guns) 
 		{ 

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Bullet : CharacterBody2D, IDamager
+public partial class Bullet : RigidBody2D, IDamager
 {
 	[Export]
 	private Timer timer;
@@ -20,11 +20,11 @@ public partial class Bullet : CharacterBody2D, IDamager
     public override void _Ready()
     {
         timer.Start(lifeTime);
-		timer.Timeout += this.QueueFree;
+		timer.Timeout += QueueFree;
     }
 
-    public override void _Process(double delta)
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
-        MoveAndCollide(new Vector2(0, (float)(delta * (-speed * 1 ))));
+        LinearVelocity = Transform.Y * -speed;
     }
 }
