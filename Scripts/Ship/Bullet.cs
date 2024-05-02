@@ -20,11 +20,11 @@ public partial class Bullet : RigidBody2D, IDamager
     public override void _Ready()
     {
         timer.Start(lifeTime);
-		timer.Timeout += this.QueueFree;
+		timer.Timeout += QueueFree;
     }
 
-    public override void _PhysicsProcess(double delta)
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
-        // PhysicsDirectBodyState2D physicsState = 
+        LinearVelocity = Transform.Y * -speed;
     }
 }
