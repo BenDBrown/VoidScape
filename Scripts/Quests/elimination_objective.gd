@@ -6,11 +6,9 @@ class_name EliminationObjective
 @onready var current_amount = 0
 
 func is_target(target):
-	if state == "COMPLETED":
-		return
-	if !target.is_instance_of(elim_target):
-		return
-		
+	if state == State.COMPLETED: return
+	if !target.is_instance_of(elim_target): return
 	current_amount += 1
 	if current_amount >= max_amount:
-		completed.emit()	
+		completed.emit()
+		state = State.COMPLETED

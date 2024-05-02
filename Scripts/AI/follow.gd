@@ -16,10 +16,7 @@ func exit():
 	parent.StopThrusting()
 	transitioned.emit(self, "idle")
 
-func physics_update(delta):
-	follow_target(delta)
-
-func follow_target(delta):
+func physics_update(_delta):
 	var dist = parent.global_position.distance_to(player.global_position)
 	if dist > out_of_detection_distance:
 		exit()

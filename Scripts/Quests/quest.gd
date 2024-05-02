@@ -7,8 +7,7 @@ signal completed
 signal delivered
 
 enum State{UNSELECTED, ONGOING, COMPLETED, DELIVERED}
-
-@export var state: State = State.UNSELECTED
+@export var state:State = State.UNSELECTED
 @export var quest_name: String
 @export_multiline var quest_description = ""
 
