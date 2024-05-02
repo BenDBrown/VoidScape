@@ -22,7 +22,7 @@ animations = [{
 radius = 4.0
 
 [node name="Bullet" type="RigidBody2D" node_paths=PackedStringArray("timer")]
-script = ExtResource("1_pd1wh")
+script = ExtResource("1_v258x")
 timer = NodePath("Timer")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
