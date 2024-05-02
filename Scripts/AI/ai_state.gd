@@ -1,17 +1,20 @@
 @icon("res://Assets/Other/State.png")
-extends Node2D
+extends Node
 class_name AIState
 
-signal on_exit;
-var is_active: bool = false;
+@onready var parent = $"../.."
+@onready var player = $"../../../PlayerShip"
+@export var detect_radius = 200.0
+
+signal transitioned(AIState, new_state:String)
 
 func enter():
-	is_active = true;
-	print(name + " Entered");
+	print(name + " Entered")
 
 func exit():
-	if is_active:
-		is_active = false;
-		on_exit.emit();
-		print(name + " Exited");
+	print(name + " Exited")
 
+func update(_delta):
+	pass
+func physics_update(_delta):
+	pass

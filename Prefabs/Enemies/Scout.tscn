@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://6pkivhgarchh"]
+
+[ext_resource type="Script" path="res://Scripts/Ship/NPCShip.cs" id="1_6hs0k"]
+[ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Prefabs/ShipComponents/CockpitSpear.tscn" id="2_k0f33"]
+[ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Prefabs/FuelTank.tscn" id="3_nrke5"]
+[ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Prefabs/Generator.tscn" id="4_4umao"]
+[ext_resource type="PackedScene" uid="uid://38862x8qpd87" path="res://Prefabs/Gun.tscn" id="5_fri1c"]
+[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Prefabs/Thruster.tscn" id="6_3qqkv"]
+[ext_resource type="Script" path="res://Scripts/AI/state_manager.gd" id="7_0wryf"]
+[ext_resource type="Script" path="res://Scripts/AI/idle.gd" id="8_bpwhd"]
+[ext_resource type="Script" path="res://Scripts/AI/patrol.gd" id="9_la8j8"]
+[ext_resource type="Script" path="res://Scripts/AI/follow.gd" id="10_pjtre"]
+
+[node name="Scout" type="CharacterBody2D" node_paths=PackedStringArray("collider")]
+script = ExtResource("1_6hs0k")
+collider = NodePath("CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Cockpit" parent="." instance=ExtResource("2_k0f33")]
+
+[node name="FuelTank" parent="." instance=ExtResource("3_nrke5")]
+position = Vector2(-32, 32)
+rotation = 3.14159
+
+[node name="Generator" parent="." instance=ExtResource("4_4umao")]
+position = Vector2(0, 32)
+
+[node name="Gun" parent="." instance=ExtResource("5_fri1c")]
+position = Vector2(-33, 1)
+rotation = -3.14159
+scale = Vector2(1.0103, -1)
+
+[node name="Gun2" parent="." instance=ExtResource("5_fri1c")]
+position = Vector2(33, 1)
+
+[node name="Thruster" parent="." instance=ExtResource("6_3qqkv")]
+position = Vector2(0, 64)
+
+[node name="FuelTank2" parent="." instance=ExtResource("3_nrke5")]
+position = Vector2(32, 32)
+
+[node name="StateManager" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_0wryf")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateManager"]
+script = ExtResource("8_bpwhd")
+detect_radius = 300.0
+
+[node name="Patrol" type="Node" parent="StateManager"]
+script = ExtResource("9_la8j8")
+detect_radius = 300.0
+
+[node name="Follow" type="Node" parent="StateManager"]
+script = ExtResource("10_pjtre")
+out_of_detection_distance = 500.0

@@ -5,12 +5,12 @@ extends Node
 
 func try_add_quest(quest: Quest):
 	if quests.size() >= questLimit:
-		return false;
-	quests.append(quest);
-	return true;
+		return false
+	quests.append(quest)
+	return true
 
 func get_quests():
-	return quests;
+	return quests
 
 func check(target):
 	for quest in quests:
