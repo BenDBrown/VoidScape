@@ -13,4 +13,5 @@ public partial class Thruster : ShipComponent, IPowerable
 
 	public float GetThrust() => thrust;
 
+
 }
