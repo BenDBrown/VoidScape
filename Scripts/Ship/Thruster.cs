@@ -9,7 +9,7 @@ public partial class Thruster : ShipComponent, IPowerable
 	[Export]
 	private float thrust;
 
-    public int GetPowerDraw() => powerdraw;
+	public int GetPowerDraw() => powerdraw;
 
 	public float GetThrust() => thrust;
 

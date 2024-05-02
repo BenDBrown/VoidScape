@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bocf68cea03oo"
-path="res://.godot/imported/Borders-Bottom.png-8c433b4b57f3bd18a3beb93159069134.ctex"
+uid="uid://nbdofm68k46m"
+path="res://.godot/imported/Borders-Right.png-06b1767d2119fb3f03e0b2613ae2105f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Aseprite/Borders-Bottom.png"
-dest_files=["res://.godot/imported/Borders-Bottom.png-8c433b4b57f3bd18a3beb93159069134.ctex"]
+source_file="res://Assets/UI/Borders-Right.png"
+dest_files=["res://.godot/imported/Borders-Right.png-06b1767d2119fb3f03e0b2613ae2105f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v1j36mnh1ob1"
-path="res://.godot/imported/Borders-Top.png-9789b8205b94ab8b5f3a21e74a98e2b7.ctex"
+uid="uid://67su3hj7ulnd"
+path="res://.godot/imported/UI-ColouredBars-White.png-7fd16ec8507c03ecf0f70f8aed32225a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Aseprite/Borders-Top.png"
-dest_files=["res://.godot/imported/Borders-Top.png-9789b8205b94ab8b5f3a21e74a98e2b7.ctex"]
+source_file="res://Assets/UI/UI-ColouredBars-White.png"
+dest_files=["res://.godot/imported/UI-ColouredBars-White.png-7fd16ec8507c03ecf0f70f8aed32225a.ctex"]
 
 [params]
 

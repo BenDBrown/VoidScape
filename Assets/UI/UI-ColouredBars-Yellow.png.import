@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l6daiouo3ock"
-path="res://.godot/imported/UI-ColouredBars-Blue.png-8483fe158df4a3bef7c0cf6d84a2dc2f.ctex"
+uid="uid://ks3yvdnqc37g"
+path="res://.godot/imported/UI-ColouredBars-Yellow.png-a27e2d2a0ec39ac7201e1a63c587403e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Aseprite/UI-ColouredBars-Blue.png"
-dest_files=["res://.godot/imported/UI-ColouredBars-Blue.png-8483fe158df4a3bef7c0cf6d84a2dc2f.ctex"]
+source_file="res://Assets/UI/UI-ColouredBars-Yellow.png"
+dest_files=["res://.godot/imported/UI-ColouredBars-Yellow.png-a27e2d2a0ec39ac7201e1a63c587403e.ctex"]
 
 [params]
 

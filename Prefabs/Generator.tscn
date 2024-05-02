@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://htm5aa47oi4i"]
+[gd_scene load_steps=5 format=3 uid="uid://uedj1d7fah7m"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Generator.cs" id="1_1dbup"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_3qq63"]
-[ext_resource type="Texture2D" uid="uid://b344p6v117sbg" path="res://Assets/Ship/GeneratorPlaceHolder.png" id="3_smpya"]
+[ext_resource type="Texture2D" uid="uid://cph2p7udcfsaj" path="res://Assets/Ship/ShipSheet.png" id="3_junod"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
 [node name="Generator" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
+use_parent_material = true
 script = ExtResource("1_1dbup")
 efficiency = 1.0
 maxPowerGenerated = 500
@@ -23,7 +24,10 @@ defense = 10
 shape = SubResource("RectangleShape2D_n32tx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_smpya")
+use_parent_material = true
+texture = ExtResource("3_junod")
+region_enabled = true
+region_rect = Rect2(192, 64, 32, 32)
 
 [node name="VerticeTopLeft" type="Node2D" parent="."]
 position = Vector2(-16, -16)

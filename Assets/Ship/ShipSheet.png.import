@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nbdofm68k46m"
-path="res://.godot/imported/Borders-Right.png-201cc6cb760bdda36d8433536c6a1983.ctex"
+uid="uid://cph2p7udcfsaj"
+path="res://.godot/imported/ShipSheet.png-9d0901a77a378ff98d147aa321a02c5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Aseprite/Borders-Right.png"
-dest_files=["res://.godot/imported/Borders-Right.png-201cc6cb760bdda36d8433536c6a1983.ctex"]
+source_file="res://Assets/Ship/ShipSheet.png"
+dest_files=["res://.godot/imported/ShipSheet.png-9d0901a77a378ff98d147aa321a02c5d.ctex"]
 
 [params]
 

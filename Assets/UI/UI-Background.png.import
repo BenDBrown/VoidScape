@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://67su3hj7ulnd"
-path="res://.godot/imported/UI-ColouredBars-White.png-3873e15e3abda1e9c81d0df7782d8747.ctex"
+uid="uid://cm6rqs2b1srys"
+path="res://.godot/imported/UI-Background.png-9636b3e75034326cbeae3e6dcbda0892.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Aseprite/UI-ColouredBars-White.png"
-dest_files=["res://.godot/imported/UI-ColouredBars-White.png-3873e15e3abda1e9c81d0df7782d8747.ctex"]
+source_file="res://Assets/UI/UI-Background.png"
+dest_files=["res://.godot/imported/UI-Background.png-9636b3e75034326cbeae3e6dcbda0892.ctex"]
 
 [params]
 
