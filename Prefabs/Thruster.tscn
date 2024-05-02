@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cppvvg6wmwcbb"]
+[gd_scene load_steps=5 format=3 uid="uid://cvjo3o6k4j254"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Thruster.cs" id="1_qteyv"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_j4frq"]
-[ext_resource type="Texture2D" uid="uid://do57ap00202ot" path="res://Assets/Ship/ThrusterPlaceHolder.png" id="3_sxp6y"]
+[ext_resource type="Texture2D" uid="uid://cph2p7udcfsaj" path="res://Assets/Ship/ShipSheet.png" id="3_movnh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1fg5"]
 size = Vector2(32, 32)
 
 [node name="Thruster" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
+use_parent_material = true
 script = ExtResource("1_qteyv")
 powerdraw = 1
 thrust = 100.0
@@ -23,7 +24,10 @@ defense = 10
 shape = SubResource("RectangleShape2D_v1fg5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_sxp6y")
+use_parent_material = true
+texture = ExtResource("3_movnh")
+region_enabled = true
+region_rect = Rect2(256, 0, 32, 32)
 
 [node name="VerticeTopLeft" type="Node2D" parent="."]
 position = Vector2(-16, -16)

@@ -6,38 +6,38 @@ public partial class Gun : ShipComponent, IPowerable
 	[Export]
 	private int powerdraw;
 
-    [Export]
-    private PackedScene ammo;
+	[Export]
+	private PackedScene ammo;
 
-    [Export]
-    private DamageInfo damageInfo;
+	[Export]
+	private DamageInfo damageInfo;
 
-    [Export]
-    private Timer timer;
+	[Export]
+	private Timer timer;
 
-    [Export]
-    private float bulletSpeed;
+	[Export]
+	private float bulletSpeed;
 
-    [Export] // lower values = faster
-    private double fireInterval = 1;
+	[Export] // lower values = faster
+	private double fireInterval = 1;
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		timer.Timeout += Shoot;
-    }
+	}
 
-    public void StartShooting() { Shoot(); }
+	public void StartShooting() { Shoot(); }
 
-    public void StopShooting(){ timer.Stop(); }
+	public void StopShooting(){ timer.Stop(); }
 
-    public void Shoot()
-    {
-        Bullet bullet = ammo.Instantiate() as Bullet;
-        this.AddChild(bullet);
-        bullet.SetDamageInfo(damageInfo);
-        bullet.speed = bulletSpeed;
-        timer.Start(fireInterval);
-    }
+	public void Shoot()
+	{
+		Bullet bullet = ammo.Instantiate() as Bullet;
+		this.AddChild(bullet);
+		bullet.SetDamageInfo(damageInfo);
+		bullet.speed = bulletSpeed;
+		timer.Start(fireInterval);
+	}
 
-    public int GetPowerDraw() => powerdraw;
+	public int GetPowerDraw() => powerdraw;
 }

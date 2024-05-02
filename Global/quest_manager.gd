@@ -15,4 +15,3 @@ func get_quests():
 func check(target):
 	for quest in quests:
 		quest.check_target(target)
-		

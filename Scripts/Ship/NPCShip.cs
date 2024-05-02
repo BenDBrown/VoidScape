@@ -30,9 +30,9 @@ public partial class NPCShip : CharacterBody2D, IShip
 	private float rotationSpeed;
 
 	public override void _Ready()
-    {
+	{
 		TryBuildShip();
-    }
+	}
 
 	public void ShipDestroyed()
 	{
@@ -45,9 +45,9 @@ public partial class NPCShip : CharacterBody2D, IShip
 		GD.Print(shipComponent.Name + " destroyed");
 	}
 
-	    public override void _PhysicsProcess(double delta)
-    {
-        if(thrustDirection != ThrustDirection.none) 
+		public override void _PhysicsProcess(double delta)
+	{
+		if(thrustDirection != ThrustDirection.none) 
 		{
 			Vector2 thrustVector;
 			thrustVector = thrustDirection == ThrustDirection.forward ? -Transform.Y : Transform.Y;
@@ -63,7 +63,7 @@ public partial class NPCShip : CharacterBody2D, IShip
 		{
 			Rotation += (float)(rotationDirection * rotationSpeed * delta);
 		}
-    }
+	}
 
 	public void StartShooting() 
 	{ 
@@ -121,7 +121,7 @@ public partial class NPCShip : CharacterBody2D, IShip
 		
 		List<Vector2> unpackedVectors = new();
 
-        foreach(Node node in GetChildren())
+		foreach(Node node in GetChildren())
 		{
 			switch(node)
 			{

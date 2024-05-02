@@ -8,13 +8,13 @@ public partial class PlayerController : Node
 
 	private IShip playerShip;
 
-    public override void _Ready()
-    {
-        if(playerShipNode is IShip){playerShip = playerShipNode as IShip;}
+	public override void _Ready()
+	{
+		if(playerShipNode is IShip){playerShip = playerShipNode as IShip;}
 		else {GD.PrintErr("player ship node was not an IShip");}
-    }
+	}
 
-    public override void _Process(double delta)
+	public override void _Process(double delta)
 	{
 		if(Input.IsActionJustPressed("forward")) { playerShip.ForwardThrust(); }
 		else if(Input.IsActionJustPressed("back")) { playerShip.BackThrust(); }
