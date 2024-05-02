@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" path="res://Prefabs/Bullet.tscn" id="2_7xmuv"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_ylwoa"]
 [ext_resource type="Script" path="res://Scripts/Ship/DamageInfo.cs" id="4_8n3fx"]
-[ext_resource type="Texture2D" uid="uid://cph2p7udcfsaj" path="res://Assets/Ship/ShipSheet.png" id="5_s0sol"]
+[ext_resource type="Texture2D" path="res://Assets/Ship/ShipSheet.png" id="5_s0sol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
@@ -38,7 +38,7 @@ shape = SubResource("RectangleShape2D_n32tx")
 position = Vector2(-1, -1)
 texture = ExtResource("5_s0sol")
 region_enabled = true
-region_rect = Rect2(192, 131, 30, 28)
+region_rect = Rect2(320, 193, 32, 32)
 
 [node name="VerticeTopLeft" type="Node2D" parent="."]
 position = Vector2(-17, -17)

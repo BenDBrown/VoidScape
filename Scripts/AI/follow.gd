@@ -9,7 +9,14 @@ var target;
 func _physics_process(delta):
 	if is_active:
 		follow_target(delta);
-
+func enter():
+	super.enter()
+	parent.StartShooting()
+	
+func exit():
+	super.exit()
+	parent.StopShooting()
+	
 func follow_target(delta):
 	if !target: return;
 	if target is Node2D:

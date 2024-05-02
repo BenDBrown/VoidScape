@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw3ptd40xnabi"]
+[gd_scene load_steps=6 format=3 uid="uid://bckeoopmbomi8"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Bullet.cs" id="1_pd1wh"]
 [ext_resource type="Texture2D" uid="uid://rblv0g2af774" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_c8anf"]

@@ -11,6 +11,10 @@ collider = NodePath("CollisionPolygon2D")
 powerManager = NodePath("PowerManager")
 cargoManager = NodePath("CargoManager")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_speed = 50.0
+
 [node name="Player Controller" type="Node" parent="." node_paths=PackedStringArray("playerShipNode")]
 script = ExtResource("1_tudkv")
 playerShipNode = NodePath("..")
