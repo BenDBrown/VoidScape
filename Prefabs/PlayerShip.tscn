@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3tk4yekp2wpm"]
+[gd_scene load_steps=5 format=3 uid="uid://btd37ya3r2mob"]
 
+[ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="1_tudkv"]
 [ext_resource type="Script" path="res://Scripts/Ship/PlayerShip.cs" id="1_xfbi3"]
 [ext_resource type="Script" path="res://Scripts/Ship/CargoManager.cs" id="2_ics3o"]
 [ext_resource type="Script" path="res://Scripts/Ship/PowerManager.cs" id="3_uocbq"]
@@ -9,6 +10,10 @@ script = ExtResource("1_xfbi3")
 collider = NodePath("CollisionPolygon2D")
 powerManager = NodePath("PowerManager")
 cargoManager = NodePath("CargoManager")
+
+[node name="Player Controller" type="Node" parent="." node_paths=PackedStringArray("playerShipNode")]
+script = ExtResource("1_tudkv")
+playerShipNode = NodePath("..")
 
 [node name="CargoManager" type="Node" parent="."]
 script = ExtResource("2_ics3o")

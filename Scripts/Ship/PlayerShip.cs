@@ -44,14 +44,14 @@ public partial class PlayerShip : CharacterBody2D, IShip
 	private float rotationSpeed;
 
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		TryBuildShip();
-    }
+	}
 
-    public override void _PhysicsProcess(double delta)
-    {
-        if(thrustDirection != ThrustDirection.none) 
+	public override void _PhysicsProcess(double delta)
+	{
+		if(thrustDirection != ThrustDirection.none) 
 		{
 			if(TryUsePowerable((float)(thrustPowerDraw * delta)))
 			{
@@ -71,9 +71,9 @@ public partial class PlayerShip : CharacterBody2D, IShip
 		{
 			Rotation += (float)(rotationDirection * rotationSpeed * delta);
 		}
-    }
+	}
 
-    public void ShipDestroyed()
+	public void ShipDestroyed()
 	{
 		GD.Print("ship destroyed");
 	}
@@ -147,7 +147,7 @@ public partial class PlayerShip : CharacterBody2D, IShip
 		
 		List<Vector2> unpackedVectors = new();
 
-        foreach(Node node in GetChildren())
+		foreach(Node node in GetChildren())
 		{
 			switch(node)
 			{

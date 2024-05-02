@@ -2,13 +2,13 @@ extends AIState
 
 class_name Patrol
 
-@export var speed = 50;
 @export var radius = 200.0;
+@export var distance = 30.0;
+@onready var parent = $"../..";
 var start_pos;
 var point_reached = true;
 var point: Vector2;
 var timer: Timer;
-var parent: Node2D;
 
 func _ready():
 	parent = get_parent().get_parent();
@@ -32,10 +32,40 @@ func generate_new_point():
 	point_reached = false;
 
 func go_to_point(delta):
-	if(parent.position == point):
+	var dist = parent.position.distance_to(point);
+	if !timer.is_stopped():
+		return;
+	if(dist < distance):
 		timer.start(2);
 	else:
-		parent.position = parent.position.move_toward(point, delta * speed)
+		move_to(point);
+
+func move_to(globalPos):
+	var direction: Vector2 = globalPos - parent.global_position
+	var targetAngle: float = direction.angle()
+	var currentAngle: float = parent.global_rotation
+	var difference: float = targetAngle - currentAngle
+	
+	if difference > PI:
+		difference -= 2 * PI
+	elif difference < -PI:
+		difference += 2 * PI
+	
+	# Adjust the angle so that positive y direction is considered 0 degrees
+	var adjustedDifference: float = difference + PI / 2
+	
+	if adjustedDifference > PI:
+		adjustedDifference -= 2 * PI
+	elif adjustedDifference < -PI:
+		adjustedDifference += 2 * PI
+	
+	parent.ForwardThrust()
+	if adjustedDifference > 0.1:
+		parent.StartTurningClockwise()
+	elif adjustedDifference < -0.1:
+		parent.StartTurningCounterClockwise()
+	else:
+		parent.StopTurning()
 
 func timeout():
 	timer.stop();

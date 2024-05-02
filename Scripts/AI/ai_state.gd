@@ -1,5 +1,5 @@
 @icon("res://Assets/Other/State.png")
-extends Node
+extends Node2D
 class_name AIState
 
 signal on_exit;
@@ -14,3 +14,4 @@ func exit():
 		is_active = false;
 		on_exit.emit();
 		print(name + " Exited");
+

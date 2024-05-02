@@ -27,6 +27,7 @@ func create_visibility_radius():
 	var col = CollisionShape2D.new();
 	var shape = CircleShape2D.new();
 	col.debug_color = Color.RED;
+	col.z_index = -1;
 	
 	shape.radius = radius;
 	col.shape = shape;
@@ -61,7 +62,7 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body == parent: return;
 	if !(body is CharacterBody2D): return;
-	followState.target = (body as Node2D).position;
+	followState.target = (body as Node2D).global_position;
 
 func on_follow_exit():
 	state_changed.emit();
@@ -70,6 +71,3 @@ func on_follow_exit():
 func on_idle_exit():
 	state_changed.emit();
 	patrolState.enter();
-
-func _draw():
-	draw_circle(position, radius, Color.SKY_BLUE);
