@@ -33,7 +33,7 @@ public partial class Gun : ShipComponent, IPowerable
 	public void Shoot()
 	{
 		Bullet bullet = ammo.Instantiate() as Bullet;
-		this.AddChild(bullet);
+		GetParent().AddChild(bullet);
 		bullet.SetDamageInfo(damageInfo);
 		bullet.speed = bulletSpeed;
 		timer.Start(fireInterval);
