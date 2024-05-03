@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="ShipSaver" load_steps=3 format=3 uid="uid://87qe0klusmqu"]
-
-[ext_resource type="Script" path="res://Scripts/Resources/player_ship_saver.gd" id="1_mpmgb"]
-[ext_resource type="Resource" uid="uid://yajy1n4j6b1p" path="res://Resources/Thrusters.tres" id="2_vdh40"]
-
-[resource]
-script = ExtResource("1_mpmgb")
-thrusters = ExtResource("2_vdh40")

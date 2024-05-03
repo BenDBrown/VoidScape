@@ -1,9 +1,10 @@
 extends Resource
 class_name ShipSaver
 
-const PATH = "res://Resources/PlayerShip.tres"
+const PATH = "res://Resources/Ship.tres"
 
 @export var dict: Dictionary = {}
+
 func add_component(pos, component: ShipComponent):
 	if dict.has(pos): return
 	var info = component.GetInfo()
@@ -18,8 +19,7 @@ func save():
 func create(parent:Node2D):
 	for pos in dict.keys():
 		var scene = load(dict[pos].path) as PackedScene;
-		var thruster = scene.instantiate() as Thruster;
-		thruster.SetPowerDraw(dict[pos].powerDraw)
-		thruster.SetThrust(dict[pos].thrust)
-		parent.add_child(thruster)
-		thruster.position = pos*32
+		var component = scene.instantiate() as ShipComponent;
+		component.SetInfo(dict[pos])
+		parent.add_child(component)
+		component.position = pos*32
