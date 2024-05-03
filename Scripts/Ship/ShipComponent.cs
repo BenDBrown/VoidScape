@@ -2,14 +2,14 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-[GlobalClass]
+
 public partial class ShipComponent: Area2D
 {
 	[Signal]
-	public delegate void OnDestroyedEventHandler(ShipComponent shipComponent);
+    public delegate void OnDestroyedEventHandler(ShipComponent shipComponent);
 
 	[Export]
-	private DefenseInfo defenseInfo;
+    private DefenseInfo defenseInfo;
 
 	[Export]
 	private Node2D[] vertices;
@@ -19,7 +19,7 @@ public partial class ShipComponent: Area2D
 	DefenseInfo GetDefenseInfo() => defenseInfo;
 	public bool IsDestroyed() => destroyed;
 
-	public void CollideWithBody(Node2D node2D)
+    public void CollideWithBody(Node2D node2D)
 	{
 		if(node2D is IDamager)
 		{
@@ -28,7 +28,7 @@ public partial class ShipComponent: Area2D
 		}
 	}
 
-	public void TakeDamage(DamageInfo damageInfo)
+    public void TakeDamage(DamageInfo damageInfo)
 	{
 		GD.Print("hit by bullet");
 		int newHealth = defenseInfo.currentHealth + defenseInfo.defense;
