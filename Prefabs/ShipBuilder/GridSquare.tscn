@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3vc3aagjqvgj"]
+
+[ext_resource type="Texture2D" uid="uid://dxaorfi3bnkwb" path="res://Assets/UI/grid.png" id="1_a361x"]
+[ext_resource type="Script" path="res://Scripts/ShipBuilder/GridSquare.cs" id="1_wcbfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtr6i"]
+size = Vector2(32, 32)
+
+[node name="GridSquare" type="StaticBody2D" groups=["snappable"]]
+script = ExtResource("1_wcbfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rtr6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a361x")

@@ -43,12 +43,6 @@ public partial class PlayerShip : CharacterBody2D, IShip
 
 	private float rotationSpeed;
 
-
-	public override void _Ready()
-	{
-		TryBuildShip();
-	}
-
 	public override void _PhysicsProcess(double delta)
 	{
 		if(thrustDirection != ThrustDirection.none) 
@@ -183,6 +177,7 @@ public partial class PlayerShip : CharacterBody2D, IShip
 				{ 
 					Vector2 localPositon = ToLocal(v2);
 					unpackedVectors.Add(localPositon);
+					GD.Print("unpacked vector: " + localPositon.ToString());
 				}
 			}
 			

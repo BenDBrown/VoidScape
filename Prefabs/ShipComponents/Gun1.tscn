@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4nb281ldgx6v"]
+
+[ext_resource type="Script" path="res://Scripts/Ship/Gun.cs" id="1_q3h4x"]
+[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="1_rfx0p"]
+[ext_resource type="Script" path="res://Scripts/Ship/DamageInfo.cs" id="2_8nre5"]
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Prefabs/Bullet.tscn" id="2_febxt"]
+[ext_resource type="Texture2D" uid="uid://cph2p7udcfsaj" path="res://Assets/Ship/ShipSheet.png" id="3_td4i3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gv6o"]
+size = Vector2(32, 32)
+
+[node name="Gun1" type="Node2D" node_paths=PackedStringArray("damageInfo", "timer", "vertices")]
+script = ExtResource("1_q3h4x")
+powerdraw = 1
+ammo = ExtResource("2_febxt")
+damageInfo = NodePath("DamageInfo")
+timer = NodePath("Timer")
+bulletSpeed = 300.0
+vertices = []
+
+[node name="DefenseInfo" type="Node" parent="."]
+script = ExtResource("1_rfx0p")
+maxHealth = 100
+defense = 10
+
+[node name="DamageInfo" type="Node" parent="."]
+script = ExtResource("2_8nre5")
+damage = 20
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4gv6o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_td4i3")
+region_enabled = true
+region_rect = Rect2(64, 192, 32, 32)
+
+[node name="VerticeTopLeft" type="Node2D" parent="."]
+position = Vector2(-16, -16)
+
+[node name="VerticeTopRight" type="Node2D" parent="."]
+position = Vector2(16, -16)
+
+[node name="VerticeBotRight" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="VerticeBotLeft" type="Node2D" parent="."]
+position = Vector2(-16, 16)
+
+[node name="Timer" type="Timer" parent="."]
