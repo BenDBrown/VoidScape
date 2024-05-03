@@ -7,11 +7,11 @@ func save_game():
 	file.store_line(Game.save_data)
 	
 func load_game():
-	if !FileAccess.file_exists(SAVE_PATH):
+	if !FileAccess.file_exists("res://Resources/Ship.tres"):
 		return false
+	return true # for testing purposes only. Remove after testing
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	
 	var data = JSON.parse_string(file.get_line())
 	Game.save_data = data
 	return true

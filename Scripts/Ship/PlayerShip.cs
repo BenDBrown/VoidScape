@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+[GlobalClass]
 public partial class PlayerShip : CharacterBody2D, IShip
 {
 	private const float THRUST_WEIGHT_MOD = 0.3f;
@@ -177,7 +178,6 @@ public partial class PlayerShip : CharacterBody2D, IShip
 				{ 
 					Vector2 localPositon = ToLocal(v2);
 					unpackedVectors.Add(localPositon);
-					GD.Print("unpacked vector: " + localPositon.ToString());
 				}
 			}
 			

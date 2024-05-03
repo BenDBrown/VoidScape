@@ -3,23 +3,32 @@ class_name ShipSaver
 
 const PATH = "res://Resources/Ship.tres"
 
-@export var dict: Dictionary = {}
+@export var ship: Dictionary = {}
 
 func add_component(pos, component: ShipComponent):
-	if dict.has(pos): return
-	var info = component.GetInfo()
+	if ship.has(pos): return
+	var info = component.GetInfo() as Dictionary
 	info["path"] = component.scene_file_path
-	dict[pos] = info
+	ship[pos] = info
 
 func save():
 	if FileAccess.file_exists(PATH):
 		DirAccess.remove_absolute(PATH)
+	else:
+		var dir = DirAccess.open("res://")
+		dir.make_dir("Resources")
 	ResourceSaver.save(self, PATH)
 
-func create(parent:Node2D):
-	for pos in dict.keys():
-		var scene = load(dict[pos].path) as PackedScene;
+func build_ship(parent:Node2D):
+	for pos in ship.keys():
+		var scene = load(ship[pos].path) as PackedScene;
 		var component = scene.instantiate() as ShipComponent;
-		component.SetInfo(dict[pos])
+		component.SetInfo(ship[pos])
 		parent.add_child(component)
 		component.position = pos*32
+
+static func load_save()->Resource:
+	if !FileAccess.file_exists(PATH):
+		print("Ship file doesn't exist")
+		return null;
+	return ResourceLoader.load(PATH)

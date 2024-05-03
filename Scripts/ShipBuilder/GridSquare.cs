@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class GridSquare : StaticBody2D
 {
 	[Export]
