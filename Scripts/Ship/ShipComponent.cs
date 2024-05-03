@@ -20,6 +20,10 @@ public partial class ShipComponent: Area2D
 	DefenseInfo GetDefenseInfo() => defenseInfo;
 	public bool IsDestroyed() => destroyed;
 
+	public virtual Dictionary<string, object> GetInfo(){return new Dictionary<string, object>();}
+
+	public virtual void SetInfo(Dictionary<string, object> info){}
+
     public void CollideWithBody(Node2D node2D)
 	{
 		if(node2D is IDamager)
