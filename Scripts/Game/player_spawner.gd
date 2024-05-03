@@ -1,6 +1,7 @@
 extends Node
 
+@export var saver:ShipSaver = preload("res://Scripts/Resources/player_ship_saver.gd")
+
+@onready var parent = $Node2D
 func _ready():
-	var ship = Game.json_to_node();
-	get_parent().add_child(ship);
-	queue_free()
+	saver.create(parent)
