@@ -1,7 +1,10 @@
 extends Node
 
-@export var saver:ShipSaver = preload("res://Scripts/Resources/player_ship_saver.gd")
-
 @onready var parent = $Node2D
+var saver:ShipSaver = ShipSaver.new()
+var player_ship_scene = preload("res://Prefabs/PlayerShip.tscn")
 func _ready():
-	saver.create(parent)
+	var playerShip = player_ship_scene.instantiate()
+	get_parent().add_child(playerShip)
+	saver.create(playerShip)
+	queue_free()
