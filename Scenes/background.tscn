@@ -13,7 +13,7 @@ scroll_ignore_camera_zoom = true
 motion_mirroring = Vector2(1280, 1280)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(641, 646)
+position = Vector2(640, 640)
 texture = ExtResource("1_y1xlk")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -22,7 +22,7 @@ motion_mirroring = Vector2(1280, 1280)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 z_index = 4096
-position = Vector2(643, 640)
+position = Vector2(640, 640)
 texture = ExtResource("2_1t8g8")
 
 [node name="ParallaxForeground" type="ParallaxBackground" parent="."]
@@ -35,5 +35,5 @@ motion_mirroring = Vector2(1280, 1280)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxForeground/ParallaxLayer3"]
 modulate = Color(1, 1, 1, 0.466667)
-position = Vector2(645, 645)
+position = Vector2(640, 640)
 texture = ExtResource("3_8wlfj")

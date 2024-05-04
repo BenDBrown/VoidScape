@@ -1,7 +1,7 @@
 extends Node
 
 @export var questLimit = 10
-@export var quests: Array[Quest] = []
+@export var quests = []
 
 func try_add_quest(quest: Quest):
 	if quests.size() >= questLimit:

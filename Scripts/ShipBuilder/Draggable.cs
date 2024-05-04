@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+[GlobalClass]
 public partial class Draggable : Node2D
 {
 	[Export]
@@ -19,10 +20,10 @@ public partial class Draggable : Node2D
 
 	private Vector2 initialPosition;
 
-    public override void _Process(double delta)
-    {
+	public override void _Process(double delta)
+	{
 		string clickActionName = "click";
-        if(draggable)
+		if(draggable)
 		{
 			if(Input.IsActionJustPressed(clickActionName))
 			{
@@ -48,9 +49,9 @@ public partial class Draggable : Node2D
 				}
 			}
 		}
-    }
+	}
 
-    public void MouseEnter()
+	public void MouseEnter()
 	{
 		draggable = true;
 		Scale = new Vector2(1.05f, 1.05f);

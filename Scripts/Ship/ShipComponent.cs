@@ -1,75 +1,83 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 using System.Linq;
 
 [GlobalClass]
 public partial class ShipComponent: Area2D
 {
-	[Signal]
+    [Signal]
     public delegate void OnDestroyedEventHandler(ShipComponent shipComponent);
 
-	[Export]
+    [Export]
     private DefenseInfo defenseInfo;
 
-	[Export]
-	private Node2D[] vertices;
+    [Export]
+    private Node2D[] vertices;
 
-	private bool destroyed = false;
+    private bool destroyed = false;
 
-	DefenseInfo GetDefenseInfo() => defenseInfo;
-	public bool IsDestroyed() => destroyed;
+    DefenseInfo GetDefenseInfo() => defenseInfo;
+    public bool IsDestroyed() => destroyed;
 
-	public virtual Dictionary<string, object> GetInfo(){return new Dictionary<string, object>();}
+    public virtual Dictionary GetInfo()
+    {
+        return new(){
+            {nameof(defenseInfo), defenseInfo},
+        };
+    }
 
-	public virtual void SetInfo(Dictionary<string, object> info){}
+    public virtual void SetInfo(Dictionary info)
+    {
+        defenseInfo = (DefenseInfo)info[nameof(defenseInfo)];
+    }
 
     public void CollideWithBody(Node2D node2D)
-	{
-		if(node2D is IDamager)
-		{
-			IDamager damager = node2D as IDamager;
-			TakeDamage(damager.GetDamageInfo());
-		}
-	}
+    {
+        if(node2D is IDamager)
+        {
+            IDamager damager = node2D as IDamager;
+            TakeDamage(damager.GetDamageInfo());
+        }
+    }
 
     public void TakeDamage(DamageInfo damageInfo)
-	{
-		GD.Print("hit by bullet");
-		int newHealth = defenseInfo.currentHealth + defenseInfo.defense;
-		newHealth -= damageInfo.damage;
-		if(newHealth < defenseInfo.currentHealth)
-		{ 
-			defenseInfo.currentHealth = newHealth;
-			if(defenseInfo.currentHealth <= 0) { Destroyed(); }
-		}
-	}
+    {
+        GD.Print("hit by bullet");
+        int newHealth = defenseInfo.currentHealth + defenseInfo.defense;
+        newHealth -= damageInfo.damage;
+        if(newHealth < defenseInfo.currentHealth)
+        { 
+            defenseInfo.currentHealth = newHealth;
+            if(defenseInfo.currentHealth <= 0) { Destroyed(); }
+        }
+    }
 
-	public Vector2[] GetVertices()
-	{
-		Vector2[] v2Vertices = new Vector2[vertices.Length];
-		for(int i = 0; i < vertices.Length; i++)
-		{
-			Vector2 v2 = vertices[i].GlobalPosition;
-			v2Vertices[i] = v2;
-		}
-		return v2Vertices;
-	}
+    public Vector2[] GetVertices()
+    {
+        Vector2[] v2Vertices = new Vector2[vertices.Length];
+        for(int i = 0; i < vertices.Length; i++)
+        {
+            Vector2 v2 = vertices[i].GlobalPosition;
+            v2Vertices[i] = v2;
+        }
+        return v2Vertices;
+    }
 
-	private void Destroyed()
-	{
-		destroyed = true;
-		CollisionLayer = 0;
-		CollisionMask = 0;
-		Hide();
-		EmitSignal(SignalName.OnDestroyed, this);
-	}
+    private void Destroyed()
+    {
+        destroyed = true;
+        CollisionLayer = 0;
+        CollisionMask = 0;
+        Hide();
+        EmitSignal(SignalName.OnDestroyed, this);
+    }
 
-	private void Revived()
-	{
-		CollisionLayer = 0b00000000_00000000_00000000_00000001;
-		CollisionMask = 0b00000000_00000000_00000000_00000001;
-		destroyed = false;
-		Visible = true;	
-	}
+    private void Revived()
+    {
+        CollisionLayer = 0b00000000_00000000_00000000_00000001;
+        CollisionMask = 0b00000000_00000000_00000000_00000001;
+        destroyed = false;
+        Visible = true;	
+    }
 }

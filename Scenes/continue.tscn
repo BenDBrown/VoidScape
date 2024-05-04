@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c14cq5loreeb8"]
+
+[ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_kxbgv"]
+[ext_resource type="Script" path="res://Scripts/Game/player_spawner.gd" id="1_ogwpm"]
+
+[node name="Continue" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_kxbgv")]
+
+[node name="Player Spawner" type="Node2D" parent="."]
+position = Vector2(532, 302)
+script = ExtResource("1_ogwpm")
