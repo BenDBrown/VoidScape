@@ -1,18 +1,101 @@
-[gd_scene load_steps=3 format=3 uid="uid://4ss22hxgqr4"]
+[gd_scene load_steps=4 format=3 uid="uid://4ss22hxgqr4"]
 
 [ext_resource type="Script" path="res://Scripts/settings_menu.gd" id="1_0jmfu"]
 [ext_resource type="Theme" uid="uid://do1kf4d65vh5b" path="res://Styles/start_menu.tres" id="2_bwt3q"]
+[ext_resource type="AudioStream" uid="uid://drxl5ffp6echi" path="res://Audio/Space Music Pack/meet-the-princess.wav" id="3_sokrx"]
 
 [node name="SettingsMenu" type="Node2D"]
 script = ExtResource("1_0jmfu")
 
 [node name="Return Button" type="Button" parent="."]
-offset_left = 480.0
+offset_left = 640.0
 offset_top = 512.0
-offset_right = 672.0
-offset_bottom = 580.0
+offset_right = 832.0
+offset_bottom = 576.0
 theme = ExtResource("2_bwt3q")
 text = "Return
 "
 
+[node name="Save" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 512.0
+offset_right = 512.0
+offset_bottom = 576.0
+theme = ExtResource("2_bwt3q")
+text = "Save
+"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sokrx")
+autoplay = true
+
+[node name="Volume Component" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 384.0
+offset_right = 576.0
+offset_bottom = 384.0
+
+[node name="Title" type="Label" parent="Volume Component"]
+layout_mode = 0
+offset_left = -192.0
+offset_top = -16.0
+offset_right = -64.0
+offset_bottom = 7.0
+text = "Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Volume Component"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 256.0
+offset_bottom = 8.0
+
+[node name="Value" type="Label" parent="Volume Component"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -16.0
+offset_bottom = 7.0
+
+[node name="Window Mode" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 328.0
+offset_right = 576.0
+offset_bottom = 328.0
+
+[node name="Title" type="Label" parent="Window Mode"]
+layout_mode = 0
+offset_left = -192.0
+offset_top = -16.0
+offset_right = -64.0
+offset_bottom = 7.0
+text = "Window Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="OptionButton" parent="Window Mode"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 120.0
+offset_top = -16.0
+offset_right = 256.0
+offset_bottom = 15.0
+grow_horizontal = 0
+alignment = 1
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Full Screen"
+popup/item_1/id = 3
+
 [connection signal="pressed" from="Return Button" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="drag_ended" from="Volume Component/Slider" to="." method="_on_slider_drag_ended"]
+[connection signal="item_selected" from="Window Mode/Options" to="." method="_on_screen_sizes_item_selected"]
