@@ -1,34 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://pu7ejs5guhlq"]
+[gd_scene load_steps=3 format=3 uid="uid://pu7ejs5guhlq"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_2ywoc"]
-[ext_resource type="PackedScene" uid="uid://c3vc3aagjqvgj" path="res://Prefabs/ShipBuilder/GridSquare.tscn" id="2_30qjp"]
-[ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipBuilder.cs" id="2_behlc"]
-[ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Prefabs/PlayerShip.tscn" id="4_o7efg"]
-[ext_resource type="Script" path="res://Scripts/Misc/item_lister.gd" id="5_2wffs"]
-[ext_resource type="Script" path="res://Scripts/Misc/build_button.gd" id="6_3171f"]
+[ext_resource type="PackedScene" uid="uid://cnjfr0mud1up0" path="res://Prefabs/Text/dialogue_box.tscn" id="2_soqvr"]
 
 [node name="StartScene" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_2ywoc")]
 
-[node name="Builder" type="Node2D" parent="."]
-position = Vector2(226, 188)
-script = ExtResource("2_behlc")
-gridHeight = 10
-gridWidth = 10
-gridTile = ExtResource("2_30qjp")
-shipScene = ExtResource("4_o7efg")
-
-[node name="Item List" type="Node2D" parent="."]
-position = Vector2(603, 188)
-script = ExtResource("5_2wffs")
-
-[node name="Button" type="Button" parent="."]
-offset_left = 394.0
-offset_top = 103.0
-offset_right = 450.0
-offset_bottom = 134.0
-text = "BUILD"
-script = ExtResource("6_3171f")
-
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="Dialogue Box" parent="." instance=ExtResource("2_soqvr")]
+offset_left = 8.0
+offset_top = 392.0
+offset_right = 1024.0
+offset_bottom = 624.0

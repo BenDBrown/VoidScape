@@ -47,7 +47,7 @@ public partial class ShipComponent: Area2D
         int newHealth = defenseInfo.currentHealth + defenseInfo.defense;
         newHealth -= damageInfo.damage;
         if(newHealth < defenseInfo.currentHealth)
-        { 
+        {
             defenseInfo.currentHealth = newHealth;
             if(defenseInfo.currentHealth <= 0) { Destroyed(); }
         }
@@ -78,6 +78,6 @@ public partial class ShipComponent: Area2D
         CollisionLayer = 0b00000000_00000000_00000000_00000001;
         CollisionMask = 0b00000000_00000000_00000000_00000001;
         destroyed = false;
-        Visible = true;	
+        Visible = true;
     }
 }

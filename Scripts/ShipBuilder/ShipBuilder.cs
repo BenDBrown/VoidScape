@@ -1,68 +1,61 @@
 using Godot;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [GlobalClass]
 public partial class ShipBuilder : Node
 {
-    private const int DICT_POS_RATIO = 32;
+    private const int MIN_GRID_SIZE = 1;
 
     [Signal]
     public delegate void ShipBuildAttemptEventHandler(bool success);
 
     [Export]
     private int gridHeight;
-    
+
     [Export]
     private int gridWidth;
 
     [Export]
-    PackedScene gridTile;
+    private PackedScene gridTile;
 
     [Export]
-    PackedScene shipScene;
+    private PackedScene shipScene;
 
-    private readonly int minGridSize = 1;
-    
-    private Dictionary<Vector2, GridSquare> gridDict = new();
-
+    private List<GridSquare> grid = new()
+    ;
     public override void _Ready()
     {
-        if(gridHeight < minGridSize) { gridHeight = minGridSize; }
-        if(gridWidth < minGridSize) { gridWidth = minGridSize; }
         MakeGrid();
-    }
-
-    public override void _Process(double delta)
-    {
-        if(Input.IsActionJustPressed("confirm")){BuildShip();}
     }
 
     public void BuildShip()
     {
         PlayerShip ship = shipScene.Instantiate() as PlayerShip;
         AddChild(ship);
-        foreach(Vector2 pos in gridDict.Keys)
+        Vector2 cockpitOffset = grid.FirstOrDefault(s => s.shipComponent is Cockpit).CoordinateToPosition();
+        foreach (GridSquare square in grid)
         {
-            ShipComponent shipComponent = gridDict[pos].shipComponent;
-            if(shipComponent != null)
+            ShipComponent shipComponent = square.shipComponent;
+            if (shipComponent != null)
             {
                 shipComponent.GetParent().RemoveChild(shipComponent);
                 ship.AddChild(shipComponent);
-                shipComponent.Position = ConvertDictPosToLocalPos(pos);
+                shipComponent.Position = square.CoordinateToPosition() - cockpitOffset;
             }
         }
         EmitSignal(SignalName.ShipBuildAttempt, ship.TryBuildShip());
     }
-    
+
     public Godot.Collections.Dictionary GetDict()
     {
         Godot.Collections.Dictionary dict = new();
-        foreach (Vector2 pos in gridDict.Keys)
+        Vector2 cockpitOffset = grid.FirstOrDefault(s => s.shipComponent is Cockpit).Coordinate;
+        foreach (GridSquare square in grid)
         {
-            if(gridDict[pos].shipComponent != null)
+            if (square.shipComponent != null)
             {
-                dict[pos] = gridDict[pos].shipComponent;
+                dict[square.Coordinate - cockpitOffset] = square.shipComponent;
             }
         }
         return dict;
@@ -70,21 +63,19 @@ public partial class ShipBuilder : Node
 
     private void MakeGrid()
     {
-        for(int x = 0; x < gridWidth; x++)
+        grid = new();
+        gridHeight = Mathf.Max(gridHeight, MIN_GRID_SIZE);
+        gridWidth = Mathf.Max(gridWidth, MIN_GRID_SIZE);
+        for (int x = 0; x < gridWidth; x++)
         {
-            for(int y = 0; y < gridHeight; y++)
+            for (int y = 0; y < gridHeight; y++)
             {
-                GridSquare newTile = gridTile.Instantiate() as GridSquare;
-                AddChild(newTile);
-                Vector2 newDictPos = new Vector2(x, y);
-                gridDict.Add(newDictPos, newTile);
-                newTile.Position = ConvertDictPosToLocalPos(newDictPos);
+                GridSquare square = gridTile.Instantiate() as GridSquare;
+                AddChild(square);
+                square.Coordinate = new Vector2(x, y);
+                grid.Add(square);
+                square.Position = square.CoordinateToPosition();
             }
         }
-    }
-
-    private Vector2 ConvertDictPosToLocalPos(Vector2 v2)
-    {
-        return new Vector2(v2.X * DICT_POS_RATIO, v2.Y * DICT_POS_RATIO);
     }
 }

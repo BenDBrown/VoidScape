@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="May Game Jam"
+config/name="VoidScape"
 config/tags=PackedStringArray("gamejam")
 run/main_scene="res://Scenes/start_menu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
