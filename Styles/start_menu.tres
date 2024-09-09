@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://do1kf4d65vh5b"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://do1kf4d65vh5b"]
 
 [ext_resource type="FontFile" uid="uid://dshwtbdkakod8" path="res://Styles/Sterion-BLLld.ttf" id="1_aftwh"]
+[ext_resource type="FontFile" uid="uid://c0tn13k73v8rh" path="res://Styles/Valorax-lg25V.otf" id="2_v1etc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8j1nn"]
 corner_radius_top_left = 8
@@ -48,3 +49,5 @@ Button/styles/normal = SubResource("StyleBoxFlat_lhhid")
 Button/styles/pressed = SubResource("StyleBoxFlat_pu23t")
 Label/font_sizes/font_size = 64
 Label/fonts/font = ExtResource("1_aftwh")
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/normal_font = ExtResource("2_v1etc")

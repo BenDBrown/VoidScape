@@ -1,72 +1,87 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 [GlobalClass]
 public partial class Draggable : Node2D
 {
+	private static Draggable selected;
 	[Export]
-	public ShipComponent shipComponent {get; private set;}
+	public ShipComponent shipComponent { get; private set; }
 
 	private bool isInDroppable = false;
 
 	private bool draggable = false;
-
-	private bool ignoreNextExit = false;
+	private bool isSelectable = false;
 
 	private List<GridSquare> gridSquares = new();
 
 	private Vector2 mouseOffset;
 
 	private Vector2 initialPosition;
+	private string clickActionName = "click";
 
 	public override void _Process(double delta)
 	{
-		string clickActionName = "click";
-		if(draggable)
+		if (Input.IsActionJustPressed(clickActionName))
 		{
-			if(Input.IsActionJustPressed(clickActionName))
+			if (selected == null && isSelectable)
 			{
-				initialPosition = GlobalPosition;
-				mouseOffset = GetGlobalMousePosition() - GlobalPosition;
+				Select();
 			}
-			if(Input.IsActionPressed(clickActionName))
+		}
+		else if (Input.IsActionJustReleased(clickActionName))
+		{
+			if (selected == this)
 			{
-				GlobalPosition = GetGlobalMousePosition() - mouseOffset;
+				Deselect();
 			}
-			else if(Input.IsActionJustReleased(clickActionName))
-			{
-				Tween tween = GetTree().CreateTween();
-				if(isInDroppable)
-				{
-					GridSquare gridSquare = GetNearestGridSquare();
-					tween.TweenProperty(this, "position", gridSquare.Position, 0.2f).SetEase(Tween.EaseType.Out);
-					gridSquare.shipComponent = shipComponent;
-				}
-				else
-				{
-					tween.TweenProperty(this, "global_position", initialPosition, 0.2f).SetEase(Tween.EaseType.Out);
-				}
-			}
+		}
+		if (draggable)
+		{
+			GlobalPosition = GetGlobalMousePosition() - mouseOffset;
+		}
+	}
+
+	public void Select()
+	{
+		draggable = true;
+		selected = this;
+		initialPosition = GlobalPosition;
+		mouseOffset = GetGlobalMousePosition() - GlobalPosition;
+	}
+
+	public void Deselect()
+	{
+		selected = null;
+		draggable = false;
+		Tween tween = GetTree().CreateTween();
+		if (isInDroppable)
+		{
+			GridSquare gridSquare = GetNearestGridSquare();
+			tween.TweenProperty(this, "position", gridSquare.Position, 0.2f).SetEase(Tween.EaseType.Out);
+			gridSquare.shipComponent = shipComponent;
+		}
+		else
+		{
+			tween.TweenProperty(this, "global_position", initialPosition, 0.2f).SetEase(Tween.EaseType.Out);
 		}
 	}
 
 	public void MouseEnter()
 	{
-		draggable = true;
+		isSelectable = true;
 		Scale = new Vector2(1.05f, 1.05f);
 	}
 
 	public void MouseExit()
 	{
-		draggable = false;
+		isSelectable = false;
 		Scale = new Vector2(1, 1);
 	}
 
 	public void EnteredSnappable(Node2D snappable)
 	{
-		if(isInDroppable){ignoreNextExit = true;}
-		if(snappable.IsInGroup("snappable"))
+		if (snappable.IsInGroup("snappable"))
 		{
 			isInDroppable = true;
 			gridSquares.Add(snappable as GridSquare);
@@ -75,8 +90,10 @@ public partial class Draggable : Node2D
 
 	public void ExitedSnappable(Node2D snappable)
 	{
-		if(gridSquares.Contains(snappable as GridSquare)) {gridSquares.Remove(snappable as GridSquare); }
-		if(ignoreNextExit){return;}
+		if (!(snappable is GridSquare square)) { return; }
+		if (gridSquares.Contains(square)) { gridSquares.Remove(square); }
+		if (square.shipComponent == shipComponent) { square.shipComponent = null; }
+		if (isInDroppable) { return; }
 		isInDroppable = false;
 	}
 
@@ -91,7 +108,7 @@ public partial class Draggable : Node2D
 	{
 		float distance = float.MaxValue;
 		GridSquare closestGridSquare = null;
-		foreach(GridSquare square in gridSquares)
+		foreach (GridSquare square in gridSquares)
 		{
 			float newDistance = Position.DistanceTo(square.Position);
 			if (distance > newDistance)

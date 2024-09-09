@@ -5,3 +5,5 @@
 .sln
 .csproj*
 [Rr]esources
+.tmp
+.obsidian
