@@ -8,7 +8,7 @@ var dialogs: Array = []
 var line_index = 0
 var dialog_index = 0
 enum IndentLevel {CONVERSATION = 0, SPEAKER = 4, LINE = 8}
-
+const EXIT_CODE = -1
 var currentDialog: Dialog
 
 func parse_to_dialog(file: FileAccess):
@@ -37,7 +37,7 @@ func get_indentation_level(line: String) -> IndentLevel:
     var indent_count = line.length() - trimmed_line.length()
     return indent_count as IndentLevel
 
-func next_line() -> String:
+func next_line():
     if dialogs && dialog_index < dialogs.size():
         if currentDialog != dialogs[dialog_index]:
             if currentDialog:
@@ -46,12 +46,12 @@ func next_line() -> String:
             currentDialog.on_ended.connect(onEnd)
         return currentDialog.next_line()
 
-    if line_index < lines.size():
-        line_index = line_index + 1
-        return lines[line_index-1]
-    else:
+    line_index = line_index + 1
+    if line_index >= lines.size():
         on_ended.emit()
-    return "NaN"
+    if lines.size() > line_index-1:
+        return lines[line_index-1]
+    return EXIT_CODE
 
 func get_speaker():
     if lines.size() > 0:

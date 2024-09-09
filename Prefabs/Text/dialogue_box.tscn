@@ -32,7 +32,6 @@ offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ewicm")
-text = "CAPTAIN HOLTFIRESIN"
 fit_content = true
 scroll_active = false
 
