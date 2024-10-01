@@ -3,7 +3,11 @@ extends Node
 class_name AIState
 
 @onready var parent = $"../.."
-@onready var player = $"../../../PlayerShip"
+@onready var player:
+	get:
+		if Game.player_ship is String:
+			return $"../../../PlayerShip"
+		return Game.player_ship
 @export var detect_radius = 200.0
 
 signal transitioned(AIState, new_state:String)
