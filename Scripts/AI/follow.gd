@@ -6,6 +6,9 @@ class_name Follow
 @export var out_of_detection_distance: float = 300
 @export var vector_y:float = -50
 @export var vector_x:float = 0
+var area:Area2D
+var arealeft:Area2D
+var arearight:Area2D
 
 func enter():
 	super.enter()
@@ -21,15 +24,17 @@ func exit():
 func physics_update(_delta):
 	var dist = parent.global_position.distance_to(player.global_position)
 	if dist > out_of_detection_distance:
-		exit()
+			exit()
 	elif dist > max_distance:
 		parent.ForwardThrust()
 		rotate(player.global_position)
 	elif dist < min_distance:
 		retreat()
+		
 	else:
 		parent.StopThrusting()
 		parent.StopTurning()
+
 
 func rotate(globalPos: Vector2):
 	var angle:float = Utils.get_angle(parent.global_position, globalPos, parent.global_rotation)
@@ -48,13 +53,14 @@ func retreat():
 	
 func addDetectionArea():
 #This Func is to create the amount area's for detection we need to have the ship enough "eyes" to be able detect the player
-	var area
-	createArea2D(area,vector_x,vector_y)
-	var arealeft 
-	createArea2D(arealeft,vector_y,vector_x)
-	var arearight
-	createArea2D(arearight,50,0)
+	
+	area=createArea2D(area,vector_x,vector_y)
+	
+	arealeft=createArea2D(arealeft,vector_y,vector_x)
+	
+	arearight=createArea2D(arearight,50,0)
 	print("Area Added")
+	
 
 func createArea2D(area,x,y):
 #This func is to create and add it the parent so it is added the the NPC node with a position given in the parameters
@@ -66,11 +72,16 @@ func createArea2D(area,x,y):
 	area.add_child(collision)
 	parent.add_child(area)
 	area.position +=Vector2(x,y)
+	return	area
 	
-func shootingWhenPlayerEntersTheArea2D():
+func shootingWhenPlayerEntersTheDetection(area:Area2D):
 	pass
 	#TODO
+	print("In shooting")
 	#Creating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
+	if area.body_entered:
+		print("shooting")
+		parent.StartShooting()
 
 func rotatingInTheDirectionOfDetectedPlayer():
 	pass
