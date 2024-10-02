@@ -47,14 +47,36 @@ func retreat():
 	parent.BackThrust()
 	
 func addDetectionArea():
-	
-	var area = Area2D.new()
-	var shape = CapsuleShape2D.new()
+#This Func is to create the amount area's for detection we need to have the ship enough "eyes" to be able detect the player
+	var area
+	createArea2D(area,vector_x,vector_y)
+	var arealeft 
+	createArea2D(arealeft,vector_y,vector_x)
+	var arearight
+	createArea2D(arearight,50,0)
+	print("Area Added")
+
+func createArea2D(area,x,y):
+#This func is to create and add it the parent so it is added the the NPC node with a position given in the parameters
+	area = Area2D.new()
+	var shape = CircleShape2D.new()
 	shape.set_radius(50)
 	var collision = CollisionShape2D.new()
 	collision.set_shape(shape)
-	
 	area.add_child(collision)
 	parent.add_child(area)
-	area.position += Vector2(vector_x,vector_y)
-	print("Area Added")
+	area.position +=Vector2(x,y)
+	
+func shootingWhenPlayerEntersTheArea2D():
+	pass
+	#TODO
+	#Creating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
+
+func rotatingInTheDirectionOfDetectedPlayer():
+	pass
+	#TODO
+	#This func should rotate the ship to the direction the player is when they were detected
+func moveAroundPlayerWhenShooting():
+	pass
+	#This Func should allow the NPC to move around the player while they are shooting the player
+	#TODO
