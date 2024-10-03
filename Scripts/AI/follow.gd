@@ -9,7 +9,9 @@ class_name Follow
 var area:Area2D
 var arealeft:Area2D
 var arearight:Area2D
-
+@export var Middle = Vector2(0,0)
+@export var Left = Vector2(-72,-104)
+@export var Right = Vector2(72,-104)
 func enter():
 	super.enter()
 	addDetectionArea()
@@ -54,15 +56,12 @@ func retreat():
 func addDetectionArea():
 #This Func is to create the amount area's for detection we need to have the ship enough "eyes" to be able detect the player
 	
-	area=createArea2D(area,vector_x,vector_y)
-	
-	arealeft=createArea2D(arealeft,vector_y,vector_x)
-	
-	arearight=createArea2D(arearight,50,0)
+	area = createArea2D(area)
+	createPolygonCollsion2D(area)
 	print("Area Added")
-	
+	parent.add_child(area)
 
-func createArea2D(area,x,y):
+func createArea2DWithPosition(area,x,y):
 #This func is to create and add it the parent so it is added the the NPC node with a position given in the parameters
 	area = Area2D.new()
 	var shape = CircleShape2D.new()
@@ -74,6 +73,18 @@ func createArea2D(area,x,y):
 	area.position +=Vector2(x,y)
 	return	area
 	
+func createArea2D(area):
+#This func is to create and add it the parent so it is added the the NPC node with a position given in the parameters
+	area = Area2D.new()
+	return	area
+func createPolygonCollsion2D(area:Area2D):
+	var polygon = CollisionPolygon2D.new()
+	var unpackedVectors =PackedVector2Array([Middle,Left,Right])
+	var convexPolygon = ConvexPolygonShape2D.new()
+	unpackedVectors
+	convexPolygon.set_point_cloud(unpackedVectors)
+	polygon.polygon = convexPolygon.points
+	area.add_child(polygon)
 func shootingWhenPlayerEntersTheDetection(area:Area2D):
 	pass
 	#TODO
