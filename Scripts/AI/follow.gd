@@ -15,6 +15,7 @@ var arearight:Area2D
 func enter():
 	super.enter()
 	addDetectionArea()
+	shootingWhenPlayerEntersTheDetection(area)
 	
 func exit():
 	super.exit()
@@ -22,6 +23,7 @@ func exit():
 	parent.StopTurning()
 	parent.StopThrusting()
 	transitioned.emit(self, "idle")
+	parent.remove_child(area)
 
 func physics_update(_delta):
 	var dist = parent.global_position.distance_to(player.global_position)
@@ -81,7 +83,6 @@ func createPolygonCollsion2D(area:Area2D):
 	var polygon = CollisionPolygon2D.new()
 	var unpackedVectors =PackedVector2Array([Middle,Left,Right])
 	var convexPolygon = ConvexPolygonShape2D.new()
-	unpackedVectors
 	convexPolygon.set_point_cloud(unpackedVectors)
 	polygon.polygon = convexPolygon.points
 	area.add_child(polygon)
