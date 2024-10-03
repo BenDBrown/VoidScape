@@ -28,13 +28,17 @@ public partial class PlayerShip : CharacterBody2D, IShip
 
 	private List<Thruster> thrusters= new();
 
+	private Vector2 rightRotationPoint;
+
+	private Vector2 leftRotationPoint;
+
 	private bool shooting = false;
 
 	private float shootPowerDraw;
 
 	private ThrustDirection thrustDirection = ThrustDirection.none;
 
-	private float thrust;
+	private float thrust = 0;
 
 	private float thrustPowerDraw;
 
@@ -64,11 +68,32 @@ public partial class PlayerShip : CharacterBody2D, IShip
 		}
 		if(rotationDirection != 0)
 		{
-			Rotation += (float)(rotationDirection * rotationSpeed * delta);
+			float rot = Rotation + (float)(rotationDirection * rotationSpeed * delta);
+			Vector2 rotEdgeVector;
+			Vector2 relativeRotationPoint;
+			if(rotationDirection > 0)
+			{
+				rotEdgeVector = rightRotationPoint.Rotated(rot);
+				relativeRotationPoint = rightRotationPoint.Rotated(Rotation);
+			}
+			else
+			{
+				rotEdgeVector = leftRotationPoint.Rotated(rot);
+				relativeRotationPoint = leftRotationPoint.Rotated(Rotation);
+			}
+			Rotation = rot;
+
+			MoveAndCollide(relativeRotationPoint - rotEdgeVector);
+			MoveAndSlide();
 		}
 	}
 
-	public void ShipDestroyed()
+    public override void _Ready()
+    {
+        TryBuildShip();
+    }
+
+    public void ShipDestroyed()
 	{
 		GD.Print("ship destroyed");
 	}
@@ -110,7 +135,10 @@ public partial class PlayerShip : CharacterBody2D, IShip
 		thrustDirection = ThrustDirection.back;	
 	}
 
-	public void StopThrusting() { thrustDirection = ThrustDirection.none; }
+	public void StopThrusting() 
+	{ 
+		thrustDirection = ThrustDirection.none; 
+	}
 
 	public void StartTurningClockwise()
 	{
@@ -182,6 +210,7 @@ public partial class PlayerShip : CharacterBody2D, IShip
 			}
 			
 		}
+		CalculateRotationAxes(unpackedVectors);
 		ConvexPolygonShape2D convexPolygon = new ();
 		convexPolygon.SetPointCloud(unpackedVectors.ToArray());
 		collider.Polygon = convexPolygon.Points;
@@ -194,6 +223,13 @@ public partial class PlayerShip : CharacterBody2D, IShip
 
 		return hasFuelTank && hasGenerator && hasThruster && thrusterPowerUsageUnderMaxPower;
 	}
+	
+	public bool TryAddCargo(Cargo cargo, int quantity, out int cargoAdded) 
+	{ 
+		return cargoManager.TryAddCargo(cargo, quantity, out cargoAdded); 
+	}
+
+	public bool TryTakeCargo(Cargo cargo, int quantity) { return cargoManager.TryTakeCargo(cargo, quantity); }
 
 	private void CalculateThrust()
 	{
@@ -216,13 +252,30 @@ public partial class PlayerShip : CharacterBody2D, IShip
 		return result;
 	}
 	
-	public bool TryAddCargo(Cargo cargo, int quantity, out int cargoAdded) 
-	{ 
-		return cargoManager.TryAddCargo(cargo, quantity, out cargoAdded); 
+	private void CalculateRotationAxes(List<Vector2> vertices)
+	{
+		Vector2 topLeft = new(0,0);
+		Vector2 topRight = new(0,0);
+		Vector2 bottomLeft = new(0,0);
+		Vector2 bottomRight = new(0,0);
+		foreach(Vector2 vertice in vertices)
+		{
+			if(GetDownLeftMagnitude(vertice) > GetDownLeftMagnitude(bottomLeft)) { bottomLeft = vertice; }
+			if(GetDownRightMagnitude(vertice) > GetDownRightMagnitude(bottomRight)) { bottomRight = vertice; }
+			if(GetUpLeftMagnitude(vertice) > GetUpLeftMagnitude(topLeft)) { topLeft = vertice; }
+			if(GetUpRightMagnitude(vertice) > GetUpRightMagnitude(topRight)) { topRight = vertice; }
+		}
+		leftRotationPoint = (topLeft + bottomLeft) / 2;
+		rightRotationPoint = (topRight + bottomRight) / 2;
 	}
 
-	public bool TryTakeCargo(Cargo cargo, int quantity) { return cargoManager.TryTakeCargo(cargo, quantity); }
+	private float GetDownRightMagnitude(Vector2 vector) => vector.X + vector.Y;
 
+	private float GetDownLeftMagnitude(Vector2 vector) => -vector.X + vector.Y;
+
+	private float GetUpRightMagnitude(Vector2 vector) => vector.X - vector.Y;
+
+	private float GetUpLeftMagnitude(Vector2 vector) => -vector.X - vector.Y;
 
 }
 
