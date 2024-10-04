@@ -4,14 +4,10 @@ class_name Follow
 @export var min_distance: float = 100
 @export var max_distance: float = 150
 @export var out_of_detection_distance: float = 300
-@export var vector_y:float = -50
-@export var vector_x:float = 0
 var area:Area2D
-var arealeft:Area2D
-var arearight:Area2D
-@export var Middle = Vector2(0,0)
-@export var Left = Vector2(-72,-104)
-@export var Right = Vector2(72,-104)
+@export_range(0, 300) var spreading:int 
+@export_range(0, 300) var length:int 
+
 func enter():
 	super.enter()
 	addDetectionArea()
@@ -74,22 +70,38 @@ func createArea2DWithPosition(area,x,y):
 	parent.add_child(area)
 	area.position +=Vector2(x,y)
 	return	area
-	
+
+#func convertSpread():
+	#pass
+	#var dot:int
+	#dot = spreading
+	#dot *= -1
+	#return dot
 func createArea2D(area):
 #This func is to create and add it the parent so it is added the the NPC node with a position given in the parameters
 	area = Area2D.new()
 	return	area
 func createPolygonCollsion2D(area:Area2D):
+	var origin = Vector2(0,0)
+	var x = spreading *-1
+	var y= length *-1
+	var top2
+	var top
+	top2 = Vector2(x * -1, y)
+	top =Vector2(x,y)
 	var polygon = CollisionPolygon2D.new()
-	var unpackedVectors =PackedVector2Array([Middle,Left,Right])
+	var unpackedVectors =PackedVector2Array([origin,top,top2])
 	var convexPolygon = ConvexPolygonShape2D.new()
 	convexPolygon.set_point_cloud(unpackedVectors)
 	polygon.polygon = convexPolygon.points
 	area.add_child(polygon)
+	
+	
 func shootingWhenPlayerEntersTheDetection(area:Area2D):
 	pass
 	#TODO
 	print("In shooting")
+	area.draw
 	#Creating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
 	if area.body_entered:
 		print("shooting")
