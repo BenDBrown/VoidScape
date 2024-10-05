@@ -12,6 +12,9 @@ use_parent_material = true
 script = ExtResource("1_s082n")
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+BottomAttachable = true
+RightAttachable = true
+LeftAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_07jmt")

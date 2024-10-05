@@ -5,77 +5,118 @@ using System.Linq;
 [GlobalClass]
 public partial class ShipBuilder : Node
 {
-    private const int MIN_GRID_SIZE = 1;
+	private const int MIN_GRID_SIZE = 1;
 
-    [Signal]
-    public delegate void ShipBuildAttemptEventHandler(bool success);
+	[Signal]
+	public delegate void ShipBuildAttemptEventHandler(bool success);
 
-    [Export]
-    private int gridHeight;
+	[Export]
+	private int gridHeight;
 
-    [Export]
-    private int gridWidth;
+	[Export]
+	private int gridWidth;
 
-    [Export]
-    private PackedScene gridTile;
+	[Export]
+	private PackedScene gridTile;
 
-    [Export]
-    private PackedScene shipScene;
+	[Export]
+	private PackedScene shipScene;
 
-    private List<GridSquare> grid = new()
-    ;
-    public override void _Ready()
-    {
-        MakeGrid();
-    }
+	private Dictionary<Vector2, GridSquare> grid = new();
 
-    public void BuildShip()
-    {
-        PlayerShip ship = shipScene.Instantiate() as PlayerShip;
-        AddChild(ship);
-        Vector2 cockpitOffset = grid.FirstOrDefault(s => s.shipComponent is Cockpit).CoordinateToPosition();
-        foreach (GridSquare square in grid)
-        {
-            ShipComponent shipComponent = square.shipComponent;
-            if (shipComponent != null)
-            {
-                shipComponent.GetParent().RemoveChild(shipComponent);
-                ship.AddChild(shipComponent);
-                shipComponent.Position = square.CoordinateToPosition() - cockpitOffset;
-            }
-        }
-        EmitSignal(SignalName.ShipBuildAttempt, ship.TryBuildShip());
-    }
+	public override void _Ready()
+	{
+		MakeGrid();
+		Node buildItems = GetNode("ItemLister");
+		buildItems.Connect("added_child", new Callable(this, MethodName.OnBuildItemsChildAdded));
+		buildItems.Call("display_items");
+	}
 
-    public Godot.Collections.Dictionary GetDict()
-    {
-        Godot.Collections.Dictionary dict = new();
-        Vector2 cockpitOffset = grid.FirstOrDefault(s => s.shipComponent is Cockpit).Coordinate;
-        foreach (GridSquare square in grid)
-        {
-            if (square.shipComponent != null)
-            {
-                dict[square.Coordinate - cockpitOffset] = square.shipComponent;
-            }
-        }
-        return dict;
-    }
+	public void BuildShip()
+	{
+		PlayerShip ship = shipScene.Instantiate() as PlayerShip;
+		AddChild(ship);
+		foreach (GridSquare square in grid.Values)
+		{
+			ShipComponent shipComponent = square.shipComponent;
+			if (shipComponent != null)
+			{
+				shipComponent.GetParent().RemoveChild(shipComponent);
+				ship.AddChild(shipComponent);
+				shipComponent.Position = square.CoordinateToPosition();
+			}
+		}
+		EmitSignal(SignalName.ShipBuildAttempt, ship.TryBuildShip());
+	}
 
-    private void MakeGrid()
-    {
-        grid = new();
-        gridHeight = Mathf.Max(gridHeight, MIN_GRID_SIZE);
-        gridWidth = Mathf.Max(gridWidth, MIN_GRID_SIZE);
-        for (int x = 0; x < gridWidth; x++)
-        {
-            for (int y = 0; y < gridHeight; y++)
-            {
-                GridSquare square = gridTile.Instantiate() as GridSquare;
-                AddChild(square);
-                square.Coordinate = new Vector2(x, y);
-                grid.Add(square);
-                square.Position = square.CoordinateToPosition();
-            }
-        }
-    }
+	public Godot.Collections.Dictionary GetDict()
+	{
+		Godot.Collections.Dictionary dict = new();
+		foreach (GridSquare square in grid.Values)
+		{
+			if (square.shipComponent != null)
+			{
+				dict[square.Coordinate] = square.shipComponent;
+			}
+		}
+		return dict;
+	}
+
+	private void MakeGrid()
+	{
+		grid = new();
+		gridHeight = Mathf.Max(gridHeight, MIN_GRID_SIZE);
+		gridWidth = Mathf.Max(gridWidth, MIN_GRID_SIZE);
+		for (int x = 0; x < gridWidth; x++)
+		{
+			for (int y = 0; y < gridHeight; y++)
+			{
+				GridSquare square = gridTile.Instantiate() as GridSquare;
+				AddChild(square);
+				square.Coordinate = new Vector2(x, y);
+				grid.Add(square.Coordinate, square);
+				square.Position = square.CoordinateToPosition();
+				square.ShipComponentPlaced += UpdatePlacementValidity;
+			}
+		}
+	}
+
+	private void UpdatePlacementValidity(object sender)
+	{
+		foreach(GridSquare square in grid.Values)
+		{
+			square.SetValidity(false);
+		}
+		foreach(Vector2 coord in grid.Keys)
+		{
+			if(grid[coord].shipComponent == null) { continue; }
+			grid[coord].SetValidity(true);
+			Vector2 vRight = new(coord.X + 1, coord.Y);
+			Vector2 vLeft = new(coord.X - 1, coord.Y);
+			Vector2 vUp = new(coord.X, coord.Y + 1);
+			Vector2 vDown = new(coord.X, coord.Y - 1);
+			if(grid.ContainsKey(vRight))
+			{
+				if(grid[coord].shipComponent.RightAttachable) { grid[vRight].SetValidity(true); }
+			}
+			else if(grid.ContainsKey(vLeft))
+			{
+				if(grid[coord].shipComponent.LeftAttachable) { grid[vLeft].SetValidity(true); }
+			}
+			else if(grid.ContainsKey(vUp))
+			{
+				if(grid[coord].shipComponent.TopAttachable) { grid[vUp].SetValidity(true); }
+			}
+			else if(grid.ContainsKey(vDown))
+			{
+				if(grid[coord].shipComponent.BottomAttachable) { grid[vDown].SetValidity(true); }
+			}
+		}
+	}
+
+	private void OnBuildItemsChildAdded(Node2D child)
+	{
+		AddChild(child);
+	}
+
 }

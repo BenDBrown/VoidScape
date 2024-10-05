@@ -4,6 +4,6 @@
 .vs/*
 .sln
 .csproj*
-[Rr]esources
+saves/*
 .tmp
 .obsidian

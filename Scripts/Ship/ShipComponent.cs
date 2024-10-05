@@ -15,6 +15,15 @@ public partial class ShipComponent: Area2D
     [Export]
     private Node2D[] vertices;
 
+    [Export]
+    public bool TopAttachable { get; private set; }
+    [Export]
+    public bool BottomAttachable { get; private set; }
+    [Export]
+    public bool RightAttachable { get; private set; }
+    [Export]
+    public bool LeftAttachable { get; private set; }
+
     private bool destroyed = false;
 
     DefenseInfo GetDefenseInfo() => defenseInfo;
@@ -62,6 +71,40 @@ public partial class ShipComponent: Area2D
             v2Vertices[i] = v2;
         }
         return v2Vertices;
+    }
+
+    public void RotateRight()
+    {
+        bool newTop = false;
+        bool newRight = false;
+        bool newBottom = false;
+        bool newLeft = false;
+        newRight = TopAttachable;
+        newBottom = RightAttachable;
+        newLeft = BottomAttachable;
+        newTop = LeftAttachable;
+        TopAttachable = newTop;
+        RightAttachable = newRight;
+        BottomAttachable = newBottom;
+        LeftAttachable = newLeft;
+        RotationDegrees += 90;
+    }
+
+    public void RotateLeft()
+    {
+        bool newTop = false;
+        bool newLeft = false;
+        bool newBottom = false;
+        bool newRight = false;
+        newRight = BottomAttachable;
+        newBottom = LeftAttachable;
+        newLeft = TopAttachable;
+        newTop = RightAttachable;
+        TopAttachable = newTop;
+        RightAttachable = newRight;
+        BottomAttachable = newBottom;
+        LeftAttachable = newLeft;
+        RotationDegrees -= 90;
     }
 
     private void Destroyed()

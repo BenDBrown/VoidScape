@@ -14,7 +14,7 @@ gridWidth = 10
 gridTile = ExtResource("2_scqii")
 shipScene = ExtResource("3_8k774")
 
-[node name="Item List" type="Node2D" parent="."]
+[node name="ItemLister" type="Node2D" parent="."]
 position = Vector2(377, 0)
 script = ExtResource("4_m306k")
 
