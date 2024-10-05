@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="ShipSaver" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Game/ship_saver.gd" id="1_vhbqm"]
+
+[resource]
+script = ExtResource("1_vhbqm")
+ship = {
+Vector2(0, 0): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"path": "res://Prefabs/ShipComponents/Cockpit.tscn"
+},
+Vector2(0, 1): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"efficiency": 1.0,
+"maxPowerGenerated": 500,
+"path": "res://Prefabs/ShipComponents/Generator.tscn"
+},
+Vector2(0, 2): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"efficiency": 1.0,
+"maxPowerGenerated": 500,
+"path": "res://Prefabs/ShipComponents/Generator.tscn"
+},
+Vector2(0, 3): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"path": "res://Prefabs/ShipComponents/Thruster.tscn"
+},
+Vector2(0, 4): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"path": "res://Prefabs/ShipComponents/Thruster.tscn"
+},
+Vector2(0, 5): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"path": "res://Prefabs/ShipComponents/Thruster.tscn"
+},
+Vector2(1, 0): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"path": "res://Prefabs/ShipComponents/Gun.tscn"
+},
+Vector2(1, 1): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"path": "res://Prefabs/ShipComponents/FuelTank.tscn"
+},
+Vector2(1, 2): {
+"defenseInfo": Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/DefenseInfo.cs"),"maxHealth":100,"defense":10)
+,
+"path": "res://Prefabs/ShipComponents/FuelTank.tscn"
+}
+}

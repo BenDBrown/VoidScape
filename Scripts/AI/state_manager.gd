@@ -7,6 +7,7 @@ signal state_changed
 var current_state: AIState
 var states: Dictionary = {}
 
+
 func _ready():
 	var children = get_children()
 	for state in children:
@@ -17,16 +18,20 @@ func _ready():
 		current_state = initial_state
 		initial_state.enter()
 
+
 func _process(delta):
 	if current_state:
 		current_state.update(delta)
-		
+
+
 func _physics_process(delta):
 	if current_state:
 		current_state.physics_update(delta)
 
-func on_state_transitioned(state:AIState, new_state: String):
-	if state != current_state: return
+
+func on_state_transitioned(state: AIState, new_state: String):
+	if state != current_state:
+		return
 	if states[new_state.to_lower()]:
 		current_state = states[new_state.to_lower()]
 		current_state.enter()
