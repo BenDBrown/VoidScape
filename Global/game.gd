@@ -5,6 +5,8 @@ extends Node
 const SAVE_PATH = "res://saves/"
 #TODO REMOVE WHEN LIVE
 func _process(_delta):
+	if !OS.has_feature("debug"):
+		return
 	if Input.is_key_pressed(KEY_F4):
 		get_tree().quit()
 	if Input.is_key_pressed(KEY_ESCAPE):
