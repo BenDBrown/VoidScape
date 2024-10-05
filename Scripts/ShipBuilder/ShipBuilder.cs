@@ -76,17 +76,20 @@ public partial class ShipBuilder : Node
 				square.Coordinate = new Vector2(x, y);
 				grid.Add(square.Coordinate, square);
 				square.Position = square.CoordinateToPosition();
-				square.ShipComponentPlaced += UpdatePlacementValidity;
+				square.ShipComponentChanged += UpdatePlacementValidity;
 			}
 		}
 	}
 
 	private void UpdatePlacementValidity(object sender)
 	{
+        bool noComponents = true;
 		foreach(GridSquare square in grid.Values)
 		{
+            if(square.shipComponent != null) { noComponents = false; }
 			square.SetValidity(false);
 		}
+        if(noComponents) { foreach(GridSquare square in grid.Values) { square.SetValidity(true); } }
 		foreach(Vector2 coord in grid.Keys)
 		{
 			if(grid[coord].shipComponent == null) { continue; }

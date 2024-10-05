@@ -7,12 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
-[node name="FuelTank" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
+[node name="FuelTank" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("2_s8nau")
 fuelCapacity = 1000
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
 LeftAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]

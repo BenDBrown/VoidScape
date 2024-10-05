@@ -16,6 +16,9 @@ public partial class ShipComponent: Area2D
     private Node2D[] vertices;
 
     [Export]
+    private Sprite2D sprite;
+
+    [Export]
     public bool TopAttachable { get; private set; }
     [Export]
     public bool BottomAttachable { get; private set; }
@@ -73,12 +76,34 @@ public partial class ShipComponent: Area2D
         return v2Vertices;
     }
 
+    public void Mirror()
+    {
+        bool newAttachableA;
+        bool newAttachableB;
+        if(RotationDegrees == 0 || Math.Abs(RotationDegrees) == 180)
+        {
+            newAttachableA = LeftAttachable;
+            newAttachableB = RightAttachable;
+            LeftAttachable = newAttachableB;
+            RightAttachable = newAttachableA;
+            sprite.FlipH = !sprite.FlipH;
+        }
+        else
+        {
+            newAttachableA = TopAttachable;
+            newAttachableB = BottomAttachable;
+            TopAttachable = newAttachableB;
+            BottomAttachable = newAttachableA;
+            sprite.FlipV = !sprite.FlipV;
+        }
+    }
+
     public void RotateRight()
     {
-        bool newTop = false;
-        bool newRight = false;
-        bool newBottom = false;
-        bool newLeft = false;
+        bool newTop;
+        bool newRight;
+        bool newBottom;
+        bool newLeft;
         newRight = TopAttachable;
         newBottom = RightAttachable;
         newLeft = BottomAttachable;
@@ -88,14 +113,15 @@ public partial class ShipComponent: Area2D
         BottomAttachable = newBottom;
         LeftAttachable = newLeft;
         RotationDegrees += 90;
+        if(RotationDegrees >= 360) { RotationDegrees = 0; }
     }
 
     public void RotateLeft()
     {
-        bool newTop = false;
-        bool newLeft = false;
-        bool newBottom = false;
-        bool newRight = false;
+        bool newTop;
+        bool newLeft;
+        bool newBottom;
+        bool newRight;
         newRight = BottomAttachable;
         newBottom = LeftAttachable;
         newLeft = TopAttachable;
@@ -105,6 +131,7 @@ public partial class ShipComponent: Area2D
         BottomAttachable = newBottom;
         LeftAttachable = newLeft;
         RotationDegrees -= 90;
+        if(RotationDegrees <= -360) { RotationDegrees = 0; }
     }
 
     private void Destroyed()

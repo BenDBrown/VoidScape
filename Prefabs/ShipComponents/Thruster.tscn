@@ -7,13 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1fg5"]
 size = Vector2(32, 32)
 
-[node name="Thruster" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
+[node name="Thruster" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("1_qteyv")
 powerdraw = 1
 thrust = 100.0
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
 TopAttachable = true
 RightAttachable = true
 LeftAttachable = true

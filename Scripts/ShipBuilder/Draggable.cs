@@ -23,9 +23,11 @@ public partial class Draggable : Node2D
 
 	private string clickActionName = "click";
 
-	private string rotateRightActionName = "rotate_part_right";
+	private const string rotateRightActionName = "rotate_part_right";
 
-	private string rotateLeftActionName = "rotate_part_left";
+	private const string rotateLeftActionName = "rotate_part_left";
+
+	private const string mirrorActionName = "mirror_part";
 
     public override void _Ready() => startPos = GlobalPosition;
 
@@ -48,14 +50,9 @@ public partial class Draggable : Node2D
 		if (draggable)
 		{
 			GlobalPosition = GetGlobalMousePosition() - mouseOffset;
-			if(Input.IsActionJustPressed(rotateRightActionName)) 
-			{ 
-				shipComponent.RotateRight();
-			}
-			else if(Input.IsActionJustPressed(rotateLeftActionName)) 
-			{ 
-				shipComponent.RotateLeft();
-			}
+			if(Input.IsActionJustPressed(rotateRightActionName)) { shipComponent.RotateRight(); }
+			else if(Input.IsActionJustPressed(rotateLeftActionName)) { shipComponent.RotateLeft(); }
+			else if(Input.IsActionJustPressed(mirrorActionName)) { shipComponent.Mirror(); }
 		}
 	}
 
@@ -71,20 +68,20 @@ public partial class Draggable : Node2D
 	{
 		selected = null;
 		draggable = false;
-		Tween tween = GetTree().CreateTween();
+		
 		if (isInDroppable)
 		{
 			GridSquare gridSquare = GetNearestGridSquare();
 			if(gridSquare.TrySetComponent(shipComponent, this))
 			{
-				GD.Print("grid square null is " + (gridSquare == null).ToString());
-				GD.Print("tween is null is " + (tween == null).ToString());
+				Tween tween = GetTree().CreateTween();
 				tween.TweenProperty(this, "position", gridSquare.Position, 0.2f).SetEase(Tween.EaseType.Out);
 			}
+			else { ReturnToOriginalPosition(); }
 		}
 		else
 		{
-			GD.Print(startPos.ToString());
+			Tween tween = GetTree().CreateTween();
 			tween.TweenProperty(this, "global_position", startPos, 0.2f).SetEase(Tween.EaseType.Out);
 		}
 	}
@@ -125,7 +122,7 @@ public partial class Draggable : Node2D
 		this.shipComponent = shipComponent;
 	}
 
-	public void ReturnToOriginalPosition() => Position = startPos;
+	public void ReturnToOriginalPosition() => GlobalPosition = startPos;
 
 	public void SetStartPosition(Vector2 startPos) => this.startPos = startPos;
 
