@@ -34,7 +34,6 @@ public partial class Gun : ShipComponent, IPowerable
 
     public void Shoot()
     {
-        GD.Print("Shooting");
         Bullet bullet = ammo.Instantiate() as Bullet;
         bullet.GlobalPosition = GlobalPosition;
         bullet.GlobalRotation = GlobalRotation;

@@ -14,6 +14,10 @@ efficiency = 1.0
 maxPowerGenerated = 500
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+TopAttachable = true
+BottomAttachable = true
+RightAttachable = true
+LeftAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_3qq63")

@@ -20,6 +20,7 @@ timer = NodePath("Timer")
 bulletSpeed = 300.0
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+LeftAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_ylwoa")

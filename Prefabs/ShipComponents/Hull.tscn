@@ -13,6 +13,10 @@ script = ExtResource("1_7f61x")
 cargoCapacity = 10
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+TopAttachable = true
+BottomAttachable = true
+RightAttachable = true
+LeftAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_w7ueu")

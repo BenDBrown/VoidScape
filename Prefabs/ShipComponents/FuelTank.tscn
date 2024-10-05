@@ -13,6 +13,7 @@ script = ExtResource("2_s8nau")
 fuelCapacity = 1000
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+LeftAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("3_h1adt")
