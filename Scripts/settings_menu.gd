@@ -11,7 +11,8 @@ var init_window_mode
 
 
 func _ready():
-	settings_manager = SettingsManager.load_settings()
+	settings_manager = SettingsManager.new()
+	settings_manager = settings_manager.load_save()
 	init_volume = settings_manager.volume
 	init_window_mode = settings_manager.window_mode
 
@@ -46,7 +47,7 @@ func _on_return_pressed():
 
 
 func _on_save_pressed():
-	settings_manager.save_settings()
+	settings_manager.save()
 	init_volume = settings_manager.volume
 	init_window_mode = settings_manager.window_mode
 	_on_return_pressed()

@@ -1,25 +1,13 @@
-extends Resource
+extends Saveable
 class_name SettingsManager
 
-const RESOURCE_NAME = "Settings.tres"
+const NAME = "Settings.tres"
 const MIN_DB = -30
 const MAX_DB = 0
 @export var volume: int = 12
 @export var mute: bool = false
 @export var window_mode = DisplayServer.WINDOW_MODE_WINDOWED
 
-func save_settings():
-	if !DirAccess.dir_exists_absolute(Game.SAVE_PATH):
-		DirAccess.make_dir_absolute(Game.SAVE_PATH)
-	var err = ResourceSaver.save(self, Game.SAVE_PATH+RESOURCE_NAME)
-	if err != 0:
-		printerr(err)
-
-static func load_settings() -> SettingsManager:
-	if FileAccess.file_exists(Game.SAVE_PATH+RESOURCE_NAME):
-		return ResourceLoader.load(Game.SAVE_PATH+RESOURCE_NAME)
-	else:
-		return SettingsManager.new()
 
 func set_master_volume(newVolume):
 	volume = newVolume
@@ -35,3 +23,6 @@ func set_window_mode(id):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else: return
 	window_mode = id
+
+func get_save_name():
+	return NAME
