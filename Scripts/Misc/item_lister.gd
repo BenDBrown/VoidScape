@@ -35,5 +35,6 @@ func display_items():
 			if x == 1:
 				y += 1
 			x = (x + 1) % 2
+			draggable.SetStartPosition(draggable.global_position)
 		file_name = dir.get_next()
 	dir.list_dir_end()

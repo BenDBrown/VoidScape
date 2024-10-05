@@ -27,7 +27,7 @@ public partial class Draggable : Node2D
 
 	private string rotateLeftActionName = "rotate_part_left";
 
-    public override void _Ready() => startPos = Position;
+    public override void _Ready() => startPos = GlobalPosition;
 
     public override void _Process(double delta)
 	{
@@ -51,12 +51,10 @@ public partial class Draggable : Node2D
 			if(Input.IsActionJustPressed(rotateRightActionName)) 
 			{ 
 				shipComponent.RotateRight();
-				// add ship comp attach surfaces rotate method call
 			}
 			else if(Input.IsActionJustPressed(rotateLeftActionName)) 
 			{ 
 				shipComponent.RotateLeft();
-				// add ship comp attach surfaces rotate method call
 			}
 		}
 	}
@@ -79,12 +77,15 @@ public partial class Draggable : Node2D
 			GridSquare gridSquare = GetNearestGridSquare();
 			if(gridSquare.TrySetComponent(shipComponent, this))
 			{
+				GD.Print("grid square null is " + (gridSquare == null).ToString());
+				GD.Print("tween is null is " + (tween == null).ToString());
 				tween.TweenProperty(this, "position", gridSquare.Position, 0.2f).SetEase(Tween.EaseType.Out);
 			}
 		}
 		else
 		{
-			tween.TweenProperty(this, "global_position", initialPosition, 0.2f).SetEase(Tween.EaseType.Out);
+			GD.Print(startPos.ToString());
+			tween.TweenProperty(this, "global_position", startPos, 0.2f).SetEase(Tween.EaseType.Out);
 		}
 	}
 
@@ -114,8 +115,7 @@ public partial class Draggable : Node2D
 		if (!(snappable is GridSquare square)) { return; }
 		if (gridSquares.Contains(square)) { gridSquares.Remove(square); }
 		if (square.shipComponent == shipComponent) { square.PullComponent(); }
-		if (isInDroppable) { return; }
-		isInDroppable = false;
+		if (gridSquares.Count < 1) { isInDroppable = false; }
 	}
 
 	public void SetShipComponent(ShipComponent shipComponent)
@@ -126,6 +126,9 @@ public partial class Draggable : Node2D
 	}
 
 	public void ReturnToOriginalPosition() => Position = startPos;
+
+	public void SetStartPosition(Vector2 startPos) => this.startPos = startPos;
+
 	private GridSquare GetNearestGridSquare()
 	{
 		float distance = float.MaxValue;
