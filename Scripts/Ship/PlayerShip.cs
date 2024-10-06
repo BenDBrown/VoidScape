@@ -210,7 +210,7 @@ public partial class PlayerShip : CharacterBody2D, IShip
 			}
 			
 		}
-		CalculateRotationAxes(unpackedVectors);
+		CalculateCentreOfMass(unpackedVectors);
 		ConvexPolygonShape2D convexPolygon = new ();
 		convexPolygon.SetPointCloud(unpackedVectors.ToArray());
 		collider.Polygon = convexPolygon.Points;
@@ -252,12 +252,12 @@ public partial class PlayerShip : CharacterBody2D, IShip
 		return result;
 	}
 	
-	private void CalculateRotationAxes(List<Vector2> vertices)
+	private void CalculateCentreOfMass(List<Vector2> vertices)
 	{
-		Vector2 topLeft = new(0,0);
-		Vector2 topRight = new(0,0);
-		Vector2 bottomLeft = new(0,0);
-		Vector2 bottomRight = new(0,0);
+		Vector2 topLeft = new(int.MaxValue, int.MaxValue);
+		Vector2 topRight = new(int.MinValue, int.MaxValue);
+		Vector2 bottomLeft = new(int.MaxValue, int.MinValue);
+		Vector2 bottomRight = new(int.MinValue, int.MinValue);
 		foreach(Vector2 vertice in vertices)
 		{
 			if(GetDownLeftMagnitude(vertice) > GetDownLeftMagnitude(bottomLeft)) { bottomLeft = vertice; }
@@ -267,6 +267,8 @@ public partial class PlayerShip : CharacterBody2D, IShip
 		}
 		leftRotationPoint = (topLeft + bottomLeft) / 2;
 		rightRotationPoint = (topRight + bottomRight) / 2;
+		Vector2 centre = new((topLeft.X + topRight.X + bottomLeft.X + bottomRight.X)/4, (topLeft.Y + topRight.Y + bottomLeft.Y + bottomRight.Y)/4);
+		foreach(Node n in GetChildren()) { if(n is Camera2D cam) { cam.Position = centre; } }
 	}
 
 	private float GetDownRightMagnitude(Vector2 vector) => vector.X + vector.Y;
