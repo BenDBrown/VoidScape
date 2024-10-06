@@ -1,0 +1,175 @@
+[gd_scene load_steps=13 format=3 uid="uid://duhxejf16i1er"]
+
+[ext_resource type="Texture2D" uid="uid://cp7qh2p88psum" path="res://Assets/Ship/CockPlaceHolder.png" id="1_d3s47"]
+[ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="2_lu4bh"]
+[ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Prefabs/PlayerShip.tscn" id="3_sn6ov"]
+[ext_resource type="PackedScene" uid="uid://b7qdydnilw42" path="res://Prefabs/ShipComponents/Hull.tscn" id="4_bb4qa"]
+[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Prefabs/ShipComponents/Thruster.tscn" id="5_70qtw"]
+[ext_resource type="PackedScene" uid="uid://38862x8qpd87" path="res://Prefabs/ShipComponents/Gun.tscn" id="6_xm5ho"]
+[ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Prefabs/ShipComponents/FuelTank.tscn" id="7_mgjep"]
+[ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Prefabs/ShipComponents/Generator.tscn" id="8_kp7jo"]
+[ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Prefabs/ShipComponents/CockpitSpear.tscn" id="9_5un6e"]
+[ext_resource type="Script" path="res://UI/EnterHubMessage.cs" id="10_m64f6"]
+[ext_resource type="Script" path="res://UI/Menu.cs" id="11_c3sgb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7i2e"]
+size = Vector2(32, 32)
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Hub" type="Sprite2D" parent="."]
+position = Vector2(373, 183)
+scale = Vector2(3.3125, 3.875)
+texture = ExtResource("1_d3s47")
+
+[node name="Area2D" type="Area2D" parent="Hub"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hub/Area2D"]
+shape = SubResource("RectangleShape2D_g7i2e")
+
+[node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("playerShipNode")]
+script = ExtResource("2_lu4bh")
+playerShipNode = NodePath("PlayerShip")
+
+[node name="PlayerShip" parent="PlayerController" instance=ExtResource("3_sn6ov")]
+position = Vector2(496, 236)
+
+[node name="Hull" parent="PlayerController/PlayerShip" instance=ExtResource("4_bb4qa")]
+position = Vector2(0, 32)
+TopAttachable = false
+BottomAttachable = false
+RightAttachable = false
+LeftAttachable = false
+
+[node name="Thruster" parent="PlayerController/PlayerShip" instance=ExtResource("5_70qtw")]
+position = Vector2(0, 96)
+TopAttachable = false
+RightAttachable = false
+LeftAttachable = false
+
+[node name="Gun" parent="PlayerController/PlayerShip" instance=ExtResource("6_xm5ho")]
+position = Vector2(32, 31)
+LeftAttachable = false
+
+[node name="FuelTank2" parent="PlayerController/PlayerShip" instance=ExtResource("7_mgjep")]
+position = Vector2(-32, 64)
+scale = Vector2(-1, 1)
+LeftAttachable = false
+
+[node name="Gun2" parent="PlayerController/PlayerShip" instance=ExtResource("6_xm5ho")]
+position = Vector2(-32, 32)
+scale = Vector2(-1, 1)
+LeftAttachable = false
+
+[node name="Generator" parent="PlayerController/PlayerShip" instance=ExtResource("8_kp7jo")]
+position = Vector2(0, 64)
+TopAttachable = false
+BottomAttachable = false
+RightAttachable = false
+LeftAttachable = false
+
+[node name="CockpitSpear" parent="PlayerController/PlayerShip" instance=ExtResource("9_5un6e")]
+BottomAttachable = false
+
+[node name="Thruster2" parent="PlayerController/PlayerShip" instance=ExtResource("5_70qtw")]
+position = Vector2(32, 96)
+TopAttachable = false
+RightAttachable = false
+LeftAttachable = false
+
+[node name="Generator2" parent="PlayerController/PlayerShip" instance=ExtResource("8_kp7jo")]
+position = Vector2(32, 64)
+TopAttachable = false
+BottomAttachable = false
+RightAttachable = false
+LeftAttachable = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PopUp" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("menu")]
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -650.0
+offset_right = 1157.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("10_m64f6")
+menu = NodePath("../Menu")
+
+[node name="TextBox" type="PanelContainer" parent="CanvasLayer/PopUp"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 418.0
+offset_top = -120.0
+offset_right = -425.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/PopUp/TextBox"]
+layout_mode = 2
+text = "Press Enter to enter HUB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_c3sgb")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10748, 0.10748, 0.10748, 0.827451)
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.5
+offset_top = 26.0
+offset_right = 27.5
+offset_bottom = 72.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+text = "MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 109.0
+offset_right = 1134.0
+offset_bottom = 565.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Menu"]
+layout_mode = 0
+offset_left = 965.0
+offset_top = 589.0
+offset_right = 1137.0
+offset_bottom = 633.0
+text = "QUIT"
+
+[connection signal="body_entered" from="Hub/Area2D" to="CanvasLayer/PopUp" method="OnBodyEntered"]
+[connection signal="body_exited" from="Hub/Area2D" to="CanvasLayer/PopUp" method="OnBodyExited"]
+[connection signal="button_up" from="CanvasLayer/Menu/Button" to="CanvasLayer/Menu" method="OnButtonUp"]
