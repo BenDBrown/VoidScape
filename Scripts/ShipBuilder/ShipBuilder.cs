@@ -76,38 +76,41 @@ public partial class ShipBuilder : Node
 				square.Coordinate = new Vector2(x, y);
 				grid.Add(square.Coordinate, square);
 				square.Position = square.CoordinateToPosition();
-				square.ShipComponentPlaced += UpdatePlacementValidity;
+				square.ShipComponentChanged += UpdatePlacementValidity;
 			}
 		}
 	}
 
 	private void UpdatePlacementValidity(object sender)
 	{
+        bool noComponents = true;
 		foreach(GridSquare square in grid.Values)
 		{
+            if(square.shipComponent != null) { noComponents = false; }
 			square.SetValidity(false);
 		}
+        if(noComponents) { foreach(GridSquare square in grid.Values) { square.SetValidity(true); } }
 		foreach(Vector2 coord in grid.Keys)
 		{
 			if(grid[coord].shipComponent == null) { continue; }
 			grid[coord].SetValidity(true);
 			Vector2 vRight = new(coord.X + 1, coord.Y);
 			Vector2 vLeft = new(coord.X - 1, coord.Y);
-			Vector2 vUp = new(coord.X, coord.Y + 1);
-			Vector2 vDown = new(coord.X, coord.Y - 1);
+			Vector2 vUp = new(coord.X, coord.Y - 1);
+			Vector2 vDown = new(coord.X, coord.Y + 1);
 			if(grid.ContainsKey(vRight))
 			{
 				if(grid[coord].shipComponent.RightAttachable) { grid[vRight].SetValidity(true); }
 			}
-			else if(grid.ContainsKey(vLeft))
+			if(grid.ContainsKey(vLeft))
 			{
 				if(grid[coord].shipComponent.LeftAttachable) { grid[vLeft].SetValidity(true); }
 			}
-			else if(grid.ContainsKey(vUp))
+			if(grid.ContainsKey(vUp))
 			{
 				if(grid[coord].shipComponent.TopAttachable) { grid[vUp].SetValidity(true); }
 			}
-			else if(grid.ContainsKey(vDown))
+			if(grid.ContainsKey(vDown))
 			{
 				if(grid[coord].shipComponent.BottomAttachable) { grid[vDown].SetValidity(true); }
 			}

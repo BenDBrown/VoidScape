@@ -23,11 +23,13 @@ public partial class Draggable : Node2D
 
 	private string clickActionName = "click";
 
-	private string rotateRightActionName = "rotate_part_right";
+	private const string rotateRightActionName = "rotate_part_right";
 
-	private string rotateLeftActionName = "rotate_part_left";
+	private const string rotateLeftActionName = "rotate_part_left";
 
-    public override void _Ready() => startPos = Position;
+	private const string mirrorActionName = "mirror_part";
+
+    public override void _Ready() => startPos = GlobalPosition;
 
     public override void _Process(double delta)
 	{
@@ -48,16 +50,9 @@ public partial class Draggable : Node2D
 		if (draggable)
 		{
 			GlobalPosition = GetGlobalMousePosition() - mouseOffset;
-			if(Input.IsActionJustPressed(rotateRightActionName)) 
-			{ 
-				shipComponent.RotateRight();
-				// add ship comp attach surfaces rotate method call
-			}
-			else if(Input.IsActionJustPressed(rotateLeftActionName)) 
-			{ 
-				shipComponent.RotateLeft();
-				// add ship comp attach surfaces rotate method call
-			}
+			if(Input.IsActionJustPressed(rotateRightActionName)) { shipComponent.RotateRight(); }
+			else if(Input.IsActionJustPressed(rotateLeftActionName)) { shipComponent.RotateLeft(); }
+			else if(Input.IsActionJustPressed(mirrorActionName)) { shipComponent.Mirror(); }
 		}
 	}
 
@@ -73,18 +68,21 @@ public partial class Draggable : Node2D
 	{
 		selected = null;
 		draggable = false;
-		Tween tween = GetTree().CreateTween();
+		
 		if (isInDroppable)
 		{
 			GridSquare gridSquare = GetNearestGridSquare();
 			if(gridSquare.TrySetComponent(shipComponent, this))
 			{
+				Tween tween = GetTree().CreateTween();
 				tween.TweenProperty(this, "position", gridSquare.Position, 0.2f).SetEase(Tween.EaseType.Out);
 			}
+			else { ReturnToOriginalPosition(); }
 		}
 		else
 		{
-			tween.TweenProperty(this, "global_position", initialPosition, 0.2f).SetEase(Tween.EaseType.Out);
+			Tween tween = GetTree().CreateTween();
+			tween.TweenProperty(this, "global_position", startPos, 0.2f).SetEase(Tween.EaseType.Out);
 		}
 	}
 
@@ -114,8 +112,7 @@ public partial class Draggable : Node2D
 		if (!(snappable is GridSquare square)) { return; }
 		if (gridSquares.Contains(square)) { gridSquares.Remove(square); }
 		if (square.shipComponent == shipComponent) { square.PullComponent(); }
-		if (isInDroppable) { return; }
-		isInDroppable = false;
+		if (gridSquares.Count < 1) { isInDroppable = false; }
 	}
 
 	public void SetShipComponent(ShipComponent shipComponent)
@@ -125,7 +122,10 @@ public partial class Draggable : Node2D
 		this.shipComponent = shipComponent;
 	}
 
-	public void ReturnToOriginalPosition() => Position = startPos;
+	public void ReturnToOriginalPosition() => GlobalPosition = startPos;
+
+	public void SetStartPosition(Vector2 startPos) => this.startPos = startPos;
+
 	private GridSquare GetNearestGridSquare()
 	{
 		float distance = float.MaxValue;

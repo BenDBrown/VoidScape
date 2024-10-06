@@ -5,9 +5,9 @@ using System;
 public partial class GridSquare : StaticBody2D
 {
 	private const int COORDINATE_RATIO = 32;
-    public delegate void ShipComponentPlacedEventHandler(object sender);
+    public delegate void ShipComponentChangedEventHandler(object sender);
 
-	public event ShipComponentPlacedEventHandler ShipComponentPlaced;
+	public event ShipComponentChangedEventHandler ShipComponentChanged;
 
 	[Export]
 	private Sprite2D validSprite;
@@ -35,7 +35,7 @@ public partial class GridSquare : StaticBody2D
 		if(this.draggable != null) { this.draggable.ReturnToOriginalPosition(); }
 		this.draggable = draggable;
 		this.shipComponent = shipComponent;
-		ShipComponentPlaced?.Invoke(this);
+		ShipComponentChanged?.Invoke(this);
 		return IsValid;
 	}
 
@@ -43,6 +43,7 @@ public partial class GridSquare : StaticBody2D
 	{
 		draggable = null;
 		shipComponent = null;
+		ShipComponentChanged?.Invoke(this);
 	}
 
 	public void RemoveComponent() // to be used when code causes a part to be returned for instance because the part connecting it to the ship was removed

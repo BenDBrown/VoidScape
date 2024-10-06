@@ -13,7 +13,11 @@ public partial class Bullet : RigidBody2D, IDamager
 
 	private DamageInfo damageInfo;
 
-    public DamageInfo GetDamageInfo() => damageInfo;
+    public DamageInfo GetDamageInfo()
+    { 
+        QueueFree();
+        return damageInfo;
+    }
 
     public void SetDamageInfo(DamageInfo damageInfo) { this.damageInfo = damageInfo; }
 
