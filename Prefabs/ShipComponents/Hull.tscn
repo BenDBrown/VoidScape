@@ -7,12 +7,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
-[node name="Hull" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
+[node name="Hull" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("1_7f61x")
 cargoCapacity = 10
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
+TopAttachable = true
+BottomAttachable = true
+RightAttachable = true
+LeftAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_w7ueu")

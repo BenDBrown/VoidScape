@@ -22,6 +22,7 @@ animations = [{
 radius = 4.0
 
 [node name="Bullet" type="RigidBody2D" node_paths=PackedStringArray("timer")]
+mass = 0.001
 script = ExtResource("1_v258x")
 timer = NodePath("Timer")
 

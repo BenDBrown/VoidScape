@@ -1,14 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://pu7ejs5guhlq"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_2ywoc"]
-[ext_resource type="PackedScene" uid="uid://cnjfr0mud1up0" path="res://Prefabs/Text/dialogue_box.tscn" id="2_soqvr"]
+[ext_resource type="Script" path="res://Scripts/Game/player_spawner.gd" id="2_3kim7"]
 
 [node name="StartScene" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_2ywoc")]
 
-[node name="Dialogue Box" parent="." instance=ExtResource("2_soqvr")]
-offset_left = 8.0
-offset_top = 392.0
-offset_right = 1024.0
-offset_bottom = 624.0
+[node name="Player Spawner" type="Node2D" parent="."]
+position = Vector2(512, 320)
+script = ExtResource("2_3kim7")

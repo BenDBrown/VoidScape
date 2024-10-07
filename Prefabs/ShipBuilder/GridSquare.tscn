@@ -1,16 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3vc3aagjqvgj"]
+[gd_scene load_steps=6 format=3 uid="uid://c3vc3aagjqvgj"]
 
 [ext_resource type="Texture2D" uid="uid://dxaorfi3bnkwb" path="res://Assets/UI/grid.png" id="1_a361x"]
 [ext_resource type="Script" path="res://Scripts/ShipBuilder/GridSquare.cs" id="1_wcbfy"]
+[ext_resource type="Texture2D" uid="uid://c8nelu3m244lt" path="res://Assets/UI/ValidBuildSpacePlaceholder.png" id="3_t6ycm"]
+[ext_resource type="Texture2D" uid="uid://bkimhxix8tg12" path="res://Assets/UI/InvalidBuildSpacePlaceholder.png" id="4_3yqei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtr6i"]
 size = Vector2(32, 32)
 
-[node name="GridSquare" type="StaticBody2D" groups=["snappable"]]
+[node name="GridSquare" type="StaticBody2D" node_paths=PackedStringArray("validSprite", "invalidSprite") groups=["snappable"]]
 script = ExtResource("1_wcbfy")
+validSprite = NodePath("ValidPng")
+invalidSprite = NodePath("InvalidPng")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rtr6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_a361x")
+
+[node name="ValidPng" type="Sprite2D" parent="."]
+texture = ExtResource("3_t6ycm")
+
+[node name="InvalidPng" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_3yqei")
