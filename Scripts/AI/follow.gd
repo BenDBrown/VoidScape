@@ -7,33 +7,47 @@ class_name Follow
 var area:Area2D
 @export_range(0, 300) var spreading:int 
 @export_range(0, 300) var length:int 
+@export var ray :=RayCast2D.new()
+@export var angle_cone_vision = deg_to_rad(30.0)
+@export var max_view_distance = 800.0
+@export var angle_between_rays = deg_to_rad(5.0)
+var shot = true
+var target = null
+var pleyer: PlayerShip = player
+var cast_vect 
+var ammo = 5
 
 func enter():
 	super.enter()
 	addDetectionArea()
-	shootingWhenPlayerEntersTheDetection(area)
-	
+	cast_vect = calculateAngles()
+	parent.StartShooting()
+
 func exit():
 	super.exit()
-	parent.StopShooting()
 	parent.StopTurning()
 	parent.StopThrusting()
 	transitioned.emit(self, "idle")
 	parent.remove_child(area)
+	print("Exited")
 
 func physics_update(_delta):
+	spawnRayCastsToTrackPlayer()
 	var dist = parent.global_position.distance_to(player.global_position)
 	if dist > out_of_detection_distance:
 			exit()
 	elif dist > max_distance:
+		spawnRayCastsToTrackPlayer()
 		parent.ForwardThrust()
 		rotate(player.global_position)
 	elif dist < min_distance:
 		retreat()
-		
+		spawnRayCastsToTrackPlayer()
 	else:
 		parent.StopThrusting()
 		parent.StopTurning()
+	
+	
 
 
 func rotate(globalPos: Vector2):
@@ -97,15 +111,16 @@ func createPolygonCollsion2D(area:Area2D):
 	area.add_child(polygon)
 	
 	
-func shootingWhenPlayerEntersTheDetection(area:Area2D):
+func shootingWhenPlayerEntersTheDetection(area:Area2D, target):
 	pass
 	#TODO
-	print("In shooting")
-	area.draw
-	#Creating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
+	
+	#print("In shooting")
+	#reating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
 	if area.body_entered:
-		print("shooting")
-		parent.StartShooting()
+		pass
+		#print("shooting")
+		
 
 func rotatingInTheDirectionOfDetectedPlayer():
 	pass
@@ -115,3 +130,24 @@ func moveAroundPlayerWhenShooting():
 	pass
 	#This Func should allow the NPC to move around the player while they are shooting the player
 	#TODO
+func spawnRayCastsToTrackPlayer():
+	for index in cast_vect:
+		ray.set_target_position(index)
+		ray.force_raycast_update()
+		if ray.is_colliding() and ray.get_collider() is PlayerShip:
+			target = ray.get_collider()
+			shootingWhenPlayerEntersTheDetection(area, target)
+			return
+	
+	
+func calculateAngles() -> Array:
+	var calc_vects := []
+	var coun_rays  := int(angle_cone_vision / angle_between_rays) + 1
+	for index in coun_rays:
+		var cast_vect =( max_view_distance * Vector2.UP.rotated(angle_between_rays*(index -coun_rays/2.0)))
+		calc_vects.append(cast_vect)
+	return calc_vects
+
+func shooting():
+	pass
+	
