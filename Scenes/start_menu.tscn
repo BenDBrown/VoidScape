@@ -107,6 +107,15 @@ text = "VoidScape"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Ship Builder" type="Button" parent="Main Screen"]
+offset_left = 881.0
+offset_top = 294.0
+offset_right = 999.0
+offset_bottom = 379.0
+theme = ExtResource("8_vjj0j")
+text = "Ship Builder
+"
+
 [node name="SettingsMenu" parent="." instance=ExtResource("9_k06bd")]
 visible = false
 
@@ -114,4 +123,5 @@ visible = false
 [connection signal="pressed" from="Main Screen/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Main Screen/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Main Screen/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Main Screen/Ship Builder" to="." method="_on_ship_builder_pressed"]
 [connection signal="menu_closed" from="SettingsMenu" to="." method="_on_settings_menu_menu_closed"]
