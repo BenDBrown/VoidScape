@@ -7,11 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)
 
-[node name="CockpitSpear" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices")]
+[node name="CockpitSpear" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("1_r0glo")
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
+BottomAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]
 script = ExtResource("2_gf8h5")

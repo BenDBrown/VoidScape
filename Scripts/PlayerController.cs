@@ -18,13 +18,13 @@ public partial class PlayerController : Node
     {
         if(Input.IsActionJustPressed("forward")) { playerShip.ForwardThrust(); }
         else if(Input.IsActionJustPressed("back")) { playerShip.BackThrust(); }
-        else if(!Input.IsActionPressed("forward") && !Input.IsActionPressed("back")) { playerShip.StopThrusting(); }
+        else if((Input.IsActionJustReleased("forward") && (!Input.IsActionPressed("back"))) || (Input.IsActionJustReleased("back") && (!Input.IsActionPressed("forward")))) { playerShip.StopThrusting(); }
 
         if(Input.IsActionJustPressed("shoot")) { playerShip.StartShooting(); }
         else if(Input.IsActionJustReleased("shoot")) { playerShip.StopShooting(); }
 
-        if(Input.IsActionJustPressed("rotate_right") && !Input.IsActionPressed("rotate_left")) { playerShip.StartTurningClockwise(); }
-        else if(Input.IsActionJustPressed("rotate_left") && !Input.IsActionPressed("rotate_right")) { playerShip.StartTurningCounterClockwise(); }
-        else if(!Input.IsActionPressed("rotate_right") && !Input.IsActionPressed("rotate_left")) {playerShip.StopTurning(); }
+        if(Input.IsActionJustPressed("rotate_right")) { playerShip.StartTurningClockwise(); }
+        else if(Input.IsActionJustPressed("rotate_left")) { playerShip.StartTurningCounterClockwise(); }
+        else if((Input.IsActionJustReleased("rotate_right") && (!Input.IsActionPressed("rotate_left"))) || (Input.IsActionJustReleased("rotate_left") && (!Input.IsActionPressed("rotate_right")))) { playerShip.StopTurning(); }
     }
 }
