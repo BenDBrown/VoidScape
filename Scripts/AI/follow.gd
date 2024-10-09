@@ -16,12 +16,12 @@ var target = null
 var pleyer: PlayerShip = player
 var cast_vect 
 var ammo = 5
+var is_shooting = false
 
 func enter():
 	super.enter()
 	addDetectionArea()
 	cast_vect = calculateAngles()
-	parent.StartShooting()
 
 func exit():
 	super.exit()
@@ -32,17 +32,14 @@ func exit():
 	print("Exited")
 
 func physics_update(_delta):
-	spawnRayCastsToTrackPlayer()
 	var dist = parent.global_position.distance_to(player.global_position)
 	if dist > out_of_detection_distance:
 			exit()
 	elif dist > max_distance:
-		spawnRayCastsToTrackPlayer()
 		parent.ForwardThrust()
 		rotate(player.global_position)
 	elif dist < min_distance:
 		retreat()
-		spawnRayCastsToTrackPlayer()
 	else:
 		parent.StopThrusting()
 		parent.StopTurning()
@@ -109,15 +106,15 @@ func createPolygonCollsion2D(area:Area2D):
 	convexPolygon.set_point_cloud(unpackedVectors)
 	polygon.polygon = convexPolygon.points
 	area.add_child(polygon)
+	area.area_entered.connect(shootingWhenPlayerEntersTheDetection)
 	
-	
-func shootingWhenPlayerEntersTheDetection(area:Area2D, target):
-	pass
+func shootingWhenPlayerEntersTheDetection(target:Area2D):
 	#TODO
-	
 	#print("In shooting")
 	#reating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
-	if area.body_entered:
+	print("body entered")
+	if target.get_parent() == player:
+		spawnRayCastsToTrackPlayer()
 		pass
 		#print("shooting")
 		
@@ -135,9 +132,17 @@ func spawnRayCastsToTrackPlayer():
 		ray.set_target_position(index)
 		ray.force_raycast_update()
 		if ray.is_colliding() and ray.get_collider() is PlayerShip:
-			target = ray.get_collider()
-			shootingWhenPlayerEntersTheDetection(area, target)
+			if(is_shooting):
+				pass
+			else:
+				parent.StartShooting()
+				is_shooting = true
 			return
+		if ray.is_colliding() and ray.get_collider() is not PlayerShip:
+			pass
+		elif !ray.is_colliding() && area.body_exited:
+			parent.StopShooting()
+			is_shooting = false
 	
 	
 func calculateAngles() -> Array:
@@ -148,6 +153,5 @@ func calculateAngles() -> Array:
 		calc_vects.append(cast_vect)
 	return calc_vects
 
-func shooting():
-	pass
+
 	
