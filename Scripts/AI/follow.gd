@@ -4,24 +4,25 @@ class_name Follow
 @export var min_distance: float = 100
 @export var max_distance: float = 150
 @export var out_of_detection_distance: float = 300
-var area:Area2D
 @export_range(0, 300) var spreading:int 
 @export_range(0, 300) var length:int 
 @export var ray :=RayCast2D.new()
 @export var angle_cone_vision = deg_to_rad(30.0)
 @export var max_view_distance = 800.0
 @export var angle_between_rays = deg_to_rad(5.0)
+var area:Area2D
+var in_area = false
 var shot = true
-var target = null
 var pleyer: PlayerShip = player
-var cast_vect 
+var cast_vect := []
 var ammo = 5
 var is_shooting = false
+var exited = false
 
 func enter():
 	super.enter()
 	addDetectionArea()
-	cast_vect = calculateAngles()
+	generateSweepingRange()
 
 func exit():
 	super.exit()
@@ -29,12 +30,11 @@ func exit():
 	parent.StopThrusting()
 	transitioned.emit(self, "idle")
 	parent.remove_child(area)
-	print("Exited")
 
 func physics_update(_delta):
 	var dist = parent.global_position.distance_to(player.global_position)
 	if dist > out_of_detection_distance:
-			exit()
+		exit()
 	elif dist > max_distance:
 		parent.ForwardThrust()
 		rotate(player.global_position)
@@ -43,8 +43,12 @@ func physics_update(_delta):
 	else:
 		parent.StopThrusting()
 		parent.StopTurning()
-	
-	
+	if !in_area:
+		resetRayCast(ray)
+	elif in_area:
+		var can_shoot = sweepingRaycast()
+		if can_shoot:
+			shootPlayerInRacastRange()
 
 
 func rotate(globalPos: Vector2):
@@ -65,9 +69,9 @@ func retreat():
 func addDetectionArea():
 #This Func is to create the amount area's for detection we need to have the ship enough "eyes" to be able detect the player
 	
-	area = createArea2D(area)
-	createPolygonCollsion2D(area)
-	print("Area Added")
+	area = createArea2DWithConnections(area)
+	var polygon = createPolygonCollsion2D(area)
+	area.add_child(polygon)
 	parent.add_child(area)
 
 func createArea2DWithPosition(area,x,y):
@@ -88,10 +92,26 @@ func createArea2DWithPosition(area,x,y):
 	#dot = spreading
 	#dot *= -1
 	#return dot
-func createArea2D(area):
+func createArea2DWithConnections(area):
 #This func is to create and add it the parent so it is added the the NPC node with a position given in the parameters
 	area = Area2D.new()
-	return	area
+	area.area_entered.connect(detectingPlayerInArea)
+	area.area_exited.connect(AreaExit)
+	return area
+
+func AreaExit(target:Area2D):
+	pass
+	if target.get_parent() == player:
+		exited = true
+		in_area = false
+	else:
+		exited= false
+
+func detectingPlayerInArea(target:Area2D):
+	#reating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
+	if target.get_parent() == player:
+		in_area = true
+
 func createPolygonCollsion2D(area:Area2D):
 	var origin = Vector2(0,0)
 	var x = spreading *-1
@@ -105,19 +125,10 @@ func createPolygonCollsion2D(area:Area2D):
 	var convexPolygon = ConvexPolygonShape2D.new()
 	convexPolygon.set_point_cloud(unpackedVectors)
 	polygon.polygon = convexPolygon.points
-	area.add_child(polygon)
-	area.area_entered.connect(shootingWhenPlayerEntersTheDetection)
-	
-func shootingWhenPlayerEntersTheDetection(target:Area2D):
-	#TODO
-	#print("In shooting")
-	#reating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
-	print("body entered")
-	if target.get_parent() == player:
-		spawnRayCastsToTrackPlayer()
-		pass
-		#print("shooting")
-		
+	return polygon
+
+
+
 
 func rotatingInTheDirectionOfDetectedPlayer():
 	pass
@@ -127,31 +138,34 @@ func moveAroundPlayerWhenShooting():
 	pass
 	#This Func should allow the NPC to move around the player while they are shooting the player
 	#TODO
-func spawnRayCastsToTrackPlayer():
+
+func sweepingRaycast():
 	for index in cast_vect:
 		ray.set_target_position(index)
 		ray.force_raycast_update()
 		if ray.is_colliding() and ray.get_collider() is PlayerShip:
-			if(is_shooting):
-				pass
-			else:
-				parent.StartShooting()
-				is_shooting = true
-			return
-		if ray.is_colliding() and ray.get_collider() is not PlayerShip:
-			pass
-		elif !ray.is_colliding() && area.body_exited:
-			parent.StopShooting()
-			is_shooting = false
-	
-	
-func calculateAngles() -> Array:
+			return true
+	return false
+		
+
+func generateSweepingRange():
 	var calc_vects := []
 	var coun_rays  := int(angle_cone_vision / angle_between_rays) + 1
 	for index in coun_rays:
-		var cast_vect =( max_view_distance * Vector2.UP.rotated(angle_between_rays*(index -coun_rays/2.0)))
-		calc_vects.append(cast_vect)
-	return calc_vects
-
-
+		var vects =( max_view_distance * Vector2.UP.rotated(angle_between_rays*(index -coun_rays/2.0)))
+		cast_vect.append(vects)
 	
+func shootPlayerInRacastRange():
+	if ray.is_colliding() and ray.get_collider() is PlayerShip:
+		if(is_shooting):
+			return
+		parent.StartShooting()
+		is_shooting = true
+	elif !ray.is_colliding() && exited:
+		parent.StopShooting()
+		is_shooting = false
+
+
+
+func resetRayCast(reycast:RayCast2D):
+	reycast.set_target_position(Vector2(0,0))
