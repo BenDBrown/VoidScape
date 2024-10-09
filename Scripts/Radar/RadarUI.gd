@@ -1,39 +1,43 @@
-extends Node2D
+extends Control
 
-class_name RadarUI
+var area2d_radar
 
-@onready var sweeper: Sprite2D = $Sweeper
+@onready var line: TextureRect = $Line
+@onready var radar_ping = preload("res://Prefabs/Radar/CollisionShape/radar_ping.tscn")
+@onready var background: TextureRect = $Background
 
-@export var rotation_speed = 180;
-@export var radar_distance = 150;
+var minimap_scale = 0.0
+var radar_radius = 0
+var minimap_size = 100
 
-@export var raycast_distance_x = 200;
-@export var raycast_distance_y = 200;
-
-
-@onready var ray_cast_2d: RayCast2D = $Sweeper/RayCast2D
-
-var collider_list: Array[Area2D] = []
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	area2d_radar = get_node("../Radar")
+	
+	if area2d_radar:
+		radar_radius = area2d_radar.get_radar_radius()
+	
+	# Calculate the minimap scale relative to the radar radius on the player
+	minimap_size = (background.size.x * scale.x) / 2.0   # Scale the background size to the parents node scale 
+	minimap_scale = minimap_size / radar_radius
+	print(minimap_scale)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
-	sweeper.rotation_degrees += rotation_speed * delta
+	if area2d_radar:
+		line.rotation_degrees = rad_to_deg(area2d_radar.get_sweeper_rotation())
+
+func _on_radar_enemy_detected(relative_position: Vector2):
+	#Calculate the position of the ping on the minimap
+	var minimap_position = relative_position * minimap_scale
+	minimap_position += global_position
 	
-	if(sweeper.rotation_degrees >= 360):
-		sweeper.rotation = 0
-		collider_list.clear() # clear list to get new 
-		
-func _physics_process(delta: float):
+	var radar_ping_instance = radar_ping.instantiate()
+	radar_ping_instance.position = minimap_position
+	radar_ping_instance.set_color(Color.RED)
 	
-	if ray_cast_2d.is_colliding():
-		var collider = ray_cast_2d.get_collider()
-		
-		var parent_node = collider.get_parent()
-		if(collider not in collider_list && parent_node is Detectable):
-			print("The simple one is colliding and collider: ", collider, " and added")
-			collider_list.append(collider)
+	radar_ping_instance.scale *= minimap_scale
 	
+	# let the ping live for half a rotation
+	radar_ping_instance.set_disappear_timer(360.0/area2d_radar.get_rotation_speed()/2)
+	
+	# Add to background as child
+	add_child(radar_ping_instance)

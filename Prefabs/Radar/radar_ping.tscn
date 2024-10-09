@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7d6bwic0mbkv"]
+
+[ext_resource type="Texture2D" uid="uid://clhujvorxphjw" path="res://Assets/Radar/RadarPing.png" id="1_fdd11"]
+[ext_resource type="Script" path="res://Scripts/Radar/RadarPing.gd" id="1_wnql7"]
+
+[node name="RadarPing" type="Sprite2D"]
+top_level = true
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_fdd11")
+script = ExtResource("1_wnql7")

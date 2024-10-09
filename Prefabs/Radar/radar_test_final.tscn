@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7ir6nilg4ovl"]
+
+[ext_resource type="PackedScene" uid="uid://cf8gl3qmd3iay" path="res://Prefabs/radar.tscn" id="1_tlam6"]
+[ext_resource type="PackedScene" uid="uid://cr2l7u8h2v5hx" path="res://Prefabs/Radar/RadarEnemy.tscn" id="2_y0qwq"]
+[ext_resource type="PackedScene" uid="uid://djny2y0oiodfh" path="res://Prefabs/Radar/radar_panel.tscn" id="3_m8j40"]
+
+[node name="Radar Test Final" type="Node2D"]
+
+[node name="Radar" parent="." instance=ExtResource("1_tlam6")]
+position = Vector2(256, 176)
+radar_radius = 90.0
+use_raycast = true
+
+[node name="Enemy" parent="." instance=ExtResource("2_y0qwq")]
+position = Vector2(232, 232)
+
+[node name="Enemy 1" parent="." instance=ExtResource("2_y0qwq")]
+position = Vector2(160, 112)
+
+[node name="Enemy 2" parent="." instance=ExtResource("2_y0qwq")]
+position = Vector2(400, 176)
+
+[node name="Enemy 3" parent="." instance=ExtResource("2_y0qwq")]
+position = Vector2(352, 176)
+
+[node name="Radar Panel" parent="." instance=ExtResource("3_m8j40")]
+offset_left = 744.0
+offset_top = 320.0
+offset_right = 744.0
+offset_bottom = 320.0
+scale = Vector2(1.185, 1.185)
+
+[connection signal="area_entered" from="Radar" to="Radar" method="_on_area_entered"]
+[connection signal="enemy_detected" from="Radar" to="Radar Panel" method="_on_radar_enemy_detected"]

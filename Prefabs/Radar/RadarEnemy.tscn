@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr2l7u8h2v5hx"]
+
+[ext_resource type="Texture2D" uid="uid://c6j11pgjupvay" path="res://Assets/Radar/HealthIcon.png" id="2_p8pbf"]
+
+[sub_resource type="GDScript" id="GDScript_o1ya8"]
+script/source = "extends Node
+class_name Detectable
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8fsiy"]
+
+[node name="RadarEnemy" type="Node2D"]
+script = SubResource("GDScript_o1ya8")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+scale = Vector2(1.53, 1.53)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8fsiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_p8pbf")

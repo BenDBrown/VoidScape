@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://djny2y0oiodfh"]
+
+[ext_resource type="Script" path="res://Scripts/Radar/RadarUI.gd" id="1_hwheg"]
+[ext_resource type="Texture2D" uid="uid://cjyj6ter2oiqp" path="res://Assets/Radar/RadarBackground.png" id="1_p3l2a"]
+[ext_resource type="Texture2D" uid="uid://yxnmlr1w521r" path="res://Assets/Radar/RadarLine.png" id="2_awwyh"]
+[ext_resource type="Texture2D" uid="uid://pvofc1mio4xd" path="res://Assets/Radar/RadarLineTrail.png" id="3_e84w3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14vs7"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 256
+corner_radius_top_right = 256
+corner_radius_bottom_right = 256
+corner_radius_bottom_left = 256
+
+[node name="Radar Panel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hwheg")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(256, 256)
+texture = ExtResource("1_p3l2a")
+
+[node name="PanelContainer" type="PanelContainer" parent="Background"]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_14vs7")
+
+[node name="Line" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_right = 256.0
+offset_bottom = 16.0
+grow_vertical = 2
+scale = Vector2(1, 0.25)
+texture = ExtResource("2_awwyh")
+
+[node name="Trail" type="TextureRect" parent="Line"]
+layout_mode = 1
+offset_top = -1024.0
+offset_right = 256.0
+texture = ExtResource("3_e84w3")

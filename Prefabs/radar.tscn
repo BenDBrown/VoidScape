@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf8gl3qmd3iay"]
+
+[ext_resource type="Script" path="res://Scripts/Radar/radar.gd" id="1_hei45"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_sdlu5"]
+b = Vector2(100, 0)
+
+[node name="Radar" type="Area2D"]
+script = ExtResource("1_hei45")
+radar_radius = 100.0
+
+[node name="Sweeper" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_sdlu5")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(100, 0)
+collide_with_areas = true
