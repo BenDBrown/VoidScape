@@ -55,10 +55,6 @@ public partial class NPCShip : CharacterBody2D, IShip
 			MoveAndCollide(moveVector);
 			MoveAndSlide();
 		}
-		if(shooting)
-		{
-			StopShooting();
-		}
 		if(rotationDirection != 0)
 		{
 			Rotation += (float)(rotationDirection * rotationSpeed * delta);
@@ -77,6 +73,7 @@ public partial class NPCShip : CharacterBody2D, IShip
 
 	public void StopShooting() 
 	{
+		
 		shooting = false; 
 		foreach(Gun gun in guns) { gun.StopShooting(); }
 	}
