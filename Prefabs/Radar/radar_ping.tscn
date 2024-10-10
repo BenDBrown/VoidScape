@@ -5,6 +5,6 @@
 
 [node name="RadarPing" type="Sprite2D"]
 top_level = true
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_fdd11")
 script = ExtResource("1_wnql7")

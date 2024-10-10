@@ -24,6 +24,8 @@ func _process(delta: float):
 	else:
 		sweeper.rotation_degrees += sweeper_rotation_speed * delta
 		
+		# after this emit signal --> rotation
+		
 		if(sweeper.rotation_degrees >= 360):
 			sweeper.rotation = 0
 
@@ -35,8 +37,9 @@ func _on_area_entered(area: Area2D):
 	if area.is_in_group("enemy"): # make it a constant perhaps	
 		#print("Enemy detected")
 		
-		var relative_position = area.global_position - global_position
-		emit_signal("enemy_detected", relative_position)
+		# Suggestion Genelle: pascalCase for local variables and global snake_case --> Put it into manifesto
+		var relativePosition = area.global_position - global_position # to local method see playership. Node2D.tolocal
+		emit_signal("enemy_detected", relativePosition)
 
 func _physics_process(delta: float):
 	if not use_raycast:
