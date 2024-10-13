@@ -30,7 +30,7 @@ public partial class EnterHubMessage : Control
 
 	public void OnBodyEntered(Node2D node2D)
 	{
-		if (node2D is PlayerShip ps)
+		if (node2D is PlayerShip)
 		{
 			Visible = true;
 			isOnBody = true;
