@@ -86,7 +86,7 @@ LeftAttachable = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PopUp" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("menu")]
+[node name="PopUp" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("playership", "menu")]
 visible = false
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 3
@@ -99,6 +99,7 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("10_m64f6")
+playership = NodePath("../../PlayerController/PlayerShip")
 menu = NodePath("../Menu")
 
 [node name="TextBox" type="PanelContainer" parent="CanvasLayer/PopUp"]
@@ -120,7 +121,7 @@ text = "Press Enter to enter HUB"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Menu" type="Control" parent="CanvasLayer"]
+[node name="Menu" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("playership")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -129,6 +130,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_c3sgb")
+playership = NodePath("../../PlayerController/PlayerShip")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menu"]
 layout_mode = 1
