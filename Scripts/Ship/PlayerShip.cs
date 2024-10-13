@@ -84,13 +84,13 @@ public partial class PlayerShip : CharacterBody2D, IShip
 			Rotation = rot;
 
 			MoveAndCollide(relativeRotationPoint - rotEdgeVector);
-			MoveAndSlide();
+			// MoveAndSlide();
 		}
 	}
 
     public override void _Ready()
     {
-        TryBuildShip();
+        // TryBuildShip();
     }
 
     public void ShipDestroyed()
