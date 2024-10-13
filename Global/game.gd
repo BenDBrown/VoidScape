@@ -1,7 +1,9 @@
 extends Node
 
 @onready var save_data
-@onready var player_ship = preload("res://Prefabs/PlayerShip.tscn")
+
+@onready var player_ship = "playership"
+
 const SAVE_PATH = "res://saves/"
 #TODO REMOVE WHEN LIVE
 func _process(_delta):
