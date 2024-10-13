@@ -5,15 +5,26 @@ public partial class EnterHubMessage : Control
 {
 	private bool isOnBody = false;
 
+	private Tween tween;
+
+	private Vector2 OriginalScale;
+
+	[Export]
+	public PlayerShip playership;
+
 	[Export]
 	public Control menu;
 
-    public override void _Process(double delta)
+	public override void _Ready()
+	{
+		OriginalScale = playership.GlobalScale;
+	}
+
+	public override void _Process(double delta)
 	{
 		if (Input.IsActionJustPressed("confirm") && isOnBody)
 		{
-			menu.Visible = true;
-			Visible = false;
+			ScaleShip();
 		}
 	}
 
@@ -26,13 +37,19 @@ public partial class EnterHubMessage : Control
 		}
 	}
 
-	public void OnBodyExited(Node2D node2D)
+	public void ScaleShip()
 	{
-		if (node2D is PlayerShip)
-		{
-			Visible = false;
-			isOnBody = false;
-			menu.Visible = false;
-		}
+		tween = GetTree().CreateTween();
+		tween.TweenProperty(playership, "scale", Vector2.Zero, 0.8f).SetTrans(Tween.TransitionType.Linear);
+		tween.Finished += FinishedTweening;
+
 	}
+
+	public void FinishedTweening()
+	{
+		tween.Finished -= FinishedTweening;
+		menu.Visible = true;
+		Visible = false;
+	}
+
 }
