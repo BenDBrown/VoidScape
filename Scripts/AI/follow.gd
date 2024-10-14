@@ -106,6 +106,8 @@ func AreaExit(target:Area2D):
 		in_area = false
 	else:
 		exited= false
+		parent.StopShooting()
+		is_shooting = false
 
 func detectingPlayerInArea(target:Area2D):
 	#reating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
@@ -161,9 +163,8 @@ func shootPlayerInRacastRange():
 			return
 		parent.StartShooting()
 		is_shooting = true
-	elif !ray.is_colliding() && exited:
-		parent.StopShooting()
-		is_shooting = false
+	
+	
 
 
 
