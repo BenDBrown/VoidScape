@@ -1,7 +1,7 @@
 extends Resource
 
 class_name Saveable
-# Called when the node enters the scene tree for the first time.
+
 func save():
 	if !DirAccess.dir_exists_absolute(Game.SAVE_PATH):
 		DirAccess.make_dir_absolute(Game.SAVE_PATH)
