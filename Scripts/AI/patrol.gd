@@ -11,7 +11,7 @@ var timer: Timer
 var direction
 
 func _ready():
-	parent = get_parent().get_parent()
+	
 	start_pos = parent.position
 	timer = Timer.new()
 	timer.stop()
@@ -31,7 +31,7 @@ func physics_update(_delta):
 		var x = randf_range(-1, 1)
 		var y = randf_range(-1, 1)
 		direction = Vector2(x,y)
-		timer.start(randf_range(1, 4))
+		timer.start(randf_range(1, 6))
 	else: 
 		parent.ForwardThrust()
 	rotate(direction+parent.global_position)
