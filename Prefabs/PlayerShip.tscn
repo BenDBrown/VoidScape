@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Ship/PowerManager.cs" id="3_uocbq"]
 
 [node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("collider", "powerManager", "cargoManager")]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_xfbi3")
 collider = NodePath("CollisionPolygon2D")
 powerManager = NodePath("PowerManager")

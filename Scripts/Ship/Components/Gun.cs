@@ -21,6 +21,9 @@ public partial class Gun : ShipComponent, IPowerable
     [Export] // lower values = faster
     private double fireInterval = 1;
 
+    [Export]
+    public GunType type {get; private set;}
+
     private int bulletSpawnOffset = -32;
 
     public override void _Ready()
