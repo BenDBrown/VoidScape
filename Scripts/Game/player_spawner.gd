@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var player_ship_scene = preload("res://Prefabs/PlayerShip.tscn")
 
@@ -9,3 +9,4 @@ func _ready():
 	get_parent().add_child.call_deferred(playerShip)
 	saver.build_ship(playerShip)
 	playerShip.TryBuildShip()
+	playerShip.global_position = global_position

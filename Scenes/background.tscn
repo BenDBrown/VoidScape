@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnebyucsoprtc"]
+[gd_scene load_steps=6 format=3 uid="uid://bnebyucsoprtc"]
 
-[ext_resource type="Script" path="res://Scripts/parallax.gd" id="1_ilkjh"]
 [ext_resource type="Texture2D" uid="uid://b8h074li7cmst" path="res://Assets/Backgrounds/Parallax/Background.png" id="1_y1xlk"]
 [ext_resource type="Texture2D" uid="uid://cc2w2wfgvkjgb" path="res://Assets/Backgrounds/Parallax/stars.png" id="2_1t8g8"]
 [ext_resource type="Texture2D" uid="uid://dchg41qpw3vpe" path="res://Assets/Backgrounds/Parallax/Dust.png" id="3_8wlfj"]
@@ -28,10 +27,9 @@ script = SubResource("GDScript_h17kr")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
-script = ExtResource("1_ilkjh")
-scroll_speed = 1
 
 [node name="Black Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(1280, 1280)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Black Background"]
@@ -39,6 +37,7 @@ texture = ExtResource("1_y1xlk")
 centered = false
 
 [node name="Stars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(1280, 1280)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Stars"]
@@ -46,17 +45,11 @@ z_index = 4096
 texture = ExtResource("2_1t8g8")
 centered = false
 
-[node name="ParallaxForeground" type="ParallaxBackground" parent="."]
-layer = 0
-scroll_ignore_camera_zoom = true
-script = ExtResource("1_ilkjh")
-scroll_speed = -100
-
-[node name="Dust" type="ParallaxLayer" parent="ParallaxForeground"]
+[node name="Dust" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color(0.712839, 0.310666, 0.825202, 0.333333)
 motion_mirroring = Vector2(1280, 1280)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxForeground/Dust"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Dust"]
 modulate = Color(1, 1, 1, 0.466667)
 texture = ExtResource("3_8wlfj")
 centered = false
