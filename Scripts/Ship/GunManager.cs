@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class GunManager
+public partial class GunManager : IPowerable
 {
 	private GunGroup selectedGroup = null;
 	private List<GunGroup> gunGroups = new();
@@ -28,7 +28,9 @@ public partial class GunManager
 		}
 	}
 
-	public void StartShooting() => selectedGroup.StartShooting();
+    public int GetPowerDraw() => selectedGroup.PowerDraw;
+
+    public void StartShooting() => selectedGroup.StartShooting();
 
 	public void StopShooting() => selectedGroup.StopShooting();
 }

@@ -58,7 +58,6 @@ public partial class PlayerShip : CharacterBody2D, IShip
 				thrustVector = thrustDirection == ThrustDirection.forward ? -Transform.Y : Transform.Y;
 				Vector2 moveVector = thrustVector * (float)(thrust * delta);
 				MoveAndCollide(moveVector);
-				MoveAndSlide();
 			}
 			else { thrustDirection = ThrustDirection.none; }
 		}
@@ -84,7 +83,6 @@ public partial class PlayerShip : CharacterBody2D, IShip
 			Rotation = rot;
 
 			MoveAndCollide(relativeRotationPoint - rotEdgeVector);
-			// MoveAndSlide();
 		}
 	}
 
