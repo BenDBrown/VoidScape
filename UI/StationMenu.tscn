@@ -68,6 +68,7 @@ script = ExtResource("3_fyd7s")
 
 [node name="Build Ship" type="Control" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
 layout_mode = 2
+mouse_filter = 1
 metadata/_tab_index = 0
 
 [node name="Builder" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship" instance=ExtResource("1_7em8r")]
@@ -86,12 +87,12 @@ color = Color(0.704342, 0.620261, 0.930485, 1)
 metadata/_tab_index = 2
 
 [node name="Buttons" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="MenuButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons"]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 15
@@ -122,16 +123,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="BuildShipMenu" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Content"]
-visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Builder" parent="MarginContainer/VBoxContainer/Content/BuildShipMenu" instance=ExtResource("1_7em8r")]
 process_mode = 3
+visible = false
 position = Vector2(326, 104)
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Content"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 1
 text = "Welcome to station \"something\"
