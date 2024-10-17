@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4yj0wo6jrt31"]
+[gd_scene load_steps=12 format=3 uid="uid://b4yj0wo6jrt31"]
 
 [ext_resource type="Script" path="res://Scripts/Hazards/asteroid.gd" id="1_ulwd2"]
 [ext_resource type="Texture2D" uid="uid://cdvi6ibj0ht41" path="res://Assets/Hazzards/Astroid 1.png" id="2_431h4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cs074if5hnbvh" path="res://Assets/Hazzards/Explotion/Explotion astroid.png" id="6_183k1"]
 [ext_resource type="Script" path="res://Scripts/Component/health_component.gd" id="6_m03hg"]
 [ext_resource type="AudioStream" uid="uid://y6j2nq3fnoc8" path="res://Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/EXPLDsgn_Explosion Impact_14.wav" id="8_vmc48"]
+[ext_resource type="Script" path="res://Scripts/Component/death_audio_component.gd" id="9_qgru7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_64guh"]
 friction = 0.0
@@ -24,10 +25,14 @@ angular_damp_mode = 1
 script = ExtResource("1_ulwd2")
 asteroids = Array[CompressedTexture2D]([ExtResource("2_431h4"), ExtResource("3_1rafw"), ExtResource("4_3u6jw"), ExtResource("5_7bx26")])
 destroyAsteroid = ExtResource("6_183k1")
-destroy_audio = ExtResource("8_vmc48")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_m03hg")
+
+[node name="DeathAudioComponent" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_vmc48")
+script = ExtResource("9_qgru7")
+from_position = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ne2ve")
