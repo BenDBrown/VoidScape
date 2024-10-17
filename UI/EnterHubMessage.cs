@@ -46,7 +46,7 @@ public partial class EnterHubMessage : Control
 	public void ScaleShip()
 	{
 		tween = GetTree().CreateTween();
-		tween.TweenProperty(playership, "position", spritePos, 0.5f).SetTrans(Tween.TransitionType.Linear);
+		tween.TweenProperty(playership, "position", spritePos, 1f).SetTrans(Tween.TransitionType.Linear);
 		tween.TweenProperty(playership, "scale", Vector2.Zero, 0.8f).SetTrans(Tween.TransitionType.Linear);
 		tween.Finished += FinishedTweening;
 

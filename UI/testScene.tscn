@@ -18,8 +18,8 @@ size = Vector2(45, 44.5)
 [node name="TestScene" type="Node2D"]
 
 [node name="Hub" type="Sprite2D" parent="."]
-position = Vector2(356, 147)
-scale = Vector2(2, 2)
+position = Vector2(826, 170)
+scale = Vector2(4, 4)
 texture = ExtResource("2_esrc6")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 64)
