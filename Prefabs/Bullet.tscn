@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bckeoopmbomi8"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Bullet.cs" id="1_v258x"]
-[ext_resource type="Texture2D" uid="uid://rblv0g2af774" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_c8anf"]
+[ext_resource type="Texture2D" uid="uid://bq5cy83lpxptd" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_c8anf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ifwps"]
 atlas = ExtResource("2_c8anf")
