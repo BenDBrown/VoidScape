@@ -9,8 +9,13 @@ public partial class EnterHubMessage : Control
 
 	private Vector2 OriginalScale;
 
+	private Vector2 spritePos;
+
 	[Export]
 	public PlayerShip playership;
+
+	[Export]
+	public Sprite2D shipSprite;
 
 	[Export]
 	public Control menu;
@@ -18,6 +23,7 @@ public partial class EnterHubMessage : Control
 	public override void _Ready()
 	{
 		OriginalScale = playership.GlobalScale;
+		spritePos = shipSprite.Position;
 	}
 
 	public override void _Process(double delta)
@@ -40,6 +46,7 @@ public partial class EnterHubMessage : Control
 	public void ScaleShip()
 	{
 		tween = GetTree().CreateTween();
+		tween.TweenProperty(playership, "position", spritePos, 0.5f).SetTrans(Tween.TransitionType.Linear);
 		tween.TweenProperty(playership, "scale", Vector2.Zero, 0.8f).SetTrans(Tween.TransitionType.Linear);
 		tween.Finished += FinishedTweening;
 
