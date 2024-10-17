@@ -27,7 +27,6 @@ region_rect = Rect2(0, 0, 64, 64)
 [node name="Area2D" type="Area2D" parent="Hub"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hub/Area2D"]
-position = Vector2(359.5, 0)
 shape = SubResource("RectangleShape2D_g7i2e")
 
 [node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("playerShipNode")]
