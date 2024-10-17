@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://duhxejf16i1er"]
 
-[ext_resource type="Texture2D" uid="uid://cp7qh2p88psum" path="res://Assets/Ship/CockPlaceHolder.png" id="1_d3s47"]
+[ext_resource type="Texture2D" uid="uid://dp2lwaiexla4q" path="res://Assets/Structures/Space station.png" id="2_esrc6"]
 [ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="2_lu4bh"]
 [ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Prefabs/PlayerShip.tscn" id="3_sn6ov"]
 [ext_resource type="PackedScene" uid="uid://b7qdydnilw42" path="res://Prefabs/ShipComponents/Hull.tscn" id="4_bb4qa"]
@@ -10,24 +10,28 @@
 [ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Prefabs/ShipComponents/Generator.tscn" id="8_kp7jo"]
 [ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Prefabs/ShipComponents/CockpitSpear.tscn" id="9_5un6e"]
 [ext_resource type="Script" path="res://UI/EnterHubMessage.cs" id="10_m64f6"]
-[ext_resource type="Script" path="res://UI/Menu.cs" id="11_c3sgb"]
+[ext_resource type="PackedScene" uid="uid://dwnag7qev53p4" path="res://UI/StationMenu.tscn" id="11_srefu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7i2e"]
-size = Vector2(32, 32)
+size = Vector2(45, 44.5)
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Hub" type="Sprite2D" parent="."]
-position = Vector2(373, 183)
-scale = Vector2(3.3125, 3.875)
-texture = ExtResource("1_d3s47")
+position = Vector2(356, 147)
+scale = Vector2(2, 2)
+texture = ExtResource("2_esrc6")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
 
 [node name="Area2D" type="Area2D" parent="Hub"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hub/Area2D"]
+position = Vector2(359.5, 0)
 shape = SubResource("RectangleShape2D_g7i2e")
 
 [node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("playerShipNode")]
+process_mode = 1
 script = ExtResource("2_lu4bh")
 playerShipNode = NodePath("PlayerShip")
 
@@ -48,6 +52,7 @@ RightAttachable = false
 LeftAttachable = false
 
 [node name="Gun" parent="PlayerController/PlayerShip" instance=ExtResource("6_xm5ho")]
+process_mode = 1
 position = Vector2(32, 31)
 LeftAttachable = false
 
@@ -86,7 +91,7 @@ LeftAttachable = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PopUp" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("playership", "menu")]
+[node name="PopUp" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("playership", "shipSprite", "menu")]
 visible = false
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 3
@@ -100,7 +105,8 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("10_m64f6")
 playership = NodePath("../../PlayerController/PlayerShip")
-menu = NodePath("../Menu")
+shipSprite = NodePath("../../Hub")
+menu = NodePath("../StationMenu")
 
 [node name="TextBox" type="PanelContainer" parent="CanvasLayer/PopUp"]
 layout_mode = 1
@@ -121,57 +127,10 @@ text = "Press Enter to enter HUB"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Menu" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("playership")]
+[node name="StationMenu" parent="CanvasLayer" node_paths=PackedStringArray("playership") instance=ExtResource("11_srefu")]
+process_mode = 0
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_c3sgb")
 playership = NodePath("../../PlayerController/PlayerShip")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.10748, 0.10748, 0.10748, 0.827451)
-
-[node name="Label" type="Label" parent="CanvasLayer/Menu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -77.5
-offset_top = 26.0
-offset_right = 27.5
-offset_bottom = 72.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-text = "MENU"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 109.0
-offset_right = 1134.0
-offset_bottom = 565.0
-
-[node name="Button" type="Button" parent="CanvasLayer/Menu"]
-layout_mode = 0
-offset_left = 965.0
-offset_top = 589.0
-offset_right = 1137.0
-offset_bottom = 633.0
-text = "QUIT"
 
 [connection signal="body_entered" from="Hub/Area2D" to="CanvasLayer/PopUp" method="OnBodyEntered"]
 [connection signal="body_exited" from="Hub/Area2D" to="CanvasLayer/PopUp" method="OnBodyExited"]
-[connection signal="button_up" from="CanvasLayer/Menu/Button" to="CanvasLayer/Menu" method="OnButtonUp"]
