@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Ship/Cockpit.cs" id="1_m1wh8"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_rjas3"]
-[ext_resource type="Texture2D" uid="uid://hfdmej5de00" path="res://UI/Sprites/CockpitSpear.png" id="3_urnde"]
+[ext_resource type="Texture2D" uid="uid://crrm0wbrrblcq" path="res://UI/Sprites/CockpitSpear.png" id="3_urnde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)

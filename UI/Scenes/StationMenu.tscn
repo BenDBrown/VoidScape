@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dwnag7qev53p4"]
 
-[ext_resource type="FontFile" uid="uid://brrde6h1oo0qh" path="res://Styles/Early GameBoy.ttf" id="1_lag8a"]
+[ext_resource type="FontFile" uid="uid://d4itng0jg3p22" path="res://Styles/Early GameBoy.ttf" id="1_lag8a"]
 [ext_resource type="Script" path="res://UI/Scripts/Menu.cs" id="2_oc8j1"]
 [ext_resource type="Script" path="res://UI/Scripts/Tabs.cs" id="3_fyd7s"]
 [ext_resource type="Script" path="res://UI/Scripts/SnapGrid.cs" id="4_0rreb"]
@@ -130,56 +130,6 @@ metadata/_tab_index = 1
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
-
-[node name="Buttons" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="MenuButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons"]
-visible = false
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="BuildShipButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/MenuButtons"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Build Ship"
-
-[node name="BuyPartsButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/MenuButtons"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-disabled = true
-text = "Buy Parts"
-
-[node name="SellItemsButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/MenuButtons"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-disabled = true
-text = "Sell Items"
-
-[node name="Content" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="BuildShipMenu" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Content"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Content"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 1
-text = "Welcome to station \"something\"
-What do you want to do?"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)

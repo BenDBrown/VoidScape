@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://duhxejf16i1er"]
 
-[ext_resource type="Texture2D" uid="uid://dp2lwaiexla4q" path="res://Assets/Structures/Space station.png" id="2_esrc6"]
+[ext_resource type="Texture2D" uid="uid://cd5nsrt15y0g6" path="res://Assets/Structures/Space station.png" id="2_esrc6"]
 [ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="2_lu4bh"]
 [ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Prefabs/PlayerShip.tscn" id="3_sn6ov"]
 [ext_resource type="PackedScene" uid="uid://b7qdydnilw42" path="res://Prefabs/ShipComponents/Hull.tscn" id="4_bb4qa"]
