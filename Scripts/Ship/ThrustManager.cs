@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class ThrustManager : IPowerable
 {
@@ -17,6 +18,8 @@ public partial class ThrustManager : IPowerable
 
 	public int weight {get; private set;} = 1; // to avoid division by 0 errors
 
+	private List<Vector2> oldForces = new();
+
 	// values from 0-1 that determines the percent of thrust in direction
 	private float forwardThrustRatio = 0; 
 	private float backwardThrustRatio = 0;
@@ -30,7 +33,7 @@ public partial class ThrustManager : IPowerable
 
 	public ThrustManager() { }
 
-    public Vector2 GetForce(double deltaTime)
+    public Vector2 GetForce(double deltaTime, float rotation)
     {
 		double acceleration = ACCELERATION * deltaTime;
 		double decceleration = acceleration * 2;
@@ -51,41 +54,52 @@ public partial class ThrustManager : IPowerable
 		leftThrustRatio = (float)newLTR;
 		rightThrustRatio = (float)newRTRO;
 
-		Vector2 forward = new(0, -forwardThrustRatio * PotentialForwardThrust);
-		Vector2 backward = new(0, backwardThrustRatio * PotentialBackwardThrust);
-		Vector2 right = new(rightThrustRatio * PotentialSideThrust, 0);
-		Vector2 left = new(-leftThrustRatio * PotentialSideThrust, 0);
+		float fLimit = forwardThrustRatio * PotentialForwardThrust;
+		Vector2 forward = new(0, -fLimit);
+		forward = forward.Rotated(rotation);
+
+		float bLimit = backwardThrustRatio * PotentialBackwardThrust;
+		Vector2 backward = new(0, bLimit);
+		backward = backward.Rotated(rotation);
+
+		float sideLimit = rightThrustRatio * PotentialSideThrust;
+		Vector2 right = new(sideLimit, 0);
+		right = right.Rotated(rotation);
+
+		Vector2 left = new(-sideLimit, 0);
+		left = left.Rotated(rotation);
+
 		Vector2 diagonal = Vector2.Zero;
 		if(thrustingForward && thrustingLeft)
 		{ 
-			diagonal = GetLimitedDiagonal(forward, left, forward.Y);
+			diagonal = GetLimitedDiagonal(forward, left, fLimit);
 			forward = Vector2.Zero;
 			left = Vector2.Zero;
 		}
 		else if(thrustingForward && thrustingRight)
 		{
-			diagonal = GetLimitedDiagonal(forward, right, forward.Y);
+			diagonal = GetLimitedDiagonal(forward, right, fLimit);
 			forward = Vector2.Zero;
 			right = Vector2.Zero;
 		}
 		else if(thrustingBackward && thrustingLeft)
 		{
-			diagonal = GetLimitedDiagonal(backward, left, left.X);
+			diagonal = GetLimitedDiagonal(backward, left, sideLimit);
 			backward = Vector2.Zero;
 			left = Vector2.Zero;
 		}
 		else if(thrustingBackward && thrustingRight)
 		{
-			diagonal = GetLimitedDiagonal(backward, right, right.X);
+			diagonal = GetLimitedDiagonal(backward, right, sideLimit);
 			backward = Vector2.Zero;
 			right = Vector2.Zero;
 		}
 		Force = forward + backward + left + right + diagonal;
-		// float forceMagnitude = Force.Length();
-		// if(forceMagnitude <= 0) { return rotationMoveVect; }
-		// // Force = rotationMoveVect.Normalized() + Force.Normalized();
-		// Force = (rotationMoveVect + Force).Normalized();
-		// Force *= forceMagnitude;
+		// int oldForceCount = oldForces.Count;
+		// for(int i = 0; i < oldForceCount; i++)
+		// {
+
+		// }
 
 		return Force;
     }
@@ -177,6 +191,10 @@ public partial class ThrustManager : IPowerable
 		return c;
 	}
 
+	// private Vector2 DecayMomentum(Vector2 momentum)
+	// {
+
+	// }
 
 
 }

@@ -14,17 +14,9 @@ public partial class Ship : CharacterBody2D, IShip
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 rotationVect = rotationManager.GetRotation(Rotation, 2, delta, out float newRot);
-		GD.PrintS(ToGlobal(rotationManager.LeftRotationPoint).ToString(), ToGlobal(rotationManager.RightRotationPoint).ToString(), GlobalPosition.ToString());
+		Vector2 rotationVect = rotationManager.GetRotation(Rotation, 3, delta, out float newRot);
 		Rotation = newRot;
-		Vector2 force = thrustManager.GetForce(delta);
-		force = force.Rotated(Rotation);
-		float forceMagnitude = force.Length();
-		if(forceMagnitude <= 0) { MoveAndCollide(rotationVect); return; }
-		force = rotationVect.Normalized() + force.Normalized();
-		// force = (rotationVect + force).Normalized();
-		force *= forceMagnitude;
-
+		Vector2 force = thrustManager.GetForce(delta, Rotation);
 		MoveAndCollide(force);
 	}
 
