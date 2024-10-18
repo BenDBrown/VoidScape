@@ -18,7 +18,7 @@ public partial class Ship : CharacterBody2D, IShip
 		GD.PrintS(ToGlobal(rotationManager.LeftRotationPoint).ToString(), ToGlobal(rotationManager.RightRotationPoint).ToString(), GlobalPosition.ToString());
 		Rotation = newRot;
 		Vector2 force = thrustManager.GetForce(delta);
-
+		force = force.Rotated(Rotation);
 		float forceMagnitude = force.Length();
 		if(forceMagnitude <= 0) { MoveAndCollide(rotationVect); return; }
 		force = rotationVect.Normalized() + force.Normalized();

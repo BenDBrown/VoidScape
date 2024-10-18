@@ -32,13 +32,14 @@ public partial class RotationManager
 		{
 			rotEdgeVector = RightRotationPoint.Rotated(newRot);
 			relativeRotationPoint = RightRotationPoint.Rotated(currentRot);
+			return relativeRotationPoint - rotEdgeVector;
 		}
 		else
 		{
 			rotEdgeVector = LeftRotationPoint.Rotated(newRot);
 			relativeRotationPoint = LeftRotationPoint.Rotated(currentRot);
+			return rotEdgeVector - relativeRotationPoint;
 		}
-		return relativeRotationPoint - rotEdgeVector;
 	}
 
 	public Vector2 CalculateCentreOfMass(List<Vector2> vertices)
