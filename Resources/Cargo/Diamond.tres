@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Cargo" load_steps=2 format=3 uid="uid://727kaje8ni0f"]
+
+[ext_resource type="Script" path="res://Scripts/Cargo.cs" id="1_imteh"]
+
+[resource]
+script = ExtResource("1_imteh")

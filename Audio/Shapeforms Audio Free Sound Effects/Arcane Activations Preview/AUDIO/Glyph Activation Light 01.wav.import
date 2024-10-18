@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cc58lrow55g14"
+path="res://.godot/imported/Glyph Activation Light 01.wav-7cbe309e8ef580fb3f5135262de86428.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/Arcane Activations Preview/AUDIO/Glyph Activation Light 01.wav"
+dest_files=["res://.godot/imported/Glyph Activation Light 01.wav-7cbe309e8ef580fb3f5135262de86428.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

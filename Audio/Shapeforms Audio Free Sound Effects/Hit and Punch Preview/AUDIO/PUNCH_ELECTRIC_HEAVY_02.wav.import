@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://couwtsrxvrlcm"
+path="res://.godot/imported/PUNCH_ELECTRIC_HEAVY_02.wav-6761983be00c3b6033d4506708066817.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/Hit and Punch Preview/AUDIO/PUNCH_ELECTRIC_HEAVY_02.wav"
+dest_files=["res://.godot/imported/PUNCH_ELECTRIC_HEAVY_02.wav-6761983be00c3b6033d4506708066817.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
