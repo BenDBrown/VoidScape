@@ -27,7 +27,7 @@ func enter():
 func exit():
 	super.exit()
 	parent.StopTurning()
-	parent.StopThrusting()
+	parent.StopThrustingForward()
 	transitioned.emit(self, "idle")
 	parent.remove_child(area)
 
@@ -36,12 +36,12 @@ func physics_update(_delta):
 	if dist > out_of_detection_distance:
 		exit()
 	elif dist > max_distance:
-		parent.ForwardThrust()
+		parent.StartThrustingForward()
 		rotate(player.global_position)
 	elif dist < min_distance:
 		retreat()
 	else:
-		parent.StopThrusting()
+		parent.StopThrustingForward()
 		parent.StopTurning()
 	if !in_area:
 		resetRayCast(ray)
@@ -64,7 +64,7 @@ func rotate(globalPos: Vector2):
 
 func retreat():
 	parent.StopTurning()
-	parent.BackThrust()
+	parent.StopThrustingBackward()
 	
 func addDetectionArea():
 #This Func is to create the amount area's for detection we need to have the ship enough "eyes" to be able detect the player

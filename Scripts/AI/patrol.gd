@@ -33,7 +33,7 @@ func physics_update(_delta):
 		direction = Vector2(x,y)
 		timer.start(randf_range(1, 6))
 	else: 
-		parent.ForwardThrust()
+		parent.StartThrustingForward()
 	rotate(direction+parent.global_position)
 	if player.global_position.distance_to(parent.global_position) > detect_radius: return
 	exit()
