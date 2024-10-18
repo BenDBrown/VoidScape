@@ -12,7 +12,7 @@ public partial class RotationManager
 	private RotationDirection rotationDirection = RotationDirection.None;
 
 	public void StartTurningClockwise() => rotationDirection = RotationDirection.Right;
-	
+
 	public void StartTurningCounterClockwise() => rotationDirection = RotationDirection.Left;
 
 	public void StopTurning() => rotationDirection = RotationDirection.None;
@@ -77,4 +77,3 @@ public partial class RotationManager
 	}
 
 }
-

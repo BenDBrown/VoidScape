@@ -14,7 +14,7 @@ public partial class PlayerShip : Ship, IShip
 	// 	int thrustPowerNeeded = 0;
 	// 	float maxPowerGenerated;
 	// 	int cargoCapacity = 0;
-		
+
 	// 	List<Vector2> unpackedVectors = new();
 
 	// 	foreach(Node node in GetChildren())
@@ -28,12 +28,12 @@ public partial class PlayerShip : Ship, IShip
 	// 				cargoCapacity += hull.cargoCapacity;
 	// 				break;
 	// 			case FuelTank fuelTank:
-	// 				fuelCapacity += fuelTank.fuelCapacity; 
+	// 				fuelCapacity += fuelTank.fuelCapacity;
 	// 				hasFuelTank = true;
 	// 				break;
 	// 			case Generator generator:
 	// 				powerManager.AddGenerator(generator);
-	// 				hasGenerator = true; 
+	// 				hasGenerator = true;
 	// 				break;
 	// 			case Thruster thruster:
 	// 				thrustPowerNeeded += thruster.GetPowerDraw();
@@ -42,25 +42,25 @@ public partial class PlayerShip : Ship, IShip
 	// 				break;
 	// 			default: break;
 	// 		}
-	// 		if(node is ShipComponent) 
-	// 		{ 
+	// 		if(node is ShipComponent)
+	// 		{
 	// 			ShipComponent shipComponent = node as ShipComponent;
-	// 			shipComponents.Add(shipComponent); 
+	// 			shipComponents.Add(shipComponent);
 	// 			shipComponent.OnDestroyed += ComponentDestroyed;
-				
+
 	// 			foreach (Vector2 v2 in shipComponent.GetVertices())
-	// 			{ 
+	// 			{
 	// 				Vector2 localPositon = ToLocal(v2);
 	// 				unpackedVectors.Add(localPositon);
 	// 			}
 	// 		}
-			
+
 	// 	}
 	// 	CalculateCentreOfMass(unpackedVectors);
 	// 	ConvexPolygonShape2D convexPolygon = new ();
 	// 	convexPolygon.SetPointCloud(unpackedVectors.ToArray());
 	// 	collider.Polygon = convexPolygon.Points;
-		
+
 
 	// 	cargoManager.cargoCapacity = cargoCapacity;
 	// 	maxPowerGenerated = powerManager.GetMaxPowerGenerated();
@@ -71,4 +71,3 @@ public partial class PlayerShip : Ship, IShip
 	// }
 
 }
-

@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://727kaje8ni0f" path="res://Resources/Cargo/Diamond.tres" id="1_dxr8i"]
 [ext_resource type="Script" path="res://Scripts/Game/loot.gd" id="1_xuma0"]
-[ext_resource type="Texture2D" uid="uid://cxr66e6nmqpb" path="res://Assets/Other/diamond.png" id="2_q28m5"]
+[ext_resource type="Texture2D" uid="uid://cs7l8vh6woofd" path="res://Assets/Other/diamond.png" id="2_q28m5"]
 
 [resource]
 script = ExtResource("1_xuma0")
