@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://38862x8qpd87"]
 
-[ext_resource type="Script" path="res://Scripts/Ship/Gun.cs" id="1_cygbu"]
+[ext_resource type="Script" path="res://Scripts/Ship/Components/Gun.cs" id="1_cygbu"]
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Prefabs/Bullet.tscn" id="2_7xmuv"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_ylwoa"]
 [ext_resource type="Script" path="res://Scripts/Ship/DamageInfo.cs" id="4_8n3fx"]
