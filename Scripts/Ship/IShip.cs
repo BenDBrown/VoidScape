@@ -7,11 +7,21 @@ public interface IShip
 
 	public void StopShooting();
 
-	public void ForwardThrust();
+	public void StartThrustingForward();
 
-	public void BackThrust();
+	public void StartThrustingBackward();
 
-	public void StopThrusting();
+	public void StartThrustingRight();
+
+	public void StartThrustingLeft();
+
+	public void StopThrustingForward();
+
+	public void StopThrustingBackward();
+
+	public void StopThrustingRight();
+
+	public void StopThrustingLeft();
 
 	public void StartTurningClockwise();
 
