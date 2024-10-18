@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Prefabs/Bullet.tscn" id="2_7xmuv"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_ylwoa"]
 [ext_resource type="Script" path="res://Scripts/Ship/DamageInfo.cs" id="4_8n3fx"]
-[ext_resource type="Texture2D" uid="uid://cph2p7udcfsaj" path="res://Assets/Ship/ShipSheet.png" id="5_s0sol"]
+[ext_resource type="Texture2D" uid="uid://dubpckv20mfto" path="res://Assets/Ship/ShipSheet.png" id="5_s0sol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
 size = Vector2(32, 32)

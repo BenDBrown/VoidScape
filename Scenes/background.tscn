@@ -1,39 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnebyucsoprtc"]
+[gd_scene load_steps=6 format=3 uid="uid://bnebyucsoprtc"]
 
-[ext_resource type="Texture2D" uid="uid://wabsvyresc7h" path="res://Assets/Backgrounds/Parallax/Background.png" id="1_y1xlk"]
-[ext_resource type="Texture2D" uid="uid://bfksiko3clmss" path="res://Assets/Backgrounds/Parallax/stars.png" id="2_1t8g8"]
-[ext_resource type="Texture2D" uid="uid://c4fd7brj7ivj3" path="res://Assets/Backgrounds/Parallax/Dust.png" id="3_8wlfj"]
+[ext_resource type="Texture2D" uid="uid://b8h074li7cmst" path="res://Assets/Backgrounds/Parallax/Background.png" id="1_y1xlk"]
+[ext_resource type="Texture2D" uid="uid://cc2w2wfgvkjgb" path="res://Assets/Backgrounds/Parallax/stars.png" id="2_1t8g8"]
+[ext_resource type="Texture2D" uid="uid://dchg41qpw3vpe" path="res://Assets/Backgrounds/Parallax/Dust.png" id="3_8wlfj"]
+[ext_resource type="AudioStream" uid="uid://brbqwtybakkdb" path="res://Audio/Space Music Pack/loading.wav" id="4_vtth3"]
+
+[sub_resource type="GDScript" id="GDScript_h17kr"]
+resource_name = "background"
+script/source = "extends Node
+
+@export var loop: bool
+@export var autoplay: bool
+@onready var audio_stream = $AudioStreamPlayer2D
+
+func _ready() -> void:
+	if autoplay:
+		audio_stream.play()
+
+func _on_audio_stream_player_2d_finished() -> void:
+	if loop:
+		audio_stream.play()
+"
 
 [node name="Background" type="Node"]
+script = SubResource("GDScript_h17kr")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1280, 1280)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(640, 640)
-texture = ExtResource("1_y1xlk")
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Black Background" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(1280, 1280)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Black Background"]
+texture = ExtResource("1_y1xlk")
+centered = false
+
+[node name="Stars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1280, 1280)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Stars"]
 z_index = 4096
-position = Vector2(640, 640)
 texture = ExtResource("2_1t8g8")
+centered = false
 
-[node name="ParallaxForeground" type="ParallaxBackground" parent="."]
-layer = 0
-scroll_ignore_camera_zoom = true
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxForeground"]
+[node name="Dust" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color(0.712839, 0.310666, 0.825202, 0.333333)
 motion_mirroring = Vector2(1280, 1280)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxForeground/ParallaxLayer3"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Dust"]
 modulate = Color(1, 1, 1, 0.466667)
-position = Vector2(640, 640)
 texture = ExtResource("3_8wlfj")
+centered = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(525, 306)
+stream = ExtResource("4_vtth3")
+pitch_scale = 0.15
+bus = &"Music"
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

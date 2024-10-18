@@ -6,6 +6,8 @@
 [node name="StartScene" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_2ywoc")]
+loop = true
+autoplay = true
 
 [node name="Player Spawner" type="Node2D" parent="."]
 position = Vector2(512, 320)
