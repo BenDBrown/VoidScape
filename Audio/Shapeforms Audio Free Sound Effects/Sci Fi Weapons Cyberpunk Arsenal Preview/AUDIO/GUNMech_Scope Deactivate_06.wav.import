@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bwncf4c3e7jlv"
+path="res://.godot/imported/GUNMech_Scope Deactivate_06.wav-d4ac2f1176b4aad60a37df2535964ce2.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNMech_Scope Deactivate_06.wav"
+dest_files=["res://.godot/imported/GUNMech_Scope Deactivate_06.wav-d4ac2f1176b4aad60a37df2535964ce2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

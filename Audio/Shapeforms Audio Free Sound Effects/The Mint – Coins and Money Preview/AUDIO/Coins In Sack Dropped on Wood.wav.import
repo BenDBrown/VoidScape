@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cg6e3r3c7flva"
+path="res://.godot/imported/Coins In Sack Dropped on Wood.wav-c102261b29b21d7fee47a8c3cd6db942.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/The Mint – Coins and Money Preview/AUDIO/Coins In Sack Dropped on Wood.wav"
+dest_files=["res://.godot/imported/Coins In Sack Dropped on Wood.wav-c102261b29b21d7fee47a8c3cd6db942.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

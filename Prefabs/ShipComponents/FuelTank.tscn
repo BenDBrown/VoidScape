@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://g6ol5kk4dhjd"]
 
-[ext_resource type="Script" path="res://Scripts/Ship/FuelTank.cs" id="2_s8nau"]
+[ext_resource type="Script" path="res://Scripts/Ship/Components/FuelTank.cs" id="2_s8nau"]
 [ext_resource type="Texture2D" uid="uid://cph2p7udcfsaj" path="res://Assets/Ship/ShipSheet.png" id="3_csmd3"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="3_h1adt"]
 

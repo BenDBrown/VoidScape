@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://6pkivhgarchh"]
 
-[ext_resource type="Script" path="res://Scripts/Ship/NPCShip.cs" id="1_6hs0k"]
+[ext_resource type="Script" path="res://Scripts/Ship/Ship.cs" id="1_r1t2t"]
 [ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Prefabs/ShipComponents/CockpitSpear.tscn" id="2_k0f33"]
 [ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Prefabs/ShipComponents/FuelTank.tscn" id="3_nrke5"]
 [ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Prefabs/ShipComponents/Generator.tscn" id="4_4umao"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/AI/follow.gd" id="10_pjtre"]
 
 [node name="Scout" type="CharacterBody2D" node_paths=PackedStringArray("collider")]
-script = ExtResource("1_6hs0k")
+script = ExtResource("1_r1t2t")
 collider = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -27,12 +27,12 @@ rotation = 3.14159
 position = Vector2(0, 32)
 
 [node name="Gun" parent="." instance=ExtResource("5_fri1c")]
-position = Vector2(-33, 1)
+position = Vector2(-32, 0)
 rotation = -3.14159
 scale = Vector2(1.0103, -1)
 
 [node name="Gun2" parent="." instance=ExtResource("5_fri1c")]
-position = Vector2(33, 1)
+position = Vector2(32, 0)
 
 [node name="Thruster" parent="." instance=ExtResource("6_3qqkv")]
 position = Vector2(0, 64)

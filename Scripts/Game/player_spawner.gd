@@ -10,3 +10,4 @@ func _ready():
 	saver.build_ship(playerShip)
 	playerShip.TryBuildShip()
 	playerShip.global_position = global_position
+	Game.player_ship = playerShip

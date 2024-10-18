@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnebyucsoprtc"]
 
-[ext_resource type="Texture2D" uid="uid://b8h074li7cmst" path="res://Assets/Backgrounds/Parallax/Background.png" id="1_y1xlk"]
-[ext_resource type="Texture2D" uid="uid://cc2w2wfgvkjgb" path="res://Assets/Backgrounds/Parallax/stars.png" id="2_1t8g8"]
-[ext_resource type="Texture2D" uid="uid://dchg41qpw3vpe" path="res://Assets/Backgrounds/Parallax/Dust.png" id="3_8wlfj"]
+[ext_resource type="Texture2D" uid="uid://plvv6qa8a2oi" path="res://Assets/Backgrounds/Parallax/Background.png" id="1_y1xlk"]
+[ext_resource type="Texture2D" uid="uid://bwo8otqjx0u8a" path="res://Assets/Backgrounds/Parallax/stars.png" id="2_1t8g8"]
+[ext_resource type="Texture2D" uid="uid://b3tmuauy2fbpx" path="res://Assets/Backgrounds/Parallax/Dust.png" id="3_8wlfj"]
 [ext_resource type="AudioStream" uid="uid://brbqwtybakkdb" path="res://Audio/Space Music Pack/loading.wav" id="4_vtth3"]
 
 [sub_resource type="GDScript" id="GDScript_h17kr"]

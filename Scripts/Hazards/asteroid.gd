@@ -2,11 +2,14 @@ extends RigidBody2D
 
 @onready var sprite = $Sprite2D
 @onready var health_component = $HealthComponent
+@onready var death_audio_component = $DeathAudioComponent
+@onready var loot_drop_component = $LootDropComponent
+@onready var collision_shape = $CollisionShape2D
+
 @export var direction: Vector2
 @export_enum("Random Direction", "Same Direction", "Stationary") var forceType = "Random Direction"
 @export var asteroids : Array[CompressedTexture2D]
 @export var destroyAsteroid : CompressedTexture2D
-@export var destroy_audio: AudioStream
 func _ready() -> void:
 	var rnd = randi_range(0, asteroids.size()-1)
 	sprite.texture = asteroids[rnd]
@@ -32,6 +35,7 @@ func _on_health_component_died() -> void:
 	var timer = Timer.new()
 	add_child(timer)
 	timer.timeout.connect(queue_free)
-	$CollisionShape2D.set_deferred("disabled",true)
-	Game.play_fx(destroy_audio,0.2)
+	collision_shape.set_deferred("disabled",true)
+	death_audio_component.play_death_audio()
+	loot_drop_component.drop_loot()
 	timer.start(0.2)
