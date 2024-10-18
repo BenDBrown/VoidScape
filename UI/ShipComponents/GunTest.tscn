@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://kfshye6yiekr"]
+
+[ext_resource type="Script" path="res://Scripts/Ship/Gun.cs" id="1_ropco"]
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Prefabs/Bullet.tscn" id="2_hdo0j"]
+[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="3_p7rsw"]
+[ext_resource type="Script" path="res://Scripts/Ship/DamageInfo.cs" id="4_377m1"]
+[ext_resource type="Texture2D" uid="uid://jexsbw30qkea" path="res://UI/Sprites/Gun.png" id="5_213r2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
+size = Vector2(32, 32)
+
+[node name="Gun" type="Area2D" node_paths=PackedStringArray("damageInfo", "timer", "defenseInfo", "vertices", "sprite")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ropco")
+powerdraw = 1
+ammo = ExtResource("2_hdo0j")
+damageInfo = NodePath("DamageInfo")
+timer = NodePath("Timer")
+bulletSpeed = 600.0
+defenseInfo = NodePath("DefenseInfo")
+vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
+LeftAttachable = true
+
+[node name="DefenseInfo" type="Node" parent="."]
+script = ExtResource("3_p7rsw")
+maxHealth = 100
+defense = 10
+
+[node name="DamageInfo" type="Node" parent="."]
+script = ExtResource("4_377m1")
+damage = 20
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n32tx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_213r2")
+region_rect = Rect2(320, 193, 32, 32)
+
+[node name="VerticeTopLeft" type="Node2D" parent="."]
+position = Vector2(-16, -16)
+
+[node name="VerticeTopRight" type="Node2D" parent="."]
+position = Vector2(16, -16)
+
+[node name="VerticeBotRight" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="VerticeBotLeft" type="Node2D" parent="."]
+position = Vector2(-16, 16)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="CollideWithBody"]

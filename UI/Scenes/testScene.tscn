@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Prefabs/ShipComponents/FuelTank.tscn" id="7_mgjep"]
 [ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Prefabs/ShipComponents/Generator.tscn" id="8_kp7jo"]
 [ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Prefabs/ShipComponents/CockpitSpear.tscn" id="9_5un6e"]
-[ext_resource type="Script" path="res://UI/EnterHubMessage.cs" id="10_m64f6"]
-[ext_resource type="PackedScene" uid="uid://dwnag7qev53p4" path="res://UI/StationMenu.tscn" id="11_srefu"]
+[ext_resource type="Script" path="res://UI/Scripts/EnterHubMessage.cs" id="10_m64f6"]
+[ext_resource type="PackedScene" uid="uid://dwnag7qev53p4" path="res://UI/Scenes/StationMenu.tscn" id="11_srefu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7i2e"]
 size = Vector2(45, 44.5)
