@@ -3,6 +3,7 @@ extends RigidBody2D
 @onready var sprite = $Sprite2D
 @onready var health_component = $HealthComponent
 @onready var death_audio_component = $DeathAudioComponent
+@onready var loot_drop_component = $LootDropComponent
 @onready var collision_shape = $CollisionShape2D
 
 @export var direction: Vector2
@@ -36,4 +37,5 @@ func _on_health_component_died() -> void:
 	timer.timeout.connect(queue_free)
 	collision_shape.set_deferred("disabled",true)
 	death_audio_component.play_death_audio()
+	loot_drop_component.drop_loot()
 	timer.start(0.2)
