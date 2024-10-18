@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5ndd5t78qji3"
+path="res://.godot/imported/OPEN_CASE_02.wav-c7e6a4dc5fa10130e8ba233b7f8739b7.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/Cassette Preview/AUDIO/OPEN_CASE_02.wav"
+dest_files=["res://.godot/imported/OPEN_CASE_02.wav-c7e6a4dc5fa10130e8ba233b7f8739b7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

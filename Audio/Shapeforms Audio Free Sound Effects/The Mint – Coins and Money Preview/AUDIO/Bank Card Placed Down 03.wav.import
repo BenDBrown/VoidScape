@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bvjx3ix064gv8"
+path="res://.godot/imported/Bank Card Placed Down 03.wav-faf1d74489fd6bc862495998f5f914a2.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/The Mint – Coins and Money Preview/AUDIO/Bank Card Placed Down 03.wav"
+dest_files=["res://.godot/imported/Bank Card Placed Down 03.wav-faf1d74489fd6bc862495998f5f914a2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

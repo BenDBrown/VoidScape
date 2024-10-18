@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bg4uwajskqt54"
+path="res://.godot/imported/Error Triplet-5.wav-cac6ab29cfaf7b1e1a1ee86bbc5bec19.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/Future UI Preview/Audio/Error Triplet-5.wav"
+dest_files=["res://.godot/imported/Error Triplet-5.wav-cac6ab29cfaf7b1e1a1ee86bbc5bec19.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

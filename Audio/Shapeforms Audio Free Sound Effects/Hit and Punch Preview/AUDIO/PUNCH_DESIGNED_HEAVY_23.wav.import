@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dv4hxgu7h2e2s"
+path="res://.godot/imported/PUNCH_DESIGNED_HEAVY_23.wav-735fbfb4a5b0bf272407132f890e82a0.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/Hit and Punch Preview/AUDIO/PUNCH_DESIGNED_HEAVY_23.wav"
+dest_files=["res://.godot/imported/PUNCH_DESIGNED_HEAVY_23.wav-735fbfb4a5b0bf272407132f890e82a0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

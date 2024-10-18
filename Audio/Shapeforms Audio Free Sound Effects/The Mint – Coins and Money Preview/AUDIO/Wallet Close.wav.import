@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bpchmlo37t1la"
+path="res://.godot/imported/Wallet Close.wav-f7f2445273df3166095b71b85a2fa234.sample"
+
+[deps]
+
+source_file="res://Audio/Shapeforms Audio Free Sound Effects/The Mint – Coins and Money Preview/AUDIO/Wallet Close.wav"
+dest_files=["res://.godot/imported/Wallet Close.wav-f7f2445273df3166095b71b85a2fa234.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

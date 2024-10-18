@@ -1,7 +1,8 @@
 using Godot;
 using System;
 
-public partial class Cargo : Node
+[GlobalClass]
+public partial class Cargo : Resource
 {
 	public string name {get; private set;}
 }

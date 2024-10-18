@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7mogaotegr8p"]
 
-[ext_resource type="Script" path="res://Scripts/Ship/Cockpit.cs" id="1_s082n"]
+[ext_resource type="Script" path="res://Scripts/Ship/Components/Cockpit.cs" id="1_s082n"]
 [ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_07jmt"]
 [ext_resource type="Texture2D" uid="uid://cph2p7udcfsaj" path="res://Assets/Ship/ShipSheet.png" id="3_gmje8"]
 
