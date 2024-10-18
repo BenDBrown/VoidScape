@@ -1,35 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7mogaotegr8p"]
+[gd_scene load_steps=5 format=3 uid="uid://dsgce1t51p8uf"]
 
-[ext_resource type="Script" path="res://Scripts/Ship/Cockpit.cs" id="1_s082n"]
-[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_07jmt"]
-[ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="3_gmje8"]
+[ext_resource type="Script" path="res://Scripts/Ship/Thruster.cs" id="1_v6yhu"]
+[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_8l6m7"]
+[ext_resource type="Texture2D" uid="uid://co3wmd6wgsxln" path="res://UI/Sprites/Thruster.png" id="3_1ioj5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1fg5"]
 size = Vector2(32, 32)
 
-[node name="Cockpit" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices", "sprite")]
+[node name="Thruster" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices", "sprite")]
 use_parent_material = true
-script = ExtResource("1_s082n")
+script = ExtResource("1_v6yhu")
+powerdraw = 1
+thrust = 100.0
 defenseInfo = NodePath("DefenseInfo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
-BottomAttachable = true
+TopAttachable = true
 RightAttachable = true
 LeftAttachable = true
 
 [node name="DefenseInfo" type="Node" parent="."]
-script = ExtResource("2_07jmt")
+script = ExtResource("2_8l6m7")
 maxHealth = 100
 defense = 10
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_n32tx")
+shape = SubResource("RectangleShape2D_v1fg5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
-texture = ExtResource("3_gmje8")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
+texture = ExtResource("3_1ioj5")
+region_rect = Rect2(256, 0, 32, 32)
 
 [node name="VerticeTopLeft" type="Node2D" parent="."]
 position = Vector2(-16, -16)

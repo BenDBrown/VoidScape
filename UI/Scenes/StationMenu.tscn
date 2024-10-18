@@ -1,9 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwnag7qev53p4"]
+[gd_scene load_steps=14 format=3 uid="uid://dwnag7qev53p4"]
 
-[ext_resource type="PackedScene" uid="uid://bo0sy8fss6itw" path="res://Prefabs/ShipBuilder/ship_builder.tscn" id="1_7em8r"]
 [ext_resource type="FontFile" uid="uid://brrde6h1oo0qh" path="res://Styles/Early GameBoy.ttf" id="1_lag8a"]
-[ext_resource type="Script" path="res://UI/Menu.cs" id="2_oc8j1"]
-[ext_resource type="Script" path="res://UI/Tabs.cs" id="3_fyd7s"]
+[ext_resource type="Script" path="res://UI/Scripts/Menu.cs" id="2_oc8j1"]
+[ext_resource type="Script" path="res://UI/Scripts/Tabs.cs" id="3_fyd7s"]
+[ext_resource type="Script" path="res://UI/Scripts/SnapGrid.cs" id="4_0rreb"]
+[ext_resource type="Script" path="res://UI/Scripts/ShipParts.cs" id="5_vae0y"]
+[ext_resource type="PackedScene" uid="uid://cln7heiyc0ucq" path="res://UI/ShipComponents/CockpitSpearTest.tscn" id="6_01jge"]
+[ext_resource type="PackedScene" uid="uid://cg1mhbawom5aw" path="res://UI/ShipComponents/CockpitTest.tscn" id="7_76lf5"]
+[ext_resource type="PackedScene" uid="uid://bun3pbnon5k84" path="res://UI/ShipComponents/FuelTankTest.tscn" id="8_64ent"]
+[ext_resource type="PackedScene" uid="uid://01goktgnwxue" path="res://UI/ShipComponents/GeneratorTest.tscn" id="9_fnn7y"]
+[ext_resource type="PackedScene" uid="uid://kfshye6yiekr" path="res://UI/ShipComponents/GunTest.tscn" id="10_qrjip"]
+[ext_resource type="PackedScene" uid="uid://c2i75xe2lybck" path="res://UI/ShipComponents/HullTest.tscn" id="11_384ru"]
+[ext_resource type="PackedScene" uid="uid://dsgce1t51p8uf" path="res://UI/ShipComponents/ThrusterTest.tscn" id="12_r7unb"]
 
 [sub_resource type="Theme" id="Theme_t0xj3"]
 default_font = ExtResource("1_lag8a")
@@ -66,24 +74,61 @@ size_flags_vertical = 3
 current_tab = 0
 script = ExtResource("3_fyd7s")
 
-[node name="Build Ship" type="Control" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
+[node name="Build Ship" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
 layout_mode = 2
-mouse_filter = 1
+theme_override_constants/separation = 20
 metadata/_tab_index = 0
 
-[node name="Builder" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship" instance=ExtResource("1_7em8r")]
-position = Vector2(324, 95)
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="Buy Parts" type="ColorRect" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
+[node name="SnapGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_0rreb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="ShipParts" type="ItemList" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 1
+script = ExtResource("5_vae0y")
+shipComponents = Array[PackedScene]([ExtResource("6_01jge"), ExtResource("7_76lf5"), ExtResource("8_64ent"), ExtResource("9_fnn7y"), ExtResource("10_qrjip"), ExtResource("11_384ru"), ExtResource("12_r7unb")])
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "BUILD"
+
+[node name="Buy Parts" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
 visible = false
 layout_mode = 2
-color = Color(0.416995, 0.745436, 0.732593, 1)
 metadata/_tab_index = 1
 
-[node name="Sell Items" type="ColorRect" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
+[node name="Sell Items" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
 visible = false
 layout_mode = 2
-color = Color(0.704342, 0.620261, 0.930485, 1)
 metadata/_tab_index = 2
 
 [node name="Buttons" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
@@ -126,11 +171,6 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Builder" parent="MarginContainer/VBoxContainer/Content/BuildShipMenu" instance=ExtResource("1_7em8r")]
-process_mode = 3
-visible = false
-position = Vector2(326, 104)
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Content"]
 visible = false
