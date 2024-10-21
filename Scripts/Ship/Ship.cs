@@ -8,8 +8,8 @@ public partial class Ship : CharacterBody2D, IShip
 	[Export]
 	protected CollisionPolygon2D collider;
 	protected ThrustManager thrustManager = new();
-	protected RotationManager rotationManager= new();
-	protected GunManager gunManager= new();
+	protected RotationManager rotationManager = new();
+	protected GunManager gunManager = new();
 	protected List<ShipComponent> shipComponents = new();
 
 	public override void _PhysicsProcess(double delta)
@@ -20,14 +20,14 @@ public partial class Ship : CharacterBody2D, IShip
 		MoveAndCollide(force);
 	}
 
-    public void ShipDestroyed()
+	public void ShipDestroyed()
 	{
 		GD.Print("ship destroyed");
 	}
 
 	public void ComponentDestroyed(ShipComponent shipComponent)
 	{
-		thrustManager.SetWeight(thrustManager.weight-1);
+		thrustManager.SetWeight(thrustManager.weight - 1);
 		GD.Print(shipComponent.Name + " destroyed");
 	}
 
@@ -47,7 +47,7 @@ public partial class Ship : CharacterBody2D, IShip
 
 	// turning
 	public void StartTurningClockwise() => rotationManager.StartTurningClockwise();
-	
+
 	public void StartTurningCounterClockwise() => rotationManager.StartTurningCounterClockwise();
 
 	public void StopTurning() => rotationManager.StopTurning();
@@ -57,13 +57,15 @@ public partial class Ship : CharacterBody2D, IShip
 		bool hasFuelTank = false;
 		bool hasGenerator = false;
 		bool hasThruster = false;
-		Generator fuckYou;
-		
+
 		List<Vector2> unpackedVectors = new();
 
-		foreach(Node node in GetChildren())
+		foreach (Node node in GetChildren())
 		{
-			switch(node)
+			if (!(node is ShipComponent shipComponent))
+			{ continue; }
+
+			switch (shipComponent)
 			{
 				case Gun gun:
 					gunManager.AddGun(gun);
@@ -73,30 +75,30 @@ public partial class Ship : CharacterBody2D, IShip
 					hasThruster = true;
 					break;
 				case Generator generator:
-					fuckYou = generator;
+					hasGenerator = true;
+					break;
+				case FuelTank:
+					hasFuelTank = true;
 					break;
 				default: break;
 			}
-			if(node is ShipComponent) 
-			{ 
-				ShipComponent shipComponent = node as ShipComponent;
-				shipComponents.Add(shipComponent); 
-				shipComponent.OnDestroyed += ComponentDestroyed;
-				
-				foreach (Vector2 v2 in shipComponent.GetVertices())
-				{ 
-					Vector2 localPositon = ToLocal(v2);
-					unpackedVectors.Add(localPositon);
-				}
+
+			shipComponents.Add(shipComponent);
+			shipComponent.OnDestroyed += ComponentDestroyed;
+
+			foreach (Vector2 v2 in shipComponent.GetVertices())
+			{
+				Vector2 localPositon = ToLocal(v2);
+				unpackedVectors.Add(localPositon);
 			}
-			
 		}
+
 		Vector2 newGlobalPos = ToGlobal(rotationManager.CalculateCentreOfMass(unpackedVectors));
 		Vector2 positionCorrection = newGlobalPos - GlobalPosition;
-		foreach(Node n in GetChildren()) 
-		{ 
-			if(n is Camera2D) {continue;}
-			if(n is Node2D n2) {n2.GlobalPosition -= positionCorrection;}
+		foreach (Node n in GetChildren())
+		{
+			if (n is Camera2D) { continue; }
+			if (n is Node2D n2) { n2.GlobalPosition -= positionCorrection; }
 		}
 		GlobalPosition = newGlobalPos;
 		ConvexPolygonShape2D convexPolygon = new();
