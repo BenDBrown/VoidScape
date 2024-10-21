@@ -1,0 +1,79 @@
+[gd_scene load_steps=18 format=3 uid="uid://b4yj0wo6jrt31"]
+
+[ext_resource type="Script" path="res://Hazards/Asteroid/asteroid.gd" id="1_ulwd2"]
+[ext_resource type="Texture2D" uid="uid://c0ufuitcp5ot1" path="res://Hazards/Asteroid/Art/Astroid 1.png" id="2_431h4"]
+[ext_resource type="Texture2D" uid="uid://bl7oolwnaoov3" path="res://Hazards/Asteroid/Art/Astroid 2.png" id="3_1rafw"]
+[ext_resource type="Texture2D" uid="uid://cpx58q1nlw83k" path="res://Hazards/Asteroid/Art/Astroid 3.png" id="4_3u6jw"]
+[ext_resource type="Texture2D" uid="uid://cpa6h344wgwj4" path="res://Hazards/Asteroid/Art/Astroid 4.png" id="5_7bx26"]
+[ext_resource type="Texture2D" uid="uid://b0w86t2e2lad5" path="res://Hazards/Asteroid/Art/Explosion asteroid.png" id="6_183k1"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="6_m03hg"]
+[ext_resource type="AudioStream" uid="uid://bdkrn1rhppmys" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/EXPLDsgn_Explosion Impact_14.wav" id="8_vmc48"]
+[ext_resource type="Script" path="res://Components/death_audio_component.gd" id="9_qgru7"]
+[ext_resource type="Script" path="res://Components/loot_drop_component.gd" id="10_h826r"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="10_k154c"]
+[ext_resource type="Script" path="res://Components/attackbox_component.gd" id="12_53hi6"]
+[ext_resource type="Script" path="res://Components/AttackComponent.cs" id="13_rjeb8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_64guh"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hsyv6"]
+radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ynx8k"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e3866"]
+radius = 15.0
+
+[node name="Asteroid" type="RigidBody2D"]
+collision_layer = 32
+collision_mask = 59
+physics_material_override = SubResource("PhysicsMaterial_64guh")
+max_contacts_reported = 10
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_ulwd2")
+direction = Vector2(100, 100)
+asteroids = Array[CompressedTexture2D]([ExtResource("2_431h4"), ExtResource("3_1rafw"), ExtResource("4_3u6jw"), ExtResource("5_7bx26")])
+destroyAsteroid = ExtResource("6_183k1")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_m03hg")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("13_rjeb8")
+attack = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hsyv6")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
+collision_mask = 0
+script = ExtResource("10_k154c")
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_ynx8k")
+debug_color = Color(0.78913, 0.379495, 0.535956, 0.42)
+
+[node name="AttackboxComponent" type="Area2D" parent="."]
+collision_mask = 0
+script = ExtResource("12_53hi6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
+shape = SubResource("CircleShape2D_e3866")
+
+[node name="DeathAudioComponent" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_vmc48")
+script = ExtResource("9_qgru7")
+from_position = 0.3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_7bx26")
+
+[node name="LootDropComponent" type="Node2D" parent="."]
+script = ExtResource("10_h826r")
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

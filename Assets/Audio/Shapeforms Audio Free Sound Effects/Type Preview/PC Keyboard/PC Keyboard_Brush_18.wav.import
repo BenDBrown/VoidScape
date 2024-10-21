@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b6edlkbn3inar"
+path="res://.godot/imported/PC Keyboard_Brush_18.wav-af502ff1970e5b6ff246eda631ee3ed3.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Type Preview/PC Keyboard/PC Keyboard_Brush_18.wav"
+dest_files=["res://.godot/imported/PC Keyboard_Brush_18.wav-af502ff1970e5b6ff246eda631ee3ed3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

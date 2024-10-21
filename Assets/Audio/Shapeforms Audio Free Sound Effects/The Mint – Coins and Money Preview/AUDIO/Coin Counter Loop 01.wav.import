@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cg078hq35uqrw"
+path="res://.godot/imported/Coin Counter Loop 01.wav-1c6b52fbba0f34de304eba95e3ac2aaf.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/The Mint – Coins and Money Preview/AUDIO/Coin Counter Loop 01.wav"
+dest_files=["res://.godot/imported/Coin Counter Loop 01.wav-1c6b52fbba0f34de304eba95e3ac2aaf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

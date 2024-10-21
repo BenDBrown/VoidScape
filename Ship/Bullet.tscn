@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bckeoopmbomi8"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/Components/Bullet.cs" id="1_ildc5"]
+[ext_resource type="Texture2D" uid="uid://bayrj47b7me0d" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_por51"]
+[ext_resource type="Script" path="res://Components/attackbox_component.gd" id="3_clinb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifwps"]
+atlas = ExtResource("2_por51")
+region = Rect2(24, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7omld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifwps")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_afrp6"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8mnx"]
+radius = 4.0
+
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("attackboxComponent", "timer")]
+script = ExtResource("1_ildc5")
+attackboxComponent = NodePath("AttackboxComponent")
+timer = NodePath("Timer")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_7omld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_afrp6")
+
+[node name="AttackboxComponent" type="Area2D" parent="."]
+script = ExtResource("3_clinb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
+shape = SubResource("CircleShape2D_a8mnx")
+debug_color = Color(0.902804, 0.278724, 0.346718, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="AttackboxComponent" to="." method="OnAttackboxAreaEntered"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://braq34t5dsnpf"
+path="res://.godot/imported/Static Glitch Short.wav-b90a2f8a7dcaaf382561c159f4ef44fe.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Future UI Preview/Audio/Static Glitch Short.wav"
+dest_files=["res://.godot/imported/Static Glitch Short.wav-b90a2f8a7dcaaf382561c159f4ef44fe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

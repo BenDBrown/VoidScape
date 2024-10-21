@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://pu7ejs5guhlq"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_2ywoc"]
-[ext_resource type="Script" path="res://Scripts/Game/player_spawner.gd" id="2_3kim7"]
+[ext_resource type="Script" path="res://Ship/player_spawner.gd" id="2_3kim7"]
 
 [node name="StartScene" type="Node2D"]
 
