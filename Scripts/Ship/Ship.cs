@@ -54,8 +54,6 @@ public partial class Ship : CharacterBody2D, IShip
 
 	public virtual bool TryBuildShip()
 	{
-		bool hasFuelTank = false;
-		bool hasGenerator = false;
 		bool hasThruster = false;
 
 		List<Vector2> unpackedVectors = new();
@@ -73,12 +71,6 @@ public partial class Ship : CharacterBody2D, IShip
 				case Thruster thruster:
 					thrustManager.AddThruster(thruster);
 					hasThruster = true;
-					break;
-				case Generator generator:
-					hasGenerator = true;
-					break;
-				case FuelTank:
-					hasFuelTank = true;
 					break;
 				default: break;
 			}
@@ -106,6 +98,6 @@ public partial class Ship : CharacterBody2D, IShip
 		collider.Polygon = convexPolygon.Points;
 		thrustManager.SetWeight(shipComponents.Count);
 
-		return hasFuelTank && hasGenerator && hasThruster;
+		return hasThruster;
 	}
 }
