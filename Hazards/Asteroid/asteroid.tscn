@@ -15,17 +15,17 @@
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="13_rjeb8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_64guh"]
-friction = 0.0
-bounce = 1.0
+rough = true
+absorbent = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hsyv6"]
 radius = 14.0357
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ynx8k"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_e3866"]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e3866"]
-radius = 15.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ynx8k"]
+radius = 16.0
 
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 32
@@ -44,26 +44,25 @@ script = ExtResource("6_m03hg")
 
 [node name="AttackComponent" type="Node" parent="."]
 script = ExtResource("13_rjeb8")
-attack = 10
+attack = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hsyv6")
 
+[node name="AttackboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack_component")]
+script = ExtResource("12_53hi6")
+attack_component = NodePath("../AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
+shape = SubResource("CircleShape2D_e3866")
+
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
-collision_mask = 0
 script = ExtResource("10_k154c")
 healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_ynx8k")
 debug_color = Color(0.78913, 0.379495, 0.535956, 0.42)
-
-[node name="AttackboxComponent" type="Area2D" parent="."]
-collision_mask = 0
-script = ExtResource("12_53hi6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
-shape = SubResource("CircleShape2D_e3866")
 
 [node name="DeathAudioComponent" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_vmc48")

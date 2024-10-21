@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_wjrlw"]
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerController.cs" id="2_0hxg2"]
-[ext_resource type="Script" path="res://Ship/Scripts/Managers/PowerManager.cs" id="3_22ycc"]
+[ext_resource type="Script" path="res://Ship/Scripts/PowerManager.cs" id="3_22ycc"]
 
 [node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("collider")]
 collision_mask = 55
 script = ExtResource("1_wjrlw")
-collider = NodePath("CollisionPolygon2D")
+collider = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
@@ -22,5 +22,3 @@ script = ExtResource("3_22ycc")
 timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="PowerManager"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

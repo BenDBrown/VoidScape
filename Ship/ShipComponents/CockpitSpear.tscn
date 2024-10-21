@@ -11,7 +11,7 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6u5b"]
 size = Vector2(32, 32)
 
-[node name="CockpitSpear" type="Area2D" node_paths=PackedStringArray("vertices", "sprite")]
+[node name="CockpitSpear" type="CharacterBody2D" node_paths=PackedStringArray("vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("1_r0glo")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
@@ -24,8 +24,9 @@ script = ExtResource("2_50vtb")
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hrcd3")
 
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
 script = ExtResource("3_re24k")
+healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_j6u5b")
@@ -48,4 +49,4 @@ position = Vector2(16, 16)
 [node name="VerticeBotLeft" type="Node2D" parent="."]
 position = Vector2(-16, 16)
 
-[connection signal="body_entered" from="." to="." method="CollideWithBody"]
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]

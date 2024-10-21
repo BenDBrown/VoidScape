@@ -3,7 +3,7 @@ extends Node2D
 class_name ItemLister
 signal added_child(child: Node2D)
 const COMPONENT_COPY_AMOUNT: int = 3
-@onready var draggableScene = preload("res://Ship/ShipBuilder/DraggableComponent.tscn")
+@onready var draggable_scene = preload("res://Ship/ShipBuilder/DraggableComponent.tscn")
 var comp_path = "res://Ship/ShipComponents/"
 
 func display_items():
@@ -25,7 +25,7 @@ func display_items():
 			break
 
 		for i in COMPONENT_COPY_AMOUNT:
-			var draggable = draggableScene.instantiate() as Draggable
+			var draggable = draggable_scene.instantiate() as Draggable
 			var component = scene.instantiate() as ShipComponent
 
 			added_child.emit(draggable)

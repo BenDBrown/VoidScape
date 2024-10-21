@@ -4,7 +4,7 @@ using Godot.Collections;
 using System.Linq;
 
 [GlobalClass]
-public partial class ShipComponent : Area2D
+public partial class ShipComponent : CharacterBody2D
 {
     [Signal]
     public delegate void OnDestroyedEventHandler(ShipComponent shipComponent);
@@ -99,6 +99,7 @@ public partial class ShipComponent : Area2D
 
     private void Destroyed()
     {
+        GD.PrintS(Name, " Destroyed");
         destroyed = true;
         CollisionLayer = 0;
         CollisionMask = 0;

@@ -9,5 +9,5 @@ func on_area_entered(area):
 	prints(get_parent().name, "'s ", name, " hits ", area.get_parent().name, "'s ", area.name)
 	if !attack_component:
 		return
-	if area is HitboxComponent:
+	if area is HitboxComponent && area.get_parent() != get_parent():
 		area.damage(attack_component)

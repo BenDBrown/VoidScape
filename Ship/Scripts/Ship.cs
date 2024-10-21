@@ -17,7 +17,9 @@ public partial class Ship : CharacterBody2D, IShip
 		Vector2 rotationVect = rotationManager.GetRotation(Rotation, 3, delta, out float newRot);
 		Rotation = newRot;
 		Vector2 force = thrustManager.GetForce(delta, Rotation);
-		MoveAndCollide(force);
+		Velocity = force;
+		MoveAndSlide();
+		//MoveAndCollide(force);
 	}
 
 	public void ShipDestroyed()
@@ -93,9 +95,7 @@ public partial class Ship : CharacterBody2D, IShip
 			if (n is Node2D n2) { n2.GlobalPosition -= positionCorrection; }
 		}
 		GlobalPosition = newGlobalPos;
-		ConvexPolygonShape2D convexPolygon = new();
-		convexPolygon.SetPointCloud(unpackedVectors.ToArray());
-		collider.Polygon = convexPolygon.Points;
+
 		thrustManager.SetWeight(shipComponents.Count);
 
 		return hasThruster;

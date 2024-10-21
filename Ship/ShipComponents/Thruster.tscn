@@ -11,11 +11,11 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jm82"]
 size = Vector2(32, 32)
 
-[node name="Thruster" type="Area2D" node_paths=PackedStringArray("vertices", "sprite")]
+[node name="Thruster" type="CharacterBody2D" node_paths=PackedStringArray("vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("1_qteyv")
 powerdraw = 1
-thrust = 10.0
+thrust = 100.0
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
 TopAttachable = true
@@ -53,4 +53,4 @@ position = Vector2(16, 16)
 [node name="VerticeBotLeft" type="Node2D" parent="."]
 position = Vector2(-16, 16)
 
-[connection signal="body_entered" from="." to="." method="CollideWithBody"]
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]

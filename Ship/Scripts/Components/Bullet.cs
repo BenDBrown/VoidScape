@@ -1,8 +1,10 @@
 using Godot;
 using System;
 
-public partial class Bullet : RigidBody2D
+public partial class Bullet : CharacterBody2D
 {
+    const float SPEED_FACTOR = 1000;
+
     [Export]
     private Timer timer;
 
@@ -21,8 +23,15 @@ public partial class Bullet : RigidBody2D
         timer.Timeout += QueueFree;
     }
 
-    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+    public override void _PhysicsProcess(double delta)
     {
-        LinearVelocity = Transform.Y * -speed;
+        Velocity = -Transform.Y * speed * (float)delta * SPEED_FACTOR;
+        MoveAndSlide();
+    }
+
+    public void OnAttackboxAreaEntered(Area2D area)
+    {
+
+        QueueFree();
     }
 }

@@ -11,7 +11,7 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uq8vy"]
 size = Vector2(32, 32)
 
-[node name="Generator" type="Area2D" node_paths=PackedStringArray("vertices", "sprite")]
+[node name="Generator" type="CharacterBody2D" node_paths=PackedStringArray("vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("1_1dbup")
 efficiency = 1.0
@@ -54,4 +54,4 @@ position = Vector2(16, 16)
 [node name="VerticeBotLeft" type="Node2D" parent="."]
 position = Vector2(-16, 16)
 
-[connection signal="body_entered" from="." to="." method="CollideWithBody"]
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]

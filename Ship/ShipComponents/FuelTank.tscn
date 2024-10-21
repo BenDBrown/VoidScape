@@ -11,7 +11,7 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0y13a"]
 size = Vector2(32, 32)
 
-[node name="FuelTank" type="Area2D" node_paths=PackedStringArray("vertices", "sprite")]
+[node name="FuelTank" type="CharacterBody2D" node_paths=PackedStringArray("vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("2_s8nau")
 fuelCapacity = 1000
@@ -25,8 +25,9 @@ script = ExtResource("2_1331l")
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7cwij")
 
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
 script = ExtResource("3_kunum")
+healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_0y13a")
@@ -49,4 +50,4 @@ position = Vector2(16, 16)
 [node name="VerticeBotLeft" type="Node2D" parent="."]
 position = Vector2(-16, 16)
 
-[connection signal="body_entered" from="." to="." method="CollideWithBody"]
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]

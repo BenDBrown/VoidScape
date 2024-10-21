@@ -14,23 +14,23 @@ public partial class GunManager : IPowerable
 		bool gunAdded = false;
 		foreach (GunGroup gg in gunGroups)
 		{
-			if(gg.type == gun.type) 
+			if (gg.type == gun.type)
 			{
 				gg.AddGun(gun);
 				gunAdded = true;
 				break;
 			}
 		}
-		if(!gunAdded) { gunGroups.Add(new(gun)); }
-		if(selectedGroup == null)
+		if (!gunAdded) { gunGroups.Add(new(gun)); }
+		if (selectedGroup == null)
 		{
 			selectedGroup = gunGroups[0];
 		}
 	}
 
-    public int GetPowerDraw() => selectedGroup.PowerDraw;
+	public int GetPowerDraw() => selectedGroup.PowerDraw;
 
-    public void StartShooting() => selectedGroup.StartShooting();
+	public void StartShooting() => selectedGroup?.StartShooting();
 
-	public void StopShooting() => selectedGroup.StopShooting();
+	public void StopShooting() => selectedGroup?.StopShooting();
 }

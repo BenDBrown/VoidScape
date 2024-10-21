@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo0sy8fss6itw"]
+[gd_scene load_steps=6 format=3 uid="uid://bo0sy8fss6itw"]
 
 [ext_resource type="Script" path="res://Ship/ShipBuilder/ShipBuilder.cs" id="1_njo3u"]
 [ext_resource type="PackedScene" uid="uid://c3vc3aagjqvgj" path="res://Ship/ShipBuilder/GridSquare.tscn" id="2_scqii"]
 [ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Ship/PlayerShip.tscn" id="3_8k774"]
+[ext_resource type="Script" path="res://Ship/ShipBuilder/item_lister.gd" id="4_hykmt"]
+[ext_resource type="Script" path="res://Ship/ShipBuilder/build_button.gd" id="5_jd7yi"]
 
 [node name="Builder" type="Node2D"]
 position = Vector2(226, 188)
@@ -14,6 +16,7 @@ shipScene = ExtResource("3_8k774")
 
 [node name="ItemLister" type="Node2D" parent="."]
 position = Vector2(377, 0)
+script = ExtResource("4_hykmt")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 168.0
@@ -21,6 +24,7 @@ offset_top = -85.0
 offset_right = 224.0
 offset_bottom = -54.0
 text = "BUILD"
+script = ExtResource("5_jd7yi")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
