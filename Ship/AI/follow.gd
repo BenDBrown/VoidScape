@@ -50,7 +50,7 @@ func physics_update(_delta):
 	elif in_area:
 		var can_shoot = is_in_raycast_sweep(player)
 		if can_shoot:
-			shoot_target_in_range()
+			shoot_target_in_range(player)
 
 
 func rotate_towards(globalPos: Vector2):
@@ -132,11 +132,12 @@ func generate_sweeping_range():
 		var vects =( max_view_distance * Vector2.UP.rotated(angle_between_rays*(index -coun_rays/2.0)))
 		cast_vect.append(vects)
 	
-func shoot_target_in_range():
-	if ray.is_colliding() and ray.get_collider().get_parent() is Ship:
+func shoot_target_in_range(target):
+	if ray.is_colliding() and ray.get_collider().get_parent() == target:
 		if(is_shooting):
 			return
 		parent.StartShooting()
+		print(is_shooting)
 		is_shooting = true
 	
 	
