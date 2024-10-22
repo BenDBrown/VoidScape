@@ -7,13 +7,13 @@
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="5_3n2p4"]
 [ext_resource type="Texture2D" uid="uid://t1jassmc0iew" path="res://Ship/Art/ShipSheet.png" id="6_iwvdj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ihvl"]
-size = Vector2(32, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmvjq"]
 size = Vector2(32, 32)
 
-[node name="Gun" type="CharacterBody2D" node_paths=PackedStringArray("attackComponent", "timer", "vertices", "sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ihvl"]
+size = Vector2(32, 32)
+
+[node name="Gun" type="CharacterBody2D" node_paths=PackedStringArray("attackComponent", "timer", "collider", "vertices", "sprite")]
 script = ExtResource("1_oqh71")
 powerdraw = 1
 ammo = ExtResource("2_2mefa")
@@ -21,6 +21,7 @@ attackComponent = NodePath("AttackComponent")
 timer = NodePath("Timer")
 bulletSpeed = 100.0
 fireInterval = 0.2
+collider = NodePath("Collider")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
 LeftAttachable = true
@@ -32,15 +33,15 @@ attack = 100
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("4_pyf0a")
 
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gmvjq")
+
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
 script = ExtResource("5_3n2p4")
 healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_8ihvl")
-
-[node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_gmvjq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("6_iwvdj")
