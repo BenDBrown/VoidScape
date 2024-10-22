@@ -2,8 +2,8 @@
 extends Node
 class_name AIState
 
-@onready var parent = $"../.."
-@onready var player: PlayerShip:
+@onready var parent:Ship = $"../.."
+@onready var player: Ship:
 	get:
 		if Game.player_ship is String:
 			return $"../../../PlayerShip"
