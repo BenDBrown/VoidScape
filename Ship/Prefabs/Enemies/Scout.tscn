@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Ship/ShipComponents/CockpitSpear.tscn" id="2_k0f33"]
 [ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_nrke5"]
 [ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Ship/ShipComponents/Generator.tscn" id="4_4umao"]
-[ext_resource type="PackedScene" uid="uid://38862x8qpd87" path="res://Ship/ShipComponents/Gun.tscn" id="5_fri1c"]
+[ext_resource type="PackedScene" uid="uid://br8tldgan3h6l" path="res://Ship/AI/NPCgun.tscn" id="4_ckija"]
 [ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="6_3qqkv"]
 [ext_resource type="Script" path="res://Ship/AI/state_manager.gd" id="7_0wryf"]
 [ext_resource type="Script" path="res://Ship/AI/idle.gd" id="8_bpwhd"]
@@ -22,16 +22,14 @@ buildOnStart = true
 position = Vector2(-32, 32)
 rotation = 3.14159
 
+[node name="Gun" parent="." instance=ExtResource("4_ckija")]
+position = Vector2(32, 0)
+
+[node name="Gun2" parent="." instance=ExtResource("4_ckija")]
+position = Vector2(-32, 0)
+
 [node name="Generator" parent="." instance=ExtResource("4_4umao")]
 position = Vector2(0, 32)
-
-[node name="Gun" parent="." instance=ExtResource("5_fri1c")]
-position = Vector2(-32, 0)
-rotation = -3.14159
-scale = Vector2(1.0103, -1)
-
-[node name="Gun2" parent="." instance=ExtResource("5_fri1c")]
-position = Vector2(32, 0)
 
 [node name="Thruster" parent="." instance=ExtResource("6_3qqkv")]
 position = Vector2(0, 64)
