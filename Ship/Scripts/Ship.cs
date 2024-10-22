@@ -8,10 +8,12 @@ public partial class Ship : CharacterBody2D, IShip
 	[Export]
 	private bool buildOnStart = false;
 	protected ThrustManager thrustManager = new();
-	protected RotationManager rotationManager = new();
+	protected CenterCalculator centerCalculator = new();
 	protected GunManager gunManager = new();
 	protected List<ShipComponent> shipComponents = new();
-
+	private float rotationSpeed = 3;
+	private bool isRotatingClockwise = false;
+	private bool isRotating = false;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -22,7 +24,10 @@ public partial class Ship : CharacterBody2D, IShip
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-		Rotation = rotationManager.GetRotation(Rotation, 3, delta, out Vector2 rotVector);
+		if (isRotating)
+		{
+			Rotation += (isRotatingClockwise ? rotationSpeed : -rotationSpeed) * (float)delta;
+		}
 		Vector2 force = thrustManager.GetForce(delta, Rotation);
 		Velocity = force;
 		MoveAndSlide();
@@ -54,17 +59,25 @@ public partial class Ship : CharacterBody2D, IShip
 	public void StopThrustingLeft() => thrustManager.StopThrustingLeft();
 
 	// turning
-	public void StartTurningClockwise() => rotationManager.StartTurningClockwise();
+	public void StartTurningClockwise()
+	{
+		isRotating = true;
+		isRotatingClockwise = true;
+	}
 
-	public void StartTurningCounterClockwise() => rotationManager.StartTurningCounterClockwise();
+	public void StartTurningCounterClockwise()
+	{
+		isRotating = true;
+		isRotatingClockwise = false;
+	}
 
-	public void StopTurning() => rotationManager.StopTurning();
+	public void StopTurning() => isRotating = false;
 
 	public virtual bool TryBuildShip()
 	{
 		bool hasThruster = false;
 
-		List<Vector2> unpackedVectors = new();
+		List<Vector2> globalVertices = new();
 
 		foreach (Node node in GetChildren())
 		{
@@ -85,23 +98,15 @@ public partial class Ship : CharacterBody2D, IShip
 
 			shipComponents.Add(shipComponent);
 			shipComponent.OnDestroyed += ComponentDestroyed;
-
-			foreach (Vector2 v2 in shipComponent.GetVertices())
-			{
-				Vector2 localPositon = ToLocal(v2);
-				unpackedVectors.Add(localPositon);
-			}
+			globalVertices.AddRange(shipComponent.GetVertices());
 		}
 
-		Vector2 newGlobalPos = ToGlobal(rotationManager.CalculateCentreOfMass(unpackedVectors));
-		Vector2 positionCorrection = newGlobalPos - GlobalPosition;
+		Vector2 center = centerCalculator.GetGlobalShipCenter(globalVertices);
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
-			if (n is Node2D n2) { n2.GlobalPosition -= positionCorrection; }
+			if (n is Node2D n2) { n2.Position -= center; }
 		}
-		GlobalPosition = newGlobalPos;
-
 		thrustManager.SetWeight(shipComponents.Count);
 
 		return hasThruster;

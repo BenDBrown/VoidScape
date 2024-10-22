@@ -11,11 +11,12 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jm82"]
 size = Vector2(32, 32)
 
-[node name="Thruster" type="CharacterBody2D" node_paths=PackedStringArray("vertices", "sprite")]
+[node name="Thruster" type="CharacterBody2D" node_paths=PackedStringArray("collider", "vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("1_qteyv")
 powerdraw = 1
 thrust = 200.0
+collider = NodePath("Collider")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
 TopAttachable = true

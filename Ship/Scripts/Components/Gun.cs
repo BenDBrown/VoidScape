@@ -40,6 +40,7 @@ public partial class Gun : ShipComponent, IPowerable
 
 	public void Shoot()
 	{
+		if (IsDestroyed()) { return; }
 		if (!canShoot || !isShootingPressed) { return; }
 
 		canShoot = false;

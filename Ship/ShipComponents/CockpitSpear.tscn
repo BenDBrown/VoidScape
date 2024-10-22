@@ -11,9 +11,10 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6u5b"]
 size = Vector2(32, 32)
 
-[node name="CockpitSpear" type="CharacterBody2D" node_paths=PackedStringArray("vertices", "sprite")]
+[node name="CockpitSpear" type="CharacterBody2D" node_paths=PackedStringArray("collider", "vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("1_r0glo")
+collider = NodePath("Collider")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
 BottomAttachable = true
