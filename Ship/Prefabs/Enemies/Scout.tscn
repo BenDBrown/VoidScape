@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://6pkivhgarchh"]
 
-[ext_resource type="Script" path="res://Ship/Ship.cs" id="1_r1t2t"]
+[ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_r1t2t"]
 [ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Ship/ShipComponents/CockpitSpear.tscn" id="2_k0f33"]
 [ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_nrke5"]
 [ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Ship/ShipComponents/Generator.tscn" id="4_4umao"]
@@ -13,9 +13,7 @@
 
 [node name="Scout" type="CharacterBody2D" node_paths=PackedStringArray("collider")]
 script = ExtResource("1_r1t2t")
-collider = NodePath("CollisionPolygon2D")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+collider = NodePath("")
 
 [node name="Cockpit" parent="." instance=ExtResource("2_k0f33")]
 

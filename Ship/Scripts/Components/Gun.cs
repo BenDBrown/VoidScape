@@ -30,8 +30,8 @@ public partial class Gun : ShipComponent, IPowerable
 
 	public override void _Ready()
 	{
-		timer.Timeout += Shoot;
 		timer.Timeout += () => canShoot = true;
+		timer.Timeout += Shoot;
 	}
 
 	public void StartShooting() { isShootingPressed = true; Shoot(); }

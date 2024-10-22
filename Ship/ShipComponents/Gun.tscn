@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://38862x8qpd87"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Gun.cs" id="1_oqh71"]
-[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Bullet.tscn" id="2_2mefa"]
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="2_2mefa"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="3_k0rtn"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="4_pyf0a"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="5_3n2p4"]
-[ext_resource type="Texture2D" uid="uid://t1jassmc0iew" path="res://Ship/ShipSheet.png" id="6_iwvdj"]
+[ext_resource type="Texture2D" uid="uid://t1jassmc0iew" path="res://Ship/Art/ShipSheet.png" id="6_iwvdj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ihvl"]
 size = Vector2(32, 32)
@@ -19,7 +19,7 @@ powerdraw = 1
 ammo = ExtResource("2_2mefa")
 attackComponent = NodePath("AttackComponent")
 timer = NodePath("Timer")
-bulletSpeed = 50.0
+bulletSpeed = 100.0
 fireInterval = 0.2
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")

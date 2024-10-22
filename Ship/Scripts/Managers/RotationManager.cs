@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 public partial class RotationManager
 {
-	public Vector2 LeftRotationPoint {get; private set;}
+	public Vector2 LeftRotationPoint { get; private set; }
 
-	public Vector2 RightRotationPoint {get; private set;}
+	public Vector2 RightRotationPoint { get; private set; }
 
 	private RotationDirection rotationDirection = RotationDirection.None;
 
@@ -17,30 +17,31 @@ public partial class RotationManager
 
 	public void StopTurning() => rotationDirection = RotationDirection.None;
 
-	public Vector2 GetRotation(float currentRot, float rotationSpeed, double deltaTime, out float newRot)
+	public float GetRotation(float currentRot, float rotationSpeed, double deltaTime, out Vector2 rotVector)
 	{
-		if(rotationDirection == RotationDirection.None)
+		if (rotationDirection == RotationDirection.None)
 		{
-			newRot = currentRot;
-			return Vector2.Zero;
+			rotVector = Vector2.Zero;
+			return currentRot;
 		}
 		float rotChange = (float)(rotationSpeed * deltaTime);
-		if(rotationDirection == RotationDirection.Left) { rotChange *= -1;}
-		newRot = currentRot + rotChange;
+		if (rotationDirection == RotationDirection.Left) { rotChange *= -1; }
+		float newRot = currentRot + rotChange;
 		Vector2 rotEdgeVector;
 		Vector2 relativeRotationPoint;
-		if(rotationDirection == RotationDirection.Right)
+		if (rotationDirection == RotationDirection.Right)
 		{
 			rotEdgeVector = RightRotationPoint.Rotated(newRot);
 			relativeRotationPoint = RightRotationPoint.Rotated(currentRot);
+			rotVector = relativeRotationPoint - rotEdgeVector;
 		}
 		else
 		{
 			rotEdgeVector = LeftRotationPoint.Rotated(newRot);
 			relativeRotationPoint = LeftRotationPoint.Rotated(currentRot);
-			return -(relativeRotationPoint - rotEdgeVector);
+			rotVector = -(relativeRotationPoint - rotEdgeVector);
 		}
-		return relativeRotationPoint - rotEdgeVector;
+		return newRot;
 	}
 
 	public Vector2 CalculateCentreOfMass(List<Vector2> vertices)
@@ -49,16 +50,16 @@ public partial class RotationManager
 		Vector2 topRight = new(int.MinValue, int.MaxValue);
 		Vector2 bottomLeft = new(int.MaxValue, int.MinValue);
 		Vector2 bottomRight = new(int.MinValue, int.MinValue);
-		foreach(Vector2 vertice in vertices)
+		foreach (Vector2 vertice in vertices)
 		{
-			if(GetDownLeftMagnitude(vertice) > GetDownLeftMagnitude(bottomLeft)) { bottomLeft = vertice; }
-			if(GetDownRightMagnitude(vertice) > GetDownRightMagnitude(bottomRight)) { bottomRight = vertice; }
-			if(GetUpLeftMagnitude(vertice) > GetUpLeftMagnitude(topLeft)) { topLeft = vertice; }
-			if(GetUpRightMagnitude(vertice) > GetUpRightMagnitude(topRight)) { topRight = vertice; }
+			if (GetDownLeftMagnitude(vertice) > GetDownLeftMagnitude(bottomLeft)) { bottomLeft = vertice; }
+			if (GetDownRightMagnitude(vertice) > GetDownRightMagnitude(bottomRight)) { bottomRight = vertice; }
+			if (GetUpLeftMagnitude(vertice) > GetUpLeftMagnitude(topLeft)) { topLeft = vertice; }
+			if (GetUpRightMagnitude(vertice) > GetUpRightMagnitude(topRight)) { topRight = vertice; }
 		}
 		LeftRotationPoint = (topLeft + bottomLeft) / 2;
 		RightRotationPoint = (topRight + bottomRight) / 2;
-		return new((topLeft.X + topRight.X + bottomLeft.X + bottomRight.X)/4, (topLeft.Y + topRight.Y + bottomLeft.Y + bottomRight.Y)/4);
+		return new((topLeft.X + topRight.X + bottomLeft.X + bottomRight.X) / 4, (topLeft.Y + topRight.Y + bottomLeft.Y + bottomRight.Y) / 4);
 	}
 
 	private float GetDownRightMagnitude(Vector2 vector) => vector.X + vector.Y;

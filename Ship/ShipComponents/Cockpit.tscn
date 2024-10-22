@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Cockpit.cs" id="1_s082n"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_hv865"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_35c25"]
-[ext_resource type="Texture2D" uid="uid://t1jassmc0iew" path="res://Ship/ShipSheet.png" id="3_gmje8"]
+[ext_resource type="Texture2D" uid="uid://t1jassmc0iew" path="res://Ship/Art/ShipSheet.png" id="3_gmje8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prnpq"]
 size = Vector2(32, 32)

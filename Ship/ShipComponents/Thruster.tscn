@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Thruster.cs" id="1_qteyv"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_nenfg"]
-[ext_resource type="Texture2D" uid="uid://t1jassmc0iew" path="res://Ship/ShipSheet.png" id="3_movnh"]
+[ext_resource type="Texture2D" uid="uid://t1jassmc0iew" path="res://Ship/Art/ShipSheet.png" id="3_movnh"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_oxsgl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5hhr"]
@@ -15,7 +15,7 @@ size = Vector2(32, 32)
 use_parent_material = true
 script = ExtResource("1_qteyv")
 powerdraw = 1
-thrust = 100.0
+thrust = 200.0
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
 TopAttachable = true

@@ -3,7 +3,7 @@ using System;
 
 public partial class Bullet : CharacterBody2D
 {
-    const float SPEED_FACTOR = 1000;
+    const float SPEED_FACTOR = 10;
 
     [Export]
     private Timer timer;
@@ -25,8 +25,7 @@ public partial class Bullet : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        Velocity = -Transform.Y * speed * (float)delta * SPEED_FACTOR;
-        MoveAndSlide();
+        MoveAndCollide(-Transform.Y * speed * (float)delta * SPEED_FACTOR);
     }
 
     public void OnAttackboxAreaEntered(Area2D area)

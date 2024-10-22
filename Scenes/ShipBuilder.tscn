@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Ship/ShipBuilder/ShipBuilder.cs" id="1_pyl7e"]
 [ext_resource type="PackedScene" uid="uid://c3vc3aagjqvgj" path="res://Ship/ShipBuilder/GridSquare.tscn" id="2_acs5h"]
-[ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Ship/PlayerShip.tscn" id="3_y2wuq"]
+[ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Ship/Prefabs/PlayerShip.tscn" id="3_y2wuq"]
 [ext_resource type="PackedScene" uid="uid://dsqo5muly5t3l" path="res://Ship/ShipBuilder/DraggableComponent.tscn" id="3_ybhn2"]
 [ext_resource type="PackedScene" uid="uid://c7mogaotegr8p" path="res://Ship/ShipComponents/Cockpit.tscn" id="5_p13gc"]
 [ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Ship/ShipComponents/Generator.tscn" id="6_eqbrw"]

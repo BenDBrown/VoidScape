@@ -30,10 +30,11 @@ radius = 16.0
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 32
 collision_mask = 59
+mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_64guh")
+inertia = 1.0
 max_contacts_reported = 10
 linear_damp_mode = 1
-angular_damp_mode = 1
 script = ExtResource("1_ulwd2")
 direction = Vector2(100, 100)
 asteroids = Array[CompressedTexture2D]([ExtResource("2_431h4"), ExtResource("3_1rafw"), ExtResource("4_3u6jw"), ExtResource("5_7bx26")])
@@ -44,7 +45,7 @@ script = ExtResource("6_m03hg")
 
 [node name="AttackComponent" type="Node" parent="."]
 script = ExtResource("13_rjeb8")
-attack = 1000
+attack = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hsyv6")

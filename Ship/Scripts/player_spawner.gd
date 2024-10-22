@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var player_ship_scene: PackedScene = preload("res://Ship/PlayerShip.tscn")
+@export var player_ship_scene: PackedScene = preload("res://Ship/Prefabs/PlayerShip.tscn")
 
 func _ready():
 	var playerShip = player_ship_scene.instantiate() as Ship

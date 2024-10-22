@@ -14,12 +14,10 @@ public partial class Ship : CharacterBody2D, IShip
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 rotationVect = rotationManager.GetRotation(Rotation, 3, delta, out float newRot);
-		Rotation = newRot;
+		Rotation = rotationManager.GetRotation(Rotation, 3, delta, out Vector2 rotVector);
 		Vector2 force = thrustManager.GetForce(delta, Rotation);
 		Velocity = force;
 		MoveAndSlide();
-		//MoveAndCollide(force);
 	}
 
 	public void ShipDestroyed()
