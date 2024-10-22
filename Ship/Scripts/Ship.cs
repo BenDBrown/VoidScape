@@ -98,18 +98,16 @@ public partial class Ship : CharacterBody2D, IShip
 
 			shipComponents.Add(shipComponent);
 			shipComponent.OnDestroyed += ComponentDestroyed;
+			globalVertices.AddRange(shipComponent.GetVertices());
 
-			foreach (Vector2 v in shipComponent.GetVertices())
-			{
-				globalVertices.Add(ToLocal(v));
-			}
+			
 		}
 
 		Vector2 center = centerCalculator.GetGlobalShipCenter(globalVertices);
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
-			if (n is Node2D n2) { n2.GlobalPosition -= center; }
+			if (n is Node2D n2) { n2.Position -= ToLocal(center); }
 		}
 		thrustManager.SetWeight(shipComponents.Count);
 
