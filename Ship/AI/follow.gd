@@ -31,7 +31,7 @@ func exit():
 	parent.StopTurning()
 	parent.StopThrustingForward()
 	transitioned.emit(self, "idle")
-	parent.remove_child(area)
+	get_parent().remove_child(area)
 
 func physics_update(_delta):
 	
@@ -69,20 +69,20 @@ func retreat():
 func add_detection_area():
 #This Func is to create the amount area's for detection we need to have the ship enough "eyes" to be able detect the player
 	area = detection_area_scene.instantiate()
-	parent.add_child(area)
+	get_parent().add_child(area)
 	area = create_area2D_with_signal_connections(area)
 	
 
-func create_area2D_with_signal_connections(area):
+func create_area2D_with_signal_connections(_area):
 #This func is to create and add it the parent so it is added the the NPC node with a position given in the parameters
 	
-	area.area_entered.connect(on_area_entered)
-	area.area_exited.connect(on_area_exited)
-	area.monitorable = false
+	_area.area_entered.connect(on_area_entered)
+	_area.area_exited.connect(on_area_exited)
+	_area.monitorable = false
 	return area
 
 func on_area_exited(target:Area2D):
-	if target.get_parent() == player:
+	if target.get_parent().get_parent() == player:
 		exited = true
 		in_area = false
 	else:
@@ -97,7 +97,7 @@ func on_area_entered(target:Area2D):
 		if(par.get_parent() == player):
 			in_area = true
 
-func create_detection_collider(area:Area2D):
+func create_detection_collider():
 	var origin = Vector2(0,0)
 	var x = spreading *-1
 	var y= length *-1
@@ -112,7 +112,7 @@ func create_detection_collider(area:Area2D):
 	collider.collider = convexPolygon.points
 	return collider
 
-func strafe_around_target(target):
+func strafe_around_target(_target):
 	pass
 	#This Func should allow the NPC to move around the player while they are shooting the player
 	#TODO
