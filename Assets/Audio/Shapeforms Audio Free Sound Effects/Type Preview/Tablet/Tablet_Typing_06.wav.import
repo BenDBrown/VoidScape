@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d4d17ei2a2r1c"
+path="res://.godot/imported/Tablet_Typing_06.wav-a4362caf9acaff27efdf3ba67a8a7894.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Type Preview/Tablet/Tablet_Typing_06.wav"
+dest_files=["res://.godot/imported/Tablet_Typing_06.wav-a4362caf9acaff27efdf3ba67a8a7894.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

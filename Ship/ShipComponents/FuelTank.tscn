@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://g6ol5kk4dhjd"]
+
+[ext_resource type="Script" path="res://Components/health_component.gd" id="2_1331l"]
+[ext_resource type="Script" path="res://Ship/Scripts/Components/FuelTank.cs" id="2_s8nau"]
+[ext_resource type="Texture2D" uid="uid://t1jassmc0iew" path="res://Ship/Art/ShipSheet.png" id="3_csmd3"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_kunum"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cwij"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y13a"]
+size = Vector2(32, 32)
+
+[node name="FuelTank" type="CharacterBody2D" node_paths=PackedStringArray("vertices", "sprite")]
+use_parent_material = true
+script = ExtResource("2_s8nau")
+fuelCapacity = 1000
+vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
+LeftAttachable = true
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_1331l")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7cwij")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("3_kunum")
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_0y13a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3_csmd3")
+region_enabled = true
+region_rect = Rect2(128, 128, 32, 32)
+
+[node name="VerticeTopLeft" type="Node2D" parent="."]
+position = Vector2(-16, -16)
+
+[node name="VerticeTopRight" type="Node2D" parent="."]
+position = Vector2(16, -16)
+
+[node name="VerticeBotRight" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="VerticeBotLeft" type="Node2D" parent="."]
+position = Vector2(-16, 16)
+
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]

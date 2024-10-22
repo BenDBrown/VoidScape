@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bc5ltrg8x5p5g"
+path="res://.godot/imported/HIGH_SNAP_02.wav-cc5436e379cb9ea49feac587a7d6c358.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Hit and Punch Preview/AUDIO/HIGH_SNAP_02.wav"
+dest_files=["res://.godot/imported/HIGH_SNAP_02.wav-cc5436e379cb9ea49feac587a7d6c358.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

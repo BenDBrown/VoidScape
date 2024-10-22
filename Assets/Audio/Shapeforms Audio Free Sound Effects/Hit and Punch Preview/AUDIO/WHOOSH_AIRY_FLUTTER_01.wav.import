@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ckfq571cov2at"
+path="res://.godot/imported/WHOOSH_AIRY_FLUTTER_01.wav-2d26793a12e3a6ef5a7260823c1433f1.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Hit and Punch Preview/AUDIO/WHOOSH_AIRY_FLUTTER_01.wav"
+dest_files=["res://.godot/imported/WHOOSH_AIRY_FLUTTER_01.wav-2d26793a12e3a6ef5a7260823c1433f1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
