@@ -10,6 +10,8 @@ public partial class ShipComponent : CharacterBody2D
     public delegate void OnDestroyedEventHandler(ShipComponent shipComponent);
 
     [Export]
+    private CollisionShape2D collider;
+    [Export]
     private Node2D[] vertices;
 
     [Export]
@@ -99,18 +101,21 @@ public partial class ShipComponent : CharacterBody2D
 
     private void Destroyed()
     {
+        if (destroyed)
+        {
+            return;
+        }
         GD.PrintS(Name, " Destroyed");
         destroyed = true;
-        CollisionLayer = 0;
-        CollisionMask = 0;
+        collider.SetDeferred("disabled", true);
         Hide();
         EmitSignal(SignalName.OnDestroyed, this);
     }
 
     private void Revived()
     {
-        CollisionLayer = 0b00000000_00000000_00000000_00000001;
-        CollisionMask = 0b00000000_00000000_00000000_00000001;
+        collider.SetDeferred("disabled", false);
+        Show();
         destroyed = false;
         Visible = true;
     }

@@ -11,10 +11,11 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0y13a"]
 size = Vector2(32, 32)
 
-[node name="FuelTank" type="CharacterBody2D" node_paths=PackedStringArray("vertices", "sprite")]
+[node name="FuelTank" type="CharacterBody2D" node_paths=PackedStringArray("collider", "vertices", "sprite")]
 use_parent_material = true
 script = ExtResource("2_s8nau")
 fuelCapacity = 1000
+collider = NodePath("Collider")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
 LeftAttachable = true
