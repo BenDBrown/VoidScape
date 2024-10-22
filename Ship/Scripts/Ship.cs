@@ -105,7 +105,7 @@ public partial class Ship : CharacterBody2D, IShip
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
-			if (n is Node2D n2) { n2.Position -= center; }
+			if (n is Node2D n2) { n2.GlobalPosition -= center; }
 		}
 		thrustManager.SetWeight(shipComponents.Count);
 
