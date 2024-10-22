@@ -6,12 +6,20 @@ using System.Collections.Generic;
 public partial class Ship : CharacterBody2D, IShip
 {
 	[Export]
-	protected CollisionPolygon2D collider;
+	private bool buildOnStart = false;
 	protected ThrustManager thrustManager = new();
 	protected RotationManager rotationManager = new();
 	protected GunManager gunManager = new();
 	protected List<ShipComponent> shipComponents = new();
 
+	public override void _Ready()
+	{
+		base._Ready();
+		if (buildOnStart)
+		{
+			TryBuildShip();
+		}
+	}
 	public override void _PhysicsProcess(double delta)
 	{
 		Rotation = rotationManager.GetRotation(Rotation, 3, delta, out Vector2 rotVector);
