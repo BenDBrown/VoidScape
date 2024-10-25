@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://UI/Scripts/Tabs.cs" id="3_fyd7s"]
 [ext_resource type="Script" path="res://UI/Scripts/SnapGrid.cs" id="4_0rreb"]
 [ext_resource type="Script" path="res://UI/Scripts/ShipParts.cs" id="5_vae0y"]
-[ext_resource type="PackedScene" uid="uid://cln7heiyc0ucq" path="res://UI/ShipComponents/CockpitSpearTest.tscn" id="6_01jge"]
-[ext_resource type="PackedScene" uid="uid://cg1mhbawom5aw" path="res://UI/ShipComponents/CockpitTest.tscn" id="7_76lf5"]
-[ext_resource type="PackedScene" uid="uid://bun3pbnon5k84" path="res://UI/ShipComponents/FuelTankTest.tscn" id="8_64ent"]
-[ext_resource type="PackedScene" uid="uid://01goktgnwxue" path="res://UI/ShipComponents/GeneratorTest.tscn" id="9_fnn7y"]
-[ext_resource type="PackedScene" uid="uid://kfshye6yiekr" path="res://UI/ShipComponents/GunTest.tscn" id="10_qrjip"]
-[ext_resource type="PackedScene" uid="uid://c2i75xe2lybck" path="res://UI/ShipComponents/HullTest.tscn" id="11_384ru"]
-[ext_resource type="PackedScene" uid="uid://dsgce1t51p8uf" path="res://UI/ShipComponents/ThrusterTest.tscn" id="12_r7unb"]
+[ext_resource type="PackedScene" uid="uid://c0c5eca6ab10q" path="res://UI/ShipComponents/CockpitSpearTest.tscn" id="6_eyp57"]
+[ext_resource type="PackedScene" uid="uid://cyinygli6xtxm" path="res://UI/ShipComponents/ThrusterTest.tscn" id="6_wh2tr"]
+[ext_resource type="PackedScene" uid="uid://dbac0h6cctkpo" path="res://UI/ShipComponents/FuelTankTest.tscn" id="7_wh82v"]
+[ext_resource type="PackedScene" uid="uid://cju0cfq4v0gpg" path="res://UI/ShipComponents/CockpitTest.tscn" id="8_y3lwp"]
+[ext_resource type="PackedScene" uid="uid://dti0vpton0bts" path="res://UI/ShipComponents/GeneratorTest.tscn" id="9_n77jp"]
+[ext_resource type="PackedScene" uid="uid://co1k3rlhfm03k" path="res://UI/ShipComponents/GunTest.tscn" id="10_7msi8"]
+[ext_resource type="PackedScene" uid="uid://ym2yw0mmmosw" path="res://UI/ShipComponents/HullTest.tscn" id="11_mkivx"]
 
 [sub_resource type="Theme" id="Theme_t0xj3"]
 default_font = ExtResource("1_lag8a")
@@ -107,7 +107,8 @@ layout_mode = 2
 size_flags_vertical = 3
 item_count = 1
 script = ExtResource("5_vae0y")
-shipComponents = Array[PackedScene]([ExtResource("6_01jge"), ExtResource("7_76lf5"), ExtResource("8_64ent"), ExtResource("9_fnn7y"), ExtResource("10_qrjip"), ExtResource("11_384ru"), ExtResource("12_r7unb")])
+shipComponents = Array[PackedScene]([ExtResource("6_eyp57"), ExtResource("8_y3lwp"), ExtResource("7_wh82v"), ExtResource("9_n77jp"), ExtResource("10_7msi8"), ExtResource("11_mkivx"), ExtResource("6_wh2tr")])
+scene = ExtResource("8_y3lwp")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/VBoxContainer"]
 layout_mode = 2

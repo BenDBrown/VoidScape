@@ -1,42 +1,50 @@
-[gd_scene load_steps=7 format=3 uid="uid://kfshye6yiekr"]
+[gd_scene load_steps=9 format=3 uid="uid://co1k3rlhfm03k"]
 
-[ext_resource type="Script" path="res://Scripts/Ship/Gun.cs" id="1_ropco"]
-[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Prefabs/Bullet.tscn" id="2_hdo0j"]
-[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="3_p7rsw"]
-[ext_resource type="Script" path="res://Scripts/Ship/DamageInfo.cs" id="4_377m1"]
-[ext_resource type="Texture2D" uid="uid://jexsbw30qkea" path="res://UI/Sprites/Gun.png" id="5_213r2"]
+[ext_resource type="Script" path="res://Ship/Scripts/Components/Gun.cs" id="1_ck8j4"]
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="2_srp8n"]
+[ext_resource type="Script" path="res://Components/AttackComponent.cs" id="3_re1s2"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="4_sslea"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="5_exk6n"]
+[ext_resource type="Texture2D" uid="uid://jexsbw30qkea" path="res://UI/Sprites/Gun.png" id="6_esim0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmvjq"]
 size = Vector2(32, 32)
 
-[node name="Gun" type="Area2D" node_paths=PackedStringArray("damageInfo", "timer", "defenseInfo", "vertices", "sprite")]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("1_ropco")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ihvl"]
+size = Vector2(32, 32)
+
+[node name="Gun" type="CharacterBody2D" node_paths=PackedStringArray("attackComponent", "timer", "collider", "vertices", "sprite")]
+script = ExtResource("1_ck8j4")
 powerdraw = 1
-ammo = ExtResource("2_hdo0j")
-damageInfo = NodePath("DamageInfo")
+ammo = ExtResource("2_srp8n")
+attackComponent = NodePath("AttackComponent")
 timer = NodePath("Timer")
-bulletSpeed = 600.0
-defenseInfo = NodePath("DefenseInfo")
+bulletSpeed = 100.0
+fireInterval = 0.2
+collider = NodePath("Collider")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
 LeftAttachable = true
 
-[node name="DefenseInfo" type="Node" parent="."]
-script = ExtResource("3_p7rsw")
-maxHealth = 100
-defense = 10
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("3_re1s2")
+attack = 100
 
-[node name="DamageInfo" type="Node" parent="."]
-script = ExtResource("4_377m1")
-damage = 20
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_sslea")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_n32tx")
+shape = SubResource("RectangleShape2D_gmvjq")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("5_exk6n")
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_8ihvl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("5_213r2")
+texture = ExtResource("6_esim0")
 region_rect = Rect2(320, 193, 32, 32)
 
 [node name="VerticeTopLeft" type="Node2D" parent="."]
@@ -53,4 +61,7 @@ position = Vector2(-16, 16)
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="." to="." method="CollideWithBody"]
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(5, -35)
+
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]

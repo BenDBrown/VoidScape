@@ -6,6 +6,9 @@ public partial class ShipParts : ItemList
 	[Export]
 	public PackedScene[] shipComponents;
 
+	[Export]
+	public PackedScene scene;
+
 	public override void _Ready()
 	{
 		Set("theme_override_constants/v_separation", 15);

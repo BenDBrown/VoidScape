@@ -1,32 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://bun3pbnon5k84"]
+[gd_scene load_steps=7 format=3 uid="uid://dbac0h6cctkpo"]
 
-[ext_resource type="Script" path="res://Scripts/Ship/FuelTank.cs" id="1_mfjr5"]
-[ext_resource type="Script" path="res://Scripts/DefenseInfo.cs" id="2_l40c6"]
-[ext_resource type="Texture2D" uid="uid://cylueh1gukar2" path="res://UI/Sprites/Tank.png" id="3_f6ftw"]
+[ext_resource type="Script" path="res://Ship/Scripts/Components/FuelTank.cs" id="1_etwx3"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="2_aogvl"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_tk1yd"]
+[ext_resource type="Texture2D" uid="uid://cylueh1gukar2" path="res://UI/Sprites/Tank.png" id="4_hjnra"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n32tx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cwij"]
 size = Vector2(32, 32)
 
-[node name="FuelTank" type="Area2D" node_paths=PackedStringArray("defenseInfo", "vertices", "sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y13a"]
+size = Vector2(32, 32)
+
+[node name="FuelTank" type="CharacterBody2D" node_paths=PackedStringArray("collider", "vertices", "sprite")]
 use_parent_material = true
-script = ExtResource("1_mfjr5")
+script = ExtResource("1_etwx3")
 fuelCapacity = 1000
-defenseInfo = NodePath("DefenseInfo")
+collider = NodePath("Collider")
 vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
 sprite = NodePath("Sprite2D")
 LeftAttachable = true
 
-[node name="DefenseInfo" type="Node" parent="."]
-script = ExtResource("2_l40c6")
-maxHealth = 100
-defense = 10
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_aogvl")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_n32tx")
+shape = SubResource("RectangleShape2D_7cwij")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("3_tk1yd")
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_0y13a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
-texture = ExtResource("3_f6ftw")
+texture = ExtResource("4_hjnra")
 region_rect = Rect2(128, 128, 32, 32)
 
 [node name="VerticeTopLeft" type="Node2D" parent="."]
@@ -41,4 +50,4 @@ position = Vector2(16, 16)
 [node name="VerticeBotLeft" type="Node2D" parent="."]
 position = Vector2(-16, 16)
 
-[connection signal="body_entered" from="." to="." method="CollideWithBody"]
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]
