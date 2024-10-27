@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://doov0wkuucu2n"]
+
+[ext_resource type="Script" path="res://Ship/AI/detection_splitting_up.gd" id="1_ufihd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oo6rt"]
+radius = 200.639
+
+[node name="detection_circle_for_splitting_up" type="Area2D"]
+script = ExtResource("1_ufihd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oo6rt")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

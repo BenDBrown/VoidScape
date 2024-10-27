@@ -2,13 +2,14 @@
 extends Node
 class_name AIState
 
-@onready var parent:Ship = $"../.."
+@onready var parent:Ship = get_parent().get_parent()
 @onready var player: Ship:
 	get:
 		if Game.player_ship is String:
 			return $"../../../PlayerShip"
 		return Game.player_ship
 @export var detect_radius = 200.0
+@export var splitting_area:Area2D
 
 signal transitioned(AIState, new_state:String)
 
