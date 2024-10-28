@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://d2tsqs6vt33fd"]
+
+[node name="Thruster" type="Control"]
+layout_mode = 3
+anchors_preset = 0

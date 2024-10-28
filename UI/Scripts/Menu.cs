@@ -4,12 +4,18 @@ using System;
 public partial class Menu : Control
 {
 	public Vector2 OriginalScale;
-
-	[Export]
-	public PlayerShip playership;
+	public Ship playership;
 
 	public override void _Ready()
 	{
+		CallDeferred("Init");
+	}
+
+	public void Init()
+	{
+		Node game = GetTree().Root.GetNode("Game");
+		var ship = game.Get("player_ship");
+		playership = ship.As<Ship>();
 		OriginalScale = playership.GlobalScale;
 	}
 
