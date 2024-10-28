@@ -13,6 +13,7 @@ var exited = false
 @export var angle_cone_vision = deg_to_rad(30.0)
 @export var max_view_distance = 800.0
 @export var angle_between_rays = deg_to_rad(5.0)
+var player
 var ship:Ship:
 	set(value):
 		value.add_child(self)
@@ -41,16 +42,16 @@ func is_in_raycast_sweep(target):
 	return false
 		
 
-func combat_enganged(player):
+func combat_enganged(_player):
+	player = _player
 	if!in_area:
 		reset_raycast(ray)
 	elif(in_area):
-		var can_shoot = is_in_raycast_sweep(player)
+		var can_shoot = is_in_raycast_sweep(_player)
 		if can_shoot:
-			shoot_target_in_range(player)
+			shoot_target_in_range(_player)
 
 func generate_sweeping_range():
-	ray = raycast_scene.instantiate()
 	var coun_rays  := int(angle_cone_vision / angle_between_rays) + 1
 	for index in coun_rays:
 		var vects =( max_view_distance * Vector2.UP.rotated(angle_between_rays*(index -coun_rays/2.0)))
@@ -59,7 +60,7 @@ func generate_sweeping_range():
 func shoot_target_in_range(target): 
 	if ray.is_colliding() and ray.get_collider().get_parent() == target:
 		if(is_shooting):
-			return false
+			return 
 		ship.StartShooting()
 		is_shooting = true
 		
@@ -69,7 +70,7 @@ func shoot_target_in_range(target):
 func add_detection_area():
 #This Func is to create the amount area's for detection we need to have the ship enough "eyes" to be able detect the player
 	area = detection_area_scene.instantiate()
-	area.name ="SHOOTING"
+	area.name ="eyes_for_guns"
 	area = create_area2D_with_signal_connections(area)
 	add_child(area)
 
@@ -77,14 +78,13 @@ func add_detection_area():
 
 func create_area2D_with_signal_connections(_area):
 #This func is to create and add it the parent so it is added the the NPC node with a position given in the parameters
-	
 	_area.area_entered.connect(on_area_entered)
 	_area.area_exited.connect(on_area_exited)
 	_area.monitorable = false
 	return area
 
 func on_area_exited(target:Area2D):
-	if target.get_parent().get_parent() == ship:
+	if target.get_parent().get_parent() == player:
 		exited = true
 		in_area = false
 	else:
@@ -96,7 +96,7 @@ func on_area_entered(target:Area2D):
 	#reating a method that has the ability to shoot the player on the detected location from the Area2D's that are part of the ship
 	var par = target.get_parent()
 	if par is ShipComponent:
-		if(par == ship):
+		if(par.get_parent() == player):
 			in_area = true
 
 func create_detection_collider():

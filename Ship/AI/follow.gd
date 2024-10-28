@@ -7,9 +7,6 @@ class_name Follow
 var split_up:SplitUp
 var combat_scene = preload("res://Ship/AI/ai_combat.tscn")
 var combat:Combat
-var shot = true
-var pleyer: Ship = player
-var is_shooting = false
 
 func enter():
 	super.enter()
@@ -34,10 +31,10 @@ func physics_update(_delta):
 	rotate_towards(player.global_position)
 	var dist = parent.global_position.distance_to(player.global_position)
 	if splitDir.x >0:
-		print("going right")
+		#print("going right")
 		parent.StartThrustingRight()
 	elif splitDir.x<0:
-		print("going left")
+		#print("going left")
 		parent.StartThrustingLeft()
 	if dist > out_of_detection_distance:
 		exit()
