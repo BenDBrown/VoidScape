@@ -7,6 +7,6 @@ class_name LootDropComponent
 func drop_loot():
 	for loot in guaranteed_drops:
 
-		loot.call_deferred("spawn",get_tree().current_scene, global_position)
+		loot.call_deferred("spawn", get_tree().current_scene, global_position)
 	if loot_table:
 		loot_table.spawn()
