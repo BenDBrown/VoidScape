@@ -9,7 +9,6 @@ class_name AIState
 			return $"../../../PlayerShip"
 		return Game.player_ship
 @export var detect_radius = 200.0
-@export var splitting_area:Area2D
 
 signal transitioned(AIState, new_state:String)
 

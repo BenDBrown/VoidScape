@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://6pkivhgarchh"]
+[gd_scene load_steps=11 format=3 uid="uid://6pkivhgarchh"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_r1t2t"]
 [ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Ship/ShipComponents/CockpitSpear.tscn" id="2_k0f33"]
@@ -9,15 +9,12 @@
 [ext_resource type="Script" path="res://Ship/AI/state_manager.gd" id="7_0wryf"]
 [ext_resource type="Script" path="res://Ship/AI/idle.gd" id="8_bpwhd"]
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="9_la8j8"]
-[ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_pjtre"]
-[ext_resource type="PackedScene" uid="uid://ctlkswf0fn6x0" path="res://Ship/AI/detection_area.tscn" id="11_q7chb"]
-[ext_resource type="PackedScene" uid="uid://doov0wkuucu2n" path="res://Ship/AI/detection_circle_for_splitting_up.tscn" id="12_f1u8y"]
+[ext_resource type="PackedScene" uid="uid://6wsr2f441bes" path="res://Ship/AI/follow.tscn" id="10_f42tc"]
 
 [node name="Scout" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 63
 script = ExtResource("1_r1t2t")
-buildOnStart = true
 
 [node name="Cockpit" parent="." instance=ExtResource("2_k0f33")]
 
@@ -40,34 +37,16 @@ position = Vector2(0, 64)
 [node name="FuelTank2" parent="." instance=ExtResource("3_nrke5")]
 position = Vector2(32, 32)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-exclude_parent = false
-
 [node name="StateManager" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_0wryf")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("splitting_area")]
+[node name="Idle" type="Node" parent="StateManager"]
 script = ExtResource("8_bpwhd")
 detect_radius = 300.0
-splitting_area = NodePath("../../detection_circle_for_splitting_up")
 
-[node name="Patrol" type="Node" parent="StateManager" node_paths=PackedStringArray("splitting_area")]
+[node name="Patrol" type="Node" parent="StateManager"]
 script = ExtResource("9_la8j8")
 detect_radius = 300.0
-splitting_area = NodePath("../../detection_circle_for_splitting_up")
 
-[node name="Follow" type="Node" parent="StateManager" node_paths=PackedStringArray("ray", "splitting_area")]
-script = ExtResource("10_pjtre")
-out_of_detection_distance = 500.0
-spreading = 300
-length = 300
-ray = NodePath("../../RayCast2D")
-detection_area_scene = ExtResource("11_q7chb")
-splitting_area = NodePath("../../detection_circle_for_splitting_up")
-
-[node name="detection_circle_for_splitting_up" parent="." instance=ExtResource("12_f1u8y")]
-collision_layer = 16
-collision_mask = 16
-
-[connection signal="area_exited" from="detection_circle_for_splitting_up" to="detection_circle_for_splitting_up" method="_on_area_exited"]
+[node name="Follow" parent="StateManager" instance=ExtResource("10_f42tc")]
