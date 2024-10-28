@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class ThrustManager : IPowerable
 {
-	private const double ACCELERATION = 0.5f;
+	private const double ACCELERATION = 0.4f;
 
 	public Vector2 Force { get; private set; } = Vector2.Zero;
 
@@ -18,13 +18,7 @@ public partial class ThrustManager : IPowerable
 
 	public int weight { get; private set; } = 1; // to avoid division by 0 errors
 
-	private List<Vector2> oldForces = new();
-
 	// values from 0-1 that determines the percent of thrust in direction
-	private float forwardThrustRatio = 0;
-	private float backwardThrustRatio = 0;
-	private float rightThrustRatio = 0;
-	private float leftThrustRatio = 0;
 
 	private bool thrustingForward = false;
 	private bool thrustingBackward = false;
@@ -37,70 +31,45 @@ public partial class ThrustManager : IPowerable
 	{ 
 		double acceleration = ACCELERATION * deltaTime;
 		double decceleration = acceleration * 2;
-		// updating the thrust ratios FTR stands for forward thrust ratio, BTRO for backwards thrust ratio opposed, etc
-		UpdateThrustRatio(thrustingForward, forwardThrustRatio, backwardThrustRatio, acceleration, decceleration, out double newFTR, out double newBTRO);
-		forwardThrustRatio = (float)newFTR;
-		backwardThrustRatio = (float)newBTRO;
 
-		UpdateThrustRatio(thrustingBackward, backwardThrustRatio, forwardThrustRatio, acceleration, decceleration, out double newBTR, out double newFTRO);
-		backwardThrustRatio = (float)newBTR;
-		forwardThrustRatio = (float)newFTRO;
+		Vector2 momentum = DecayMomentum(Force, (float)decceleration);
+		Vector2 forward = Vector2.Zero;
+		Vector2 backward = Vector2.Zero;
+		Vector2 right = Vector2.Zero;
+		Vector2 left = Vector2.Zero;
 
-		UpdateThrustRatio(thrustingRight, rightThrustRatio, leftThrustRatio, acceleration, decceleration, out double newRTR, out double newLTRO);
-		rightThrustRatio = (float)newRTR;
-		leftThrustRatio = (float)newLTRO;
-
-		UpdateThrustRatio(thrustingLeft, leftThrustRatio, rightThrustRatio, acceleration, decceleration, out double newLTR, out double newRTRO);
-		leftThrustRatio = (float)newLTR;
-		rightThrustRatio = (float)newRTRO;
-
-		float fLimit = forwardThrustRatio * PotentialForwardThrust;
-		Vector2 forward = new(0, -fLimit);
-		forward = forward.Rotated(rotation);
-
-		float bLimit = backwardThrustRatio * PotentialBackwardThrust;
-		Vector2 backward = new(0, bLimit);
-		backward = backward.Rotated(rotation);
-
-		float rightLimit = rightThrustRatio * PotentialSideThrust;
-		Vector2 right = new(rightLimit, 0);
-		right = right.Rotated(rotation);
-
-		float leftLimit = leftThrustRatio * PotentialSideThrust;
-		Vector2 left = new(-leftLimit, 0);
-		left = left.Rotated(rotation);
-
-		Vector2 diagonal = Vector2.Zero;
-		if (thrustingForward && thrustingLeft)
+		if(thrustingForward) 
 		{
-			diagonal = GetLimitedDiagonal(forward, left, fLimit);
-			forward = Vector2.Zero;
-			left = Vector2.Zero;
+			forward = GetAddedForce(Vector2.Up, acceleration, PotentialForwardThrust);
+			forward = forward.Rotated(rotation);
 		}
-		else if (thrustingForward && thrustingRight)
+		else if(thrustingBackward) 
 		{
-			diagonal = GetLimitedDiagonal(forward, right, fLimit);
-			forward = Vector2.Zero;
-			right = Vector2.Zero;
+			backward = GetAddedForce(Vector2.Down, acceleration, PotentialBackwardThrust);
+			backward = backward.Rotated(rotation);
 		}
-		else if (thrustingBackward && thrustingLeft)
-		{
-			diagonal = GetLimitedDiagonal(backward, left, leftLimit);
-			backward = Vector2.Zero;
-			left = Vector2.Zero;
-		}
-		else if (thrustingBackward && thrustingRight)
-		{
-			diagonal = GetLimitedDiagonal(backward, right, rightLimit);
-			backward = Vector2.Zero;
-			right = Vector2.Zero;
-		}
-		Force = forward + backward + left + right + diagonal;
-		// int oldForceCount = oldForces.Count;
-		// for(int i = 0; i < oldForceCount; i++)
-		// {
 
-		// }
+		if(thrustingRight) 
+		{
+			right = GetAddedForce(Vector2.Right, acceleration, PotentialSideThrust);
+			right = right.Rotated(rotation);
+		}
+		else if(thrustingLeft) // these elses are for minor performance gains and should be irrelevant if the controller is working properly
+		{
+			left = GetAddedForce(Vector2.Left, acceleration, PotentialSideThrust);
+			left = left.Rotated(rotation);
+		}
+
+		Force = forward + backward + left + right + momentum;
+
+		float limitedX = Math.Min(PotentialForwardThrust, Force.X); // choosing to use potential forward thrust so that it doesnt affect momentum too much
+		limitedX = Math.Max(-PotentialForwardThrust, Force.X);
+
+		float limitedY = Math.Min(PotentialForwardThrust, Force.Y);
+		limitedY = Math.Max(-PotentialForwardThrust, Force.Y);
+		Force = new(limitedX, limitedY);
+
+		// current limiting methodology does not allow ship to be pushed by an object to move faster than its max speed ie Potential forward thrust
 
 		return Force;
 	}
@@ -160,42 +129,15 @@ public partial class ThrustManager : IPowerable
 		PotentialSideThrust = PotentialBackwardThrust * 1.5f;
 	}
 
-	private void UpdateThrustRatio(bool isThrusting, double ratio, double opposingRatio, double acceleration, double decceleration, out double newRatio, out double newOpposingRatio)
+	private Vector2 GetAddedForce(Vector2 direction, double acceleration, float potentialForce) => direction * ((float)acceleration * potentialForce);
+
+	private Vector2 DecayMomentum(Vector2 momentum, float decceleration)
 	{
-		if (isThrusting)
-		{
-			ratio += acceleration;
-			ratio = Math.Min(ratio, 1);
-			if (opposingRatio > 0)
-			{
-				opposingRatio -= acceleration;
-				opposingRatio = Math.Max(opposingRatio, 0);
-			}
-		}
-		else
-		{
-			if (ratio > 0)
-			{
-				ratio -= decceleration;
-				ratio = Math.Max(ratio, 0);
-			}
-		}
-		newRatio = ratio;
-		newOpposingRatio = opposingRatio;
+		decceleration = Math.Min(decceleration, 0.9f); // ensuring that decceleration does not get equal or higher than 1 which would result in no decceleration
+		float newX = momentum.X - (momentum.X * decceleration);
+		float newY = momentum.Y - (momentum.Y * decceleration);
+		return new Vector2(newX, newY);
 	}
-
-	private Vector2 GetLimitedDiagonal(Vector2 a, Vector2 b, float length)
-	{
-		Vector2 c = a + b;
-		c = c.Normalized();
-		c *= Math.Abs(length);
-		return c;
-	}
-
-	// private Vector2 DecayMomentum(Vector2 momentum)
-	// {
-
-	// }
 
 
 }
