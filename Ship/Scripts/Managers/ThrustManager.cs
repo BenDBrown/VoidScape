@@ -34,7 +34,7 @@ public partial class ThrustManager : IPowerable
 	public ThrustManager() { }
 
 	public Vector2 GetForce(double deltaTime, float rotation)
-	{
+	{ 
 		double acceleration = ACCELERATION * deltaTime;
 		double decceleration = acceleration * 2;
 		// updating the thrust ratios FTR stands for forward thrust ratio, BTRO for backwards thrust ratio opposed, etc
@@ -62,11 +62,12 @@ public partial class ThrustManager : IPowerable
 		Vector2 backward = new(0, bLimit);
 		backward = backward.Rotated(rotation);
 
-		float sideLimit = rightThrustRatio * PotentialSideThrust;
-		Vector2 right = new(sideLimit, 0);
+		float rightLimit = rightThrustRatio * PotentialSideThrust;
+		Vector2 right = new(rightLimit, 0);
 		right = right.Rotated(rotation);
 
-		Vector2 left = new(-sideLimit, 0);
+		float leftLimit = leftThrustRatio * PotentialSideThrust;
+		Vector2 left = new(-leftLimit, 0);
 		left = left.Rotated(rotation);
 
 		Vector2 diagonal = Vector2.Zero;
@@ -84,13 +85,13 @@ public partial class ThrustManager : IPowerable
 		}
 		else if (thrustingBackward && thrustingLeft)
 		{
-			diagonal = GetLimitedDiagonal(backward, left, sideLimit);
+			diagonal = GetLimitedDiagonal(backward, left, leftLimit);
 			backward = Vector2.Zero;
 			left = Vector2.Zero;
 		}
 		else if (thrustingBackward && thrustingRight)
 		{
-			diagonal = GetLimitedDiagonal(backward, right, sideLimit);
+			diagonal = GetLimitedDiagonal(backward, right, rightLimit);
 			backward = Vector2.Zero;
 			right = Vector2.Zero;
 		}
