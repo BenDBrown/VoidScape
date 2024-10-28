@@ -9,11 +9,10 @@ public partial class Ship : CharacterBody2D, IShip
 	private bool buildOnStart = false;
 	protected ThrustManager thrustManager = new();
 	protected CenterCalculator centerCalculator = new();
+	protected RotationManager rotationManager = new();
 	protected GunManager gunManager = new();
 	protected List<ShipComponent> shipComponents = new();
 	private float rotationSpeed = 3;
-	private bool isRotatingClockwise = false;
-	private bool isRotating = false;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -22,12 +21,10 @@ public partial class Ship : CharacterBody2D, IShip
 			TryBuildShip();
 		}
 	}
+
 	public override void _PhysicsProcess(double delta)
 	{
-		if (isRotating)
-		{
-			Rotation += (isRotatingClockwise ? rotationSpeed : -rotationSpeed) * (float)delta;
-		}
+		Rotation = rotationManager.GetRotation(Rotation, rotationSpeed, delta, out Vector2 rotVector);
 		Vector2 force = thrustManager.GetForce(delta, Rotation);
 		Velocity = force;
 		MoveAndSlide();
@@ -59,19 +56,13 @@ public partial class Ship : CharacterBody2D, IShip
 	public void StopThrustingLeft() => thrustManager.StopThrustingLeft();
 
 	// turning
-	public void StartTurningClockwise()
-	{
-		isRotating = true;
-		isRotatingClockwise = true;
-	}
+	public void StartTurningClockwise() => rotationManager.StartTurningClockwise();
 
-	public void StartTurningCounterClockwise()
-	{
-		isRotating = true;
-		isRotatingClockwise = false;
-	}
 
-	public void StopTurning() => isRotating = false;
+	public void StartTurningCounterClockwise() => rotationManager.StartTurningCounterClockwise();
+
+
+	public void StopTurning() => rotationManager.StopTurning();
 
 	public virtual bool TryBuildShip()
 	{
@@ -99,8 +90,6 @@ public partial class Ship : CharacterBody2D, IShip
 			shipComponents.Add(shipComponent);
 			shipComponent.OnDestroyed += ComponentDestroyed;
 			globalVertices.AddRange(shipComponent.GetVertices());
-
-			
 		}
 
 		Vector2 center = centerCalculator.GetGlobalShipCenter(globalVertices);
