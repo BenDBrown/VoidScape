@@ -18,8 +18,6 @@ public partial class ThrustManager : IPowerable
 
 	public int weight { get; private set; } = 1; // to avoid division by 0 errors
 
-	// values from 0-1 that determines the percent of thrust in direction
-
 	private bool thrustingForward = false;
 	private bool thrustingBackward = false;
 	private bool thrustingRight = false;
