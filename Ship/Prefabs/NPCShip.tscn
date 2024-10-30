@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpmtcqfjhik1c"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_6w6dx"]
+
+[node name="NpcShip" type="CharacterBody2D"]
+script = ExtResource("1_6w6dx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

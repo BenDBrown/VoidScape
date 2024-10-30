@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://jdr7stsnn6ab"]
+[gd_scene load_steps=9 format=3 uid="uid://c2m0xaalxoh3g"]
 
-[ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipBuilder.cs" id="1_pyl7e"]
-[ext_resource type="PackedScene" uid="uid://c3vc3aagjqvgj" path="res://Prefabs/ShipBuilder/GridSquare.tscn" id="2_acs5h"]
-[ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Prefabs/PlayerShip.tscn" id="3_y2wuq"]
-[ext_resource type="PackedScene" uid="uid://dsqo5muly5t3l" path="res://Prefabs/ShipBuilder/DraggableComponent.tscn" id="3_ybhn2"]
-[ext_resource type="PackedScene" uid="uid://c7mogaotegr8p" path="res://Prefabs/ShipComponents/Cockpit.tscn" id="5_p13gc"]
-[ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Prefabs/ShipComponents/Generator.tscn" id="6_eqbrw"]
-[ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Prefabs/ShipComponents/FuelTank.tscn" id="7_8wps4"]
-[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Prefabs/ShipComponents/Thruster.tscn" id="8_emq7w"]
+[ext_resource type="Script" path="res://Ship/ShipBuilder/ShipBuilder.cs" id="1_pyl7e"]
+[ext_resource type="PackedScene" uid="uid://c3vc3aagjqvgj" path="res://Ship/ShipBuilder/GridSquare.tscn" id="2_acs5h"]
+[ext_resource type="PackedScene" uid="uid://btd37ya3r2mob" path="res://Ship/Prefabs/PlayerShip.tscn" id="3_y2wuq"]
+[ext_resource type="PackedScene" uid="uid://dsqo5muly5t3l" path="res://Ship/ShipBuilder/DraggableComponent.tscn" id="3_ybhn2"]
+[ext_resource type="PackedScene" uid="uid://c7mogaotegr8p" path="res://Ship/ShipComponents/Cockpit.tscn" id="5_p13gc"]
+[ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Ship/ShipComponents/Generator.tscn" id="6_eqbrw"]
+[ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Ship/ShipComponents/FuelTank.tscn" id="7_8wps4"]
+[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="8_emq7w"]
 
 [node name="ShipBuilder" type="Node2D"]
 position = Vector2(427, 215)

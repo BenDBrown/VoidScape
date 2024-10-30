@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpmtcqfjhik1c"]
-
-[ext_resource type="Script" path="res://Scripts/Ship/Ship.cs" id="1_al5iu"]
-
-[node name="NpcShip" type="CharacterBody2D" node_paths=PackedStringArray("collider")]
-script = ExtResource("1_al5iu")
-collider = NodePath("CollisionPolygon2D")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

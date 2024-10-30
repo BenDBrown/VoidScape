@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+
 public partial class EnterHubMessage : Control
 {
 	private bool isOnBody = false;
@@ -11,8 +12,8 @@ public partial class EnterHubMessage : Control
 
 	private Vector2 spritePos;
 
-	[Export]
-	public PlayerShip playership;
+	// [Export]
+	// public Ship playership;
 
 	[Export]
 	public Sprite2D shipSprite;
@@ -20,8 +21,19 @@ public partial class EnterHubMessage : Control
 	[Export]
 	public Control menu;
 
+	private Ship playership;
+
+
 	public override void _Ready()
 	{
+		CallDeferred("Init");
+	}
+
+	public void Init()
+	{
+		Node game = GetTree().Root.GetNode("Game");
+		var ship = game.Get("player_ship");
+		playership = ship.As<Ship>();
 		OriginalScale = playership.GlobalScale;
 		spritePos = shipSprite.Position;
 	}
@@ -36,7 +48,7 @@ public partial class EnterHubMessage : Control
 
 	public void OnBodyEntered(Node2D node2D)
 	{
-		if (node2D is PlayerShip)
+		if (node2D.GetParent() is Ship)
 		{
 			Visible = true;
 			isOnBody = true;

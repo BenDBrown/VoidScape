@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxydot202ub1j"
+path="res://.godot/imported/Tablet_Swipe_01.wav-5bb34ee89a183d94dd2216785964e223.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Type Preview/Tablet/Tablet_Swipe_01.wav"
+dest_files=["res://.godot/imported/Tablet_Swipe_01.wav-5bb34ee89a183d94dd2216785964e223.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

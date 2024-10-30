@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://qa35nctgkd33"
+path="res://.godot/imported/Coin Dropped on Ceramic Dish.wav-2288e328b17b6e5d1ed87639e830c844.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/The Mint – Coins and Money Preview/AUDIO/Coin Dropped on Ceramic Dish.wav"
+dest_files=["res://.godot/imported/Coin Dropped on Ceramic Dish.wav-2288e328b17b6e5d1ed87639e830c844.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

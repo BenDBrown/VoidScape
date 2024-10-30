@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b23jmvsdsg340"
+path="res://.godot/imported/Coin Slid Along Wood.wav-a30cf05c680beebb2f91f18bfb77c091.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/The Mint – Coins and Money Preview/AUDIO/Coin Slid Along Wood.wav"
+dest_files=["res://.godot/imported/Coin Slid Along Wood.wav-a30cf05c680beebb2f91f18bfb77c091.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

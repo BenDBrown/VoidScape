@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cej13itrc0d02"
+path="res://.godot/imported/Holographic Tap Interaction.wav-1458cd4f044c2247611d6b0ec5c3ec72.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Future UI Preview/Audio/Holographic Tap Interaction.wav"
+dest_files=["res://.godot/imported/Holographic Tap Interaction.wav-1458cd4f044c2247611d6b0ec5c3ec72.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
