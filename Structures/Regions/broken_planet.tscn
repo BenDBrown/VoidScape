@@ -1,0 +1,123 @@
+[gd_scene load_steps=3 format=3 uid="uid://cppb7hqli8ckx"]
+
+[ext_resource type="PackedScene" uid="uid://dp04heb7bctdn" path="res://Structures/Buildings/Building.tscn" id="1_xxito"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhyah"]
+radius = 911.53
+height = 2048.0
+
+[node name="Broken Planet" type="Node2D"]
+
+[node name="Structures" type="Node2D" parent="."]
+
+[node name="Outlaw Hideout" parent="Structures" instance=ExtResource("1_xxito")]
+position = Vector2(-5376, -229)
+scale = Vector2(5.31, 5.31)
+
+[node name="Label" type="Label" parent="Structures/Outlaw Hideout"]
+offset_left = -173.0
+offset_top = -91.0
+offset_right = -51.0
+offset_bottom = -68.0
+scale = Vector2(3.035, 3.035)
+text = "Outlaw Hideout
+"
+
+[node name="Outlaw Hideout3" parent="Structures" instance=ExtResource("1_xxito")]
+position = Vector2(-8688, -1605)
+scale = Vector2(3.325, 3.325)
+
+[node name="Label" type="Label" parent="Structures/Outlaw Hideout3"]
+offset_left = -173.0
+offset_top = -91.0
+offset_right = -51.0
+offset_bottom = -68.0
+scale = Vector2(3.035, 3.035)
+text = "Outlaw Hideout
+"
+
+[node name="Outlaw Hideout2" parent="Structures" instance=ExtResource("1_xxito")]
+position = Vector2(-3365, -1807)
+rotation = -0.366459
+scale = Vector2(3.91689, 0.290892)
+
+[node name="Label" type="Label" parent="Structures/Outlaw Hideout2"]
+offset_left = -173.0
+offset_top = -91.0
+offset_right = -51.0
+offset_bottom = -68.0
+scale = Vector2(3.035, 3.035)
+text = "Outlaw Hideout
+"
+
+[node name="Decor" type="Node2D" parent="."]
+
+[node name="Terrain" type="Node2D" parent="."]
+scale = Vector2(0.365, 0.365)
+
+[node name="MAINROCK" type="Polygon2D" parent="Terrain"]
+visible = false
+position = Vector2(41828, 7225)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(3864, -4486, 3164, 3686, -4846, 2573, -2693, -8819)
+
+[node name="Rock8" type="Polygon2D" parent="Terrain"]
+position = Vector2(-10443, 10898)
+scale = Vector2(0.065, 0.065)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(-12246.2, 68738.5, -60492.3, 62830.8, -103815, 32307.7, -68369.2, -13969.2, -45723.1, -38584.6, 48509, -48708, 76925, -60612, 98030.8, -82892.3, 136957, -87748, 147581, -78020, 149245, -40900, 133501, -26436, 111613, -15428, 86215.4, 21476.9, 54707.7, 44123.1)
+
+[node name="Rock7" type="Polygon2D" parent="Terrain"]
+position = Vector2(-14763, -6793)
+scale = Vector2(0.085, 0.085)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(-21341.2, 4470.59, 21740, -6206, 24135, -2785, 33600, -504, 41696, 408, 52758, 2004, 60398, 522, 63363, -8259, 111941, -19211.8, 142294, -24000, 137506, -53011.8, 119400, -95611.8, 85588.2, -101729, 42105.9, -122800, 15200, -172188, -26529.4, -100024, -45682.4, -76094.1, -74788.2, -60141.2, -54847.1, -29035.3)
+
+[node name="Rock6" type="Polygon2D" parent="Terrain"]
+position = Vector2(4733, -11652)
+scale = Vector2(0.095, 0.095)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(12957.9, -8063.16, 28463.2, -9200, 19010.5, 631.578, 16817, 11762, 21071, 21084, 20709, 24886, 15821, 29502, 8942, 29683, 2607, 30135, -4272, 34661, -9159, 39458, -17486, 46698, -22102, 50590, -30189.5, 52105.3, -45178.9, 59957.9, -43389.5, 95284.2, -55168.4, 105632, -68368.4, 101705, -74800, 93147.4, -83357.9, 84936.8, -108137, 78073.7, -130263, 62600, -137832, 53010.5, -105074, 40789.5, -66947.4, 34915.8, -66473.7, 5852.63, -78621, -32726.3, -39800, -27252.6, -15978.9, -23442.1, -1789.47, -15252.6)
+
+[node name="Rock4" type="Polygon2D" parent="Terrain"]
+position = Vector2(6374, -3282)
+scale = Vector2(0.275, 0.275)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(-13560, 5683.64, -15323.6, 11141.8, -22447.3, 22567.3, -18410.9, 30643.6, -10789.1, 29163.6, -1970.91, 22836.4, 6174.54, 14458.2, 11101.8, 9520, 22130.9, 4003.64, 19796.4, -3570.91, 17160, -6207.27, 14523.6, -5654.54, 11778.2, -5545.45, 10349.1, -7963.64, 13865.5, -10378.2, 19465.5, -6207.27, 21552.7, -12465.5, 19029.1, -18505.5, 18698.2, -23560, 12109.1, -24985.5, 5738.18, -23120, 2661.82, -20483.6, 9250.91, -14992.7, 7385.45, -11589.1, 1345.45, -12247.3, -2280, -14112.7, -5178.18, -12930.9, -10600, -8614.54, -14174.5, -3807.27, -13560, 14.5449)
+
+[node name="Rock2" type="Polygon2D" parent="Terrain"]
+position = Vector2(12239, 9273)
+scale = Vector2(0.69, 0.69)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(3864, -4486, 9754, -7465, 18172.5, -5824.64, 19458, -1384.06, 13346, -1364, 8746, 2609, 5150, 6924, 1986, 8985, -658, 6678, -2111, 4158, -2794, 1296, -5229, 399, -7963, -711, -8475, -2932, -7066, -4940, -786, -4598)
+
+[node name="Rock3" type="Polygon2D" parent="Terrain"]
+position = Vector2(38397, 24343)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(5627, 6197, 3404, 14409, -3724, 15859, -11336, 20571, -14598, 26249, -6986, 25887, -11577, 32411, -21001, 33740, -72227, 33861, -64640, 22442, -56776, 18223, -52365, 15730, -47858, 17360, -42201, 19182, -36831, 16688, -30406, 12853, -24749, 13524, -16310, 16593, -7105, 8921, -5548, -1422, 649, 0)
+
+[node name="Rock12" type="Polygon2D" parent="Terrain"]
+position = Vector2(-38149, 42571)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(14830, -22183, 9393, -13121, 26297, 872, -6577, 18421, -4846, 2573, -2693, -8819, -1842, -43205, 91, -62898, 936, -68818, 16763, -65193, 19663, -53232, 9273, -52991, 8306, -45500, 9877, -39097, 14588, -36439, 20146, -33177, 15555, -30156)
+
+[node name="Rock10" type="Polygon2D" parent="Terrain"]
+position = Vector2(-4280, 25010)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(5594, -9676, 8174, -7741, 8739, -3951, 10512, -323, 18737, -81, 23333, -3387, 22608, -7661, 23253, -10886, 25510, -12741, 28252, -14031, 30107, -13547, 31054, -11356, 32537, -8448, 32252, -5141, 32252, -1777, 30997, 732, 28603, 3412, 26892, 6149, 23300, 7346, 21019, 8144, 18054, 8372, 7380, 10172, -1825, 10268, -7866, 3172, -8825, -4691, 1240, -9676)
+
+[node name="Rock9" type="Polygon2D" parent="Terrain"]
+position = Vector2(18728, -490)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(851, -148, 817, 1785, -1454, 1548, -5803, 2761, -4275, -643, -1183, -826)
+
+[node name="Rock5" type="Polygon2D" parent="Terrain"]
+position = Vector2(22521, -9253)
+color = Color(0.638928, 0.322, 0, 1)
+polygon = PackedVector2Array(3864, -4486, 6103, 3553, 5350, 6243, 1475, 6782, -2669, 5490, -6006, 3445, -8650, -2946, -4767, -2852, -1377, -2583, 1206, -3121)
+
+[node name="Region_area" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Region_area"]
+shape = SubResource("CapsuleShape2D_rhyah")

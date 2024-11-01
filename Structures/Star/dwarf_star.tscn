@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn0i4vfnuj3fv"]
+
+[ext_resource type="Texture2D" uid="uid://va41h3ly5xxc" path="res://Assets/Aseprite/Hazards 1.png" id="1_0erwi"]
+[ext_resource type="Script" path="res://Structures/Star/Scripts/CollisionWithStar.gd" id="1_0glvx"]
+[ext_resource type="Script" path="res://Structures/Star/Scripts/gravitational_pull.gd" id="2_pu273"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4cttg"]
+radius = 500.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftyfq"]
+radius = 300.0
+
+[node name="Dwarf Star" type="Node2D"]
+
+[node name="GravitationalPull" type="Area2D" parent="."]
+position = Vector2(-8, -3)
+collision_layer = 2
+collision_mask = 59
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+script = ExtResource("2_pu273")
+G = 250.0
+mass = 500.0
+objectMass = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravitationalPull"]
+shape = SubResource("CircleShape2D_4cttg")
+debug_color = Color(0, 0.645228, 0.264605, 0.42)
+
+[node name="Core" type="Area2D" parent="."]
+script = ExtResource("1_0glvx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Core"]
+shape = SubResource("CircleShape2D_ftyfq")
+debug_color = Color(0.999475, 0, 0.111879, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(20.795, 20.795)
+texture = ExtResource("1_0erwi")
+
+[connection signal="area_entered" from="Core" to="Core" method="_on_area_entered"]
+[connection signal="body_entered" from="Core" to="Core" method="_on_body_entered"]

@@ -1,0 +1,139 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0i0k7nd0arbx"]
+
+[ext_resource type="PackedScene" uid="uid://dp04heb7bctdn" path="res://Structures/Buildings/Building.tscn" id="1_se3n0"]
+[ext_resource type="PackedScene" uid="uid://cte3k4ivkkaoc" path="res://Structures/Regions/region_area.tscn" id="2_pkjcv"]
+[ext_resource type="PackedScene" uid="uid://dtmn1g0662tqh" path="res://Structures/Buildings/Garage.tscn" id="2_t0yod"]
+[ext_resource type="PackedScene" uid="uid://t0e0vdi6pgob" path="res://Structures/Buildings/gas_station.tscn" id="3_ffin4"]
+
+[node name="Town" type="Node2D"]
+
+[node name="Region Area" parent="." instance=ExtResource("2_pkjcv")]
+scale = Vector2(6, 6)
+
+[node name="Structures" type="Node2D" parent="."]
+
+[node name="Garage2" parent="Structures" instance=ExtResource("2_t0yod")]
+position = Vector2(3487, 1.13687e-13)
+scale = Vector2(2.305, 2.305)
+
+[node name="Gas Station2" parent="Structures" instance=ExtResource("3_ffin4")]
+position = Vector2(-74, -22)
+scale = Vector2(3.415, 3.415)
+
+[node name="Shop" parent="Structures" instance=ExtResource("1_se3n0")]
+position = Vector2(-1662, 2690)
+scale = Vector2(2.565, 2.565)
+
+[node name="Label3" type="Label" parent="Structures/Shop"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -409.0
+offset_top = -405.0
+offset_right = -353.0
+offset_bottom = -382.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "Shop
+"
+
+[node name="Decor" type="Node2D" parent="."]
+
+[node name="Diner" parent="Decor" instance=ExtResource("1_se3n0")]
+position = Vector2(1996, 3747)
+scale = Vector2(3.755, 3.755)
+
+[node name="Label7" type="Label" parent="Decor/Diner"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -422.0
+offset_top = -364.0
+offset_right = -366.0
+offset_bottom = -341.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "Diner"
+
+[node name="Building" parent="Decor" instance=ExtResource("1_se3n0")]
+position = Vector2(-1662, -3953)
+scale = Vector2(2.13, 2.13)
+
+[node name="Label4" type="Label" parent="Decor/Building"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -569.308
+offset_top = -147.983
+offset_right = -436.308
+offset_bottom = -124.983
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "Random Building 1
+"
+
+[node name="Building2" parent="Decor" instance=ExtResource("1_se3n0")]
+position = Vector2(-3894, 685)
+scale = Vector2(2.255, 4.825)
+
+[node name="Label4" type="Label" parent="Decor/Building2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -569.308
+offset_top = -147.983
+offset_right = -436.308
+offset_bottom = -124.983
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "Random Building 2"
+
+[node name="Building3" parent="Decor" instance=ExtResource("1_se3n0")]
+position = Vector2(1795, -3067)
+scale = Vector2(1.66, 5.74)
+
+[node name="Label4" type="Label" parent="Decor/Building3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -569.308
+offset_top = -147.983
+offset_right = -436.308
+offset_bottom = -124.983
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "Random Building 3"
+
+[node name="Building4" parent="Decor" instance=ExtResource("1_se3n0")]
+position = Vector2(-3330, -2002)
+scale = Vector2(5.03, 1.77)
+
+[node name="Label4" type="Label" parent="Decor/Building4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -569.308
+offset_top = -147.983
+offset_right = -436.308
+offset_bottom = -124.983
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "Random Building 4"
