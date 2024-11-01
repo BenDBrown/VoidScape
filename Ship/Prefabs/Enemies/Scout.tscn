@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Ship/AI/state_manager.gd" id="7_0wryf"]
 [ext_resource type="Script" path="res://Ship/AI/idle.gd" id="8_bpwhd"]
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="9_la8j8"]
-[ext_resource type="PackedScene" uid="uid://6wsr2f441bes" path="res://Ship/AI/follow.tscn" id="10_f42tc"]
+[ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_bjp2g"]
 
 [node name="Scout" type="CharacterBody2D"]
 collision_layer = 16
@@ -49,4 +49,5 @@ detect_radius = 300.0
 script = ExtResource("9_la8j8")
 detect_radius = 300.0
 
-[node name="Follow" parent="StateManager" instance=ExtResource("10_f42tc")]
+[node name="Follow" type="Node" parent="StateManager"]
+script = ExtResource("10_bjp2g")

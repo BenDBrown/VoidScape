@@ -3,39 +3,49 @@ extends AIState
 class_name Follow
 @export var min_distance: float = 150
 @export var max_distance: float = 300
-@export var out_of_detection_distance: float = 400
-var split_up:SplitUp
+@export var out_of_detection_distance: float = 500
+var split_up: SplitUp
 var combat_scene = preload("res://Ship/AI/ai_combat.tscn")
-var combat:Combat
+var combat: Combat
 
 func enter():
 	super.enter()
-	if!split_up:
+	if !split_up:
 		split_up = SplitUp.new()
-		split_up.ship=parent
-	if!combat:
+	if !combat:
 		combat = combat_scene.instantiate()
-		combat.ship=parent
+		combat.ship = parent
+
+	split_up.enter(parent)
+	combat.enter(parent)
 
 func exit():
 	super.exit()
+	split_up.exit()
+	combat.exit()
+
 	parent.StopTurning()
 	parent.StopThrustingForward()
 	transitioned.emit(self, "idle")
 	parent.remove_child(combat)
+	
 
 func physics_update(_delta):
 	if combat:
-		combat.combat_enganged(player)
-	var splitDir = split_up.get_dir()
+		combat.physics_update(player)
+
 	rotate_towards(player.global_position)
+
+	var splitDir = split_up.get_dir()
 	var dist = parent.global_position.distance_to(player.global_position)
-	if splitDir.x >0:
-		#print("going right")
+	if splitDir.x > 0:
 		parent.StartThrustingRight()
-	elif splitDir.x<0:
-		#print("going left")
+	elif splitDir.x < 0:
 		parent.StartThrustingLeft()
+	else:
+		parent.StopThrustingLeft()
+		parent.StopThrustingRight()
+
 	if dist > out_of_detection_distance:
 		exit()
 	elif dist > max_distance:
@@ -44,12 +54,10 @@ func physics_update(_delta):
 		retreat()
 	else:
 		parent.StopThrustingForward()
-		
-
 
 
 func rotate_towards(globalPos: Vector2):
-	var angle:float = Utils.get_angle(parent.global_position, globalPos, parent.global_rotation)
+	var angle: float = Utils.get_angle(parent.global_position, globalPos, parent.global_rotation)
 	if angle > 0.3:
 		parent.StartTurningClockwise()
 	elif angle < -0.3:
@@ -60,7 +68,7 @@ func rotate_towards(globalPos: Vector2):
 func retreat():
 	parent.StopTurning()
 	parent.StartThrustingBackward()
-	
+
 
 func strafe_around_target(_target):
 	pass
