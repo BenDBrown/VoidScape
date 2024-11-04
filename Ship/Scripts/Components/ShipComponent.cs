@@ -1,7 +1,5 @@
-using Godot;
 using System;
-using Godot.Collections;
-using System.Linq;
+using Godot;
 
 [GlobalClass]
 public partial class ShipComponent : CharacterBody2D
@@ -11,36 +9,60 @@ public partial class ShipComponent : CharacterBody2D
 
     [Export]
     private CollisionShape2D collider;
-    [Export]
-    private Node2D[] vertices;
 
     [Export]
     private Sprite2D sprite;
 
     [Export]
-    public bool TopAttachable { get; private set; }
+    private Node healthComponent;
+
     [Export]
-    public bool BottomAttachable { get; private set; }
-    [Export]
-    public bool RightAttachable { get; private set; }
-    [Export]
-    public bool LeftAttachable { get; private set; }
+    public ShipComponentData Data;
 
     private bool destroyed = false;
 
-    public bool IsDestroyed() => destroyed;
-
-    public Vector2[] GetVertices()
+    public override void _Ready()
     {
-        Vector2[] v2Vertices = new Vector2[vertices.Length];
-        for (int i = 0; i < vertices.Length; i++)
+        if (Data != null)
         {
-            Vector2 v2 = vertices[i].GlobalPosition;
-            v2Vertices[i] = v2;
+            Data.SetUp(this);
         }
-        return v2Vertices;
+        if (healthComponent != null && healthComponent.HasSignal("died"))
+        {
+            healthComponent.Connect("died", Callable.From(Destroyed));
+        }
     }
 
+    public bool IsDestroyed() => destroyed;
+
+    private void Destroyed()
+    {
+        if (destroyed) { return; }
+        GD.PrintS(Name, " Destroyed");
+        destroyed = true;
+        collider.SetDeferred("disabled", true);
+        Hide();
+        EmitSignal(SignalName.OnDestroyed, this);
+    }
+
+    private void Revived()
+    {
+        collider.SetDeferred("disabled", false);
+        Show();
+        destroyed = false;
+        Visible = true;
+    }
+
+    public void SetSprite(Texture2D texture) => sprite.Texture = texture;
+
+    public void SetHealthComponent(int maxHealth, int defense) => healthComponent.Call("set_component", maxHealth, defense);
+
+
+    #region ToBeRemoved
+    public bool TopAttachable { get; private set; }
+    public bool BottomAttachable { get; private set; }
+    public bool RightAttachable { get; private set; }
+    public bool LeftAttachable { get; private set; }
     public void Mirror()
     {
         bool newAttachableA;
@@ -62,7 +84,6 @@ public partial class ShipComponent : CharacterBody2D
             sprite.FlipV = !sprite.FlipV;
         }
     }
-
     public void RotateRight()
     {
         bool newTop;
@@ -98,25 +119,5 @@ public partial class ShipComponent : CharacterBody2D
         RotationDegrees -= 90;
         if (RotationDegrees <= -360) { RotationDegrees = 0; }
     }
-
-    private void Destroyed()
-    {
-        if (destroyed)
-        {
-            return;
-        }
-        GD.PrintS(Name, " Destroyed");
-        destroyed = true;
-        collider.SetDeferred("disabled", true);
-        Hide();
-        EmitSignal(SignalName.OnDestroyed, this);
-    }
-
-    private void Revived()
-    {
-        collider.SetDeferred("disabled", false);
-        Show();
-        destroyed = false;
-        Visible = true;
-    }
+    #endregion
 }

@@ -1,41 +1,57 @@
-[gd_scene load_steps=11 format=3 uid="uid://6pkivhgarchh"]
+[gd_scene load_steps=17 format=3 uid="uid://6pkivhgarchh"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_r1t2t"]
-[ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Ship/ShipComponents/CockpitSpear.tscn" id="2_k0f33"]
-[ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_nrke5"]
-[ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Ship/ShipComponents/Generator.tscn" id="4_4umao"]
+[ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_fiuix"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Cockpit_1.tres" id="3_1is46"]
+[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_nrke5"]
+[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="4_4umao"]
 [ext_resource type="PackedScene" uid="uid://br8tldgan3h6l" path="res://Ship/AI/NPCgun.tscn" id="4_ckija"]
-[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="6_3qqkv"]
+[ext_resource type="Script" path="res://Ship/Scripts/Components/ShipComponent.cs" id="5_c3c0w"]
+[ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Fuel Tank.tres" id="5_cgxar"]
+[ext_resource type="PackedScene" uid="uid://cle732tl1y8sx" path="res://Ship/ShipComponents/Thruster.tscn" id="6_3qqkv"]
 [ext_resource type="Script" path="res://Ship/AI/state_manager.gd" id="7_0wryf"]
 [ext_resource type="Script" path="res://Ship/AI/idle.gd" id="8_bpwhd"]
+[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Gun.tres" id="8_wu7gh"]
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="9_la8j8"]
 [ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_bjp2g"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Generator.tres" id="10_voav4"]
+[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Thruster.tres" id="12_doldb"]
 
 [node name="Scout" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 63
 script = ExtResource("1_r1t2t")
+buildOnStart = true
 
-[node name="Cockpit" parent="." instance=ExtResource("2_k0f33")]
+[node name="Cockpit" parent="." instance=ExtResource("2_fiuix")]
+Data = ExtResource("3_1is46")
 
 [node name="FuelTank" parent="." instance=ExtResource("3_nrke5")]
 position = Vector2(-32, 32)
 rotation = 3.14159
+Data = ExtResource("5_cgxar")
 
 [node name="Gun" parent="." instance=ExtResource("4_ckija")]
 position = Vector2(32, 0)
+script = ExtResource("5_c3c0w")
+Data = ExtResource("8_wu7gh")
 
 [node name="Gun2" parent="." instance=ExtResource("4_ckija")]
 position = Vector2(-32, 0)
+script = ExtResource("5_c3c0w")
+Data = ExtResource("8_wu7gh")
 
 [node name="Generator" parent="." instance=ExtResource("4_4umao")]
 position = Vector2(0, 32)
+Data = ExtResource("10_voav4")
 
 [node name="Thruster" parent="." instance=ExtResource("6_3qqkv")]
 position = Vector2(0, 64)
+Data = ExtResource("12_doldb")
 
 [node name="FuelTank2" parent="." instance=ExtResource("3_nrke5")]
 position = Vector2(32, 32)
+Data = ExtResource("5_cgxar")
 
 [node name="StateManager" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_0wryf")

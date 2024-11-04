@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=4 format=3 uid="uid://dc0h7q8fch0n0"]
+
+[ext_resource type="Script" path="res://Ship/refactor/ShipComponentData.cs" id="1_8n2ym"]
+[ext_resource type="Texture2D" uid="uid://co3wmd6wgsxln" path="res://UI/Sprites/Thruster.png" id="1_xcotb"]
+[ext_resource type="PackedScene" uid="uid://cle732tl1y8sx" path="res://Ship/ShipComponents/Thruster.tscn" id="2_dju6x"]
+
+[resource]
+script = ExtResource("1_8n2ym")
+Name = "Arzo Thruster"
+Description = "Hello"
+Sprite = ExtResource("1_xcotb")
+TopAttachable = true
+BottomAttachable = false
+LeftAttachable = false
+RightAttachable = false
+Type = 6
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("2_dju6x")

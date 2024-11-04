@@ -6,25 +6,36 @@ using System.Collections.Generic;
 public partial class ShipComponentData : Resource
 {
 	[Export]
+	public string Name = "Component";
+	[Export]
 	public string Description = "Hello";
+
+	[ExportCategory("Visual & UI")]
 	[Export]
-	public Texture2D Sprite;
+	public Texture2D Sprite { get; private set; }
+
 	[Export]
-	public bool TopAttachable;
+	public bool TopAttachable { get; private set; }
 	[Export]
-	public bool BottomAttachable;
+	public bool BottomAttachable { get; private set; }
 	[Export]
-	public bool LeftAttachable;
+	public bool LeftAttachable { get; private set; }
 	[Export]
-	public bool RightAttachable;
+	public bool RightAttachable { get; private set; }
 	[Export]
 	public ComponentType Type = ComponentType.COMPONENT;
 
-	[ExportCategory("Health Component")]
-
+	[ExportCategory("Ship Data")]
 	[Export]
 	public int MaxHealth = 100;
-
 	[Export]
 	public int Defense = 10;
+	[Export]
+	private PackedScene prefab;
+
+	public virtual void SetUp(ShipComponent component)
+	{
+		component.SetSprite(Sprite);
+		component.SetHealthComponent(MaxHealth, Defense);
+	}
 }

@@ -7,7 +7,7 @@ public partial class Gun : ShipComponent, IPowerable
 	private int powerdraw;
 
 	[Export]
-	private PackedScene ammo;
+	private PackedScene bulletPrefab;
 
 	[Export]
 	private AttackComponent attackComponent;
@@ -44,7 +44,7 @@ public partial class Gun : ShipComponent, IPowerable
 		if (!canShoot || !isShootingPressed) { return; }
 
 		canShoot = false;
-		Bullet bullet = ammo.Instantiate() as Bullet;
+		Bullet bullet = bulletPrefab.Instantiate() as Bullet;
 		bullet.GlobalPosition = GlobalPosition;
 		bullet.GlobalRotation = GlobalRotation;
 		bullet.Position += Vector2.FromAngle(bullet.GlobalRotation + 1.5f) * bulletSpawnOffset;

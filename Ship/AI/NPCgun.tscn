@@ -4,6 +4,9 @@
 
 [node name="Gun" instance=ExtResource("1_iwjgd")]
 
+[node name="BulletSpawnPoint" parent="." index="10"]
+position = Vector2(6, -33)
+
 [node name="NPC guncast" type="RayCast2D" parent="." index="11"]
 position = Vector2(6, -12)
 target_position = Vector2(0, -20)

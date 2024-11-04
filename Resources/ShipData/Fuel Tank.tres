@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=4 format=3 uid="uid://btsesvosi62ol"]
+
+[ext_resource type="Texture2D" uid="uid://cylueh1gukar2" path="res://UI/Sprites/Tank.png" id="1_7ilrg"]
+[ext_resource type="Script" path="res://Ship/refactor/ShipComponentData.cs" id="1_drwjn"]
+[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="2_yq1i1"]
+
+[resource]
+script = ExtResource("1_drwjn")
+Name = "Exterior Fuel Tank"
+Description = "Hello"
+Sprite = ExtResource("1_7ilrg")
+TopAttachable = false
+BottomAttachable = false
+LeftAttachable = true
+RightAttachable = false
+Type = 3
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("2_yq1i1")

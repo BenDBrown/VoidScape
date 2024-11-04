@@ -89,7 +89,7 @@ public partial class Ship : CharacterBody2D, IShip
 
 			shipComponents.Add(shipComponent);
 			shipComponent.OnDestroyed += ComponentDestroyed;
-			globalVertices.AddRange(shipComponent.GetVertices());
+			globalVertices.Add(shipComponent.GlobalPosition);
 		}
 
 		Vector2 center = centerCalculator.GetGlobalShipCenter(globalVertices);

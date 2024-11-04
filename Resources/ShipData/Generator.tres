@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=4 format=3 uid="uid://bn45f5ywhhqpf"]
+
+[ext_resource type="Texture2D" uid="uid://ditqke4fq55bh" path="res://UI/Sprites/Generator.png" id="1_2q20y"]
+[ext_resource type="Script" path="res://Ship/refactor/ShipComponentData.cs" id="1_ge3yk"]
+[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="2_0j17x"]
+
+[resource]
+script = ExtResource("1_ge3yk")
+Name = "Arzo Generator"
+Description = "Hello"
+Sprite = ExtResource("1_2q20y")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 4
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("2_0j17x")
