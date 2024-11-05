@@ -22,7 +22,7 @@ func enter():
 func exit():
 	super.exit()
 	timer.stop()
-	
+
 func on_timeout():
 	exit()
 	transitioned.emit(self, "patrol")

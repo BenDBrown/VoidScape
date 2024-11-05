@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6wsr2f441bes"]
+
+[ext_resource type="Script" path="res://Ship/AI/follow.gd" id="1_fmmbv"]
+
+[node name="Follow" type="Node"]
+script = ExtResource("1_fmmbv")

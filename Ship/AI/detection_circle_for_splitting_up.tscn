@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://doov0wkuucu2n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oo6rt"]
+radius = 200.639
+
+[node name="detection_circle_for_splitting_up" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oo6rt")
