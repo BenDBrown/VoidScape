@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_y4fe4")
-Description = "Hello"
+Description = "Is it working"
 Sprite = ExtResource("1_dsvwd")
 TopAttachable = false
 BottomAttachable = true
