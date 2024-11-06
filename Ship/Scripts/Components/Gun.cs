@@ -1,35 +1,31 @@
 using Godot;
-using System;
 
 public partial class Gun : ShipComponent, IPowerable
 {
 	[Export]
-	private int powerdraw;
-
-	[Export]
-	private PackedScene bulletPrefab;
-
-	[Export]
-	private AttackComponent attackComponent;
-
-	[Export]
 	private Timer timer;
 
 	[Export]
-	private float bulletSpeed;
-
-	[Export] // lower values = faster
-	private double fireInterval = 1;
-
+	private AttackComponent attackComponent;
 	[Export]
 	public GunType type { get; private set; }
+	[Export]
+	private Node2D bulletSpawnPoint;
 
-	private int bulletSpawnOffset = -32;
+	private int powerdraw;
+	private PackedScene bulletPrefab;
+
+	private float bulletSpeed;
+	private double bulletsPerSecond = 1;
+	private float bulletSpawnOffset = 32;
 	private bool canShoot = true;
 	private bool isShootingPressed = false;
 
 	public override void _Ready()
 	{
+		base._Ready();
+		timer.Stop();
+		canShoot = true;
 		timer.Timeout += () => canShoot = true;
 		timer.Timeout += Shoot;
 	}
@@ -42,17 +38,32 @@ public partial class Gun : ShipComponent, IPowerable
 	{
 		if (IsDestroyed()) { return; }
 		if (!canShoot || !isShootingPressed) { return; }
-
 		canShoot = false;
+
 		Bullet bullet = bulletPrefab.Instantiate() as Bullet;
-		bullet.GlobalPosition = GlobalPosition;
+
+		bullet.GlobalPosition = bulletSpawnPoint.GlobalPosition;
 		bullet.GlobalRotation = GlobalRotation;
-		bullet.Position += Vector2.FromAngle(bullet.GlobalRotation + 1.5f) * bulletSpawnOffset;
 		bullet.SetAttackInfo(attackComponent);
 		bullet.speed = bulletSpeed;
 		GetTree().CurrentScene.AddChild(bullet);
-		timer.Start(fireInterval);
+		timer.Start(1 / bulletsPerSecond);
 	}
 
 	public int GetPowerDraw() => powerdraw;
+
+	protected override void SetupData()
+	{
+		base.SetupData();
+		if (Data is GunData gunData)
+		{
+			attackComponent.attack = gunData.Attack;
+			bulletsPerSecond = gunData.BulletsPerSecond;
+			bulletSpeed = gunData.BulletSpeed;
+			bulletSpawnPoint.Position = gunData.BulletSpawnPoint;
+			if (IsMirrored) { bulletSpawnPoint.Position *= Vector2.Left + Vector2.Down; }
+			bulletPrefab = gunData.BulletPrefab;
+			type = gunData.type;
+		}
+	}
 }

@@ -19,13 +19,19 @@ public partial class ShipComponent : CharacterBody2D
     [Export]
     public ShipComponentData Data;
 
+    [Export]
+    public bool IsMirrored = false;
     private bool destroyed = false;
 
     public override void _Ready()
     {
         if (Data != null)
         {
-            Data.SetUp(this);
+            SetupData();
+        }
+        else
+        {
+            GD.PushError(GetParent().Name + "'s " + Name + " is Missing ShipComponentData");
         }
         if (healthComponent != null && healthComponent.HasSignal("died"))
         {
@@ -37,7 +43,7 @@ public partial class ShipComponent : CharacterBody2D
 
     private void Destroyed()
     {
-        if (destroyed) { return; }
+        if (IsDestroyed()) { return; }
         GD.PrintS(Name, " Destroyed");
         destroyed = true;
         collider.SetDeferred("disabled", true);
@@ -53,10 +59,20 @@ public partial class ShipComponent : CharacterBody2D
         Visible = true;
     }
 
-    public void SetSprite(Texture2D texture) => sprite.Texture = texture;
-
-    public void SetHealthComponent(int maxHealth, int defense) => healthComponent.Call("set_component", maxHealth, defense);
-
+    /// <summary>
+    /// Gets called in ShipComponent's _Ready.
+    /// Used to set the data of a component. Sprite and Health data is pre set
+    /// </summary>
+    protected virtual void SetupData()
+    {
+        sprite.Texture = Data.Sprite;
+        sprite.FlipH = IsMirrored;
+        healthComponent.Call("set_component", Data.MaxHealth, Data.Defense);
+        TopAttachable = Data.TopAttachable;
+        BottomAttachable = Data.BottomAttachable;
+        RightAttachable = Data.RightAttachable;
+        LeftAttachable = Data.LeftAttachable;
+    }
 
     #region ToBeRemoved
     public bool TopAttachable { get; private set; }

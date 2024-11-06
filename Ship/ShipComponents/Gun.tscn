@@ -1,24 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgqy8786pscn"]
+[gd_scene load_steps=4 format=3 uid="uid://bgqy8786pscn"]
 
 [ext_resource type="PackedScene" uid="uid://s6d2cbttlfra" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_2kdol"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Gun.cs" id="2_g548h"]
-[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="3_i4bn6"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_4keds"]
 
-[node name="Gun" node_paths=PackedStringArray("attackComponent", "timer") instance=ExtResource("1_2kdol")]
+[node name="Gun" node_paths=PackedStringArray("timer", "attackComponent", "bulletSpawnPoint") instance=ExtResource("1_2kdol")]
 script = ExtResource("2_g548h")
-powerdraw = 0
-ammo = ExtResource("3_i4bn6")
-attackComponent = NodePath("AttackComponent")
 timer = NodePath("Timer")
-bulletSpeed = 300.0
-fireInterval = 0.2
+attackComponent = NodePath("AttackComponent")
 type = 0
+bulletSpawnPoint = NodePath("BulletSpawnPoint")
 
 [node name="Timer" type="Timer" parent="." index="4"]
 
 [node name="BulletSpawnPoint" type="Node2D" parent="." index="5"]
-position = Vector2(0, -28)
+position = Vector2(8, -20)
 
 [node name="AttackComponent" type="Node" parent="." index="6"]
 script = ExtResource("4_4keds")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2tsqs6vt33fd"]
 
 [ext_resource type="Script" path="res://UI/Scenes/Components/Component.cs" id="1_f5v65"]
-[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Cockpit_1.tres" id="2_hj7l7"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo Cockpit.tres" id="2_hj7l7"]
 
 [node name="Thruster" type="Control" node_paths=PackedStringArray("texture")]
 layout_mode = 3

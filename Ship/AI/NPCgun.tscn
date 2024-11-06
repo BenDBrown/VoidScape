@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://br8tldgan3h6l"]
 
-[ext_resource type="PackedScene" uid="uid://38862x8qpd87" path="res://Ship/ShipComponents/Gun.tscn" id="1_iwjgd"]
+[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="1_iwjgd"]
 
 [node name="Gun" instance=ExtResource("1_iwjgd")]
 
-[node name="BulletSpawnPoint" parent="." index="10"]
+[node name="BulletSpawnPoint" parent="." index="5"]
 position = Vector2(6, -33)
 
-[node name="NPC guncast" type="RayCast2D" parent="." index="11"]
+[node name="NPC guncast" type="RayCast2D" parent="." index="7"]
 position = Vector2(6, -12)
 target_position = Vector2(0, -20)

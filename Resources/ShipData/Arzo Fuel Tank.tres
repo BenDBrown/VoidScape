@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ShipComponentData" load_steps=4 format=3 uid="uid://btsesvosi62ol"]
 
 [ext_resource type="Texture2D" uid="uid://cylueh1gukar2" path="res://UI/Sprites/Tank.png" id="1_7ilrg"]
-[ext_resource type="Script" path="res://Ship/refactor/ShipComponentData.cs" id="1_drwjn"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_er1qk"]
 [ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="2_yq1i1"]
 
 [resource]
-script = ExtResource("1_drwjn")
-Name = "Exterior Fuel Tank"
-Description = "Hello"
+script = ExtResource("1_er1qk")
+Name = "Arzo Fuel Tank"
+Description = "Lv1"
 Sprite = ExtResource("1_7ilrg")
 TopAttachable = false
 BottomAttachable = false

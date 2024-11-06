@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 
 [GlobalClass]
 public partial class ShipComponentData : Resource
@@ -33,9 +31,6 @@ public partial class ShipComponentData : Resource
 	[Export]
 	private PackedScene prefab;
 
-	public virtual void SetUp(ShipComponent component)
-	{
-		component.SetSprite(Sprite);
-		component.SetHealthComponent(MaxHealth, Defense);
-	}
+	public ShipComponent GetPrefab() => prefab.Instantiate() as ShipComponent;
+	public string GetPrefabPath() => prefab.ResourcePath;
 }

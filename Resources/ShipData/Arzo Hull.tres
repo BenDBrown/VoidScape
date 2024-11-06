@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ShipComponentData" load_steps=4 format=3 uid="uid://bbcg4mu0p2j8l"]
 
 [ext_resource type="Texture2D" uid="uid://c82lammf17h2s" path="res://UI/Sprites/Hull.png" id="1_lkt67"]
-[ext_resource type="Script" path="res://Ship/refactor/ShipComponentData.cs" id="1_pk866"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_pk866"]
 [ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="2_2i4dm"]
 
 [resource]

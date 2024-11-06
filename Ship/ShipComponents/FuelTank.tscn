@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://s6d2cbttlfra" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_j4fs2"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/FuelTank.cs" id="2_s8nau"]
 
-[node name="Fuel Tank" node_paths=PackedStringArray("healthComponent") instance=ExtResource("1_j4fs2")]
+[node name="Fuel Tank" instance=ExtResource("1_j4fs2")]
 script = ExtResource("2_s8nau")
 fuelCapacity = 0
-healthComponent = NodePath("HealthComponent")
