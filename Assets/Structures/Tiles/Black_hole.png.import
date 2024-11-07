@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxjsml5hi4q71"
-path="res://.godot/imported/CelestialObjects.png-bc7cb3ab7586cfffdeae0e1cb43b217a.ctex"
+uid="uid://csedeffld0e5t"
+path="res://.godot/imported/Black_hole.png-0d796399eeb471bd9d476cedd3dbd057.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/CelestialObjects.png"
-dest_files=["res://.godot/imported/CelestialObjects.png-bc7cb3ab7586cfffdeae0e1cb43b217a.ctex"]
+source_file="res://Assets/Structures/Tiles/Black_hole.png"
+dest_files=["res://.godot/imported/Black_hole.png-0d796399eeb471bd9d476cedd3dbd057.ctex"]
 
 [params]
 

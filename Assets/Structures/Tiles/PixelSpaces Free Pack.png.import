@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhnvsh0q61yvk"
-path="res://.godot/imported/props.png-066371891affbee1a801e2b316ec347a.ctex"
+uid="uid://d4660an6wcl7"
+path="res://.godot/imported/PixelSpaces Free Pack.png-970120dbf7171d09ab7abeb03b08359f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/props.png"
-dest_files=["res://.godot/imported/props.png-066371891affbee1a801e2b316ec347a.ctex"]
+source_file="res://Assets/Structures/Tiles/PixelSpaces Free Pack.png"
+dest_files=["res://.godot/imported/PixelSpaces Free Pack.png-970120dbf7171d09ab7abeb03b08359f.ctex"]
 
 [params]
 

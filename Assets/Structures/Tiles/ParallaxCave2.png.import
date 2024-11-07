@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f6uheoe4apl4"
-path="res://.godot/imported/Room_Builder_free_16x16.png-246bb0e54100591a81567521126006c5.ctex"
+uid="uid://d0uwip8jytr5m"
+path="res://.godot/imported/ParallaxCave2.png-4b34be972b245f97110185b068b00b8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/Room_Builder_free_16x16.png"
-dest_files=["res://.godot/imported/Room_Builder_free_16x16.png-246bb0e54100591a81567521126006c5.ctex"]
+source_file="res://Assets/Structures/Tiles/ParallaxCave2.png"
+dest_files=["res://.godot/imported/ParallaxCave2.png-4b34be972b245f97110185b068b00b8d.ctex"]
 
 [params]
 

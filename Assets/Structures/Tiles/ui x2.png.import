@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2eo8c2ijdicv"
-path="res://.godot/imported/preview-top-down-sci-fi.png-408017b3c6cb9bdd1e328e74174a0851.ctex"
+uid="uid://cb331x20uss8b"
+path="res://.godot/imported/ui x2.png-0eaa39fd30c8f7ba51d53cfd2f7cf3ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/preview-top-down-sci-fi.png"
-dest_files=["res://.godot/imported/preview-top-down-sci-fi.png-408017b3c6cb9bdd1e328e74174a0851.ctex"]
+source_file="res://Assets/Structures/Tiles/ui x2.png"
+dest_files=["res://.godot/imported/ui x2.png-0eaa39fd30c8f7ba51d53cfd2f7cf3ce.ctex"]
 
 [params]
 

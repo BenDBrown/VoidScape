@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dekqsd2mthix4"
-path="res://.godot/imported/Terran.png-f80d68eece3fac0cfe9d4af4e5e86787.ctex"
+uid="uid://dhnvsh0q61yvk"
+path="res://.godot/imported/props.png-8d7ce53e843aa3097317867e3ee9b863.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/Terran.png"
-dest_files=["res://.godot/imported/Terran.png-f80d68eece3fac0cfe9d4af4e5e86787.ctex"]
+source_file="res://Assets/Structures/Tiles/props.png"
+dest_files=["res://.godot/imported/props.png-8d7ce53e843aa3097317867e3ee9b863.ctex"]
 
 [params]
 

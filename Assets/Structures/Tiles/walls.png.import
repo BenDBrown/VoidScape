@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bttav3ebno21j"
-path="res://.godot/imported/underwater props.png-6cbdfd5aed2e3335ccb6aa416a1829e8.ctex"
+uid="uid://c1bi538c0g4lg"
+path="res://.godot/imported/walls.png-dd86f74efe87311f5592503f9bdfae94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/underwater props.png"
-dest_files=["res://.godot/imported/underwater props.png-6cbdfd5aed2e3335ccb6aa416a1829e8.ctex"]
+source_file="res://Assets/Structures/Tiles/walls.png"
+dest_files=["res://.godot/imported/walls.png-dd86f74efe87311f5592503f9bdfae94.ctex"]
 
 [params]
 

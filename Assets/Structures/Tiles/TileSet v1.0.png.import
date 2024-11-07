@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4660an6wcl7"
-path="res://.godot/imported/PixelSpaces Free Pack.png-c289f9326fdda96be840d588928ceb45.ctex"
+uid="uid://clddn41gqnl45"
+path="res://.godot/imported/TileSet v1.0.png-50150a9898bf34115ef3df8f55369955.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/PixelSpaces Free Pack.png"
-dest_files=["res://.godot/imported/PixelSpaces Free Pack.png-c289f9326fdda96be840d588928ceb45.ctex"]
+source_file="res://Assets/Structures/Tiles/TileSet v1.0.png"
+dest_files=["res://.godot/imported/TileSet v1.0.png-50150a9898bf34115ef3df8f55369955.ctex"]
 
 [params]
 

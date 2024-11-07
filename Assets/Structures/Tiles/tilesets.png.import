@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5mphwj26sfw7"
-path="res://.godot/imported/underwater tiles.png-499b62edb1603e82b7b04d978e1942a5.ctex"
+uid="uid://b1ou2cnr01rh2"
+path="res://.godot/imported/tilesets.png-9d06fc808a62bc8b89b33e1427819cf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/underwater tiles.png"
-dest_files=["res://.godot/imported/underwater tiles.png-499b62edb1603e82b7b04d978e1942a5.ctex"]
+source_file="res://Assets/Structures/Tiles/tilesets.png"
+dest_files=["res://.godot/imported/tilesets.png-9d06fc808a62bc8b89b33e1427819cf1.ctex"]
 
 [params]
 

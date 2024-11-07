@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csedeffld0e5t"
-path="res://.godot/imported/Black_hole.png-20dea4560ee05cdd66001f51017d1e7f.ctex"
+uid="uid://dy4shjto261ab"
+path="res://.godot/imported/CaveBG.png-210d5d908456c5eed007ce6ec4f16950.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/Black_hole.png"
-dest_files=["res://.godot/imported/Black_hole.png-20dea4560ee05cdd66001f51017d1e7f.ctex"]
+source_file="res://Assets/Structures/Tiles/CaveBG.png"
+dest_files=["res://.godot/imported/CaveBG.png-210d5d908456c5eed007ce6ec4f16950.ctex"]
 
 [params]
 

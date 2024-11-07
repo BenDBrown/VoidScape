@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1bi538c0g4lg"
-path="res://.godot/imported/walls.png-89061d81a7ab438716e5b5181f1f2dbf.ctex"
+uid="uid://c084gveh711km"
+path="res://.godot/imported/CaveG.png-b9c509bd7f7d9febf4da448333a97653.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/walls.png"
-dest_files=["res://.godot/imported/walls.png-89061d81a7ab438716e5b5181f1f2dbf.ctex"]
+source_file="res://Assets/Structures/Tiles/CaveG.png"
+dest_files=["res://.godot/imported/CaveG.png-b9c509bd7f7d9febf4da448333a97653.ctex"]
 
 [params]
 

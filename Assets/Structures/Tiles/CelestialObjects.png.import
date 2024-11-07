@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dneks7dlw1e5g"
-path="res://.godot/imported/ParallaxCave4.png-0d4b52b48ce1a25f33cf8d63b39ed426.ctex"
+uid="uid://dxjsml5hi4q71"
+path="res://.godot/imported/CelestialObjects.png-8ce28f0f35528498c84908a1faeb1129.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/ParallaxCave4.png"
-dest_files=["res://.godot/imported/ParallaxCave4.png-0d4b52b48ce1a25f33cf8d63b39ed426.ctex"]
+source_file="res://Assets/Structures/Tiles/CelestialObjects.png"
+dest_files=["res://.godot/imported/CelestialObjects.png-8ce28f0f35528498c84908a1faeb1129.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uyqyex1r5dmn"
-path="res://.godot/imported/Baren.png-90ad2998f53c0973e41ad299a6cf26c7.ctex"
+uid="uid://dekqsd2mthix4"
+path="res://.godot/imported/Terran.png-2554a9cab87535540ed10d946805fdcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/Baren.png"
-dest_files=["res://.godot/imported/Baren.png-90ad2998f53c0973e41ad299a6cf26c7.ctex"]
+source_file="res://Assets/Structures/Tiles/Terran.png"
+dest_files=["res://.godot/imported/Terran.png-2554a9cab87535540ed10d946805fdcf.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c084gveh711km"
-path="res://.godot/imported/CaveG.png-f15cba7a8df2141030f0812ac44fd1ad.ctex"
+uid="uid://2eo8c2ijdicv"
+path="res://.godot/imported/preview-top-down-sci-fi.png-8c16f6b4ecbc0f5cdd7d4d6369d4c553.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/PNGs/CaveG.png"
-dest_files=["res://.godot/imported/CaveG.png-f15cba7a8df2141030f0812ac44fd1ad.ctex"]
+source_file="res://Assets/Structures/Tiles/preview-top-down-sci-fi.png"
+dest_files=["res://.godot/imported/preview-top-down-sci-fi.png-8c16f6b4ecbc0f5cdd7d4d6369d4c553.ctex"]
 
 [params]
 
