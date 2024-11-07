@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=4 uid="uid://cnl2fjy0g1c2q"]
+
+[ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="1_qxke1"]
+[ext_resource type="TileSet" uid="uid://cic6cq1ycfnjo" path="res://Assets/Structures/Tilesets/TilesWithCollision.tres" id="2_p7t14"]
+[ext_resource type="Script" path="res://Structures/SpaceBuoy/Scripts/Randomize_Rotation_Startt.gd" id="3_psw13"]
+
+[sub_resource type="Animation" id="Animation_vgdu8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vjiiq"]
+resource_name = "Rotate"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.393123, 0.785312, 1.17727, 1.57019, 1.96314, 2.35582, 2.74815, 3.1423, 3.53368, 3.92654, 4.3198, 4.71288, 5.10577, 5.49741, 5.89038, 6.28292]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(28.1345, 2.71507), Vector2(53.0303, 15.9578), Vector2(70.9665, 37.6959), Vector2(79.2456, 64.7063), Vector2(76.5512, 92.8305), Vector2(63.3056, 117.764), Vector2(41.5486, 135.719), Vector2(14.4487, 144.005), Vector2(-13.5628, 141.307), Vector2(-38.5099, 128.059), Vector2(-56.6136, 106.321), Vector2(-65.0039, 79.318), Vector2(-62.4153, 51.1742), Vector2(-49.3057, 26.2362), Vector2(-27.5851, 8.1441), Vector2(-0.622356, -0.248192)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ck2bb"]
+_data = {
+"RESET": SubResource("Animation_vgdu8"),
+"Rotate": SubResource("Animation_vjiiq")
+}
+
+[node name="Space_Buoy" type="Node2D"]
+
+[node name="Background" type="TileMapLayer" parent="."]
+position = Vector2(-1, 0)
+tile_set = ExtResource("1_qxke1")
+
+[node name="Terrain" type="TileMapLayer" parent="."]
+position = Vector2(-1, 0)
+tile_map_data = PackedByteArray("AAD+/wIAAAAmAA4AAAD+/wMAAAAmAA8AAAD//wIAAAAnAA4AAAD//wMAAQAGAAAAAAABAAIAAAAoAA4AAAABAAMAAQALAAAAAAACAAIAAAApAA4AAAACAAMAAAApAA8AAAABAAUAAQALAAUAAAABAAYAAAAoABEAAAACAAUAAAApABAAAAACAAYAAAApABEAAAD+/wUAAAAmABAAAAD+/wYAAAAmABEAAAD//wUAAQAGAAUAAAD//wYAAAAnABEAAAAAAAMAAQAHAAAAAAABAAQAAQAHAAAAAFAAAAUAAQAHAAAAADD//wQAAQAHAAAAAGAAAAYAAAAaABAAADD+/wQAAAAaABAAAGAAAAIAAAAaABAAAAACAAQAAAAaABAAAFAAAAQAAAAIABQAAAA=")
+tile_set = ExtResource("1_qxke1")
+
+[node name="Ground" type="TileMapLayer" parent="."]
+position = Vector2(-1, 0)
+tile_set = ExtResource("1_qxke1")
+
+[node name="Middle" type="TileMapLayer" parent="."]
+position = Vector2(-1, 0)
+tile_set = ExtResource("1_qxke1")
+
+[node name="Building" type="TileMapLayer" parent="."]
+position = Vector2(-1, 0)
+tile_map_data = PackedByteArray("AAAAAAQABwACAAkAAAA=")
+tile_set = ExtResource("2_p7t14")
+
+[node name="Top" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD9/wEACwAAAAAAAAD9/wYAAQAPAAQAAGD9/wcADAAAAAAAAGD+/wEAAQAPAAQAAAD+/wYAAQACAAcAAAD+/wcAAQAOAAQAADD//wMAAQACAAYAADD//wUAAQADAAYAAAABAAMAAQADAAYAADABAAUAAQADAAcAADACAAEAAQAOAAQAAAACAAYAAQADAAcAAAACAAcAAQAPAAQAADADAAEADAAAAAAAAFADAAYAAQAOAAQAAFADAAcACwAAAAAAADD+/wIAAQADAAcAADACAAIAAQADAAYAAAD9/wIAAQAOAAQAAGADAAIAAQAPAAQAAFAAAAUAAQAPAAQAAAD//wQAAQAPAAQAAFAAAAMAAQAPAAQAADABAAQAAQAPAAQAAGA=")
+tile_set = ExtResource("1_qxke1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Top"]
+libraries = {
+"": SubResource("AnimationLibrary_ck2bb")
+}
+autoplay = "Rotate"
+speed_scale = 0.75
+script = ExtResource("3_psw13")
