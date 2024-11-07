@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxcat74b0i27t"]
+[gd_scene load_steps=12 format=3 uid="uid://bxcat74b0i27t"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_ojqoj"]
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="2_xs7mv"]
 [ext_resource type="PackedScene" uid="uid://rnlbolmete83" path="res://Structures/Regions/asteroid_belt.tscn" id="3_r55pe"]
 [ext_resource type="PackedScene" uid="uid://sptevungn7va" path="res://Structures/Regions/broken_moon.tscn" id="5_cesyg"]
+[ext_resource type="PackedScene" uid="uid://6pkivhgarchh" path="res://Ship/Prefabs/Enemies/Scout.tscn" id="6_4ed6b"]
 [ext_resource type="PackedScene" uid="uid://s527nmikjcui" path="res://Structures/Regions/town_inner.tscn" id="6_tp0nj"]
 [ext_resource type="PackedScene" uid="uid://cnl2fjy0g1c2q" path="res://Structures/Props/SpaceBuoy/space_buoy.tscn" id="6_u20mx"]
 [ext_resource type="PackedScene" uid="uid://crbl3dcgw0veo" path="res://Structures/Regions/junkyard_entance.tscn" id="7_6jhkc"]
 [ext_resource type="PackedScene" uid="uid://s84gieyvjdlo" path="res://Structures/Props/Station/space_station.tscn" id="7_jprpq"]
 [ext_resource type="PackedScene" uid="uid://bw0swwhxxdmdu" path="res://Structures/Props/blackhole.tscn" id="8_y6lm2"]
+[ext_resource type="PackedScene" uid="uid://bernw3hc8f3fi" path="res://Structures/Props/Stranded Ship Event/stranded_ship.tscn" id="10_v1rti"]
 
 [node name="Level_1" type="Node2D"]
 
@@ -32,7 +34,7 @@ scale = Vector2(3, 3)
 [node name="Town" type="Node2D" parent="Level Regions"]
 
 [node name="Town_Inner" parent="Level Regions/Town" instance=ExtResource("6_tp0nj")]
-position = Vector2(4202, -2289)
+position = Vector2(5108, -2681)
 scale = Vector2(3, 3)
 
 [node name="Danger zone" type="Node2D" parent="Level Regions"]
@@ -40,6 +42,35 @@ scale = Vector2(3, 3)
 [node name="Broken_Moon" parent="Level Regions/Danger zone" instance=ExtResource("5_cesyg")]
 position = Vector2(-4477, 510)
 scale = Vector2(3, 3)
+
+[node name="Enemies" type="Node2D" parent="Level Regions/Danger zone"]
+
+[node name="Scout" parent="Level Regions/Danger zone/Enemies" instance=ExtResource("6_4ed6b")]
+position = Vector2(-7313, 801)
+
+[node name="Scout2" parent="Level Regions/Danger zone/Enemies" instance=ExtResource("6_4ed6b")]
+position = Vector2(-7531, 352)
+rotation = 1.88496
+
+[node name="Scout3" parent="Level Regions/Danger zone/Enemies" instance=ExtResource("6_4ed6b")]
+position = Vector2(-6000, 503)
+rotation = 1.88496
+
+[node name="Scout7" parent="Level Regions/Danger zone/Enemies" instance=ExtResource("6_4ed6b")]
+position = Vector2(-3654, -2088)
+rotation = 1.88496
+
+[node name="Scout4" parent="Level Regions/Danger zone/Enemies" instance=ExtResource("6_4ed6b")]
+position = Vector2(-6073, -2994)
+rotation = 1.88496
+
+[node name="Scout5" parent="Level Regions/Danger zone/Enemies" instance=ExtResource("6_4ed6b")]
+position = Vector2(-5142, -2810)
+rotation = 3.94095
+
+[node name="Scout6" parent="Level Regions/Danger zone/Enemies" instance=ExtResource("6_4ed6b")]
+position = Vector2(-6358, -3662)
+rotation = 3.94095
 
 [node name="Station zone" type="Node2D" parent="Level Regions"]
 
@@ -116,3 +147,6 @@ scale = Vector2(3, 3)
 [node name="Blackhole" parent="Level Regions/Spawn" instance=ExtResource("8_y6lm2")]
 position = Vector2(8462, 9272)
 scale = Vector2(70, 70)
+
+[node name="Stranded_Ship" parent="." instance=ExtResource("10_v1rti")]
+position = Vector2(481, -2756)
