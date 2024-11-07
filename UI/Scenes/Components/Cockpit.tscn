@@ -3,12 +3,14 @@
 [ext_resource type="Script" path="res://UI/Scenes/Components/Component.cs" id="1_2is11"]
 [ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Cockpit_1.tres" id="2_rfbar"]
 
-[node name="Cockpit" type="Control"]
+[node name="Cockpit" type="Control" node_paths=PackedStringArray("texture")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 148.0
-offset_top = 111.0
-offset_right = 148.0
-offset_bottom = 111.0
 script = ExtResource("1_2is11")
 DataResource = ExtResource("2_rfbar")
+texture = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
