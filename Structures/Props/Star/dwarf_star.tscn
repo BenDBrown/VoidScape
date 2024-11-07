@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn0i4vfnuj3fv"]
+[gd_scene load_steps=8 format=3 uid="uid://bn0i4vfnuj3fv"]
 
-[ext_resource type="Texture2D" uid="uid://va41h3ly5xxc" path="res://Assets/Aseprite/Hazards 1.png" id="1_0erwi"]
 [ext_resource type="Script" path="res://Structures/Props/Star/Scripts/CollisionWithStar.gd" id="1_0glvx"]
 [ext_resource type="Script" path="res://Structures/Props/Star/Scripts/gravitational_pull.gd" id="2_pu273"]
+[ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="3_cvwa1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cttg"]
 radius = 500.0
@@ -10,9 +10,21 @@ radius = 500.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftyfq"]
 radius = 300.0
 
+[sub_resource type="Gradient" id="Gradient_c17tv"]
+offsets = PackedFloat32Array(0.236934, 0.933798)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ve3l"]
+gradient = SubResource("Gradient_c17tv")
+width = 202
+height = 202
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Dwarf Star" type="Node2D"]
 
 [node name="GravitationalPull" type="Area2D" parent="."]
+visible = false
 position = Vector2(-8, -3)
 collision_layer = 2
 collision_mask = 59
@@ -29,15 +41,23 @@ shape = SubResource("CircleShape2D_4cttg")
 debug_color = Color(0, 0.645228, 0.264605, 0.42)
 
 [node name="Core" type="Area2D" parent="."]
+visible = false
 script = ExtResource("1_0glvx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Core"]
 shape = SubResource("CircleShape2D_ftyfq")
 debug_color = Color(0.999475, 0, 0.111879, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(20.795, 20.795)
-texture = ExtResource("1_0erwi")
+[node name="Texture" type="TileMapLayer" parent="."]
+scale = Vector2(23, 23)
+tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 18, 0, 10, 0, 12, 0, 0, 0, 255, 255, 0, 0, 18, 0, 10, 0, 13, 0, 0, 0, 0, 0, 255, 255, 18, 0, 11, 0, 12, 0, 0, 0, 0, 0, 0, 0, 18, 0, 11, 0, 13, 0, 0, 0)
+tile_set = ExtResource("3_cvwa1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.584314, 1, 1, 1)
+energy = 0.15
+texture = SubResource("GradientTexture2D_8ve3l")
+texture_scale = 10.0
 
 [connection signal="area_entered" from="Core" to="Core" method="_on_area_entered"]
 [connection signal="body_entered" from="Core" to="Core" method="_on_body_entered"]

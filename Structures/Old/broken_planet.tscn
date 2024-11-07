@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cppb7hqli8ckx"]
 
-[ext_resource type="PackedScene" uid="uid://dp04heb7bctdn" path="res://Structures/Buildings/Building.tscn" id="1_xxito"]
+[ext_resource type="PackedScene" uid="uid://dp04heb7bctdn" path="res://Structures/Old/Buildings/Building.tscn" id="1_xxito"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhyah"]
 radius = 911.53

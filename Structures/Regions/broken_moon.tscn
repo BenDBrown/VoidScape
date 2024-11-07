@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://sptevungn7va"]
 
-[ext_resource type="PackedScene" uid="uid://dom2xqww5mdme" path="res://Structures/Props/Generator/generator.tscn" id="1_et2hw"]
+[ext_resource type="PackedScene" uid="uid://dom2xqww5mdme" path="res://Structures/Props/Structure Generator/Structure_generator.tscn" id="1_et2hw"]
 [ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="1_pui47"]
 [ext_resource type="TileSet" uid="uid://cic6cq1ycfnjo" path="res://Assets/Structures/Tilesets/TilesWithCollision.tres" id="2_h34fe"]
 

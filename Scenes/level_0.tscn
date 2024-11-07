@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxcat74b0i27t"]
+[gd_scene load_steps=10 format=3 uid="uid://bxcat74b0i27t"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_ojqoj"]
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="2_xs7mv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://s527nmikjcui" path="res://Structures/Regions/town_inner.tscn" id="6_tp0nj"]
 [ext_resource type="PackedScene" uid="uid://cnl2fjy0g1c2q" path="res://Structures/Props/SpaceBuoy/space_buoy.tscn" id="6_u20mx"]
 [ext_resource type="PackedScene" uid="uid://crbl3dcgw0veo" path="res://Structures/Regions/junkyard_entance.tscn" id="7_6jhkc"]
+[ext_resource type="PackedScene" uid="uid://s84gieyvjdlo" path="res://Structures/Props/Station/space_station.tscn" id="7_jprpq"]
 [ext_resource type="PackedScene" uid="uid://bw0swwhxxdmdu" path="res://Structures/Props/blackhole.tscn" id="8_y6lm2"]
 
 [node name="Level_1" type="Node2D"]
@@ -46,6 +47,7 @@ scale = Vector2(3, 3)
 
 [node name="Space_Buoy" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
 position = Vector2(-171, -6250)
+rotation = 0.15708
 scale = Vector2(4, 4)
 
 [node name="Space_Buoy2" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
@@ -62,18 +64,22 @@ scale = Vector2(4, 4)
 
 [node name="Space_Buoy5" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
 position = Vector2(7512, -6465)
+rotation = -0.293215
 scale = Vector2(4, 4)
 
 [node name="Space_Buoy6" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
 position = Vector2(9766, -7156)
+rotation = -0.322886
 scale = Vector2(4, 4)
 
 [node name="Space_Buoy7" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
-position = Vector2(11954, -7917)
+position = Vector2(11581, -7761)
+rotation = -0.293215
 scale = Vector2(4, 4)
 
 [node name="Space_Buoy8" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
-position = Vector2(15129, -9361)
+position = Vector2(15291, -8750)
+rotation = -0.514872
 scale = Vector2(4, 4)
 
 [node name="Space_Buoy10" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
@@ -95,6 +101,11 @@ scale = Vector2(4, 4)
 [node name="Space_Buoy14" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
 position = Vector2(22804, -11311)
 scale = Vector2(4, 4)
+
+[node name="Space Station" parent="Level Regions/Station zone" instance=ExtResource("7_jprpq")]
+z_index = -100
+position = Vector2(2853, -9393)
+scale = Vector2(30, 30)
 
 [node name="Spawn" type="Node2D" parent="Level Regions"]
 

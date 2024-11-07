@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c0i0k7nd0arbx"]
 
-[ext_resource type="PackedScene" uid="uid://dp04heb7bctdn" path="res://Structures/Buildings/Building.tscn" id="1_se3n0"]
-[ext_resource type="PackedScene" uid="uid://cte3k4ivkkaoc" path="res://Structures/Regions/region_area.tscn" id="2_pkjcv"]
-[ext_resource type="PackedScene" uid="uid://dtmn1g0662tqh" path="res://Structures/Buildings/Garage.tscn" id="2_t0yod"]
-[ext_resource type="PackedScene" uid="uid://t0e0vdi6pgob" path="res://Structures/Buildings/gas_station.tscn" id="3_ffin4"]
+[ext_resource type="PackedScene" uid="uid://dp04heb7bctdn" path="res://Structures/Old/Buildings/Building.tscn" id="1_se3n0"]
+[ext_resource type="PackedScene" uid="uid://cte3k4ivkkaoc" path="res://Structures/Old/region_area.tscn" id="2_pkjcv"]
+[ext_resource type="PackedScene" uid="uid://dtmn1g0662tqh" path="res://Structures/Old/Buildings/Garage.tscn" id="2_t0yod"]
+[ext_resource type="PackedScene" uid="uid://t0e0vdi6pgob" path="res://Structures/Old/Buildings/gas_station.tscn" id="3_ffin4"]
 
 [node name="Town" type="Node2D"]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://cnl2fjy0g1c2q"]
+[gd_scene load_steps=11 format=4 uid="uid://cnl2fjy0g1c2q"]
 
 [ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="1_qxke1"]
 [ext_resource type="TileSet" uid="uid://cic6cq1ycfnjo" path="res://Assets/Structures/Tilesets/TilesWithCollision.tres" id="2_p7t14"]
-[ext_resource type="Script" path="res://Structures/Props/SpaceBuoy/Scripts/Randomize_Rotation_Startt.gd" id="3_psw13"]
+[ext_resource type="Script" path="res://Structures/Props/SpaceBuoy/Scripts/Randomize_Rotation_Start.gd" id="3_psw13"]
+[ext_resource type="Script" path="res://Structures/Props/SpaceBuoy/Entry_Detection.gd" id="4_6mvcc"]
 
 [sub_resource type="Animation" id="Animation_vgdu8"]
 length = 0.001
@@ -66,39 +67,74 @@ _data = {
 "Rotate": SubResource("Animation_vjiiq")
 }
 
+[sub_resource type="Gradient" id="Gradient_meu21"]
+offsets = PackedFloat32Array(0.0522648, 0.766551, 0.989547)
+colors = PackedColorArray(1, 1, 1, 1, 0.0520446, 0.0520446, 0.0520446, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5iimi"]
+gradient = SubResource("Gradient_meu21")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvraj"]
+size = Vector2(700, 185)
+
 [node name="Space_Buoy" type="Node2D"]
 
-[node name="Background" type="TileMapLayer" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Background" type="TileMapLayer" parent="Sprites"]
 position = Vector2(-1, 0)
 tile_set = ExtResource("1_qxke1")
 
-[node name="Terrain" type="TileMapLayer" parent="."]
+[node name="Terrain" type="TileMapLayer" parent="Sprites"]
 position = Vector2(-1, 0)
 tile_map_data = PackedByteArray("AAD+/wIAAAAmAA4AAAD+/wMAAAAmAA8AAAD//wIAAAAnAA4AAAD//wMAAQAGAAAAAAABAAIAAAAoAA4AAAABAAMAAQALAAAAAAACAAIAAAApAA4AAAACAAMAAAApAA8AAAABAAUAAQALAAUAAAABAAYAAAAoABEAAAACAAUAAAApABAAAAACAAYAAAApABEAAAD+/wUAAAAmABAAAAD+/wYAAAAmABEAAAD//wUAAQAGAAUAAAD//wYAAAAnABEAAAAAAAMAAQAHAAAAAAABAAQAAQAHAAAAAFAAAAUAAQAHAAAAADD//wQAAQAHAAAAAGAAAAYAAAAaABAAADD+/wQAAAAaABAAAGAAAAIAAAAaABAAAAACAAQAAAAaABAAAFAAAAQAAAAIABQAAAA=")
 tile_set = ExtResource("1_qxke1")
 
-[node name="Ground" type="TileMapLayer" parent="."]
+[node name="Ground" type="TileMapLayer" parent="Sprites"]
 position = Vector2(-1, 0)
 tile_set = ExtResource("1_qxke1")
 
-[node name="Middle" type="TileMapLayer" parent="."]
+[node name="Middle" type="TileMapLayer" parent="Sprites"]
 position = Vector2(-1, 0)
 tile_set = ExtResource("1_qxke1")
 
-[node name="Building" type="TileMapLayer" parent="."]
+[node name="Building" type="TileMapLayer" parent="Sprites"]
 position = Vector2(-1, 0)
 tile_map_data = PackedByteArray("AAAAAAQABwACAAkAAAA=")
 tile_set = ExtResource("2_p7t14")
 
-[node name="Top" type="TileMapLayer" parent="."]
+[node name="Top" type="TileMapLayer" parent="Sprites"]
 z_index = 5
 tile_map_data = PackedByteArray("AAD9/wEACwAAAAAAAAD9/wYAAQAPAAQAAGD9/wcADAAAAAAAAGD+/wEAAQAPAAQAAAD+/wYAAQACAAcAAAD+/wcAAQAOAAQAADD//wMAAQACAAYAADD//wUAAQADAAYAAAABAAMAAQADAAYAADABAAUAAQADAAcAADACAAEAAQAOAAQAAAACAAYAAQADAAcAAAACAAcAAQAPAAQAADADAAEADAAAAAAAAFADAAYAAQAOAAQAAFADAAcACwAAAAAAADD+/wIAAQADAAcAADACAAIAAQADAAYAAAD9/wIAAQAOAAQAAGADAAIAAQAPAAQAAFAAAAUAAQAPAAQAAAD//wQAAQAPAAQAAFAAAAMAAQAPAAQAADABAAQAAQAPAAQAAGA=")
 tile_set = ExtResource("1_qxke1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Top"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites/Top"]
 libraries = {
 "": SubResource("AnimationLibrary_ck2bb")
 }
 autoplay = "Rotate"
 speed_scale = 0.75
 script = ExtResource("3_psw13")
+
+[node name="Light" type="PointLight2D" parent="Sprites/Top"]
+position = Vector2(-39, 119)
+color = Color(1, 0, 0, 1)
+texture = SubResource("GradientTexture2D_5iimi")
+
+[node name="Light 2" type="PointLight2D" parent="Sprites/Top"]
+position = Vector2(56, 24)
+color = Color(1, 0, 0, 1)
+texture = SubResource("GradientTexture2D_5iimi")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(8, 73)
+script = ExtResource("4_6mvcc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -92.5)
+shape = SubResource("RectangleShape2D_qvraj")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
