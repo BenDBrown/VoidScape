@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="1_qxke1"]
 [ext_resource type="TileSet" uid="uid://cic6cq1ycfnjo" path="res://Assets/Structures/Tilesets/TilesWithCollision.tres" id="2_p7t14"]
-[ext_resource type="Script" path="res://Structures/SpaceBuoy/Scripts/Randomize_Rotation_Startt.gd" id="3_psw13"]
+[ext_resource type="Script" path="res://Structures/Props/SpaceBuoy/Scripts/Randomize_Rotation_Startt.gd" id="3_psw13"]
 
 [sub_resource type="Animation" id="Animation_vgdu8"]
 length = 0.001

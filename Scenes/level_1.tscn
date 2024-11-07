@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_gl4t0"]
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="2_hkocj"]
-[ext_resource type="PackedScene" uid="uid://bn0i4vfnuj3fv" path="res://Structures/Star/dwarf_star.tscn" id="3_47gd2"]
+[ext_resource type="PackedScene" uid="uid://bn0i4vfnuj3fv" path="res://Structures/Props/Star/dwarf_star.tscn" id="3_47gd2"]
 [ext_resource type="PackedScene" uid="uid://c0i0k7nd0arbx" path="res://Structures/Regions/Town.tscn" id="3_vvx1c"]
 [ext_resource type="PackedScene" uid="uid://cppb7hqli8ckx" path="res://Structures/Regions/broken_planet.tscn" id="5_rhiwh"]
 [ext_resource type="PackedScene" uid="uid://s527nmikjcui" path="res://Structures/Regions/town_inner.tscn" id="6_wjehb"]

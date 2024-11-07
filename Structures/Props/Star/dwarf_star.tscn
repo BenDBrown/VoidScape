@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn0i4vfnuj3fv"]
 
 [ext_resource type="Texture2D" uid="uid://va41h3ly5xxc" path="res://Assets/Aseprite/Hazards 1.png" id="1_0erwi"]
-[ext_resource type="Script" path="res://Structures/Star/Scripts/CollisionWithStar.gd" id="1_0glvx"]
-[ext_resource type="Script" path="res://Structures/Star/Scripts/gravitational_pull.gd" id="2_pu273"]
+[ext_resource type="Script" path="res://Structures/Props/Star/Scripts/CollisionWithStar.gd" id="1_0glvx"]
+[ext_resource type="Script" path="res://Structures/Props/Star/Scripts/gravitational_pull.gd" id="2_pu273"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cttg"]
 radius = 500.0

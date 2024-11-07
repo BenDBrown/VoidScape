@@ -10,11 +10,16 @@ extends Area2D
 # TEMPORARY Mass of objects being pulled
 @export var objectMass: float = 10.0
 
+@export var gravity_on: bool = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):	
-	for body in get_overlapping_bodies():
-		if body is RigidBody2D:
-			applyGravity(body)
+	
+	if gravity_on:
+		for body in get_overlapping_bodies():
+			if body is RigidBody2D:
+				applyGravity(body)
+
 		
 		#if body is ShipComponent:
 			#applyGravity(body)	
