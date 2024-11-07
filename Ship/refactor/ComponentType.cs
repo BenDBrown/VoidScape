@@ -1,0 +1,10 @@
+public enum ComponentType
+{
+	COMPONENT,
+	COCKPIT,
+	HULL,
+	FUEL_TANK,
+	GENERATOR,
+	GUN,
+	THRUSTER
+}

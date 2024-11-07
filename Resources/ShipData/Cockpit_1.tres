@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=3 format=3 uid="uid://d1wj1c1q8xjf4"]
+
+[ext_resource type="Texture2D" uid="uid://b2jg4yeyk3abi" path="res://UI/Sprites/Cockpit.png" id="1_dsvwd"]
+[ext_resource type="Script" path="res://Ship/refactor/ShipComponentData.cs" id="1_y4fe4"]
+
+[resource]
+script = ExtResource("1_y4fe4")
+Description = "Is it working"
+Sprite = ExtResource("1_dsvwd")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = false
+RightAttachable = false
+Type = 1
+MaxHealth = 100
+Defense = 10
