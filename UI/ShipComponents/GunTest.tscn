@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://co1k3rlhfm03k"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/Components/Gun.cs" id="1_ck8j4"]
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="2_srp8n"]
+[ext_resource type="Script" path="res://Components/AttackComponent.cs" id="3_re1s2"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="4_sslea"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="5_exk6n"]
+[ext_resource type="Texture2D" uid="uid://jexsbw30qkea" path="res://UI/Sprites/Gun.png" id="6_esim0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmvjq"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ihvl"]
+size = Vector2(32, 32)
+
+[node name="Gun" type="CharacterBody2D" node_paths=PackedStringArray("attackComponent", "timer", "collider", "vertices", "sprite")]
+script = ExtResource("1_ck8j4")
+powerdraw = 1
+ammo = ExtResource("2_srp8n")
+attackComponent = NodePath("AttackComponent")
+timer = NodePath("Timer")
+bulletSpeed = 100.0
+fireInterval = 0.2
+collider = NodePath("Collider")
+vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
+LeftAttachable = true
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("3_re1s2")
+attack = 100
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_sslea")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gmvjq")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("5_exk6n")
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_8ihvl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("6_esim0")
+region_rect = Rect2(320, 193, 32, 32)
+
+[node name="VerticeTopLeft" type="Node2D" parent="."]
+position = Vector2(-16, -16)
+
+[node name="VerticeTopRight" type="Node2D" parent="."]
+position = Vector2(16, -16)
+
+[node name="VerticeBotRight" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="VerticeBotLeft" type="Node2D" parent="."]
+position = Vector2(-16, 16)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(5, -35)
+
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]
