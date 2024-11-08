@@ -97,6 +97,7 @@ public partial class Ship : CharacterBody2D, IShip
 		{
 			if (n is Camera2D) { continue; }
 			if (n is Node2D n2) { n2.Position -= ToLocal(center); }
+			if (n is ShipComponent shipComponent) shipComponent.collider.Reparent(this);
 		}
 		thrustManager.SetWeight(shipComponents.Count);
 
