@@ -14,8 +14,6 @@ func add_component(pos, component: ShipComponent):
 	if ship.has(pos):
 		return
 	var shipComponent: Dictionary
-	if component.Data:
-		print("Data exists")
 	shipComponent["component"] = component
 	shipComponent["path"] = component.Data.GetPrefabPath()
 	shipComponent["data_path"] = component.Data.resource_path
@@ -25,7 +23,7 @@ func build_ship(parent: Node2D):
 	if !ship:
 		load_save()
 	for pos in ship.keys():
-		
+
 		var scene = load(ship[pos].path) as PackedScene;
 		var component = scene.instantiate() as ShipComponent;
 		parent.add_child(component)

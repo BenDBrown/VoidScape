@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ditqke4fq55bh" path="res://UI/Sprites/Generator.png" id="1_2q20y"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_vnxqv"]
-[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="2_0j17x"]
+[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="2_ld1ms"]
 
 [resource]
 script = ExtResource("1_vnxqv")
@@ -16,4 +16,4 @@ RightAttachable = true
 Type = 4
 MaxHealth = 100
 Defense = 10
-prefab = ExtResource("2_0j17x")
+prefab = ExtResource("2_ld1ms")

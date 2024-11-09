@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_0wote"]
 [ext_resource type="Texture2D" uid="uid://jexsbw30qkea" path="res://UI/Sprites/Gun.png" id="1_xh2wx"]
-[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="2_mcy5m"]
+[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="3_vgmss"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="4_k32jl"]
 
 [resource]
@@ -23,4 +23,4 @@ RightAttachable = false
 Type = 5
 MaxHealth = 100
 Defense = 10
-prefab = ExtResource("2_mcy5m")
+prefab = ExtResource("3_vgmss")

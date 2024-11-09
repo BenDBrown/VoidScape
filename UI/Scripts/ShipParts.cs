@@ -1,31 +1,35 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class ShipParts : ItemList
 {
 	[Export]
-	public PackedScene[] shipComponents;
-
+	public ShipComponentData[] datas;
 	[Export]
-	public PackedScene scene;
-
+	private Label name, health, defense, description;
+	private Dictionary<int, ShipComponentData> itemListRef = new();
 	public override void _Ready()
 	{
-		Set("theme_override_constants/v_separation", 15);
 		Clear();
 
-		for (int i = 0; i < shipComponents.Length; i++)
+		for (int i = 0; i < datas.Length; i++)
 		{
-			PackedScene itemScene = shipComponents[i];
-			if (itemScene != null)
+			ShipComponentData data = datas[i];
+			if (data != null)
 			{
-				Node instance = itemScene.Instantiate();
-				Sprite2D sprite = (Sprite2D)instance.FindChild("Sprite2D");
-
-				AddItem(instance.Name, sprite.Texture);
+				int index = AddItem(data.Name, data.Sprite);
+				itemListRef[index] = data;
 			}
 		}
+	}
 
-
+	public void OnItemSelected(int index)
+	{
+		ShipComponentData data = itemListRef[index];
+		name.Text = data.Name;
+		health.Text = "Health: " + data.MaxHealth.ToString();
+		defense.Text = "Defense: " + data.Defense.ToString();
+		description.Text = "Description: " + data.Description;
 	}
 }

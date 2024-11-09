@@ -1,5 +1,5 @@
+using Desktop.Ship.Scripts;
 using Godot;
-using System;
 using System.Collections.Generic;
 
 [GlobalClass]
@@ -101,5 +101,23 @@ public partial class Ship : CharacterBody2D, IShip
 		thrustManager.SetWeight(shipComponents.Count);
 
 		return hasThruster;
+	}
+
+	public void Reset() //Change it to be better, maybe keep track of old parts before trybuild and replace if it fails?
+	{
+		foreach (Node child in GetChildren())
+		{
+			if (child is ShipComponent component)
+			{
+				component.OnDestroyed -= ComponentDestroyed;
+				component.QueueFree();
+			}
+		}
+	}
+
+	public void AddComponent(ShipComponent component, Vector2 coordinate)
+	{
+		AddChild(component);
+		component.Position = coordinate * 32;
 	}
 }

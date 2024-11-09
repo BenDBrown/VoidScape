@@ -2,7 +2,6 @@ using Godot;
 
 public class Piece
 {
-
     public Vector2 Coordinate;
     public ShipComponentData ComponentData;
     public bool IsMirrored;
@@ -14,5 +13,6 @@ public class Piece
         Coordinate = coordinate;
         IsMirrored = isMirrored;
         LocalRotation = localRotation;
+
     }
 }

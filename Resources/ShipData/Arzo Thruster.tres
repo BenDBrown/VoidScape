@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ThrusterData.cs" id="1_k8crt"]
 [ext_resource type="Texture2D" uid="uid://co3wmd6wgsxln" path="res://UI/Sprites/Thruster.png" id="1_xcotb"]
-[ext_resource type="PackedScene" uid="uid://cle732tl1y8sx" path="res://Ship/ShipComponents/Thruster.tscn" id="2_dju6x"]
+[ext_resource type="PackedScene" uid="uid://cle732tl1y8sx" path="res://Ship/ShipComponents/Thruster.tscn" id="2_byghf"]
 
 [resource]
 script = ExtResource("1_k8crt")
@@ -17,4 +17,4 @@ RightAttachable = false
 Type = 0
 MaxHealth = 100
 Defense = 10
-prefab = ExtResource("2_dju6x")
+prefab = ExtResource("2_byghf")

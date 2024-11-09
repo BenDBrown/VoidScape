@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://UI/Scripts/Tabs.cs" id="3_fyd7s"]
 [ext_resource type="Script" path="res://UI/Scripts/SnapGrid.cs" id="4_0rreb"]
 [ext_resource type="Script" path="res://UI/Scripts/ShipParts.cs" id="5_vae0y"]
-[ext_resource type="PackedScene" uid="uid://c0c5eca6ab10q" path="res://UI/ShipComponents/CockpitSpearTest.tscn" id="6_eyp57"]
-[ext_resource type="PackedScene" uid="uid://cyinygli6xtxm" path="res://UI/ShipComponents/ThrusterTest.tscn" id="6_wh2tr"]
-[ext_resource type="PackedScene" uid="uid://dbac0h6cctkpo" path="res://UI/ShipComponents/FuelTankTest.tscn" id="7_wh82v"]
-[ext_resource type="PackedScene" uid="uid://cju0cfq4v0gpg" path="res://UI/ShipComponents/CockpitTest.tscn" id="8_y3lwp"]
-[ext_resource type="PackedScene" uid="uid://dti0vpton0bts" path="res://UI/ShipComponents/GeneratorTest.tscn" id="9_n77jp"]
-[ext_resource type="PackedScene" uid="uid://co1k3rlhfm03k" path="res://UI/ShipComponents/GunTest.tscn" id="10_7msi8"]
-[ext_resource type="PackedScene" uid="uid://ym2yw0mmmosw" path="res://UI/ShipComponents/HullTest.tscn" id="11_mkivx"]
+[ext_resource type="Script" path="res://Resources/Scripts/player_ship_save.gd" id="6_bhwvy"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo Cockpit.tres" id="6_vda0v"]
+[ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Arzo Fuel Tank.tres" id="7_xshgl"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo Generator.tres" id="8_h0ajs"]
+[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Arzo Gun.tres" id="9_oi2fc"]
+[ext_resource type="Resource" uid="uid://bbcg4mu0p2j8l" path="res://Resources/ShipData/Arzo Hull.tres" id="10_wp354"]
+[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo Thruster.tres" id="11_gvtg5"]
 
 [sub_resource type="Theme" id="Theme_t0xj3"]
 default_font = ExtResource("1_lag8a")
@@ -29,6 +29,8 @@ grow_vertical = 2
 mouse_filter = 1
 theme = SubResource("Theme_t0xj3")
 script = ExtResource("2_oc8j1")
+datas = Array[Object]([ExtResource("6_vda0v"), ExtResource("8_h0ajs"), ExtResource("11_gvtg5"), ExtResource("9_oi2fc")])
+shipSaverClass = ExtResource("6_bhwvy")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -92,7 +94,6 @@ size_flags_horizontal = 3
 script = ExtResource("4_0rreb")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
-visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -107,6 +108,28 @@ layout_mode = 2
 text = "Information"
 horizontal_alignment = 1
 
+[node name="Space" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
+layout_mode = 2
+text = "Arzo Cockpit"
+horizontal_alignment = 1
+
+[node name="Health" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
+layout_mode = 2
+text = "Health: "
+
+[node name="Defense" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
+layout_mode = 2
+text = "Defense: "
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
+layout_mode = 2
+text = "Flavor Text"
+autowrap_mode = 2
+
 [node name="AvailableParts" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
 layout_mode = 2
 
@@ -117,14 +140,18 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 15
 
-[node name="ShipParts" type="ItemList" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2"]
+[node name="ShipParts" type="ItemList" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2" node_paths=PackedStringArray("name", "health", "defense", "description")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/v_separation = 16
 item_count = 1
 script = ExtResource("5_vae0y")
-shipComponents = Array[PackedScene]([ExtResource("6_eyp57"), ExtResource("8_y3lwp"), ExtResource("7_wh82v"), ExtResource("9_n77jp"), ExtResource("10_7msi8"), ExtResource("11_mkivx"), ExtResource("6_wh2tr")])
-scene = ExtResource("8_y3lwp")
+datas = Array[Object]([ExtResource("6_vda0v"), ExtResource("7_xshgl"), ExtResource("8_h0ajs"), ExtResource("9_oi2fc"), ExtResource("10_wp354"), ExtResource("11_gvtg5")])
+name = NodePath("../../../MarginContainer2/InfoBox/Name")
+health = NodePath("../../../MarginContainer2/InfoBox/Health")
+defense = NodePath("../../../MarginContainer2/InfoBox/Defense")
+description = NodePath("../../../MarginContainer2/InfoBox/Description")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts"]
 layout_mode = 2
@@ -208,4 +235,6 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "QUIT"
 
-[connection signal="button_up" from="MarginContainer/VBoxContainer/ButtonsContainer/Quit" to="." method="OnButtonUp"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2/ShipParts" to="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2/ShipParts" method="OnItemSelected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer/Button" to="." method="OnBuildPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsContainer/Quit" to="." method="OnQuitPressed"]

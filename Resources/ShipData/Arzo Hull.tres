@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c82lammf17h2s" path="res://UI/Sprites/Hull.png" id="1_lkt67"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_pk866"]
-[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="2_2i4dm"]
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="2_ik46n"]
 
 [resource]
 script = ExtResource("1_pk866")
@@ -16,4 +16,4 @@ RightAttachable = true
 Type = 2
 MaxHealth = 100
 Defense = 10
-prefab = ExtResource("2_2i4dm")
+prefab = ExtResource("2_ik46n")

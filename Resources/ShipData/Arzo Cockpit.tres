@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_by474"]
 [ext_resource type="Texture2D" uid="uid://b2jg4yeyk3abi" path="res://UI/Sprites/Cockpit.png" id="1_dsvwd"]
-[ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_rchti"]
+[ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_681ka"]
 
 [resource]
 script = ExtResource("1_by474")
@@ -16,4 +16,4 @@ RightAttachable = false
 Type = 3
 MaxHealth = 100
 Defense = 10
-prefab = ExtResource("2_rchti")
+prefab = ExtResource("2_681ka")

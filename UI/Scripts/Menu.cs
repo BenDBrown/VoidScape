@@ -1,28 +1,29 @@
 using Godot;
-using System;
 
 public partial class Menu : Control
 {
-	public Vector2 OriginalScale;
-	public Ship playership;
+	[Export]
+	private ShipComponentData[] datas;
+	[Signal]
+	public delegate void QuitPressedEventHandler();
+	[Export]
+	private Resource shipSaverClass;
 
-	public override void _Ready()
+	public void OnBuildPressed()
 	{
-		CallDeferred("Init");
+		Piece[] pieces = new Piece[datas.Length];
+		for (int i = 0; i < datas.Length; i++)
+		{
+			Piece piece = new(datas[i], new Vector2(0, i), false, 0);
+			piece.IsMirrored = true;
+			pieces[i] = piece;
+			GD.Print(piece.ComponentData.Name);
+		}
+		Game.Instance.BuildShip(pieces);
 	}
 
-	public void Init()
+	public void OnQuitPressed()
 	{
-		Node game = GetTree().Root.GetNode("Game");
-		var ship = game.Get("player_ship");
-		playership = ship.As<Ship>();
-		OriginalScale = playership.GlobalScale;
-	}
-
-	public void OnButtonUp()
-	{
-		Visible = false;
-		Tween tween = GetTree().CreateTween();
-		tween.TweenProperty(playership, "scale", OriginalScale, 0.8f).SetTrans(Tween.TransitionType.Linear);
+		EmitSignal(SignalName.QuitPressed);
 	}
 }
