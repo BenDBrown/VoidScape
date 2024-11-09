@@ -5,6 +5,12 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class Ship : CharacterBody2D, IShip
 {
+	[Signal]
+	public delegate void OnDestroyedEventHandler(Ship ship);
+	
+	[Export]
+	private SingleRunAnimation ExplosionAnim;
+
 	[Export]
 	private bool buildOnStart = false;
 	protected ThrustManager thrustManager = new();
@@ -30,15 +36,31 @@ public partial class Ship : CharacterBody2D, IShip
 		MoveAndSlide();
 	}
 
-	public void ShipDestroyed()
+	protected void ShipDestroyed()
 	{
-		GD.Print("ship destroyed");
+		EmitSignal(SignalName.OnDestroyed, this);
+		foreach(ShipComponent shipComponent in shipComponents) { shipComponent.Visible = false; }
+		ExplosionAnim.Visible = true;
+		ExplosionAnim.Play();
 	}
 
 	public void ComponentDestroyed(ShipComponent shipComponent)
 	{
 		thrustManager.SetWeight(thrustManager.weight - 1);
 		GD.Print(shipComponent.Name + " destroyed");
+		if(shipComponent is FuelTank || shipComponent is Generator || shipComponent is Thruster || shipComponent is Cockpit)
+		{
+			Type destroyedComponentType = shipComponent.GetType();
+			foreach(ShipComponent s in shipComponents)
+			{
+				if(s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent)
+				{
+					GD.Print("compnent was not last");
+					return;
+				}
+			}
+			ShipDestroyed();
+		}
 	}
 
 	// shooting
@@ -89,6 +111,7 @@ public partial class Ship : CharacterBody2D, IShip
 
 			shipComponents.Add(shipComponent);
 			shipComponent.OnDestroyed += ComponentDestroyed;
+			GD.Print(shipComponent.Name + " added");
 			globalVertices.AddRange(shipComponent.GetVertices());
 		}
 
