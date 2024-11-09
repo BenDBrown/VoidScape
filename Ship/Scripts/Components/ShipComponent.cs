@@ -8,7 +8,7 @@ public partial class ShipComponent : CharacterBody2D
     public delegate void OnDestroyedEventHandler(ShipComponent shipComponent);
 
     [Export]
-    private CollisionShape2D collider;
+    public CollisionShape2D collider { get; private set; }
 
     [Export]
     private Sprite2D sprite;
