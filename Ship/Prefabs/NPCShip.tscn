@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpmtcqfjhik1c"]
+[gd_scene load_steps=3 format=3 uid="uid://bpmtcqfjhik1c"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_6w6dx"]
+[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="2_sifan"]
 
-[node name="NpcShip" type="CharacterBody2D"]
+[node name="NpcShip" type="CharacterBody2D" node_paths=PackedStringArray("ExplosionAnim")]
 script = ExtResource("1_6w6dx")
+ExplosionAnim = NodePath("ExplosionAnim")
+
+[node name="ExplosionAnim" parent="." instance=ExtResource("2_sifan")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

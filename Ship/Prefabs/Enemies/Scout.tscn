@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6pkivhgarchh"]
+[gd_scene load_steps=12 format=3 uid="uid://6pkivhgarchh"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_r1t2t"]
 [ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Ship/ShipComponents/CockpitSpear.tscn" id="2_k0f33"]
@@ -10,11 +10,13 @@
 [ext_resource type="Script" path="res://Ship/AI/idle.gd" id="8_bpwhd"]
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="9_la8j8"]
 [ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_bjp2g"]
+[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="11_5ontd"]
 
-[node name="Scout" type="CharacterBody2D"]
+[node name="Scout" type="CharacterBody2D" node_paths=PackedStringArray("ExplosionAnim")]
 collision_layer = 16
 collision_mask = 63
 script = ExtResource("1_r1t2t")
+ExplosionAnim = NodePath("ExplosionAnim")
 
 [node name="Cockpit" parent="." instance=ExtResource("2_k0f33")]
 
@@ -51,3 +53,5 @@ detect_radius = 300.0
 
 [node name="Follow" type="Node" parent="StateManager"]
 script = ExtResource("10_bjp2g")
+
+[node name="ExplosionAnim" parent="." instance=ExtResource("11_5ontd")]
