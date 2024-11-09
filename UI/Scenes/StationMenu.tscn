@@ -114,20 +114,16 @@ horizontal_alignment = 1
 
 [node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
 layout_mode = 2
-text = "Arzo Cockpit"
 horizontal_alignment = 1
 
 [node name="Health" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
 layout_mode = 2
-text = "Health: "
 
 [node name="Defense" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
 layout_mode = 2
-text = "Defense: "
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
 layout_mode = 2
-text = "Flavor Text"
 autowrap_mode = 2
 
 [node name="AvailableParts" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]

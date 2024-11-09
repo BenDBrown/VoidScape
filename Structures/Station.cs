@@ -42,7 +42,7 @@ public partial class Station : Sprite2D
 
 	public void OnBodyEntered(Node2D node2D)
 	{
-		if (node2D.GetParent() == playerShip)
+		if (node2D == playerShip)
 		{
 			popup.Visible = true;
 			isOnBody = true;
