@@ -1,5 +1,6 @@
 using Desktop.Ship.Scripts;
 using Godot;
+using System;
 using System.Collections.Generic;
 
 [GlobalClass]
@@ -119,13 +120,21 @@ public partial class Ship : CharacterBody2D, IShip
 		{
 			if (n is Camera2D) { continue; }
 			if (n is Node2D n2) { n2.Position -= ToLocal(center); }
-			if (n is ShipComponent shipComponent) shipComponent.collider.Reparent(this);
+			if (n is ShipComponent shipComponent)
+			{
+				shipComponent.collider.Owner = null; //prevents warning.
+				shipComponent.collider.Reparent(this);
+				shipComponent.collider.Owner = this;
+			}
 		}
 		thrustManager.SetWeight(shipComponents.Count);
 
 		return hasThruster;
 	}
 
+	/// <summary>
+	/// Removes all ShipComponents from the ship. Used when reusing ship.
+	/// </summary>
 	public void Reset() //Change it to be better, maybe keep track of old parts before trybuild and replace if it fails?
 	{
 		foreach (Node child in GetChildren())
@@ -138,6 +147,12 @@ public partial class Ship : CharacterBody2D, IShip
 		}
 	}
 
+	/// <summary>
+	/// Add Ship components based on a coordinate system. 
+	/// This is used primarily when building ship in code to make it easier to connect pieces together
+	/// </summary>
+	/// <param name="component"></param>
+	/// <param name="coordinate"></param>
 	public void AddComponent(ShipComponent component, Vector2 coordinate)
 	{
 		AddChild(component);
