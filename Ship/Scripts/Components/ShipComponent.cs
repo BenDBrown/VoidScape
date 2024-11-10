@@ -1,7 +1,5 @@
-using Godot;
 using System;
-using Godot.Collections;
-using System.Linq;
+using Godot;
 
 [GlobalClass]
 public partial class ShipComponent : CharacterBody2D
@@ -11,36 +9,76 @@ public partial class ShipComponent : CharacterBody2D
 
     [Export]
     public CollisionShape2D collider { get; private set; }
-    [Export]
-    private Node2D[] vertices;
 
     [Export]
     private Sprite2D sprite;
 
     [Export]
-    public bool TopAttachable { get; private set; }
-    [Export]
-    public bool BottomAttachable { get; private set; }
-    [Export]
-    public bool RightAttachable { get; private set; }
-    [Export]
-    public bool LeftAttachable { get; private set; }
+    private Node healthComponent;
 
+    [Export]
+    public ShipComponentData Data;
+
+    [Export]
+    public bool IsMirrored = false;
     private bool destroyed = false;
+
+    public override void _Ready()
+    {
+        if (Data != null)
+        {
+            SetupData();
+        }
+        else
+        {
+            GD.PushError(GetParent().Name + "'s " + Name + " is Missing ShipComponentData");
+        }
+        if (healthComponent != null && healthComponent.HasSignal("died"))
+        {
+            healthComponent.Connect("died", Callable.From(Destroyed));
+        }
+    }
 
     public bool IsDestroyed() => destroyed;
 
-    public Vector2[] GetVertices()
+    private void Destroyed()
     {
-        Vector2[] v2Vertices = new Vector2[vertices.Length];
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            Vector2 v2 = vertices[i].GlobalPosition;
-            v2Vertices[i] = v2;
-        }
-        return v2Vertices;
+        if (IsDestroyed()) { return; }
+        GD.PrintS(Name, " Destroyed");
+        destroyed = true;
+        collider.SetDeferred("disabled", true);
+        Hide();
+        EmitSignal(SignalName.OnDestroyed, this);
     }
 
+    private void Revived()
+    {
+        collider.SetDeferred("disabled", false);
+        Show();
+        destroyed = false;
+        Visible = true;
+    }
+
+    /// <summary>
+    /// Gets called in ShipComponent's _Ready.
+    /// Used to set the data of a component. Sprite and Health data is pre set
+    /// </summary>
+    protected virtual void SetupData()
+    {
+        sprite.Texture = Data.Sprite;
+        sprite.FlipH = IsMirrored;
+        healthComponent.Call("set_component", Data.MaxHealth, Data.Defense);
+        TopAttachable = Data.TopAttachable;
+        BottomAttachable = Data.BottomAttachable;
+        RightAttachable = Data.RightAttachable;
+        LeftAttachable = Data.LeftAttachable;
+    }
+
+    #region ToBeRemoved
+    public bool TopAttachable { get; private set; }
+    public bool BottomAttachable { get; private set; }
+    public bool RightAttachable { get; private set; }
+    public bool LeftAttachable { get; private set; }
     public void Mirror()
     {
         bool newAttachableA;
@@ -62,7 +100,6 @@ public partial class ShipComponent : CharacterBody2D
             sprite.FlipV = !sprite.FlipV;
         }
     }
-
     public void RotateRight()
     {
         bool newTop;
@@ -98,25 +135,5 @@ public partial class ShipComponent : CharacterBody2D
         RotationDegrees -= 90;
         if (RotationDegrees <= -360) { RotationDegrees = 0; }
     }
-
-    private void Destroyed()
-    {
-        if (destroyed)
-        {
-            return;
-        }
-        GD.PrintS(Name, " Destroyed");
-        destroyed = true;
-        collider.SetDeferred("disabled", true);
-        Hide();
-        EmitSignal(SignalName.OnDestroyed, this);
-    }
-
-    private void Revived()
-    {
-        collider.SetDeferred("disabled", false);
-        Show();
-        destroyed = false;
-        Visible = true;
-    }
+    #endregion
 }

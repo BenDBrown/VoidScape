@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvp5m7jc70th7"]
+[gd_scene load_steps=2 format=3 uid="uid://cjd11dr51es0x"]
 
 [ext_resource type="Script" path="res://Ship/AI/ai_combat.gd" id="1_bklod"]
-[ext_resource type="PackedScene" uid="uid://ctlkswf0fn6x0" path="res://Ship/AI/detection_area.tscn" id="2_y32k2"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_bklod")
-detection_area_scene = ExtResource("2_y32k2")
-spreading = 300
-length = 300

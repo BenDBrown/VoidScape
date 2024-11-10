@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://dv0dhvqb124yl"]
+
+[ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="1_dppm3"]
+[ext_resource type="Texture2D" uid="uid://dojjgakoq5ima" path="res://Assets/Ship/ShipExplosion.png" id="1_t0yy1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qtxb"]
+atlas = ExtResource("1_t0yy1")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w0hx"]
+atlas = ExtResource("1_t0yy1")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00isw"]
+atlas = ExtResource("1_t0yy1")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g254g"]
+atlas = ExtResource("1_t0yy1")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdpjb"]
+atlas = ExtResource("1_t0yy1")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rseds"]
+atlas = ExtResource("1_t0yy1")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56ojt"]
+atlas = ExtResource("1_t0yy1")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3s18"]
+animations = [{
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_5qtxb")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_0w0hx")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_00isw")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_g254g")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_rdpjb")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_rseds")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_56ojt")
+}],
+"loop": false,
+"name": &"Explosion",
+"speed": 5.0
+}]
+
+[node name="ExplosionAnim" type="AnimatedSprite2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_u3s18")
+animation = &"Explosion"
+script = ExtResource("1_dppm3")
+animationName = "Explosion"

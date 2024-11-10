@@ -1,9 +1,9 @@
-extends Node
+extends Node2D
 class_name Combat
 
-@export var detection_area_scene: PackedScene
-@export_range(0, 300) var spreading: int
-@export_range(0, 300) var length: int
+@export var detection_area_scene: PackedScene = preload("res://Ship/AI/detection_area.tscn")
+@export_range(0, 300) var spreading: int = 300
+@export_range(0, 300) var length: int = 300
 @export var angle_cone_vision = deg_to_rad(30.0)
 @export var max_view_distance = 800.0
 @export var angle_between_rays = deg_to_rad(5.0)
@@ -25,12 +25,8 @@ func enter(parent):
 	if !cast_vect:
 		cast_vect = create_sweeping_range()
 	if !ray:
-		ray = raycast_scene.instantiate()
-		ray.add_exception(parent)
-		add_child(ray)
-		for c in parent.get_children():
-			if c is CollisionObject2D:
-				ray.add_exception(c)
+		ray = create_ray()
+		
 
 func exit():
 	pass
@@ -48,7 +44,7 @@ func is_in_detection_cone(target):
 	for index in cast_vect:
 		ray.set_target_position(index)
 		ray.force_raycast_update()
-		if ray.is_colliding() && ray.get_collider().get_parent() == target:
+		if target != null && ray.is_colliding() && ray.get_collider().get_parent() == target:
 			return true
 	return false
 
@@ -60,14 +56,23 @@ func create_sweeping_range():
 		output.append(vects)
 	return output
 
+func create_ray():
+	var r = raycast_scene.instantiate()
+	add_child(r)
+	r.add_exception(ship)
+	for c in ship.get_children():
+		if c is CollisionObject2D:
+			r.add_exception(c)
+	return r
+
 func attack(target):
-	prints("ATTAKING ", ray.get_collider().get_parent().name)
 	if ray.is_colliding() and ray.get_collider().get_parent() == target:
 		ship.StartShooting()
 
 func create_detection_cone():
 	var cone = detection_area_scene.instantiate() as Area2D
 	add_child(cone)
+	cone.global_position = ship.global_position
 	cone.name = "eyes_for_guns"
 	cone.area_entered.connect(on_area_entered)
 	cone.area_exited.connect(on_area_exited)
@@ -75,13 +80,11 @@ func create_detection_cone():
 	return cone
 
 func on_area_exited(target: Area2D):
-	if target.get_parent().get_parent() == player:
-		exited = true
-		in_area = false
-	else:
-		exited = false
+	if !is_in_detection_cone(target.get_parent().get_parent()):
 		ship.StopShooting()
-
+		exited = true
+		
+		
 #creating a method that has the ability to attack the player on the detected location from the Area2D's that are part of the ship
 func on_area_entered(target: Area2D):
 	var par = target.get_parent()

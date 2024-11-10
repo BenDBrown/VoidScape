@@ -1,3 +1,4 @@
+using Desktop.Ship.Scripts;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -5,6 +6,12 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class Ship : CharacterBody2D, IShip
 {
+	[Signal]
+	public delegate void OnDestroyedEventHandler(Ship ship);
+
+	[Export]
+	private SingleRunAnimation ExplosionAnim;
+
 	[Export]
 	private bool buildOnStart = false;
 	protected ThrustManager thrustManager = new();
@@ -30,15 +37,31 @@ public partial class Ship : CharacterBody2D, IShip
 		MoveAndSlide();
 	}
 
-	public void ShipDestroyed()
+	protected void ShipDestroyed()
 	{
-		GD.Print("ship destroyed");
+		EmitSignal(SignalName.OnDestroyed, this);
+		foreach (ShipComponent shipComponent in shipComponents) { shipComponent.Visible = false; }
+		ExplosionAnim.Visible = true;
+		ExplosionAnim.Play();
 	}
 
 	public void ComponentDestroyed(ShipComponent shipComponent)
 	{
 		thrustManager.SetWeight(thrustManager.weight - 1);
 		GD.Print(shipComponent.Name + " destroyed");
+		if (shipComponent is FuelTank || shipComponent is Generator || shipComponent is Thruster || shipComponent is Cockpit)
+		{
+			Type destroyedComponentType = shipComponent.GetType();
+			foreach (ShipComponent s in shipComponents)
+			{
+				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent)
+				{
+					GD.Print("compnent was not last");
+					return;
+				}
+			}
+			ShipDestroyed();
+		}
 	}
 
 	// shooting
@@ -89,7 +112,7 @@ public partial class Ship : CharacterBody2D, IShip
 
 			shipComponents.Add(shipComponent);
 			shipComponent.OnDestroyed += ComponentDestroyed;
-			globalVertices.AddRange(shipComponent.GetVertices());
+			globalVertices.Add(shipComponent.GlobalPosition);
 		}
 
 		Vector2 center = centerCalculator.GetGlobalShipCenter(globalVertices);
@@ -97,10 +120,42 @@ public partial class Ship : CharacterBody2D, IShip
 		{
 			if (n is Camera2D) { continue; }
 			if (n is Node2D n2) { n2.Position -= ToLocal(center); }
-			if (n is ShipComponent shipComponent) shipComponent.collider.Reparent(this);
+			if (n is ShipComponent shipComponent)
+			{
+				shipComponent.collider.Owner = null; //prevents warning.
+				shipComponent.collider.Reparent(this);
+				shipComponent.collider.Owner = this;
+			}
 		}
 		thrustManager.SetWeight(shipComponents.Count);
 
 		return hasThruster;
+	}
+
+	/// <summary>
+	/// Removes all ShipComponents from the ship. Used when reusing ship.
+	/// </summary>
+	public void Reset() //Change it to be better, maybe keep track of old parts before trybuild and replace if it fails?
+	{
+		foreach (Node child in GetChildren())
+		{
+			if (child is ShipComponent component)
+			{
+				component.OnDestroyed -= ComponentDestroyed;
+				component.QueueFree();
+			}
+		}
+	}
+
+	/// <summary>
+	/// Add Ship components based on a coordinate system. 
+	/// This is used primarily when building ship in code to make it easier to connect pieces together
+	/// </summary>
+	/// <param name="component"></param>
+	/// <param name="coordinate"></param>
+	public void AddComponent(ShipComponent component, Vector2 coordinate)
+	{
+		AddChild(component);
+		component.Position = coordinate * 32;
 	}
 }

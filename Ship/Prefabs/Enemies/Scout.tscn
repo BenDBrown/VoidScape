@@ -1,22 +1,27 @@
-[gd_scene load_steps=11 format=3 uid="uid://6pkivhgarchh"]
+[gd_scene load_steps=13 format=3 uid="uid://6pkivhgarchh"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_r1t2t"]
-[ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Ship/ShipComponents/CockpitSpear.tscn" id="2_k0f33"]
-[ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_nrke5"]
-[ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Ship/ShipComponents/Generator.tscn" id="4_4umao"]
+[ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_fs1cd"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo Cockpit.tres" id="3_e3wjq"]
+[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_nrke5"]
+[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="4_4umao"]
 [ext_resource type="PackedScene" uid="uid://br8tldgan3h6l" path="res://Ship/AI/NPCgun.tscn" id="4_ckija"]
-[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="6_3qqkv"]
+[ext_resource type="PackedScene" uid="uid://cle732tl1y8sx" path="res://Ship/ShipComponents/Thruster.tscn" id="6_3qqkv"]
 [ext_resource type="Script" path="res://Ship/AI/state_manager.gd" id="7_0wryf"]
 [ext_resource type="Script" path="res://Ship/AI/idle.gd" id="8_bpwhd"]
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="9_la8j8"]
 [ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_bjp2g"]
+[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="11_5ontd"]
 
-[node name="Scout" type="CharacterBody2D"]
+[node name="Scout" type="CharacterBody2D" node_paths=PackedStringArray("ExplosionAnim")]
 collision_layer = 16
 collision_mask = 63
 script = ExtResource("1_r1t2t")
+ExplosionAnim = NodePath("ExplosionAnim")
+buildOnStart = true
 
-[node name="Cockpit" parent="." instance=ExtResource("2_k0f33")]
+[node name="Cockpit" parent="." instance=ExtResource("2_fs1cd")]
+Data = ExtResource("3_e3wjq")
 
 [node name="FuelTank" parent="." instance=ExtResource("3_nrke5")]
 position = Vector2(-32, 32)
@@ -51,3 +56,5 @@ detect_radius = 300.0
 
 [node name="Follow" type="Node" parent="StateManager"]
 script = ExtResource("10_bjp2g")
+
+[node name="ExplosionAnim" parent="." instance=ExtResource("11_5ontd")]

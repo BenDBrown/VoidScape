@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsqo5muly5t3l"]
 
-[ext_resource type="Script" path="res://Ship/ShipBuilder/Draggable.cs" id="1_1du12"]
+[ext_resource type="Script" path="res://Ship/ShipBuilder/DraggableComponent.cs" id="1_1du12"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6mue"]
 

@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://80mxh2l0rm21"]
-
-[node name="Hull" type="Control"]
-layout_mode = 3
-anchors_preset = 0

@@ -2,9 +2,9 @@ using Godot;
 using System.Collections.Generic;
 
 [GlobalClass]
-public partial class Draggable : Node2D
+public partial class DraggableComponent : Node2D
 {
-	private static Draggable selected;
+	private static DraggableComponent selected;
 	[Export]
 	public ShipComponent shipComponent { get; private set; }
 
@@ -29,9 +29,9 @@ public partial class Draggable : Node2D
 
 	private const string mirrorActionName = "mirror_part";
 
-    public override void _Ready() => startPos = GlobalPosition;
+	public override void _Ready() => startPos = GlobalPosition;
 
-    public override void _Process(double delta)
+	public override void _Process(double delta)
 	{
 		if (Input.IsActionJustPressed(clickActionName))
 		{
@@ -50,9 +50,9 @@ public partial class Draggable : Node2D
 		if (draggable)
 		{
 			GlobalPosition = GetGlobalMousePosition() - mouseOffset;
-			if(Input.IsActionJustPressed(rotateRightActionName)) { shipComponent.RotateRight(); }
-			else if(Input.IsActionJustPressed(rotateLeftActionName)) { shipComponent.RotateLeft(); }
-			else if(Input.IsActionJustPressed(mirrorActionName)) { shipComponent.Mirror(); }
+			if (Input.IsActionJustPressed(rotateRightActionName)) { shipComponent.RotateRight(); }
+			else if (Input.IsActionJustPressed(rotateLeftActionName)) { shipComponent.RotateLeft(); }
+			else if (Input.IsActionJustPressed(mirrorActionName)) { shipComponent.Mirror(); }
 		}
 	}
 
@@ -68,11 +68,11 @@ public partial class Draggable : Node2D
 	{
 		selected = null;
 		draggable = false;
-		
+
 		if (isInDroppable)
 		{
 			GridSquare gridSquare = GetNearestGridSquare();
-			if(gridSquare.TrySetComponent(shipComponent, this))
+			if (gridSquare.TrySetComponent(shipComponent, this))
 			{
 				Tween tween = GetTree().CreateTween();
 				tween.TweenProperty(this, "position", gridSquare.Position, 0.2f).SetEase(Tween.EaseType.Out);
