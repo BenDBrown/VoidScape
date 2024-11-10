@@ -1,6 +1,5 @@
 using Godot;
-using System.Collections.Generic;
-using System.Linq;
+using Godot.Collections;
 
 [GlobalClass]
 public partial class ShipBuilder : Node
@@ -39,19 +38,18 @@ public partial class ShipBuilder : Node
 		foreach (GridSquare square in grid.Values)
 		{
 			ShipComponent shipComponent = square.shipComponent;
-			if (shipComponent != null)
-			{
-				shipComponent.GetParent().RemoveChild(shipComponent);
-				ship.AddChild(shipComponent);
-				shipComponent.Position = square.CoordinateToPosition();
-			}
+			if (shipComponent == null) { continue; }
+
+			shipComponent.Reparent(ship);
+			shipComponent.Position = square.CoordinateToPosition();
+
 		}
 		EmitSignal(SignalName.ShipBuildAttempt, ship.TryBuildShip());
 	}
 
-	public Godot.Collections.Dictionary GetDict()
+	public Dictionary GetDict()
 	{
-		Godot.Collections.Dictionary dict = new();
+		Dictionary dict = new();
 		foreach (GridSquare square in grid.Values)
 		{
 			if (square.shipComponent != null)

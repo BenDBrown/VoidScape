@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://dla65h7ii7dvo"]
-
-[node name="FuelTank" type="Control"]
-layout_mode = 3
-anchors_preset = 0

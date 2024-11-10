@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://2hmchkli54en"]
+
+[ext_resource type="Texture2D" uid="uid://dv3oxbt1yku85" path="res://Assets/Structures/Space station.png" id="1_cvbei"]
+[ext_resource type="Script" path="res://Structures/Station.cs" id="2_x4w6x"]
+[ext_resource type="PackedScene" uid="uid://dwnag7qev53p4" path="res://UI/Scenes/StationMenu.tscn" id="3_3d0kp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7i2e"]
+size = Vector2(45, 44.5)
+
+[node name="Hub" type="Sprite2D" node_paths=PackedStringArray("menu", "popup")]
+scale = Vector2(4, 4)
+texture = ExtResource("1_cvbei")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+script = ExtResource("2_x4w6x")
+menu = NodePath("CanvasLayer/StationMenu")
+popup = NodePath("CanvasLayer/PopUp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_g7i2e")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PopUp" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 418.0
+offset_top = -122.0
+offset_right = -425.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/PopUp"]
+layout_mode = 2
+text = "Press Enter to enter HUB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StationMenu" parent="CanvasLayer" instance=ExtResource("3_3d0kp")]
+process_mode = 0
+visible = false
+
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="OnBodyExited"]

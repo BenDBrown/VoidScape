@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Component : Control
+public partial class UIComponent : Control
 {
 	[Export]
 	public ShipComponentData DataResource;

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://s6d2cbttlfra"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/Components/ShipComponent.cs" id="1_3r3yf"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="2_eo80n"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_2nmxr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prnpq"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyvhp"]
+size = Vector2(32, 32)
+
+[node name="ShipComponent" type="CharacterBody2D" node_paths=PackedStringArray("collider", "sprite", "healthComponent")]
+use_parent_material = true
+script = ExtResource("1_3r3yf")
+collider = NodePath("Collider")
+sprite = NodePath("Sprite2D")
+healthComponent = NodePath("HealthComponent")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_eo80n")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_prnpq")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent", "collision_shape")]
+script = ExtResource("3_2nmxr")
+healthComponent = NodePath("../HealthComponent")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_eyvhp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]
