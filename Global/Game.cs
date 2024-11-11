@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Desktop.Ship.Scripts;
 using Godot;
 using Godot.Collections;
@@ -11,15 +12,14 @@ public partial class Game : Node
 	public Ship PlayerShip { get; set; }
 	public AudioStreamPlayer2D Fx;
 	private const string SHIP_SAVER_PATH = "res://Resources/Scripts/player_ship_save.gd";
-	[Export]
-	private Resource saver;
-
+	private Resource playerShipSaver;
 	public Game()
 	{
 		if (Instance != null) { QueueFree(); return; }
 
 		Instance = this;
 		Fx = new();
+		playerShipSaver = GD.Load(SHIP_SAVER_PATH).Call("new").As<Resource>();
 		AddChild(Fx);
 	}
 
@@ -43,33 +43,34 @@ public partial class Game : Node
 
 	public bool LoadGame() { return false; }
 	public bool SaveGame() { return false; }
+
 	public ShipBuildStatus BuildShip(Piece[] pieces)
 	{
-		var saver = GD.Load(SHIP_SAVER_PATH).Call("new").As<Resource>();
-
-		GD.Print(saver);
+		if (PlayerShip is null) { return ShipBuildStatus.Unknown; }
 		Dictionary<Vector2, ShipComponent> comps = new();
-		Node2D parent = new();
-		AddChild(parent);
+		PlayerShip.Reset();
 		foreach (Piece piece in pieces)
 		{
 			ShipComponent component = piece.ComponentData.GetPrefab();
 			component.Data = piece.ComponentData;
 			component.IsMirrored = piece.IsMirrored;
+			PlayerShip.AddComponent(component, piece.Coordinate);
 			component.Rotation = piece.LocalRotation;
-			parent.AddChild(component);
 			comps.Add(piece.Coordinate, component);
 		}
+
 		try
 		{
-			saver.Call("add_components", comps);
-			saver.Call("save");
+			PlayerShip.TryBuildShip();
+			playerShipSaver.Call("add_components", comps);
+			playerShipSaver.Call("save");
 		}
 		catch (Exception e)
 		{
 			GD.Print(e);
 			GD.PushError(e);
 		}
+
 		return ShipBuildStatus.OK;
 	}
 }
