@@ -30,7 +30,6 @@ public partial class Bullet : CharacterBody2D
 
     public void OnAttackboxAreaEntered(Area2D area)
     {
-
-        QueueFree();
+        CallDeferred("queue_free");
     }
 }

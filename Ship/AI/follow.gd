@@ -5,7 +5,6 @@ class_name Follow
 @export var max_distance: float = 300
 @export var out_of_detection_distance: float = 500
 var split_up: SplitUp
-var combat_scene = preload("res://Ship/AI/ai_combat.tscn")
 var combat: Combat
 
 func enter():
@@ -13,9 +12,7 @@ func enter():
 	if !split_up:
 		split_up = SplitUp.new()
 	if !combat:
-		combat = combat_scene.instantiate()
-		combat.ship = parent
-
+		combat = Combat.new()
 	split_up.enter(parent)
 	combat.enter(parent)
 

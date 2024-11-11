@@ -14,3 +14,8 @@ func take_damage(attackComponent: AttackComponent):
 	current_health -= max(1, attackComponent.attack - defense)
 	if current_health <= 0:
 		died.emit()
+
+func set_component(maxHealth, def):
+	max_health = maxHealth
+	defense = def
+	current_health = maxHealth

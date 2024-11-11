@@ -13,5 +13,12 @@ public partial class Thruster : ShipComponent, IPowerable
 
 	public float GetThrust() => thrust;
 
-
+	protected override void SetupData()
+	{
+		base.SetupData();
+		if (Data is ThrusterData thrustData)
+		{
+			thrust = thrustData.Thrust;
+		}
+	}
 }
