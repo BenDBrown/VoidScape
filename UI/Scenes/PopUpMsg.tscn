@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d200720wlol8q"]
+
+[node name="PopUpMsg" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(10.5973, 1.89612)
