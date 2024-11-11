@@ -1,49 +1,55 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0684gaincluq"]
+[gd_scene load_steps=16 format=3 uid="uid://c0684gaincluq"]
 
 [ext_resource type="PackedScene" uid="uid://bpmtcqfjhik1c" path="res://Ship/Prefabs/NPCShip.tscn" id="1_2os47"]
-[ext_resource type="PackedScene" uid="uid://bwcp3ts7xkuo4" path="res://Ship/ShipComponents/CockpitSpear.tscn" id="2_pc2f5"]
+[ext_resource type="PackedScene" uid="uid://c7mogaotegr8p" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_mcc8u"]
+[ext_resource type="Resource" path="res://Resources/ShipData/Arzo Cockpit.tres" id="3_keap5"]
 [ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_kk4qs"]
 [ext_resource type="PackedScene" uid="uid://br8tldgan3h6l" path="res://Ship/AI/NPCgun.tscn" id="4_1qud6"]
+[ext_resource type="Resource" path="res://Resources/ShipData/Arzo Fuel Tank.tres" id="5_p56hq"]
 [ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Ship/ShipComponents/Generator.tscn" id="5_ttjqm"]
 [ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="6_f3s73"]
 [ext_resource type="Script" path="res://Ship/AI/state_manager.gd" id="7_6w6t4"]
+[ext_resource type="Resource" path="res://Resources/ShipData/Arzo Gun.tres" id="7_v5bqh"]
 [ext_resource type="Script" path="res://Ship/AI/idle.gd" id="8_je7fn"]
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="9_s3k7d"]
+[ext_resource type="Resource" path="res://Resources/ShipData/Arzo Generator.tres" id="9_w5n5k"]
 [ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_ci1r6"]
+[ext_resource type="Resource" path="res://Resources/ShipData/Arzo Thruster.tres" id="11_wnhb2"]
 
 [node name="NpcShip" instance=ExtResource("1_2os47")]
 collision_layer = 16
 collision_mask = 63
 
-[node name="Cockpit" parent="." index="2" node_paths=PackedStringArray("vertices") instance=ExtResource("2_pc2f5")]
-vertices = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+[node name="Cockpit" parent="." index="1" instance=ExtResource("2_mcc8u")]
+Data = ExtResource("3_keap5")
 
-[node name="FuelTank" parent="." index="3" node_paths=PackedStringArray("vertices") instance=ExtResource("3_kk4qs")]
+[node name="FuelTank" parent="." index="2" instance=ExtResource("3_kk4qs")]
 position = Vector2(-32, 32)
 rotation = 3.14159
-vertices = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+Data = ExtResource("5_p56hq")
 
-[node name="Gun" parent="." index="4" node_paths=PackedStringArray("vertices") instance=ExtResource("4_1qud6")]
+[node name="Gun" parent="." index="3" instance=ExtResource("4_1qud6")]
 position = Vector2(32, 0)
-vertices = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+Data = ExtResource("7_v5bqh")
 
-[node name="Gun2" parent="." index="5" node_paths=PackedStringArray("vertices") instance=ExtResource("4_1qud6")]
+[node name="Gun2" parent="." index="4" instance=ExtResource("4_1qud6")]
 position = Vector2(-32, 0)
-vertices = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+Data = ExtResource("7_v5bqh")
+IsMirrored = true
 
-[node name="Generator" parent="." index="6" node_paths=PackedStringArray("vertices") instance=ExtResource("5_ttjqm")]
+[node name="Generator" parent="." index="5" instance=ExtResource("5_ttjqm")]
 position = Vector2(0, 32)
-vertices = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+Data = ExtResource("9_w5n5k")
 
-[node name="Thruster" parent="." index="7" node_paths=PackedStringArray("vertices") instance=ExtResource("6_f3s73")]
+[node name="Thruster" parent="." index="6" instance=ExtResource("6_f3s73")]
 position = Vector2(0, 64)
-vertices = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+Data = ExtResource("11_wnhb2")
 
-[node name="FuelTank2" parent="." index="8" node_paths=PackedStringArray("vertices") instance=ExtResource("3_kk4qs")]
+[node name="FuelTank2" parent="." index="7" instance=ExtResource("3_kk4qs")]
 position = Vector2(32, 32)
-vertices = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+Data = ExtResource("5_p56hq")
 
-[node name="StateManager" type="Node2D" parent="." index="9" node_paths=PackedStringArray("initial_state")]
+[node name="StateManager" type="Node2D" parent="." index="8" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_6w6t4")
 initial_state = NodePath("Idle")
 
