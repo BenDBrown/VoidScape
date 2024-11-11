@@ -2,6 +2,8 @@ using Desktop.Ship.Scripts;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 [GlobalClass]
 public partial class Ship : CharacterBody2D, IShip
@@ -95,8 +97,7 @@ public partial class Ship : CharacterBody2D, IShip
 
 		foreach (Node node in GetChildren())
 		{
-			if (!(node is ShipComponent shipComponent))
-			{ continue; }
+			if (node is not ShipComponent shipComponent) { continue; }
 
 			switch (shipComponent)
 			{
@@ -137,12 +138,16 @@ public partial class Ship : CharacterBody2D, IShip
 	/// </summary>
 	public void Reset() //Change it to be better, maybe keep track of old parts before trybuild and replace if it fails?
 	{
-		foreach (Node child in GetChildren())
+		thrustManager = new(); //preferably a reset method that removes all existing thrusters
+		gunManager = new();
+		Node[] children = GetChildren().ToArray();
+		for (int i = 0; i < children.Length; i++)
 		{
-			if (child is ShipComponent component)
+			if (children[i] is ShipComponent component)
 			{
 				component.OnDestroyed -= ComponentDestroyed;
-				component.QueueFree();
+				component.collider.Free();
+				component.Free();
 			}
 		}
 	}
