@@ -1,8 +1,40 @@
-[gd_scene format=3 uid="uid://d200720wlol8q"]
+[gd_scene load_steps=2 format=3 uid="uid://d200720wlol8q"]
 
-[node name="PopUpMsg" type="CanvasLayer"]
+[ext_resource type="Script" path="res://UI/Scripts/PopUpMsg.cs" id="1_36hyr"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(10.5973, 1.89612)
+[node name="PopUpMsg" type="CanvasLayer" node_paths=PackedStringArray("label", "background")]
+script = ExtResource("1_36hyr")
+color = Color(0.733333, 0.290196, 0.266667, 0.415686)
+label = NodePath("Message")
+background = NodePath("Message/Background")
+
+[node name="Message" type="Label" parent="."]
+custom_minimum_size = Vector2(350, 75)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -274.0
+offset_top = -95.0
+offset_right = 293.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Background" type="ColorRect" parent="Message"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180032, 0.169027, 0.24198, 0.886275)
