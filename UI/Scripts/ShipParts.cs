@@ -8,6 +8,8 @@ public partial class ShipParts : ItemList
 	public ShipComponentData[] datas;
 	[Export]
 	private Label name, health, defense, description;
+	[Export]
+	private BoxContainer infobox;
 	private Dictionary<int, ShipComponentData> itemListRef = new();
 	public override void _Ready()
 	{
@@ -26,6 +28,7 @@ public partial class ShipParts : ItemList
 
 	public void OnItemSelected(int index)
 	{
+		infobox.Visible = true;
 		ShipComponentData data = itemListRef[index];
 		name.Text = data.Name;
 		health.Text = "Health: " + data.MaxHealth.ToString();
