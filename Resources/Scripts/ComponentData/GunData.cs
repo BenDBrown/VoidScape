@@ -8,7 +8,7 @@ public partial class GunData : ShipComponentData
 	[Export]
 	public double BulletsPerSecond;
 	[Export]
-	public int Attack;
+	public int Attack = 100;
 
 	[Export]
 	public GunType type;

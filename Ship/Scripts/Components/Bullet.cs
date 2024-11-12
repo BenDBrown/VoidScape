@@ -32,4 +32,9 @@ public partial class Bullet : CharacterBody2D
     {
         CallDeferred("queue_free");
     }
+
+    public void OnAttackBoxBodyEntered(Node2D node2D)
+    {
+        CallDeferred("queue_free");
+    }
 }
