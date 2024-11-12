@@ -1,21 +1,19 @@
-[gd_resource type="Resource" script_class="GunData" load_steps=5 format=3 uid="uid://50ho5luwhv1m"]
+[gd_resource type="Resource" script_class="GunData" load_steps=4 format=3 uid="uid://50ho5luwhv1m"]
 
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_0wote"]
-[ext_resource type="Texture2D" uid="uid://jexsbw30qkea" path="res://UI/Sprites/Gun.png" id="1_xh2wx"]
 [ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="3_vgmss"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="4_k32jl"]
 
 [resource]
 script = ExtResource("4_k32jl")
 BulletsPerSecond = 10.0
-Attack = 1
+Attack = 100
 type = 0
 BulletSpeed = 200
 BulletSpawnPoint = Vector2(8, -32)
 BulletPrefab = ExtResource("1_0wote")
 Name = "Arzo Gun"
 Description = "Lv1"
-Sprite = ExtResource("1_xh2wx")
 TopAttachable = false
 BottomAttachable = false
 LeftAttachable = true

@@ -9,9 +9,10 @@ public partial class ShipComponentData : Resource
 	public string Description = "Hello";
 
 	[ExportCategory("Visual & UI")]
+	
+	public Texture2D Sprite { get => atlas.Atlas; private set => atlas.Atlas=value; }
 	[Export]
-	public Texture2D Sprite { get; private set; }
-
+	private AtlasTexture atlas; 
 	[Export]
 	public bool TopAttachable { get; private set; }
 	[Export]

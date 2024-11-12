@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="ShipComponentData" load_steps=4 format=3 uid="uid://sbafbupju2lq"]
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://sbafbupju2lq"]
 
-[ext_resource type="Texture2D" uid="uid://b2jg4yeyk3abi" path="res://UI/Sprites/Cockpit.png" id="1_x5cmx"]
+[ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="1_0j8n0"]
 [ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_7a357"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="3_wv23o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xurwr"]
+atlas = ExtResource("1_0j8n0")
 
 [resource]
 script = ExtResource("3_wv23o")
 Name = "Arzo Cockpit"
 Description = "Lv1"
-Sprite = ExtResource("1_x5cmx")
+atlas = SubResource("AtlasTexture_xurwr")
 TopAttachable = false
 BottomAttachable = true
 LeftAttachable = false
