@@ -41,10 +41,12 @@ public partial class Ship : CharacterBody2D, IShip
 
 	protected void ShipDestroyed()
 	{
-		EmitSignal(SignalName.OnDestroyed, this);
 		foreach (ShipComponent shipComponent in shipComponents) { shipComponent.Visible = false; }
 		ExplosionAnim.Visible = true;
 		ExplosionAnim.Play();
+		ExplosionAnim.Reparent(GetTree().CurrentScene);
+		ExplosionAnim.AnimationFinished += () => ExplosionAnim.QueueFree();
+		EmitSignal(SignalName.OnDestroyed, this);
 	}
 
 	public void ComponentDestroyed(ShipComponent shipComponent)

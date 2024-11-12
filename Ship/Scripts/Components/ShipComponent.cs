@@ -14,6 +14,9 @@ public partial class ShipComponent : CharacterBody2D
     private Sprite2D sprite;
 
     [Export]
+    private Sprite2D destroyedSprite;
+
+    [Export]
     private Node healthComponent;
 
     [Export]
@@ -21,6 +24,10 @@ public partial class ShipComponent : CharacterBody2D
 
     [Export]
     public bool IsMirrored = false;
+
+    [Export]
+    private SingleRunAnimation explosionAnim;
+
     private bool destroyed = false;
 
     public override void _Ready()
@@ -45,18 +52,20 @@ public partial class ShipComponent : CharacterBody2D
     {
         if (IsDestroyed()) { return; }
         GD.PrintS(Name, " Destroyed");
+        explosionAnim.Play();
         destroyed = true;
         collider.SetDeferred("disabled", true);
-        Hide();
+        sprite.Visible = !destroyed;
+        destroyedSprite.Visible = destroyed;
         EmitSignal(SignalName.OnDestroyed, this);
     }
 
     private void Revived()
     {
         collider.SetDeferred("disabled", false);
-        Show();
         destroyed = false;
-        Visible = true;
+        sprite.Visible = !destroyed;
+        destroyedSprite.Visible = destroyed;
     }
 
     /// <summary>
@@ -68,6 +77,7 @@ public partial class ShipComponent : CharacterBody2D
         sprite.Texture = Data.Sprite;
         sprite.FlipH = IsMirrored;
         healthComponent.Call("set_component", Data.MaxHealth, Data.Defense);
+        destroyedSprite.Texture = Data.DestroyedSprite;
         TopAttachable = Data.TopAttachable;
         BottomAttachable = Data.BottomAttachable;
         RightAttachable = Data.RightAttachable;
@@ -90,6 +100,7 @@ public partial class ShipComponent : CharacterBody2D
             LeftAttachable = newAttachableB;
             RightAttachable = newAttachableA;
             sprite.FlipH = !sprite.FlipH;
+            destroyedSprite.FlipH = !destroyedSprite.FlipH;
         }
         else
         {
@@ -98,6 +109,7 @@ public partial class ShipComponent : CharacterBody2D
             TopAttachable = newAttachableB;
             BottomAttachable = newAttachableA;
             sprite.FlipV = !sprite.FlipV;
+            destroyedSprite.FlipV = !destroyedSprite.FlipV;
         }
     }
     public void RotateRight()
