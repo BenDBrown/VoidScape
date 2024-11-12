@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cvjo3o6k4j254"]
 
-[ext_resource type="PackedScene" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_fpp3g"]
+[ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_fpp3g"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Thruster.cs" id="2_e55n0"]
 [ext_resource type="Texture2D" uid="uid://beaghydkn6hxq" path="res://Assets/Ship/Thruster-animation.png" id="3_6duj7"]
 
