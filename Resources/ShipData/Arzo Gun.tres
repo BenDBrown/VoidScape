@@ -1,8 +1,12 @@
-[gd_resource type="Resource" script_class="GunData" load_steps=4 format=3 uid="uid://50ho5luwhv1m"]
+[gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://50ho5luwhv1m"]
 
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_0wote"]
+[ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="2_xehxy"]
 [ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="3_vgmss"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="4_k32jl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm437"]
+atlas = ExtResource("2_xehxy")
 
 [resource]
 script = ExtResource("4_k32jl")
@@ -14,6 +18,7 @@ BulletSpawnPoint = Vector2(8, -32)
 BulletPrefab = ExtResource("1_0wote")
 Name = "Arzo Gun"
 Description = "Lv1"
+atlas = SubResource("AtlasTexture_rm437")
 TopAttachable = false
 BottomAttachable = false
 LeftAttachable = true

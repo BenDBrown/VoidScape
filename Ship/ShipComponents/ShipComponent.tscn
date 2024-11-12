@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://s6d2cbttlfra"]
+[gd_scene load_steps=6 format=3 uid="uid://b8yixlufb8hme"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/ShipComponent.cs" id="1_3r3yf"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_eo80n"]
