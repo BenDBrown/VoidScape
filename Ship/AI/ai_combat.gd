@@ -18,6 +18,7 @@ var player
 var ship: Ship
 
 func enter(parent):
+	print("Combat_Entered")
 	ship = parent
 	ship.add_child(self)
 	if !detection_cone:
@@ -44,7 +45,7 @@ func is_in_detection_cone(target):
 	for index in cast_vect:
 		ray.set_target_position(index)
 		ray.force_raycast_update()
-		if target != null && ray.is_colliding() && ray.get_collider().get_parent() == target:
+		if target != null && ray.is_colliding() && ray.get_collider() == target:
 			return true
 	return false
 
@@ -66,7 +67,7 @@ func create_ray():
 	return r
 
 func attack(target):
-	if ray.is_colliding() and ray.get_collider().get_parent() == target:
+	if ray.is_colliding() and ray.get_collider() == target:
 		ship.StartShooting()
 
 func create_detection_cone():
@@ -80,7 +81,7 @@ func create_detection_cone():
 	return cone
 
 func on_area_exited(target: Area2D):
-	if !is_in_detection_cone(target.get_parent().get_parent()):
+	if !is_in_detection_cone(target.get_parent()):
 		ship.StopShooting()
 		exited = true
 		
