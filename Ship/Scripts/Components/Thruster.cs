@@ -4,6 +4,9 @@ using System;
 public partial class Thruster : ShipComponent, IPowerable
 {
 	[Export]
+	private AnimatedSprite2D thrustAnim;
+
+	[Export]
 	private int powerdraw;
 
 	[Export]
@@ -20,5 +23,12 @@ public partial class Thruster : ShipComponent, IPowerable
 		{
 			thrust = thrustData.Thrust;
 		}
+	}
+
+	public void SetThrustAnimationActive(bool active)
+	{
+		thrustAnim.Visible = active;
+		if(active) thrustAnim.Play("thrust");
+		else thrustAnim.Pause();
 	}
 }
