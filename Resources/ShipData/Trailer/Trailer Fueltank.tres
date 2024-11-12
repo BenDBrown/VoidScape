@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=2 format=3 uid="uid://bvu11l40jl770"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_3h88m"]
+
+[resource]
+script = ExtResource("1_3h88m")
+Name = "Component"
+Description = "Hello"
+TopAttachable = false
+BottomAttachable = false
+LeftAttachable = false
+RightAttachable = false
+Type = 0
+MaxHealth = 100
+Defense = 10
