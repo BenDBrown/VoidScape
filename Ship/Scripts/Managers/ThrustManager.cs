@@ -18,6 +18,8 @@ public partial class ThrustManager : IPowerable
 
 	public int weight { get; private set; } = 1; // to avoid division by 0 errors
 
+	private List<Thruster> thrusters = new();
+
 	private bool thrustingForward = false;
 	private bool thrustingBackward = false;
 	private bool thrustingRight = false;
@@ -35,6 +37,8 @@ public partial class ThrustManager : IPowerable
 		Vector2 backward = Vector2.Zero;
 		Vector2 right = Vector2.Zero;
 		Vector2 left = Vector2.Zero;
+		if(thrustingBackward || thrustingRight || thrustingLeft || thrustingForward) foreach(Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(true); }
+		else foreach(Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(false); }
 
 		if(thrustingForward) 
 		{
@@ -106,6 +110,7 @@ public partial class ThrustManager : IPowerable
 	{
 		PotentialForwardThrust += thruster.GetThrust();
 		UpdateThrust();
+		thrusters.Add(thruster);
 		PowerDraw += thruster.GetPowerDraw();
 		thruster.OnDestroyed += OnThrusterDestroyed;
 	}
@@ -117,6 +122,7 @@ public partial class ThrustManager : IPowerable
 		if (!(shipComponent is Thruster thruster)) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
 		PotentialForwardThrust -= thruster.GetThrust();
 		UpdateThrust();
+		thrusters.Remove(thruster);
 		PowerDraw -= thruster.GetPowerDraw();
 		thruster.OnDestroyed -= OnThrusterDestroyed;
 	}
