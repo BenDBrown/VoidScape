@@ -93,6 +93,42 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4_0rreb")
 
+[node name="AvailableParts" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="ShipParts" type="ItemList" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2" node_paths=PackedStringArray("name", "health", "defense", "description", "infobox")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/v_separation = 16
+item_count = 1
+script = ExtResource("5_vae0y")
+datas = Array[Object]([ExtResource("6_vda0v"), ExtResource("7_xshgl"), ExtResource("8_h0ajs"), ExtResource("9_oi2fc"), ExtResource("10_wp354"), ExtResource("11_gvtg5")])
+name = NodePath("../../../MarginContainer2/InfoBox/Name")
+health = NodePath("../../../MarginContainer2/InfoBox/Health")
+defense = NodePath("../../../MarginContainer2/InfoBox/Defense")
+description = NodePath("../../../MarginContainer2/InfoBox/Description")
+infobox = NodePath("../../../MarginContainer2/InfoBox")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "BUILD"
+
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -101,7 +137,9 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
 [node name="InfoBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2"]
+visible = false
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="Info" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
 layout_mode = 2
@@ -125,41 +163,6 @@ layout_mode = 2
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
 layout_mode = 2
 autowrap_mode = 2
-
-[node name="AvailableParts" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 15
-
-[node name="ShipParts" type="ItemList" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2" node_paths=PackedStringArray("name", "health", "defense", "description")]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/v_separation = 16
-item_count = 1
-script = ExtResource("5_vae0y")
-datas = Array[Object]([ExtResource("6_vda0v"), ExtResource("7_xshgl"), ExtResource("8_h0ajs"), ExtResource("9_oi2fc"), ExtResource("10_wp354"), ExtResource("11_gvtg5")])
-name = NodePath("../../../MarginContainer2/InfoBox/Name")
-health = NodePath("../../../MarginContainer2/InfoBox/Health")
-defense = NodePath("../../../MarginContainer2/InfoBox/Defense")
-description = NodePath("../../../MarginContainer2/InfoBox/Description")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 10
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer"]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-text = "BUILD"
 
 [node name="Buy Parts" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
 visible = false
