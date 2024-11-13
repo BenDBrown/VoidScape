@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://ncd2ddud24tb"]
+
+[ext_resource type="Texture2D" uid="uid://pxjblqt5mg24" path="res://Assets/Structures/Tiles2/Worm Animation.png" id="1_we3oi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6hko"]
+atlas = ExtResource("1_we3oi")
+region = Rect2(0, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lcxu"]
+atlas = ExtResource("1_we3oi")
+region = Rect2(128, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxi4t"]
+atlas = ExtResource("1_we3oi")
+region = Rect2(256, 0, 128, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qtlvb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6hko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lcxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxi4t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Space Worm" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qtlvb")
+autoplay = "default"
+frame = 2
+frame_progress = 0.300685
