@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://bn0i4vfnuj3fv"]
+
+[ext_resource type="Texture2D" uid="uid://va41h3ly5xxc" path="res://Assets/Aseprite/Hazards 1.png" id="1_0erwi"]
+[ext_resource type="Script" path="res://Structures/DwarfStar/CollisionWithStar.gd" id="1_0glvx"]
+[ext_resource type="Script" path="res://Structures/DwarfStar/gravitational_pull.gd" id="2_pu273"]
+[ext_resource type="PackedScene" uid="uid://b4yj0wo6jrt31" path="res://Hazards/Asteroid/asteroid.tscn" id="4_syo1l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftyfq"]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4cttg"]
+radius = 600.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ffo8x"]
+radius = 400.0
+
+[node name="Dwarf Star" type="Node2D"]
+position = Vector2(841, 427)
+
+[node name="Core" type="Area2D" parent="."]
+script = ExtResource("1_0glvx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Core"]
+shape = SubResource("CircleShape2D_ftyfq")
+debug_color = Color(0.999475, 0, 0.111879, 0.42)
+
+[node name="GravitationalPull" type="Area2D" parent="."]
+collision_layer = 12799
+collision_mask = 4607
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+script = ExtResource("2_pu273")
+objectMass = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravitationalPull"]
+shape = SubResource("CircleShape2D_4cttg")
+debug_color = Color(0, 0.645228, 0.264605, 0.42)
+
+[node name="DeathPull" type="Area2D" parent="."]
+collision_layer = 255
+collision_mask = 255
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 1500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathPull"]
+shape = SubResource("CircleShape2D_ffo8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(20.795, 20.795)
+texture = ExtResource("1_0erwi")
+
+[node name="Asteroid" parent="." instance=ExtResource("4_syo1l")]
+position = Vector2(-614, -92)
+
+[node name="Asteroid2" parent="." instance=ExtResource("4_syo1l")]
+position = Vector2(-487, -165)
+forceType = "Stationary"
+
+[node name="Asteroid3" parent="." instance=ExtResource("4_syo1l")]
+position = Vector2(-523, 30)
+forceType = "Stationary"
+
+[connection signal="area_entered" from="Core" to="Core" method="_on_area_entered"]
+[connection signal="body_entered" from="Core" to="Core" method="_on_body_entered"]
+[connection signal="body_entered" from="GravitationalPull" to="GravitationalPull" method="_on_body_entered"]
