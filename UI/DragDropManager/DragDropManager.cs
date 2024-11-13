@@ -16,12 +16,9 @@ public partial class DragDropManager : ItemList
 	//
 	[Export]
 	private GridContainer gridContainer;
+	private Sprite2D draggedPreview;
 	private Panel[,] gridCells;
-
 	private bool isDragging = false;
-	private Vector2 dragOffset;
-	private TextureRect draggedPreview;
-	private Vector2 initialMousePos;
 	
 
 
@@ -30,18 +27,14 @@ public partial class DragDropManager : ItemList
 		Clear();
 
 		PopulateItemList();
-
-
-
-
 	}
 
 	public override void _Process(double delta)
 	{
 		if (isDragging)
-		{
+		{	
 			var tween = GetTree().CreateTween();
-			tween.TweenProperty(this,"position",GetGlobalMousePosition(), 0.5f);
+			tween.TweenProperty(draggedPreview,"global_position",GetGlobalMousePosition(), 0.2f);
 		}
 		else{
 			return;
@@ -81,28 +74,30 @@ public partial class DragDropManager : ItemList
 		if (mouseButtonIndex == (int)MouseButton.Left)
 		{
 			GD.Print("Item clicked at index " + index + " at position " + atPosition);
-			if (this != null) // this -> item list
-			{
-				for (int i = 0; i < GetItemCount(); i++)
+			GD.Print("pressed");
+			for (int i = 0; i < GetItemCount(); i++)
 				{
 					Rect2 itemRect = GetItemRect(i);
 
 					if (itemRect.HasPoint(atPosition))
 					{
+						if(draggedPreview!=null) {
+							draggedPreview.GetParent().RemoveChild(draggedPreview);
+						}
 						ShipComponentData data = itemListRef[i];
+						draggedPreview = new();
 						draggedPreview.Texture = data.Sprite;
-						initialMousePos = atPosition;						
-
+						draggedPreview.Visible = true;
+						GetTree().CurrentScene.AddChild(draggedPreview);
+						draggedPreview.GlobalPosition = GetGlobalMousePosition();
 						isDragging = true;
 						break;
 					}
 				}
-			}
-			else{
-				isDragging = false;
-			}
 		}
 		else{
+			GD.Print("released");
+			draggedPreview.Visible = false;
 			isDragging = false;
 		}
 	}
