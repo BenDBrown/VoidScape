@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://u0rpu0nrxld3"]
+[gd_scene load_steps=9 format=3 uid="uid://u0rpu0nrxld3"]
 
-[ext_resource type="Script" path="res://Test/GridGenerator.cs" id="1_v2nik"]
-[ext_resource type="Script" path="res://Test/DragDropManager.cs" id="2_8cqdp"]
+[ext_resource type="Script" path="res://UI/DragDropManager/GridGenerator.cs" id="1_bxoci"]
+[ext_resource type="Script" path="res://UI/DragDropManager/DragDropManager.cs" id="2_u6h8j"]
 [ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo Cockpit.tres" id="3_pn1yp"]
 [ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Arzo Fuel Tank.tres" id="4_60110"]
 [ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Arzo Gun.tres" id="5_bku8y"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo Generator.tres" id="5_tbypv"]
 [ext_resource type="Resource" uid="uid://bbcg4mu0p2j8l" path="res://Resources/ShipData/Arzo Hull.tres" id="6_n4h4n"]
 [ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo Thruster.tres" id="7_rlhf8"]
 
@@ -33,15 +34,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 1
-script = ExtResource("1_v2nik")
+script = ExtResource("1_bxoci")
 gridRows = 10
 
 [node name="ItemList" type="ItemList" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("gridContainer")]
 layout_mode = 2
 size_flags_horizontal = 3
 select_mode = 1
-script = ExtResource("2_8cqdp")
-datas = Array[Object]([ExtResource("3_pn1yp"), ExtResource("4_60110"), ExtResource("5_bku8y"), ExtResource("6_n4h4n"), ExtResource("7_rlhf8")])
+script = ExtResource("2_u6h8j")
+datas = Array[Object]([ExtResource("3_pn1yp"), ExtResource("4_60110"), ExtResource("5_tbypv"), ExtResource("5_bku8y"), ExtResource("6_n4h4n"), ExtResource("7_rlhf8")])
 gridContainer = NodePath("../GridContainer")
 
 [connection signal="item_clicked" from="MarginContainer/HBoxContainer/ItemList" to="MarginContainer/HBoxContainer/ItemList" method="OnItemClicked"]

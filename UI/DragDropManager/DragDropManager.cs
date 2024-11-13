@@ -21,6 +21,8 @@ public partial class DragDropManager : ItemList
 	private bool isDragging = false;
 	private Vector2 dragOffset;
 	private TextureRect draggedPreview;
+	private Vector2 initialMousePos;
+	
 
 
 	public override void _Ready()
@@ -36,7 +38,14 @@ public partial class DragDropManager : ItemList
 
 	public override void _Process(double delta)
 	{
-		// if (!isDragging) return;
+		if (isDragging)
+		{
+			var tween = GetTree().CreateTween();
+			tween.TweenProperty(this,"position",GetGlobalMousePosition(), 0.5f);
+		}
+		else{
+			return;
+		}
 
 	}
 
@@ -80,11 +89,21 @@ public partial class DragDropManager : ItemList
 
 					if (itemRect.HasPoint(atPosition))
 					{
-						GD.Print("Item " + i + " was clicked!");
+						ShipComponentData data = itemListRef[i];
+						draggedPreview.Texture = data.Sprite;
+						initialMousePos = atPosition;						
+
+						isDragging = true;
 						break;
 					}
 				}
 			}
+			else{
+				isDragging = false;
+			}
+		}
+		else{
+			isDragging = false;
 		}
 	}
 
