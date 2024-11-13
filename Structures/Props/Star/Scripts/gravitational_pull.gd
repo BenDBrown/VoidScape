@@ -18,7 +18,7 @@ func _process(delta: float):
 	if gravity_on:
 		for body in get_overlapping_bodies():
 			if body is RigidBody2D:
-				applyGravity(body)
+				apply_gravity(body)
 
 		
 		#if body is ShipComponent:
