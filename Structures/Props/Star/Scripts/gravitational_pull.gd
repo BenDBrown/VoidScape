@@ -2,7 +2,7 @@ extends Area2D
 # Gravitional pull simulated using Newtons Law of Gravity
 
 # Gravitional Constant - Strength of Gravity
-@export var G: float = 500.0
+const GRAVITY_CONSTANT: float = 500.0
 
 # Mass of Star
 @export var mass: float = 1000.0
@@ -24,7 +24,7 @@ func _process(delta: float):
 		#if body is ShipComponent:
 			#applyGravity(body)	
 	
-func applyGravity(body: Node2D) -> void:
+func apply_gravity(body: Node2D) -> void:
 	
 	# Direction vector: object to star
 	var direction = global_position - body.global_position
@@ -37,7 +37,7 @@ func applyGravity(body: Node2D) -> void:
 	direction = direction.normalized()
 	
 	#var force = (G * mass * objectMass) / (distance * distance)
-	var force = (G * mass * body.mass) / (distance * distance)
+	var force = (GRAVITY_CONSTANT * mass * body.mass) / (distance * distance)
 	
 	# Apply the force as an impulse (which makes sense for a gravitational force)
 	body.apply_central_impulse(force)

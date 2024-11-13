@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bn0i4vfnuj3fv"]
 
-[ext_resource type="Script" path="res://Structures/Props/Star/Scripts/CollisionWithStar.gd" id="1_0glvx"]
+[ext_resource type="Script" path="res://Structures/Props/Star/Scripts/collision_with_star.gd" id="1_0glvx"]
 [ext_resource type="Script" path="res://Structures/Props/Star/Scripts/gravitational_pull.gd" id="2_pu273"]
 [ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="3_cvwa1"]
 
