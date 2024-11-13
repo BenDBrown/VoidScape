@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://delvegj5hfcjd"]
+
+[ext_resource type="Texture2D" uid="uid://lk83q080m3mv" path="res://Assets/Ship/Atlas/Bile Fuel Tank - Broken.atlastex" id="1_54ax6"]
+[ext_resource type="Texture2D" uid="uid://wehia2cv6yl" path="res://Assets/Ship/Atlas/Bile Fuel Tank.atlastex" id="2_ub62v"]
+[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_qi8ed"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="4_831xd"]
+
+[resource]
+script = ExtResource("4_831xd")
+Name = "Arzo Fuel Tank"
+Description = "Lv1"
+Sprite = ExtResource("2_ub62v")
+DestroyedSprite = ExtResource("1_54ax6")
+TopAttachable = false
+BottomAttachable = false
+LeftAttachable = true
+RightAttachable = false
+Type = 3
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("3_qi8ed")
