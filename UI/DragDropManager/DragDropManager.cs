@@ -19,7 +19,7 @@ public partial class DragDropManager : ItemList
 	private Sprite2D draggedPreview;
 	private Panel[,] gridCells;
 	private bool isDragging = false;
-	
+	private Vector2 initialMousePos;
 
 
 	public override void _Ready()
@@ -27,19 +27,27 @@ public partial class DragDropManager : ItemList
 		Clear();
 
 		PopulateItemList();
+
 	}
 
 	public override void _Process(double delta)
 	{
-		if (isDragging)
-		{	
-			var tween = GetTree().CreateTween();
-			tween.TweenProperty(draggedPreview,"global_position",GetGlobalMousePosition(), 0.2f);
+		if (Input.IsActionJustReleased("click") && isDragging)
+		{
+			if (draggedPreview != null)
+			{
+				var tween = GetTree().CreateTween();
+				tween.TweenProperty(draggedPreview, "global_position", initialMousePos, 0.7f);
+				tween.Finished += () => draggedPreview.QueueFree();
+				tween.Finished += () => isDragging = false;
+				return;
+			}
+			isDragging = false;
 		}
-		else{
-			return;
+		else if (isDragging)
+		{
+			draggedPreview.Position = GetGlobalMousePosition();
 		}
-
 	}
 
 	// When an item is selected
@@ -76,33 +84,21 @@ public partial class DragDropManager : ItemList
 			GD.Print("Item clicked at index " + index + " at position " + atPosition);
 			GD.Print("pressed");
 			for (int i = 0; i < GetItemCount(); i++)
+			{
+				Rect2 itemRect = GetItemRect(i);
+				if (itemRect.HasPoint(atPosition))
 				{
-					Rect2 itemRect = GetItemRect(i);
-
-					if (itemRect.HasPoint(atPosition))
-					{
-						if(draggedPreview!=null) {
-							draggedPreview.GetParent().RemoveChild(draggedPreview);
-						}
-						ShipComponentData data = itemListRef[i];
-						draggedPreview = new();
-						draggedPreview.Texture = data.Sprite;
-						draggedPreview.Visible = true;
-						GetTree().CurrentScene.AddChild(draggedPreview);
-						draggedPreview.GlobalPosition = GetGlobalMousePosition();
-						isDragging = true;
-						break;
-					}
+					ShipComponentData data = itemListRef[i];
+					draggedPreview = new();
+					draggedPreview.Texture = data.Sprite;
+					GetTree().CurrentScene.AddChild(draggedPreview);
+					draggedPreview.GlobalPosition = GetGlobalMousePosition();
+					initialMousePos = GetGlobalMousePosition();
+					isDragging = true;
+					break;
 				}
-		}
-		else{
-			GD.Print("released");
-			draggedPreview.Visible = false;
-			isDragging = false;
+			}
 		}
 	}
-
-
-
 
 }
