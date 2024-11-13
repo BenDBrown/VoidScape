@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtmn1g0662tqh"]
+
+[ext_resource type="PackedScene" uid="uid://dp04heb7bctdn" path="res://Structures/Old/Buildings/Building.tscn" id="1_k15ie"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ndac6"]
+radius = 175.0
+height = 896.01
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r0uyv"]
+size = Vector2(300, 800)
+
+[node name="Garage" type="Node2D"]
+
+[node name="Building" parent="." instance=ExtResource("1_k15ie")]
+
+[node name="Docking Station" type="Area2D" parent="."]
+position = Vector2(458, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Docking Station"]
+shape = SubResource("CapsuleShape2D_ndac6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Docking Station/CollisionShape2D"]
+position = Vector2(1, 0)
+texture = SubResource("PlaceholderTexture2D_r0uyv")
+offset = Vector2(0.15, 0)
+
+[node name="Label" type="Label" parent="Docking Station"]
+offset_left = -226.0
+offset_top = 410.0
+offset_right = -20.0
+offset_bottom = 433.0
+scale = Vector2(2.335, 2.335)
+text = "Dock here to start building
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -158.0
+offset_top = -144.0
+offset_right = -102.0
+offset_bottom = -121.0
+scale = Vector2(5.855, 5.855)
+text = "Garage
+"

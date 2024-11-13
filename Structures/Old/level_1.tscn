@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dleky7at7ny6p"]
+
+[ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_gl4t0"]
+[ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="2_hkocj"]
+[ext_resource type="PackedScene" uid="uid://bn0i4vfnuj3fv" path="res://Structures/Props/Star/dwarf_star.tscn" id="3_47gd2"]
+[ext_resource type="PackedScene" uid="uid://c0i0k7nd0arbx" path="res://Structures/Old/Town.tscn" id="3_vvx1c"]
+[ext_resource type="PackedScene" uid="uid://cppb7hqli8ckx" path="res://Structures/Old/broken_planet.tscn" id="5_rhiwh"]
+[ext_resource type="PackedScene" uid="uid://s527nmikjcui" path="res://Structures/Regions/town_inner.tscn" id="6_wjehb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rcgs6"]
+radius = 1024.0
+
+[node name="Level_1" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_gl4t0")]
+loop = true
+autoplay = true
+
+[node name="Player Spawner" type="Node2D" parent="."]
+position = Vector2(512, 320)
+script = ExtResource("2_hkocj")
+
+[node name="Level Regions" type="Node2D" parent="."]
+
+[node name="Town" parent="Level Regions" instance=ExtResource("3_vvx1c")]
+position = Vector2(13408, -5814)
+scale = Vector2(0.5, 0.5)
+
+[node name="Asteroid Belt" type="Node2D" parent="Level Regions"]
+
+[node name="Center" type="Node2D" parent="Level Regions"]
+
+[node name="Dwarf Star" parent="Level Regions/Center" instance=ExtResource("3_47gd2")]
+position = Vector2(1399, -9041)
+scale = Vector2(10.385, 10.385)
+
+[node name="Danger zone" type="Node2D" parent="Level Regions"]
+
+[node name="Region Area" type="Area2D" parent="Level Regions/Danger zone"]
+position = Vector2(-14864, -3986)
+scale = Vector2(9.5, 9.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level Regions/Danger zone/Region Area"]
+shape = SubResource("CircleShape2D_rcgs6")
+debug_color = Color(0.81502, 3.58574e-06, 7.70092e-07, 0.419608)
+
+[node name="Broken Planet" parent="Level Regions/Danger zone" instance=ExtResource("5_rhiwh")]
+position = Vector2(-11639, -10056)
+scale = Vector2(0.5, 0.5)
+
+[node name="Station zone" type="Node2D" parent="Level Regions"]
+
+[node name="Town_Inner" parent="." instance=ExtResource("6_wjehb")]
+position = Vector2(1018, 209)

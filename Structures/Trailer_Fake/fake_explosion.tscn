@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://dhlkit73dqgwc"]
+
+[ext_resource type="Texture2D" uid="uid://dojjgakoq5ima" path="res://Assets/Ship/ShipExplosion.png" id="1_tjgec"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qtxb"]
+atlas = ExtResource("1_tjgec")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w0hx"]
+atlas = ExtResource("1_tjgec")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00isw"]
+atlas = ExtResource("1_tjgec")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g254g"]
+atlas = ExtResource("1_tjgec")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdpjb"]
+atlas = ExtResource("1_tjgec")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rseds"]
+atlas = ExtResource("1_tjgec")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56ojt"]
+atlas = ExtResource("1_tjgec")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3s18"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qtxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w0hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00isw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g254g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdpjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rseds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56ojt")
+}],
+"loop": false,
+"name": &"Explosion",
+"speed": 5.0
+}]
+
+[node name="Fake_explosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_u3s18")
+animation = &"Explosion"
+frame = 6
+frame_progress = 1.0
+speed_scale = 1.5
