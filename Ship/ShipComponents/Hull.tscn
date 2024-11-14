@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dinvhpe3fbygh"]
 
-[ext_resource type="PackedScene" uid="uid://s6d2cbttlfra" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_mtonm"]
+[ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_mtonm"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Hull.cs" id="2_y0xwa"]
 
 [node name="Hull" instance=ExtResource("1_mtonm")]
