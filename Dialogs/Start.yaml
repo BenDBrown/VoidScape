@@ -1,0 +1,18 @@
+Start:
+    Captain:
+        - Hey there, how are you doing?
+        - We heard that there is a solar flare happening soon so be careful
+        - It might shutdown your power units but everything should be fine
+    Player:
+        - Thanks Cap! Good to know. I'll set up safeguards just in case
+        - I'll let you know when I'm ready
+    Captain:
+        - Alright, I'll talk to you soon
+    Player:
+        - Talk to you soon Cap
+
+Solar Flare:
+    System:
+        - Check the thrusters
+        - Check the engines
+        - etc

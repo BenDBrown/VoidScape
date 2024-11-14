@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnjfr0mud1up0"]
+
+[ext_resource type="Script" path="res://Scripts/Game/dialogue_box.gd" id="1_0ew72"]
+[ext_resource type="Theme" uid="uid://do1kf4d65vh5b" path="res://Styles/start_menu.tres" id="1_ewicm"]
+
+[node name="Dialogue Box" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 588.0
+offset_bottom = 256.0
+script = ExtResource("1_0ew72")
+file_path = "res://Dialogs/Start.yaml"
+
+[node name="Speaker" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.281
+offset_right = 256.0
+offset_bottom = -7.936
+
+[node name="Label" type="RichTextLabel" parent="Speaker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.094
+anchor_top = 0.125
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.064
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ewicm")
+fit_content = true
+scroll_active = false
+
+[node name="Dialogue" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.281
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.0639954
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="RichTextLabel" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ewicm")
+text = "Hello There"
+scroll_active = false
