@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo0sy8fss6itw"]
+[gd_scene load_steps=37 format=3 uid="uid://bo0sy8fss6itw"]
 
 [ext_resource type="Script" path="res://Ship/ShipBuilder/ShipBuilder.cs" id="1_njo3u"]
 [ext_resource type="PackedScene" uid="uid://c3vc3aagjqvgj" path="res://Ship/ShipBuilder/GridSquare.tscn" id="2_scqii"]
@@ -6,6 +6,36 @@
 [ext_resource type="Script" path="res://Ship/ShipBuilder/item_lister.gd" id="4_hykmt"]
 [ext_resource type="Script" path="res://Ship/ShipBuilder/build_button.gd" id="5_jd7yi"]
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="6_l1lb7"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo/Arzo Cockpit.tres" id="6_pmkxr"]
+[ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres" id="7_su60o"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="8_05yi3"]
+[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Arzo/Arzo Gun.tres" id="9_h4fsj"]
+[ext_resource type="Resource" uid="uid://bbcg4mu0p2j8l" path="res://Resources/ShipData/Arzo/Arzo Hull.tres" id="10_4q1fy"]
+[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="11_qw5gn"]
+[ext_resource type="Resource" uid="uid://b4rge5wtau78m" path="res://Resources/ShipData/Bile/Bile Cockpit.tres" id="12_em7a1"]
+[ext_resource type="Resource" uid="uid://delvegj5hfcjd" path="res://Resources/ShipData/Bile/Bile Fuel Tank.tres" id="13_ywas0"]
+[ext_resource type="Resource" uid="uid://d3hk5yvq6admy" path="res://Resources/ShipData/Bile/Bile Generator.tres" id="14_tx13t"]
+[ext_resource type="Resource" uid="uid://ct3mnas22ksbx" path="res://Resources/ShipData/Bile/Bile Gun.tres" id="15_82slx"]
+[ext_resource type="Resource" uid="uid://lec7dbe2yle8" path="res://Resources/ShipData/Bile/Bile Hull.tres" id="16_5j8vt"]
+[ext_resource type="Resource" uid="uid://br6ua7w6qbnpr" path="res://Resources/ShipData/Bile/Bile Thruster.tres" id="17_rtlne"]
+[ext_resource type="Resource" uid="uid://d2k8teoaq2t8m" path="res://Resources/ShipData/O'mano/O'Mano Cockpit.tres" id="18_7fxuj"]
+[ext_resource type="Resource" uid="uid://cek8h02am0hxa" path="res://Resources/ShipData/O'mano/O'Mano Fuel Tank.tres" id="19_nny40"]
+[ext_resource type="Resource" uid="uid://cg2ve7s4s4hmx" path="res://Resources/ShipData/O'mano/O'Mano Generator.tres" id="20_mlsvl"]
+[ext_resource type="Resource" uid="uid://b70fhd1e4anfr" path="res://Resources/ShipData/O'mano/O'Mano Gun.tres" id="21_tmgir"]
+[ext_resource type="Resource" uid="uid://rdkxlekri7yj" path="res://Resources/ShipData/O'mano/O'Mano Hull.tres" id="22_gt4gn"]
+[ext_resource type="Resource" uid="uid://b0cu6intmhaph" path="res://Resources/ShipData/O'mano/O'Mano Thruster.tres" id="23_8nt4t"]
+[ext_resource type="Resource" uid="uid://d2qdwbbvt725r" path="res://Resources/ShipData/Tali/Tali Cockpit.tres" id="24_0hlep"]
+[ext_resource type="Resource" uid="uid://b8ag0jd3e44wa" path="res://Resources/ShipData/Tali/Tali Fuel Tank.tres" id="25_bm70s"]
+[ext_resource type="Resource" uid="uid://qiucae7gxati" path="res://Resources/ShipData/Tali/Tali Generator.tres" id="26_i72mm"]
+[ext_resource type="Resource" uid="uid://bnpfn7k64mki7" path="res://Resources/ShipData/Tali/Tali Gun.tres" id="27_mwn65"]
+[ext_resource type="Resource" uid="uid://cx1in1n1c03cl" path="res://Resources/ShipData/Tali/Tali Hull.tres" id="28_l3f64"]
+[ext_resource type="Resource" uid="uid://b1n3cc6ubv315" path="res://Resources/ShipData/Tali/Tali Thruster.tres" id="29_d4eoi"]
+[ext_resource type="Resource" uid="uid://c261yp5mbqbms" path="res://Resources/ShipData/Zentri/Zentri Cockpit.tres" id="30_2bj38"]
+[ext_resource type="Resource" uid="uid://dr6qampoysb5j" path="res://Resources/ShipData/Zentri/Zentri Fuel Tank.tres" id="31_kov3x"]
+[ext_resource type="Resource" uid="uid://b6wi7lh5sy378" path="res://Resources/ShipData/Zentri/Zentri Generator.tres" id="32_10qpi"]
+[ext_resource type="Resource" uid="uid://dhobp4c3cdd6k" path="res://Resources/ShipData/Zentri/Zentri Gun.tres" id="33_ll8ne"]
+[ext_resource type="Resource" uid="uid://dpvpxoa7yo0b5" path="res://Resources/ShipData/Zentri/Zentri Hull.tres" id="34_y4plk"]
+[ext_resource type="Resource" uid="uid://cl6j86mc6ya4t" path="res://Resources/ShipData/Zentri/Zentri Thruster.tres" id="35_necx1"]
 
 [node name="Builder" type="Node2D"]
 position = Vector2(226, 188)
@@ -20,6 +50,7 @@ shipScene = ExtResource("3_8k774")
 [node name="ItemLister" type="Node2D" parent="."]
 position = Vector2(377, 0)
 script = ExtResource("4_hykmt")
+datas = Array[Resource]([ExtResource("6_pmkxr"), ExtResource("7_su60o"), ExtResource("8_05yi3"), ExtResource("9_h4fsj"), ExtResource("10_4q1fy"), ExtResource("11_qw5gn"), ExtResource("12_em7a1"), ExtResource("13_ywas0"), ExtResource("14_tx13t"), ExtResource("15_82slx"), ExtResource("16_5j8vt"), ExtResource("17_rtlne"), ExtResource("18_7fxuj"), ExtResource("19_nny40"), ExtResource("20_mlsvl"), ExtResource("21_tmgir"), ExtResource("22_gt4gn"), ExtResource("23_8nt4t"), ExtResource("24_0hlep"), ExtResource("25_bm70s"), ExtResource("26_i72mm"), ExtResource("27_mwn65"), ExtResource("28_l3f64"), ExtResource("29_d4eoi"), ExtResource("30_2bj38"), ExtResource("31_kov3x"), ExtResource("32_10qpi"), ExtResource("33_ll8ne"), ExtResource("34_y4plk"), ExtResource("35_necx1")])
 
 [node name="Button" type="Button" parent="."]
 offset_left = 168.0

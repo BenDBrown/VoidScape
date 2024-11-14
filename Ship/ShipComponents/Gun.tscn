@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgqy8786pscn"]
 
-[ext_resource type="PackedScene" uid="uid://s6d2cbttlfra" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_2kdol"]
+[ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_2kdol"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Gun.cs" id="2_g548h"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_4keds"]
 
