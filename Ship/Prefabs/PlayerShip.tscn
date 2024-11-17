@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://btd37ya3r2mob"]
+[gd_scene load_steps=7 format=3 uid="uid://btd37ya3r2mob"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_wjrlw"]
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerController.cs" id="2_0hxg2"]
+[ext_resource type="PackedScene" uid="uid://cf8gl3qmd3iay" path="res://Misc/Minimap/Prefabs/radar.tscn" id="2_hfgsn"]
 [ext_resource type="Script" path="res://Ship/Scripts/Managers/PowerManager.cs" id="3_22ycc"]
 [ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
+[ext_resource type="PackedScene" uid="uid://djny2y0oiodfh" path="res://Misc/Minimap/Prefabs/radar_ui.tscn" id="6_6nvi8"]
 
 [node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("ExplosionAnim")]
 collision_mask = 55
@@ -25,3 +27,20 @@ timer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="PowerManager"]
 
 [node name="ExplosionAnim" parent="." instance=ExtResource("4_48l4l")]
+
+[node name="Radar" parent="." instance=ExtResource("2_hfgsn")]
+collision_mask = 63
+radar_radius = 3000.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Radar UI" parent="CanvasLayer" instance=ExtResource("6_6nvi8")]
+offset_left = 149.0
+offset_top = 502.0
+offset_right = 149.0
+offset_bottom = 502.0
+scale = Vector2(0.5, 0.5)
+
+[connection signal="enemy_detected" from="Radar" to="CanvasLayer/Radar UI" method="_on_radar_enemy_detected"]
+[connection signal="radar_activated" from="Radar" to="CanvasLayer/Radar UI" method="_on_radar_radar_activated"]
+[connection signal="radar_sweeper_moved" from="Radar" to="CanvasLayer/Radar UI" method="_on_radar_radar_sweeper_moved"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bxcat74b0i27t"]
+[gd_scene load_steps=32 format=3 uid="uid://bxcat74b0i27t"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_ojqoj"]
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="2_xs7mv"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://srj2a0twg7of" path="res://Structures/Trailer_Fake/worm_curved.tscn" id="14_0ux27"]
 [ext_resource type="PackedScene" uid="uid://dhlkit73dqgwc" path="res://Structures/Trailer_Fake/fake_explosion.tscn" id="15_v2sy4"]
 [ext_resource type="PackedScene" uid="uid://c7ifsus1rg36m" path="res://Structures/Trailer_Fake/Cave_Snippet.tscn" id="16_8vhxe"]
+[ext_resource type="PackedScene" uid="uid://cr2l7u8h2v5hx" path="res://Misc/Minimap/Prefabs/RadarEnemy.tscn" id="16_l7ofs"]
 
 [sub_resource type="Animation" id="Animation_2g837"]
 resource_name = "Moving"
@@ -384,10 +385,9 @@ _data = {
 "RESET": SubResource("Animation_dnq48")
 }
 
-[sub_resource type="Animation" id="Animation_7nvyb"]
-resource_name = "Worm Moving"
-length = 2.0
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_4c1dm"]
+resource_name = "Colliding"
+length = 2.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -395,10 +395,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(14922, -6058), Vector2(14700, -6504), Vector2(14349, -6891)]
+"values": [Vector2(-1377, -266), Vector2(-1172, -190), Vector2(-953, -221), Vector2(-898, -244)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -407,10 +407,159 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [1.48353, 0.523599]
+"values": [-2.51703, -3.04454, -3.53277, -3.76175]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_at0jy"]
+resource_name = "Move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(25, 86), Vector2(95, -109), Vector2(72, -332), Vector2(-40, -510), Vector2(-213, -637), Vector2(-427, -675), Vector2(-489, -663)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.10307, 1.71192, 1.19962, 0.764741, 0.402553, -0.0811981, -0.262365]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Acid 1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 3.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Acid 2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 3.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Acid 3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.53333, 3.73333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Acid 4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.53333, 3.73333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Acid 2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.7, 2, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, -244), Vector2(-797, -269), Vector2(-2054, -307)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Acid 1:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.7, 2, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(28, -288), Vector2(-698, 45), Vector2(-2080, 678)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Acid 3:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.53333, 2, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-225, -588), Vector2(-311, -234), Vector2(-667, 1222)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Acid 4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.53333, 2, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-185, -566), Vector2(-399, -315), Vector2(-1561, 1049)]
 }
 
 [sub_resource type="Animation" id="Animation_vcou8"]
@@ -571,9 +720,9 @@ tracks/12/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_at0jy"]
-resource_name = "Move"
-length = 4.0
+[sub_resource type="Animation" id="Animation_7nvyb"]
+resource_name = "Worm Moving"
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -582,10 +731,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(25, 86), Vector2(95, -109), Vector2(72, -332), Vector2(-40, -510), Vector2(-213, -637), Vector2(-427, -675), Vector2(-489, -663)]
+"values": [Vector2(14922, -6058), Vector2(14700, -6504), Vector2(14349, -6891)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -594,158 +743,10 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [2.10307, 1.71192, 1.19962, 0.764741, 0.402553, -0.0811981, -0.262365]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.2),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Acid 1:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.7, 3.63333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Acid 2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.7, 3.63333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Acid 3:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1.53333, 3.73333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Acid 4:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.53333, 3.73333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Acid 2:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.7, 2, 3.53333),
-"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(40, -244), Vector2(-797, -269), Vector2(-2054, -307)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Acid 1:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0.7, 2, 3.53333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(28, -288), Vector2(-698, 45), Vector2(-2080, 678)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Acid 3:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(1.53333, 2, 3.53333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-225, -588), Vector2(-311, -234), Vector2(-667, 1222)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../Acid 4:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(1.53333, 2, 3.53333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-185, -566), Vector2(-399, -315), Vector2(-1561, 1049)]
-}
-
-[sub_resource type="Animation" id="Animation_4c1dm"]
-resource_name = "Colliding"
-length = 2.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-1377, -266), Vector2(-1172, -190), Vector2(-953, -221), Vector2(-898, -244)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-2.51703, -3.04454, -3.53277, -3.76175]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"values": [1.48353, 0.523599]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqxo3"]
@@ -1016,7 +1017,7 @@ loop = true
 autoplay = true
 
 [node name="Player Spawner" type="Node2D" parent="."]
-position = Vector2(-1003, 4584)
+position = Vector2(523, 336)
 script = ExtResource("2_xs7mv")
 
 [node name="Level Regions" type="Node2D" parent="."]
@@ -1119,6 +1120,7 @@ position = Vector2(8462, 9272)
 scale = Vector2(70, 70)
 
 [node name="Stranded_Ship" parent="." instance=ExtResource("10_v1rti")]
+visible = false
 position = Vector2(481, -2756)
 
 [node name="Space Worm" parent="." instance=ExtResource("5_h8ffu")]
@@ -1168,22 +1170,18 @@ position = Vector2(14796, -6141)
 [node name="Acid 1" parent="Trailer Animation" instance=ExtResource("12_1h78l")]
 position = Vector2(28, -288)
 rotation = -2.00044
-scale = Vector2(1, 1)
 
 [node name="Acid 2" parent="Trailer Animation" instance=ExtResource("12_1h78l")]
 position = Vector2(40, -244)
 rotation = -1.54038
-scale = Vector2(1, 1)
 
 [node name="Acid 3" parent="Trailer Animation" instance=ExtResource("12_1h78l")]
 position = Vector2(-225, -588)
 rotation = -2.90204
-scale = Vector2(1, 1)
 
 [node name="Acid 4" parent="Trailer Animation" instance=ExtResource("12_1h78l")]
 position = Vector2(-185, -566)
 rotation = -2.43604
-scale = Vector2(1, 1)
 
 [node name="Moving Worm" parent="Trailer Animation" instance=ExtResource("14_0ux27")]
 z_index = 5
@@ -1250,3 +1248,15 @@ libraries = {
 
 [node name="Trailer_Snippet" parent="." instance=ExtResource("16_8vhxe")]
 position = Vector2(-1566, 4046)
+
+[node name="RadarEnemy" parent="." instance=ExtResource("16_l7ofs")]
+position = Vector2(891, 263)
+
+[node name="RadarEnemy2" parent="." instance=ExtResource("16_l7ofs")]
+position = Vector2(830, -86)
+
+[node name="RadarEnemy3" parent="." instance=ExtResource("16_l7ofs")]
+position = Vector2(806, -565)
+
+[node name="RadarEnemy4" parent="." instance=ExtResource("16_l7ofs")]
+position = Vector2(101, -247)
