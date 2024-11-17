@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw0vxskbx7yvk"
-path="res://.godot/imported/Bullets.png-b2f559369128bcfd897ca868bcd6b59e.ctex"
+uid="uid://b8jl3ffxiuusb"
+path="res://.godot/imported/CockPlaceHolder.png-04d27208ba7d597c176145ed4dffd63b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bullets/Bullets.png"
-dest_files=["res://.godot/imported/Bullets.png-b2f559369128bcfd897ca868bcd6b59e.ctex"]
+source_file="res://Assets/Ship/CockPlaceHolder.png"
+dest_files=["res://.godot/imported/CockPlaceHolder.png-04d27208ba7d597c176145ed4dffd63b.ctex"]
 
 [params]
 

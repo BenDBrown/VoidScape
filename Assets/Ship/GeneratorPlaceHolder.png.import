@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw0vxskbx7yvk"
-path="res://.godot/imported/Bullets.png-b2f559369128bcfd897ca868bcd6b59e.ctex"
+uid="uid://b3gwabkg7cro1"
+path="res://.godot/imported/GeneratorPlaceHolder.png-4ccd81b2c325e76b8d0e557859f77c81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bullets/Bullets.png"
-dest_files=["res://.godot/imported/Bullets.png-b2f559369128bcfd897ca868bcd6b59e.ctex"]
+source_file="res://Assets/Ship/GeneratorPlaceHolder.png"
+dest_files=["res://.godot/imported/GeneratorPlaceHolder.png-4ccd81b2c325e76b8d0e557859f77c81.ctex"]
 
 [params]
 

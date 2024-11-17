@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw0vxskbx7yvk"
-path="res://.godot/imported/Bullets.png-b2f559369128bcfd897ca868bcd6b59e.ctex"
+uid="uid://npk2m7n25cnb"
+path="res://.godot/imported/ThrusterPlaceHolder.png-a0527b22db15060af16ecc4365b1b811.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bullets/Bullets.png"
-dest_files=["res://.godot/imported/Bullets.png-b2f559369128bcfd897ca868bcd6b59e.ctex"]
+source_file="res://Assets/Ship/ThrusterPlaceHolder.png"
+dest_files=["res://.godot/imported/ThrusterPlaceHolder.png-a0527b22db15060af16ecc4365b1b811.ctex"]
 
 [params]
 

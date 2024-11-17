@@ -14,7 +14,7 @@ func add_component(pos, component: ShipComponent):
 	if ship.has(pos):
 		return
 	var shipComponent: Dictionary
-	shipComponent["component"] = {"Mirrored": component.IsMirrored, "LocalRotation": component.rotation,}
+	shipComponent["component"] = component
 	shipComponent["path"] = component.Data.GetPrefabPath()
 	shipComponent["data_path"] = component.Data.resource_path
 	ship[pos] = shipComponent
@@ -26,13 +26,8 @@ func build_ship(parent: Node2D):
 
 		var scene = load(ship[pos].path) as PackedScene;
 		var component = scene.instantiate() as ShipComponent;
-		if parent is Ship:
-			parent.AddComponent(component, pos)
-		else:
-			parent.add_child(component)
-			component.position = pos * 32
-		component.IsMirrored = ship[pos]["component"]["Mirrored"] as bool
-		component.rotation = ship[pos]["component"]["LocalRotation"]
+		parent.add_child(component)
+		component.position = pos * 32
 		if ship[pos].has("data_path"):
 			var data_path = ship[pos]["data_path"]
 			component.Data = ResourceLoader.load(data_path) as ShipComponentData

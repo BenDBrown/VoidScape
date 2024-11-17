@@ -30,13 +30,11 @@ public partial class Bullet : CharacterBody2D
 
     public void OnAttackboxAreaEntered(Area2D area)
     {
-        if (area.GetParent() == this) { return; }
         CallDeferred("queue_free");
     }
 
     public void OnAttackBoxBodyEntered(Node2D node2D)
     {
-        if (node2D == this) { return; }
         CallDeferred("queue_free");
     }
 }

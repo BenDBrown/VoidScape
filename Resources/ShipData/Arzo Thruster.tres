@@ -1,0 +1,29 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://dc0h7q8fch0n0"]
+
+[ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="1_fq42w"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ThrusterData.cs" id="1_k8crt"]
+[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="2_byghf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5jgl"]
+atlas = ExtResource("1_fq42w")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n5rx"]
+atlas = ExtResource("1_fq42w")
+region = Rect2(0, 128, 32, 32)
+
+[resource]
+script = ExtResource("1_k8crt")
+Thrust = 400.0
+Name = "Arzo Thruster"
+Description = "Lv1"
+Sprite = SubResource("AtlasTexture_0n5rx")
+DestroyedSprite = SubResource("AtlasTexture_q5jgl")
+TopAttachable = true
+BottomAttachable = false
+LeftAttachable = false
+RightAttachable = false
+Type = 0
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("2_byghf")

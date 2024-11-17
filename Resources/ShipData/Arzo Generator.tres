@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=6 format=3 uid="uid://bn45f5ywhhqpf"]
+
+[ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="1_fqtxc"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_vnxqv"]
+[ext_resource type="PackedScene" uid="uid://uedj1d7fah7m" path="res://Ship/ShipComponents/Generator.tscn" id="2_ld1ms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br5ni"]
+atlas = ExtResource("1_fqtxc")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siphk"]
+atlas = ExtResource("1_fqtxc")
+region = Rect2(0, 224, 32, 32)
+
+[resource]
+script = ExtResource("1_vnxqv")
+Name = "Arzo Generator"
+Description = "Lv1"
+Sprite = SubResource("AtlasTexture_siphk")
+DestroyedSprite = SubResource("AtlasTexture_br5ni")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 4
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("2_ld1ms")

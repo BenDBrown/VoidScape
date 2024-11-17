@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=6 format=3 uid="uid://bbcg4mu0p2j8l"]
+
+[ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="1_frgu6"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_pk866"]
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="2_ik46n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31f54"]
+atlas = ExtResource("1_frgu6")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emyg7"]
+atlas = ExtResource("1_frgu6")
+region = Rect2(64, 160, 32, 32)
+
+[resource]
+script = ExtResource("1_pk866")
+Name = "Arzo Hull"
+Description = "Hello"
+Sprite = SubResource("AtlasTexture_emyg7")
+DestroyedSprite = SubResource("AtlasTexture_31f54")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 2
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("2_ik46n")
