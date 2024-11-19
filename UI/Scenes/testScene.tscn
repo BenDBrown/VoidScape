@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://duhxejf16i1er"]
+
+[ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_jkiuj"]
+[ext_resource type="PackedScene" uid="uid://2hmchkli54en" path="res://Structures/Station 1.tscn" id="1_vysad"]
+[ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="11_l243g"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_jkiuj")]
+
+[node name="Hub" parent="." instance=ExtResource("1_vysad")]
+position = Vector2(868, 174)
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("11_l243g")

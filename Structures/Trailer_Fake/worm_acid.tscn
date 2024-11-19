@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cr2bp8cft1jyl"]
+
+[ext_resource type="Texture2D" uid="uid://do0mmkvgel0f6" path="res://Assets/Bullets/Bullets.png" id="1_fgl5u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4ndk"]
+atlas = ExtResource("1_fgl5u")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x70kf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4ndk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_yucwl"]
+offsets = PackedFloat32Array(0.00689655, 0.775862)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ok73m"]
+gradient = SubResource("Gradient_yucwl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_mnyue"]
+offsets = PackedFloat32Array(0, 0.986014, 1)
+colors = PackedColorArray(0.954023, 0.954023, 0.954023, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[node name="Worm Acid" type="Node2D"]
+position = Vector2(1, -2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x70kf")
+frame_progress = 0.46217
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.596078, 0.960784, 0.329412, 1)
+texture = SubResource("GradientTexture2D_ok73m")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 50
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 8.33
+scale_amount_max = 2.0
+color = Color(0.721569, 1, 0.32549, 1)
+color_ramp = SubResource("Gradient_mnyue")

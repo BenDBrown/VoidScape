@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0c5eca6ab10q"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/Components/Cockpit.cs" id="1_d4gb0"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="2_ipny5"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_e5m5h"]
+[ext_resource type="Texture2D" uid="uid://b2jg4yeyk3abi" path="res://UI/Sprites/Cockpit.png" id="4_l14j5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrcd3"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6u5b"]
+size = Vector2(32, 32)
+
+[node name="CockpitSpear" type="CharacterBody2D" node_paths=PackedStringArray("collider", "vertices", "sprite")]
+use_parent_material = true
+script = ExtResource("1_d4gb0")
+collider = NodePath("Collider")
+vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
+BottomAttachable = true
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_ipny5")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hrcd3")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("3_e5m5h")
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_j6u5b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("4_l14j5")
+region_rect = Rect2(128, 64, 32, 32)
+
+[node name="VerticeTopLeft" type="Node2D" parent="."]
+position = Vector2(-16, -16)
+
+[node name="VerticeTopRight" type="Node2D" parent="."]
+position = Vector2(16, -16)
+
+[node name="VerticeBotRight" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="VerticeBotLeft" type="Node2D" parent="."]
+position = Vector2(-16, 16)
+
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]

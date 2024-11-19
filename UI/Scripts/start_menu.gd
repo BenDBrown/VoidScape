@@ -9,7 +9,7 @@ extends Node2D
 
 
 func _ready():
-	var hasSaveData = Game.load_game()
+	var hasSaveData = Game.LoadGame()
 	if !hasSaveData:
 		var continueButton = $"Main Screen/Continue"
 		continueButton.disabled = true

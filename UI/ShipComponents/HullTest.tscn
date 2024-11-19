@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://ym2yw0mmmosw"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/Components/Hull.cs" id="1_gmm5q"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="2_s3kr5"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_jocrw"]
+[ext_resource type="Texture2D" uid="uid://c82lammf17h2s" path="res://UI/Sprites/Hull.png" id="4_f7yee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q63p"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5asx"]
+size = Vector2(32, 32)
+
+[node name="Hull" type="CharacterBody2D" node_paths=PackedStringArray("collider", "vertices", "sprite")]
+use_parent_material = true
+script = ExtResource("1_gmm5q")
+cargoCapacity = 10
+collider = NodePath("Collider")
+vertices = [NodePath("VerticeTopLeft"), NodePath("VerticeTopRight"), NodePath("VerticeBotRight"), NodePath("VerticeBotLeft")]
+sprite = NodePath("Sprite2D")
+TopAttachable = true
+BottomAttachable = true
+RightAttachable = true
+LeftAttachable = true
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_s3kr5")
+defense = 20
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5q63p")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("3_jocrw")
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_l5asx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("4_f7yee")
+region_rect = Rect2(0, 192, 32, 32)
+
+[node name="VerticeTopLeft" type="Node2D" parent="."]
+position = Vector2(-16, -16)
+
+[node name="VerticeTopRight" type="Node2D" parent="."]
+position = Vector2(16, -16)
+
+[node name="VerticeBotRight" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="VerticeBotLeft" type="Node2D" parent="."]
+position = Vector2(-16, 16)
+
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]

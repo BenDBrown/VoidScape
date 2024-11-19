@@ -1,0 +1,111 @@
+[gd_scene load_steps=16 format=3 uid="uid://b8yixlufb8hme"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/Components/ShipComponent.cs" id="1_3r3yf"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="2_eo80n"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_2nmxr"]
+[ext_resource type="Texture2D" uid="uid://cdd2hgtw2np80" path="res://Assets/Ship/ComponentExplosion.png" id="4_wvgl3"]
+[ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="5_q0uno"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prnpq"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyvhp"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brgc4"]
+atlas = ExtResource("4_wvgl3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfchn"]
+atlas = ExtResource("4_wvgl3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26tpv"]
+atlas = ExtResource("4_wvgl3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etgqf"]
+atlas = ExtResource("4_wvgl3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aosf8"]
+atlas = ExtResource("4_wvgl3")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u23bk"]
+atlas = ExtResource("4_wvgl3")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cutfo"]
+atlas = ExtResource("4_wvgl3")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dccuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brgc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfchn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26tpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etgqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aosf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u23bk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cutfo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="ShipComponent" type="CharacterBody2D" node_paths=PackedStringArray("collider", "sprite", "destroyedSprite", "healthComponent", "explosionAnim")]
+use_parent_material = true
+script = ExtResource("1_3r3yf")
+collider = NodePath("Collider")
+sprite = NodePath("Sprite")
+destroyedSprite = NodePath("DestroyedSprite")
+healthComponent = NodePath("HealthComponent")
+explosionAnim = NodePath("explosionAnim")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_eo80n")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_prnpq")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent", "collision_shape")]
+script = ExtResource("3_2nmxr")
+healthComponent = NodePath("../HealthComponent")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_eyvhp")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+use_parent_material = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="DestroyedSprite" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="explosionAnim" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_dccuh")
+frame = 2
+frame_progress = 0.100345
+script = ExtResource("5_q0uno")
+
+[connection signal="died" from="HealthComponent" to="." method="Destroyed"]
