@@ -11,7 +11,7 @@ public partial class Gun : ShipComponent, IPowerable
 	public GunType type { get; private set; }
 	[Export]
 	private Node2D bulletSpawnPoint;
-
+	[Export]
 	private int powerdraw;
 	private PackedScene bulletPrefab;
 

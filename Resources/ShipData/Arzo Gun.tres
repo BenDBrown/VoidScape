@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_0wote"]
 [ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="2_xehxy"]
-[ext_resource type="PackedScene" uid="uid://38862x8qpd87" path="res://Ship/ShipComponents/Gun.tscn" id="3_vgmss"]
+[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="3_vgmss"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="4_k32jl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ut381"]

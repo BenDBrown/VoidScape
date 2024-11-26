@@ -5,21 +5,30 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class PlayerShip : Ship, IShip
 {
+	[Signal]
+	public delegate void PowerChangedEventHandler(float powerToMaxPowerPercentage);
+
+	[Export]
 	private PowerManager powerManager;
-	private CargoManager cargoManager;
-	private FuelManager fuelManager;
+	private CargoManager cargoManager = new();
+	private FuelManager fuelManager = new();
 
     public override void _Ready()
     {
         base._Ready();
+		// setting up wrapper signals and stall signals
 		powerManager.StallStarted += InitiateStall;
+		powerManager.StallStarted += (stallTime) => EmitSignal(SignalName.StallStarted, stallTime);
 		powerManager.StallEnded += EndStall;
+		powerManager.StallEnded += () => EmitSignal(SignalName.StallEnded);
+		powerManager.PowerChanged += (powerToMaxPowerPercentage) => EmitSignal(SignalName.PowerChanged, powerToMaxPowerPercentage);
     }
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta); // done in physics process after base so that power draw values on ThrustManager are updated first in the same thread
 		powerManager.TryUsePower(GetPowerDraw((float)delta), out float fuelUsed);
+		// ToDo add fuel manager logic with fuel used
     }
 
     public override bool TryBuildShip()
@@ -73,7 +82,6 @@ public partial class PlayerShip : Ship, IShip
 			}
 		}
 		thrustManager.SetWeight(shipComponents.Count);
-
 
 		return hasFuelTank && hasGenerator && hasThruster;
 	}

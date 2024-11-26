@@ -21,7 +21,7 @@ public partial class PowerManager : Node
 	[Export]
 	private Timer stallTimer;
 
-	public bool Stalling {get; private set;}
+	public bool Stalling {get; private set;} = false;
 
 	private List<Generator> generators = new ();
 
@@ -55,8 +55,9 @@ public partial class PowerManager : Node
 		fuelUsed = 0;
 		if (Stalling) return false;
 		Power -= powerWanted;
+		GD.Print(Power);
 		Power = Math.Max(Power, 0);
-		bool enoughPower = Power <= 0;
+		bool enoughPower = Power >= 0;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 		if(!enoughPower) StallStart();
 		return enoughPower;

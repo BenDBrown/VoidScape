@@ -11,6 +11,12 @@ public partial class Ship : CharacterBody2D, IShip
 	[Signal]
 	public delegate void OnDestroyedEventHandler(Ship ship);
 
+	[Signal]
+	public delegate void StallStartedEventHandler(double stallTime);
+
+	[Signal]
+	public delegate void StallEndedEventHandler();
+
 	[Export]
 	private SingleRunAnimation ExplosionAnim;
 

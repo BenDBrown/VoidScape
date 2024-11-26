@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://br8hk0g01ph4a"]
 
-[ext_resource type="PackedScene" uid="uid://s6d2cbttlfra" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_ygkwo"]
+[ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_ygkwo"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Generator.cs" id="2_xhv8o"]
 
 [node name="Generator" instance=ExtResource("1_ygkwo")]
 script = ExtResource("2_xhv8o")
-efficiency = 0.0
-maxPowerGenerated = 0
+efficiency = 1.0
+maxPowerGenerated = 100
