@@ -57,7 +57,7 @@ public partial class PowerManager : Node
 		Power -= powerWanted;
 		GD.Print(Power);
 		Power = Math.Max(Power, 0);
-		bool enoughPower = Power >= 0;
+		bool enoughPower = Power > 0;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 		if(!enoughPower) StallStart();
 		return enoughPower;
@@ -93,6 +93,7 @@ public partial class PowerManager : Node
 	private void StallEnd()
 	{
 		Stalling = false;
+		Power = MaxPower;
 		EmitSignal(SignalName.StallEnded);
 	}
 

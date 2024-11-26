@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="1_5k4nf"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_er1qk"]
-[ext_resource type="PackedScene" uid="uid://g6ol5kk4dhjd" path="res://Ship/ShipComponents/FuelTank.tscn" id="2_qarj2"]
+[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="2_qarj2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shhg2"]
 atlas = ExtResource("1_5k4nf")
