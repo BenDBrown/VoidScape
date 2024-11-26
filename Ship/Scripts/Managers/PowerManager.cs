@@ -55,7 +55,6 @@ public partial class PowerManager : Node
 		fuelUsed = 0;
 		if (Stalling) return false;
 		Power -= powerWanted;
-		GD.Print(Power);
 		Power = Math.Max(Power, 0);
 		bool enoughPower = Power > 0;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());

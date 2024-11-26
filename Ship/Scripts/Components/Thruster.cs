@@ -22,6 +22,7 @@ public partial class Thruster : ShipComponent, IPowerable
 		if (Data is ThrusterData thrustData)
 		{
 			thrust = thrustData.Thrust;
+			powerdraw = thrustData.Powerdraw;
 		}
 	}
 

@@ -1,23 +1,18 @@
-[gd_resource type="Resource" script_class="ShipComponentData" load_steps=6 format=3 uid="uid://bn45f5ywhhqpf"]
+[gd_resource type="Resource" script_class="GeneratorData" load_steps=5 format=3 uid="uid://bn45f5ywhhqpf"]
 
-[ext_resource type="Texture2D" uid="uid://cpn2t00vjy3km" path="res://Assets/Ship/ShipSheet.png" id="1_fqtxc"]
-[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_vnxqv"]
+[ext_resource type="Texture2D" uid="uid://u2g2t0fcq8ch" path="res://Assets/Ship/Atlas/Arzo Generator - Broken.atlastex" id="1_t4lg0"]
 [ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="2_ld1ms"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_br5ni"]
-atlas = ExtResource("1_fqtxc")
-region = Rect2(32, 224, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_siphk"]
-atlas = ExtResource("1_fqtxc")
-region = Rect2(0, 224, 32, 32)
+[ext_resource type="Texture2D" uid="uid://deirxrj04w0w7" path="res://Assets/Ship/Atlas/Arzo Generator.atlastex" id="2_svrsk"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GeneratorData.cs" id="4_gcpfw"]
 
 [resource]
-script = ExtResource("1_vnxqv")
-Name = "Arzo Generator"
+script = ExtResource("4_gcpfw")
+efficiency = 1.0
+maxPowerGenerated = 100
+Name = "Arzo2 Generator"
 Description = "Lv1"
-Sprite = SubResource("AtlasTexture_siphk")
-DestroyedSprite = SubResource("AtlasTexture_br5ni")
+Sprite = ExtResource("2_svrsk")
+DestroyedSprite = ExtResource("1_t4lg0")
 TopAttachable = true
 BottomAttachable = true
 LeftAttachable = true

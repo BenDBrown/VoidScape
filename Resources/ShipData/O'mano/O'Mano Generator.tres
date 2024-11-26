@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://cg2ve7s4s4hmx"]
+[gd_resource type="Resource" script_class="GeneratorData" load_steps=5 format=3 uid="uid://cg2ve7s4s4hmx"]
 
 [ext_resource type="Texture2D" uid="uid://db0rx40t4368l" path="res://Assets/Ship/Atlas/O'Mano Generator - Broken.atlastex" id="1_gh5y4"]
 [ext_resource type="Texture2D" uid="uid://25dst4vhjow0" path="res://Assets/Ship/Atlas/O'Mano Generator.atlastex" id="2_v1lkd"]
 [ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="3_mwc5a"]
-[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="4_bntuj"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GeneratorData.cs" id="4_lt5r6"]
 
 [resource]
-script = ExtResource("4_bntuj")
-Name = "Arzo Generator"
+script = ExtResource("4_lt5r6")
+efficiency = 1.0
+maxPowerGenerated = 100
+Name = "O'Mano Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_v1lkd")
 DestroyedSprite = ExtResource("1_gh5y4")
