@@ -122,7 +122,7 @@ public partial class Ship : CharacterBody2D, IShip
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
-			if (n is Node2D n2) { n2.Position -= ToLocal(center); }
+			if (n is Node2D n2 && n is not SingleRunAnimation) { n2.Position -= ToLocal(center); } // is not, for bandaid solution to prevent ship destruction anim from being off centre
 			if (n is ShipComponent shipComponent)
 			{
 				shipComponent.collider.Owner = null; //prevents warning.
