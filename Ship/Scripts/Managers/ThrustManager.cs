@@ -14,7 +14,9 @@ public partial class ThrustManager : IPowerable
 
 	public float PotentialSideThrust { get; private set; } = 0;
 
-	public int PowerDraw { get; private set; } = 0;
+	public int PowerDraw => GetPowerDraw();
+
+	private int powerDraw = 0;
 
 	public int weight { get; private set; } = 1; // to avoid division by 0 errors
 
@@ -111,19 +113,23 @@ public partial class ThrustManager : IPowerable
 		PotentialForwardThrust += thruster.GetThrust();
 		UpdateThrust();
 		thrusters.Add(thruster);
-		PowerDraw += thruster.GetPowerDraw();
+		powerDraw += thruster.GetPowerDraw();
 		thruster.OnDestroyed += OnThrusterDestroyed;
 	}
 
-	public int GetPowerDraw() => PowerDraw;
+	public int GetPowerDraw() 
+	{
+		if(thrustingBackward || thrustingLeft || thrustingRight || thrustingForward) return powerDraw;
+		return 0;
+	}
 
 	private void OnThrusterDestroyed(ShipComponent shipComponent)
 	{
-		if (!(shipComponent is Thruster thruster)) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
+		if (shipComponent is not Thruster thruster) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
 		PotentialForwardThrust -= thruster.GetThrust();
 		UpdateThrust();
 		thrusters.Remove(thruster);
-		PowerDraw -= thruster.GetPowerDraw();
+		powerDraw -= thruster.GetPowerDraw();
 		thruster.OnDestroyed -= OnThrusterDestroyed;
 	}
 

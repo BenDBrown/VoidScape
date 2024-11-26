@@ -5,69 +5,64 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class PlayerShip : Ship, IShip
 {
-	// public bool TryBuildShip()
-	// {
-	// 	bool hasFuelTank = false;
-	// 	bool hasGenerator = false;
-	// 	bool hasThruster = false;
-	// 	bool thrusterPowerUsageUnderMaxPower = false;
-	// 	int thrustPowerNeeded = 0;
-	// 	float maxPowerGenerated;
-	// 	int cargoCapacity = 0;
+	private PowerManager powerManager;
+	private CargoManager cargoManager;
+	private FuelManager fuelManager;
 
-	// 	List<Vector2> unpackedVectors = new();
+	public override bool TryBuildShip()
+	{
+		bool hasFuelTank = false;
+		bool hasGenerator = false;
+		bool hasThruster = false;
 
-	// 	foreach(Node node in GetChildren())
-	// 	{
-	// 		switch(node)
-	// 		{
-	// 			case Gun gun:
-	// 				guns.Add(gun);
-	// 				break;
-	// 			case Hull hull:
-	// 				cargoCapacity += hull.cargoCapacity;
-	// 				break;
-	// 			case FuelTank fuelTank:
-	// 				fuelCapacity += fuelTank.fuelCapacity;
-	// 				hasFuelTank = true;
-	// 				break;
-	// 			case Generator generator:
-	// 				powerManager.AddGenerator(generator);
-	// 				hasGenerator = true;
-	// 				break;
-	// 			case Thruster thruster:
-	// 				thrustPowerNeeded += thruster.GetPowerDraw();
-	// 				thrusters.Add(thruster);
-	// 				hasThruster = true;
-	// 				break;
-	// 			default: break;
-	// 		}
-	// 		if(node is ShipComponent)
-	// 		{
-	// 			ShipComponent shipComponent = node as ShipComponent;
-	// 			shipComponents.Add(shipComponent);
-	// 			shipComponent.OnDestroyed += ComponentDestroyed;
+		List<Vector2> globalVertices = new();
 
-	// 			foreach (Vector2 v2 in shipComponent.GetVertices())
-	// 			{
-	// 				Vector2 localPositon = ToLocal(v2);
-	// 				unpackedVectors.Add(localPositon);
-	// 			}
-	// 		}
+		foreach(Node node in GetChildren())
+		{
+			if (node is not ShipComponent shipComponent) { continue; }
+			switch(node)
+			{
+				case Gun gun:
+					gunManager.AddGun(gun);
+					break;
+				case Hull hull:
+					cargoManager.AddHull(hull);
+					break;
+				case FuelTank fuelTank:
+					fuelManager.AddFuelTank(fuelTank);
+					hasFuelTank = true;
+					break;
+				case Generator generator:
+					powerManager.AddGenerator(generator);
+					hasGenerator = true;
+					break;
+				case Thruster thruster:
+					thrustManager.AddThruster(thruster);
+					hasThruster = true;
+					break;
+				default: break;
+			}
+			shipComponents.Add(shipComponent);
+			shipComponent.OnDestroyed += ComponentDestroyed;
+			globalVertices.Add(shipComponent.GlobalPosition);
+		}
 
-	// 	}
-	// 	CalculateCentreOfMass(unpackedVectors);
-	// 	ConvexPolygonShape2D convexPolygon = new ();
-	// 	convexPolygon.SetPointCloud(unpackedVectors.ToArray());
-	// 	collider.Polygon = convexPolygon.Points;
+		Vector2 center = centerCalculator.GetGlobalShipCenter(globalVertices);
+		foreach (Node n in GetChildren())
+		{
+			if (n is Camera2D) { continue; }
+			if (n is Node2D n2 && n is not SingleRunAnimation) { n2.Position -= ToLocal(center); } // is not, for bandaid solution to prevent ship destruction anim from being off centre
+			if (n is ShipComponent shipComponent)
+			{
+				shipComponent.collider.Owner = null; //prevents warning.
+				shipComponent.collider.Reparent(this);
+				shipComponent.collider.Owner = this;
+			}
+		}
+		thrustManager.SetWeight(shipComponents.Count);
 
 
-	// 	cargoManager.cargoCapacity = cargoCapacity;
-	// 	maxPowerGenerated = powerManager.GetMaxPowerGenerated();
-	// 	thrusterPowerUsageUnderMaxPower = maxPowerGenerated >= thrustPowerNeeded;
-	// 	fuel = fuelCapacity; // remove this line later so that fuel doesnt reset when a ship is re-instantiated
-
-	// 	return hasFuelTank && hasGenerator && hasThruster && thrusterPowerUsageUnderMaxPower;
-	// }
+		return hasFuelTank && hasGenerator && hasThruster;
+	}
 
 }
