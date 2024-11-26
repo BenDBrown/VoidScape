@@ -9,7 +9,20 @@ public partial class PlayerShip : Ship, IShip
 	private CargoManager cargoManager;
 	private FuelManager fuelManager;
 
-	public override bool TryBuildShip()
+    public override void _Ready()
+    {
+        base._Ready();
+		powerManager.StallStarted += InitiateStall;
+		powerManager.StallEnded += EndStall;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta); // done in physics process after base so that power draw values on ThrustManager are updated first in the same thread
+		powerManager.TryUsePower(GetPowerDraw((float)delta), out float fuelUsed);
+    }
+
+    public override bool TryBuildShip()
 	{
 		bool hasFuelTank = false;
 		bool hasGenerator = false;
@@ -63,6 +76,11 @@ public partial class PlayerShip : Ship, IShip
 
 
 		return hasFuelTank && hasGenerator && hasThruster;
+	}
+
+	private float GetPowerDraw(float delta) // add per frame power draw here
+	{
+		return (thrustManager.PowerDraw + gunManager.PowerDraw) * delta;
 	}
 
 }

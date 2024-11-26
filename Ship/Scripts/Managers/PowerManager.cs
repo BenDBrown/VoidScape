@@ -45,10 +45,10 @@ public partial class PowerManager : Node
     }
 
     /// <summary>
-    /// Called when a ship that relies on power tries to consume power
-	/// will return false if there was not enough power available which will then initiate a stall
-	/// will also return false if called while stalling
-	/// fuel usage checking is not done here as this should be managed by FuelManager
+    /// Called when a ship that relies on power tries to consume power.
+	/// Will return false if there was not enough power available which will then initiate a stall.
+	/// Will also return false if called while stalling.
+	/// Fuel usage checking is not done here as this should be managed by FuelManager.
     /// </summary>
 	public bool TryUsePower(float powerWanted, out float fuelUsed)
 	{

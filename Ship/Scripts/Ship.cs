@@ -21,7 +21,9 @@ public partial class Ship : CharacterBody2D, IShip
 	protected RotationManager rotationManager = new();
 	protected GunManager gunManager = new();
 	protected List<ShipComponent> shipComponents = new();
-	private float rotationSpeed = 3;
+	protected float rotationSpeed = 3;
+	protected bool stalling = false;
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -69,27 +71,24 @@ public partial class Ship : CharacterBody2D, IShip
 	}
 
 	// shooting
-	public void StartShooting() => gunManager.StartShooting();
+	public void StartShooting() {if(!stalling)gunManager.StartShooting();}
 	public void StopShooting() => gunManager.StopShooting();
 
 	// movement
-	public void StartThrustingForward() => thrustManager.StartThrustingForward();
-	public void StartThrustingBackward() => thrustManager.StartThrustingBackward();
-	public void StartThrustingRight() => thrustManager.StartThrustingRight();
-	public void StartThrustingLeft() => thrustManager.StartThrustingLeft();
+	public void StartThrustingForward() {if(!stalling)thrustManager.StartThrustingForward();}
+	public void StartThrustingBackward() {if(!stalling)thrustManager.StartThrustingBackward();}
+	public void StartThrustingRight() {if(!stalling)thrustManager.StartThrustingRight();}
+	public void StartThrustingLeft() {if(!stalling)thrustManager.StartThrustingLeft();}
 	public void StopThrustingForward() => thrustManager.StopThrustingForward();
 	public void StopThrustingBackward() => thrustManager.StopThrustingBackward();
 	public void StopThrustingRight() => thrustManager.StopThrustingRight();
 	public void StopThrustingLeft() => thrustManager.StopThrustingLeft();
 
 	// turning
-	public void StartTurningClockwise() => rotationManager.StartTurningClockwise();
-
-
-	public void StartTurningCounterClockwise() => rotationManager.StartTurningCounterClockwise();
-
-
+	public void StartTurningClockwise() {if(!stalling)rotationManager.StartTurningClockwise();}
+	public void StartTurningCounterClockwise() {if(!stalling)rotationManager.StartTurningCounterClockwise();}
 	public void StopTurning() => rotationManager.StopTurning();
+
 
 	public virtual bool TryBuildShip()
 	{
@@ -165,4 +164,15 @@ public partial class Ship : CharacterBody2D, IShip
 		AddChild(component);
 		component.Position = coordinate * 32;
 	}
+
+	protected virtual void InitiateStall(double stallTime)
+	{
+		stalling = true;
+		thrustManager.StopThrusting();
+		gunManager.StopShooting();
+		rotationManager.StopTurning();
+	}
+
+	protected virtual void EndStall() => stalling = false;
+	
 }

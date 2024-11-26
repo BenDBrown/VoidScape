@@ -107,6 +107,13 @@ public partial class ThrustManager : IPowerable
 	public void StopThrustingBackward() => thrustingBackward = false;
 	public void StopThrustingRight() => thrustingRight = false;
 	public void StopThrustingLeft() => thrustingLeft = false;
+	public void StopThrusting()
+	{
+		thrustingForward = false;
+		thrustingBackward = false;
+		thrustingLeft = false;
+		thrustingRight = false;
+	}
 
 	public void AddThruster(Thruster thruster)
 	{
