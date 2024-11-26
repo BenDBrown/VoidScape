@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://dhobp4c3cdd6k"]
+
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_oq8hn"]
+[ext_resource type="Texture2D" uid="uid://bnulmtmya3x0u" path="res://Assets/Ship/Atlas/Zentri Gun - Broken.atlastex" id="2_nuvch"]
+[ext_resource type="Texture2D" uid="uid://cfn3axbcnvw8q" path="res://Assets/Ship/Atlas/Zentri Gun.atlastex" id="3_e1ljs"]
+[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="4_ccck2"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="5_gpmh3"]
+
+[resource]
+script = ExtResource("5_gpmh3")
+BulletsPerSecond = 10.0
+Attack = 100
+type = 0
+BulletSpeed = 150
+BulletSpawnPoint = Vector2(8, -32)
+BulletPrefab = ExtResource("1_oq8hn")
+Name = "Arzo Gun"
+Description = "Lv1"
+Sprite = ExtResource("3_e1ljs")
+DestroyedSprite = ExtResource("2_nuvch")
+TopAttachable = false
+BottomAttachable = false
+LeftAttachable = true
+RightAttachable = false
+Type = 5
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("4_ccck2")

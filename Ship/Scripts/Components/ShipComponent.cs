@@ -91,6 +91,7 @@ public partial class ShipComponent : CharacterBody2D
     public bool LeftAttachable { get; private set; }
     public void Mirror()
     {
+        IsMirrored = !IsMirrored;
         bool newAttachableA;
         bool newAttachableB;
         if (RotationDegrees == 0 || Math.Abs(RotationDegrees) == 180)
