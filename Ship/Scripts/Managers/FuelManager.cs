@@ -39,6 +39,7 @@ public partial class FuelManager
 
 	public void AddFuelTank(FuelTank fuelTank)
 	{
+		// should be "FuelCapacity += fuelTank.FuelCapacity;" but isnt because of _Ready being called in wrong order
 		if(fuelTank.Data is FuelTankData fuelTankData) FuelCapacity += fuelTankData.fuelCapacity;
 		else GD.Print("L bozo");
 		fuelTank.OnDestroyed += OnFuelTankDestroyed;
@@ -47,7 +48,7 @@ public partial class FuelManager
 	public void OnFuelTankDestroyed(ShipComponent component)
 	{
 		if(!(component is FuelTank fuelTank)) { GD.PushError("Non fuel tank ship component passed to fuel manager on destroy"); return; }
-		FuelCapacity -= fuelTank.fuelCapacity;
+		FuelCapacity -= fuelTank.FuelCapacity;
 		fuelTank.OnDestroyed -= OnFuelTankDestroyed;
 		if(FuelCapacity >= Fuel) { return; }
 		Fuel = FuelCapacity;

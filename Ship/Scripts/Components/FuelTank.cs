@@ -4,7 +4,7 @@ using System;
 public partial class FuelTank : ShipComponent
 {
 	[Export]
-	public int fuelCapacity {get; private set;}
+	public int FuelCapacity {get; private set;}
 
 	protected override void SetupData()
 	{
@@ -12,7 +12,7 @@ public partial class FuelTank : ShipComponent
 		if (Data is FuelTankData fuelTankData)
 		{
 			// goodluck Genelle
-			fuelCapacity = fuelTankData.fuelCapacity;
+			FuelCapacity = fuelTankData.fuelCapacity;
 		}
 		else GD.PushError("tried assigning non fuel tank component data to fuel tank");
 	}

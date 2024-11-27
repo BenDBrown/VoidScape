@@ -34,7 +34,6 @@ public partial class PlayerShip : Ship, IShip
     {
         base._PhysicsProcess(delta); // done in physics process after base so that power draw values on ThrustManager are updated first in the same thread
 		powerManager.TryUsePower(GetPowerDraw((float)delta), out float fuelUsed);
-		GD.Print(fuelUsed);
 		fuelManager.UseFuel(fuelUsed);
     }
 
