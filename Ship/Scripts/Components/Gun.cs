@@ -11,7 +11,7 @@ public partial class Gun : ShipComponent, IPowerable
 	public GunType type { get; private set; }
 	[Export]
 	private Node2D bulletSpawnPoint;
-
+	[Export]
 	private int powerdraw;
 	private PackedScene bulletPrefab;
 
@@ -58,6 +58,7 @@ public partial class Gun : ShipComponent, IPowerable
 		if (Data is GunData gunData)
 		{
 			attackComponent.attack = gunData.Attack;
+			powerdraw = gunData.Powerdraw;
 			bulletsPerSecond = gunData.BulletsPerSecond;
 			bulletSpeed = gunData.BulletSpeed;
 			bulletSpawnPoint.Position = gunData.BulletSpawnPoint;
