@@ -10,6 +10,7 @@ timer = NodePath("Timer")
 attackComponent = NodePath("AttackComponent")
 type = 0
 bulletSpawnPoint = NodePath("BulletSpawnPoint")
+powerdraw = 100
 
 [node name="Timer" type="Timer" parent="." index="4"]
 

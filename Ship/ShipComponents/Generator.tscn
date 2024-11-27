@@ -5,5 +5,5 @@
 
 [node name="Generator" instance=ExtResource("1_ygkwo")]
 script = ExtResource("2_xhv8o")
-efficiency = 0.0
-maxPowerGenerated = 0
+efficiency = 1.0
+maxPowerGenerated = 100
