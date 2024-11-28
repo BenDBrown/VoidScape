@@ -31,5 +31,15 @@ public partial class PlayerController : Node
         if(Input.IsActionJustPressed("rotate_right")) { playerShip.StartTurningClockwise(); }
         else if(Input.IsActionJustPressed("rotate_left")) { playerShip.StartTurningCounterClockwise(); }
         else if((Input.IsActionJustReleased("rotate_right") && (!Input.IsActionPressed("rotate_left"))) || (Input.IsActionJustReleased("rotate_left") && (!Input.IsActionPressed("rotate_right")))) { playerShip.StopTurning(); }
+    
+
+        if(Input.IsActionJustPressed("open_weapon_menu")){
+            ((PlayerShip) playerShip).GetActiveWeaponIndex();        /// DO THIS AS THE SIGNAL TO OPEN THE MENUI
+        }
+        else if( Input.IsActionJustReleased("open_weapon_menu")){
+
+        }
+
+
     }
 }

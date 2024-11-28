@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b45l0wqye4fap"]
+
+[ext_resource type="Script" path="res://Ship/WeaponCycle/weapon_menu.gd" id="1_1jksr"]
+[ext_resource type="PackedScene" uid="uid://c6autbhi52pfr" path="res://Ship/WeaponCycle/weapon_menu_option.tscn" id="1_jkws8"]
+[ext_resource type="Texture2D" uid="uid://d3q1l2hbk6pc7" path="res://Assets/Ship/Placeholder/GunPlaceHolder.png" id="2_8ibi8"]
+[ext_resource type="Texture2D" uid="uid://npk2m7n25cnb" path="res://Assets/Ship/Placeholder/ThrusterPlaceHolder.png" id="3_6i2js"]
+
+[node name="weapon_menu_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1jksr")
+type_gun = ExtResource("2_8ibi8")
+type_laser = ExtResource("3_6i2js")
+
+[node name="weapon_menu_option" parent="." instance=ExtResource("1_jkws8")]
+position = Vector2(0, -60)
+
+[node name="weapon_menu_option2" parent="." instance=ExtResource("1_jkws8")]
+position = Vector2(0, -20)
+
+[node name="weapon_menu_option3" parent="." instance=ExtResource("1_jkws8")]
+position = Vector2(0, 20)
+
+[node name="weapon_menu_option4" parent="." instance=ExtResource("1_jkws8")]
+position = Vector2(0, 60)

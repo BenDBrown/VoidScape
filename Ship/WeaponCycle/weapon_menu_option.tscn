@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6autbhi52pfr"]
+
+[ext_resource type="Script" path="res://Ship/WeaponCycle/weapon_menu_option.gd" id="1_8xn6h"]
+[ext_resource type="Texture2D" uid="uid://dmkp744yy44m5" path="res://Assets/UI/Weapon Cycling/active_weapon_UI.png" id="1_b2yr8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6lt0"]
+atlas = ExtResource("1_b2yr8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o7dr"]
+atlas = ExtResource("1_b2yr8")
+region = Rect2(48, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6e7c"]
+atlas = ExtResource("1_b2yr8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6aw4y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6lt0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4o7dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6e7c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="weapon_menu_option" type="Node2D"]
+script = ExtResource("1_8xn6h")
+
+[node name="WeaponType" type="Sprite2D" parent="."]
+
+[node name="Border" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6aw4y")

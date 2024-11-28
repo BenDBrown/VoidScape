@@ -22,7 +22,9 @@ public class GunGroup : IPowerable
 
 	public GunGroup(Gun gun)
 	{
-		type = gun.type;
+		if(!(gun.Data is GunData gunData)){ return;}
+
+		type = gunData.type;
 		AddGun(gun);
 	}
 

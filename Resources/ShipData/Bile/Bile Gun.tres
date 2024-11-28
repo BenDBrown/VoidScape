@@ -10,7 +10,8 @@
 script = ExtResource("1_p5fk8")
 BulletsPerSecond = 2.0
 Attack = 400
-type = 0
+Powerdraw = 10
+type = 2
 BulletSpeed = 200
 BulletSpawnPoint = Vector2(0, -100)
 BulletPrefab = ExtResource("1_y46bx")

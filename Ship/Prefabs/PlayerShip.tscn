@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://btd37ya3r2mob"]
+[gd_scene load_steps=6 format=3 uid="uid://btd37ya3r2mob"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerShip.cs" id="1_mwucv"]
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerController.cs" id="2_0hxg2"]
+[ext_resource type="PackedScene" uid="uid://b45l0wqye4fap" path="res://Ship/WeaponCycle/weapon_menu_ui.tscn" id="2_6ne6v"]
 [ext_resource type="Script" path="res://Ship/Scripts/Managers/PowerManager.cs" id="3_22ycc"]
 [ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
 
@@ -26,3 +27,14 @@ stallTimer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="PowerManager"]
 
 [node name="ExplosionAnim" parent="." instance=ExtResource("4_48l4l")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="weapon_menu_ui" parent="CanvasLayer" node_paths=PackedStringArray("player_ship") instance=ExtResource("2_6ne6v")]
+visible = false
+offset_left = 1083.0
+offset_top = 312.0
+offset_right = 950.0
+offset_bottom = 208.0
+scale = Vector2(3, 3)
+player_ship = NodePath("../..")

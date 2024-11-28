@@ -8,6 +8,9 @@ public partial class PlayerShip : Ship, IShip
 	[Signal]
 	public delegate void PowerChangedEventHandler(float powerToMaxPowerPercentage);
 
+	[Signal]
+	public delegate void GunChangedEventHandler();
+
 	[Export]
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
@@ -18,7 +21,7 @@ public partial class PlayerShip : Ship, IShip
         base._Ready();
 		// setting up wrapper signals and stall signals
 		powerManager.StallStarted += InitiateStall;
-		powerManager.StallStarted += (stallTime) => EmitSignal(SignalName.StallStarted, stallTime);
+		powerManager.StallStarted += (stallTime)  =>EmitSignal(SignalName.StallStarted, stallTime);
 		powerManager.StallEnded += EndStall;
 		powerManager.StallEnded += () => EmitSignal(SignalName.StallEnded);
 		powerManager.PowerChanged += (powerToMaxPowerPercentage) => EmitSignal(SignalName.PowerChanged, powerToMaxPowerPercentage);
@@ -89,6 +92,23 @@ public partial class PlayerShip : Ship, IShip
 	private float GetPowerDraw(float delta) // add per frame power draw here
 	{
 		return (thrustManager.PowerDraw + gunManager.PowerDraw) * delta;
+	}
+
+		/// <summary>
+	/// Get a list of the types of guns that are available on this ship.
+	/// This is used to create a correct overview for the weapon menu UI.
+	/// </summary>
+	/// <returns>A list of the gun types</returns>
+	public String[] GetAvailableGunTypes(){
+		return gunManager.GetGunGroupTypes().ToArray();
+	}
+
+	/// <summary>
+	/// This is used by the weapon menu ui to know which weapon is selected in the list of available weapons
+	/// </summary>
+	/// <returns> the index of the gungroup that is selected</returns>
+	public int GetActiveWeaponIndex(){
+		return gunManager.GetSelectedWeaponIndex();
 	}
 
 }

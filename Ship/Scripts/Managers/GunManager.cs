@@ -16,7 +16,7 @@ public partial class GunManager : IPowerable
 		bool gunAdded = false;
 		foreach (GunGroup gg in gunGroups)
 		{
-			if (gg.type == gun.type)
+			if (gun.Data is GunData gunData && gg.type == gunData.type)
 			{
 				gg.AddGun(gun);
 				gunAdded = true;
@@ -36,6 +36,10 @@ public partial class GunManager : IPowerable
 		return 0;
 	}
 
+	public int GetSelectedWeaponIndex(){
+		return gunGroups.IndexOf(selectedGroup);
+	}
+
 	public void StartShooting() 
 	{
 		selectedGroup?.StartShooting();
@@ -51,6 +55,15 @@ public partial class GunManager : IPowerable
 	public void CycleGunGroupUp() => CycleGunGroup(1);
 
 	public void CycleGunGroupDown() => CycleGunGroup(-1);
+
+	public List<String> GetGunGroupTypes(){
+		List<String> gunTypes = new();
+		foreach(GunGroup gg in gunGroups){
+			gunTypes.Add(gg.type.ToString());
+		}
+
+		return gunTypes;
+	}
 
 	private void CycleGunGroup(int cycleNum)
 	{
