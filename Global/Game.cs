@@ -52,7 +52,7 @@ public partial class Game : Node
 		foreach (Piece piece in pieces)
 		{
 			ShipComponent component = piece.ComponentData.GetPrefab();
-			component.Data = piece.ComponentData;
+			component.SetupData(piece.ComponentData);
 			component.IsMirrored = piece.IsMirrored;
 			PlayerShip.AddComponent(component, piece.Coordinate);
 			component.Rotation = piece.LocalRotation;
