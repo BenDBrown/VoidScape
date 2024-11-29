@@ -39,9 +39,7 @@ public partial class FuelManager
 
 	public void AddFuelTank(FuelTank fuelTank)
 	{
-		// should be "FuelCapacity += fuelTank.FuelCapacity;" but isnt because of _Ready being called in wrong order
-		if(fuelTank.Data is FuelTankData fuelTankData) FuelCapacity += fuelTankData.fuelCapacity;
-		else GD.Print("L bozo");
+		FuelCapacity += fuelTank.FuelCapacity;
 		fuelTank.OnDestroyed += OnFuelTankDestroyed;
 	}
 

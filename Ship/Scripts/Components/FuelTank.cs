@@ -6,10 +6,10 @@ public partial class FuelTank : ShipComponent
 	[Export]
 	public int FuelCapacity {get; private set;}
 
-	protected override void SetupData()
+	public override void SetupData(ShipComponentData data)
 	{
-		base.SetupData();
-		if (Data is FuelTankData fuelTankData)
+		base.SetupData(data);
+		if (data is FuelTankData fuelTankData)
 		{
 			// goodluck Genelle
 			FuelCapacity = fuelTankData.fuelCapacity;

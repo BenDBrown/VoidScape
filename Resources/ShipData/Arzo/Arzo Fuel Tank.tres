@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_ialru")
-fuelCapacity = 100
+fuelCapacity = 10000
 Name = "Arzo Fuel Tank"
 Description = "Hello"
 Sprite = ExtResource("2_fwv5h")
