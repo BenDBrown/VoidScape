@@ -20,7 +20,7 @@ public partial class ShipComponent : CharacterBody2D
     private Node healthComponent;
 
     [Export]
-    public ShipComponentData Data;
+    protected ShipComponentData data;
 
     [Export]
     public bool IsMirrored = false;
@@ -32,14 +32,7 @@ public partial class ShipComponent : CharacterBody2D
 
     public override void _Ready()
     {
-        if (Data != null)
-        {
-            SetupData();
-        }
-        else
-        {
-            GD.PushError(GetParent().Name + "'s " + Name + " is Missing ShipComponentData");
-        }
+        if(data != null) SetupData(data);
         if (healthComponent != null && healthComponent.HasSignal("died"))
         {
             healthComponent.Connect("died", Callable.From(Destroyed));
@@ -72,16 +65,18 @@ public partial class ShipComponent : CharacterBody2D
     /// Gets called in ShipComponent's _Ready.
     /// Used to set the data of a component. Sprite and Health data is pre set
     /// </summary>
-    protected virtual void SetupData()
+    public virtual void SetupData(ShipComponentData data)
     {
-        sprite.Texture = Data.Sprite;
+        if(data == null) GD.PushError(GetParent().Name + "'s " + Name + " is Missing ShipComponentData");
+        this.data = data;
+        sprite.Texture = this.data.Sprite;
         sprite.FlipH = IsMirrored;
-        healthComponent.Call("set_component", Data.MaxHealth, Data.Defense);
-        destroyedSprite.Texture = Data.DestroyedSprite;
-        TopAttachable = Data.TopAttachable;
-        BottomAttachable = Data.BottomAttachable;
-        RightAttachable = Data.RightAttachable;
-        LeftAttachable = Data.LeftAttachable;
+        healthComponent.Call("set_component", this.data.MaxHealth, this.data.Defense);
+        destroyedSprite.Texture = this.data.DestroyedSprite;
+        TopAttachable = this.data.TopAttachable;
+        BottomAttachable = this.data.BottomAttachable;
+        RightAttachable = this.data.RightAttachable;
+        LeftAttachable = this.data.LeftAttachable;
     }
 
     #region ToBeRemoved

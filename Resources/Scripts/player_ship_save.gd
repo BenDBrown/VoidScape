@@ -35,7 +35,7 @@ func build_ship(parent: Node2D):
 		component.rotation = ship[pos]["component"]["LocalRotation"]
 		if ship[pos].has("data_path"):
 			var data_path = ship[pos]["data_path"]
-			component.Data = ResourceLoader.load(data_path) as ShipComponentData
+			component.SetupData(ResourceLoader.load(data_path) as ShipComponentData)
 
 func clear():
 	ship = {}

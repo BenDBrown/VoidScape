@@ -23,6 +23,8 @@ public partial class PowerManager : Node
 
 	public bool Stalling {get; private set;} = false;
 
+	public float Efficiency {get; private set;} = 0;
+
 	private List<Generator> generators = new ();
 
 	public float MaxPower {get; private set;} = 0;
@@ -57,6 +59,7 @@ public partial class PowerManager : Node
 		Power -= powerWanted;
 		Power = Math.Max(Power, 0);
 		bool enoughPower = Power > 0;
+		fuelUsed = powerWanted / Efficiency;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 		if(!enoughPower) StallStart();
 		return enoughPower;
@@ -67,6 +70,7 @@ public partial class PowerManager : Node
 		generators.Add(generator); 
 		MaxPower = GetMaxPowerGenerated();
 		Power = MaxPower;
+		CalculateEfficiency();
 		generator.OnDestroyed += OnGeneratorDestroyed;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 	}
@@ -77,6 +81,7 @@ public partial class PowerManager : Node
 		if(!generators.Contains(generator)) {GD.PushError("destroyed generator was not in power manager dict"); return;}
 		generators.Remove(generator);
 		MaxPower = GetMaxPowerGenerated();
+		CalculateEfficiency();
 		Power = Math.Min(MaxPower, Power);
 		generator.OnDestroyed -= OnGeneratorDestroyed;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
@@ -101,6 +106,14 @@ public partial class PowerManager : Node
 		float maxPowerGenerated = 0;
 		foreach (Generator generator in generators){ maxPowerGenerated += generator.maxPowerGenerated; }
 		return maxPowerGenerated;
+	}
+
+	private float CalculateEfficiency()
+	{
+		Efficiency = 0;
+		foreach(Generator generator in generators) Efficiency += generator.efficiency;
+		Efficiency /= generators.Count;
+		return Efficiency;
 	}
 
 	private float GetPowerPercentage() => (Power / MaxPower) * 100;
