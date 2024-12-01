@@ -52,10 +52,10 @@ public partial class Gun : ShipComponent, IPowerable
 
 	public int GetPowerDraw() => powerdraw;
 
-	protected override void SetupData()
+	public override void SetupData(ShipComponentData data)
 	{
-		base.SetupData();
-		if (Data is GunData gunData)
+		base.SetupData(data);
+		if (data is GunData gunData)
 		{
 			attackComponent.attack = gunData.Attack;
 			powerdraw = gunData.Powerdraw;

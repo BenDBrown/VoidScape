@@ -6,49 +6,52 @@ using System.Linq;
 public partial class FuelManager
 {
 	public delegate void NoFuelEventHandler();
-
 	public event NoFuelEventHandler NoFuel;
 
-	public delegate void AllFuelTanksDestroyedEventHandler();
+	public delegate void FueldChangedEventHandler(float fuelToMaxFuelPercentage);
+	public event FueldChangedEventHandler FuelChanged;
 
-	public event AllFuelTanksDestroyedEventHandler AllFuelTanksDestroyed;
+    public float FuelCapacity {get; private set;} = 0;
 
-    public float FuelCapacity {get; private set;}
-
-	public float Fuel {get; private set;}
+	public float Fuel {get; private set;} = 0;
 
 	public FuelManager() { }
 
 	public void AddFuel(float fuel)
 	{
+		fuel = Math.Max(fuel, 0);
 		Fuel += fuel;
 		Fuel = Math.Min(Fuel, FuelCapacity);
+		FuelChanged?.Invoke(GetFuelPercentage());
 	}
 
 	public void UseFuel(float fuel)
 	{
+		fuel = Math.Max(fuel, 0);
 		Fuel -= fuel;
-		if(Fuel <= 0)
+		if(Fuel < 0)
 		{
 			Fuel = 0;
 			NoFuel?.Invoke();
 		}
+		FuelChanged?.Invoke(GetFuelPercentage());
 	}
 
 	public void AddFuelTank(FuelTank fuelTank)
 	{
-		FuelCapacity += fuelTank.fuelCapacity;
+		FuelCapacity += fuelTank.FuelCapacity;
 		fuelTank.OnDestroyed += OnFuelTankDestroyed;
 	}
 
 	public void OnFuelTankDestroyed(ShipComponent component)
 	{
 		if(!(component is FuelTank fuelTank)) { GD.PushError("Non fuel tank ship component passed to fuel manager on destroy"); return; }
-		FuelCapacity -= fuelTank.fuelCapacity;
-		if(FuelCapacity <= 0) { AllFuelTanksDestroyed?.Invoke(); }
+		FuelCapacity -= fuelTank.FuelCapacity;
+		fuelTank.OnDestroyed -= OnFuelTankDestroyed;
 		if(FuelCapacity >= Fuel) { return; }
 		Fuel = FuelCapacity;
-		fuelTank.OnDestroyed -= OnFuelTankDestroyed;
 	}
+
+	private float GetFuelPercentage() => (Fuel / FuelCapacity) * 100;
 
 }

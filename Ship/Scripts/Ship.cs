@@ -47,7 +47,7 @@ public partial class Ship : CharacterBody2D, IShip
 		MoveAndSlide();
 	}
 
-	protected void ShipDestroyed()
+	protected virtual void ShipDestroyed()
 	{
 		foreach (ShipComponent shipComponent in shipComponents) { shipComponent.Visible = false; }
 		ExplosionAnim.Visible = true;
@@ -61,16 +61,12 @@ public partial class Ship : CharacterBody2D, IShip
 	{
 		thrustManager.SetWeight(thrustManager.weight - 1);
 		GD.Print(shipComponent.Name + " destroyed");
-		if (shipComponent is FuelTank || shipComponent is Generator || shipComponent is Thruster || shipComponent is Cockpit)
+		if (IsVitalComponent(shipComponent))
 		{
 			Type destroyedComponentType = shipComponent.GetType();
 			foreach (ShipComponent s in shipComponents)
 			{
-				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent)
-				{
-					GD.Print("compnent was not last");
-					return;
-				}
+				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent)	return;
 			}
 			ShipDestroyed();
 		}
@@ -174,6 +170,8 @@ public partial class Ship : CharacterBody2D, IShip
 		AddChild(component);
 		component.Position = coordinate * 32;
 	}
+
+	protected virtual bool IsVitalComponent(ShipComponent shipComponent) => shipComponent is Cockpit;
 
 	protected virtual void InitiateStall(double stallTime)
 	{
