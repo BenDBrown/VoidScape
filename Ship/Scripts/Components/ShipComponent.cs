@@ -14,25 +14,25 @@ public partial class ShipComponent : CharacterBody2D
     private Sprite2D sprite;
 
     [Export]
+    private Sprite2D destroyedSprite;
+
+    [Export]
     private Node healthComponent;
 
     [Export]
-    public ShipComponentData Data;
+    protected ShipComponentData data;
 
     [Export]
     public bool IsMirrored = false;
+
+    [Export]
+    private SingleRunAnimation explosionAnim;
+
     private bool destroyed = false;
 
     public override void _Ready()
     {
-        if (Data != null)
-        {
-            SetupData();
-        }
-        else
-        {
-            GD.PushError(GetParent().Name + "'s " + Name + " is Missing ShipComponentData");
-        }
+        if(data != null) SetupData(data);
         if (healthComponent != null && healthComponent.HasSignal("died"))
         {
             healthComponent.Connect("died", Callable.From(Destroyed));
@@ -45,33 +45,38 @@ public partial class ShipComponent : CharacterBody2D
     {
         if (IsDestroyed()) { return; }
         GD.PrintS(Name, " Destroyed");
+        explosionAnim.Play();
         destroyed = true;
         collider.SetDeferred("disabled", true);
-        Hide();
+        sprite.Visible = !destroyed;
+        destroyedSprite.Visible = destroyed;
         EmitSignal(SignalName.OnDestroyed, this);
     }
 
     private void Revived()
     {
         collider.SetDeferred("disabled", false);
-        Show();
         destroyed = false;
-        Visible = true;
+        sprite.Visible = !destroyed;
+        destroyedSprite.Visible = destroyed;
     }
 
     /// <summary>
     /// Gets called in ShipComponent's _Ready.
     /// Used to set the data of a component. Sprite and Health data is pre set
     /// </summary>
-    protected virtual void SetupData()
+    public virtual void SetupData(ShipComponentData data)
     {
-        sprite.Texture = Data.Sprite;
+        if(data == null) GD.PushError(GetParent().Name + "'s " + Name + " is Missing ShipComponentData");
+        this.data = data;
+        sprite.Texture = this.data.Sprite;
         sprite.FlipH = IsMirrored;
-        healthComponent.Call("set_component", Data.MaxHealth, Data.Defense);
-        TopAttachable = Data.TopAttachable;
-        BottomAttachable = Data.BottomAttachable;
-        RightAttachable = Data.RightAttachable;
-        LeftAttachable = Data.LeftAttachable;
+        healthComponent.Call("set_component", this.data.MaxHealth, this.data.Defense);
+        destroyedSprite.Texture = this.data.DestroyedSprite;
+        TopAttachable = this.data.TopAttachable;
+        BottomAttachable = this.data.BottomAttachable;
+        RightAttachable = this.data.RightAttachable;
+        LeftAttachable = this.data.LeftAttachable;
     }
 
     #region ToBeRemoved
@@ -81,6 +86,7 @@ public partial class ShipComponent : CharacterBody2D
     public bool LeftAttachable { get; private set; }
     public void Mirror()
     {
+        IsMirrored = !IsMirrored;
         bool newAttachableA;
         bool newAttachableB;
         if (RotationDegrees == 0 || Math.Abs(RotationDegrees) == 180)
@@ -90,6 +96,7 @@ public partial class ShipComponent : CharacterBody2D
             LeftAttachable = newAttachableB;
             RightAttachable = newAttachableA;
             sprite.FlipH = !sprite.FlipH;
+            destroyedSprite.FlipH = !destroyedSprite.FlipH;
         }
         else
         {
@@ -98,6 +105,7 @@ public partial class ShipComponent : CharacterBody2D
             TopAttachable = newAttachableB;
             BottomAttachable = newAttachableA;
             sprite.FlipV = !sprite.FlipV;
+            destroyedSprite.FlipV = !destroyedSprite.FlipV;
         }
     }
     public void RotateRight()

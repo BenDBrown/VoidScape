@@ -1,0 +1,2531 @@
+[gd_scene load_steps=4 format=3 uid="uid://rnlbolmete83"]
+
+[ext_resource type="PackedScene" uid="uid://crxtn257u758m" path="res://Structures/Props/Worm Asteroids/Worm_Lair.tscn" id="1_jaaox"]
+[ext_resource type="PackedScene" uid="uid://b4yj0wo6jrt31" path="res://Hazards/Asteroid/asteroid.tscn" id="2_3qaqi"]
+[ext_resource type="PackedScene" uid="uid://bn0i4vfnuj3fv" path="res://Structures/Props/Star/dwarf_star.tscn" id="3_ngjsy"]
+
+[node name="Asteroid_Belt" type="Node2D"]
+
+[node name="Worm Lair" parent="." instance=ExtResource("1_jaaox")]
+position = Vector2(-299, -189)
+
+[node name="Dwarf Star" parent="." instance=ExtResource("3_ngjsy")]
+position = Vector2(8647, 2716)
+scale = Vector2(13.6, 13.6)
+
+[node name="Belt" type="Node2D" parent="."]
+
+[node name="Asteroid" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1002, -53)
+
+[node name="Asteroid2" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-804, -102)
+
+[node name="Asteroid3" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-871, 194)
+
+[node name="Asteroid4" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-651, 234)
+
+[node name="Asteroid5" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-660, 32)
+
+[node name="Asteroid6" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-498, 405)
+
+[node name="Asteroid7" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-256, 567)
+
+[node name="Asteroid8" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-157, 437)
+
+[node name="Asteroid9" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(54, 720)
+
+[node name="Asteroid10" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-153, 886)
+
+[node name="Asteroid11" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-63, 1115)
+
+[node name="Asteroid12" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-295, 1245)
+
+[node name="Asteroid13" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-312, 1007)
+
+[node name="Asteroid14" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-465, 832)
+
+[node name="Asteroid15" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-629, 634)
+
+[node name="Asteroid16" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-804, 860)
+
+[node name="Asteroid17" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-680, 1092)
+
+[node name="Asteroid18" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-968, 1262)
+
+[node name="Asteroid19" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1279, 957)
+
+[node name="Asteroid20" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1041, 793)
+
+[node name="Asteroid21" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-956, 584)
+
+[node name="Asteroid22" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1114, 443)
+
+[node name="Asteroid23" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1176, 296)
+
+[node name="Asteroid24" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1193, 115)
+
+[node name="Asteroid25" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1414, 389)
+
+[node name="Asteroid26" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1318, 644)
+
+[node name="Asteroid27" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1578, 793)
+
+[node name="Asteroid28" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1640, 1076)
+
+[node name="Asteroid29" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1629, 1251)
+
+[node name="Asteroid30" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1691, 1539)
+
+[node name="Asteroid31" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1844, 1697)
+
+[node name="Asteroid32" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1810, 1935)
+
+[node name="Asteroid33" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1623, 2127)
+
+[node name="Asteroid34" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1606, 2438)
+
+[node name="Asteroid35" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1685, 2625)
+
+[node name="Asteroid36" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1640, 2977)
+
+[node name="Asteroid37" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1384, 3127)
+
+[node name="Asteroid38" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1160, 3223)
+
+[node name="Asteroid39" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-818, 3394)
+
+[node name="Asteroid40" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-850, 2978)
+
+[node name="Asteroid41" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1098, 2641)
+
+[node name="Asteroid42" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1066, 2385)
+
+[node name="Asteroid43" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1055, 1979)
+
+[node name="Asteroid44" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1237, 1733)
+
+[node name="Asteroid45" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1194, 1381)
+
+[node name="Asteroid46" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1562, 1697)
+
+[node name="Asteroid47" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1434, 2124)
+
+[node name="Asteroid48" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1391, 2540)
+
+[node name="Asteroid49" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1199, 2818)
+
+[node name="Asteroid50" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-449, 3239)
+
+[node name="Asteroid51" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-171, 3591)
+
+[node name="Asteroid52" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(673, 3538)
+
+[node name="Asteroid53" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(385, 3079)
+
+[node name="Asteroid54" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(335, 3410)
+
+[node name="Asteroid55" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-17, 2929)
+
+[node name="Asteroid56" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-327, 2779)
+
+[node name="Asteroid57" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-605, 2309)
+
+[node name="Asteroid58" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-765, 1893)
+
+[node name="Asteroid59" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-722, 1605)
+
+[node name="Asteroid60" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-306, 1584)
+
+[node name="Asteroid61" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-124, 1968)
+
+[node name="Asteroid62" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-252, 2203)
+
+[node name="Asteroid63" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(261, 2491)
+
+[node name="Asteroid64" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(549, 2769)
+
+[node name="Asteroid65" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(933, 3132)
+
+[node name="Asteroid66" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(826, 3602)
+
+[node name="Asteroid67" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(351, 3954)
+
+[node name="Asteroid68" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(159, 2598)
+
+[node name="Asteroid69" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-225, 2427)
+
+[node name="Asteroid70" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(149, 2139)
+
+[node name="Asteroid71" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(149, 2139)
+
+[node name="Asteroid72" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-256, 567)
+
+[node name="Asteroid73" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(54, 720)
+
+[node name="Asteroid74" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-153, 886)
+
+[node name="Asteroid75" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-63, 1115)
+
+[node name="Asteroid76" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-295, 1245)
+
+[node name="Asteroid77" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-312, 1007)
+
+[node name="Asteroid78" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-465, 832)
+
+[node name="Asteroid79" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-629, 634)
+
+[node name="Asteroid80" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-804, 860)
+
+[node name="Asteroid81" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-680, 1092)
+
+[node name="Asteroid82" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-968, 1262)
+
+[node name="Asteroid83" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1279, 957)
+
+[node name="Asteroid84" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1041, 793)
+
+[node name="Asteroid85" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-956, 584)
+
+[node name="Asteroid86" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1318, 644)
+
+[node name="Asteroid87" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1578, 793)
+
+[node name="Asteroid88" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1640, 1076)
+
+[node name="Asteroid89" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1629, 1251)
+
+[node name="Asteroid90" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1691, 1539)
+
+[node name="Asteroid91" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1844, 1697)
+
+[node name="Asteroid92" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1810, 1935)
+
+[node name="Asteroid93" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1623, 2127)
+
+[node name="Asteroid94" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1606, 2438)
+
+[node name="Asteroid95" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1685, 2625)
+
+[node name="Asteroid96" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1640, 2977)
+
+[node name="Asteroid97" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1384, 3127)
+
+[node name="Asteroid98" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1160, 3223)
+
+[node name="Asteroid99" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-818, 3394)
+
+[node name="Asteroid100" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-850, 2978)
+
+[node name="Asteroid101" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1098, 2641)
+
+[node name="Asteroid102" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1066, 2385)
+
+[node name="Asteroid103" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1055, 1979)
+
+[node name="Asteroid104" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1237, 1733)
+
+[node name="Asteroid105" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1194, 1381)
+
+[node name="Asteroid106" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1562, 1697)
+
+[node name="Asteroid107" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1434, 2124)
+
+[node name="Asteroid108" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1391, 2540)
+
+[node name="Asteroid109" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1199, 2818)
+
+[node name="Asteroid110" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-449, 3239)
+
+[node name="Asteroid111" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-171, 3591)
+
+[node name="Asteroid112" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(673, 3538)
+
+[node name="Asteroid113" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(385, 3079)
+
+[node name="Asteroid114" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(335, 3410)
+
+[node name="Asteroid115" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-17, 2929)
+
+[node name="Asteroid116" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-327, 2779)
+
+[node name="Asteroid117" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-605, 2309)
+
+[node name="Asteroid118" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-765, 1893)
+
+[node name="Asteroid119" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-722, 1605)
+
+[node name="Asteroid120" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-306, 1584)
+
+[node name="Asteroid121" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-124, 1968)
+
+[node name="Asteroid122" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-252, 2203)
+
+[node name="Asteroid123" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(261, 2491)
+
+[node name="Asteroid124" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(549, 2769)
+
+[node name="Asteroid125" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(933, 3132)
+
+[node name="Asteroid126" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(826, 3602)
+
+[node name="Asteroid127" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(351, 3954)
+
+[node name="Asteroid128" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(159, 2598)
+
+[node name="Asteroid129" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-225, 2427)
+
+[node name="Asteroid130" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(149, 2139)
+
+[node name="Asteroid131" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(149, 2139)
+
+[node name="Asteroid132" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(323, 2639)
+
+[node name="Asteroid133" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(633, 2792)
+
+[node name="Asteroid134" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(426, 2958)
+
+[node name="Asteroid135" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(516, 3187)
+
+[node name="Asteroid136" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(284, 3317)
+
+[node name="Asteroid137" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(267, 3079)
+
+[node name="Asteroid138" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(114, 2904)
+
+[node name="Asteroid139" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-50, 2706)
+
+[node name="Asteroid140" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-225, 2932)
+
+[node name="Asteroid141" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-101, 3164)
+
+[node name="Asteroid142" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-389, 3334)
+
+[node name="Asteroid143" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-700, 3029)
+
+[node name="Asteroid144" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-462, 2865)
+
+[node name="Asteroid145" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-377, 2656)
+
+[node name="Asteroid146" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-739, 2716)
+
+[node name="Asteroid147" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-999, 2865)
+
+[node name="Asteroid148" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1061, 3148)
+
+[node name="Asteroid149" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1050, 3323)
+
+[node name="Asteroid150" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1112, 3611)
+
+[node name="Asteroid151" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1265, 3769)
+
+[node name="Asteroid152" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1231, 4007)
+
+[node name="Asteroid153" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1044, 4199)
+
+[node name="Asteroid154" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1027, 4510)
+
+[node name="Asteroid155" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1106, 4697)
+
+[node name="Asteroid156" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-1061, 5049)
+
+[node name="Asteroid157" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-805, 5199)
+
+[node name="Asteroid158" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-581, 5295)
+
+[node name="Asteroid159" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-239, 5466)
+
+[node name="Asteroid160" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-271, 5050)
+
+[node name="Asteroid161" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-519, 4713)
+
+[node name="Asteroid162" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-487, 4457)
+
+[node name="Asteroid163" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-476, 4051)
+
+[node name="Asteroid164" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-658, 3805)
+
+[node name="Asteroid165" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-615, 3453)
+
+[node name="Asteroid166" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-983, 3769)
+
+[node name="Asteroid167" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-855, 4196)
+
+[node name="Asteroid168" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-812, 4612)
+
+[node name="Asteroid169" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-620, 4890)
+
+[node name="Asteroid170" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(130, 5311)
+
+[node name="Asteroid171" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(408, 5663)
+
+[node name="Asteroid172" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1252, 5610)
+
+[node name="Asteroid173" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(964, 5151)
+
+[node name="Asteroid174" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(914, 5482)
+
+[node name="Asteroid175" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(562, 5001)
+
+[node name="Asteroid176" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(252, 4851)
+
+[node name="Asteroid177" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-26, 4381)
+
+[node name="Asteroid178" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-186, 3965)
+
+[node name="Asteroid179" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(-143, 3677)
+
+[node name="Asteroid180" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(273, 3656)
+
+[node name="Asteroid181" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(455, 4040)
+
+[node name="Asteroid182" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(327, 4275)
+
+[node name="Asteroid183" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(840, 4563)
+
+[node name="Asteroid184" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1128, 4841)
+
+[node name="Asteroid185" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1512, 5204)
+
+[node name="Asteroid186" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1405, 5674)
+
+[node name="Asteroid187" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(930, 6026)
+
+[node name="Asteroid188" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(738, 4670)
+
+[node name="Asteroid189" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(354, 4499)
+
+[node name="Asteroid190" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(728, 4211)
+
+[node name="Asteroid191" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(728, 4211)
+
+[node name="Asteroid192" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1588, 231)
+
+[node name="Asteroid193" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1898, 384)
+
+[node name="Asteroid194" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1691, 550)
+
+[node name="Asteroid195" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1781, 779)
+
+[node name="Asteroid196" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1549, 909)
+
+[node name="Asteroid197" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1532, 671)
+
+[node name="Asteroid198" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1379, 496)
+
+[node name="Asteroid199" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1215, 298)
+
+[node name="Asteroid200" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1040, 524)
+
+[node name="Asteroid201" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1164, 756)
+
+[node name="Asteroid202" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(876, 926)
+
+[node name="Asteroid203" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(565, 621)
+
+[node name="Asteroid204" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(803, 457)
+
+[node name="Asteroid205" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(888, 248)
+
+[node name="Asteroid206" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(526, 308)
+
+[node name="Asteroid207" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(266, 457)
+
+[node name="Asteroid208" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(204, 740)
+
+[node name="Asteroid209" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(215, 915)
+
+[node name="Asteroid210" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(153, 1203)
+
+[node name="Asteroid211" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(0, 1361)
+
+[node name="Asteroid212" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(34, 1599)
+
+[node name="Asteroid213" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(221, 1791)
+
+[node name="Asteroid214" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(238, 2102)
+
+[node name="Asteroid215" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(159, 2289)
+
+[node name="Asteroid216" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(204, 2641)
+
+[node name="Asteroid217" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(460, 2791)
+
+[node name="Asteroid218" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(684, 2887)
+
+[node name="Asteroid219" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1026, 3058)
+
+[node name="Asteroid220" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(994, 2642)
+
+[node name="Asteroid221" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(746, 2305)
+
+[node name="Asteroid222" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(778, 2049)
+
+[node name="Asteroid223" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(789, 1643)
+
+[node name="Asteroid224" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(607, 1397)
+
+[node name="Asteroid225" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(650, 1045)
+
+[node name="Asteroid226" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(282, 1361)
+
+[node name="Asteroid227" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(410, 1788)
+
+[node name="Asteroid228" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(453, 2204)
+
+[node name="Asteroid229" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(645, 2482)
+
+[node name="Asteroid230" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1395, 2903)
+
+[node name="Asteroid231" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1673, 3255)
+
+[node name="Asteroid232" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2517, 3202)
+
+[node name="Asteroid233" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2229, 2743)
+
+[node name="Asteroid234" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2179, 3074)
+
+[node name="Asteroid235" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1827, 2593)
+
+[node name="Asteroid236" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1517, 2443)
+
+[node name="Asteroid237" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1239, 1973)
+
+[node name="Asteroid238" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1079, 1557)
+
+[node name="Asteroid239" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1122, 1269)
+
+[node name="Asteroid240" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1538, 1248)
+
+[node name="Asteroid241" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1720, 1632)
+
+[node name="Asteroid242" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1592, 1867)
+
+[node name="Asteroid243" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2105, 2155)
+
+[node name="Asteroid244" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2393, 2433)
+
+[node name="Asteroid245" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2777, 2796)
+
+[node name="Asteroid246" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2670, 3266)
+
+[node name="Asteroid247" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2195, 3618)
+
+[node name="Asteroid248" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2003, 2262)
+
+[node name="Asteroid249" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1619, 2091)
+
+[node name="Asteroid250" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1993, 1803)
+
+[node name="Asteroid251" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1993, 1803)
+
+[node name="Asteroid252" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1588, 231)
+
+[node name="Asteroid427" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1309, -4)
+
+[node name="Asteroid253" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1898, 384)
+
+[node name="Asteroid254" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1691, 550)
+
+[node name="Asteroid255" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1781, 779)
+
+[node name="Asteroid256" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1549, 909)
+
+[node name="Asteroid257" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1532, 671)
+
+[node name="Asteroid258" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1379, 496)
+
+[node name="Asteroid259" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1215, 298)
+
+[node name="Asteroid260" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1040, 524)
+
+[node name="Asteroid261" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1164, 756)
+
+[node name="Asteroid262" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(876, 926)
+
+[node name="Asteroid263" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(565, 621)
+
+[node name="Asteroid264" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(803, 457)
+
+[node name="Asteroid265" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(888, 248)
+
+[node name="Asteroid266" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(526, 308)
+
+[node name="Asteroid267" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(266, 457)
+
+[node name="Asteroid268" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(204, 740)
+
+[node name="Asteroid269" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(215, 915)
+
+[node name="Asteroid270" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(153, 1203)
+
+[node name="Asteroid271" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(0, 1361)
+
+[node name="Asteroid272" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(34, 1599)
+
+[node name="Asteroid273" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(221, 1791)
+
+[node name="Asteroid274" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(238, 2102)
+
+[node name="Asteroid275" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(159, 2289)
+
+[node name="Asteroid276" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(204, 2641)
+
+[node name="Asteroid277" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(460, 2791)
+
+[node name="Asteroid278" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(684, 2887)
+
+[node name="Asteroid279" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1026, 3058)
+
+[node name="Asteroid280" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(994, 2642)
+
+[node name="Asteroid281" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(746, 2305)
+
+[node name="Asteroid282" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(778, 2049)
+
+[node name="Asteroid283" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(789, 1643)
+
+[node name="Asteroid284" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(607, 1397)
+
+[node name="Asteroid285" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(650, 1045)
+
+[node name="Asteroid286" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(282, 1361)
+
+[node name="Asteroid287" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(410, 1788)
+
+[node name="Asteroid288" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(453, 2204)
+
+[node name="Asteroid289" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(645, 2482)
+
+[node name="Asteroid290" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1395, 2903)
+
+[node name="Asteroid291" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1673, 3255)
+
+[node name="Asteroid292" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2517, 3202)
+
+[node name="Asteroid293" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2229, 2743)
+
+[node name="Asteroid294" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2179, 3074)
+
+[node name="Asteroid295" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1827, 2593)
+
+[node name="Asteroid296" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1517, 2443)
+
+[node name="Asteroid297" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1239, 1973)
+
+[node name="Asteroid785" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4069, 1773)
+
+[node name="Asteroid298" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1079, 1557)
+
+[node name="Asteroid299" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1122, 1269)
+
+[node name="Asteroid300" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1538, 1248)
+
+[node name="Asteroid301" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1720, 1632)
+
+[node name="Asteroid428" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1347, -633)
+
+[node name="Asteroid429" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1657, -480)
+
+[node name="Asteroid430" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1450, -314)
+
+[node name="Asteroid431" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1540, -85)
+
+[node name="Asteroid432" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1308, 45)
+
+[node name="Asteroid433" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1291, -193)
+
+[node name="Asteroid434" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1138, -368)
+
+[node name="Asteroid435" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(974, -566)
+
+[node name="Asteroid436" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(799, -340)
+
+[node name="Asteroid437" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(923, -108)
+
+[node name="Asteroid438" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(635, 62)
+
+[node name="Asteroid439" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(562, -407)
+
+[node name="Asteroid440" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(647, -616)
+
+[node name="Asteroid441" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(548, 779)
+
+[node name="Asteroid442" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(838, 693)
+
+[node name="Asteroid443" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(881, 405)
+
+[node name="Asteroid444" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1297, 384)
+
+[node name="Asteroid445" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1479, 768)
+
+[node name="Asteroid446" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1347, -633)
+
+[node name="Asteroid447" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1068, -868)
+
+[node name="Asteroid448" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1657, -480)
+
+[node name="Asteroid449" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1450, -314)
+
+[node name="Asteroid450" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1540, -85)
+
+[node name="Asteroid451" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1308, 45)
+
+[node name="Asteroid452" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1291, -193)
+
+[node name="Asteroid453" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1138, -368)
+
+[node name="Asteroid454" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(974, -566)
+
+[node name="Asteroid455" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(799, -340)
+
+[node name="Asteroid456" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(923, -108)
+
+[node name="Asteroid457" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(635, 62)
+
+[node name="Asteroid458" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(562, -407)
+
+[node name="Asteroid459" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(647, -616)
+
+[node name="Asteroid460" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(548, 779)
+
+[node name="Asteroid461" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(838, 693)
+
+[node name="Asteroid462" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(881, 405)
+
+[node name="Asteroid463" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1297, 384)
+
+[node name="Asteroid464" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1479, 768)
+
+[node name="Asteroid465" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1988, -178)
+
+[node name="Asteroid466" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2298, -25)
+
+[node name="Asteroid467" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2091, 141)
+
+[node name="Asteroid468" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2181, 370)
+
+[node name="Asteroid469" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1932, 262)
+
+[node name="Asteroid470" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1779, 87)
+
+[node name="Asteroid471" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1615, -111)
+
+[node name="Asteroid472" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1440, 115)
+
+[node name="Asteroid473" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1564, 347)
+
+[node name="Asteroid474" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1988, -178)
+
+[node name="Asteroid475" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1709, -413)
+
+[node name="Asteroid476" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2298, -25)
+
+[node name="Asteroid477" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2091, 141)
+
+[node name="Asteroid478" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2181, 370)
+
+[node name="Asteroid479" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1932, 262)
+
+[node name="Asteroid480" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1779, 87)
+
+[node name="Asteroid481" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1615, -111)
+
+[node name="Asteroid482" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1440, 115)
+
+[node name="Asteroid483" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1564, 347)
+
+[node name="Asteroid484" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1747, -1042)
+
+[node name="Asteroid485" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2057, -889)
+
+[node name="Asteroid486" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1850, -723)
+
+[node name="Asteroid487" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1940, -494)
+
+[node name="Asteroid488" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1708, -364)
+
+[node name="Asteroid489" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1691, -602)
+
+[node name="Asteroid490" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1538, -777)
+
+[node name="Asteroid491" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1374, -975)
+
+[node name="Asteroid492" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1697, -25)
+
+[node name="Asteroid493" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1879, 359)
+
+[node name="Asteroid494" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1747, -1042)
+
+[node name="Asteroid495" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1468, -1277)
+
+[node name="Asteroid496" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2057, -889)
+
+[node name="Asteroid497" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1850, -723)
+
+[node name="Asteroid498" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1940, -494)
+
+[node name="Asteroid499" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1708, -364)
+
+[node name="Asteroid500" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1691, -602)
+
+[node name="Asteroid501" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1538, -777)
+
+[node name="Asteroid502" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1374, -975)
+
+[node name="Asteroid503" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1697, -25)
+
+[node name="Asteroid504" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1879, 359)
+
+[node name="Asteroid505" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2454, -568)
+
+[node name="Asteroid506" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2764, -415)
+
+[node name="Asteroid507" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2557, -249)
+
+[node name="Asteroid508" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2647, -20)
+
+[node name="Asteroid509" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2398, -128)
+
+[node name="Asteroid510" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2245, -303)
+
+[node name="Asteroid511" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2081, -501)
+
+[node name="Asteroid512" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1906, -275)
+
+[node name="Asteroid513" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2030, -43)
+
+[node name="Asteroid514" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2454, -568)
+
+[node name="Asteroid515" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2175, -803)
+
+[node name="Asteroid516" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2764, -415)
+
+[node name="Asteroid517" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2557, -249)
+
+[node name="Asteroid518" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2647, -20)
+
+[node name="Asteroid519" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2398, -128)
+
+[node name="Asteroid520" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2245, -303)
+
+[node name="Asteroid521" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2081, -501)
+
+[node name="Asteroid522" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1906, -275)
+
+[node name="Asteroid523" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2030, -43)
+
+[node name="Asteroid524" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2213, -1432)
+
+[node name="Asteroid525" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2523, -1279)
+
+[node name="Asteroid526" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2316, -1113)
+
+[node name="Asteroid527" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2406, -884)
+
+[node name="Asteroid528" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2174, -754)
+
+[node name="Asteroid529" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2157, -992)
+
+[node name="Asteroid530" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2004, -1167)
+
+[node name="Asteroid531" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1840, -1365)
+
+[node name="Asteroid532" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2163, -415)
+
+[node name="Asteroid533" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2345, -31)
+
+[node name="Asteroid534" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2213, -1432)
+
+[node name="Asteroid535" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1934, -1667)
+
+[node name="Asteroid536" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2523, -1279)
+
+[node name="Asteroid537" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2316, -1113)
+
+[node name="Asteroid538" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2406, -884)
+
+[node name="Asteroid539" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2174, -754)
+
+[node name="Asteroid540" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2157, -992)
+
+[node name="Asteroid541" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2004, -1167)
+
+[node name="Asteroid542" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1840, -1365)
+
+[node name="Asteroid543" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2163, -415)
+
+[node name="Asteroid544" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2345, -31)
+
+[node name="Asteroid545" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(998, -977)
+
+[node name="Asteroid546" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1308, -824)
+
+[node name="Asteroid547" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1101, -658)
+
+[node name="Asteroid548" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1191, -429)
+
+[node name="Asteroid549" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(942, -537)
+
+[node name="Asteroid550" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(789, -712)
+
+[node name="Asteroid551" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(625, -910)
+
+[node name="Asteroid552" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(450, -684)
+
+[node name="Asteroid553" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(574, -452)
+
+[node name="Asteroid554" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(998, -977)
+
+[node name="Asteroid555" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(719, -1212)
+
+[node name="Asteroid556" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1308, -824)
+
+[node name="Asteroid557" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1101, -658)
+
+[node name="Asteroid558" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1191, -429)
+
+[node name="Asteroid559" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(942, -537)
+
+[node name="Asteroid560" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(789, -712)
+
+[node name="Asteroid561" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(625, -910)
+
+[node name="Asteroid562" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(450, -684)
+
+[node name="Asteroid563" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(574, -452)
+
+[node name="Asteroid564" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1492, -1581)
+
+[node name="Asteroid565" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1802, -1428)
+
+[node name="Asteroid566" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1595, -1262)
+
+[node name="Asteroid567" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1685, -1033)
+
+[node name="Asteroid568" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(718, -1163)
+
+[node name="Asteroid569" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1436, -1141)
+
+[node name="Asteroid570" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1283, -1316)
+
+[node name="Asteroid571" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1119, -1514)
+
+[node name="Asteroid572" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(707, -824)
+
+[node name="Asteroid573" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(889, -440)
+
+[node name="Asteroid574" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1492, -1581)
+
+[node name="Asteroid575" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1213, -1816)
+
+[node name="Asteroid576" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1802, -1428)
+
+[node name="Asteroid577" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1595, -1262)
+
+[node name="Asteroid578" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1685, -1033)
+
+[node name="Asteroid579" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(718, -1163)
+
+[node name="Asteroid580" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1436, -1141)
+
+[node name="Asteroid581" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1283, -1316)
+
+[node name="Asteroid582" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1119, -1514)
+
+[node name="Asteroid583" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(707, -824)
+
+[node name="Asteroid584" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(889, -440)
+
+[node name="Asteroid585" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1740, -1243)
+
+[node name="Asteroid586" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2050, -1090)
+
+[node name="Asteroid587" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1843, -924)
+
+[node name="Asteroid588" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1933, -695)
+
+[node name="Asteroid589" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1684, -803)
+
+[node name="Asteroid590" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1531, -978)
+
+[node name="Asteroid591" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1367, -1176)
+
+[node name="Asteroid592" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1192, -950)
+
+[node name="Asteroid593" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1316, -718)
+
+[node name="Asteroid594" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1740, -1243)
+
+[node name="Asteroid595" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1461, -1478)
+
+[node name="Asteroid596" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2050, -1090)
+
+[node name="Asteroid597" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1843, -924)
+
+[node name="Asteroid598" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1933, -695)
+
+[node name="Asteroid599" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1684, -803)
+
+[node name="Asteroid600" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1531, -978)
+
+[node name="Asteroid601" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1367, -1176)
+
+[node name="Asteroid602" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1192, -950)
+
+[node name="Asteroid603" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1316, -718)
+
+[node name="Asteroid604" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1499, -2107)
+
+[node name="Asteroid605" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1809, -1954)
+
+[node name="Asteroid606" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1602, -1788)
+
+[node name="Asteroid607" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1692, -1559)
+
+[node name="Asteroid608" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1460, -1429)
+
+[node name="Asteroid609" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1443, -1667)
+
+[node name="Asteroid610" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2025, -1582)
+
+[node name="Asteroid611" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1861, -1780)
+
+[node name="Asteroid612" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1449, -1090)
+
+[node name="Asteroid613" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1631, -706)
+
+[node name="Asteroid614" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1499, -2107)
+
+[node name="Asteroid615" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1220, -2342)
+
+[node name="Asteroid616" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1809, -1954)
+
+[node name="Asteroid617" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1602, -1788)
+
+[node name="Asteroid618" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1692, -1559)
+
+[node name="Asteroid619" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1460, -1429)
+
+[node name="Asteroid620" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1443, -1667)
+
+[node name="Asteroid621" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2025, -1582)
+
+[node name="Asteroid622" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1861, -1780)
+
+[node name="Asteroid623" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1449, -1090)
+
+[node name="Asteroid624" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1631, -706)
+
+[node name="Asteroid625" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2710, -1205)
+rotation = 0.374454
+
+[node name="Asteroid626" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3020, -1052)
+rotation = 0.374454
+
+[node name="Asteroid627" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2813, -886)
+rotation = 0.374454
+
+[node name="Asteroid628" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2903, -657)
+rotation = 0.374454
+
+[node name="Asteroid629" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2654, -765)
+rotation = 0.374454
+
+[node name="Asteroid630" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2501, -940)
+rotation = 0.374454
+
+[node name="Asteroid631" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2337, -1138)
+rotation = 0.374454
+
+[node name="Asteroid632" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2162, -912)
+rotation = 0.374454
+
+[node name="Asteroid633" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2286, -680)
+rotation = 0.374454
+
+[node name="Asteroid634" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2710, -1205)
+rotation = 0.374454
+
+[node name="Asteroid635" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2431, -1440)
+rotation = 0.374454
+
+[node name="Asteroid636" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3020, -1052)
+rotation = 0.374454
+
+[node name="Asteroid637" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2813, -886)
+rotation = 0.374454
+
+[node name="Asteroid638" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2903, -657)
+rotation = 0.374454
+
+[node name="Asteroid639" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2654, -765)
+rotation = 0.374454
+
+[node name="Asteroid640" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2501, -940)
+rotation = 0.374454
+
+[node name="Asteroid641" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2337, -1138)
+rotation = 0.374454
+
+[node name="Asteroid642" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2162, -912)
+rotation = 0.374454
+
+[node name="Asteroid643" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2286, -680)
+rotation = 0.374454
+
+[node name="Asteroid644" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2469, -2069)
+rotation = 0.374454
+
+[node name="Asteroid645" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2779, -1916)
+rotation = 0.374454
+
+[node name="Asteroid646" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2572, -1750)
+rotation = 0.374454
+
+[node name="Asteroid647" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2662, -1521)
+rotation = 0.374454
+
+[node name="Asteroid648" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2430, -1391)
+rotation = 0.374454
+
+[node name="Asteroid649" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2413, -1629)
+rotation = 0.374454
+
+[node name="Asteroid650" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2260, -1804)
+rotation = 0.374454
+
+[node name="Asteroid651" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2096, -2002)
+rotation = 0.374454
+
+[node name="Asteroid652" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2419, -1052)
+rotation = 0.374454
+
+[node name="Asteroid653" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2601, -668)
+rotation = 0.374454
+
+[node name="Asteroid654" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2469, -2069)
+rotation = 0.374454
+
+[node name="Asteroid655" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2190, -2304)
+rotation = 0.374454
+
+[node name="Asteroid656" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2779, -1916)
+rotation = 0.374454
+
+[node name="Asteroid657" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2572, -1750)
+rotation = 0.374454
+
+[node name="Asteroid658" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2662, -1521)
+rotation = 0.374454
+
+[node name="Asteroid659" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2430, -1391)
+rotation = 0.374454
+
+[node name="Asteroid660" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2413, -1629)
+rotation = 0.374454
+
+[node name="Asteroid661" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2260, -1804)
+rotation = 0.374454
+
+[node name="Asteroid662" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2096, -2002)
+rotation = 0.374454
+
+[node name="Asteroid663" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2419, -1052)
+rotation = 0.374454
+
+[node name="Asteroid664" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2601, -668)
+rotation = 0.374454
+
+[node name="Asteroid665" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3443, -672)
+rotation = 0.374454
+
+[node name="Asteroid666" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3753, -519)
+rotation = 0.374454
+
+[node name="Asteroid667" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3546, -353)
+rotation = 0.374454
+
+[node name="Asteroid668" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3636, -124)
+rotation = 0.374454
+
+[node name="Asteroid669" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3387, -232)
+rotation = 0.374454
+
+[node name="Asteroid670" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3234, -407)
+rotation = 0.374454
+
+[node name="Asteroid671" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3070, -605)
+rotation = 0.374454
+
+[node name="Asteroid672" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2895, -379)
+rotation = 0.374454
+
+[node name="Asteroid673" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3019, -147)
+rotation = 0.374454
+
+[node name="Asteroid674" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3443, -672)
+rotation = 0.374454
+
+[node name="Asteroid675" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3164, -907)
+rotation = 0.374454
+
+[node name="Asteroid676" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3753, -519)
+rotation = 0.374454
+
+[node name="Asteroid677" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3546, -353)
+rotation = 0.374454
+
+[node name="Asteroid678" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3636, -124)
+rotation = 0.374454
+
+[node name="Asteroid679" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3387, -232)
+rotation = 0.374454
+
+[node name="Asteroid680" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3234, -407)
+rotation = 0.374454
+
+[node name="Asteroid681" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3070, -605)
+rotation = 0.374454
+
+[node name="Asteroid682" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2895, -379)
+rotation = 0.374454
+
+[node name="Asteroid683" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3019, -147)
+rotation = 0.374454
+
+[node name="Asteroid684" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3202, -1536)
+rotation = 0.374454
+
+[node name="Asteroid685" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3512, -1383)
+rotation = 0.374454
+
+[node name="Asteroid686" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3305, -1217)
+rotation = 0.374454
+
+[node name="Asteroid687" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3395, -988)
+rotation = 0.374454
+
+[node name="Asteroid688" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3163, -858)
+rotation = 0.374454
+
+[node name="Asteroid689" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3146, -1096)
+rotation = 0.374454
+
+[node name="Asteroid690" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2993, -1271)
+rotation = 0.374454
+
+[node name="Asteroid691" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2829, -1469)
+rotation = 0.374454
+
+[node name="Asteroid692" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3152, -519)
+rotation = 0.374454
+
+[node name="Asteroid693" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3334, -135)
+rotation = 0.374454
+
+[node name="Asteroid694" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3202, -1536)
+rotation = 0.374454
+
+[node name="Asteroid695" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2923, -1771)
+rotation = 0.374454
+
+[node name="Asteroid696" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3512, -1383)
+rotation = 0.374454
+
+[node name="Asteroid697" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3305, -1217)
+rotation = 0.374454
+
+[node name="Asteroid698" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3395, -988)
+rotation = 0.374454
+
+[node name="Asteroid699" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3163, -858)
+rotation = 0.374454
+
+[node name="Asteroid700" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3146, -1096)
+rotation = 0.374454
+
+[node name="Asteroid701" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2993, -1271)
+rotation = 0.374454
+
+[node name="Asteroid702" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2829, -1469)
+rotation = 0.374454
+
+[node name="Asteroid703" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3152, -519)
+rotation = 0.374454
+
+[node name="Asteroid704" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3334, -135)
+rotation = 0.374454
+
+[node name="Asteroid705" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3719, -1319)
+rotation = 0.374454
+
+[node name="Asteroid706" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4029, -1166)
+rotation = 0.374454
+
+[node name="Asteroid707" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3822, -1000)
+rotation = 0.374454
+
+[node name="Asteroid708" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3912, -771)
+rotation = 0.374454
+
+[node name="Asteroid709" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3663, -879)
+rotation = 0.374454
+
+[node name="Asteroid710" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3510, -1054)
+rotation = 0.374454
+
+[node name="Asteroid711" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3346, -1252)
+rotation = 0.374454
+
+[node name="Asteroid712" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3171, -1026)
+rotation = 0.374454
+
+[node name="Asteroid713" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3295, -794)
+rotation = 0.374454
+
+[node name="Asteroid714" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3719, -1319)
+rotation = 0.374454
+
+[node name="Asteroid715" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3440, -1554)
+rotation = 0.374454
+
+[node name="Asteroid716" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4029, -1166)
+rotation = 0.374454
+
+[node name="Asteroid717" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3822, -1000)
+rotation = 0.374454
+
+[node name="Asteroid718" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3912, -771)
+rotation = 0.374454
+
+[node name="Asteroid719" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3663, -879)
+rotation = 0.374454
+
+[node name="Asteroid720" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3510, -1054)
+rotation = 0.374454
+
+[node name="Asteroid721" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3346, -1252)
+rotation = 0.374454
+
+[node name="Asteroid722" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3171, -1026)
+rotation = 0.374454
+
+[node name="Asteroid723" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3295, -794)
+rotation = 0.374454
+
+[node name="Asteroid724" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3478, -2183)
+rotation = 0.374454
+
+[node name="Asteroid725" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3788, -2030)
+rotation = 0.374454
+
+[node name="Asteroid726" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3581, -1864)
+rotation = 0.374454
+
+[node name="Asteroid727" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3671, -1635)
+rotation = 0.374454
+
+[node name="Asteroid728" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3439, -1505)
+rotation = 0.374454
+
+[node name="Asteroid729" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3422, -1743)
+rotation = 0.374454
+
+[node name="Asteroid730" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3269, -1918)
+rotation = 0.374454
+
+[node name="Asteroid731" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3105, -2116)
+rotation = 0.374454
+
+[node name="Asteroid732" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3428, -1166)
+rotation = 0.374454
+
+[node name="Asteroid733" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3610, -782)
+rotation = 0.374454
+
+[node name="Asteroid734" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3478, -2183)
+rotation = 0.374454
+
+[node name="Asteroid735" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3199, -2418)
+rotation = 0.374454
+
+[node name="Asteroid736" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3788, -2030)
+rotation = 0.374454
+
+[node name="Asteroid737" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3581, -1864)
+rotation = 0.374454
+
+[node name="Asteroid738" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3671, -1635)
+rotation = 0.374454
+
+[node name="Asteroid739" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3439, -1505)
+rotation = 0.374454
+
+[node name="Asteroid740" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3422, -1743)
+rotation = 0.374454
+
+[node name="Asteroid741" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3269, -1918)
+rotation = 0.374454
+
+[node name="Asteroid742" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3105, -2116)
+rotation = 0.374454
+
+[node name="Asteroid743" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3428, -1166)
+rotation = 0.374454
+
+[node name="Asteroid744" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3610, -782)
+rotation = 0.374454
+
+[node name="Asteroid745" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4461, -1252)
+rotation = 0.374454
+
+[node name="Asteroid746" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4771, -1099)
+rotation = 0.374454
+
+[node name="Asteroid747" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4564, -933)
+rotation = 0.374454
+
+[node name="Asteroid748" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4654, -704)
+rotation = 0.374454
+
+[node name="Asteroid749" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4405, -812)
+rotation = 0.374454
+
+[node name="Asteroid750" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4252, -987)
+rotation = 0.374454
+
+[node name="Asteroid751" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4088, -1185)
+rotation = 0.374454
+
+[node name="Asteroid752" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3913, -959)
+rotation = 0.374454
+
+[node name="Asteroid753" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4037, -727)
+rotation = 0.374454
+
+[node name="Asteroid754" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4461, -1252)
+rotation = 0.374454
+
+[node name="Asteroid755" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4182, -1487)
+rotation = 0.374454
+
+[node name="Asteroid756" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4771, -1099)
+rotation = 0.374454
+
+[node name="Asteroid757" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4564, -933)
+rotation = 0.374454
+
+[node name="Asteroid758" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4654, -704)
+rotation = 0.374454
+
+[node name="Asteroid759" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4405, -812)
+rotation = 0.374454
+
+[node name="Asteroid760" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4252, -987)
+rotation = 0.374454
+
+[node name="Asteroid761" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4088, -1185)
+rotation = 0.374454
+
+[node name="Asteroid762" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3913, -959)
+rotation = 0.374454
+
+[node name="Asteroid763" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4037, -727)
+rotation = 0.374454
+
+[node name="Asteroid764" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4220, -2116)
+rotation = 0.374454
+
+[node name="Asteroid765" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4530, -1963)
+rotation = 0.374454
+
+[node name="Asteroid766" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4323, -1797)
+rotation = 0.374454
+
+[node name="Asteroid767" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4413, -1568)
+rotation = 0.374454
+
+[node name="Asteroid768" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4181, -1438)
+rotation = 0.374454
+
+[node name="Asteroid769" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4164, -1676)
+rotation = 0.374454
+
+[node name="Asteroid770" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4011, -1851)
+rotation = 0.374454
+
+[node name="Asteroid771" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3847, -2049)
+rotation = 0.374454
+
+[node name="Asteroid772" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4170, -1099)
+rotation = 0.374454
+
+[node name="Asteroid773" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4352, -715)
+rotation = 0.374454
+
+[node name="Asteroid774" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4220, -2116)
+rotation = 0.374454
+
+[node name="Asteroid775" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3941, -2351)
+rotation = 0.374454
+
+[node name="Asteroid776" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4530, -1963)
+rotation = 0.374454
+
+[node name="Asteroid777" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4323, -1797)
+rotation = 0.374454
+
+[node name="Asteroid778" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4413, -1568)
+rotation = 0.374454
+
+[node name="Asteroid779" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4181, -1438)
+rotation = 0.374454
+
+[node name="Asteroid780" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4164, -1676)
+rotation = 0.374454
+
+[node name="Asteroid781" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4011, -1851)
+rotation = 0.374454
+
+[node name="Asteroid782" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3847, -2049)
+rotation = 0.374454
+
+[node name="Asteroid783" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4170, -1099)
+rotation = 0.374454
+
+[node name="Asteroid784" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(4352, -715)
+rotation = 0.374454
+
+[node name="Asteroid302" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1592, 1867)
+
+[node name="Asteroid303" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2105, 2155)
+
+[node name="Asteroid304" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2393, 2433)
+
+[node name="Asteroid305" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2777, 2796)
+
+[node name="Asteroid306" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2670, 3266)
+
+[node name="Asteroid307" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2195, 3618)
+
+[node name="Asteroid308" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2003, 2262)
+
+[node name="Asteroid309" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1619, 2091)
+
+[node name="Asteroid310" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1993, 1803)
+
+[node name="Asteroid311" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1993, 1803)
+
+[node name="Asteroid312" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1534, 5583)
+
+[node name="Asteroid313" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1246, 5124)
+
+[node name="Asteroid314" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1196, 5455)
+
+[node name="Asteroid315" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1122, 4536)
+
+[node name="Asteroid316" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1410, 4814)
+
+[node name="Asteroid317" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1794, 5177)
+
+[node name="Asteroid318" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1687, 5647)
+
+[node name="Asteroid319" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1212, 5999)
+
+[node name="Asteroid320" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1534, 5583)
+
+[node name="Asteroid321" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1246, 5124)
+
+[node name="Asteroid322" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1196, 5455)
+
+[node name="Asteroid323" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1122, 4536)
+
+[node name="Asteroid324" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1410, 4814)
+
+[node name="Asteroid325" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1794, 5177)
+
+[node name="Asteroid326" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1687, 5647)
+
+[node name="Asteroid327" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1212, 5999)
+
+[node name="Asteroid328" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1184, 4684)
+
+[node name="Asteroid329" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1494, 4837)
+
+[node name="Asteroid330" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1287, 5003)
+
+[node name="Asteroid331" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1377, 5232)
+
+[node name="Asteroid332" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1145, 5362)
+
+[node name="Asteroid333" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1128, 5124)
+
+[node name="Asteroid334" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1134, 5701)
+
+[node name="Asteroid335" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1316, 6085)
+
+[node name="Asteroid336" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1188, 6320)
+
+[node name="Asteroid337" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1589, 6256)
+
+[node name="Asteroid338" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1589, 6256)
+
+[node name="Asteroid339" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2552, 2595)
+
+[node name="Asteroid340" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2642, 2824)
+
+[node name="Asteroid341" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2410, 2954)
+
+[node name="Asteroid342" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2393, 2716)
+
+[node name="Asteroid343" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2240, 2541)
+
+[node name="Asteroid344" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1901, 2569)
+
+[node name="Asteroid345" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2025, 2801)
+
+[node name="Asteroid346" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1737, 2971)
+
+[node name="Asteroid347" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1426, 2666)
+
+[node name="Asteroid348" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1321, 4836)
+
+[node name="Asteroid349" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1545, 4932)
+
+[node name="Asteroid350" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1887, 5103)
+
+[node name="Asteroid351" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1855, 4687)
+
+[node name="Asteroid352" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1607, 4350)
+
+[node name="Asteroid353" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1639, 4094)
+
+[node name="Asteroid354" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1650, 3688)
+
+[node name="Asteroid355" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1468, 3442)
+
+[node name="Asteroid356" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1511, 3090)
+
+[node name="Asteroid357" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1143, 3406)
+
+[node name="Asteroid358" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1271, 3833)
+
+[node name="Asteroid359" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1314, 4249)
+
+[node name="Asteroid360" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1506, 4527)
+
+[node name="Asteroid361" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2256, 4948)
+
+[node name="Asteroid362" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2534, 5300)
+
+[node name="Asteroid363" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3378, 5247)
+
+[node name="Asteroid364" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3090, 4788)
+
+[node name="Asteroid365" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3040, 5119)
+
+[node name="Asteroid366" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2688, 4638)
+
+[node name="Asteroid367" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2378, 4488)
+
+[node name="Asteroid368" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2100, 4018)
+
+[node name="Asteroid369" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1940, 3602)
+
+[node name="Asteroid370" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1983, 3314)
+
+[node name="Asteroid371" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2399, 3293)
+
+[node name="Asteroid372" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2581, 3677)
+
+[node name="Asteroid373" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2453, 3912)
+
+[node name="Asteroid374" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2966, 4200)
+
+[node name="Asteroid375" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3254, 4478)
+
+[node name="Asteroid376" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3638, 4841)
+
+[node name="Asteroid377" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3531, 5311)
+
+[node name="Asteroid378" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3056, 5663)
+
+[node name="Asteroid379" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2864, 4307)
+
+[node name="Asteroid380" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2480, 4136)
+
+[node name="Asteroid381" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2854, 3848)
+
+[node name="Asteroid382" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2854, 3848)
+
+[node name="Asteroid383" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2552, 2595)
+
+[node name="Asteroid384" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2642, 2824)
+
+[node name="Asteroid385" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2410, 2954)
+
+[node name="Asteroid386" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2393, 2716)
+
+[node name="Asteroid387" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2240, 2541)
+
+[node name="Asteroid388" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1901, 2569)
+
+[node name="Asteroid389" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2025, 2801)
+
+[node name="Asteroid390" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1737, 2971)
+
+[node name="Asteroid391" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1426, 2666)
+
+[node name="Asteroid392" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1321, 4836)
+
+[node name="Asteroid393" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1545, 4932)
+
+[node name="Asteroid394" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1887, 5103)
+
+[node name="Asteroid395" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1855, 4687)
+
+[node name="Asteroid396" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1607, 4350)
+
+[node name="Asteroid397" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1639, 4094)
+
+[node name="Asteroid398" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1650, 3688)
+
+[node name="Asteroid399" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1468, 3442)
+
+[node name="Asteroid400" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1511, 3090)
+
+[node name="Asteroid401" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1143, 3406)
+
+[node name="Asteroid402" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1271, 3833)
+
+[node name="Asteroid403" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1314, 4249)
+
+[node name="Asteroid404" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1506, 4527)
+
+[node name="Asteroid405" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2256, 4948)
+
+[node name="Asteroid406" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2534, 5300)
+
+[node name="Asteroid407" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3378, 5247)
+
+[node name="Asteroid408" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3090, 4788)
+
+[node name="Asteroid409" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3040, 5119)
+
+[node name="Asteroid410" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2688, 4638)
+
+[node name="Asteroid411" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2378, 4488)
+
+[node name="Asteroid412" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2100, 4018)
+
+[node name="Asteroid413" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1940, 3602)
+
+[node name="Asteroid414" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(1983, 3314)
+
+[node name="Asteroid415" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2399, 3293)
+
+[node name="Asteroid416" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2581, 3677)
+
+[node name="Asteroid417" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2453, 3912)
+
+[node name="Asteroid418" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2966, 4200)
+
+[node name="Asteroid419" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3254, 4478)
+
+[node name="Asteroid420" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3638, 4841)
+
+[node name="Asteroid421" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3531, 5311)
+
+[node name="Asteroid422" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(3056, 5663)
+
+[node name="Asteroid423" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2864, 4307)
+
+[node name="Asteroid424" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2480, 4136)
+
+[node name="Asteroid425" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2854, 3848)
+
+[node name="Asteroid426" parent="Belt" instance=ExtResource("2_3qaqi")]
+position = Vector2(2854, 3848)

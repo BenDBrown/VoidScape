@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="GeneratorData" load_steps=5 format=3 uid="uid://bn45f5ywhhqpf"]
+
+[ext_resource type="Texture2D" uid="uid://u2g2t0fcq8ch" path="res://Assets/Ship/Atlas/Arzo Generator - Broken.atlastex" id="1_sxi5b"]
+[ext_resource type="Texture2D" uid="uid://deirxrj04w0w7" path="res://Assets/Ship/Atlas/Arzo Generator.atlastex" id="2_53h2k"]
+[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="2_ld1ms"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GeneratorData.cs" id="4_eljn4"]
+
+[resource]
+script = ExtResource("4_eljn4")
+efficiency = 1.0
+maxPowerGenerated = 100
+Name = "Arzo Generator"
+Description = "Lv1"
+Sprite = ExtResource("2_53h2k")
+DestroyedSprite = ExtResource("1_sxi5b")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 4
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("2_ld1ms")

@@ -11,6 +11,12 @@ public partial class Ship : CharacterBody2D, IShip
 	[Signal]
 	public delegate void OnDestroyedEventHandler(Ship ship);
 
+	[Signal]
+	public delegate void StallStartedEventHandler(double stallTime);
+
+	[Signal]
+	public delegate void StallEndedEventHandler();
+
 	[Export]
 	private SingleRunAnimation ExplosionAnim;
 
@@ -21,7 +27,9 @@ public partial class Ship : CharacterBody2D, IShip
 	protected RotationManager rotationManager = new();
 	protected GunManager gunManager = new();
 	protected List<ShipComponent> shipComponents = new();
-	private float rotationSpeed = 3;
+	protected float rotationSpeed = 3;
+	protected bool stalling = false;
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -39,55 +47,50 @@ public partial class Ship : CharacterBody2D, IShip
 		MoveAndSlide();
 	}
 
-	protected void ShipDestroyed()
+	protected virtual void ShipDestroyed()
 	{
-		EmitSignal(SignalName.OnDestroyed, this);
 		foreach (ShipComponent shipComponent in shipComponents) { shipComponent.Visible = false; }
 		ExplosionAnim.Visible = true;
 		ExplosionAnim.Play();
+		ExplosionAnim.Reparent(GetTree().CurrentScene);
+		ExplosionAnim.AnimationFinished += () => ExplosionAnim.QueueFree();
+		EmitSignal(SignalName.OnDestroyed, this);
 	}
 
 	public void ComponentDestroyed(ShipComponent shipComponent)
 	{
 		thrustManager.SetWeight(thrustManager.weight - 1);
 		GD.Print(shipComponent.Name + " destroyed");
-		if (shipComponent is FuelTank || shipComponent is Generator || shipComponent is Thruster || shipComponent is Cockpit)
+		if (IsVitalComponent(shipComponent))
 		{
 			Type destroyedComponentType = shipComponent.GetType();
 			foreach (ShipComponent s in shipComponents)
 			{
-				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent)
-				{
-					GD.Print("compnent was not last");
-					return;
-				}
+				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent)	return;
 			}
 			ShipDestroyed();
 		}
 	}
 
 	// shooting
-	public void StartShooting() => gunManager.StartShooting();
+	public void StartShooting() {if(!stalling)gunManager.StartShooting();}
 	public void StopShooting() => gunManager.StopShooting();
 
 	// movement
-	public void StartThrustingForward() => thrustManager.StartThrustingForward();
-	public void StartThrustingBackward() => thrustManager.StartThrustingBackward();
-	public void StartThrustingRight() => thrustManager.StartThrustingRight();
-	public void StartThrustingLeft() => thrustManager.StartThrustingLeft();
+	public void StartThrustingForward() {if(!stalling)thrustManager.StartThrustingForward();}
+	public void StartThrustingBackward() {if(!stalling)thrustManager.StartThrustingBackward();}
+	public void StartThrustingRight() {if(!stalling)thrustManager.StartThrustingRight();}
+	public void StartThrustingLeft() {if(!stalling)thrustManager.StartThrustingLeft();}
 	public void StopThrustingForward() => thrustManager.StopThrustingForward();
 	public void StopThrustingBackward() => thrustManager.StopThrustingBackward();
 	public void StopThrustingRight() => thrustManager.StopThrustingRight();
 	public void StopThrustingLeft() => thrustManager.StopThrustingLeft();
 
 	// turning
-	public void StartTurningClockwise() => rotationManager.StartTurningClockwise();
-
-
-	public void StartTurningCounterClockwise() => rotationManager.StartTurningCounterClockwise();
-
-
+	public void StartTurningClockwise() {if(!stalling)rotationManager.StartTurningClockwise();}
+	public void StartTurningCounterClockwise() {if(!stalling)rotationManager.StartTurningCounterClockwise();}
 	public void StopTurning() => rotationManager.StopTurning();
+
 
 	public virtual bool TryBuildShip()
 	{
@@ -120,7 +123,7 @@ public partial class Ship : CharacterBody2D, IShip
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
-			if (n is Node2D n2) { n2.Position -= ToLocal(center); }
+			if (n is Node2D n2 && n is not SingleRunAnimation) { n2.Position -= ToLocal(center); } // is not, for bandaid solution to prevent ship destruction anim from being off centre
 			if (n is ShipComponent shipComponent)
 			{
 				shipComponent.collider.Owner = null; //prevents warning.
@@ -163,4 +166,17 @@ public partial class Ship : CharacterBody2D, IShip
 		AddChild(component);
 		component.Position = coordinate * 32;
 	}
+
+	protected virtual bool IsVitalComponent(ShipComponent shipComponent) => shipComponent is Cockpit;
+
+	protected virtual void InitiateStall(double stallTime)
+	{
+		stalling = true;
+		thrustManager.StopThrusting();
+		gunManager.StopShooting();
+		rotationManager.StopTurning();
+	}
+
+	protected virtual void EndStall() => stalling = false;
+	
 }

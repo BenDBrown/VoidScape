@@ -26,7 +26,7 @@ func randomize_force():
 			apply_impulse(direction)
 		"Stationary":
 			constant_force = Vector2.ZERO
-			
+
 func _on_health_component_died() -> void:
 	if death_timer:
 		return

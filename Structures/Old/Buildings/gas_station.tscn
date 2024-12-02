@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://t0e0vdi6pgob"]
+
+[ext_resource type="PackedScene" uid="uid://dp04heb7bctdn" path="res://Structures/Old/Buildings/Building.tscn" id="1_q0w4i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b00yn"]
+radius = 175.0
+height = 896.01
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fs6j0"]
+size = Vector2(300, 800)
+
+[node name="Gas Station" type="Node2D"]
+
+[node name="Building" parent="." instance=ExtResource("1_q0w4i")]
+scale = Vector2(1.525, 1)
+
+[node name="Docking Station" type="Area2D" parent="."]
+position = Vector2(-134, -6)
+scale = Vector2(0.55, 0.89)
+
+[node name="Label" type="Label" parent="Docking Station"]
+offset_left = -212.0
+offset_top = -463.0
+offset_right = -6.0
+offset_bottom = -440.0
+scale = Vector2(2.335, 2.335)
+text = "Enter here to get fuel
+"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Docking Station"]
+shape = SubResource("CapsuleShape2D_b00yn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Docking Station/CollisionShape2D"]
+position = Vector2(1, 0)
+texture = SubResource("PlaceholderTexture2D_fs6j0")
+offset = Vector2(0.15, 0)
+
+[node name="Docking Station2" type="Area2D" parent="."]
+position = Vector2(158, -6)
+scale = Vector2(0.55, 0.89)
+
+[node name="Label" type="Label" parent="Docking Station2"]
+offset_left = -212.0
+offset_top = -463.0
+offset_right = -6.0
+offset_bottom = -440.0
+scale = Vector2(2.335, 2.335)
+text = "Enter here to get fuel
+"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Docking Station2"]
+shape = SubResource("CapsuleShape2D_b00yn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Docking Station2/CollisionShape2D"]
+position = Vector2(1, 0)
+texture = SubResource("PlaceholderTexture2D_fs6j0")
+offset = Vector2(0.15, 0)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -613.0
+offset_top = -67.0
+offset_right = -525.0
+offset_bottom = -44.0
+scale = Vector2(4.155, 4.155)
+text = "Gas Station"

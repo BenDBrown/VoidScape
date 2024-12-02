@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://btd37ya3r2mob"]
 
-[ext_resource type="Script" path="res://Ship/Scripts/Ship.cs" id="1_wjrlw"]
+[ext_resource type="Script" path="res://Ship/Scripts/PlayerShip.cs" id="1_mwucv"]
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerController.cs" id="2_0hxg2"]
 [ext_resource type="Script" path="res://Ship/Scripts/Managers/PowerManager.cs" id="3_22ycc"]
 [ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
 
-[node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("ExplosionAnim")]
+[node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("powerManager", "ExplosionAnim")]
 collision_mask = 55
-script = ExtResource("1_wjrlw")
+script = ExtResource("1_mwucv")
+powerManager = NodePath("PowerManager")
 ExplosionAnim = NodePath("ExplosionAnim")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -18,9 +19,9 @@ position_smoothing_speed = 50.0
 script = ExtResource("2_0hxg2")
 playerShipNode = NodePath("..")
 
-[node name="PowerManager" type="Node" parent="." node_paths=PackedStringArray("timer")]
+[node name="PowerManager" type="Node" parent="." node_paths=PackedStringArray("stallTimer")]
 script = ExtResource("3_22ycc")
-timer = NodePath("Timer")
+stallTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="PowerManager"]
 

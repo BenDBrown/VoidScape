@@ -9,7 +9,7 @@ public partial class Game : Node
 	private const string START_MENU_SCENE = "res://Scenes/start_menu.tscn";
 	public static Game Instance { get; set; }
 	public string SAVE_PATH = "res://saves/";
-	public Ship PlayerShip { get; set; }
+	public PlayerShip PlayerShip { get; set; }
 	public AudioStreamPlayer2D Fx;
 	private const string SHIP_SAVER_PATH = "res://Resources/Scripts/player_ship_save.gd";
 	private Resource playerShipSaver;
@@ -52,7 +52,7 @@ public partial class Game : Node
 		foreach (Piece piece in pieces)
 		{
 			ShipComponent component = piece.ComponentData.GetPrefab();
-			component.Data = piece.ComponentData;
+			component.SetupData(piece.ComponentData);
 			component.IsMirrored = piece.IsMirrored;
 			PlayerShip.AddComponent(component, piece.Coordinate);
 			component.Rotation = piece.LocalRotation;

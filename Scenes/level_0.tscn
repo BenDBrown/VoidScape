@@ -1,0 +1,1252 @@
+[gd_scene load_steps=31 format=3 uid="uid://bxcat74b0i27t"]
+
+[ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_ojqoj"]
+[ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="2_xs7mv"]
+[ext_resource type="PackedScene" uid="uid://rnlbolmete83" path="res://Structures/Regions/asteroid_belt.tscn" id="3_r55pe"]
+[ext_resource type="PackedScene" uid="uid://sptevungn7va" path="res://Structures/Regions/broken_moon.tscn" id="5_cesyg"]
+[ext_resource type="PackedScene" uid="uid://ncd2ddud24tb" path="res://Structures/Trailer_Fake/space_worm.tscn" id="5_h8ffu"]
+[ext_resource type="PackedScene" uid="uid://s527nmikjcui" path="res://Structures/Regions/town_inner.tscn" id="6_tp0nj"]
+[ext_resource type="PackedScene" uid="uid://cnl2fjy0g1c2q" path="res://Structures/Props/SpaceBuoy/space_buoy.tscn" id="6_u20mx"]
+[ext_resource type="PackedScene" uid="uid://crbl3dcgw0veo" path="res://Structures/Regions/junkyard_entance.tscn" id="7_6jhkc"]
+[ext_resource type="PackedScene" uid="uid://s84gieyvjdlo" path="res://Structures/Props/Station/space_station.tscn" id="7_jprpq"]
+[ext_resource type="PackedScene" uid="uid://bw0swwhxxdmdu" path="res://Structures/Props/blackhole.tscn" id="8_y6lm2"]
+[ext_resource type="PackedScene" uid="uid://bernw3hc8f3fi" path="res://Structures/Props/Stranded Ship Event/stranded_ship.tscn" id="10_v1rti"]
+[ext_resource type="PackedScene" uid="uid://cr2bp8cft1jyl" path="res://Structures/Trailer_Fake/worm_acid.tscn" id="12_1h78l"]
+[ext_resource type="PackedScene" uid="uid://srj2a0twg7of" path="res://Structures/Trailer_Fake/worm_curved.tscn" id="14_0ux27"]
+[ext_resource type="PackedScene" uid="uid://dhlkit73dqgwc" path="res://Structures/Trailer_Fake/fake_explosion.tscn" id="15_v2sy4"]
+[ext_resource type="PackedScene" uid="uid://c7ifsus1rg36m" path="res://Structures/Trailer_Fake/Cave_Snippet.tscn" id="16_8vhxe"]
+
+[sub_resource type="Animation" id="Animation_2g837"]
+resource_name = "Moving"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(12498, -6782), Vector2(12258, -6527), Vector2(12216, -6340), Vector2(12267, -6114), Vector2(12502, -5760)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.52117, 2.14859, 1.57349, 0.975265, 0.566412]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Acids/Worm Acid2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Acids/Worm Acid2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(12280, -6484), Vector2(13631, -5757)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Acids/Worm Acid2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.06454]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Acids/Worm Acid:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.16242]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Acids/Worm Acid:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(12307, -6529), Vector2(13537, -5702)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Acids/Worm Acid:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.266667, 0.5, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Acids/Worm Acid3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Acids/Worm Acid3:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.2, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(12269, -6284), Vector2(13206, -6472)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Acids/Worm Acid4:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Acids/Worm Acid4:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.2, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(12281, -6201), Vector2(13210, -6433)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 2.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_quo8b"]
+resource_name = "Moving 2"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(13398, -6336), Vector2(13159, -6774), Vector2(12820, -6821), Vector2(12467, -6814)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [4.10731, 3.7385, 3.12088, 2.88846]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_dnq48"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12460, -6807)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.97482]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Acids/Worm Acid2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Acids/Worm Acid2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12280, -6484)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Acids/Worm Acid2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.06454]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Acids/Worm Acid:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.16242]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Acids/Worm Acid:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12307, -6529)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Acids/Worm Acid:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Acids/Worm Acid3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Acids/Worm Acid3:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12304, -6152)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Acids/Worm Acid4:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Acids/Worm Acid4:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12281, -6201)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c4yl7"]
+_data = {
+"Moving": SubResource("Animation_2g837"),
+"Moving 2": SubResource("Animation_quo8b"),
+"RESET": SubResource("Animation_dnq48")
+}
+
+[sub_resource type="Animation" id="Animation_7nvyb"]
+resource_name = "Worm Moving"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(14922, -6058), Vector2(14700, -6504), Vector2(14349, -6891)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.48353, 0.523599]
+}
+
+[sub_resource type="Animation" id="Animation_vcou8"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(95, -109)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.71192]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Acid 2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Acid 2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, -244)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Acid 1:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Acid 1:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(28, -288)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Acid 3:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Acid 3:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-225, -588)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Acid 4:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-185, -566)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Acid 4:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_at0jy"]
+resource_name = "Move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(25, 86), Vector2(95, -109), Vector2(72, -332), Vector2(-40, -510), Vector2(-213, -637), Vector2(-427, -675), Vector2(-489, -663)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.10307, 1.71192, 1.19962, 0.764741, 0.402553, -0.0811981, -0.262365]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Acid 1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 3.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Acid 2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 3.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Acid 3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.53333, 3.73333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Acid 4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.53333, 3.73333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Acid 2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.7, 2, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, -244), Vector2(-797, -269), Vector2(-2054, -307)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Acid 1:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.7, 2, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(28, -288), Vector2(-698, 45), Vector2(-2080, 678)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Acid 3:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.53333, 2, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-225, -588), Vector2(-311, -234), Vector2(-667, 1222)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Acid 4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.53333, 2, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-185, -566), Vector2(-399, -315), Vector2(-1561, 1049)]
+}
+
+[sub_resource type="Animation" id="Animation_4c1dm"]
+resource_name = "Colliding"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1377, -266), Vector2(-1172, -190), Vector2(-953, -221), Vector2(-898, -244)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-2.51703, -3.04454, -3.53277, -3.76175]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqxo3"]
+_data = {
+"Colliding": SubResource("Animation_4c1dm"),
+"Move": SubResource("Animation_at0jy"),
+"RESET": SubResource("Animation_vcou8"),
+"Worm Moving": SubResource("Animation_7nvyb")
+}
+
+[sub_resource type="Animation" id="Animation_hl204"]
+resource_name = "Crash"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.63333, 2.03333, 2.43333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-628, -116), Vector2(-415, -67), Vector2(-188, -136)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.63333, 2.03333, 2.43333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [3.61883, 3.1353, 2.58271]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.63333, 2.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Space Worm:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.63333, 2.43333, 3.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Space Worm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.43333, 2.83333, 3.23333, 3.63333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-183, -181), Vector2(-51, -271), Vector2(121, -388), Vector2(207, -447)]
+}
+tracks/5/type = "animation"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Fake_explosion/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": PackedStringArray("", "Explode"),
+"times": PackedFloat32Array(0, 2.3)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Fake_explosion:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_y1c3p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-628, -116)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.61883]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Space Worm:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Space Worm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51, -271)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Fake_explosion:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sb5mq"]
+_data = {
+"Crash": SubResource("Animation_hl204"),
+"RESET": SubResource("Animation_y1c3p")
+}
+
+[sub_resource type="Animation" id="Animation_gku6u"]
+resource_name = "Explode"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Explosion"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.16667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_nk6g3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Explosion"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xonmm"]
+_data = {
+"Explode": SubResource("Animation_gku6u"),
+"RESET": SubResource("Animation_nk6g3")
+}
+
+[node name="Level_1" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_ojqoj")]
+loop = true
+autoplay = true
+
+[node name="Player Spawner" type="Node2D" parent="."]
+position = Vector2(-1003, 4584)
+script = ExtResource("2_xs7mv")
+
+[node name="Level Regions" type="Node2D" parent="."]
+
+[node name="Asteroid Belt" type="Node2D" parent="Level Regions"]
+position = Vector2(-723, 1256)
+
+[node name="Asteroid_Belt" parent="Level Regions/Asteroid Belt" instance=ExtResource("3_r55pe")]
+position = Vector2(15011, -7072)
+scale = Vector2(3, 3)
+
+[node name="Town" type="Node2D" parent="Level Regions"]
+
+[node name="Town_Inner" parent="Level Regions/Town" instance=ExtResource("6_tp0nj")]
+position = Vector2(4391, -2778)
+scale = Vector2(3, 3)
+
+[node name="Danger zone" type="Node2D" parent="Level Regions"]
+
+[node name="Broken_Moon" parent="Level Regions/Danger zone" instance=ExtResource("5_cesyg")]
+position = Vector2(-4477, 510)
+scale = Vector2(3, 3)
+
+[node name="Enemies" type="Node2D" parent="Level Regions/Danger zone"]
+
+[node name="Station zone" type="Node2D" parent="Level Regions"]
+
+[node name="Border" type="Node2D" parent="Level Regions/Station zone"]
+
+[node name="Space_Buoy" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(-171, -6250)
+rotation = 0.15708
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy2" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(1416, -6060)
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy3" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(3461, -6085)
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy4" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(5480, -6275)
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy5" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(7512, -6465)
+rotation = -0.293215
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy6" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(9766, -7156)
+rotation = -0.322886
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy7" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(11581, -7761)
+rotation = -0.293215
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy8" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(15291, -8750)
+rotation = -0.514872
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy10" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(16412, -9911)
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy11" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(17731, -10544)
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy12" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(19615, -11001)
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy13" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(21337, -11082)
+scale = Vector2(4, 4)
+
+[node name="Space_Buoy14" parent="Level Regions/Station zone/Border" instance=ExtResource("6_u20mx")]
+position = Vector2(22804, -11311)
+scale = Vector2(4, 4)
+
+[node name="Space Station" parent="Level Regions/Station zone" instance=ExtResource("7_jprpq")]
+z_index = -100
+position = Vector2(2853, -9393)
+scale = Vector2(30, 30)
+
+[node name="Spawn" type="Node2D" parent="Level Regions"]
+
+[node name="Junkyard_Entance" parent="Level Regions/Spawn" instance=ExtResource("7_6jhkc")]
+position = Vector2(442, 392)
+scale = Vector2(3, 3)
+
+[node name="Blackhole" parent="Level Regions/Spawn" instance=ExtResource("8_y6lm2")]
+position = Vector2(8462, 9272)
+scale = Vector2(70, 70)
+
+[node name="Stranded_Ship" parent="." instance=ExtResource("10_v1rti")]
+position = Vector2(481, -2756)
+
+[node name="Space Worm" parent="." instance=ExtResource("5_h8ffu")]
+visible = false
+position = Vector2(12460, -6807)
+rotation = 1.97482
+scale = Vector2(2.5, 2.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Space Worm"]
+libraries = {
+"": SubResource("AnimationLibrary_c4yl7")
+}
+
+[node name="Space Worm2" parent="." instance=ExtResource("5_h8ffu")]
+visible = false
+position = Vector2(12460, -6807)
+rotation = 1.97482
+scale = Vector2(2.5, 2.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Space Worm2"]
+libraries = {
+"": SubResource("AnimationLibrary_c4yl7")
+}
+
+[node name="Acids" type="Node2D" parent="."]
+visible = false
+
+[node name="Worm Acid" parent="Acids" instance=ExtResource("12_1h78l")]
+position = Vector2(12307, -6529)
+rotation = 2.16242
+
+[node name="Worm Acid2" parent="Acids" instance=ExtResource("12_1h78l")]
+position = Vector2(12280, -6484)
+rotation = 2.06454
+
+[node name="Worm Acid3" parent="Acids" instance=ExtResource("12_1h78l")]
+position = Vector2(12304, -6152)
+rotation = 1.37281
+
+[node name="Worm Acid4" parent="Acids" instance=ExtResource("12_1h78l")]
+position = Vector2(12281, -6201)
+rotation = 1.3256
+
+[node name="Trailer Animation" type="Node2D" parent="."]
+position = Vector2(14796, -6141)
+
+[node name="Acid 1" parent="Trailer Animation" instance=ExtResource("12_1h78l")]
+position = Vector2(28, -288)
+rotation = -2.00044
+scale = Vector2(1, 1)
+
+[node name="Acid 2" parent="Trailer Animation" instance=ExtResource("12_1h78l")]
+position = Vector2(40, -244)
+rotation = -1.54038
+scale = Vector2(1, 1)
+
+[node name="Acid 3" parent="Trailer Animation" instance=ExtResource("12_1h78l")]
+position = Vector2(-225, -588)
+rotation = -2.90204
+scale = Vector2(1, 1)
+
+[node name="Acid 4" parent="Trailer Animation" instance=ExtResource("12_1h78l")]
+position = Vector2(-185, -566)
+rotation = -2.43604
+scale = Vector2(1, 1)
+
+[node name="Moving Worm" parent="Trailer Animation" instance=ExtResource("14_0ux27")]
+z_index = 5
+position = Vector2(95, -109)
+rotation = 1.71192
+scale = Vector2(2.5, 2.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Trailer Animation/Moving Worm"]
+libraries = {
+"": SubResource("AnimationLibrary_dqxo3")
+}
+autoplay = "Move"
+
+[node name="Trailer Animation 2" type="Node2D" parent="."]
+position = Vector2(14119, -6289)
+
+[node name="Worm Curved" parent="Trailer Animation 2" instance=ExtResource("14_0ux27")]
+z_index = 5
+position = Vector2(-628, -116)
+rotation = 3.61883
+scale = Vector2(2.5, 2.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Trailer Animation 2/Worm Curved"]
+libraries = {
+"": SubResource("AnimationLibrary_sb5mq")
+}
+autoplay = "Crash"
+speed_scale = 1.5
+
+[node name="Worm Curved2" parent="Trailer Animation 2" instance=ExtResource("14_0ux27")]
+visible = false
+z_index = 10
+position = Vector2(-415, -67)
+rotation = 3.1353
+scale = Vector2(2.5, 2.5)
+
+[node name="Worm Curved3" parent="Trailer Animation 2" instance=ExtResource("14_0ux27")]
+visible = false
+z_index = 10
+position = Vector2(-188, -136)
+rotation = 2.58271
+scale = Vector2(2.5, 2.5)
+
+[node name="Space Worm" parent="Trailer Animation 2" instance=ExtResource("5_h8ffu")]
+visible = false
+z_index = 5
+position = Vector2(-51, -271)
+rotation = -0.599326
+scale = Vector2(2.5, 2.5)
+
+[node name="Fake_explosion" parent="Trailer Animation 2" instance=ExtResource("15_v2sy4")]
+visible = false
+z_index = 15
+position = Vector2(-190, -167)
+scale = Vector2(5, 5)
+frame = 0
+frame_progress = 0.0
+speed_scale = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Trailer Animation 2/Fake_explosion"]
+libraries = {
+"": SubResource("AnimationLibrary_xonmm")
+}
+
+[node name="Trailer_Snippet" parent="." instance=ExtResource("16_8vhxe")]
+position = Vector2(-1566, 4046)

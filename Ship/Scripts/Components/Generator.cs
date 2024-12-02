@@ -9,4 +9,15 @@ public partial class Generator : ShipComponent
 
 	[Export]
 	public int maxPowerGenerated { get; private set; }
+
+	public override void SetupData(ShipComponentData data)
+	{
+		base.SetupData(data);
+		if (data is GeneratorData generatorData)
+		{
+			efficiency = generatorData.efficiency;
+			maxPowerGenerated = generatorData.maxPowerGenerated;
+		}
+		else GD.PushError("tried assigning non generator component data to generator");
+	}
 }

@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://bernw3hc8f3fi"]
+
+[ext_resource type="Script" path="res://Structures/Props/Stranded Ship Event/stranded_ship.gd" id="1_2af2j"]
+[ext_resource type="Texture2D" uid="uid://b2em2q4hydkta" path="res://Assets/Structures/Tiles/ship-01.png" id="1_tlwrw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k73fa"]
+atlas = ExtResource("1_tlwrw")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ell0"]
+atlas = ExtResource("1_tlwrw")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eltr5"]
+atlas = ExtResource("1_tlwrw")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo8mw"]
+atlas = ExtResource("1_tlwrw")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3qam"]
+atlas = ExtResource("1_tlwrw")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53k0h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k73fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ell0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eltr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo8mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3qam")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nmp5y"]
+radius = 800.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6hqg"]
+radius = 200.0
+
+[node name="Stranded_Ship" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_2af2j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_53k0h")
+autoplay = "default"
+frame_progress = 0.649485
+
+[node name="SOS Signal Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SOS Signal Range"]
+shape = SubResource("CircleShape2D_nmp5y")
+
+[node name="Dialogue Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogue Range"]
+shape = SubResource("CircleShape2D_l6hqg")
+debug_color = Color(0, 0.643977, 0.289898, 0.42)
+
+[connection signal="body_entered" from="SOS Signal Range" to="." method="_on_sos_signal_range_body_entered"]
+[connection signal="body_entered" from="Dialogue Range" to="." method="_on_dialogue_range_body_entered"]

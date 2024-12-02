@@ -1,9 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://cle732tl1y8sx"]
+[gd_scene load_steps=10 format=3 uid="uid://cvjo3o6k4j254"]
 
-[ext_resource type="PackedScene" uid="uid://s6d2cbttlfra" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_fpp3g"]
+[ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_fpp3g"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Thruster.cs" id="2_e55n0"]
+[ext_resource type="Texture2D" uid="uid://beaghydkn6hxq" path="res://Assets/Ship/Thruster-animation.png" id="3_6duj7"]
 
-[node name="Thruster" instance=ExtResource("1_fpp3g")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkar3"]
+atlas = ExtResource("3_6duj7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6led"]
+atlas = ExtResource("3_6duj7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjgcp"]
+atlas = ExtResource("3_6duj7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubc8x"]
+atlas = ExtResource("3_6duj7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqj4q"]
+atlas = ExtResource("3_6duj7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ch5lw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkar3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6led")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjgcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubc8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqj4q")
+}],
+"loop": true,
+"name": &"thrust",
+"speed": 8.0
+}]
+
+[node name="Thruster" node_paths=PackedStringArray("thrustAnim") instance=ExtResource("1_fpp3g")]
 script = ExtResource("2_e55n0")
-powerdraw = 0
+thrustAnim = NodePath("ThrustAnim")
+powerdraw = 100
 thrust = 400.0
+
+[node name="ThrustAnim" type="AnimatedSprite2D" parent="." index="4"]
+visible = false
+position = Vector2(0, 32)
+sprite_frames = SubResource("SpriteFrames_ch5lw")
+animation = &"thrust"
+frame_progress = 0.634195

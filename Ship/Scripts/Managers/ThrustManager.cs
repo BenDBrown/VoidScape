@@ -14,9 +14,13 @@ public partial class ThrustManager : IPowerable
 
 	public float PotentialSideThrust { get; private set; } = 0;
 
-	public int PowerDraw { get; private set; } = 0;
+	public int PowerDraw => GetPowerDraw();
+
+	private int powerDraw = 0;
 
 	public int weight { get; private set; } = 1; // to avoid division by 0 errors
+
+	private List<Thruster> thrusters = new();
 
 	private bool thrustingForward = false;
 	private bool thrustingBackward = false;
@@ -35,6 +39,8 @@ public partial class ThrustManager : IPowerable
 		Vector2 backward = Vector2.Zero;
 		Vector2 right = Vector2.Zero;
 		Vector2 left = Vector2.Zero;
+		if(thrustingBackward || thrustingRight || thrustingLeft || thrustingForward) foreach(Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(true); }
+		else foreach(Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(false); }
 
 		if(thrustingForward) 
 		{
@@ -101,23 +107,36 @@ public partial class ThrustManager : IPowerable
 	public void StopThrustingBackward() => thrustingBackward = false;
 	public void StopThrustingRight() => thrustingRight = false;
 	public void StopThrustingLeft() => thrustingLeft = false;
+	public void StopThrusting()
+	{
+		thrustingForward = false;
+		thrustingBackward = false;
+		thrustingLeft = false;
+		thrustingRight = false;
+	}
 
 	public void AddThruster(Thruster thruster)
 	{
 		PotentialForwardThrust += thruster.GetThrust();
 		UpdateThrust();
-		PowerDraw += thruster.GetPowerDraw();
+		thrusters.Add(thruster);
+		powerDraw += thruster.GetPowerDraw();
 		thruster.OnDestroyed += OnThrusterDestroyed;
 	}
 
-	public int GetPowerDraw() => PowerDraw;
+	public int GetPowerDraw() 
+	{
+		if(thrustingBackward || thrustingLeft || thrustingRight || thrustingForward) return powerDraw;
+		return 0;
+	}
 
 	private void OnThrusterDestroyed(ShipComponent shipComponent)
 	{
-		if (!(shipComponent is Thruster thruster)) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
+		if (shipComponent is not Thruster thruster) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
 		PotentialForwardThrust -= thruster.GetThrust();
 		UpdateThrust();
-		PowerDraw -= thruster.GetPowerDraw();
+		thrusters.Remove(thruster);
+		powerDraw -= thruster.GetPowerDraw();
 		thruster.OnDestroyed -= OnThrusterDestroyed;
 	}
 

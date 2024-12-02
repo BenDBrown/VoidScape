@@ -5,87 +5,116 @@ using System.Linq;
 
 public partial class PowerManager : Node
 {
-	//in seconds
-	private const int POWER_TICK_RATE = 1;
+	[Signal]
+	public delegate void PowerChangedEventHandler(float powerToMaxPowerPercentage); // as the param name implies, this signal returns the percentage of MaxPower that power is
 
-	private const int STALL_TIMER = 5;
+	[Signal]
+	public delegate void StallStartedEventHandler(double stallTime);
 
-	public bool stalling {get; set;}
+	[Signal]
+	public delegate void StallEndedEventHandler();
+
+	//time for which ship stalls when it goes over power limit, in seconds
+	[Export]
+	private double stallDuration = 5;
 
 	[Export]
-	private Timer timer;
+	private Timer stallTimer;
 
-	private Dictionary<Generator, float> generatorPowerUsedDict = new ();
+	public bool Stalling {get; private set;} = false;
 
-	private float maxPower = 0;
+	public float Efficiency {get; private set;} = 0;
 
-	private float power = 0;
+	private List<Generator> generators = new ();
+
+	public float MaxPower {get; private set;} = 0;
+
+	public float Power {get; private set;} = 0;
 
     public override void _Ready()
     {
-        timer.Start(POWER_TICK_RATE);
-		timer.Timeout += PowerTick;
+        stallTimer.Autostart = false;
+		stallTimer.OneShot = true;
+		stallTimer.Stop();
+		stallTimer.Timeout += StallEnd;
     }
 
-    public float GetMaxPowerGenerated()
-	{
-		float maxPowerGenerated = 0;
-		foreach (Generator generator in generatorPowerUsedDict.Keys){ maxPowerGenerated += generator.maxPowerGenerated; }
-		return maxPowerGenerated;
-	}
+    public override void _Process(double delta)
+    {
+        if(Stalling) return;
+		Power += MaxPower * (float)delta;
+		Power = Math.Min(Power, MaxPower);
+    }
 
-	public bool TryUsePower(float powerWanted, float fuelAvailable, out float fuelUsed, out bool hasEnoughFuel)
+    /// <summary>
+    /// Called when a ship that relies on power tries to consume power.
+	/// Will return false if there was not enough power available which will then initiate a stall.
+	/// Will also return false if called while stalling.
+	/// Fuel usage checking is not done here as this should be managed by FuelManager.
+    /// </summary>
+	public bool TryUsePower(float powerWanted, out float fuelUsed)
 	{
 		fuelUsed = 0;
-		bool enoughPower = false;
-		hasEnoughFuel = false;
-		float powerGenerated = 0;
-		if(powerWanted > power) { hasEnoughFuel = true; return enoughPower && hasEnoughFuel; }
-		foreach(Generator generator in GetOrderedGenerators())
-		{
-			if(generator.maxPowerGenerated >= generatorPowerUsedDict[generator]) 
-			{
-				float maxPowerChunk = generator.maxPowerGenerated - generatorPowerUsedDict[generator];
-				float powerChunk = powerWanted - powerGenerated;
-				if(powerChunk > maxPowerChunk) { powerChunk = maxPowerChunk; }
-				generatorPowerUsedDict[generator] += powerChunk;
-				powerGenerated += powerChunk;
-				fuelUsed += powerChunk / generator.efficiency;
-				power -= powerChunk;
-			}
-			if(powerGenerated >= powerWanted)
-			{
-				if(fuelAvailable >= fuelUsed) {hasEnoughFuel = true;}
-				enoughPower = true;
-				return enoughPower && hasEnoughFuel;
-			}
-		}
-		if(fuelAvailable >= fuelUsed)
-		{
-			GD.Print("max power: " + maxPower + ", power: " + power);
-			hasEnoughFuel = true;
-			stalling = true;
-		}
-		return enoughPower && hasEnoughFuel;
+		if (Stalling) return false;
+		Power -= powerWanted;
+		Power = Math.Max(Power, 0);
+		bool enoughPower = Power > 0;
+		fuelUsed = powerWanted / Efficiency;
+		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
+		if(!enoughPower) StallStart();
+		return enoughPower;
 	}
 
 	public void AddGenerator(Generator generator) 
 	{
-		generatorPowerUsedDict.Add(generator, 0); 
-		maxPower = GetMaxPowerGenerated();
-		power = maxPower;
-		GetOrderedGenerators(); 
+		generators.Add(generator); 
+		MaxPower = GetMaxPowerGenerated();
+		Power = MaxPower;
+		CalculateEfficiency();
+		generator.OnDestroyed += OnGeneratorDestroyed;
+		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 	}
 
-	public void RemoveGenerator(Generator generator) {generatorPowerUsedDict.Remove(generator); }
-
-	private void PowerTick()
+	private void OnGeneratorDestroyed(ShipComponent shipComponent)
 	{
-		if(stalling) { timer.Start(STALL_TIMER); stalling = false; return; }
-		power = maxPower;
-		foreach(Generator generator in generatorPowerUsedDict.Keys){ generatorPowerUsedDict[generator] = 0; }
-		timer.Start(POWER_TICK_RATE);
+		if(shipComponent is not Generator generator) {GD.PushError("non generator component sent to power manager on destroy event"); return;}
+		if(!generators.Contains(generator)) {GD.PushError("destroyed generator was not in power manager dict"); return;}
+		generators.Remove(generator);
+		MaxPower = GetMaxPowerGenerated();
+		CalculateEfficiency();
+		Power = Math.Min(MaxPower, Power);
+		generator.OnDestroyed -= OnGeneratorDestroyed;
+		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 	}
 
-	private List<Generator> GetOrderedGenerators() { return generatorPowerUsedDict.Keys.OrderByDescending(Generator => Generator.efficiency).ToList(); }
+	private void StallStart()
+	{
+		stallTimer.Start(stallDuration);
+		Stalling = true;
+		EmitSignal(SignalName.StallStarted, stallDuration);
+	}
+
+	private void StallEnd()
+	{
+		Stalling = false;
+		Power = MaxPower;
+		EmitSignal(SignalName.StallEnded);
+	}
+
+	private float GetMaxPowerGenerated()
+	{
+		float maxPowerGenerated = 0;
+		foreach (Generator generator in generators){ maxPowerGenerated += generator.maxPowerGenerated; }
+		return maxPowerGenerated;
+	}
+
+	private float CalculateEfficiency()
+	{
+		Efficiency = 0;
+		foreach(Generator generator in generators) Efficiency += generator.efficiency;
+		Efficiency /= generators.Count;
+		return Efficiency;
+	}
+
+	private float GetPowerPercentage() => (Power / MaxPower) * 100;
 }
