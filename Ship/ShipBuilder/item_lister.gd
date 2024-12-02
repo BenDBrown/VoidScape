@@ -15,7 +15,7 @@ func display_items():
 			var draggable = draggable_scene.instantiate() as DraggableComponent
 			added_child.emit(draggable)
 			var component = data.GetPrefab() as ShipComponent
-			component.Data = data
+			component.SetupData(data)
 			draggable.add_child(component)
 			draggable.shipComponent = component
 			draggable.global_position = Vector2(global_position.x + x * 34, global_position.y + y * 34)
