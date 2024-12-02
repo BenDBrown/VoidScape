@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dwnag7qev53p4"]
 
-[ext_resource type="FontFile" uid="uid://brrde6h1oo0qh" path="res://Styles/Early GameBoy.ttf" id="1_lag8a"]
+[ext_resource type="FontFile" uid="uid://dm3da8vv2pdur" path="res://UI/Styles/Early GameBoy.ttf" id="1_lag8a"]
 [ext_resource type="Script" path="res://UI/Scripts/Menu.cs" id="2_oc8j1"]
 [ext_resource type="Script" path="res://UI/Scripts/Tabs.cs" id="3_fyd7s"]
 [ext_resource type="Script" path="res://UI/Scripts/SnapGrid.cs" id="4_0rreb"]
