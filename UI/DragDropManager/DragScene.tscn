@@ -53,3 +53,4 @@ size_flags_vertical = 4
 text = "build"
 
 [connection signal="item_clicked" from="MarginContainer/HBoxContainer/ItemList" to="MarginContainer/HBoxContainer/ItemList" method="OnItemClicked"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="MarginContainer/HBoxContainer/ItemList" method="OnBuildPressed"]
