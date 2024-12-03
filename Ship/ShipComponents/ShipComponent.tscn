@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8yixlufb8hme"]
+[gd_scene load_steps=19 format=3 uid="uid://b8yixlufb8hme"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/ShipComponent.cs" id="1_3r3yf"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_eo80n"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_2nmxr"]
+[ext_resource type="Shader" path="res://addons/ColourPicker/ColorPicker.gdshader" id="4_5hdsv"]
 [ext_resource type="Texture2D" uid="uid://cdd2hgtw2np80" path="res://Assets/Ship/ComponentExplosion.png" id="4_wvgl3"]
+[ext_resource type="Script" path="res://addons/ColourPicker/ColourableSprite.cs" id="5_l3dyq"]
 [ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="5_q0uno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prnpq"]
@@ -11,6 +13,11 @@ size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyvhp"]
 size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwx5r"]
+shader = ExtResource("4_5hdsv")
+shader_parameter/color = null
+shader_parameter/shades = PackedColorArray()
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brgc4"]
 atlas = ExtResource("4_wvgl3")
@@ -95,6 +102,10 @@ shape = SubResource("RectangleShape2D_eyvhp")
 [node name="Sprite" type="Sprite2D" parent="."]
 use_parent_material = true
 region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_l3dyq")
+colour = Color(0.572549, 0.211765, 0.615686, 1)
+targetColours = PackedColorArray(0.333333, 0.333333, 0.333333, 1, 0.356863, 0.356863, 0.356863, 1, 0.435294, 0.435294, 0.435294, 1, 0.552941, 0.552941, 0.552941, 1, 0.635294, 0.635294, 0.635294, 1, 0.690196, 0.690196, 0.690196, 1)
+shaderMat = SubResource("ShaderMaterial_lwx5r")
 
 [node name="DestroyedSprite" type="Sprite2D" parent="."]
 visible = false

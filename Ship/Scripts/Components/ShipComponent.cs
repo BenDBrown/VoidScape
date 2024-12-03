@@ -11,7 +11,7 @@ public partial class ShipComponent : CharacterBody2D
     public CollisionShape2D collider { get; private set; }
 
     [Export]
-    private Sprite2D sprite;
+    private ColourableSprite sprite;
 
     [Export]
     private Sprite2D destroyedSprite;
