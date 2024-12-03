@@ -1,7 +1,9 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-public partial class GridGenerator : GridContainer
+public partial class GridGenerator : Control
 {
 
 	[Export]
@@ -13,47 +15,48 @@ public partial class GridGenerator : GridContainer
 	[Export]
 	private Vector2 cellSize = new Vector2(32, 32);
 
-	public Panel[,] gridCells;
+	[Export]
+	private Texture2D freeCell;
 
+	public Dictionary<Vector2I, TextureRect> gridCells;
 
-	public override void _Ready()
+	public List<TextureRect> GenerateGrid()
 	{
-		Columns = gridColumns;
-		gridCells = new Panel[gridRows, gridColumns];
-		GenerateGrid();
-	}
-
-
-	private void GenerateGrid()
-	{
-
+		gridCells = new();
 		for (int row = 0; row < gridRows; row++)
 		{
 			for (int col = 0; col < gridColumns; col++)
 			{
-				Panel cell = new Panel
+				TextureRect cell = new TextureRect
 				{
 					Name = $"Cell_{row}_{col}",
 					CustomMinimumSize = cellSize,
 					ClipContents = true,
-					Modulate = new Color(1, 1, 1, 1)
+					Texture = freeCell
 				};
 
 				cell.Position = new Vector2(col * cellSize.X, row * cellSize.Y);
 
 				AddChild(cell);
-				gridCells[row, col] = cell;
+				gridCells.Add(new(row, col), cell);
 			}
 		}
+		return gridCells.Values.ToList();
 	}
 
-	public Panel GetCellAt(int row, int col)
+	public Vector2I GetCellAt(TextureRect rect)
 	{
-		if (row >= 0 && row < gridRows && col >= 0 && col < gridColumns)
+		foreach (Vector2I gridPos in gridCells.Keys)
 		{
-			return gridCells[row, col];
+			if (gridCells[gridPos] == rect) return gridPos;
 		}
-		return null;
+		return new(-1, -1);
+	}
+
+	public void ChangeCellText(TextureRect rect, Texture2D texture2D)
+	{
+		rect.Texture = texture2D;
+
 	}
 
 

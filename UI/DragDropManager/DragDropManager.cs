@@ -15,26 +15,61 @@ public partial class DragDropManager : ItemList
 
 	//
 	[Export]
-	private GridContainer gridContainer;
+	private GridGenerator gridGenerator;
 	private Sprite2D draggedPreview;
-	private Panel[,] gridCells;
 	private bool isDragging = false;
 	private Vector2 initialMousePos;
+	private TextureRect hoveredRect = null;
+	private Vector2I rectPos;
+
+
+	private const string rotateRightActionName = "rotate_part_right";
+	private const string rotateLeftActionName = "rotate_part_left";
+	private const string mirrorActionName = "mirror_part";
 
 
 	public override void _Ready()
 	{
 		Clear();
-
 		PopulateItemList();
-
+		List<TextureRect> gridSquares = gridGenerator.GenerateGrid();
+		foreach (TextureRect cr in gridSquares)
+		{
+			cr.MouseEntered += () => MouseEnteredSquare(cr);
+			cr.MouseExited += MouseExitedSquare;
+		}
 	}
 
 	public override void _Process(double delta)
 	{
+		if (Input.IsActionJustPressed(rotateRightActionName) && isDragging)
+		{
+			var image = draggedPreview.Texture.GetImage();
+			image.Rotate90(ClockDirection.Clockwise);
+			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
+		}
+		else if (Input.IsActionJustPressed(rotateLeftActionName) && isDragging)
+		{
+			var image = draggedPreview.Texture.GetImage();
+			image.Rotate90(ClockDirection.Counterclockwise);
+			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
+		}
+		else if (Input.IsActionJustPressed(mirrorActionName) && isDragging)
+		{
+			var image = draggedPreview.Texture.GetImage();
+			image.FlipX();
+			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
+		}
+
+
 		if (Input.IsActionJustReleased("click") && isDragging)
 		{
-			if (draggedPreview != null)
+			if (draggedPreview == null)
+			{
+				isDragging = false;
+				return;
+			}
+			if (hoveredRect == null)
 			{
 				var tween = GetTree().CreateTween();
 				tween.TweenProperty(draggedPreview, "global_position", initialMousePos, 0.7f);
@@ -42,7 +77,13 @@ public partial class DragDropManager : ItemList
 				tween.Finished += () => isDragging = false;
 				return;
 			}
-			isDragging = false;
+			else
+			{
+				gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
+				draggedPreview.QueueFree();
+				isDragging = false;
+				return;
+			}
 		}
 		else if (isDragging)
 		{
@@ -81,6 +122,7 @@ public partial class DragDropManager : ItemList
 	{
 		if (mouseButtonIndex == (int)MouseButton.Left)
 		{
+			if (isDragging) return;
 			GD.Print("Item clicked at index " + index + " at position " + atPosition);
 			GD.Print("pressed");
 			for (int i = 0; i < GetItemCount(); i++)
@@ -100,5 +142,15 @@ public partial class DragDropManager : ItemList
 			}
 		}
 	}
+
+	private void MouseEnteredSquare(TextureRect colorRect)
+	{
+		hoveredRect = colorRect;
+		rectPos = gridGenerator.GetCellAt(colorRect);
+		GD.Print(rectPos);
+	}
+
+	private void MouseExitedSquare() => hoveredRect = null;
+
 
 }
