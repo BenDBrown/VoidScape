@@ -42,6 +42,7 @@ public partial class DragDropManager : ItemList
 
 	public override void _Process(double delta)
 	{
+		
 		if (Input.IsActionJustPressed(rotateRightActionName) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
@@ -117,7 +118,7 @@ public partial class DragDropManager : ItemList
 		}
 	}
 
-
+	// when selecting an item form the item list, a preview of the part is going to appear
 	private void OnItemClicked(int index, Vector2 atPosition, int mouseButtonIndex)
 	{
 		if (mouseButtonIndex == (int)MouseButton.Left)
@@ -143,6 +144,7 @@ public partial class DragDropManager : ItemList
 		}
 	}
 
+	// get the cell that you are hovering
 	private void MouseEnteredSquare(TextureRect colorRect)
 	{
 		hoveredRect = colorRect;

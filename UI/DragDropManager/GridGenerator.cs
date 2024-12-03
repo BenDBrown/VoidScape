@@ -53,11 +53,7 @@ public partial class GridGenerator : Control
 		return new(-1, -1);
 	}
 
-	public void ChangeCellText(TextureRect rect, Texture2D texture2D)
-	{
-		rect.Texture = texture2D;
-
-	}
+	public void ChangeCellText(TextureRect rect, Texture2D texture2D) => rect.Texture = texture2D;
 
 
 }
