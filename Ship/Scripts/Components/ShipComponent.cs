@@ -10,11 +10,15 @@ public partial class ShipComponent : CharacterBody2D
     [Export]
     public CollisionShape2D collider { get; private set; }
 
-    [Export]
-    private Sprite2D sprite;
+    public ShipComponentData Data => data;
+
+    public Color Colour => sprite.Colour;
 
     [Export]
-    private Sprite2D destroyedSprite;
+    private ColourableSprite sprite;
+
+    [Export]
+    private ColourableSprite destroyedSprite;
 
     [Export]
     private Node healthComponent;
@@ -40,6 +44,12 @@ public partial class ShipComponent : CharacterBody2D
     }
 
     public bool IsDestroyed() => destroyed;
+
+    public void SetColour(Color colour)
+    {
+        sprite.SetColour(colour);
+        destroyedSprite.SetColour(colour);
+    }
 
     private void Destroyed()
     {
