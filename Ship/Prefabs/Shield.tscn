@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnn3lvinno35i"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/Shield.cs" id="1_6h16d"]
+[ext_resource type="Texture2D" uid="uid://d6wrmyx36buh" path="res://Assets/Other/Whole-shield.png" id="2_pauet"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_amo6w"]
+radius = 39.0128
+
+[node name="Shield" type="Node2D" node_paths=PackedStringArray("shieldSprite")]
+script = ExtResource("1_6h16d")
+shieldSprite = NodePath("ShieldVisual")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_amo6w")
+
+[node name="ShieldVisual" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("2_pauet")
+
+[connection signal="body_entered" from="Area2D" to="." method="BodyEntered"]
