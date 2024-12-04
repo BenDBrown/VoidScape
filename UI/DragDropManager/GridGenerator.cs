@@ -24,9 +24,9 @@ public partial class GridGenerator : Control
 
 	public GridTile GridCell { get; private set; }
 
-	public Dictionary<Vector2I, TextureRect> GridCells { get; private set; }
+	public Dictionary<Vector2I, GridTile> GridCells { get; private set; }
 
-	public List<TextureRect> GenerateGrid()
+	public List<GridTile> GenerateGrid()
 	{
 		GridCells = new();
 		for (int row = 0; row < gridRows; row++)

@@ -34,7 +34,7 @@ public partial class DragDropManager : ItemList
 	{
 		Clear();
 		PopulateItemList();
-		List<TextureRect> gridSquares = gridGenerator.GenerateGrid();
+		List<GridTile> gridSquares = gridGenerator.GenerateGrid();
 		foreach (TextureRect cr in gridSquares)
 		{
 			cr.MouseEntered += () => MouseEnteredSquare(cr);
@@ -199,22 +199,15 @@ public partial class DragDropManager : ItemList
 
 	private void UpdateAvailability()
 	{
-		if (pieces.Count > 0)
-		{
-			foreach (Piece p in pieces)
-			{
-				GD.Print("Name: " + p.ComponentData.Name);
-				GD.Print("top attach: " + p.ComponentData.TopAttachable);
-				GD.Print("bottom attach: " + p.ComponentData.BottomAttachable);
-				GD.Print("left attach: " + p.ComponentData.LeftAttachable);
-				GD.Print("right attach: " + p.ComponentData.RightAttachable);
-			}
+		bool noComponents = true;
+		GridTile tile = new();
+		if (pieces.Count > 0) noComponents = false;
+		// foreach (var coord in gridGenerator.GridCells.Keys)
+		// {
 
-		}
-		else
-		{
-			GD.Print("no Pieces");
-		}
+
+		// }
+
 
 	}
 	private void ResetPiece()
