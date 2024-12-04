@@ -11,7 +11,6 @@ Name = "Arzo Hull"
 Description = "Hello"
 Sprite = ExtResource("2_cnct1")
 DestroyedSprite = ExtResource("1_ialf4")
-Colour = Color(1, 1, 1, 1)
 TopAttachable = true
 BottomAttachable = true
 LeftAttachable = true
