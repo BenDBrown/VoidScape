@@ -98,7 +98,6 @@ shape = SubResource("RectangleShape2D_eyvhp")
 material = ExtResource("4_2wt11")
 region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_l3dyq")
-colour = Color(0.572549, 0.211765, 0.615686, 1)
 targetColours = PackedColorArray(0.333333, 0.333333, 0.333333, 1, 0.356863, 0.356863, 0.356863, 1, 0.435294, 0.435294, 0.435294, 1, 0.552941, 0.552941, 0.552941, 1, 0.635294, 0.635294, 0.635294, 1, 0.690196, 0.690196, 0.690196, 1)
 shaderMat = ExtResource("4_2wt11")
 
@@ -107,7 +106,6 @@ visible = false
 use_parent_material = true
 region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_l3dyq")
-colour = Color(0.572549, 0.211765, 0.615686, 1)
 targetColours = PackedColorArray(0.333333, 0.333333, 0.333333, 1, 0.356863, 0.356863, 0.356863, 1, 0.435294, 0.435294, 0.435294, 1, 0.552941, 0.552941, 0.552941, 1, 0.635294, 0.635294, 0.635294, 1, 0.690196, 0.690196, 0.690196, 1)
 shaderMat = ExtResource("4_2wt11")
 

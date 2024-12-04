@@ -10,6 +10,10 @@ public partial class ShipComponent : CharacterBody2D
     [Export]
     public CollisionShape2D collider { get; private set; }
 
+    public ShipComponentData Data => data;
+
+    public Color Colour => sprite.Colour;
+
     [Export]
     private ColourableSprite sprite;
 
@@ -77,7 +81,6 @@ public partial class ShipComponent : CharacterBody2D
         this.data = data;
         sprite.Texture = this.data.Sprite;
         sprite.FlipH = IsMirrored;
-        SetColour(data.Colour);
         healthComponent.Call("set_component", this.data.MaxHealth, this.data.Defense);
         destroyedSprite.Texture = this.data.DestroyedSprite;
         TopAttachable = this.data.TopAttachable;

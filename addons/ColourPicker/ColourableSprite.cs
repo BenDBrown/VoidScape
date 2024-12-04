@@ -8,7 +8,7 @@ public partial class ColourableSprite : Sprite2D
     private const uint MAX_AMOUNT_OF_TARGET_COLOURS = 10;
 
     [Export]
-    Color colour = new(1,1,1,1);
+    public Color Colour {get;private set;} = new(1,1,1,1);
 
     [Export]
     Color[] targetColours = new Color[MAX_AMOUNT_OF_TARGET_COLOURS];
@@ -20,20 +20,20 @@ public partial class ColourableSprite : Sprite2D
     {
         base._Ready();
         SetMaterial(shaderMat);
-        SetColour(colour);
+        SetColour(Colour);
         shaderMat.SetShaderParameter("shades", targetColours);
         // TextureChanged += SetUp;
     }
 
     private void SetUp()
     {
-        SetColour(colour);
+        SetColour(Colour);
         shaderMat.SetShaderParameter("shades", targetColours);
     }
 
     public void SetColour(Color colour)
     {
-        this.colour = colour;
+        this.Colour = colour;
         shaderMat.SetShaderParameter("color", colour);
     }
 
