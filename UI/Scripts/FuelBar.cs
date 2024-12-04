@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class PowerBar : ProgressBar
+public partial class FuelBar : ProgressBar
 {
     private PlayerShip playerShip;
 
@@ -16,10 +16,10 @@ public partial class PowerBar : ProgressBar
     {
         if(this.playerShip != null) 
         {
-            playerShip.PowerChanged -= UpdateValue;
+            playerShip.FuelChanged -= UpdateValue;
         }
         this.playerShip = playerShip;
-        playerShip.PowerChanged += UpdateValue;
+        playerShip.FuelChanged += UpdateValue;
     }
 
     private void UpdateValue(float value) => Value = value;

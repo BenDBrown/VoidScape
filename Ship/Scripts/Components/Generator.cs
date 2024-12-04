@@ -10,10 +10,10 @@ public partial class Generator : ShipComponent
 	[Export]
 	public int maxPowerGenerated { get; private set; }
 
-	protected override void SetupData()
+	public override void SetupData(ShipComponentData data)
 	{
-		base.SetupData();
-		if (Data is GeneratorData generatorData)
+		base.SetupData(data);
+		if (data is GeneratorData generatorData)
 		{
 			efficiency = generatorData.efficiency;
 			maxPowerGenerated = generatorData.maxPowerGenerated;
