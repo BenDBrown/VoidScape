@@ -44,74 +44,8 @@ public partial class DragDropManager : ItemList
 
 	public override void _Process(double delta)
 	{
-
-		if (Input.IsActionJustPressed(rotateRightActionName) && isDragging)
-		{
-			var image = draggedPreview.Texture.GetImage();
-			image.Rotate90(ClockDirection.Clockwise);
-			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
-			currentRotation += 90;
-		}
-		else if (Input.IsActionJustPressed(rotateLeftActionName) && isDragging)
-		{
-			var image = draggedPreview.Texture.GetImage();
-			image.Rotate90(ClockDirection.Counterclockwise);
-			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
-			currentRotation -= 90;
-		}
-		else if (Input.IsActionJustPressed(mirrorActionName) && isDragging)
-		{
-			var image = draggedPreview.Texture.GetImage();
-			image.FlipX();
-			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
-			isMirrored = true;
-		}
-
-
-		if (Input.IsActionJustReleased("click") && isDragging)
-		{
-			if (draggedPreview == null)
-			{
-				isDragging = false;
-				return;
-			}
-			if (hoveredRect == null)
-			{
-				var tween = GetTree().CreateTween();
-				tween.TweenProperty(draggedPreview, "global_position", initialMousePos, 0.7f);
-				tween.Finished += () => ResetPiece();
-				return;
-			}
-			else
-			{
-				if (hoveredRect.Texture == gridGenerator.GetFreeCell)
-				{
-					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-					pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
-					ResetPiece();
-				}
-				else if (hoveredRect.Texture != gridGenerator.GetFreeCell)
-				{
-					GD.Print(gridGenerator.GetCellAt(hoveredRect));
-					for (int i = 0; i < pieces.Count; i++)
-					{
-						if (pieces[i].Coordinate == gridGenerator.GetCellAt(hoveredRect))
-						{
-							pieces.Remove(pieces[i]);
-							gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-							pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
-							GD.Print(currentRotation);
-							ResetPiece();
-						}
-					}
-				}
-				return;
-			}
-		}
-		else if (isDragging)
-		{
-			draggedPreview.Position = GetGlobalMousePosition();
-		}
+		RotatePiece();
+		DropPiece();
 	}
 
 	// When an item is selected
@@ -124,7 +58,6 @@ public partial class DragDropManager : ItemList
 		// defense.Text = "Defense: " + data.Defense.ToString();
 		// description.Text = "Description: " + data.Description;
 	}
-
 
 	// displaying the datas in the item list
 	public void PopulateItemList()
@@ -174,7 +107,6 @@ public partial class DragDropManager : ItemList
 
 	private void MouseExitedSquare() => hoveredRect = null;
 
-
 	private void OnBuildPressed()
 	{
 		GD.Print("NEW------------");
@@ -188,6 +120,80 @@ public partial class DragDropManager : ItemList
 		}
 	}
 
+	// method that rotates the pieces
+	private void RotatePiece()
+	{
+		if (Input.IsActionJustPressed(rotateRightActionName) && isDragging)
+		{
+			var image = draggedPreview.Texture.GetImage();
+			image.Rotate90(ClockDirection.Clockwise);
+			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
+			currentRotation += 90;
+		}
+		else if (Input.IsActionJustPressed(rotateLeftActionName) && isDragging)
+		{
+			var image = draggedPreview.Texture.GetImage();
+			image.Rotate90(ClockDirection.Counterclockwise);
+			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
+			currentRotation -= 90;
+		}
+		else if (Input.IsActionJustPressed(mirrorActionName) && isDragging)
+		{
+			var image = draggedPreview.Texture.GetImage();
+			image.FlipX();
+			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
+			isMirrored = true;
+		}
+	}
+
+	// method to place the piece on the grid (DROP)
+	private void DropPiece()
+	{
+		if (Input.IsActionJustReleased("click") && isDragging)
+		{
+			if (draggedPreview == null)
+			{
+				isDragging = false;
+				return;
+			}
+			if (hoveredRect == null)
+			{
+				var tween = GetTree().CreateTween();
+				tween.TweenProperty(draggedPreview, "global_position", initialMousePos, 0.7f);
+				tween.Finished += () => ResetPiece();
+				return;
+			}
+			else
+			{
+				if (hoveredRect.Texture == gridGenerator.GetFreeCell)
+				{
+					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
+					pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
+					ResetPiece();
+				}
+				else if (hoveredRect.Texture != gridGenerator.GetFreeCell)
+				{
+					GD.Print(gridGenerator.GetCellAt(hoveredRect));
+					for (int i = 0; i < pieces.Count; i++)
+					{
+						if (pieces[i].Coordinate == gridGenerator.GetCellAt(hoveredRect))
+						{
+							pieces.Remove(pieces[i]);
+							gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
+							pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
+							GD.Print(currentRotation);
+							ResetPiece();
+						}
+					}
+				}
+				return;
+			}
+		}
+		else if (isDragging)
+		{
+			draggedPreview.Position = GetGlobalMousePosition();
+		}
+	}
 	private void ResetPiece()
 	{
 		draggedPreview.QueueFree();
@@ -195,6 +201,4 @@ public partial class DragDropManager : ItemList
 		isDragging = false;
 		isMirrored = false;
 	}
-
-
 }
