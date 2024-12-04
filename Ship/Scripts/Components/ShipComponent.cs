@@ -14,7 +14,7 @@ public partial class ShipComponent : CharacterBody2D
     private ColourableSprite sprite;
 
     [Export]
-    private Sprite2D destroyedSprite;
+    private ColourableSprite destroyedSprite;
 
     [Export]
     private Node healthComponent;
@@ -40,6 +40,12 @@ public partial class ShipComponent : CharacterBody2D
     }
 
     public bool IsDestroyed() => destroyed;
+
+    public void SetColour(Color colour)
+    {
+        sprite.SetColour(colour);
+        destroyedSprite.SetColour(colour);
+    }
 
     private void Destroyed()
     {
@@ -71,6 +77,7 @@ public partial class ShipComponent : CharacterBody2D
         this.data = data;
         sprite.Texture = this.data.Sprite;
         sprite.FlipH = IsMirrored;
+        SetColour(data.Colour);
         healthComponent.Call("set_component", this.data.MaxHealth, this.data.Defense);
         destroyedSprite.Texture = this.data.DestroyedSprite;
         TopAttachable = this.data.TopAttachable;

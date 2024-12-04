@@ -15,6 +15,8 @@ public partial class ShipComponentData : Resource
 	[Export]
 	public AtlasTexture DestroyedSprite { get; set; }
 	[Export]
+	public Color Colour = new(1,1,1,1);
+	[Export]
 	public bool TopAttachable { get; private set; }
 	[Export]
 	public bool BottomAttachable { get; private set; }
