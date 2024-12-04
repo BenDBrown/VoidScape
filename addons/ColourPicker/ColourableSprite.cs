@@ -22,13 +22,6 @@ public partial class ColourableSprite : Sprite2D
         SetMaterial(shaderMat);
         SetColour(Colour);
         shaderMat.SetShaderParameter("shades", targetColours);
-        // TextureChanged += SetUp;
-    }
-
-    private void SetUp()
-    {
-        SetColour(Colour);
-        shaderMat.SetShaderParameter("shades", targetColours);
     }
 
     public void SetColour(Color colour)
@@ -37,9 +30,9 @@ public partial class ColourableSprite : Sprite2D
         shaderMat.SetShaderParameter("color", colour);
     }
 
-    public void SetTargetColours(List<Color> targetColours)
+    public void SetTargetColours(Color[] targetColours)
     {
-        if(targetColours.Count > MAX_AMOUNT_OF_TARGET_COLOURS)
+        if(targetColours.Length > MAX_AMOUNT_OF_TARGET_COLOURS)
         {
             List<Color> newTargets = new();
             for (int i = 0; i < MAX_AMOUNT_OF_TARGET_COLOURS; i++)
@@ -49,6 +42,6 @@ public partial class ColourableSprite : Sprite2D
             this.targetColours = newTargets.ToArray();
             shaderMat.SetShaderParameter("shades", this.targetColours);
         }
-        shaderMat.SetShaderParameter("shades", targetColours.ToArray());
+        shaderMat.SetShaderParameter("shades", targetColours);
     }
 }
