@@ -36,7 +36,7 @@ public partial class PlayerController : Node
         else if(Input.IsActionJustPressed("rotate_left")) { playerShip.StartTurningCounterClockwise(); }
         else if((Input.IsActionJustReleased("rotate_right") && (!Input.IsActionPressed("rotate_left"))) || (Input.IsActionJustReleased("rotate_left") && (!Input.IsActionPressed("rotate_right")))) { playerShip.StopTurning(); }
 
-        if(Input.IsActionJustPressed("shield") && (!Input.IsActionPressed("shoot"))) { playerShip.StartShielding(); }
-        if(Input.IsActionJustReleased("shield")) {playerShip.StopShielding(); }
+        if(Input.IsActionJustPressed("shielding") && (!Input.IsActionPressed("shoot"))) { playerShip.StartShielding(); }
+        if(Input.IsActionJustReleased("shielding")) {playerShip.StopShielding(); }
     }
 }
