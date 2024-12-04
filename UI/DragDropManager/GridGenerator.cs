@@ -20,6 +20,8 @@ public partial class GridGenerator : Control
 
 	public Dictionary<Vector2I, TextureRect> gridCells;
 
+	public Texture2D GetFreeCell { get { return freeCell; } }
+
 	public List<TextureRect> GenerateGrid()
 	{
 		gridCells = new();

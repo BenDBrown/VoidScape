@@ -13,6 +13,7 @@ public partial class DragDropManager : ItemList
 	// private BoxContainer infobox;
 	[Export]
 	private GridGenerator gridGenerator;
+
 	private Dictionary<int, ShipComponentData> itemListRef = new();
 	private List<Piece> pieces = new();
 	private ShipComponentData preview;
@@ -50,7 +51,6 @@ public partial class DragDropManager : ItemList
 			image.Rotate90(ClockDirection.Clockwise);
 			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
 			currentRotation += 90;
-			GD.Print(currentRotation);
 		}
 		else if (Input.IsActionJustPressed(rotateLeftActionName) && isDragging)
 		{
@@ -79,16 +79,32 @@ public partial class DragDropManager : ItemList
 			{
 				var tween = GetTree().CreateTween();
 				tween.TweenProperty(draggedPreview, "global_position", initialMousePos, 0.7f);
-				tween.Finished += () => draggedPreview.QueueFree();
 				tween.Finished += () => ResetPiece();
 				return;
 			}
 			else
 			{
-				gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-				pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
-				draggedPreview.QueueFree();
-				ResetPiece();
+				if (hoveredRect.Texture == gridGenerator.GetFreeCell)
+				{
+					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
+					pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
+					ResetPiece();
+				}
+				else if (hoveredRect.Texture != gridGenerator.GetFreeCell)
+				{
+					GD.Print(gridGenerator.GetCellAt(hoveredRect));
+					for (int i = 0; i < pieces.Count; i++)
+					{
+						if (pieces[i].Coordinate == gridGenerator.GetCellAt(hoveredRect))
+						{
+							pieces.Remove(pieces[i]);
+							gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
+							pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
+							GD.Print(currentRotation);
+							ResetPiece();
+						}
+					}
+				}
 				return;
 			}
 		}
@@ -174,6 +190,7 @@ public partial class DragDropManager : ItemList
 
 	private void ResetPiece()
 	{
+		draggedPreview.QueueFree();
 		currentRotation = 0;
 		isDragging = false;
 		isMirrored = false;
