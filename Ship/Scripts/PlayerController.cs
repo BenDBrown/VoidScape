@@ -33,11 +33,19 @@ public partial class PlayerController : Node
         else if((Input.IsActionJustReleased("rotate_right") && (!Input.IsActionPressed("rotate_left"))) || (Input.IsActionJustReleased("rotate_left") && (!Input.IsActionPressed("rotate_right")))) { playerShip.StopTurning(); }
     
 
-        if(Input.IsActionJustPressed("open_weapon_menu")){
-            ((PlayerShip) playerShip).GetActiveWeaponIndex();        /// DO THIS AS THE SIGNAL TO OPEN THE MENUI
+        // Weapon Menu Controls
+        if(Input.IsActionJustPressed("toggle_weapon_menu")){        // Change name of action to toggle weapon menu
+            ((PlayerShip) playerShip).ToggleWeaponMenu(true);
         }
-        else if( Input.IsActionJustReleased("open_weapon_menu")){
+        else if( Input.IsActionJustReleased("toggle_weapon_menu")){
+            ((PlayerShip) playerShip).ToggleWeaponMenu(false);
+        }
 
+        if(Input.IsActionJustPressed("cycle_weapon_up")){
+            ((PlayerShip) playerShip).CycleGunGroup(1);
+        }
+        else if(Input.IsActionJustPressed("cycle_weapon_down")){
+            ((PlayerShip) playerShip).CycleGunGroup(-1);
         }
 
 

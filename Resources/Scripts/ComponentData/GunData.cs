@@ -13,6 +13,8 @@ public partial class GunData : ShipComponentData
 	public int Powerdraw = 10;
 	[Export]
 	public GunType type;
+	[Export]
+	public Texture2D GunTypeIcon;
 
 	[ExportCategory("Bullet Data")]
 

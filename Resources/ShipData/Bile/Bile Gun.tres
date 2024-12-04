@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://ct3mnas22ksbx"]
+[gd_resource type="Resource" script_class="GunData" load_steps=7 format=3 uid="uid://ct3mnas22ksbx"]
 
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="1_p5fk8"]
 [ext_resource type="PackedScene" uid="uid://cum7a4fabqn8w" path="res://Ship/Prefabs/Laser.tscn" id="1_y46bx"]
 [ext_resource type="Texture2D" uid="uid://ba4uwq372kjgu" path="res://Assets/Ship/Atlas/Bile Gun - Broken.atlastex" id="2_b8y30"]
 [ext_resource type="Texture2D" uid="uid://cp77corciktxw" path="res://Assets/Ship/Atlas/Bile Gun.atlastex" id="3_731f2"]
+[ext_resource type="Texture2D" uid="uid://bdaas48ipvai8" path="res://Assets/UI/Weapon Cycling/laser_icon_placeholder.png" id="3_xbw11"]
 [ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="4_6cvjy"]
 
 [resource]
@@ -12,6 +13,7 @@ BulletsPerSecond = 2.0
 Attack = 400
 Powerdraw = 10
 type = 2
+GunTypeIcon = ExtResource("3_xbw11")
 BulletSpeed = 200
 BulletSpawnPoint = Vector2(0, -100)
 BulletPrefab = ExtResource("1_y46bx")

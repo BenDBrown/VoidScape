@@ -10,6 +10,9 @@ public partial class Gun : ShipComponent, IPowerable
 	[Export]
 	public GunType type { get; private set; }
 	[Export]
+	public Texture2D gunTypeIcon {get; private set;}
+
+	[Export]
 	private Node2D bulletSpawnPoint;
 	[Export]
 	private int powerdraw;
@@ -65,6 +68,7 @@ public partial class Gun : ShipComponent, IPowerable
 			if (IsMirrored) { bulletSpawnPoint.Position *= Vector2.Left + Vector2.Down; }
 			bulletPrefab = gunData.BulletPrefab;
 			type = gunData.type;
+			gunTypeIcon = gunData.GunTypeIcon;
 		}
 	}
 }

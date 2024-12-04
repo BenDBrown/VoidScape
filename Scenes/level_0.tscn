@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bxcat74b0i27t"]
+[gd_scene load_steps=32 format=3 uid="uid://bxcat74b0i27t"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_ojqoj"]
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="2_xs7mv"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://srj2a0twg7of" path="res://Structures/Trailer_Fake/worm_curved.tscn" id="14_0ux27"]
 [ext_resource type="PackedScene" uid="uid://dhlkit73dqgwc" path="res://Structures/Trailer_Fake/fake_explosion.tscn" id="15_v2sy4"]
 [ext_resource type="PackedScene" uid="uid://c7ifsus1rg36m" path="res://Structures/Trailer_Fake/Cave_Snippet.tscn" id="16_8vhxe"]
+[ext_resource type="PackedScene" uid="uid://ot5etuqeaw7o" path="res://UI/Scenes/weapon_menu.tscn" id="16_vjndl"]
 
 [sub_resource type="Animation" id="Animation_2g837"]
 resource_name = "Moving"
@@ -1246,3 +1247,8 @@ libraries = {
 
 [node name="Trailer_Snippet" parent="." instance=ExtResource("16_8vhxe")]
 position = Vector2(-1566, 4046)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="weapon_menu" parent="CanvasLayer" instance=ExtResource("16_vjndl")]
+visible = false

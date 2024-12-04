@@ -16,8 +16,7 @@ public partial class GunManager : IPowerable
 		bool gunAdded = false;
 		foreach (GunGroup gg in gunGroups)
 		{
-			if (gun.Data is GunData gunData && gg.type == gunData.type)
-			{
+			if(gg.type == gun.type){
 				gg.AddGun(gun);
 				gunAdded = true;
 				break;
@@ -52,32 +51,46 @@ public partial class GunManager : IPowerable
 		shooting = false;
 	}
 
-	public void CycleGunGroupUp() => CycleGunGroup(1);
+	public void CycleGunGroupUp() => CycleGunGroup(-1);
 
-	public void CycleGunGroupDown() => CycleGunGroup(-1);
+	public void CycleGunGroupDown() => CycleGunGroup(1);
 
-	public List<String> GetGunGroupTypes(){
-		List<String> gunTypes = new();
+	public List<GunType> GetGunGroupTypes(){
+		List<GunType> gunTypes = new();
 		foreach(GunGroup gg in gunGroups){
-			gunTypes.Add(gg.type.ToString());
+			gunTypes.Add(gg.type);
 		}
 
 		return gunTypes;
 	}
 
-	private void CycleGunGroup(int cycleNum)
+	public Texture2D GetGunTypeIcon(GunType type){
+
+			foreach(GunGroup gg in gunGroups){
+				if(gg.type == type){
+					return gg.gunTypeIcon;
+				}
+			}
+			return null;	// Todo: Add an exception for when the type is not found. There is no default icon as of now, which will also solve this.
+	}
+
+	public void CycleGunGroup(int cycleNum)
 	{
 		if(!gunGroups.Contains(selectedGroup)) {GD.PushError("had a gun group selected that was not stored in GunManager"); return;}
 		int currentIndex = gunGroups.IndexOf(selectedGroup);
-		if(currentIndex + cycleNum >= gunGroups.Count) // logic to make selection loop at end of list
-		{
-			selectedGroup = gunGroups[0];
-			return;
+
+		int newIndex = currentIndex + cycleNum;
+		if(newIndex < 0){
+			newIndex = gunGroups.Count - 1; // Last index of gun groups
+
 		}
-		else if (currentIndex + cycleNum < 0)
-		{
-			selectedGroup = gunGroups[^1];
+		else if(newIndex == gunGroups.Count){ // Loop to beginning
+			newIndex = 0;
 		}
-		selectedGroup = gunGroups[currentIndex + 1];
+		else{
+			selectedGroup = gunGroups[newIndex];
+		}
+
+		selectedGroup = gunGroups[newIndex];
 	}
 }
