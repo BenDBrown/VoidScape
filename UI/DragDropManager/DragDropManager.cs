@@ -165,13 +165,14 @@ public partial class DragDropManager : ItemList
 			}
 			else
 			{
-				if (hoveredRect.Texture == gridGenerator.GetFreeCell)
+				if (hoveredRect.Texture == gridGenerator.FreeCell)
 				{
 					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-					pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
+					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
+					pieces.Add(piece);
 					ResetPiece();
 				}
-				else if (hoveredRect.Texture != gridGenerator.GetFreeCell)
+				else if (hoveredRect.Texture != gridGenerator.FreeCell)
 				{
 					GD.Print(gridGenerator.GetCellAt(hoveredRect));
 					for (int i = 0; i < pieces.Count; i++)
@@ -180,12 +181,13 @@ public partial class DragDropManager : ItemList
 						{
 							pieces.Remove(pieces[i]);
 							gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-							pieces.Add(new Piece(preview, rectPos, isMirrored, currentRotation));
-							GD.Print(currentRotation);
+							Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
+							pieces.Add(piece);
 							ResetPiece();
 						}
 					}
 				}
+				UpdateAvailability();
 				return;
 			}
 		}
@@ -193,6 +195,27 @@ public partial class DragDropManager : ItemList
 		{
 			draggedPreview.Position = GetGlobalMousePosition();
 		}
+	}
+
+	private void UpdateAvailability()
+	{
+		if (pieces.Count > 0)
+		{
+			foreach (Piece p in pieces)
+			{
+				GD.Print("Name: " + p.ComponentData.Name);
+				GD.Print("top attach: " + p.ComponentData.TopAttachable);
+				GD.Print("bottom attach: " + p.ComponentData.BottomAttachable);
+				GD.Print("left attach: " + p.ComponentData.LeftAttachable);
+				GD.Print("right attach: " + p.ComponentData.RightAttachable);
+			}
+
+		}
+		else
+		{
+			GD.Print("no Pieces");
+		}
+
 	}
 	private void ResetPiece()
 	{

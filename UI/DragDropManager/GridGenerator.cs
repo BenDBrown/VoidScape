@@ -16,41 +16,45 @@ public partial class GridGenerator : Control
 	private Vector2 cellSize = new Vector2(32, 32);
 
 	[Export]
-	private Texture2D freeCell;
+	public Texture2D FreeCell { get; set; }
+	[Export]
+	public Texture2D ValidCell { get; set; }
+	[Export]
+	public Texture2D InvalidCell { get; set; }
 
-	public Dictionary<Vector2I, TextureRect> gridCells;
+	public GridTile GridCell { get; private set; }
 
-	public Texture2D GetFreeCell { get { return freeCell; } }
+	public Dictionary<Vector2I, TextureRect> GridCells { get; private set; }
 
 	public List<TextureRect> GenerateGrid()
 	{
-		gridCells = new();
+		GridCells = new();
 		for (int row = 0; row < gridRows; row++)
 		{
 			for (int col = 0; col < gridColumns; col++)
 			{
-				TextureRect cell = new TextureRect
+				GridCell = new GridTile
 				{
 					Name = $"Cell_{row}_{col}",
 					CustomMinimumSize = cellSize,
 					ClipContents = true,
-					Texture = freeCell
+					Texture = FreeCell
 				};
 
-				cell.Position = new Vector2(col * cellSize.X, row * cellSize.Y);
+				GridCell.Position = new Vector2(col * cellSize.X, row * cellSize.Y);
 
-				AddChild(cell);
-				gridCells.Add(new(row, col), cell);
+				AddChild(GridCell);
+				GridCells.Add(new(row, col), GridCell);
 			}
 		}
-		return gridCells.Values.ToList();
+		return GridCells.Values.ToList();
 	}
 
 	public Vector2I GetCellAt(TextureRect rect)
 	{
-		foreach (Vector2I gridPos in gridCells.Keys)
+		foreach (Vector2I gridPos in GridCells.Keys)
 		{
-			if (gridCells[gridPos] == rect) return gridPos;
+			if (GridCells[gridPos] == rect) return gridPos;
 		}
 		return new(-1, -1);
 	}
