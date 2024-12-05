@@ -17,6 +17,7 @@ menu = NodePath("CanvasLayer/StationMenu")
 popup = NodePath("CanvasLayer/PopUp")
 
 [node name="Area2D" type="Area2D" parent="."]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_g7i2e")
@@ -37,6 +38,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/PopUp"]
+z_index = 10
 layout_mode = 2
 text = "Press Enter to enter HUB"
 horizontal_alignment = 1

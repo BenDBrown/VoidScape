@@ -15,5 +15,11 @@ func load_save() -> Saveable:
 	else:
 		return self
 
+func delete_save() -> bool:
+	if FileAccess.file_exists(Game.SAVE_PATH + get_save_name()):
+		var dir = DirAccess.open(Game.SAVE_PATH)
+		return dir.remove(get_save_name()) == OK
+	return false
+
 func get_save_name():
 	pass

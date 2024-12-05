@@ -1,0 +1,125 @@
+[gd_resource type="Resource" script_class="PlayerShipSave" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/Scripts/player_ship_save.gd" id="1_pjlfy"]
+
+[resource]
+script = ExtResource("1_pjlfy")
+ship = {
+Vector2(3, 2): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": true
+},
+"data_path": "res://Resources/ShipData/O'mano/O'Mano Gun.tres",
+"path": "res://Ship/ShipComponents/Gun.tscn"
+},
+Vector2(3, 3): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": true
+},
+"data_path": "res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres",
+"path": "res://Ship/ShipComponents/FuelTank.tscn"
+},
+Vector2(3, 4): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": -1.5708,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/Bile/Bile Gun.tres",
+"path": "res://Ship/ShipComponents/Gun.tscn"
+},
+Vector2(3, 5): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": true
+},
+"data_path": "res://Resources/ShipData/Zentri/Zentri Thruster.tres",
+"path": "res://Ship/ShipComponents/Thruster.tscn"
+},
+Vector2(4, 1): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/Zentri/Zentri Cockpit.tres",
+"path": "res://Ship/ShipComponents/Cockpit.tscn"
+},
+Vector2(4, 2): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/O'mano/O'Mano Generator.tres",
+"path": "res://Ship/ShipComponents/Generator.tscn"
+},
+Vector2(4, 3): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/Bile/Bile Generator.tres",
+"path": "res://Ship/ShipComponents/Generator.tscn"
+},
+Vector2(4, 4): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/Bile/Bile Generator.tres",
+"path": "res://Ship/ShipComponents/Generator.tscn"
+},
+Vector2(4, 5): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": -3.14159,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/O'mano/O'Mano Generator.tres",
+"path": "res://Ship/ShipComponents/Generator.tscn"
+},
+Vector2(5, 2): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/O'mano/O'Mano Gun.tres",
+"path": "res://Ship/ShipComponents/Gun.tscn"
+},
+Vector2(5, 3): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres",
+"path": "res://Ship/ShipComponents/FuelTank.tscn"
+},
+Vector2(5, 4): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres",
+"path": "res://Ship/ShipComponents/FuelTank.tscn"
+},
+Vector2(5, 5): {
+"colour": Color(1, 1, 1, 1),
+"component": {
+"LocalRotation": 0.0,
+"Mirrored": false
+},
+"data_path": "res://Resources/ShipData/Zentri/Zentri Thruster.tres",
+"path": "res://Ship/ShipComponents/Thruster.tscn"
+}
+}

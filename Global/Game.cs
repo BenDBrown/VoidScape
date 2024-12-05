@@ -13,6 +13,7 @@ public partial class Game : Node
 	public AudioStreamPlayer2D Fx;
 	private const string SHIP_SAVER_PATH = "res://Resources/Scripts/player_ship_save.gd";
 	private Resource playerShipSaver;
+	public bool IsUiOpen = false;
 	public Game()
 	{
 		if (Instance != null) { QueueFree(); return; }

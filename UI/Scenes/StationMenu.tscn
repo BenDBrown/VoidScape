@@ -95,10 +95,10 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9_gbdwd")
-gridRows = 10
 FreeCell = ExtResource("10_jvqrl")
 ValidCell = ExtResource("11_iblua")
 InvalidCell = ExtResource("12_7tqfu")
+gridRows = 10
 
 [node name="AvailableParts" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
 layout_mode = 2
