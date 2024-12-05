@@ -5,6 +5,12 @@ using System.Linq;
 
 public partial class GridGenerator : Control
 {
+	[Export]
+	public Texture2D FreeCell { get; private set; }
+	[Export]
+	public Texture2D ValidCell { get; private set; }
+	[Export]
+	public Texture2D InvalidCell { get; private set; }
 
 	[Export]
 	private int gridColumns = 10;
@@ -15,16 +21,11 @@ public partial class GridGenerator : Control
 	[Export]
 	private Vector2 cellSize = new Vector2(32, 32);
 
-	[Export]
-	public Texture2D FreeCell { get; set; }
-	[Export]
-	public Texture2D ValidCell { get; set; }
-	[Export]
-	public Texture2D InvalidCell { get; set; }
+
 
 	public Dictionary<Vector2I, GridTile> GridCells { get; private set; }
 
-	public List<GridTile> GenerateGrid()
+	public GridTile[] GenerateGrid()
 	{
 		GridCells = new();
 		for (int row = 0; row < gridRows; row++)
@@ -45,7 +46,7 @@ public partial class GridGenerator : Control
 				GridCells.Add(new(col, row), gridCell);
 			}
 		}
-		return GridCells.Values.ToList();
+		return GridCells.Values.ToArray();
 	}
 
 	public Vector2I GetCellAt(TextureRect rect)

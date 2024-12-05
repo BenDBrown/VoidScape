@@ -5,6 +5,11 @@ using System.Runtime.CompilerServices;
 
 public partial class DragDropManager : ItemList
 {
+
+	private const string RotateRightActionName = "rotate_part_right";
+	private const string RotateLeftActionName = "rotate_part_left";
+	private const string MirrorActionName = "mirror_part";
+
 	[Export]
 	public ShipComponentData[] datas;
 	[Export]
@@ -27,16 +32,14 @@ public partial class DragDropManager : ItemList
 	private bool isMirrored = false;
 	private int currentRotation = 0;
 
-	private const string rotateRightActionName = "rotate_part_right";
-	private const string rotateLeftActionName = "rotate_part_left";
-	private const string mirrorActionName = "mirror_part";
+
 
 
 	public override void _Ready()
 	{
 		Clear();
 		PopulateItemList();
-		List<GridTile> gridSquares = gridGenerator.GenerateGrid();
+		GridTile[] gridSquares = gridGenerator.GenerateGrid();
 		foreach (TextureRect cr in gridSquares)
 		{
 			cr.MouseEntered += () => MouseEnteredSquare(cr);
@@ -112,21 +115,21 @@ public partial class DragDropManager : ItemList
 	// method that rotates the pieces
 	private void RotatePiece()
 	{
-		if (Input.IsActionJustPressed(rotateRightActionName) && isDragging)
+		if (Input.IsActionJustPressed(RotateRightActionName) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.Rotate90(ClockDirection.Clockwise);
 			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
 			currentRotation += 90;
 		}
-		else if (Input.IsActionJustPressed(rotateLeftActionName) && isDragging)
+		else if (Input.IsActionJustPressed(RotateLeftActionName) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.Rotate90(ClockDirection.Counterclockwise);
 			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
 			currentRotation -= 90;
 		}
-		else if (Input.IsActionJustPressed(mirrorActionName) && isDragging)
+		else if (Input.IsActionJustPressed(MirrorActionName) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.FlipX();
@@ -157,7 +160,7 @@ public partial class DragDropManager : ItemList
 				if (gridGenerator.GridCells[rectPos].IsValid || gridGenerator.GridCells[rectPos].Texture == gridGenerator.FreeCell)
 				{
 					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-					gridGenerator.GridCells[rectPos].ChangeComponent(true);
+					gridGenerator.GridCells[rectPos].HasComponent = true;
 					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
 					pieces.Add(piece);
 					ResetPiece();
@@ -190,15 +193,7 @@ public partial class DragDropManager : ItemList
 	{
 		bool noComponents = true;
 		if (pieces.Count > 0) noComponents = false;
-
-		if (noComponents)
-		{
-			foreach (GridTile tile in gridGenerator.GridCells.Values)
-			{
-				tile.ChangeValidity(true);
-			}
-		}
-		else if (!noComponents)
+		if (!noComponents)
 		{
 			CheckAvailability();
 			foreach (Vector2I coord in gridGenerator.GridCells.Keys)
@@ -213,6 +208,13 @@ public partial class DragDropManager : ItemList
 					if (gridGenerator.GridCells[coord].HasComponent) { continue; }
 					else { gridGenerator.GridCells[coord].Texture = gridGenerator.InvalidCell; }
 				}
+			}
+		}
+		else
+		{
+			foreach (GridTile tile in gridGenerator.GridCells.Values)
+			{
+				tile.IsValid = true;
 			}
 		}
 	}
@@ -230,19 +232,19 @@ public partial class DragDropManager : ItemList
 			{
 				if (gridGenerator.GridCells.ContainsKey(vRight))
 				{
-					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.RightAttachable) { gridGenerator.GridCells[vRight].ChangeValidity(true); }
+					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.RightAttachable) { gridGenerator.GridCells[vRight].IsValid = true; }
 				}
 				if (gridGenerator.GridCells.ContainsKey(vLeft))
 				{
-					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.LeftAttachable) { gridGenerator.GridCells[vLeft].ChangeValidity(true); }
+					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.LeftAttachable) { gridGenerator.GridCells[vLeft].IsValid = true; }
 				}
 				if (gridGenerator.GridCells.ContainsKey(vDown))
 				{
-					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.BottomAttachable) { gridGenerator.GridCells[vDown].ChangeValidity(true); }
+					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.BottomAttachable) { gridGenerator.GridCells[vDown].IsValid = true; }
 				}
 				if (gridGenerator.GridCells.ContainsKey(vUp))
 				{
-					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.TopAttachable) { gridGenerator.GridCells[vUp].ChangeValidity(true); }
+					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.TopAttachable) { gridGenerator.GridCells[vUp].IsValid = true; }
 				}
 			}
 		}
