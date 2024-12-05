@@ -14,6 +14,7 @@ shieldSprite = NodePath("ShieldVisual")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_amo6w")
+disabled = true
 
 [node name="ShieldVisual" type="Sprite2D" parent="."]
 visible = false

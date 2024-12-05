@@ -11,6 +11,9 @@ public partial class Shield : Node2D
     private Sprite2D shieldSprite;
 
     [Export]
+    private CollisionShape2D shieldCollider;
+
+    [Export]
     private int powerDraw = 10; 
 
     public int PowerDraw => GetPowerDraw();
@@ -20,11 +23,13 @@ public partial class Shield : Node2D
     public void StartShielding() 
     {
         Shielding = true;
+        shieldCollider.Disabled = false;
         shieldSprite.Visible = true;
     }
     public void StopShielding() 
     {
         Shielding = false;
+        shieldCollider.Disabled = true;
         shieldSprite.Visible = false;
     }
 
