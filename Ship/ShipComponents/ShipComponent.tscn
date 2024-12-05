@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8yixlufb8hme"]
+[gd_scene load_steps=18 format=3 uid="uid://b8yixlufb8hme"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/ShipComponent.cs" id="1_3r3yf"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_eo80n"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_2nmxr"]
+[ext_resource type="Material" uid="uid://cscvae43ltjeu" path="res://addons/ColourPicker/ColourableMat.tres" id="4_2wt11"]
 [ext_resource type="Texture2D" uid="uid://cdd2hgtw2np80" path="res://Assets/Ship/ComponentExplosion.png" id="4_wvgl3"]
+[ext_resource type="Script" path="res://addons/ColourPicker/ColourableSprite.cs" id="5_l3dyq"]
 [ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="5_q0uno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prnpq"]
@@ -93,13 +95,19 @@ collision_shape = NodePath("CollisionShape2D")
 shape = SubResource("RectangleShape2D_eyvhp")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-use_parent_material = true
+material = ExtResource("4_2wt11")
 region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_l3dyq")
+targetColours = PackedColorArray(0.333333, 0.333333, 0.333333, 1, 0.356863, 0.356863, 0.356863, 1, 0.435294, 0.435294, 0.435294, 1, 0.552941, 0.552941, 0.552941, 1, 0.635294, 0.635294, 0.635294, 1, 0.690196, 0.690196, 0.690196, 1)
+shaderMat = ExtResource("4_2wt11")
 
 [node name="DestroyedSprite" type="Sprite2D" parent="."]
 visible = false
 use_parent_material = true
 region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_l3dyq")
+targetColours = PackedColorArray(0.333333, 0.333333, 0.333333, 1, 0.356863, 0.356863, 0.356863, 1, 0.435294, 0.435294, 0.435294, 1, 0.552941, 0.552941, 0.552941, 1, 0.635294, 0.635294, 0.635294, 1, 0.690196, 0.690196, 0.690196, 1)
+shaderMat = ExtResource("4_2wt11")
 
 [node name="explosionAnim" type="AnimatedSprite2D" parent="."]
 visible = false

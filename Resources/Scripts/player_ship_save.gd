@@ -17,6 +17,7 @@ func add_component(pos, component: ShipComponent):
 	shipComponent["component"] = {"Mirrored": component.IsMirrored, "LocalRotation": component.rotation,}
 	shipComponent["path"] = component.Data.GetPrefabPath()
 	shipComponent["data_path"] = component.Data.resource_path
+	shipComponent["colour"] = component.Colour
 	ship[pos] = shipComponent
 
 func build_ship(parent: Node2D):
@@ -33,6 +34,7 @@ func build_ship(parent: Node2D):
 			component.position = pos * 32
 		component.IsMirrored = ship[pos]["component"]["Mirrored"] as bool
 		component.rotation = ship[pos]["component"]["LocalRotation"]
+		component.SetColour(ship[pos]["colour"])
 		if ship[pos].has("data_path"):
 			var data_path = ship[pos]["data_path"]
 			component.SetupData(ResourceLoader.load(data_path) as ShipComponentData)
