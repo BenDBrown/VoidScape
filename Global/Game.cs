@@ -55,7 +55,7 @@ public partial class Game : Node
 			component.SetupData(piece.ComponentData);
 			component.IsMirrored = piece.IsMirrored;
 			PlayerShip.AddComponent(component, piece.Coordinate);
-			component.Rotation = piece.LocalRotation;
+			component.RotationDegrees = piece.LocalRotation;
 			comps.Add(piece.Coordinate, component);
 		}
 

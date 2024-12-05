@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("1_k8crt")
 Thrust = 400.0
+Powerdraw = 50
 Name = "Arzo Thruster"
 Description = "Lv1"
 Sprite = ExtResource("2_e5jjp")
