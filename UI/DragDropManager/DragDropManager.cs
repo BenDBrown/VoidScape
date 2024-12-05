@@ -258,17 +258,6 @@ public partial class DragDropManager : ItemList
 
 	private void OnBuildPressed()
 	{
-
-		GD.Print("NEW------------");
-		foreach (Piece p in pieces)
-		{
-			GD.Print("//");
-			GD.Print("Piece name: " + p.ComponentData.Name);
-			GD.Print("Piece coordinate: " + p.Coordinate);
-			GD.Print("Piece mirrored: " + p.IsMirrored);
-			GD.Print("Piece local rotation: " + p.LocalRotation);
-		}
-
 		var resolve = Game.Instance.BuildShip(pieces.ToArray());
 		GD.Print(resolve);
 	}
