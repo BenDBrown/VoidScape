@@ -51,7 +51,7 @@ public partial class Station : Sprite2D
 
 	public void OnBodyExited(Node2D node2D)
 	{
-		if (node2D.GetParent() == playerShip)
+		if (node2D == playerShip)
 		{
 			popup.Visible = false;
 			isOnBody = false;
