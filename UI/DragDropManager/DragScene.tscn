@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://u0rpu0nrxld3"]
+
+[ext_resource type="Script" path="res://UI/DragDropManager/GridGenerator.cs" id="1_bxoci"]
+[ext_resource type="Texture2D" uid="uid://vu3txlkmmmux" path="res://Assets/UI/grid.png" id="2_3vlo4"]
+[ext_resource type="Script" path="res://UI/DragDropManager/DragDropManager.cs" id="2_u6h8j"]
+[ext_resource type="Texture2D" uid="uid://cf34idvc4fjwl" path="res://Assets/UI/ValidTile.png" id="3_1snh4"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo/Arzo Cockpit.tres" id="3_pn1yp"]
+[ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres" id="4_60110"]
+[ext_resource type="Texture2D" uid="uid://cdxjsmhlnjd5f" path="res://Assets/UI/InvalidTile.png" id="4_ypite"]
+[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Arzo/Arzo Gun.tres" id="5_bku8y"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="5_tbypv"]
+[ext_resource type="Resource" uid="uid://bbcg4mu0p2j8l" path="res://Resources/ShipData/Arzo/Arzo Hull.tres" id="6_n4h4n"]
+[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="7_rlhf8"]
+
+[node name="DragScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 646.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_bxoci")
+gridRows = 10
+FreeCell = ExtResource("2_3vlo4")
+ValidCell = ExtResource("3_1snh4")
+InvalidCell = ExtResource("4_ypite")
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("gridGenerator")]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_reselect = true
+script = ExtResource("2_u6h8j")
+datas = Array[Object]([ExtResource("3_pn1yp"), ExtResource("4_60110"), ExtResource("5_tbypv"), ExtResource("5_bku8y"), ExtResource("6_n4h4n"), ExtResource("7_rlhf8")])
+gridGenerator = NodePath("../Control")
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_vertical = 4
+text = "build"
+
+[connection signal="item_clicked" from="MarginContainer/HBoxContainer/ItemList" to="MarginContainer/HBoxContainer/ItemList" method="OnItemClicked"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="MarginContainer/HBoxContainer/ItemList" method="OnBuildPressed"]
