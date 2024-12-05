@@ -18,11 +18,17 @@ public partial class PlayerShip : Ship, IShip
 	public delegate void WeaponMenuToggledEventHandler(bool isOpen);
 
 	[Export]
+	private Shield shield;
+
+	[Export]
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
 	private FuelManager fuelManager = new();
 	
 	private bool weaponMenuIsOpen = false;
+
+	public void StartShielding() => shield.StartShielding();
+	public void StopShielding() => shield.StopShielding();
 
     public override void _Ready()
     {
@@ -36,7 +42,9 @@ public partial class PlayerShip : Ship, IShip
     
 		fuelManager.FuelChanged += (fuelToMaxFuelPercentage) => EmitSignal(SignalName.FuelChanged, fuelToMaxFuelPercentage);
 		fuelManager.NoFuel += ShipDestroyed;
-	}
+
+		shield.ShieldHit += UsePowerChunk;
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -89,10 +97,11 @@ public partial class PlayerShip : Ship, IShip
 		}
 
 		Vector2 center = centerCalculator.GetGlobalShipCenter(globalVertices);
+		shield.Scale = centerCalculator.GetNrOfComponentsScale(globalVertices);
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
-			if (n is Node2D n2 && n is not SingleRunAnimation) { n2.Position -= ToLocal(center); } // is not, for bandaid solution to prevent ship destruction anim from being off centre
+			if (n is Node2D n2 && n is not SingleRunAnimation && n is not Shield) { n2.Position -= ToLocal(center); } // is not, for bandaid solution to prevent ship destruction anim from being off centre
 			if (n is ShipComponent shipComponent)
 			{
 				shipComponent.collider.Owner = null; //prevents warning.
@@ -117,9 +126,18 @@ public partial class PlayerShip : Ship, IShip
 		return shipComponent is Cockpit || shipComponent is Thruster || shipComponent is Generator || shipComponent is FuelTank;
 	}
 
-	private float GetPowerDraw(float delta) // add per frame power draw here
+	/// <summary>
+	/// Intended for power usage which does not occur as part of process
+	/// </summary>
+	private void UsePowerChunk(int powerUsed)
 	{
-		return (thrustManager.PowerDraw + gunManager.PowerDraw) * delta;
+		powerManager.TryUsePower(powerUsed, out float fuelUsed);
+		fuelManager.UseFuel(fuelUsed);
+	}
+
+    private float GetPowerDraw(float delta) // add per frame power draw here
+	{
+		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw) * delta;
 	}
 
 	public void ToggleWeaponMenu(bool isOpen){
