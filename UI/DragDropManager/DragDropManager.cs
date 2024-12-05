@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 public partial class DragDropManager : ItemList
 {
 
-	private const string RotateRightActionName = "rotate_part_right";
-	private const string RotateLeftActionName = "rotate_part_left";
-	private const string MirrorActionName = "mirror_part";
+	private const string ROTATERIGHTACTIONNAME = "rotate_part_right";
+	private const string ROTATELEFTACTIONNAME = "rotate_part_left";
+	private const string MIRRORACTIONNAME = "mirror_part";
 
 	[Export]
 	public ShipComponentData[] datas;
@@ -115,21 +115,21 @@ public partial class DragDropManager : ItemList
 	// method that rotates the pieces
 	private void RotatePiece()
 	{
-		if (Input.IsActionJustPressed(RotateRightActionName) && isDragging)
+		if (Input.IsActionJustPressed(ROTATERIGHTACTIONNAME) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.Rotate90(ClockDirection.Clockwise);
 			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
 			currentRotation += 90;
 		}
-		else if (Input.IsActionJustPressed(RotateLeftActionName) && isDragging)
+		else if (Input.IsActionJustPressed(ROTATELEFTACTIONNAME) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.Rotate90(ClockDirection.Counterclockwise);
 			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
 			currentRotation -= 90;
 		}
-		else if (Input.IsActionJustPressed(MirrorActionName) && isDragging)
+		else if (Input.IsActionJustPressed(MIRRORACTIONNAME) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.FlipX();
