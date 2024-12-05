@@ -7,12 +7,14 @@ public partial class DragDropManager : ItemList
 {
 	[Export]
 	public ShipComponentData[] datas;
-	// [Export]
-	// private Label name, health, defense, description;
-	// [Export]
-	// private BoxContainer infobox;
+	[Export]
+	private Label name, health, defense, description;
+	[Export]
+	private BoxContainer infobox;
 	[Export]
 	private GridGenerator gridGenerator;
+	[Export]
+	private Control menu;
 
 	private Dictionary<int, ShipComponentData> itemListRef = new();
 	private List<Piece> pieces = new();
@@ -51,12 +53,12 @@ public partial class DragDropManager : ItemList
 	// When an item is selected
 	public void OnItemSelected(int index)
 	{
-		// infobox.Visible = true;
+		infobox.Visible = true;
 		ShipComponentData data = itemListRef[index];
-		// name.Text = data.Name;
-		// health.Text = "Health: " + data.MaxHealth.ToString();
-		// defense.Text = "Defense: " + data.Defense.ToString();
-		// description.Text = "Description: " + data.Description;
+		name.Text = data.Name;
+		health.Text = "Health: " + data.MaxHealth.ToString();
+		defense.Text = "Defense: " + data.Defense.ToString();
+		description.Text = "Description: " + data.Description;
 	}
 
 	// displaying the datas in the item list
@@ -88,7 +90,7 @@ public partial class DragDropManager : ItemList
 					draggedPreview = new();
 					preview = data;
 					draggedPreview.Texture = data.Sprite;
-					GetTree().CurrentScene.AddChild(draggedPreview);
+					menu.AddChild(draggedPreview);
 					draggedPreview.GlobalPosition = GetGlobalMousePosition();
 					initialMousePos = GetGlobalMousePosition();
 					isDragging = true;
@@ -106,19 +108,6 @@ public partial class DragDropManager : ItemList
 	}
 
 	private void MouseExitedSquare() => hoveredRect = null;
-
-	private void OnBuildPressed()
-	{
-		GD.Print("NEW------------");
-		foreach (Piece p in pieces)
-		{
-			GD.Print("//");
-			GD.Print("Piece name: " + p.ComponentData.Name);
-			GD.Print("Piece coordinate: " + p.Coordinate);
-			GD.Print("Piece mirrored: " + p.IsMirrored);
-			GD.Print("Piece local rotation: " + p.LocalRotation);
-		}
-	}
 
 	// method that rotates the pieces
 	private void RotatePiece()
@@ -156,7 +145,7 @@ public partial class DragDropManager : ItemList
 				isDragging = false;
 				return;
 			}
-			if (hoveredRect == null)
+			if (hoveredRect == null || gridGenerator.GridCells[rectPos].Texture == gridGenerator.InvalidCell)
 			{
 				var tween = GetTree().CreateTween();
 				tween.TweenProperty(draggedPreview, "global_position", initialMousePos, 0.7f);
@@ -165,16 +154,17 @@ public partial class DragDropManager : ItemList
 			}
 			else
 			{
-				if (hoveredRect.Texture == gridGenerator.FreeCell)
+				if (gridGenerator.GridCells[rectPos].IsValid || gridGenerator.GridCells[rectPos].Texture == gridGenerator.FreeCell)
 				{
 					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
+					gridGenerator.GridCells[rectPos].ChangeComponent(true);
 					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
 					pieces.Add(piece);
 					ResetPiece();
+
 				}
-				else if (hoveredRect.Texture != gridGenerator.FreeCell)
+				else if (gridGenerator.GridCells[rectPos].IsValid || gridGenerator.GridCells[rectPos].HasComponent)
 				{
-					GD.Print(gridGenerator.GetCellAt(hoveredRect));
 					for (int i = 0; i < pieces.Count; i++)
 					{
 						if (pieces[i].Coordinate == gridGenerator.GetCellAt(hoveredRect))
@@ -196,20 +186,68 @@ public partial class DragDropManager : ItemList
 			draggedPreview.Position = GetGlobalMousePosition();
 		}
 	}
-
 	private void UpdateAvailability()
 	{
 		bool noComponents = true;
-		GridTile tile = new();
 		if (pieces.Count > 0) noComponents = false;
-		// foreach (var coord in gridGenerator.GridCells.Keys)
-		// {
 
-
-		// }
-
-
+		if (noComponents)
+		{
+			foreach (GridTile tile in gridGenerator.GridCells.Values)
+			{
+				tile.ChangeValidity(true);
+			}
+		}
+		else if (!noComponents)
+		{
+			CheckAvailability();
+			foreach (Vector2I coord in gridGenerator.GridCells.Keys)
+			{
+				if (gridGenerator.GridCells[coord].IsValid)
+				{
+					if (gridGenerator.GridCells[coord].HasComponent) { continue; }
+					else if (!gridGenerator.GridCells[coord].HasComponent) { gridGenerator.GridCells[coord].Texture = gridGenerator.ValidCell; }
+				}
+				else if (!gridGenerator.GridCells[coord].IsValid)
+				{
+					if (gridGenerator.GridCells[coord].HasComponent) { continue; }
+					else { gridGenerator.GridCells[coord].Texture = gridGenerator.InvalidCell; }
+				}
+			}
+		}
 	}
+
+	private void CheckAvailability()
+	{
+		foreach (Vector2I coord in gridGenerator.GridCells.Keys)
+		{
+			Vector2I vRight = new(coord.X + 1, coord.Y);
+			Vector2I vLeft = new(coord.X - 1, coord.Y);
+			Vector2I vUp = new(coord.X, coord.Y - 1);
+			Vector2I vDown = new(coord.X, coord.Y + 1);
+
+			foreach (Piece p in pieces)
+			{
+				if (gridGenerator.GridCells.ContainsKey(vRight))
+				{
+					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.RightAttachable) { gridGenerator.GridCells[vRight].ChangeValidity(true); }
+				}
+				if (gridGenerator.GridCells.ContainsKey(vLeft))
+				{
+					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.LeftAttachable) { gridGenerator.GridCells[vLeft].ChangeValidity(true); }
+				}
+				if (gridGenerator.GridCells.ContainsKey(vDown))
+				{
+					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.BottomAttachable) { gridGenerator.GridCells[vDown].ChangeValidity(true); }
+				}
+				if (gridGenerator.GridCells.ContainsKey(vUp))
+				{
+					if (p.Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && p.ComponentData.TopAttachable) { gridGenerator.GridCells[vUp].ChangeValidity(true); }
+				}
+			}
+		}
+	}
+
 	private void ResetPiece()
 	{
 		draggedPreview.QueueFree();
@@ -217,4 +255,22 @@ public partial class DragDropManager : ItemList
 		isDragging = false;
 		isMirrored = false;
 	}
+
+	private void OnBuildPressed()
+	{
+
+		GD.Print("NEW------------");
+		foreach (Piece p in pieces)
+		{
+			GD.Print("//");
+			GD.Print("Piece name: " + p.ComponentData.Name);
+			GD.Print("Piece coordinate: " + p.Coordinate);
+			GD.Print("Piece mirrored: " + p.IsMirrored);
+			GD.Print("Piece local rotation: " + p.LocalRotation);
+		}
+
+		var resolve = Game.Instance.BuildShip(pieces.ToArray());
+		GD.Print(resolve);
+	}
+
 }

@@ -22,8 +22,6 @@ public partial class GridGenerator : Control
 	[Export]
 	public Texture2D InvalidCell { get; set; }
 
-	public GridTile GridCell { get; private set; }
-
 	public Dictionary<Vector2I, GridTile> GridCells { get; private set; }
 
 	public List<GridTile> GenerateGrid()
@@ -33,7 +31,7 @@ public partial class GridGenerator : Control
 		{
 			for (int col = 0; col < gridColumns; col++)
 			{
-				GridCell = new GridTile
+				GridTile gridCell = new GridTile
 				{
 					Name = $"Cell_{row}_{col}",
 					CustomMinimumSize = cellSize,
@@ -41,10 +39,10 @@ public partial class GridGenerator : Control
 					Texture = FreeCell
 				};
 
-				GridCell.Position = new Vector2(col * cellSize.X, row * cellSize.Y);
+				gridCell.Position = new Vector2(col * cellSize.X, row * cellSize.Y);
 
-				AddChild(GridCell);
-				GridCells.Add(new(row, col), GridCell);
+				AddChild(gridCell);
+				GridCells.Add(new(col, row), gridCell);
 			}
 		}
 		return GridCells.Values.ToList();

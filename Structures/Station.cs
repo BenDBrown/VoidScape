@@ -18,7 +18,7 @@ public partial class Station : Sprite2D
 	[Export]
 	public Control popup;
 
-	private Ship playerShip { get => Game.Instance.PlayerShip; }
+	private PlayerShip playerShip { get => Game.Instance.PlayerShip; }
 
 
 	public override void _Ready()
@@ -60,7 +60,6 @@ public partial class Station : Sprite2D
 
 	public void FinishedTweening()
 	{
-		tween.Finished -= FinishedTweening;
 		menu.QuitPressed += OnQuitPressed;
 		menu.Visible = true;
 		popup.Visible = false;
@@ -89,7 +88,6 @@ public partial class Station : Sprite2D
 	private void OnGrowFinished(Tween t)
 	{
 		popup.Visible = isOnBody;
-		t.Finished -= () => OnGrowFinished(t);
 	}
 
 }

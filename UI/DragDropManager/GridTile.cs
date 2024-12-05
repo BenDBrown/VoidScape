@@ -4,9 +4,15 @@ using System;
 public partial class GridTile : TextureRect
 {
     public bool IsValid { get; private set; }
+    public bool HasComponent { get; private set; }
 
     public void ChangeValidity(bool valid)
     {
         IsValid = valid;
+    }
+
+    public void ChangeComponent(bool hasComponent)
+    {
+        HasComponent = hasComponent;
     }
 }
