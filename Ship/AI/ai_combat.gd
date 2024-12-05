@@ -19,8 +19,9 @@ var ship: Ship
 
 func enter(parent):
 	print("Combat_Entered")
-	ship = parent
-	ship.add_child(self)
+	if(!get_parent()):
+		ship = parent
+		ship.add_child(self)
 	if !detection_cone:
 		detection_cone = create_detection_cone()
 	if !cast_vect:
