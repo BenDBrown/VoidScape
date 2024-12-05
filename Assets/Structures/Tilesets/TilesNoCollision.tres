@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=39 format=3 uid="uid://blf4sntdwcxyn"]
+[gd_resource type="TileSet" load_steps=38 format=3 uid="uid://blf4sntdwcxyn"]
 
 [ext_resource type="Texture2D" uid="uid://dy4shjto261ab" path="res://Assets/Structures/Tiles/CaveBG.png" id="1_i6ict"]
 [ext_resource type="Texture2D" uid="uid://clddn41gqnl45" path="res://Assets/Structures/Tiles/TileSet v1.0.png" id="2_6ycwd"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://dxjsml5hi4q71" path="res://Assets/Structures/Tiles/CelestialObjects.png" id="11_wj8jb"]
 [ext_resource type="Texture2D" uid="uid://celmhjhytwfpy" path="res://Assets/Structures/Tiles/overworld.png" id="12_on334"]
 [ext_resource type="Texture2D" uid="uid://2eo8c2ijdicv" path="res://Assets/Structures/Tiles/preview-top-down-sci-fi.png" id="13_mdcsr"]
-[ext_resource type="Texture2D" uid="uid://cgjaxcfx1qddr" path="res://Assets/Structures/Tiles/top-down-town-tileset.png" id="14_5i3k3"]
 [ext_resource type="Texture2D" uid="uid://c1c2hss38vrw7" path="res://Assets/Structures/Tiles/Interiors_free_16x16.png" id="15_dmtj3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_igy2h"]
@@ -4443,7 +4442,6 @@ texture = ExtResource("13_mdcsr")
 0:10/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w0k4v"]
-texture = ExtResource("14_5i3k3")
 0:0/0 = 0
 0:1/0 = 0
 2:1/0 = 0

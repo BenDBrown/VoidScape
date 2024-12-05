@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb5tk5cywuwsg"]
+
+[ext_resource type="Theme" uid="uid://do1kf4d65vh5b" path="res://UI/Styles/start_menu.tres" id="1_cgjua"]
+[ext_resource type="Script" path="res://UI/Scripts/game_over.gd" id="1_shrs3"]
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_shrs3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 320.0
+offset_top = 240.0
+offset_right = 832.0
+offset_bottom = 301.0
+theme = ExtResource("1_cgjua")
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 344.0
+offset_right = 832.0
+offset_bottom = 448.0
+theme = ExtResource("1_cgjua")
+text = "Restart"
+
+[node name="Main Menu" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 512.0
+offset_right = 768.0
+offset_bottom = 568.0
+theme = ExtResource("1_cgjua")
+text = "Main Menu
+"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

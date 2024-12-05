@@ -65,63 +65,83 @@ texture = ExtResource("5_6ekxd")
 
 [node name="Main Screen" type="Node2D" parent="."]
 
-[node name="New Game" type="Button" parent="Main Screen"]
-offset_left = 277.0
-offset_top = 289.0
-offset_right = 861.0
-offset_bottom = 374.0
+[node name="CanvasLayer" type="CanvasLayer" parent="Main Screen"]
+
+[node name="New Game" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 272.0
+offset_top = 272.0
+offset_right = 856.0
+offset_bottom = 368.0
 theme = ExtResource("8_vjj0j")
 text = "New Game"
 
-[node name="Continue" type="Button" parent="Main Screen"]
-offset_left = 277.0
-offset_top = 382.0
-offset_right = 861.0
-offset_bottom = 467.0
+[node name="Continue" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 272.0
+offset_top = 376.0
+offset_right = 856.0
+offset_bottom = 472.0
 theme = ExtResource("8_vjj0j")
 text = "Continue"
 
-[node name="Settings" type="Button" parent="Main Screen"]
-offset_left = 278.0
-offset_top = 475.0
-offset_right = 550.0
-offset_bottom = 573.0
+[node name="Settings" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 272.0
+offset_top = 480.0
+offset_right = 552.0
+offset_bottom = 576.0
 theme = ExtResource("8_vjj0j")
 text = "Settings"
 
-[node name="Quit" type="Button" parent="Main Screen"]
-offset_left = 588.0
-offset_top = 475.0
-offset_right = 860.0
-offset_bottom = 573.0
+[node name="Quit" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 576.0
+offset_top = 480.0
+offset_right = 856.0
+offset_bottom = 576.0
 theme = ExtResource("8_vjj0j")
 text = "Quit"
 
-[node name="Label" type="Label" parent="Main Screen"]
-offset_left = 282.0
-offset_top = 179.0
-offset_right = 859.0
-offset_bottom = 270.0
+[node name="Label" type="Label" parent="Main Screen/CanvasLayer"]
+offset_left = 280.0
+offset_top = 168.0
+offset_right = 857.0
+offset_bottom = 256.0
 theme = ExtResource("8_vjj0j")
 text = "VoidScape"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ship Builder" type="Button" parent="Main Screen"]
-offset_left = 881.0
-offset_top = 294.0
-offset_right = 999.0
-offset_bottom = 379.0
+[node name="Ship Builder" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 880.0
+offset_top = 288.0
+offset_right = 1000.0
+offset_bottom = 376.0
 theme = ExtResource("8_vjj0j")
 text = "Ship Builder
 "
 
+[node name="Test Menu" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 880.0
+offset_top = 384.0
+offset_right = 1000.0
+offset_bottom = 472.0
+theme = ExtResource("8_vjj0j")
+text = "Test Scene"
+
+[node name="Remove Save" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 880.0
+offset_top = 488.0
+offset_right = 1000.0
+offset_bottom = 536.0
+theme = ExtResource("8_vjj0j")
+text = "Delete Save"
+
 [node name="SettingsMenu" parent="." instance=ExtResource("9_k06bd")]
 visible = false
 
-[connection signal="pressed" from="Main Screen/New Game" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="Main Screen/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="Main Screen/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Main Screen/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="Main Screen/Ship Builder" to="." method="_on_ship_builder_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/Ship Builder" to="." method="_on_ship_builder_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/Test Menu" to="." method="_on_test_menu_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/Remove Save" to="." method="_on_remove_save_pressed"]
 [connection signal="menu_closed" from="SettingsMenu" to="." method="_on_settings_menu_menu_closed"]

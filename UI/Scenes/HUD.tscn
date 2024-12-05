@@ -1,21 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://bndnk2q65aq17"]
+[gd_scene load_steps=5 format=3 uid="uid://bndnk2q65aq17"]
 
 [ext_resource type="PackedScene" uid="uid://ddunimkojubhv" path="res://UI/Scenes/PowerBar.tscn" id="1_unlij"]
 [ext_resource type="Script" path="res://UI/Scripts/FuelBar.cs" id="2_4xhg0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmkss"]
+bg_color = Color(0.2754, 0.51, 0.36533, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shmje"]
+bg_color = Color(4.90934e-06, 0.484927, 0.672274, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="HUD" type="CanvasLayer"]
 
 [node name="PowerBar" parent="." instance=ExtResource("1_unlij")]
 offset_left = 128.0
 offset_top = 528.0
-offset_right = -664.0
+offset_right = -704.0
 offset_bottom = -75.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_rmkss")
+metadata/_edit_use_anchors_ = true
 
 [node name="FuelBar" type="ProgressBar" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 128.0
-offset_top = 579.0
-offset_right = 488.0
-offset_bottom = 622.0
+offset_top = 576.0
+offset_right = -704.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_shmje")
 script = ExtResource("2_4xhg0")
 
 [node name="Power" type="Label" parent="."]
@@ -27,6 +49,7 @@ offset_right = 113.0
 offset_bottom = -89.0
 grow_vertical = 2
 text = "Power"
+metadata/_edit_use_anchors_ = true
 
 [node name="Fuel" type="Label" parent="."]
 anchors_preset = 9
@@ -37,3 +60,4 @@ offset_right = 105.0
 offset_bottom = -33.0
 grow_vertical = 2
 text = "Fuel"
+metadata/_edit_use_anchors_ = true

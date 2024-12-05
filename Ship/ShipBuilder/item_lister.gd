@@ -6,6 +6,7 @@ const COMPONENT_COPY_AMOUNT: int = 3
 
 @export var datas : Array[Resource]
 @onready var draggable_scene = preload("res://Ship/ShipBuilder/DraggableComponent.tscn")
+var components = []
 
 func display_items():
 	var x = 0
@@ -15,6 +16,7 @@ func display_items():
 			var draggable = draggable_scene.instantiate() as DraggableComponent
 			added_child.emit(draggable)
 			var component = data.GetPrefab() as ShipComponent
+			components.append(component)
 			component.SetupData(data)
 			draggable.add_child(component)
 			draggable.shipComponent = component
@@ -24,3 +26,7 @@ func display_items():
 			if x == 9:
 				y+=1
 				x = 0
+
+func change_color(color):
+	for comp in components:
+		comp.SetColour(color)

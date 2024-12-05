@@ -1,9 +1,12 @@
 extends Node2D
-
+class_name PlayerSpawner
 @export var player_ship_scene: PackedScene = preload("res://Ship/Prefabs/PlayerShip.tscn")
 @export var hud_scene: PackedScene = preload("res://UI/Scenes/HUD.tscn")
+@export var game_over_scene: PackedScene = preload("res://UI/Scenes/Game Over.tscn")
 
-var saver
+var saver: PlayerShipSave
+var hud
+var gameOver
 
 func _ready():
 	saver = PlayerShipSave.new()
@@ -12,10 +15,18 @@ func _ready():
 	Game.PlayerShip = playerShip
 	call_deferred("deferred", playerShip);
 
-func deferred(playerShip):
-	var hud = hud_scene.instantiate()
+func deferred(playerShip:PlayerShip):
+	hud = hud_scene.instantiate()
+	gameOver = game_over_scene.instantiate()
+	gameOver.hide()
 	get_parent().add_child(playerShip)
 	get_parent().add_child(hud)
+	get_parent().add_child(gameOver)
 	saver.build_ship(playerShip)
 	playerShip.TryBuildShip()
 	playerShip.global_position = global_position
+	playerShip.OnDestroyed.connect(on_destroyed)
+
+func on_destroyed(ship):
+	hud.hide()
+	gameOver.show()

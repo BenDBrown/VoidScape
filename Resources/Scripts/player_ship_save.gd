@@ -2,6 +2,7 @@ extends Saveable
 class_name PlayerShipSave
 
 const NAME = "Ship.tres"
+const PRESET_SHIP = "res://Resources/Presets/Ship.tres"
 
 @export var ship: Dictionary = {}
 
@@ -21,8 +22,6 @@ func add_component(pos, component: ShipComponent):
 	ship[pos] = shipComponent
 
 func build_ship(parent: Node2D):
-	if !ship:
-		load_save()
 	for pos in ship.keys():
 
 		var scene = load(ship[pos].path) as PackedScene;
@@ -41,6 +40,13 @@ func build_ship(parent: Node2D):
 
 func clear():
 	ship = {}
+
+func load_save():
+	var result = super.load_save()
+	if result == self:
+		print("self")
+		return ResourceLoader.load(PRESET_SHIP)
+	return result
 
 func get_save_name():
 	return NAME

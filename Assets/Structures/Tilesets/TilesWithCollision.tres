@@ -4888,7 +4888,6 @@ texture = SubResource("CompressedTexture2D_kul4v")
 0:10/0 = 0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m7j6p"]
-load_path = "res://.godot/imported/top-down-town-tileset.png-b6527aabf73c6724e5707321ae64103d.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aocga"]
 texture = SubResource("CompressedTexture2D_m7j6p")
