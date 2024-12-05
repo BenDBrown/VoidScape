@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 public partial class DragDropManager : ItemList
 {
 
-	private const string ROTATERIGHTACTIONNAME = "rotate_part_right";
-	private const string ROTATELEFTACTIONNAME = "rotate_part_left";
-	private const string MIRRORACTIONNAME = "mirror_part";
+	private const string ROTATE_RIGHT_ACTION_NAME = "rotate_part_right";
+	private const string ROTATE_LEFT_ACTION_NAME = "rotate_part_left";
+	private const string MIRROR_ACTION_NAME = "mirror_part";
 
 	[Export]
 	public ShipComponentData[] datas;
@@ -115,21 +115,21 @@ public partial class DragDropManager : ItemList
 	// method that rotates the pieces
 	private void RotatePiece()
 	{
-		if (Input.IsActionJustPressed(ROTATERIGHTACTIONNAME) && isDragging)
+		if (Input.IsActionJustPressed(ROTATE_RIGHT_ACTION_NAME) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.Rotate90(ClockDirection.Clockwise);
 			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
 			currentRotation += 90;
 		}
-		else if (Input.IsActionJustPressed(ROTATELEFTACTIONNAME) && isDragging)
+		else if (Input.IsActionJustPressed(ROTATE_LEFT_ACTION_NAME) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.Rotate90(ClockDirection.Counterclockwise);
 			draggedPreview.Texture = ImageTexture.CreateFromImage(image);
 			currentRotation -= 90;
 		}
-		else if (Input.IsActionJustPressed(MIRRORACTIONNAME) && isDragging)
+		else if (Input.IsActionJustPressed(MIRROR_ACTION_NAME) && isDragging)
 		{
 			var image = draggedPreview.Texture.GetImage();
 			image.FlipX();
