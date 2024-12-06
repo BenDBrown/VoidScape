@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://srj2a0twg7of" path="res://Structures/Trailer_Fake/worm_curved.tscn" id="14_0ux27"]
 [ext_resource type="PackedScene" uid="uid://dhlkit73dqgwc" path="res://Structures/Trailer_Fake/fake_explosion.tscn" id="15_v2sy4"]
 [ext_resource type="PackedScene" uid="uid://c7ifsus1rg36m" path="res://Structures/Trailer_Fake/Cave_Snippet.tscn" id="16_8vhxe"]
-[ext_resource type="PackedScene" uid="uid://ot5etuqeaw7o" path="res://UI/Scenes/weapon_menu.tscn" id="16_vjndl"]
 [ext_resource type="PackedScene" uid="uid://c0684gaincluq" path="res://Ship/Prefabs/Enemies/Scout.tscn" id="17_pljvm"]
+[ext_resource type="PackedScene" uid="uid://d200720wlol8q" path="res://UI/Scenes/PopUpMsg.tscn" id="17_tm1c5"]
 
 [sub_resource type="Animation" id="Animation_2g837"]
 resource_name = "Moving"
@@ -1249,10 +1249,20 @@ libraries = {
 [node name="Trailer_Snippet" parent="." instance=ExtResource("16_8vhxe")]
 position = Vector2(-1566, 4046)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="weapon_menu" parent="CanvasLayer" instance=ExtResource("16_vjndl")]
-visible = false
-
 [node name="Scout" parent="." instance=ExtResource("17_pljvm")]
 position = Vector2(694, -601)
+
+[node name="Scout2" parent="." instance=ExtResource("17_pljvm")]
+position = Vector2(534, -349)
+
+[node name="Scout3" parent="." instance=ExtResource("17_pljvm")]
+position = Vector2(458, -617)
+
+[node name="Scout4" parent="." instance=ExtResource("17_pljvm")]
+position = Vector2(1506, -941)
+
+[node name="Scout5" parent="." instance=ExtResource("17_pljvm")]
+position = Vector2(509, -894)
+
+[node name="PopUpMsg" parent="." instance=ExtResource("17_tm1c5")]
+text = "Hold [Tab] and use your mouse wheel to switch weapons"

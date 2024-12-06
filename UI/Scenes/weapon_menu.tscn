@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://qx3awx2s3nvr" path="res://Assets/UI/Weapon Cycling/scroll_wheel_icon_placeholder.png" id="3_b24xn"]
 
 [node name="weapon_menu" type="Control" node_paths=PackedStringArray("menuOptions")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
