@@ -1121,7 +1121,7 @@ position = Vector2(8462, 9272)
 scale = Vector2(70, 70)
 
 [node name="Stranded_Ship" parent="." instance=ExtResource("10_v1rti")]
-position = Vector2(1320, -4902)
+position = Vector2(481, -2756)
 
 [node name="Space Worm" parent="." instance=ExtResource("5_h8ffu")]
 visible = false
@@ -1256,3 +1256,9 @@ visible = false
 
 [node name="Scout" parent="." instance=ExtResource("17_pljvm")]
 position = Vector2(694, -601)
+
+[node name="Scout2" parent="." instance=ExtResource("17_pljvm")]
+position = Vector2(885, -626)
+
+[node name="Scout3" parent="." instance=ExtResource("17_pljvm")]
+position = Vector2(707, -370)

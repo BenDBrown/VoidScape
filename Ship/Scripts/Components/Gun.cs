@@ -13,7 +13,8 @@ public partial class Gun : ShipComponent, IPowerable
 	public Texture2D gunTypeIcon {get; private set;}
 	[Export]
 	private SingleRunAudio shootingAudio;
-
+	[Export]
+	private SingleRunAudio hitAudio;
 	[Export]
 	private Node2D bulletSpawnPoint;
 	[Export]
@@ -47,6 +48,8 @@ public partial class Gun : ShipComponent, IPowerable
 
 		Bullet bullet = bulletPrefab.Instantiate() as Bullet;
 
+		bullet.Hit += PlayHitAudio;
+
 		bullet.GlobalPosition = bulletSpawnPoint.GlobalPosition;
 		bullet.GlobalRotation = GlobalRotation;
 		bullet.SetAttackInfo(attackComponent);
@@ -79,5 +82,9 @@ public partial class Gun : ShipComponent, IPowerable
 			shootingAudio.Stream = gunData.ShootingAudio;
 			shootingAudio.fromPosition = gunData.shootingAudiofromPosition;
 		}
+	}
+
+	private void PlayHitAudio(){
+		hitAudio.PlayOnce();
 	}
 }

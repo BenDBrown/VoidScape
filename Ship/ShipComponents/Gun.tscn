@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgqy8786pscn"]
+[gd_scene load_steps=6 format=3 uid="uid://bgqy8786pscn"]
 
 [ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_2kdol"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Gun.cs" id="2_g548h"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_4keds"]
 [ext_resource type="Script" path="res://SingleRunAudio.cs" id="4_ovesg"]
+[ext_resource type="AudioStream" uid="uid://dwcx0lo8cd0hr" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTImpt_Hit Marker_07.wav" id="5_lcqk3"]
 
-[node name="Gun" node_paths=PackedStringArray("timer", "attackComponent", "shootingAudio", "bulletSpawnPoint") instance=ExtResource("1_2kdol")]
+[node name="Gun" node_paths=PackedStringArray("timer", "attackComponent", "shootingAudio", "hitAudio", "bulletSpawnPoint") instance=ExtResource("1_2kdol")]
 script = ExtResource("2_g548h")
 timer = NodePath("Timer")
 attackComponent = NodePath("AttackComponent")
 type = 0
 gunTypeIcon = null
 shootingAudio = NodePath("ShootingAudio")
+hitAudio = NodePath("HitAudio")
 bulletSpawnPoint = NodePath("BulletSpawnPoint")
 powerdraw = 100
 
@@ -25,4 +27,9 @@ script = ExtResource("4_4keds")
 attack = 10
 
 [node name="ShootingAudio" type="AudioStreamPlayer2D" parent="." index="9"]
+volume_db = -10.0
+script = ExtResource("4_ovesg")
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="." index="10"]
+stream = ExtResource("5_lcqk3")
 script = ExtResource("4_ovesg")

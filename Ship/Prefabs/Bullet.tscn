@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bckeoopmbomi8"]
+[gd_scene load_steps=20 format=3 uid="uid://bckeoopmbomi8"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Bullet.cs" id="1_ildc5"]
 [ext_resource type="Texture2D" uid="uid://bayrj47b7me0d" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_por51"]
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="3_clinb"]
+[ext_resource type="AudioStream" uid="uid://dwcx0lo8cd0hr" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTImpt_Hit Marker_07.wav" id="4_jpns8"]
+[ext_resource type="Script" path="res://SingleRunAudio.cs" id="5_iscdh"]
+[ext_resource type="Texture2D" uid="uid://1xyhviyhxvw" path="res://Assets/Bullets/bullet explotion.png" id="6_ctut0"]
+[ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="7_uyts4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ifwps"]
 atlas = ExtResource("2_por51")
@@ -19,20 +23,90 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6o3h"]
+atlas = ExtResource("6_ctut0")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb1tb"]
+atlas = ExtResource("6_ctut0")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33icf"]
+atlas = ExtResource("6_ctut0")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgvbe"]
+atlas = ExtResource("6_ctut0")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj7i8"]
+atlas = ExtResource("6_ctut0")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmfdh"]
+atlas = ExtResource("6_ctut0")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt1a1"]
+atlas = ExtResource("6_ctut0")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xrvy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6o3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb1tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33icf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgvbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj7i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmfdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt1a1")
+}],
+"loop": true,
+"name": &"BulletExplosion",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_afrp6"]
 radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a8mnx"]
 radius = 4.0
 
-[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent")]
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent", "bulletSprite", "bulletHitAnimation")]
 script = ExtResource("1_ildc5")
 timer = NodePath("Timer")
 attackboxComponent = NodePath("AttackboxComponent")
+bulletSprite = NodePath("Sprite")
+bulletHitAnimation = NodePath("SingleRunAnimation")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_7omld")
+
+[node name="SingleRunAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_4xrvy")
+animation = &"BulletExplosion"
+frame = 6
+frame_progress = 1.0
+script = ExtResource("7_uyts4")
+animationName = "BulletExplosion"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_afrp6")
@@ -45,6 +119,10 @@ shape = SubResource("CircleShape2D_a8mnx")
 debug_color = Color(0.902804, 0.278724, 0.346718, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="SingleRunAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jpns8")
+script = ExtResource("5_iscdh")
 
 [connection signal="area_entered" from="AttackboxComponent" to="." method="OnAttackboxAreaEntered"]
 [connection signal="body_entered" from="AttackboxComponent" to="." method="OnAttackBoxBodyEntered"]
