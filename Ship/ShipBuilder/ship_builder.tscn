@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bo0sy8fss6itw"]
+[gd_scene load_steps=38 format=3 uid="uid://bo0sy8fss6itw"]
 
 [ext_resource type="Script" path="res://Ship/ShipBuilder/ShipBuilder.cs" id="1_njo3u"]
 [ext_resource type="PackedScene" uid="uid://c3vc3aagjqvgj" path="res://Ship/ShipBuilder/GridSquare.tscn" id="2_scqii"]
@@ -36,6 +36,7 @@
 [ext_resource type="Resource" uid="uid://dhobp4c3cdd6k" path="res://Resources/ShipData/Zentri/Zentri Gun.tres" id="33_ll8ne"]
 [ext_resource type="Resource" uid="uid://dpvpxoa7yo0b5" path="res://Resources/ShipData/Zentri/Zentri Hull.tres" id="34_y4plk"]
 [ext_resource type="Resource" uid="uid://cl6j86mc6ya4t" path="res://Resources/ShipData/Zentri/Zentri Thruster.tres" id="35_necx1"]
+[ext_resource type="Script" path="res://Ship/ShipBuilder/color_picker_button.gd" id="37_kslio"]
 
 [node name="Builder" type="Node2D"]
 position = Vector2(226, 188)
@@ -61,4 +62,16 @@ text = "BUILD"
 script = ExtResource("5_jd7yi")
 metadata/_edit_use_anchors_ = true
 
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+offset_left = 431.0
+offset_top = -101.0
+offset_right = 581.0
+offset_bottom = -70.0
+text = "Choose your Color"
+flat = true
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+script = ExtResource("37_kslio")
+
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="color_changed" from="ColorPickerButton" to="ColorPickerButton" method="_on_color_changed"]

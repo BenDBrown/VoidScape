@@ -37,6 +37,7 @@ public partial class Station : Sprite2D
 		if (Input.IsActionJustPressed("confirm") && isOnBody)
 		{
 			ShrinkShip();
+			Game.Instance.IsUiOpen = true;
 		}
 	}
 
@@ -70,6 +71,7 @@ public partial class Station : Sprite2D
 		menu.QuitPressed -= OnQuitPressed;
 		menu.Visible = false;
 		GrowShip();
+		Game.Instance.IsUiOpen = false;
 	}
 
 	private void ShrinkShip()

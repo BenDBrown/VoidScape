@@ -10,27 +10,28 @@ public partial class PlayerController : Node
 
     public override void _Ready()
     {
-        if(playerShipNode is PlayerShip){playerShip = playerShipNode as PlayerShip;}
-        else {GD.PrintErr("player ship node was not an IShip");}
+        if (playerShipNode is PlayerShip) { playerShip = playerShipNode as PlayerShip; }
+        else { GD.PrintErr("player ship node was not an IShip"); }
     }
 
     public override void _Process(double delta)
     {
-        if(Input.IsActionJustPressed("forward")) { playerShip.StartThrustingForward(); }
-        else if(Input.IsActionJustPressed("back")) { playerShip.StartThrustingBackward(); }
-        if(Input.IsActionJustPressed("right")) { playerShip.StartThrustingRight(); }
-        else if(Input.IsActionJustPressed("left")) { playerShip.StartThrustingLeft(); }
-        if(Input.IsActionJustReleased("forward")) { playerShip.StopThrustingForward(); }
-        if(Input.IsActionJustReleased("back")) { playerShip.StopThrustingBackward(); }
-        if(Input.IsActionJustReleased("right")) { playerShip.StopThrustingRight(); }
-        if(Input.IsActionJustReleased("left")) { playerShip.StopThrustingLeft(); }
+        if (Game.Instance.IsUiOpen) { return; }
+        if (Input.IsActionJustPressed("forward")) { playerShip.StartThrustingForward(); }
+        else if (Input.IsActionJustPressed("back")) { playerShip.StartThrustingBackward(); }
+        if (Input.IsActionJustPressed("right")) { playerShip.StartThrustingRight(); }
+        else if (Input.IsActionJustPressed("left")) { playerShip.StartThrustingLeft(); }
+        if (Input.IsActionJustReleased("forward")) { playerShip.StopThrustingForward(); }
+        if (Input.IsActionJustReleased("back")) { playerShip.StopThrustingBackward(); }
+        if (Input.IsActionJustReleased("right")) { playerShip.StopThrustingRight(); }
+        if (Input.IsActionJustReleased("left")) { playerShip.StopThrustingLeft(); }
 
-        if(Input.IsActionJustPressed("shoot"))
-        { 
+        if (Input.IsActionJustPressed("shoot"))
+        {
             playerShip.StartShooting();
             playerShip.StopShielding();
         }
-        else if(Input.IsActionJustReleased("shoot")) { playerShip.StopShooting(); }
+        else if (Input.IsActionJustReleased("shoot")) { playerShip.StopShooting(); }
 
         if(Input.IsActionJustPressed("rotate_right")) { playerShip.StartTurningClockwise(); }
         else if(Input.IsActionJustPressed("rotate_left")) { playerShip.StartTurningCounterClockwise(); }
@@ -54,7 +55,7 @@ public partial class PlayerController : Node
 
 
 
-        if(Input.IsActionJustPressed("shielding") && (!Input.IsActionPressed("shoot"))) { playerShip.StartShielding(); }
-        if(Input.IsActionJustReleased("shielding")) {playerShip.StopShielding(); }
+        if (Input.IsActionJustPressed("shielding") && (!Input.IsActionPressed("shoot"))) { playerShip.StartShielding(); }
+        if (Input.IsActionJustReleased("shielding")) { playerShip.StopShielding(); }
     }
 }
