@@ -91,7 +91,6 @@ public partial class PlayerShip : Ship, IShip
 			shipComponent.OnDestroyed += ComponentDestroyed;
 			globalVertices.Add(shipComponent.GlobalPosition);
 
-			
 			// TEMPORARY TO ALLOW SHIP TO START WITH FULL FUEL
 			fuelManager.AddFuel(fuelManager.FuelCapacity);
 		}
@@ -113,7 +112,8 @@ public partial class PlayerShip : Ship, IShip
 
 		return hasFuelTank && hasGenerator && hasThruster;
 	}
- protected override void ShipDestroyed()
+	
+ 	protected override void ShipDestroyed()
     {
         base.ShipDestroyed();
 		

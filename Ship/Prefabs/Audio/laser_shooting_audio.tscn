@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqvgalfbkhou0"]
-
-[ext_resource type="AudioStream" uid="uid://dmxinqd0ptjw0" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/LASRGun_Classic Blaster A Fire_03.wav" id="1_fep84"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="2_c7myt"]
-
-[node name="LaserShootingAudio" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_fep84")
-script = ExtResource("2_c7myt")

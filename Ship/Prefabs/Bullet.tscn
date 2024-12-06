@@ -1,10 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://bckeoopmbomi8"]
+[gd_scene load_steps=18 format=3 uid="uid://bckeoopmbomi8"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Bullet.cs" id="1_ildc5"]
 [ext_resource type="Texture2D" uid="uid://bayrj47b7me0d" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_por51"]
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="3_clinb"]
-[ext_resource type="AudioStream" uid="uid://dwcx0lo8cd0hr" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTImpt_Hit Marker_07.wav" id="4_jpns8"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="5_iscdh"]
 [ext_resource type="Texture2D" uid="uid://1xyhviyhxvw" path="res://Assets/Bullets/bullet explotion.png" id="6_ctut0"]
 [ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="7_uyts4"]
 
@@ -119,10 +117,6 @@ shape = SubResource("CircleShape2D_a8mnx")
 debug_color = Color(0.902804, 0.278724, 0.346718, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="SingleRunAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_jpns8")
-script = ExtResource("5_iscdh")
 
 [connection signal="area_entered" from="AttackboxComponent" to="." method="OnAttackboxAreaEntered"]
 [connection signal="body_entered" from="AttackboxComponent" to="." method="OnAttackBoxBodyEntered"]

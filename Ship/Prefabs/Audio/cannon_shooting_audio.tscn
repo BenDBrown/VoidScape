@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5hca07hujeut"]
-
-[ext_resource type="AudioStream" uid="uid://euavkhg46p44" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/LASRGun_Plasma Rifle Fire_03.wav" id="1_dlv2a"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="2_h13c7"]
-
-[node name="CannonShootingAudio" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_dlv2a")
-script = ExtResource("2_h13c7")
