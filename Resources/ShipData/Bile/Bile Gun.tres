@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GunData" load_steps=7 format=3 uid="uid://ct3mnas22ksbx"]
+[gd_resource type="Resource" script_class="GunData" load_steps=8 format=3 uid="uid://ct3mnas22ksbx"]
 
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="1_p5fk8"]
 [ext_resource type="PackedScene" uid="uid://cum7a4fabqn8w" path="res://Ship/Prefabs/Laser.tscn" id="1_y46bx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cp77corciktxw" path="res://Assets/Ship/Atlas/Bile Gun.atlastex" id="3_731f2"]
 [ext_resource type="Texture2D" uid="uid://bdaas48ipvai8" path="res://Assets/UI/Weapon Cycling/laser_icon_placeholder.png" id="3_xbw11"]
 [ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="4_6cvjy"]
+[ext_resource type="AudioStream" uid="uid://dmxinqd0ptjw0" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/LASRGun_Classic Blaster A Fire_03.wav" id="4_ycw4d"]
 
 [resource]
 script = ExtResource("1_p5fk8")
@@ -14,6 +15,10 @@ Attack = 400
 Powerdraw = 10
 type = 2
 GunTypeIcon = ExtResource("3_xbw11")
+ShootingAudio = ExtResource("4_ycw4d")
+shouldLoop = false
+fromPosition = 0.0
+endPosition = -1.0
 BulletSpeed = 200
 BulletSpawnPoint = Vector2(0, -100)
 BulletPrefab = ExtResource("1_y46bx")

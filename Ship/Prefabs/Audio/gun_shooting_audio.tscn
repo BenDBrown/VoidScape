@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5f3juc6gafsm"]
+
+[ext_resource type="AudioStream" uid="uid://byn3d61eucfsv" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/LASRGun_Ion Pistol C Burst_02.wav" id="1_r1752"]
+[ext_resource type="Script" path="res://SingleRunAudio.cs" id="2_lk3dv"]
+
+[node name="GunShootingAudio" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_r1752")
+script = ExtResource("2_lk3dv")
+shouldLoop = true

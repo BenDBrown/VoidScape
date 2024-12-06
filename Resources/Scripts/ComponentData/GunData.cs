@@ -16,6 +16,14 @@ public partial class GunData : ShipComponentData
 	[Export]
 	public Texture2D GunTypeIcon;
 
+	[ExportCategory("Shooting Audio Data")]
+	[Export]
+	public AudioStream ShootingAudio;
+	[Export]
+	public float shootingAudiofromPosition = 0;
+	[Export]
+	public float shootingAudioEndPosition = -1; // -1 means until the end of the track
+
 	[ExportCategory("Bullet Data")]
 
 	[Export]

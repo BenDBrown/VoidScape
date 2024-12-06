@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GunData" load_steps=7 format=3 uid="uid://50ho5luwhv1m"]
+[gd_resource type="Resource" script_class="GunData" load_steps=8 format=3 uid="uid://50ho5luwhv1m"]
 
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_0wote"]
 [ext_resource type="Texture2D" uid="uid://b265ml50ioawr" path="res://Assets/Ship/Atlas/Arzo Gun - Broken.atlastex" id="2_ixsh8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c7x5chnobiur1" path="res://Assets/Ship/Atlas/Arzo Gun.atlastex" id="3_qqt42"]
 [ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="3_vgmss"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="4_k32jl"]
+[ext_resource type="AudioStream" uid="uid://euavkhg46p44" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/LASRGun_Plasma Rifle Fire_03.wav" id="4_ql2h6"]
 
 [resource]
 script = ExtResource("4_k32jl")
@@ -14,6 +15,10 @@ Attack = 100
 Powerdraw = 10
 type = 1
 GunTypeIcon = ExtResource("3_ecwlk")
+ShootingAudio = ExtResource("4_ql2h6")
+shouldLoop = false
+fromPosition = 0.0
+endPosition = -1.0
 BulletSpeed = 150
 BulletSpawnPoint = Vector2(0, -32)
 BulletPrefab = ExtResource("1_0wote")
