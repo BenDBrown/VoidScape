@@ -19,6 +19,9 @@ public partial class PowerManager : Node
 	private double stallDuration = 5;
 
 	[Export]
+	private float powerRegenTime = 1; // in seconds
+
+	[Export]
 	private Timer stallTimer;
 
 	public bool Stalling {get; private set;} = false;
@@ -42,7 +45,7 @@ public partial class PowerManager : Node
     public override void _Process(double delta)
     {
         if(Stalling) return;
-		Power += MaxPower * (float)delta;
+		Power += (MaxPower * (float)delta) / powerRegenTime;
 		Power = Math.Min(Power, MaxPower);
     }
 
