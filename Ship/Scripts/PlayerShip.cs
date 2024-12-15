@@ -19,7 +19,11 @@ public partial class PlayerShip : Ship, IShip
 	private CargoManager cargoManager = new();
 	private FuelManager fuelManager = new();
 
-	public void StartShielding() => shield.StartShielding();
+	public void StartShielding()
+	{
+		if(stalling) return;
+		shield.StartShielding();
+	}
 	public void StopShielding() => shield.StopShielding();
 
     public override void _Ready()
@@ -117,10 +121,16 @@ public partial class PlayerShip : Ship, IShip
 		return shipComponent is Cockpit || shipComponent is Thruster || shipComponent is Generator || shipComponent is FuelTank;
 	}
 
-	/// <summary>
-	/// Intended for power usage which does not occur as part of process
-	/// </summary>
-	private void UsePowerChunk(int powerUsed)
+    protected override void InitiateStall(double stallTime)
+    {
+        base.InitiateStall(stallTime);
+		shield.StopShielding();
+    }
+
+    /// <summary>
+    /// Intended for power usage which does not occur as part of process
+    /// </summary>
+    private void UsePowerChunk(int powerUsed)
 	{
 		powerManager.TryUsePower(powerUsed, out float fuelUsed);
 		fuelManager.UseFuel(fuelUsed);
