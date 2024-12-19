@@ -25,6 +25,7 @@ public partial class PlayerController : Node
         if (Input.IsActionJustReleased("back")) { playerShip.StopThrustingBackward(); }
         if (Input.IsActionJustReleased("right")) { playerShip.StopThrustingRight(); }
         if (Input.IsActionJustReleased("left")) { playerShip.StopThrustingLeft(); }
+        if (Input.IsActionJustPressed("boosting")){playerShip.PerformBlink( );}
 
         if (Input.IsActionJustPressed("shoot"))
         {

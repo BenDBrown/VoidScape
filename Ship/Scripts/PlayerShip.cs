@@ -15,6 +15,8 @@ public partial class PlayerShip : Ship, IShip
 	private Shield shield;
 
 	[Export]
+	private Blinking blinking;
+	[Export]
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
 	private FuelManager fuelManager = new();
@@ -26,9 +28,9 @@ public partial class PlayerShip : Ship, IShip
 	}
 	public void StopShielding() => shield.StopShielding();
 
-    public override void _Ready()
-    {
-        base._Ready();
+	public override void _Ready()
+	{
+		base._Ready();
 		// setting up wrapper signals and stall signals
 		powerManager.StallStarted += InitiateStall;
 		powerManager.StallStarted += (stallTime) => EmitSignal(SignalName.StallStarted, stallTime);
@@ -40,16 +42,17 @@ public partial class PlayerShip : Ship, IShip
 		fuelManager.NoFuel += ShipDestroyed;
 
 		shield.ShieldHit += UsePowerChunk;
-    }
+		blinking.Blink += UsePowerChunk;
+	}
 
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta); // done in physics process after base so that power draw values on ThrustManager are updated first in the same thread
+	public override void _PhysicsProcess(double delta)
+	{
+		base._PhysicsProcess(delta); // done in physics process after base so that power draw values on ThrustManager are updated first in the same thread
 		powerManager.TryUsePower(GetPowerDraw((float)delta), out float fuelUsed);
 		fuelManager.UseFuel(fuelUsed);
-    }
+	}
 
-    public override bool TryBuildShip()
+	public override bool TryBuildShip()
 	{
 		bool hasFuelTank = false;
 		bool hasGenerator = false;
@@ -108,37 +111,41 @@ public partial class PlayerShip : Ship, IShip
 		return hasFuelTank && hasGenerator && hasThruster;
 	}
 
-    protected override void ShipDestroyed()
-    {
-        base.ShipDestroyed();
+	protected override void ShipDestroyed()
+	{
+		base.ShipDestroyed();
 		
 		GC.Collect();
-    }
+	}
 
-    protected override bool IsVitalComponent(ShipComponent shipComponent)
+	protected override bool IsVitalComponent(ShipComponent shipComponent)
 	{
 		// gun intentionally not included as vital atm
 		return shipComponent is Cockpit || shipComponent is Thruster || shipComponent is Generator || shipComponent is FuelTank;
 	}
 
-    protected override void InitiateStall(double stallTime)
-    {
-        base.InitiateStall(stallTime);
+	protected override void InitiateStall(double stallTime)
+	{
+		base.InitiateStall(stallTime);
 		shield.StopShielding();
-    }
+	}
 
-    /// <summary>
-    /// Intended for power usage which does not occur as part of process
-    /// </summary>
-    private void UsePowerChunk(int powerUsed)
+	/// <summary>
+	/// Intended for power usage which does not occur as part of process
+	/// </summary>
+	private void UsePowerChunk(int powerUsed)
 	{
 		powerManager.TryUsePower(powerUsed, out float fuelUsed);
 		fuelManager.UseFuel(fuelUsed);
 	}
 
-    private float GetPowerDraw(float delta) // add per frame power draw here
+	private float GetPowerDraw(float delta) // add per frame power draw here
 	{
-		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw) * delta;
+		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.PowerDraw) * delta;
 	}
 
+	public void PerformBlink( ){
+		if(stalling) return;
+		blinking.PerformBlink();
+	}
 }

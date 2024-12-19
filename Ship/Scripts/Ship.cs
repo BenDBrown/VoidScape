@@ -22,11 +22,15 @@ public partial class Ship : CharacterBody2D, IShip
 
 	[Export]
 	private bool buildOnStart = false;
+
+	
+
 	protected ThrustManager thrustManager = new();
 	protected CenterCalculator centerCalculator = new();
 	protected RotationManager rotationManager = new();
 	protected GunManager gunManager = new();
 	protected List<ShipComponent> shipComponents = new();
+	public ShipComponent[] shipParts => shipComponents.ToArray();
 	protected float rotationSpeed = 3;
 	protected bool stalling = false;
 
@@ -37,6 +41,7 @@ public partial class Ship : CharacterBody2D, IShip
 		{
 			TryBuildShip();
 		}
+		
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -90,6 +95,7 @@ public partial class Ship : CharacterBody2D, IShip
 	public void StartTurningClockwise() {if(!stalling)rotationManager.StartTurningClockwise();}
 	public void StartTurningCounterClockwise() {if(!stalling)rotationManager.StartTurningCounterClockwise();}
 	public void StopTurning() => rotationManager.StopTurning();
+	public void KillMomentum() => thrustManager.KillMomentum();
 
 
 	public virtual bool TryBuildShip()
