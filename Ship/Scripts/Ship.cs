@@ -30,6 +30,12 @@ public partial class Ship : CharacterBody2D, IShip
 	protected float rotationSpeed = 3;
 	protected bool stalling = false;
 
+
+	//Integrated forces
+
+
+
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -45,7 +51,27 @@ public partial class Ship : CharacterBody2D, IShip
 		Vector2 force = thrustManager.GetForce(delta, Rotation);
 		Velocity = force;
 		MoveAndSlide();
+
+
+		for (int i = 0; i < GetSlideCollisionCount(); i++)
+		{
+			KinematicCollision2D collision = GetSlideCollision(i);
+			if (collision.GetCollider() is RigidBody2D rigidBody)
+			{
+				HandleRigidBodyCollision(collision, rigidBody);
+			}
+		}
 	}
+
+
+	public void HandleRigidBodyCollision(KinematicCollision2D collision, RigidBody2D rigidBody)
+	{
+		float impactForce = rigidBody.LinearVelocity.Length();
+		Velocity = -collision.GetNormal() * impactForce;
+		rigidBody.ApplyCentralImpulse(-collision.GetNormal() * impactForce);
+	}
+
+
 
 	protected virtual void ShipDestroyed()
 	{
@@ -66,29 +92,29 @@ public partial class Ship : CharacterBody2D, IShip
 			Type destroyedComponentType = shipComponent.GetType();
 			foreach (ShipComponent s in shipComponents)
 			{
-				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent)	return;
+				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent) return;
 			}
 			ShipDestroyed();
 		}
 	}
 
 	// shooting
-	public void StartShooting() {if(!stalling)gunManager.StartShooting();}
+	public void StartShooting() { if (!stalling) gunManager.StartShooting(); }
 	public void StopShooting() => gunManager.StopShooting();
 
 	// movement
-	public void StartThrustingForward() {if(!stalling)thrustManager.StartThrustingForward();}
-	public void StartThrustingBackward() {if(!stalling)thrustManager.StartThrustingBackward();}
-	public void StartThrustingRight() {if(!stalling)thrustManager.StartThrustingRight();}
-	public void StartThrustingLeft() {if(!stalling)thrustManager.StartThrustingLeft();}
+	public void StartThrustingForward() { if (!stalling) thrustManager.StartThrustingForward(); }
+	public void StartThrustingBackward() { if (!stalling) thrustManager.StartThrustingBackward(); }
+	public void StartThrustingRight() { if (!stalling) thrustManager.StartThrustingRight(); }
+	public void StartThrustingLeft() { if (!stalling) thrustManager.StartThrustingLeft(); }
 	public void StopThrustingForward() => thrustManager.StopThrustingForward();
 	public void StopThrustingBackward() => thrustManager.StopThrustingBackward();
 	public void StopThrustingRight() => thrustManager.StopThrustingRight();
 	public void StopThrustingLeft() => thrustManager.StopThrustingLeft();
 
 	// turning
-	public void StartTurningClockwise() {if(!stalling)rotationManager.StartTurningClockwise();}
-	public void StartTurningCounterClockwise() {if(!stalling)rotationManager.StartTurningCounterClockwise();}
+	public void StartTurningClockwise() { if (!stalling) rotationManager.StartTurningClockwise(); }
+	public void StartTurningCounterClockwise() { if (!stalling) rotationManager.StartTurningCounterClockwise(); }
 	public void StopTurning() => rotationManager.StopTurning();
 
 
@@ -178,5 +204,5 @@ public partial class Ship : CharacterBody2D, IShip
 	}
 
 	protected virtual void EndStall() => stalling = false;
-	
+
 }
