@@ -18,11 +18,16 @@ public partial class GunData : ShipComponentData
 
 	[ExportCategory("Shooting Audio Data")]
 	[Export]
-	public AudioStream ShootingAudio;
+	public AudioStream ShootSFX;
 	[Export]
-	public float shootingAudiofromPosition = 0;
+	public float ShootingAudioStartTime = 0;
+
+	/// <summary>
+	/// 
+	/// A value of -1 is the same as: "until the end of the track"
+	/// </summary>
 	[Export]
-	public float shootingAudioEndPosition = -1; // -1 means until the end of the track
+	public float ShootingAudioEndTime = -1;
 
 	[ExportCategory("Bullet Data")]
 

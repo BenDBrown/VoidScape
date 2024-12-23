@@ -3,6 +3,10 @@ using System;
 
 public partial class PlayerController : Node
 {
+
+    private const int CYCLE_WEAPON_UP = 1;
+    private const int CYCLE_WEAPON_DOWN = -1;
+
     [Export]
     private Node2D playerShipNode;
 
@@ -47,10 +51,10 @@ public partial class PlayerController : Node
         }
 
         if(Input.IsActionJustPressed("cycle_weapon_up")){
-            ((PlayerShip) playerShip).CycleGunGroup(1);
+            ((PlayerShip) playerShip).CycleGunGroup(CYCLE_WEAPON_UP);
         }
         else if(Input.IsActionJustPressed("cycle_weapon_down")){
-            ((PlayerShip) playerShip).CycleGunGroup(-1);
+            ((PlayerShip) playerShip).CycleGunGroup(CYCLE_WEAPON_DOWN);
         }
 
 

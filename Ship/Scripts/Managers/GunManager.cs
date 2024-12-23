@@ -51,10 +51,6 @@ public partial class GunManager : IPowerable
 		shooting = false;
 	}
 
-	public void CycleGunGroupUp() => CycleGunGroup(-1);
-
-	public void CycleGunGroupDown() => CycleGunGroup(1);
-
 	public List<GunType> GetGunGroupTypes(){
 		List<GunType> gunTypes = new();
 		foreach(GunGroup gg in gunGroups){
@@ -71,20 +67,24 @@ public partial class GunManager : IPowerable
 					return gg.gunTypeIcon;
 				}
 			}
-			return null;	// Todo: Add an exception for when the type is not found. There is no default icon as of now, which will also solve this.
+			return new();
 	}
 
+	/// <summary>
+	/// Cycles between the available weapons. 
+	/// </summary>
+	/// <param name="cycleNum">The direction of the cycle. A 1 means to go up in the list and -1 go down in the list.</param>
 	public void CycleGunGroup(int cycleNum)
 	{
 		if(!gunGroups.Contains(selectedGroup)) {GD.PushError("had a gun group selected that was not stored in GunManager"); return;}
 		int currentIndex = gunGroups.IndexOf(selectedGroup);
 
-		int newIndex = currentIndex + cycleNum;
+		int newIndex = currentIndex - cycleNum;
 		if(newIndex < 0){
 			newIndex = gunGroups.Count - 1; // Last index of gun groups
 
 		}
-		else if(newIndex == gunGroups.Count){ // Loop to beginning
+		else if(newIndex >= gunGroups.Count){ // Loop to beginning
 			newIndex = 0;
 		}
 		else{

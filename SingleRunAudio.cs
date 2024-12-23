@@ -19,7 +19,6 @@ public partial class SingleRunAudio : AudioStreamPlayer2D
 		}
 
 		this.Play(fromPosition);
-		this.PitchScale = 0; // Reset pitch
 	}
 
 	private void ShiftPitch(){

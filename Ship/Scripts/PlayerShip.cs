@@ -158,15 +158,7 @@ public partial class PlayerShip : Ship, IShip
 	public void CycleGunGroup(int cycleNum){
 		if(!weaponMenuIsOpen) { return;}
 
-		// Todo: Redundant as using the method CycleGunGroup in gunmanager is easier than using the Up and Down method. Maybe only for normal ships. Ask Genelle or Ben
-		if(cycleNum == -1){
-			gunManager.CycleGunGroupDown();
-		}
-		else{
-			gunManager.CycleGunGroupUp();
-		}
-
-		// gun manager logic call here=
+		gunManager.CycleGunGroup(cycleNum);
 		EmitSignal(SignalName.GunCycleChanged, cycleNum);
 	}
 

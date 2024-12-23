@@ -5,9 +5,6 @@ public partial class Bullet : CharacterBody2D
 {
     const float SPEED_FACTOR = 10;
 
-	[Signal]
-	public delegate void HitEventHandler();
-
     [Export]
     private Timer timer;
 
@@ -17,8 +14,11 @@ public partial class Bullet : CharacterBody2D
     private Node2D attackboxComponent;
     [Export]
     private Node2D bulletSprite;
+    [ExportCategory("On-Hit Configuration")]
     [Export]
     private SingleRunAnimation bulletHitAnimation;
+    [Export]
+	private SingleRunAudio onHitAudio;
 
     public float speed { get; set; }
 
@@ -29,6 +29,7 @@ public partial class Bullet : CharacterBody2D
     {
         timer.Start(lifeTime);
         timer.Timeout += QueueFree;
+        attackboxComponent.Connect("on_hit", Callable.From(OnHitFX));
     }
 
     public override void _PhysicsProcess(double delta)
@@ -39,25 +40,28 @@ public partial class Bullet : CharacterBody2D
     public void OnAttackboxAreaEntered(Area2D area)
     {
         if (area.GetParent() == this) { return; }
-
-        if(area.GetParent().GetParent() is Ship){ //Todo: Better definition for enemies should be made
-            EmitSignal(SignalName.Hit);
-        }
-
-        bulletSprite.Visible = false;
-        bulletHitAnimation.AnimationFinished += DestroyBullet;
-        bulletHitAnimation.Play();
     }
 
     public void OnAttackBoxBodyEntered(Node2D node2D)
     {
         if (node2D == this) { return; }
-        bulletSprite.Visible = false;
-        bulletHitAnimation.AnimationFinished += DestroyBullet;
-        DestroyBullet();
     }
 
     private void DestroyBullet(){
         CallDeferred("queue_free");
+    }
+
+    /// <summary>
+    /// Visual and Sound effects when a bullet has hit an HitboxComponent
+    /// </summary>
+    private void OnHitFX(){
+        // SFX
+        onHitAudio.PlayOnce();
+
+        // VFX
+        bulletSprite.Visible = false;
+        bulletHitAnimation.AnimationFinished += DestroyBullet;
+        bulletHitAnimation.Visible = true;
+        bulletHitAnimation.Play();
     }
 }

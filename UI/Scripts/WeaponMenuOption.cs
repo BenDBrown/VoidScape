@@ -4,7 +4,6 @@ using System.IO;
 
 public partial class WeaponMenuOption : Control
 {
-
 	[Export]
 	private TextureRect weaponTypeIcon;
 
@@ -13,10 +12,6 @@ public partial class WeaponMenuOption : Control
 
 	[Export]
 	private AtlasTexture selected, unselected, unavailable;
-
-	public override void _Ready()
-	{
-	}
 
 	public void UpdateWeaponIcon(Texture2D texture){
 		weaponTypeIcon.Texture = texture;
@@ -35,10 +30,4 @@ public partial class WeaponMenuOption : Control
 				break;
 		}
 	}
-}
-
-public enum WeaponBorderState {
-	UNSELECTED = 0,
-	SELECTED = 1,
-	UNAVAILABLE = 2
 }
