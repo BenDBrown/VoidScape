@@ -12,6 +12,14 @@ public partial class Bullet : CharacterBody2D
     private double lifeTime = 10;
     [Export]
     private Node2D attackboxComponent;
+    [Export]
+    private Node2D bulletSprite;
+    [ExportCategory("On-Hit Configuration")]
+    [Export]
+    private SingleRunAnimation bulletHitAnimation;
+    [Export]
+	private SingleRunAudio onHitAudio;
+
     public float speed { get; set; }
 
     public void SetAttackInfo(AttackComponent attackComponent) => attackboxComponent.Set("attack_component", attackComponent);
@@ -21,6 +29,7 @@ public partial class Bullet : CharacterBody2D
     {
         timer.Start(lifeTime);
         timer.Timeout += QueueFree;
+        attackboxComponent.Connect("on_hit", Callable.From(OnHitFX));
     }
 
     public override void _PhysicsProcess(double delta)
@@ -31,12 +40,28 @@ public partial class Bullet : CharacterBody2D
     public void OnAttackboxAreaEntered(Area2D area)
     {
         if (area.GetParent() == this) { return; }
-        CallDeferred("queue_free");
     }
 
     public void OnAttackBoxBodyEntered(Node2D node2D)
     {
         if (node2D == this) { return; }
+    }
+
+    private void DestroyBullet(){
         CallDeferred("queue_free");
+    }
+
+    /// <summary>
+    /// Visual and Sound effects when a bullet has hit an HitboxComponent
+    /// </summary>
+    private void OnHitFX(){
+        // SFX
+        onHitAudio.PlayOnce();
+
+        // VFX
+        bulletSprite.Visible = false;
+        bulletHitAnimation.AnimationFinished += DestroyBullet;
+        bulletHitAnimation.Visible = true;
+        bulletHitAnimation.Play();
     }
 }

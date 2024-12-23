@@ -91,7 +91,6 @@ public partial class Ship : CharacterBody2D, IShip
 	public void StartTurningCounterClockwise() {if(!stalling)rotationManager.StartTurningCounterClockwise();}
 	public void StopTurning() => rotationManager.StopTurning();
 
-
 	public virtual bool TryBuildShip()
 	{
 		bool hasThruster = false;

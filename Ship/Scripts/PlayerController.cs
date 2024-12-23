@@ -3,6 +3,10 @@ using System;
 
 public partial class PlayerController : Node
 {
+
+    private const int CYCLE_WEAPON_UP = 1;
+    private const int CYCLE_WEAPON_DOWN = -1;
+
     [Export]
     private Node2D playerShipNode;
 
@@ -33,9 +37,27 @@ public partial class PlayerController : Node
         }
         else if (Input.IsActionJustReleased("shoot")) { playerShip.StopShooting(); }
 
-        if (Input.IsActionJustPressed("rotate_right")) { playerShip.StartTurningClockwise(); }
-        else if (Input.IsActionJustPressed("rotate_left")) { playerShip.StartTurningCounterClockwise(); }
-        else if ((Input.IsActionJustReleased("rotate_right") && (!Input.IsActionPressed("rotate_left"))) || (Input.IsActionJustReleased("rotate_left") && (!Input.IsActionPressed("rotate_right")))) { playerShip.StopTurning(); }
+        if(Input.IsActionJustPressed("rotate_right")) { playerShip.StartTurningClockwise(); }
+        else if(Input.IsActionJustPressed("rotate_left")) { playerShip.StartTurningCounterClockwise(); }
+        else if((Input.IsActionJustReleased("rotate_right") && (!Input.IsActionPressed("rotate_left"))) || (Input.IsActionJustReleased("rotate_left") && (!Input.IsActionPressed("rotate_right")))) { playerShip.StopTurning(); }
+    
+
+        // Weapon Menu Controls
+        if(Input.IsActionJustPressed("toggle_weapon_menu")){        // Change name of action to toggle weapon menu
+            ((PlayerShip) playerShip).ToggleWeaponMenu(true);
+        }
+        else if( Input.IsActionJustReleased("toggle_weapon_menu")){
+            ((PlayerShip) playerShip).ToggleWeaponMenu(false);
+        }
+
+        if(Input.IsActionJustPressed("cycle_weapon_up")){
+            ((PlayerShip) playerShip).CycleGunGroup(CYCLE_WEAPON_UP);
+        }
+        else if(Input.IsActionJustPressed("cycle_weapon_down")){
+            ((PlayerShip) playerShip).CycleGunGroup(CYCLE_WEAPON_DOWN);
+        }
+
+
 
         if (Input.IsActionJustPressed("shielding") && (!Input.IsActionPressed("shoot"))) { playerShip.StartShielding(); }
         if (Input.IsActionJustReleased("shielding")) { playerShip.StopShielding(); }
