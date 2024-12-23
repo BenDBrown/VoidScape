@@ -130,6 +130,8 @@ public partial class ThrustManager : IPowerable
 		return 0;
 	}
 
+	public void KillMomentum() => Force = new(0,0);
+
 	private void OnThrusterDestroyed(ShipComponent shipComponent)
 	{
 		if (shipComponent is not Thruster thruster) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
