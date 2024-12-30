@@ -17,6 +17,9 @@ public partial class Blinking : Node2D
 	private int blinkDist = 150;
 	[Export]
 	private PlayerShip playerShip;
+
+	[Export]
+	private bool DirectionByMovement = false;
 	Dictionary<Vector2 , Vector2> ComponentVectors = new Dictionary<Vector2, Vector2>();
 	private bool IsBoosting = false;
 	private int power = 15;
@@ -31,54 +34,10 @@ public partial class Blinking : Node2D
 		{
 			FillDictionary();
 		}
-		if (Input.IsActionPressed("right")&&!IsBoosting)
-		{
-			
-			transForm = playerShip.Transform.Translated(new Vector2(blinkDist,0));
-			if(AllowedToBlink(transForm))
-			{
-				await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-				if(IsAllowedToBlink){ 
-				playerShip.Transform = transForm; IsBoosting = true;
-				}
-			}
-		}
-		if (Input.IsActionPressed("left")&&!IsBoosting)
-		{
-			transForm = playerShip.Transform.Translated(new Vector2(-blinkDist,0));
-			if(AllowedToBlink(transForm))
-			{
-				await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-				if(IsAllowedToBlink){ 
-				playerShip.Transform = transForm; IsBoosting = true;
-				}
-			}
-	 	}
-		if (Input.IsActionPressed("back")&&!IsBoosting)
-		{
-			
-			transForm= playerShip.Transform.Translated(new Vector2(0,blinkDist));
-			if(AllowedToBlink(transForm))
-			{
-				await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-				if(IsAllowedToBlink){ 
-				playerShip.Transform = transForm; IsBoosting = true;
-				}
-			}
-		}
-		if (Input.IsActionPressed("forward")&&!IsBoosting)
-		{
-			
-			transForm = playerShip.Transform.Translated(new Vector2(0,-blinkDist));
-			if(AllowedToBlink(transForm))
-			{
-				await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-				if(IsAllowedToBlink){ 
-				playerShip.Transform = transForm; IsBoosting = true;
-				}
-			}
-			
-		}
+
+		
+		PreformDirectionBlink();
+		
 		await ToSignal(GetTree().CreateTimer(1),"timeout");
 		IsAllowedToBlink = true;
 		IsBoosting = false;
@@ -180,5 +139,63 @@ public partial class Blinking : Node2D
 		{
 			area.QueueFree();
 		}
+	}
+
+	private async void PreformDirectionBlink() 
+	{
+		Transform2D transForm;
+		if (playerShip.Velocity.Length() > 0.1f)
+		{
+			float angle = Mathf.Atan2(playerShip.Velocity.Y, playerShip.Velocity.X); // angle in [-PI, PI]
+			if (Mathf.Abs(angle) < 0.25f * Mathf.Pi)
+			{
+
+				transForm = playerShip.Transform.Translated(new Vector2(blinkDist,0));
+				if(AllowedToBlink(transForm))
+				{
+					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
+					if(IsAllowedToBlink){ 
+					playerShip.Transform = transForm; IsBoosting = true;
+					}
+				}
+			}
+			else if (Mathf.Abs(angle) > 0.75f * Mathf.Pi)
+			{	
+				transForm = playerShip.Transform.Translated(new Vector2(-blinkDist,0));
+				if(AllowedToBlink(transForm))
+				{
+					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
+					if(IsAllowedToBlink){ 
+					playerShip.Transform = transForm; IsBoosting = true;
+					}
+				}
+			}
+			else if (angle > 0.0f)
+			{
+				transForm = playerShip.Transform.Translated(new Vector2(0,blinkDist));
+				if(AllowedToBlink(transForm))
+				{
+					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
+					if(IsAllowedToBlink){ 
+					playerShip.Transform = transForm; IsBoosting = true;
+					}
+				}
+			}
+			else
+			{
+				transForm = playerShip.Transform.Translated(new Vector2(0,-blinkDist));
+				if(AllowedToBlink(transForm))
+				{
+					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
+					if(IsAllowedToBlink){ 
+					playerShip.Transform = transForm; IsBoosting = true;
+					}
+				}
+			}
+		}
+		await ToSignal(GetTree().CreateTimer(1),"timeout");
+		IsAllowedToBlink = true;
+		IsBoosting = false;
+		
 	}
 }
