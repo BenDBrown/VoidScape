@@ -97,7 +97,6 @@ public partial class Ship : CharacterBody2D, IShip
 	public void StopTurning() => rotationManager.StopTurning();
 	public void KillMomentum() => thrustManager.KillMomentum();
 
-
 	public virtual bool TryBuildShip()
 	{
 		bool hasThruster = false;
