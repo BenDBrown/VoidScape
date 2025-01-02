@@ -150,12 +150,12 @@ public partial class PlayerShip : Ship, IShip
 
 	private float GetPowerDraw(float delta) // add per frame power draw here
 	{
-		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.PowerDraw) * delta;
+		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.GetPowerDraw()) * delta;
 	}
 
 	public void PerformBlink( ){
 		if(stalling) return;
-		blinking.PerformBlink();
+		blinking.Async_PerformBlink();
 	}
 	public void ToggleWeaponMenu(bool isOpen){
 		weaponMenuIsOpen = isOpen;

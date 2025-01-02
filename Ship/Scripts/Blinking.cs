@@ -20,14 +20,13 @@ public partial class Blinking : Node2D
 
 	[Export]
 	private bool DirectionByMovement = false;
-	Dictionary<Vector2 , Vector2> ComponentVectors = new Dictionary<Vector2, Vector2>();
-	private bool IsBoosting = false;
+	private Dictionary<Vector2 , Vector2> ComponentVectors = new Dictionary<Vector2, Vector2>();
+	private bool isBoosting = false;
 	private int power = 15;
-	public int PowerDraw => GetPowerDraw();
-	bool IsAllowedToBlink = true;
-	Area2D area = new Area2D();
+	private bool isAllowedToBlink = true;
+	private Area2D area = new Area2D();
 
-	public async void PerformBlink()
+	public async void Async_PerformBlink()
 	{  	
 
 		if (ComponentVectors.Count == 0)
@@ -36,16 +35,16 @@ public partial class Blinking : Node2D
 		}
 
 		
-		PreformDirectionBlink();
+		Async_PreformDirectionBlink();
 		
 		await ToSignal(GetTree().CreateTimer(1),"timeout");
-		IsAllowedToBlink = true;
-		IsBoosting = false;
+		isAllowedToBlink = true;
+		isBoosting = false;
 		}
 
-	private int GetPowerDraw()
+	public int GetPowerDraw()
 	{
-		if(IsBoosting){ ; return power;}
+		if(isBoosting){ ; return power;}
 		return 0;
 	}
 
@@ -109,7 +108,7 @@ public partial class Blinking : Node2D
 
 	private bool AllowedToBlink(Transform2D transform)
 	{
-		if (!IsAllowedToBlink) {return false;}
+		if (!isAllowedToBlink) {return false;}
 		area = new Area2D();
 		var col = new CollisionShape2D();
 		col.Shape = CreateConvexPolygon();
@@ -119,22 +118,22 @@ public partial class Blinking : Node2D
 		area.AreaEntered += AreaEntered;
 		area.BodyEntered += BodyEntereds;
 		area.Transform = area.Transform.Translated(new Vector2(0,-(blinkDist*2)));
-		return IsAllowedToBlink;
+		return isAllowedToBlink;
 		
 		
 	}
 
 	protected void AreaEntered(Area2D area2d){
-		IsAllowedToBlink = false;
+		isAllowedToBlink = false;
 		area.QueueFree();
 	}
 
 	protected void BodyEntereds(Node2D body){
-		IsAllowedToBlink = false;
+		isAllowedToBlink = false;
 		area.QueueFree();
 	}
 
-	private async void PreformDirectionBlink() 
+	private async void Async_PreformDirectionBlink() 
 	{
 		Transform2D transForm;
 		area = new Area2D();
@@ -149,9 +148,9 @@ public partial class Blinking : Node2D
 				{
 					
 					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(IsAllowedToBlink){ 
+					if(isAllowedToBlink){ 
 					playerShip.KillMomentum();
-					playerShip.Transform = transForm; IsBoosting = true;
+					playerShip.Transform = transForm; isBoosting = true;
 					}
 				}
 			}
@@ -161,9 +160,9 @@ public partial class Blinking : Node2D
 				if(AllowedToBlink(transForm))
 				{
 					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(IsAllowedToBlink){
+					if(isAllowedToBlink){
 					playerShip.KillMomentum(); 
-					playerShip.Transform = transForm; IsBoosting = true;
+					playerShip.Transform = transForm; isBoosting = true;
 					}
 				}
 			}
@@ -173,9 +172,9 @@ public partial class Blinking : Node2D
 				if(AllowedToBlink(transForm))
 				{
 					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(IsAllowedToBlink){ 
+					if(isAllowedToBlink){ 
 					playerShip.KillMomentum();
-					playerShip.Transform = transForm; IsBoosting = true;
+					playerShip.Transform = transForm; isBoosting = true;
 					}
 				}
 			}
@@ -185,16 +184,16 @@ public partial class Blinking : Node2D
 				if(AllowedToBlink(transForm))
 				{
 					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(IsAllowedToBlink){ 
+					if(isAllowedToBlink){ 
 					playerShip.KillMomentum();
-					playerShip.Transform = transForm; IsBoosting = true;
+					playerShip.Transform = transForm; isBoosting = true;
 					}
 				}
 			}
 		}
 		area.QueueFree();
 		await ToSignal(GetTree().CreateTimer(1),"timeout");
-		IsAllowedToBlink = true;
-		IsBoosting = false;
+		isAllowedToBlink = true;
+		isBoosting = false;
 	}
 }
