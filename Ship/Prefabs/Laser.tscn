@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://cum7a4fabqn8w"]
+[gd_scene load_steps=19 format=3 uid="uid://cum7a4fabqn8w"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Bullet.cs" id="1_nqjkm"]
 [ext_resource type="Texture2D" uid="uid://dquwdhpf56fjv" path="res://Assets/Bullets/Lasers.png" id="2_paqed"]
+[ext_resource type="PackedScene" uid="uid://bpi5xtyl1vg1v" path="res://Ship/Prefabs/BulletDeathAnimation.tscn" id="2_rgtak"]
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="3_ulkoc"]
 [ext_resource type="Texture2D" uid="uid://1xyhviyhxvw" path="res://Assets/Bullets/bullet explotion.png" id="4_ovyox"]
 [ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="5_elk2p"]
+[ext_resource type="AudioStream" uid="uid://dwcx0lo8cd0hr" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTImpt_Hit Marker_07.wav" id="7_cblig"]
+[ext_resource type="Script" path="res://SingleRunAudio.cs" id="8_puuca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8rxq"]
 size = Vector2(2, 6)
@@ -69,12 +72,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Laser" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent", "bulletSprite", "bulletHitAnimation")]
+[node name="Laser" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent", "bulletSprite", "bulletHitAnimation", "onHitAudio")]
 script = ExtResource("1_nqjkm")
 timer = NodePath("Timer")
 attackboxComponent = NodePath("AttackboxComponent")
 bulletSprite = NodePath("Sprite")
 bulletHitAnimation = NodePath("SingleRunAnimation")
+onHitAudio = NodePath("HitAudio")
+bulletHitAnimationPrefab = ExtResource("2_rgtak")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = -2
@@ -106,6 +111,10 @@ animation = &"BulletExplosion"
 frame_progress = 0.9432
 script = ExtResource("5_elk2p")
 animationName = "BulletExplosion"
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_cblig")
+script = ExtResource("8_puuca")
 
 [connection signal="area_entered" from="AttackboxComponent" to="." method="OnAttackboxAreaEntered"]
 [connection signal="body_entered" from="AttackboxComponent" to="." method="OnAttackBoxBodyEntered"]
