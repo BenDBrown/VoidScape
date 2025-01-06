@@ -22,18 +22,17 @@ public partial class Ship : CharacterBody2D, IShip
 
 	[Export]
 	private bool buildOnStart = false;
+
+	public int Weight => thrustManager.weight;
+
 	protected ThrustManager thrustManager = new();
 	protected CenterCalculator centerCalculator = new();
 	protected RotationManager rotationManager = new();
 	protected GunManager gunManager = new();
+	protected ExternalForceManager externalForceManager = new();
 	protected List<ShipComponent> shipComponents = new();
 	protected float rotationSpeed = 3;
 	protected bool stalling = false;
-
-
-	//Integrated forces
-
-
 
 
 	public override void _Ready()
@@ -49,29 +48,16 @@ public partial class Ship : CharacterBody2D, IShip
 	{
 		Rotation = rotationManager.GetRotation(Rotation, rotationSpeed, delta, out Vector2 rotVector);
 		Vector2 force = thrustManager.GetForce(delta, Rotation);
-		Velocity = force;
+		Vector2 externalForce = externalForceManager.GetForce(delta);
+		Velocity = force + externalForce;
 		MoveAndSlide();
-
 
 		for (int i = 0; i < GetSlideCollisionCount(); i++)
 		{
 			KinematicCollision2D collision = GetSlideCollision(i);
-			if (collision.GetCollider() is RigidBody2D rigidBody)
-			{
-				HandleRigidBodyCollision(collision, rigidBody);
-			}
+			externalForceManager.HandleBodyCollision(collision, delta, Velocity);
 		}
 	}
-
-
-	public void HandleRigidBodyCollision(KinematicCollision2D collision, RigidBody2D rigidBody)
-	{
-		float impactForce = rigidBody.LinearVelocity.Length();
-		Velocity = -collision.GetNormal() * impactForce;
-		rigidBody.ApplyCentralImpulse(-collision.GetNormal() * impactForce);
-	}
-
-
 
 	protected virtual void ShipDestroyed()
 	{
@@ -86,6 +72,7 @@ public partial class Ship : CharacterBody2D, IShip
 	public void ComponentDestroyed(ShipComponent shipComponent)
 	{
 		thrustManager.SetWeight(thrustManager.weight - 1);
+		externalForceManager.SetWeight(externalForceManager.weight - 1);
 		GD.Print(shipComponent.Name + " destroyed");
 		if (IsVitalComponent(shipComponent))
 		{
@@ -158,6 +145,8 @@ public partial class Ship : CharacterBody2D, IShip
 			}
 		}
 		thrustManager.SetWeight(shipComponents.Count);
+		externalForceManager.SetWeight(shipComponents.Count);
+
 
 		return hasThruster;
 	}
