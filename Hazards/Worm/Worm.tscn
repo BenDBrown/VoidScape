@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://bi2al265nsrio"]
+
+[ext_resource type="Texture2D" uid="uid://c4dh6t1yi5jav" path="res://Assets/Hazzards/Space Wyrm/Space Worm 2.png" id="1_si6aq"]
+[ext_resource type="Texture2D" uid="uid://61nkdfent0lb" path="res://Assets/Hazzards/Space Wyrm/Space Worm core.png" id="2_q17d8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twb33"]
+atlas = ExtResource("2_q17d8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xycib"]
+atlas = ExtResource("2_q17d8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgutm"]
+atlas = ExtResource("2_q17d8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6fst"]
+atlas = ExtResource("2_q17d8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nxa3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twb33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xycib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgutm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6fst")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Worm" type="Node2D"]
+
+[node name="PhysicsBody" type="CharacterBody2D" parent="."]
+
+[node name="Head" type="CollisionPolygon2D" parent="PhysicsBody"]
+polygon = PackedVector2Array(-11, 2, -10, 2, -8, 4, -2, 7, -2, 8, 0, 10, 3, 10, 5, 10, 7, 11, 8, 12, 10, 13, 16, 13, 16, 12, 12, 10, 9, 7, 14, 7, 14, 6, 12, 4, 13, 3, 13, -3, 12, -4, 14, -6, 14, -7, 11, -7, 9, -7, 12, -10, 16, -12, 16, -13, 10, -13, 8, -12, 7, -11, 5, -10, 0, -10, -2, -8, -2, -7, -8, -4, -10, -2, -11, -2)
+
+[node name="HeadSprite" type="Sprite2D" parent="PhysicsBody/Head"]
+texture_filter = 1
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="Core" type="CollisionPolygon2D" parent="PhysicsBody/Head"]
+position = Vector2(29, 0)
+polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
+
+[node name="CoreBodySegmentSprite" type="Sprite2D" parent="PhysicsBody/Head/Core"]
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CoreSpriteAnim" type="AnimatedSprite2D" parent="PhysicsBody/Head/Core/CoreBodySegmentSprite"]
+position = Vector2(-5, 0)
+sprite_frames = SubResource("SpriteFrames_nxa3r")
+frame_progress = 0.608312
+
+[node name="BodySegment0" type="CollisionPolygon2D" parent="PhysicsBody/Head/Core"]
+position = Vector2(32, 0)
+polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
+
+[node name="SegmentSprite" type="Sprite2D" parent="PhysicsBody/Head/Core/BodySegment0"]
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="BodySegment1" type="CollisionPolygon2D" parent="PhysicsBody/Head/Core/BodySegment0"]
+position = Vector2(32, 0)
+polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
+
+[node name="SegmentSprite" type="Sprite2D" parent="PhysicsBody/Head/Core/BodySegment0/BodySegment1"]
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="BodySegment2" type="CollisionPolygon2D" parent="PhysicsBody/Head/Core/BodySegment0/BodySegment1"]
+position = Vector2(32, 0)
+polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
+
+[node name="SegmentSprite" type="Sprite2D" parent="PhysicsBody/Head/Core/BodySegment0/BodySegment1/BodySegment2"]
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="BodySegment3" type="CollisionPolygon2D" parent="PhysicsBody/Head/Core/BodySegment0/BodySegment1/BodySegment2"]
+position = Vector2(32, 0)
+polygon = PackedVector2Array(-12, 8, -15, 5, -15, 4, -17, 2, -17, -2, -15, -4, -15, -5, -12, -8, -7, -8, -7, -6, -5, -6, -3, -4, -2, -5, 1, -6, 5, -7, 11, -9, 15, -9, 15, -8, 13, -7, 11, -5, 5, -2, 5, 2, 11, 5, 13, 7, 15, 8, 15, 9, 11, 9, 5, 7, 1, 6, -2, 5, -3, 4, -5, 6, -7, 6, -7, 8)
+
+[node name="SegmentSprite" type="Sprite2D" parent="PhysicsBody/Head/Core/BodySegment0/BodySegment1/BodySegment2/BodySegment3"]
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(128, 0, 32, 32)
