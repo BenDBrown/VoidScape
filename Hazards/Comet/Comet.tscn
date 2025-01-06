@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://vyne0q636v45"]
+
+[ext_resource type="Script" path="res://Hazards/Comet/comet.gd" id="1_61o3b"]
+[ext_resource type="Script" path="res://Components/attackbox_component.gd" id="1_wawat"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="2_o0ikq"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="3_1tly3"]
+[ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_myhf0"]
+[ext_resource type="Texture2D" uid="uid://cluyudio333vu" path="res://Assets/Hazzards/astroid/Astroid 4.png" id="5_ttorw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kn005"]
+radius = 14.3178
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_slwb3"]
+radius = 13.6015
+
+[node name="Comet" type="RigidBody2D"]
+collision_layer = 33
+collision_mask = 33
+script = ExtResource("1_61o3b")
+
+[node name="AttackboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack_component")]
+script = ExtResource("1_wawat")
+attack_component = NodePath("../AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
+shape = SubResource("CircleShape2D_kn005")
+debug_color = Color(2.88785e-06, 0.618082, 0.580813, 0.42)
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent", "collision_shape")]
+script = ExtResource("2_o0ikq")
+healthComponent = NodePath("../HealthComponent")
+collision_shape = NodePath("../CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_kn005")
+debug_color = Color(2.88785e-06, 0.618082, 0.580813, 0.42)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_1tly3")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("4_myhf0")
+attack = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_slwb3")
+debug_color = Color(0.729965, 0.0680868, 0.816896, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_ttorw")
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
