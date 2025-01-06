@@ -1,4 +1,5 @@
 extends Node
+signal not_allowed_to_spawn
 var comets = [] #if at a later stage we want to have this be multiple comets
 var playership: PlayerShip
 var comet_scene:PackedScene = preload("res://Hazards/Comet/Comet.tscn")
@@ -6,6 +7,7 @@ var comet
 var comet_location
 var spawn_location
 var spawn_timer
+var allowed_to_spawn
 @export var extra_distance = 5000
 
 func _ready():
@@ -14,7 +16,8 @@ func _ready():
 	
 	
 func _process(delta: float) -> void:
-	spawn_timer_reset()
+	if allowed_to_spawn:
+		spawn_timer_reset()
 	
 
 func spawn_comet():
