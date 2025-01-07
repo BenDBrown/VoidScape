@@ -19,7 +19,7 @@ var vel_timer
 
 func _ready() -> void:
 	global_transform.origin = direction
-	randomize_force()
+	random_forcetype()
 	
 func _process(delta: float) -> void:
 	direction = playership.global_position
@@ -53,7 +53,6 @@ func create_death_timer(time):
 	death_timer.start(time)
 	
 func check_distance_to_target_vector2(target:Vector2):
-	print(transform.origin.distance_to(target) < min_distance)
 	if transform.origin.distance_to(target) < min_distance:
 		if !last_update:
 			if last_target_location: 
@@ -79,5 +78,14 @@ func update_linear_velocity(target:Vector2):
 	#if fmod(transform.origin.distance_to(target),  min_distance_linear_update) == 0:
 	if !last_update:
 		linear_velocity = ((target - global_transform.origin)).normalized() * speed
-		print("Updated_velocity_linear")
 		#apply_force(direction - global_transform.origin)
+
+func random_forcetype():
+	var rng = RandomNumberGenerator.new()
+	var rng_number = rng.randf_range(0,10)
+	
+	if rng_number >= 5:
+		forceType = "Player"
+	else:
+		forceType = "Random Direction"
+	randomize_force()

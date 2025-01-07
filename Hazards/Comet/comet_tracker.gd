@@ -1,4 +1,5 @@
 extends Node
+class_name Comet_tracker
 signal not_allowed_to_spawn
 var comets = [] #if at a later stage we want to have this be multiple comets
 var playership: PlayerShip
@@ -7,12 +8,12 @@ var comet
 var comet_location
 var spawn_location
 var spawn_timer
-var allowed_to_spawn
+
+@export var allowed_to_spawn = false
 @export var extra_distance = 5000
 
 func _ready():
 	playership = Game.PlayerShip
-	
 	
 	
 func _process(delta: float) -> void:
@@ -45,3 +46,10 @@ func spawn_location_calculation():
 	direction.x = playership.global_position.x + extra_distance
 	direction.y = playership.global_position.y + extra_distance
 	spawn_location = Vector2(randf_range(-direction.x, direction.x), randf_range(-direction.y, direction.y))
+func set_allowed_to_spawn(value:String):
+	if value == "true":
+		allowed_to_spawn = true
+		print("Allowed is true")
+	else:
+		allowed_to_spawn = false
+		print("Allowed is false")
