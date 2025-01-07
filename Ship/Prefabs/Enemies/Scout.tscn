@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="9_s3k7d"]
 [ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_ci1r6"]
 [ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="11_wnhb2"]
-[ext_resource type="Script" path="res://Ship/Prefabs/Enemies/drop_component.gd" id="16_rtnkb"]
+[ext_resource type="Script" path="res://Components/drop_component.gd" id="16_rtnkb"]
 [ext_resource type="Resource" uid="uid://727kaje8ni0f" path="res://Resources/Cargo/Diamond.tres" id="17_glj8x"]
 
 [node name="Scout" instance=ExtResource("1_2os47")]
@@ -69,4 +69,4 @@ script = ExtResource("10_ci1r6")
 script = ExtResource("16_rtnkb")
 cargo = ExtResource("17_glj8x")
 
-[connection signal="OnDestroyed" from="." to="drop_component" method="_on_parent_destroyed"]
+[connection signal="OnDestroyed" from="." to="drop_component" method="drop"]
