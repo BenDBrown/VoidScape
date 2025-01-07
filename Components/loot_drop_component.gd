@@ -1,12 +1,8 @@
 extends Node2D
 
-class_name LootDropComponent
-@export var loot_table: LootTable
-@export var guaranteed_drops: Array[Loot]
+class_name ItemDropComponent
+@export var drops: Array[Cargo]
 
 func drop_loot():
-	for loot in guaranteed_drops:
-
+	for loot in drops:
 		loot.call_deferred("spawn", get_tree().current_scene, global_position)
-	if loot_table:
-		loot_table.spawn()

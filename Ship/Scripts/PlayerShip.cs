@@ -26,12 +26,12 @@ public partial class PlayerShip : Ship, IShip
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
 	private FuelManager fuelManager = new();
-	
+
 	private bool weaponMenuIsOpen = false;
 
 	public void StartShielding()
 	{
-		if(stalling) return;
+		if (stalling) return;
 		shield.StartShielding();
 	}
 	public void StopShielding() => shield.StopShielding();
@@ -45,7 +45,7 @@ public partial class PlayerShip : Ship, IShip
 		powerManager.StallEnded += EndStall;
 		powerManager.StallEnded += () => EmitSignal(SignalName.StallEnded);
 		powerManager.PowerChanged += (powerToMaxPowerPercentage) => EmitSignal(SignalName.PowerChanged, powerToMaxPowerPercentage);
-    
+
 		fuelManager.FuelChanged += (fuelToMaxFuelPercentage) => EmitSignal(SignalName.FuelChanged, fuelToMaxFuelPercentage);
 		fuelManager.NoFuel += ShipDestroyed;
 
@@ -69,10 +69,10 @@ public partial class PlayerShip : Ship, IShip
 
 		List<Vector2> globalVertices = new();
 
-		foreach(Node node in GetChildren())
+		foreach (Node node in GetChildren())
 		{
 			if (node is not ShipComponent shipComponent) { continue; }
-			switch(node)
+			switch (node)
 			{
 				case Gun gun:
 					gunManager.AddGun(gun);
@@ -119,11 +119,11 @@ public partial class PlayerShip : Ship, IShip
 
 		return hasFuelTank && hasGenerator && hasThruster;
 	}
-	
- 	protected override void ShipDestroyed()
-    {
-        base.ShipDestroyed();
-		
+
+	protected override void ShipDestroyed()
+	{
+		base.ShipDestroyed();
+
 		GC.Collect();
 	}
 
@@ -153,28 +153,32 @@ public partial class PlayerShip : Ship, IShip
 		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.GetPowerDraw()) * delta;
 	}
 
-	public void PerformBlink( ){
-		if(stalling) return;
+	public void PerformBlink()
+	{
+		if (stalling) return;
 		blinking.Async_PerformBlink();
 	}
-	public void ToggleWeaponMenu(bool isOpen){
+	public void ToggleWeaponMenu(bool isOpen)
+	{
 		weaponMenuIsOpen = isOpen;
 		EmitSignal(SignalName.WeaponMenuToggled, isOpen);
 	}
 
-	public void CycleGunGroup(int cycleNum){
-		if(!weaponMenuIsOpen) { return;}
+	public void CycleGunGroup(int cycleNum)
+	{
+		if (!weaponMenuIsOpen) { return; }
 
 		gunManager.CycleGunGroup(cycleNum);
 		EmitSignal(SignalName.GunCycleChanged, cycleNum);
 	}
 
-		/// <summary>
+	/// <summary>
 	/// Get a list of the types of guns that are available on this ship.
 	/// This is used to create a correct overview for the weapon menu UI.
 	/// </summary>
 	/// <returns>A list of the gun types</returns>
-	public List<GunType> GetAvailableGunTypes(){
+	public List<GunType> GetAvailableGunTypes()
+	{
 		return gunManager.GetGunGroupTypes();
 	}
 
@@ -183,7 +187,8 @@ public partial class PlayerShip : Ship, IShip
 	/// </summary>
 	/// <param name="type">The gun type where you want the icon for.</param>
 	/// <returns>Texture of the gun type icon</returns>
-	public Texture2D GetGunTypeIcon(GunType type){
+	public Texture2D GetGunTypeIcon(GunType type)
+	{
 		return gunManager.GetGunTypeIcon(type);
 	}
 
@@ -191,8 +196,13 @@ public partial class PlayerShip : Ship, IShip
 	/// This is used by the weapon menu ui to know which weapon is selected in the list of available weapons
 	/// </summary>
 	/// <returns> the index of the gungroup that is selected</returns>
-	public int GetActiveWeaponIndex(){
+	public int GetActiveWeaponIndex()
+	{
 		return gunManager.GetSelectedWeaponIndex();
 	}
 
+	public void CollectCargo(Cargo cargo)
+	{
+		cargoManager.AddCargo(cargo);
+	}
 }
