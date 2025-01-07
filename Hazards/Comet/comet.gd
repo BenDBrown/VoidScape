@@ -89,3 +89,7 @@ func random_forcetype():
 	else:
 		forceType = "Random Direction"
 	randomize_force()
+
+
+func _on_body_entered(body: Node) -> void:
+	create_death_timer(0.2)
