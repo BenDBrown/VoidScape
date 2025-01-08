@@ -23,8 +23,9 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	direction = playership.global_position
-	check_distance_to_target_vector2(direction)
-	velocity_timer(direction)
+	if forceType == "Player":
+		check_distance_to_target_vector2(direction)
+		velocity_timer(direction)
 
 func randomize_force():
 	match forceType:
