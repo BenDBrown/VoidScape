@@ -35,7 +35,6 @@ func randomize_force():
 		"Player":
 			direction = playership.global_position
 			linear_velocity = ((direction - global_transform.origin)).normalized() * speed
-			#apply_force(direction - global_transform.origin)
 			print("Player_target")
 		"Same Direction":
 			apply_impulse(direction)
@@ -84,10 +83,8 @@ func velocity_timer(target:Vector2):
 	vel_timer.start(5)
 
 func update_linear_velocity(target:Vector2):
-	#if fmod(transform.origin.distance_to(target),  min_distance_linear_update) == 0:
 	if !last_update:
 		linear_velocity = ((target - global_transform.origin)).normalized() * speed
-		#apply_force(direction - global_transform.origin)
 
 
 

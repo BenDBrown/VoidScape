@@ -44,11 +44,11 @@ func  spawn_timer_reset():
 	spawn_timer.start(random_spawn_time())
 
 func spawn_location_calculation():
-	pass
 	var direction:Vector2
 	direction.x = playership.global_position.x + extra_distance
 	direction.y = playership.global_position.y + extra_distance
 	spawn_location = Vector2(randf_range(-direction.x, direction.x), randf_range(-direction.y, direction.y))
+
 func set_allowed_to_spawn(value:String):
 	if value == "true":
 		allowed_to_spawn = true
