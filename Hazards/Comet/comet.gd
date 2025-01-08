@@ -40,11 +40,19 @@ func randomize_force():
 		"Same Direction":
 			apply_impulse(direction)
 			create_death_timer(1)
-		
 
+func random_forcetype():
+	var rng = RandomNumberGenerator.new()
+	var rng_number = rng.randf_range(0,10)
+	
+	if rng_number >= 5:
+		forceType = "Player"
+	else:
+		forceType = "Random Direction"
+	randomize_force()
 func _on_health_component_died() -> void:
 	create_death_timer(0.2)
-	
+
 func create_death_timer(time):
 	if death_timer:
 		return
@@ -52,7 +60,7 @@ func create_death_timer(time):
 	death_timer.timeout.connect(queue_free)
 	add_child(death_timer)
 	death_timer.start(time)
-	
+
 func check_distance_to_target_vector2(target:Vector2):
 	if transform.origin.distance_to(target) < min_distance:
 		if !last_update:
@@ -64,7 +72,7 @@ func check_distance_to_target_vector2(target:Vector2):
 			else:
 				last_target_location = target
 	last_target_location = target
-	
+
 func velocity_timer(target:Vector2):
 	if vel_timer:
 		if vel_timer.get_time_left() == 0:
@@ -81,15 +89,6 @@ func update_linear_velocity(target:Vector2):
 		linear_velocity = ((target - global_transform.origin)).normalized() * speed
 		#apply_force(direction - global_transform.origin)
 
-func random_forcetype():
-	var rng = RandomNumberGenerator.new()
-	var rng_number = rng.randf_range(0,10)
-	
-	if rng_number >= 5:
-		forceType = "Player"
-	else:
-		forceType = "Random Direction"
-	randomize_force()
 
 
 func _on_body_entered(body: Node) -> void:
