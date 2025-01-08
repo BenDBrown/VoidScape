@@ -9,6 +9,9 @@ var comet_location
 var spawn_location
 var spawn_timer
 
+@export var spawn_time_min = 60
+@export var spawn_time_max = 180
+
 @export var allowed_to_spawn = false
 @export var extra_distance = 5000
 
@@ -56,5 +59,5 @@ func set_allowed_to_spawn(value:String):
 
 func random_spawn_time() -> float :
 	var rng = RandomNumberGenerator.new()
-	var spawn_time = rng.randf_range(60,180)
+	var spawn_time = rng.randf_range(spawn_time_min,spawn_time_max)
 	return spawn_time
