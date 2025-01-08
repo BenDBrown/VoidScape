@@ -23,8 +23,9 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	direction = playership.global_position
-	check_distance_to_target_vector2(direction)
-	velocity_timer(direction)
+	if forceType == "Player":
+		check_distance_to_target_vector2(direction)
+		velocity_timer(direction)
 
 func randomize_force():
 	match forceType:
@@ -34,7 +35,6 @@ func randomize_force():
 		"Player":
 			direction = playership.global_position
 			linear_velocity = ((direction - global_transform.origin)).normalized() * speed
-			#apply_force(direction - global_transform.origin)
 			print("Player_target")
 		"Same Direction":
 			apply_impulse(direction)
