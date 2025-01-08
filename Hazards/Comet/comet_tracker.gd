@@ -33,12 +33,12 @@ func spawn_comet():
 func  spawn_timer_reset():
 	if spawn_timer :
 		if spawn_timer.get_time_left() == 0:
-			spawn_timer.start(20)
+			spawn_timer.start(random_spawn_time())
 		return
 	spawn_timer = Timer.new()
 	spawn_timer.timeout.connect(spawn_comet)
 	add_child(spawn_timer)
-	spawn_timer.start(2)
+	spawn_timer.start(random_spawn_time())
 
 func spawn_location_calculation():
 	pass
@@ -53,3 +53,8 @@ func set_allowed_to_spawn(value:String):
 	else:
 		allowed_to_spawn = false
 		print("Allowed is false")
+
+func random_spawn_time() -> float :
+	var rng = RandomNumberGenerator.new()
+	var spawn_time = rng.randf_range(60,180)
+	return spawn_time
