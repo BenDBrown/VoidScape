@@ -104,6 +104,7 @@ public partial class Ship : CharacterBody2D, IShip
 	public void StartTurningCounterClockwise() { if (!stalling) rotationManager.StartTurningCounterClockwise(); }
 	public void StopTurning() => rotationManager.StopTurning();
 
+	public void AddExternalImpulse(Vector2 impulse) => externalForceManager.AddExternalImpulse(impulse);
 
 	public virtual bool TryBuildShip()
 	{

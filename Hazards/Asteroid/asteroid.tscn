@@ -30,7 +30,7 @@ radius = 16.0
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 32
 collision_mask = 59
-mass = 100.0
+mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_64guh")
 inertia = 1.0
 max_contacts_reported = 10

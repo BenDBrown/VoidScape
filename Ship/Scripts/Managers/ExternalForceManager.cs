@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Data.Common;
+using System.Reflection.Metadata;
 using System.Text;
 
 public partial class ExternalForceManager
@@ -26,6 +28,8 @@ public partial class ExternalForceManager
 	{
 		if (col.GetCollider() is RigidBody2D rb) HandleRigidBodyCollision(col, rb, deltaTime, velocity);
 		else if (col.GetCollider() is Ship ship) HandleKinematicBodyCollision(col, ship);
+		else if (col.GetCollider() is StaticBody2D) HandleStaticBodyCollision(col);
+
 	}
 
 	//Handle Collision (RigidBody)
@@ -33,7 +37,7 @@ public partial class ExternalForceManager
 	{
 		Vector2 impactForceFromCollider = collision.GetNormal() * (rigidBody.LinearVelocity.Length() * rigidBody.Mass) / weight;
 		Vector2 impactForceToCollider = -collision.GetNormal() * (velocity.Length() * weight);
-		rigidBody.ApplyCentralForce(impactForceToCollider * (float)deltaTime);
+		rigidBody.ApplyCentralImpulse(impactForceToCollider * (float)deltaTime);
 		Force += impactForceFromCollider;
 	}
 
@@ -50,6 +54,9 @@ public partial class ExternalForceManager
 		Vector2 impactForceFromCollider = collision.GetNormal() / weight;
 		Force += impactForceFromCollider;
 	}
+
+	public void AddExternalImpulse(Vector2 impulse) => Force += impulse;
+	
 
 	private void DecayMomentum()
 	{
