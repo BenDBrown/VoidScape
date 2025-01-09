@@ -42,36 +42,44 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Worm" type="AnimatableBody2D" node_paths=PackedStringArray("connectedSegment")]
+[node name="Worm" type="AnimatableBody2D" node_paths=PackedStringArray("headSegment")]
+sync_to_physics = false
+script = ExtResource("1_nt2kc")
+headSegment = NodePath("Head")
+speed = 20.0
+
+[node name="Head" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("connectedSegment")]
 collision_layer = 17
 collision_mask = 0
 sync_to_physics = false
-script = ExtResource("1_nt2kc")
-speed = 50.0
-connectedSegment = NodePath("Head/Core")
+script = ExtResource("3_q8xgf")
+connectedSegment = NodePath("Core")
 
-[node name="Head" type="CollisionPolygon2D" parent="."]
+[node name="Head" type="CollisionPolygon2D" parent="Head"]
 rotation = 1.5708
 polygon = PackedVector2Array(-11, 2, -10, 2, -8, 4, -2, 7, -2, 8, 0, 10, 3, 10, 5, 10, 7, 11, 8, 12, 10, 13, 16, 13, 16, 12, 12, 10, 9, 7, 14, 7, 14, 6, 12, 4, 13, 3, 13, -3, 12, -4, 14, -6, 14, -7, 11, -7, 9, -7, 12, -10, 16, -12, 16, -13, 10, -13, 8, -12, 7, -11, 5, -10, 0, -10, -2, -8, -2, -7, -8, -4, -10, -2, -11, -2)
 
 [node name="HeadSprite" type="Sprite2D" parent="Head"]
 texture_filter = 1
+rotation = 1.5708
 texture = ExtResource("1_si6aq")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
 [node name="Core" type="AnimatableBody2D" parent="Head" node_paths=PackedStringArray("connectedSegment")]
-position = Vector2(13, 0)
+position = Vector2(-4.70599e-05, 13)
 sync_to_physics = false
 script = ExtResource("3_q8xgf")
 connectedSegment = NodePath("BodySegment00")
 
 [node name="CoreCollider" type="CollisionPolygon2D" parent="Head/Core"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
 
 [node name="CoreBodySegmentSprite" type="Sprite2D" parent="Head/Core"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 texture = ExtResource("1_si6aq")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
@@ -82,64 +90,72 @@ sprite_frames = SubResource("SpriteFrames_nxa3r")
 frame_progress = 0.608312
 
 [node name="BodySegment00" type="AnimatableBody2D" parent="Head/Core" node_paths=PackedStringArray("connectedSegment")]
-position = Vector2(32, 0)
+position = Vector2(0, 32)
 sync_to_physics = false
 script = ExtResource("3_q8xgf")
 connectedSegment = NodePath("BodySegment1")
 
 [node name="Collider" type="CollisionPolygon2D" parent="Head/Core/BodySegment00"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
 
 [node name="SegmentSprite" type="Sprite2D" parent="Head/Core/BodySegment00"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 texture = ExtResource("1_si6aq")
 region_enabled = true
 region_rect = Rect2(96, 0, 32, 32)
 
 [node name="BodySegment1" type="AnimatableBody2D" parent="Head/Core/BodySegment00" node_paths=PackedStringArray("connectedSegment")]
-position = Vector2(32, 0)
+position = Vector2(0, 32)
 sync_to_physics = false
 script = ExtResource("3_q8xgf")
 connectedSegment = NodePath("BodySegment2")
 
 [node name="Collider" type="CollisionPolygon2D" parent="Head/Core/BodySegment00/BodySegment1"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
 
 [node name="SegmentSprite" type="Sprite2D" parent="Head/Core/BodySegment00/BodySegment1"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 texture = ExtResource("1_si6aq")
 region_enabled = true
 region_rect = Rect2(96, 0, 32, 32)
 
 [node name="BodySegment2" type="AnimatableBody2D" parent="Head/Core/BodySegment00/BodySegment1" node_paths=PackedStringArray("connectedSegment")]
-position = Vector2(32, 0)
+position = Vector2(0, 32)
 sync_to_physics = false
 script = ExtResource("3_q8xgf")
 connectedSegment = NodePath("Tail")
 
 [node name="Collider" type="CollisionPolygon2D" parent="Head/Core/BodySegment00/BodySegment1/BodySegment2"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
 
 [node name="SegmentSprite" type="Sprite2D" parent="Head/Core/BodySegment00/BodySegment1/BodySegment2"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 texture = ExtResource("1_si6aq")
 region_enabled = true
 region_rect = Rect2(96, 0, 32, 32)
 
 [node name="Tail" type="AnimatableBody2D" parent="Head/Core/BodySegment00/BodySegment1/BodySegment2"]
-position = Vector2(32, 0)
+position = Vector2(0, 32)
 sync_to_physics = false
 script = ExtResource("3_q8xgf")
 
 [node name="Collider" type="CollisionPolygon2D" parent="Head/Core/BodySegment00/BodySegment1/BodySegment2/Tail"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 polygon = PackedVector2Array(-12, 8, -15, 5, -15, 4, -17, 2, -17, -2, -15, -4, -15, -5, -12, -8, -7, -8, -7, -6, -5, -6, -3, -4, -2, -5, 1, -6, 5, -7, 11, -9, 15, -9, 15, -8, 13, -7, 11, -5, 5, -2, 5, 2, 11, 5, 13, 7, 15, 8, 15, 9, 11, 9, 5, 7, 1, 6, -2, 5, -3, 4, -5, 6, -7, 6, -7, 8)
 
 [node name="SegmentSprite" type="Sprite2D" parent="Head/Core/BodySegment00/BodySegment1/BodySegment2/Tail"]
-position = Vector2(16, 0)
+position = Vector2(0, 16)
+rotation = 1.5708
 texture = ExtResource("1_si6aq")
 region_enabled = true
 region_rect = Rect2(128, 0, 32, 32)

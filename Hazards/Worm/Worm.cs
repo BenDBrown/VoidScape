@@ -2,8 +2,11 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class Worm : WormSegment
+public partial class Worm : AnimatableBody2D
 {
+    [Export]
+    private WormSegment headSegment = null;
+
     [Export]
     private double speed = 100;
 
@@ -11,35 +14,47 @@ public partial class Worm : WormSegment
     private float targetLeeway = 5;
 
     [Export]
-    private float maxAngleFromTarget = 0.7f;
+    private float maxAngleFromTarget = 0.09f;
+
+    [Export]
+    private float radiansTillBendBack = 0.7f;
+
+    [Export]
+    private float radiansToBendPerSecond = 1;
+
+    [Export]
+    private int segmentsTillBendBack = 2;
 
     private Vector2 targetLocation = Vector2.Zero;
-
-    private bool flippedRotation = false; // true means negative rotation direction, false means positive
 
     public void MoveTo(Vector2 globalTarget) => targetLocation = globalTarget;
     public override void _PhysicsProcess(double delta)
     {
         if(GlobalPosition.DistanceTo(targetLocation) < targetLeeway) return;
-        MoveAndCollide(Vector2.Up.Rotated(GlobalRotation) * (float)(speed * delta));
-        Vector2 direction = (targetLocation - GlobalPosition).Rotated(-GlobalRotation); // direction is a global direction, should be local FIX TMRW
-        direction = direction.Normalized();
-        float angleToTarget = Vector2.Up.AngleTo(direction);
-        float inverseAngleToTarget = ((2 * (float)Math.PI) - angleToTarget);
+        Vector2 moveVector = Vector2.Up.Rotated(GlobalRotation) * (float)(speed * delta);
+        MoveAndCollide(moveVector);
+        Vector2 lineToTarget = targetLocation - GlobalPosition; // direction is a global direction, should be local FIX TMRW
+        lineToTarget = lineToTarget.Normalized();
+        float angleToTarget = moveVector.Normalized().AngleTo(lineToTarget);
 
-        if(angleToTarget >= maxAngleFromTarget && inverseAngleToTarget >= maxAngleFromTarget) // this is for when target is outside of max target angle
+        if(Math.Abs(angleToTarget) > maxAngleFromTarget)
         {
-            if(angleToTarget > inverseAngleToTarget) flippedRotation = true;
-            else flippedRotation = false;
+            int flipValue;
+            if(angleToTarget == 0) flipValue = 0;
+            else if (angleToTarget > 0) flipValue = 1;
+            else flipValue = -1;
+            Rotation += ((float)delta * radiansToBendPerSecond) * flipValue;
         }
-        RotateSegment(delta, 0, flippedRotation);
+
+        headSegment.RotateSegment(delta, 0, 0, headSegment.FlippedRotation);
     }
 
     public override void _Ready()
     {
         targetLocation = GlobalPosition;
-        connectedSegment.SetSegmentsToBendDirectionSwap(segmentsToBendDirectionSwap);
-        connectedSegment.SetRadiansToBendPerSecond(radiansToBendPerSecond);
+        headSegment.SetRadiansTillBendBack(radiansTillBendBack);
+        headSegment.SetRadiansToBendPerSecond(radiansToBendPerSecond);
+        headSegment.SetSegmentsTillBendBack(segmentsTillBendBack);
     }
 
 }
