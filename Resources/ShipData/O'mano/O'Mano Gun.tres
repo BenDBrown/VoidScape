@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://b70fhd1e4anfr"]
+[gd_resource type="Resource" script_class="GunData" load_steps=8 format=3 uid="uid://b70fhd1e4anfr"]
 
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_6fvgo"]
 [ext_resource type="Texture2D" uid="uid://db8xd52ef804b" path="res://Assets/Ship/Atlas/O'Mano Gun - Broken.atlastex" id="2_1jfyt"]
 [ext_resource type="Texture2D" uid="uid://b7enpnnkoxedq" path="res://Assets/Ship/Atlas/O'Mano Gun.atlastex" id="3_676js"]
+[ext_resource type="Texture2D" uid="uid://ca0uukjkjkino" path="res://Assets/UI/Weapon Cycling/gun_icon_placeholder.png" id="3_j30fn"]
+[ext_resource type="AudioStream" uid="uid://08v4qw5dtrk6" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNAuto_Assault Rifle A Fire_01.wav" id="4_iejeu"]
 [ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="4_jbf15"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="5_yp8qf"]
 
@@ -10,7 +12,12 @@
 script = ExtResource("5_yp8qf")
 BulletsPerSecond = 10.0
 Attack = 100
+Powerdraw = 10
 type = 0
+GunTypeIcon = ExtResource("3_j30fn")
+ShootSFX = ExtResource("4_iejeu")
+ShootingAudioStartTime = 0.0
+ShootingAudioEndTime = -1.0
 BulletSpeed = 150
 BulletSpawnPoint = Vector2(8, -32)
 BulletPrefab = ExtResource("1_6fvgo")

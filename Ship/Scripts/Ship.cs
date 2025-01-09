@@ -23,7 +23,15 @@ public partial class Ship : CharacterBody2D, IShip
 	[Export]
 	private bool buildOnStart = false;
 
-	public int Weight => thrustManager.weight;
+	public int Weight
+	{
+		get { return thrustManager.weight; }
+		set
+		{
+			thrustManager.SetWeight(value);
+			externalForceManager.SetWeight(value);
+		}
+	}
 
 	protected ThrustManager thrustManager = new();
 	protected CenterCalculator centerCalculator = new();
@@ -31,9 +39,9 @@ public partial class Ship : CharacterBody2D, IShip
 	protected GunManager gunManager = new();
 	protected ExternalForceManager externalForceManager = new();
 	protected List<ShipComponent> shipComponents = new();
+	public ShipComponent[] shipParts => shipComponents.ToArray();
 	protected float rotationSpeed = 3;
 	protected bool stalling = false;
-
 
 	public override void _Ready()
 	{
@@ -42,6 +50,7 @@ public partial class Ship : CharacterBody2D, IShip
 		{
 			TryBuildShip();
 		}
+
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -71,8 +80,7 @@ public partial class Ship : CharacterBody2D, IShip
 
 	public void ComponentDestroyed(ShipComponent shipComponent)
 	{
-		thrustManager.SetWeight(thrustManager.weight - 1);
-		externalForceManager.SetWeight(externalForceManager.weight - 1);
+		Weight = thrustManager.weight - 1;
 		GD.Print(shipComponent.Name + " destroyed");
 		if (IsVitalComponent(shipComponent))
 		{
@@ -105,6 +113,8 @@ public partial class Ship : CharacterBody2D, IShip
 	public void StopTurning() => rotationManager.StopTurning();
 
 	public void AddExternalImpulse(Vector2 impulse) => externalForceManager.AddExternalImpulse(impulse);
+
+	public void KillMomentum() => thrustManager.KillMomentum();
 
 	public virtual bool TryBuildShip()
 	{
@@ -145,9 +155,7 @@ public partial class Ship : CharacterBody2D, IShip
 				shipComponent.collider.Owner = this;
 			}
 		}
-		thrustManager.SetWeight(shipComponents.Count);
-		externalForceManager.SetWeight(shipComponents.Count);
-
+		Weight = shipComponents.Count;
 
 		return hasThruster;
 	}
