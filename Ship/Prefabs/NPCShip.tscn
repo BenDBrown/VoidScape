@@ -23,7 +23,7 @@ initial_state = NodePath("Idle")
 script = ExtResource("4_jem3i")
 detect_radius = 300.0
 
-[node name="Free On Death" type="Node" parent="."]
+[node name="Node" type="Node" parent="."]
 script = ExtResource("5_vmfbk")
 
-[connection signal="OnDestroyed" from="." to="Free On Death" method="OnShipDestroyed"]
+[connection signal="OnDestroyed" from="." to="Node" method="OnShipDestroyed"]

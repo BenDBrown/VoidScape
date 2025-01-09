@@ -1,11 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bckeoopmbomi8"]
+[gd_scene load_steps=8 format=3 uid="uid://bckeoopmbomi8"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Bullet.cs" id="1_ildc5"]
-[ext_resource type="PackedScene" uid="uid://bpi5xtyl1vg1v" path="res://Ship/Prefabs/BulletDeathAnimation.tscn" id="2_bqtpb"]
 [ext_resource type="Texture2D" uid="uid://bayrj47b7me0d" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_por51"]
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="3_clinb"]
-[ext_resource type="AudioStream" uid="uid://dwcx0lo8cd0hr" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTImpt_Hit Marker_07.wav" id="6_jhqyn"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="7_quqnm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ifwps"]
 atlas = ExtResource("2_por51")
@@ -28,14 +25,10 @@ radius = 3.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_a8mnx"]
 radius = 4.0
 
-[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent", "bulletSprite", "bulletHitAnimation", "onHitAudio")]
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent")]
 script = ExtResource("1_ildc5")
 timer = NodePath("Timer")
 attackboxComponent = NodePath("AttackboxComponent")
-bulletSprite = NodePath("Sprite")
-bulletHitAnimation = NodePath("")
-onHitAudio = NodePath("HitAudio")
-bulletHitAnimationPrefab = ExtResource("2_bqtpb")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -52,10 +45,6 @@ shape = SubResource("CircleShape2D_a8mnx")
 debug_color = Color(0.902804, 0.278724, 0.346718, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_jhqyn")
-script = ExtResource("7_quqnm")
 
 [connection signal="area_entered" from="AttackboxComponent" to="." method="OnAttackboxAreaEntered"]
 [connection signal="body_entered" from="AttackboxComponent" to="." method="OnAttackBoxBodyEntered"]

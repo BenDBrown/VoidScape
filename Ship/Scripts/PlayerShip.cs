@@ -11,23 +11,13 @@ public partial class PlayerShip : Ship, IShip
 	[Signal]
 	public delegate void FuelChangedEventHandler(float fuelToMaxFuelPercentage);
 
-	[Signal]
-	public delegate void GunCycleChangedEventHandler(int cycleNum);
-
-	[Signal]
-	public delegate void WeaponMenuToggledEventHandler(bool isOpen);
-
 	[Export]
 	private Shield shield;
 
 	[Export]
-	private Blinking blinking;
-	[Export]
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
 	private FuelManager fuelManager = new();
-
-	private bool weaponMenuIsOpen = false;
 
 	public void StartShielding()
 	{
@@ -50,14 +40,12 @@ public partial class PlayerShip : Ship, IShip
 		fuelManager.NoFuel += ShipDestroyed;
 
 		shield.ShieldHit += UsePowerChunk;
-		blinking.Blink += UsePowerChunk;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta); // done in physics process after base so that power draw values on ThrustManager are updated first in the same thread
 		powerManager.TryUsePower(GetPowerDraw((float)delta), out float fuelUsed);
-		// ToDo add fuel manager logic with fuel used
 		fuelManager.UseFuel(fuelUsed);
 	}
 
@@ -116,6 +104,7 @@ public partial class PlayerShip : Ship, IShip
 			}
 		}
 		thrustManager.SetWeight(shipComponents.Count);
+		externalForceManager.SetWeight(thrustManager.weight);
 
 		return hasFuelTank && hasGenerator && hasThruster;
 	}
@@ -150,59 +139,7 @@ public partial class PlayerShip : Ship, IShip
 
 	private float GetPowerDraw(float delta) // add per frame power draw here
 	{
-		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.GetPowerDraw()) * delta;
+		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw) * delta;
 	}
 
-	public void PerformBlink()
-	{
-		if (stalling) return;
-		blinking.Async_PerformBlink();
-	}
-	public void ToggleWeaponMenu(bool isOpen)
-	{
-		weaponMenuIsOpen = isOpen;
-		EmitSignal(SignalName.WeaponMenuToggled, isOpen);
-	}
-
-	public void CycleGunGroup(int cycleNum)
-	{
-		if (!weaponMenuIsOpen) { return; }
-
-		gunManager.CycleGunGroup(cycleNum);
-		EmitSignal(SignalName.GunCycleChanged, cycleNum);
-	}
-
-	/// <summary>
-	/// Get a list of the types of guns that are available on this ship.
-	/// This is used to create a correct overview for the weapon menu UI.
-	/// </summary>
-	/// <returns>A list of the gun types</returns>
-	public List<GunType> GetAvailableGunTypes()
-	{
-		return gunManager.GetGunGroupTypes();
-	}
-
-	/// <summary>
-	/// Return the corresponding icon for the gun type. this is used in the weapon menu
-	/// </summary>
-	/// <param name="type">The gun type where you want the icon for.</param>
-	/// <returns>Texture of the gun type icon</returns>
-	public Texture2D GetGunTypeIcon(GunType type)
-	{
-		return gunManager.GetGunTypeIcon(type);
-	}
-
-	/// <summary>
-	/// This is used by the weapon menu ui to know which weapon is selected in the list of available weapons
-	/// </summary>
-	/// <returns> the index of the gungroup that is selected</returns>
-	public int GetActiveWeaponIndex()
-	{
-		return gunManager.GetSelectedWeaponIndex();
-	}
-
-	public void CollectCargo(Cargo cargo)
-	{
-		cargoManager.AddCargo(cargo);
-	}
 }

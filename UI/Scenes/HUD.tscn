@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://6kl08g15r5ty"]
+[gd_scene load_steps=5 format=3 uid="uid://bndnk2q65aq17"]
 
 [ext_resource type="PackedScene" uid="uid://ddunimkojubhv" path="res://UI/Scenes/PowerBar.tscn" id="1_unlij"]
 [ext_resource type="Script" path="res://UI/Scripts/FuelBar.cs" id="2_4xhg0"]
-[ext_resource type="PackedScene" uid="uid://ot5etuqeaw7o" path="res://UI/Scenes/weapon_menu.tscn" id="3_m2vvt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmkss"]
 bg_color = Color(0.2754, 0.51, 0.36533, 1)
@@ -62,5 +61,3 @@ offset_bottom = -33.0
 grow_vertical = 2
 text = "Fuel"
 metadata/_edit_use_anchors_ = true
-
-[node name="weapon_menu" parent="." instance=ExtResource("3_m2vvt")]

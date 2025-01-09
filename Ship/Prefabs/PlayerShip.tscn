@@ -1,17 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://lomqljp6sccu"]
+[gd_scene load_steps=6 format=3 uid="uid://btd37ya3r2mob"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerShip.cs" id="1_mwucv"]
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerController.cs" id="2_0hxg2"]
 [ext_resource type="Script" path="res://Ship/Scripts/Managers/PowerManager.cs" id="3_22ycc"]
-[ext_resource type="PackedScene" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
-[ext_resource type="PackedScene" path="res://Ship/Prefabs/Shield.tscn" id="5_u1m7p"]
-[ext_resource type="Script" path="res://Ship/Scripts/Blinking.cs" id="6_o4rs5"]
+[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
+[ext_resource type="PackedScene" uid="uid://bnn3lvinno35i" path="res://Ship/Prefabs/Shield.tscn" id="5_u1m7p"]
 
-[node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("shield", "blinking", "powerManager", "ExplosionAnim")]
+[node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("shield", "powerManager", "ExplosionAnim")]
 collision_mask = 55
 script = ExtResource("1_mwucv")
 shield = NodePath("Shield")
-blinking = NodePath("Blink")
 powerManager = NodePath("PowerManager")
 ExplosionAnim = NodePath("ExplosionAnim")
 
@@ -33,7 +31,3 @@ stallTimer = NodePath("Timer")
 
 [node name="Shield" parent="." instance=ExtResource("5_u1m7p")]
 position = Vector2(16, 0)
-
-[node name="Blink" type="Node2D" parent="." node_paths=PackedStringArray("playerShip")]
-script = ExtResource("6_o4rs5")
-playerShip = NodePath("..")

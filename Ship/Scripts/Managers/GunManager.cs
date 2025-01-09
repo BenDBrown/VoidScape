@@ -16,7 +16,8 @@ public partial class GunManager : IPowerable
 		bool gunAdded = false;
 		foreach (GunGroup gg in gunGroups)
 		{
-			if(gg.type == gun.type){
+			if (gg.type == gun.type)
+			{
 				gg.AddGun(gun);
 				gunAdded = true;
 				break;
@@ -35,10 +36,6 @@ public partial class GunManager : IPowerable
 		return 0;
 	}
 
-	public int GetSelectedWeaponIndex(){
-		return gunGroups.IndexOf(selectedGroup);
-	}
-
 	public void StartShooting() 
 	{
 		selectedGroup?.StartShooting();
@@ -51,46 +48,23 @@ public partial class GunManager : IPowerable
 		shooting = false;
 	}
 
-	public List<GunType> GetGunGroupTypes(){
-		List<GunType> gunTypes = new();
-		foreach(GunGroup gg in gunGroups){
-			gunTypes.Add(gg.type);
-		}
+	public void CycleGunGroupUp() => CycleGunGroup(1);
 
-		return gunTypes;
-	}
+	public void CycleGunGroupDown() => CycleGunGroup(-1);
 
-	public Texture2D GetGunTypeIcon(GunType type){
-
-			foreach(GunGroup gg in gunGroups){
-				if(gg.type == type){
-					return gg.gunTypeIcon;
-				}
-			}
-			return new();
-	}
-
-	/// <summary>
-	/// Cycles between the available weapons. 
-	/// </summary>
-	/// <param name="cycleNum">The direction of the cycle. A 1 means to go up in the list and -1 go down in the list.</param>
-	public void CycleGunGroup(int cycleNum)
+	private void CycleGunGroup(int cycleNum)
 	{
 		if(!gunGroups.Contains(selectedGroup)) {GD.PushError("had a gun group selected that was not stored in GunManager"); return;}
 		int currentIndex = gunGroups.IndexOf(selectedGroup);
-
-		int newIndex = currentIndex - cycleNum;
-		if(newIndex < 0){
-			newIndex = gunGroups.Count - 1; // Last index of gun groups
-
+		if(currentIndex + cycleNum >= gunGroups.Count) // logic to make selection loop at end of list
+		{
+			selectedGroup = gunGroups[0];
+			return;
 		}
-		else if(newIndex >= gunGroups.Count){ // Loop to beginning
-			newIndex = 0;
+		else if (currentIndex + cycleNum < 0)
+		{
+			selectedGroup = gunGroups[^1];
 		}
-		else{
-			selectedGroup = gunGroups[newIndex];
-		}
-
-		selectedGroup = gunGroups[newIndex];
+		selectedGroup = gunGroups[currentIndex + 1];
 	}
 }

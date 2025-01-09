@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="GunData" load_steps=8 format=3 uid="uid://bnpfn7k64mki7"]
+[gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://bnpfn7k64mki7"]
 
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_8ati2"]
 [ext_resource type="Texture2D" uid="uid://qj7uem23gsea" path="res://Assets/Ship/Atlas/Tali Gun - Broken.atlastex" id="2_vp7k4"]
 [ext_resource type="Texture2D" uid="uid://cgklyp4062jws" path="res://Assets/Ship/Atlas/Tali Gun.atlastex" id="3_ttevt"]
-[ext_resource type="Texture2D" uid="uid://op2u4qft1rwe" path="res://Assets/UI/Weapon Cycling/cannon_icon_placeholder.png" id="3_y2hh1"]
-[ext_resource type="AudioStream" uid="uid://euavkhg46p44" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/LASRGun_Plasma Rifle Fire_03.wav" id="4_mmhkt"]
 [ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="4_vsngb"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="5_rwrw7"]
 
@@ -12,12 +10,7 @@
 script = ExtResource("5_rwrw7")
 BulletsPerSecond = 10.0
 Attack = 100
-Powerdraw = 10
-type = 1
-GunTypeIcon = ExtResource("3_y2hh1")
-ShootSFX = ExtResource("4_mmhkt")
-ShootingAudioStartTime = 0.0
-ShootingAudioEndTime = -1.0
+type = 0
 BulletSpeed = 150
 BulletSpawnPoint = Vector2(8, -32)
 BulletPrefab = ExtResource("1_8ati2")

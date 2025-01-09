@@ -1,17 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgqy8786pscn"]
+[gd_scene load_steps=4 format=3 uid="uid://bgqy8786pscn"]
 
 [ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_2kdol"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Gun.cs" id="2_g548h"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_4keds"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="4_ovesg"]
 
-[node name="Gun" node_paths=PackedStringArray("timer", "attackComponent", "shootSFX", "bulletSpawnPoint") instance=ExtResource("1_2kdol")]
+[node name="Gun" node_paths=PackedStringArray("timer", "attackComponent", "bulletSpawnPoint") instance=ExtResource("1_2kdol")]
 script = ExtResource("2_g548h")
 timer = NodePath("Timer")
 attackComponent = NodePath("AttackComponent")
 type = 0
-gunTypeIcon = null
-shootSFX = NodePath("ShootingAudio")
 bulletSpawnPoint = NodePath("BulletSpawnPoint")
 powerdraw = 100
 
@@ -23,7 +20,3 @@ position = Vector2(8, -20)
 [node name="AttackComponent" type="Node" parent="." index="6"]
 script = ExtResource("4_4keds")
 attack = 10
-
-[node name="ShootingAudio" type="AudioStreamPlayer2D" parent="." index="9"]
-volume_db = -10.0
-script = ExtResource("4_ovesg")

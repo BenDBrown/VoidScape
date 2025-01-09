@@ -13,21 +13,6 @@ public partial class GunData : ShipComponentData
 	public int Powerdraw = 10;
 	[Export]
 	public GunType type;
-	[Export]
-	public Texture2D GunTypeIcon;
-
-	[ExportCategory("Shooting Audio Data")]
-	[Export]
-	public AudioStream ShootSFX;
-	[Export]
-	public float ShootingAudioStartTime = 0;
-
-	/// <summary>
-	/// 
-	/// A value of -1 is the same as: "until the end of the track"
-	/// </summary>
-	[Export]
-	public float ShootingAudioEndTime = -1;
 
 	[ExportCategory("Bullet Data")]
 

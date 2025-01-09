@@ -15,7 +15,6 @@ public class GunGroup : IPowerable
 	public event ToggleShootingEventHandler StoppedShooting;
 
 	public GunType type { get; private set; }
-	public Texture2D gunTypeIcon { get; private set;}
 
 	public List<Gun> guns = new();
 
@@ -24,7 +23,6 @@ public class GunGroup : IPowerable
 	public GunGroup(Gun gun)
 	{
 		type = gun.type;
-		gunTypeIcon = gun.gunTypeIcon;
 		AddGun(gun);
 	}
 

@@ -1,13 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cum7a4fabqn8w"]
+[gd_scene load_steps=6 format=3 uid="uid://cum7a4fabqn8w"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Bullet.cs" id="1_nqjkm"]
 [ext_resource type="Texture2D" uid="uid://dquwdhpf56fjv" path="res://Assets/Bullets/Lasers.png" id="2_paqed"]
-[ext_resource type="PackedScene" uid="uid://bpi5xtyl1vg1v" path="res://Ship/Prefabs/BulletDeathAnimation.tscn" id="2_rgtak"]
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="3_ulkoc"]
-[ext_resource type="Texture2D" uid="uid://1xyhviyhxvw" path="res://Assets/Bullets/bullet explotion.png" id="4_ovyox"]
-[ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="5_elk2p"]
-[ext_resource type="AudioStream" uid="uid://dwcx0lo8cd0hr" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTImpt_Hit Marker_07.wav" id="7_cblig"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="8_puuca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8rxq"]
 size = Vector2(2, 6)
@@ -15,71 +10,10 @@ size = Vector2(2, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53snd"]
 size = Vector2(4, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t6o3h"]
-atlas = ExtResource("4_ovyox")
-region = Rect2(0, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fb1tb"]
-atlas = ExtResource("4_ovyox")
-region = Rect2(8, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_33icf"]
-atlas = ExtResource("4_ovyox")
-region = Rect2(16, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tgvbe"]
-atlas = ExtResource("4_ovyox")
-region = Rect2(24, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cj7i8"]
-atlas = ExtResource("4_ovyox")
-region = Rect2(32, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tmfdh"]
-atlas = ExtResource("4_ovyox")
-region = Rect2(40, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yt1a1"]
-atlas = ExtResource("4_ovyox")
-region = Rect2(48, 0, 8, 8)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_e57c8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t6o3h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fb1tb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_33icf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tgvbe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cj7i8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tmfdh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yt1a1")
-}],
-"loop": true,
-"name": &"BulletExplosion",
-"speed": 5.0
-}]
-
-[node name="Laser" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent", "bulletSprite", "bulletHitAnimation", "onHitAudio")]
+[node name="Laser" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent")]
 script = ExtResource("1_nqjkm")
 timer = NodePath("Timer")
 attackboxComponent = NodePath("AttackboxComponent")
-bulletSprite = NodePath("Sprite")
-bulletHitAnimation = NodePath("SingleRunAnimation")
-onHitAudio = NodePath("HitAudio")
-bulletHitAnimationPrefab = ExtResource("2_rgtak")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = -2
@@ -101,20 +35,6 @@ position = Vector2(0, 12)
 texture = ExtResource("2_paqed")
 region_enabled = true
 region_rect = Rect2(14, 0, 4, 32)
-
-[node name="SingleRunAnimation" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = 2
-scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_e57c8")
-animation = &"BulletExplosion"
-frame_progress = 0.9432
-script = ExtResource("5_elk2p")
-animationName = "BulletExplosion"
-
-[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_cblig")
-script = ExtResource("8_puuca")
 
 [connection signal="area_entered" from="AttackboxComponent" to="." method="OnAttackboxAreaEntered"]
 [connection signal="body_entered" from="AttackboxComponent" to="." method="OnAttackBoxBodyEntered"]

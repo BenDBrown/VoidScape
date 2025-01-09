@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c14so3ex7ec0k"]
 
-[ext_resource type="Script" path="res://Misc/Cargo/loot_drop.gd" id="1_6ewlw"]
+[ext_resource type="Script" path="res://Misc/Loot/loot_drop.gd" id="1_mlo7c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_swiyx"]
 radius = 5.0
 
 [node name="Loot" type="CharacterBody2D"]
 collision_layer = 0
-script = ExtResource("1_6ewlw")
+script = ExtResource("1_mlo7c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

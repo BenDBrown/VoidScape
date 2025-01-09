@@ -10,10 +10,6 @@ public partial class Gun : ShipComponent, IPowerable
 	[Export]
 	public GunType type { get; private set; }
 	[Export]
-	public Texture2D gunTypeIcon {get; private set;}
-	[Export]
-	private SingleRunAudio shootSFX;
-	[Export]
 	private Node2D bulletSpawnPoint;
 	[Export]
 	private int powerdraw;
@@ -52,9 +48,6 @@ public partial class Gun : ShipComponent, IPowerable
 		bullet.speed = bulletSpeed;
 		GetTree().CurrentScene.AddChild(bullet);
 		timer.Start(1 / bulletsPerSecond);
-
-		// Play Shooting Audio
-		shootSFX.PlayOnce();
 	}
 
 	public int GetPowerDraw() => powerdraw;
@@ -72,11 +65,6 @@ public partial class Gun : ShipComponent, IPowerable
 			if (IsMirrored) { bulletSpawnPoint.Position *= Vector2.Left + Vector2.Down; }
 			bulletPrefab = gunData.BulletPrefab;
 			type = gunData.type;
-			gunTypeIcon = gunData.GunTypeIcon;
-
-			// Shooting Audio Setup
-			shootSFX.Stream = gunData.ShootSFX;
-			shootSFX.fromPosition = gunData.ShootingAudioStartTime;
 		}
 	}
 }

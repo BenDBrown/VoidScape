@@ -20,11 +20,11 @@ func exit():
 	super.exit()
 	split_up.exit()
 	combat.exit()
-
+	
 	parent.StopTurning()
 	parent.StopThrustingForward()
 	transitioned.emit(self, "idle")
-
+	
 
 func physics_update(_delta):
 	if combat:
