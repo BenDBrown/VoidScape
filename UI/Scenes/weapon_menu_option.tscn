@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctgs01i0t8hqi"]
+
+[ext_resource type="Script" path="res://UI/Scripts/WeaponMenuOption.cs" id="1_iqmmj"]
+[ext_resource type="Texture2D" uid="uid://dmkp744yy44m5" path="res://Assets/UI/Weapon Cycling/active_weapon_UI.png" id="2_k4bst"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j81ll"]
+atlas = ExtResource("2_k4bst")
+region = Rect2(48, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13pvs"]
+atlas = ExtResource("2_k4bst")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yyq6"]
+atlas = ExtResource("2_k4bst")
+region = Rect2(96, 0, 32, 32)
+
+[node name="weapon_menu_option" type="Control" node_paths=PackedStringArray("weaponTypeIcon", "optionBorder")]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+script = ExtResource("1_iqmmj")
+weaponTypeIcon = NodePath("WeaponType")
+optionBorder = NodePath("Border")
+selected = SubResource("AtlasTexture_j81ll")
+unselected = SubResource("AtlasTexture_13pvs")
+unavailable = SubResource("AtlasTexture_8yyq6")
+
+[node name="WeaponType" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+expand_mode = 2
+
+[node name="Border" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,5 +1,6 @@
 public enum GunType
 {
 	Gun,
-	Cannon
+	Cannon,
+	Laser
 }
