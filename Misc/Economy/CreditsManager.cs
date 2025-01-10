@@ -12,7 +12,6 @@ public partial class CreditsManager : Node
     public bool TryDecreaseCredits(float decreaseAmount){
         if(HasEnoughMoney(decreaseAmount)){
             TotalCredits -= decreaseAmount;
-            GD.Print(TotalCredits);
             EmitSignal(SignalName.CreditsChanged, TotalCredits);
             return true;
         }
