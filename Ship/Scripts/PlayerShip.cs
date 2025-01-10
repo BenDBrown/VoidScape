@@ -16,6 +16,8 @@ public partial class PlayerShip : Ship, IShip
 
 	[Signal]
 	public delegate void WeaponMenuToggledEventHandler(bool isOpen);
+	[Signal]
+	public delegate void InteractableInteractedEventHandler();
 
 	[Export]
 	private Shield shield;
@@ -28,6 +30,7 @@ public partial class PlayerShip : Ship, IShip
 	private FuelManager fuelManager = new();
 
 	private bool weaponMenuIsOpen = false;
+	private bool isInteracting = false;
 
 	public void StartShielding()
 	{
@@ -151,6 +154,16 @@ public partial class PlayerShip : Ship, IShip
 	private float GetPowerDraw(float delta) // add per frame power draw here
 	{
 		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.GetPowerDraw()) * delta;
+	}
+
+	public void Interact()
+	{
+		if (isInteracting) { EmitSignal(SignalName.InteractableInteracted); }
+	}
+
+	public void CanInteract(bool CanInteract)
+	{
+		isInteracting = CanInteract;
 	}
 
 	public void PerformBlink()

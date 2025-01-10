@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbmldx6y2bu8l"]
+
+[ext_resource type="Script" path="res://Structures/Props/Interactables/interactable_ui.gd" id="1_u5mvj"]
+
+[node name="InteractableUi" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u5mvj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 258.0
+offset_right = 625.0
+offset_bottom = 281.0
+text = "Press Interaction key"

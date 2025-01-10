@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b17scoqxflc5w"]
+
+[ext_resource type="Script" path="res://Structures/Props/Interactables/interactable_node_reveal.gd" id="1_mku1h"]
+[ext_resource type="Texture2D" uid="uid://dg1lc46oit6bf" path="res://icon.svg" id="2_p6god"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jiwqb"]
+radius = 93.0054
+
+[node name="Interactable_node_reveal" type="Node2D"]
+script = ExtResource("1_mku1h")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_jiwqb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p6god")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
