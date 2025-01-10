@@ -122,7 +122,7 @@ public partial class PlayerShip : Ship, IShip
 				shipComponent.collider.Owner = this;
 			}
 		}
-		thrustManager.SetWeight(shipComponents.Count);
+		Weight = shipComponents.Count;
 
 		return hasFuelTank && hasGenerator && hasThruster;
 	}
