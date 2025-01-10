@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ddunimkojubhv" path="res://UI/Scenes/PowerBar.tscn" id="1_unlij"]
 [ext_resource type="Script" path="res://UI/Scripts/FuelBar.cs" id="2_4xhg0"]
 [ext_resource type="PackedScene" uid="uid://ot5etuqeaw7o" path="res://UI/Scenes/weapon_menu.tscn" id="3_m2vvt"]
-[ext_resource type="PackedScene" uid="uid://cbmldx6y2bu8l" path="res://Structures/Props/Interactables/Interactable_UI.tscn" id="4_owx0a"]
+[ext_resource type="Script" path="res://Misc/Economy/CreditsPouch.cs" id="4_cf0du"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmkss"]
 bg_color = Color(0.2754, 0.51, 0.36533, 1)
@@ -67,3 +67,24 @@ metadata/_edit_use_anchors_ = true
 [node name="weapon_menu" parent="." instance=ExtResource("3_m2vvt")]
 
 [node name="InteractableUi" parent="." instance=ExtResource("4_owx0a")]
+[node name="Credits" type="Label" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 63.0
+offset_top = 475.0
+offset_right = 118.0
+offset_bottom = -150.0
+grow_vertical = 2
+text = "Credits"
+
+[node name="CreditsAmount" type="Label" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 143.0
+offset_top = 478.0
+offset_right = 370.0
+offset_bottom = -147.0
+grow_vertical = 2
+text = "0
+"
+script = ExtResource("4_cf0du")
