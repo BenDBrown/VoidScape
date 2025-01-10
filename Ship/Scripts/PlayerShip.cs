@@ -17,6 +17,9 @@ public partial class PlayerShip : Ship, IShip
 	[Signal]
 	public delegate void WeaponMenuToggledEventHandler(bool isOpen);
 
+	[Signal]
+    public delegate void CreditsChangedEventHandler(float totalCredits);
+
 	[Export]
 	private Shield shield;
 
@@ -26,6 +29,8 @@ public partial class PlayerShip : Ship, IShip
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
 	private FuelManager fuelManager = new();
+
+	private CreditsManager creditsManager = new();
 
 	private bool weaponMenuIsOpen = false;
 
@@ -51,6 +56,8 @@ public partial class PlayerShip : Ship, IShip
 
 		shield.ShieldHit += UsePowerChunk;
 		blinking.Blink += UsePowerChunk;
+
+		creditsManager.CreditsChanged += (totalCredits) => EmitSignal(SignalName.CreditsChanged, totalCredits);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -204,5 +211,33 @@ public partial class PlayerShip : Ship, IShip
 	public void CollectCargo(Cargo cargo)
 	{
 		cargoManager.AddCargo(cargo);
+	}
+
+	//Credits Section
+	
+	/// <summary>
+	/// Add the credits currency to the player.
+	/// </summary>
+	/// <param name="amountToAdd">Amount of credits to add</param>
+	public void AddCredits(float amountToAdd){
+		creditsManager.AddCredits(amountToAdd);
+	}
+
+	/// <summary>
+	/// Removing credits from the players available credits.
+	/// </summary>
+	/// <param name="decreaseAmount">Amount to take away.</param>
+	/// <returns>Returns wether this action has succeeded or not. A false means that no money was taking away.</returns>
+	public bool TryTakeCredits(float decreaseAmount){
+		return creditsManager.TryDecreaseCredits(decreaseAmount);
+	}
+
+	/// <summary>
+	/// A check to see wether the player has enough credits to purchase something with the given price.
+	/// </summary>
+	/// <param name="priceToCheck"></param>
+	/// <returns></returns>
+	public bool HasEnoughCredits(float priceToCheck){
+		return creditsManager.HasEnoughMoney(priceToCheck);
 	}
 }
