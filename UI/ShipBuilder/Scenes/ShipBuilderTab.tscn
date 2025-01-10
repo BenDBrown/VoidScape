@@ -1,0 +1,131 @@
+[gd_scene load_steps=13 format=3 uid="uid://bek4qr7p7b0d7"]
+
+[ext_resource type="Script" path="res://UI/DragDropManager/GridGenerator.cs" id="1_u6ua3"]
+[ext_resource type="Script" path="res://UI/ShipBuilder/Scenes/ShipStats.cs" id="1_wkdu8"]
+[ext_resource type="Texture2D" uid="uid://vu3txlkmmmux" path="res://Assets/UI/grid.png" id="2_hx2s8"]
+[ext_resource type="Texture2D" uid="uid://cf34idvc4fjwl" path="res://Assets/UI/ValidTile.png" id="3_8jt0l"]
+[ext_resource type="Texture2D" uid="uid://cdxjsmhlnjd5f" path="res://Assets/UI/InvalidTile.png" id="4_p56wv"]
+[ext_resource type="Script" path="res://UI/ShipBuilder/Scenes/ShipComponents.cs" id="5_4r2wq"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo/Arzo Cockpit.tres" id="6_oqe7q"]
+[ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres" id="7_yk4xg"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="8_tr5fq"]
+[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Arzo/Arzo Gun.tres" id="9_5etr4"]
+[ext_resource type="Resource" uid="uid://bbcg4mu0p2j8l" path="res://Resources/ShipData/Arzo/Arzo Hull.tres" id="10_iyfwn"]
+[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="11_jup1b"]
+
+[node name="ShipBuilderTab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188235, 0.188235, 0.188235, 0.682353)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ShipStats" type="Panel" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_wkdu8")
+
+[node name="Grid" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_u6ua3")
+FreeCell = ExtResource("2_hx2s8")
+ValidCell = ExtResource("3_8jt0l")
+InvalidCell = ExtResource("4_p56wv")
+gridColumns = 15
+gridRows = 15
+
+[node name="ShipComponents" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ComponentList" type="ItemList" parent="MarginContainer/HBoxContainer/ShipComponents" node_paths=PackedStringArray("name", "health", "defense", "description", "infobox")]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+script = ExtResource("5_4r2wq")
+datas = Array[Object]([ExtResource("6_oqe7q"), ExtResource("7_yk4xg"), ExtResource("8_tr5fq"), ExtResource("9_5etr4"), ExtResource("10_iyfwn"), ExtResource("11_jup1b")])
+name = NodePath("../ComponentInformation/Stats/Name")
+health = NodePath("../ComponentInformation/Stats/Health")
+defense = NodePath("../ComponentInformation/Stats/Defense")
+description = NodePath("../ComponentInformation/Stats/Description")
+infobox = NodePath("../ComponentInformation")
+
+[node name="PickCoolour" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ShipComponents"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ShipComponents/PickCoolour"]
+layout_mode = 2
+text = "Pick Colour: "
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/ShipComponents/PickCoolour"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ComponentInformation" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ShipComponents"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ShipComponents/ComponentInformation"]
+layout_mode = 2
+text = "Ship Component Information"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ShipComponents/ComponentInformation"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer/ShipComponents/ComponentInformation/Stats"]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="MarginContainer/HBoxContainer/ShipComponents/ComponentInformation/Stats"]
+layout_mode = 2
+
+[node name="Defense" type="Label" parent="MarginContainer/HBoxContainer/ShipComponents/ComponentInformation/Stats"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/ShipComponents/ComponentInformation/Stats"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ShipComponents"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Build Ship"
+
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/ShipComponents/ComponentList" to="MarginContainer/HBoxContainer/ShipComponents/ComponentList" method="OnItemSelected"]
