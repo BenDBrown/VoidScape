@@ -2,10 +2,13 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class WormSegment : AnimatableBody2D
+public partial class WormSegment : PathFollow2D
 {
     [Export]
     private WormSegment connectedSegment = null;
+
+    [Export]
+    private Node2D anchorPoint;
 
     private float radiansTillBendBack = 0.7f;
 
@@ -23,17 +26,20 @@ public partial class WormSegment : AnimatableBody2D
         netRotation += Rotation;
 
         if(Math.Abs(netRotation) >= radiansTillBendBack) FlippedRotation = Rotation > 0;
-        else
-        {
-            if(segmentsBent < segmentsTillBendBack) segmentsBent++;
-            else
-            {
-                segmentsBent = 1;
-                FlippedRotation = !previousSegmentRotaionFlipped;
-            }
-        }
+        // else
+        // {
+        //     if(segmentsBent < segmentsTillBendBack) segmentsBent++;
+        //     else
+        //     {
+        //         segmentsBent = 1;
+        //         FlippedRotation = !previousSegmentRotaionFlipped;
+        //     }
+        // }
 
         if(connectedSegment == null) return;
+        Vector2 targetPosition = Position + anchorPoint.Position.Rotated(Rotation);
+
+        //connectedSegment.MoveAndCollide(targetPosition - connectedSegment.Position);
         connectedSegment.RotateSegment(delta, netRotation, segmentsBent, FlippedRotation);
     }
 
