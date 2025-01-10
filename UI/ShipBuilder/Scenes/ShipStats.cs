@@ -24,10 +24,14 @@ public partial class ShipStats : Panel
 
     public void UpdateStats(List<Piece> pieces)
     {
+        weight = pieces.Count;
+
         foreach (Piece p in pieces)
         {
-            health = p.ComponentData.MaxHealth;
-
+            health += p.ComponentData.MaxHealth;
+            parts.Add(p);
+            if (p.ComponentData is GeneratorData generator) power += generator.maxPowerGenerated;
+            else if (p.ComponentData is FuelTankData fuelTank) fuel += fuelTank.fuelCapacity;
         }
 
     }
