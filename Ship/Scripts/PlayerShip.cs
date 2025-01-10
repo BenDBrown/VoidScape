@@ -213,16 +213,30 @@ public partial class PlayerShip : Ship, IShip
 		cargoManager.AddCargo(cargo);
 	}
 
-	/// Credits Section
+	//Credits Section
 	
-	public void AddCredits(float collectedAmount){
-		creditsManager.AddCredits(collectedAmount);
+	/// <summary>
+	/// Add the credits currency to the player.
+	/// </summary>
+	/// <param name="amountToAdd">Amount of credits to add</param>
+	public void AddCredits(float amountToAdd){
+		creditsManager.AddCredits(amountToAdd);
 	}
 
+	/// <summary>
+	/// Removing credits from the players available credits.
+	/// </summary>
+	/// <param name="decreaseAmount">Amount to take away.</param>
+	/// <returns>Returns wether this action has succeeded or not. A false means that no money was taking away.</returns>
 	public bool TryTakeCredits(float decreaseAmount){
 		return creditsManager.TryDecreaseCredits(decreaseAmount);
 	}
 
+	/// <summary>
+	/// A check to see wether the player has enough credits to purchase something with the given price.
+	/// </summary>
+	/// <param name="priceToCheck"></param>
+	/// <returns></returns>
 	public bool HasEnoughCredits(float priceToCheck){
 		return creditsManager.HasEnoughMoney(priceToCheck);
 	}
