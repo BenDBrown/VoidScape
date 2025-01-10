@@ -17,6 +17,9 @@ public partial class PlayerShip : Ship, IShip
 	[Signal]
 	public delegate void WeaponMenuToggledEventHandler(bool isOpen);
 
+	[Signal]
+    public delegate void CreditsChangedEventHandler(float totalCredits);
+
 	[Export]
 	private Shield shield;
 
@@ -26,6 +29,8 @@ public partial class PlayerShip : Ship, IShip
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
 	private FuelManager fuelManager = new();
+
+	private CreditsManager creditsManager = new();
 
 	private bool weaponMenuIsOpen = false;
 
@@ -51,6 +56,8 @@ public partial class PlayerShip : Ship, IShip
 
 		shield.ShieldHit += UsePowerChunk;
 		blinking.Blink += UsePowerChunk;
+
+		creditsManager.CreditsChanged += (totalCredits) => EmitSignal(SignalName.CreditsChanged, totalCredits);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -204,5 +211,19 @@ public partial class PlayerShip : Ship, IShip
 	public void CollectCargo(Cargo cargo)
 	{
 		cargoManager.AddCargo(cargo);
+	}
+
+	/// Credits Section
+	
+	public void AddCredits(float collectedAmount){
+		creditsManager.AddCredits(collectedAmount);
+	}
+
+	public bool TryTakeCredits(float decreaseAmount){
+		return creditsManager.TryDecreaseCredits(decreaseAmount);
+	}
+
+	public bool HasEnoughCredits(float priceToCheck){
+		return creditsManager.HasEnoughMoney(priceToCheck);
 	}
 }

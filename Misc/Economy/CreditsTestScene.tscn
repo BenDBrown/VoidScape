@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1c7noeo65k3p"]
+
+[ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_gky4p"]
+[ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="2_ggtuj"]
+[ext_resource type="Theme" uid="uid://do1kf4d65vh5b" path="res://UI/Styles/start_menu.tres" id="3_m4nla"]
+[ext_resource type="Script" path="res://Misc/Economy/credits_test.gd" id="3_rr32r"]
+
+[node name="CreditsTestScene" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_gky4p")]
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("2_ggtuj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Credits Test" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1112.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_rr32r")
+
+[node name="Buy Nuggets" type="Button" parent="CanvasLayer/Credits Test"]
+layout_mode = 0
+offset_left = 785.0
+offset_top = 219.0
+offset_right = 1136.0
+offset_bottom = 280.0
+theme = ExtResource("3_m4nla")
+text = "McDonalds McNuggets:  150 Credits"
+
+[node name="Add Credits" type="Button" parent="CanvasLayer/Credits Test"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 320.0
+offset_right = 1132.0
+offset_bottom = 381.0
+theme = ExtResource("3_m4nla")
+text = "Add 200 Credits"
+
+[node name="credits_check" type="Label" parent="CanvasLayer/Credits Test"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 16.159
+offset_left = 886.0
+offset_top = 183.0
+offset_right = 1033.0
+offset_bottom = -440.36
+text = "Insufficient Credits"
+
+[node name="nuggets amounts" type="Label" parent="CanvasLayer/Credits Test"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 16.159
+offset_left = 873.0
+offset_top = 64.0
+offset_right = 1030.0
+offset_bottom = -559.36
+text = "You have 0 Nuggets."
+
+[connection signal="pressed" from="CanvasLayer/Credits Test/Buy Nuggets" to="CanvasLayer/Credits Test" method="_on_buy_McNuggets_pressed"]
+[connection signal="pressed" from="CanvasLayer/Credits Test/Add Credits" to="CanvasLayer/Credits Test" method="_on_add_credits_pressed"]
