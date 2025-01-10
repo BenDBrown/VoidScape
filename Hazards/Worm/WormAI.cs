@@ -6,9 +6,9 @@ public partial class WormAI : Node
     [Export]
     private Worm worm;
 
-    public override void _Ready()
+    public override void _Process(double delta)
     {
-        worm.MoveTo(worm.GlobalPosition + new Vector2(1000, 0));
+        worm.MoveTo(GetViewport().GetMousePosition());
     }
 
 }
