@@ -8,23 +8,19 @@ public partial class Worm : Path2D
     private PathFollow2D[] Segments;
 
     [Export]
-    private float curvePeriod; // in pixels
+    private float curvePeriod = 96; // in pixels
 
     [Export]
-    private int NrOfPointsPerPeriod = 20;
+    private float slitherAmplitude = 64; // in pixels
 
     [Export]
     private double speed = 100;
 
-    private Vector2 targetLocation = Vector2.Zero;
+    private Vector2 globalTargetLocation = Vector2.Zero;
 
-    public void MoveTo(Vector2 globalTarget) => targetLocation = globalTarget;
+    private Vector2 targetLocation => globalTargetLocation - Position;
 
-    public override void _Ready()
-    {
-        base._Ready();
-        MakeInitialPath();
-    }
+    public void MoveTo(Vector2 targetPos) => globalTargetLocation = targetPos;
 
     public override void _PhysicsProcess(double delta)
     {
@@ -43,19 +39,17 @@ public partial class Worm : Path2D
 
     private void ExtendPath()
     {
-        int nrOfPoints = 0;
-        for(int variable = 0; variable < nrOfPoints; variable++)
+        Vector2 currentPathEnd = Curve.GetPointPosition(Curve.PointCount - 1);
+        Vector2 directionFromEndOfCurrentPath = (targetLocation - currentPathEnd).Normalized();
+        Vector2 perpendicularDirection = directionFromEndOfCurrentPath.Orthogonal();
+
+        for(int variable = 0; variable <= curvePeriod; variable++) // variable refers to the amount of pixels along the straight line that this sin wave is deviating from
         {
-            double pointAmplitude = Math.Sin(variable * ((2 * Math.PI) / curvePeriod));
-            // think of this as those f(x) sin wave functions from highschool
+            double pointAmplitude = Math.Sin(variable * ((2 * Math.PI) / curvePeriod)) * slitherAmplitude; // think of this as those f(x) sin wave functions from highschool
+            Vector2 pointToAdd = currentPathEnd + (directionFromEndOfCurrentPath * variable) + (perpendicularDirection * (float)pointAmplitude);
+            Curve.AddPoint(pointToAdd);
         }
 
-    }
-
-    private void MakeInitialPath()
-    {
-        Curve2D curve = new();
-        for(int i = Segments.Length-1; i >= 0; i--) curve.AddPoint(Segments[i].Position);
     }
 
 }
