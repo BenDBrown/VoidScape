@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://co6voal0s1waw"]
+
+[ext_resource type="Theme" uid="uid://do1kf4d65vh5b" path="res://UI/Styles/start_menu.tres" id="1_6ne3o"]
+
+[node name="Message_box_to_player" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 542.0
+offset_right = 1150.0
+offset_bottom = 646.0
+theme = ExtResource("1_6ne3o")
+tab_size = 5

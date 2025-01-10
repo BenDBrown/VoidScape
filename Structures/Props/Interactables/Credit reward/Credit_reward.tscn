@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://mrios312noqm"]
+
+[ext_resource type="Script" path="res://Structures/Props/Interactables/credit_reward.gd" id="1_txoye"]
+[ext_resource type="PackedScene" uid="uid://co6voal0s1waw" path="res://UI/message_box_to_player.tscn" id="2_e1ajm"]
+
+[node name="Spawned_from_interactable" type="Node2D"]
+script = ExtResource("1_txoye")
+message_box_scene = ExtResource("2_e1ajm")

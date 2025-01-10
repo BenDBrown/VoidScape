@@ -10,9 +10,9 @@ func send_to_manager_map_reveal(map_location, _raduis_of_reveal):
 	pass
 	#ToDo add the money system from Ismet
 
-func send_to_manager_node_reveal(node_to_reveal:PackedScene, location_of_node:Vector2):
+func send_to_manager_node_reveal(node_to_reveal:PackedScene, location_of_node:Vector2, interactable):
 	var node = node_to_reveal.instantiate()
-	get_parent().add_child(node)
+	interactable.add_child(node)
 	node.global_position = location_of_node
 
 func interact_ui_visablity(visability):
