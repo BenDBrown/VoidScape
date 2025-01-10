@@ -11,11 +11,11 @@ public partial class ExternalForceManager
 
 	public Vector2 Force { get; private set; } = Vector2.Zero;
 
-	public int weight { get; private set; } = 1;
+	public int Weight { get; private set; } = 1;
 
 	public void SetWeight(int weight)
 	{
-		this.weight = weight;
+		this.Weight = weight;
 	}
 
 	public Vector2 GetForce(double deltaTime)
@@ -35,8 +35,8 @@ public partial class ExternalForceManager
 	//Handle Collision (RigidBody)
 	public void HandleRigidBodyCollision(KinematicCollision2D collision, RigidBody2D rigidBody, double deltaTime, Vector2 velocity)
 	{
-		Vector2 impactForceFromCollider = collision.GetNormal() * (rigidBody.LinearVelocity.Length() * rigidBody.Mass) / weight;
-		Vector2 impactForceToCollider = -collision.GetNormal() * (velocity.Length() * weight);
+		Vector2 impactForceFromCollider = collision.GetNormal() * (rigidBody.LinearVelocity.Length() * rigidBody.Mass) / Weight;
+		Vector2 impactForceToCollider = -collision.GetNormal() * (velocity.Length() * Weight);
 		rigidBody.ApplyCentralImpulse(impactForceToCollider * (float)deltaTime);
 		Force += impactForceFromCollider;
 	}
@@ -44,19 +44,19 @@ public partial class ExternalForceManager
 	//Handle Collision (Kinematic Body) aka Ship
 	public void HandleKinematicBodyCollision(KinematicCollision2D collision, Ship ship)
 	{
-		Vector2 impactForceFromCollider = collision.GetNormal() * (ship.Velocity.Length() * ship.Weight) / weight;
+		Vector2 impactForceFromCollider = collision.GetNormal() * (ship.Velocity.Length() * ship.Weight) / Weight;
 		Force += impactForceFromCollider;
 	}
 
 	//Handle Collision (Static Body)
 	public void HandleStaticBodyCollision(KinematicCollision2D collision)
 	{
-		Vector2 impactForceFromCollider = collision.GetNormal() / weight;
+		Vector2 impactForceFromCollider = collision.GetNormal() / Weight;
 		Force += impactForceFromCollider;
 	}
 
 	public void AddExternalImpulse(Vector2 impulse) => Force += impulse;
-	
+
 
 	private void DecayMomentum()
 	{

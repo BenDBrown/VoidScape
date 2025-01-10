@@ -25,7 +25,7 @@ public partial class Ship : CharacterBody2D, IShip
 
 	public int Weight
 	{
-		get { return thrustManager.weight; }
+		get { return thrustManager.Weight; }
 		set
 		{
 			thrustManager.SetWeight(value);
@@ -80,7 +80,7 @@ public partial class Ship : CharacterBody2D, IShip
 
 	public void ComponentDestroyed(ShipComponent shipComponent)
 	{
-		Weight = thrustManager.weight - 1;
+		Weight = thrustManager.Weight - 1;
 		GD.Print(shipComponent.Name + " destroyed");
 		if (IsVitalComponent(shipComponent))
 		{

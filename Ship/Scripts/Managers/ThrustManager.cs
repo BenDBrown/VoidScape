@@ -18,7 +18,7 @@ public partial class ThrustManager : IPowerable
 
 	private int powerDraw = 0;
 
-	public int weight { get; private set; } = 1; // to avoid division by 0 errors
+	public int Weight { get; private set; } = 1; // to avoid division by 0 errors
 
 	private List<Thruster> thrusters = new();
 
@@ -30,7 +30,7 @@ public partial class ThrustManager : IPowerable
 	public ThrustManager() { }
 
 	public Vector2 GetForce(double deltaTime, float rotation)
-	{ 
+	{
 		double acceleration = ACCELERATION * deltaTime;
 		double decceleration = acceleration * 2;
 
@@ -39,26 +39,26 @@ public partial class ThrustManager : IPowerable
 		Vector2 backward = Vector2.Zero;
 		Vector2 right = Vector2.Zero;
 		Vector2 left = Vector2.Zero;
-		if(thrustingBackward || thrustingRight || thrustingLeft || thrustingForward) foreach(Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(true); }
-		else foreach(Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(false); }
+		if (thrustingBackward || thrustingRight || thrustingLeft || thrustingForward) foreach (Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(true); }
+		else foreach (Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(false); }
 
-		if(thrustingForward) 
+		if (thrustingForward)
 		{
 			forward = GetAddedForce(Vector2.Up, acceleration, PotentialForwardThrust);
 			forward = forward.Rotated(rotation);
 		}
-		else if(thrustingBackward) 
+		else if (thrustingBackward)
 		{
 			backward = GetAddedForce(Vector2.Down, acceleration, PotentialBackwardThrust);
 			backward = backward.Rotated(rotation);
 		}
 
-		if(thrustingRight) 
+		if (thrustingRight)
 		{
 			right = GetAddedForce(Vector2.Right, acceleration, PotentialSideThrust);
 			right = right.Rotated(rotation);
 		}
-		else if(thrustingLeft) // these elses are for minor performance gains and should be irrelevant if the controller is working properly
+		else if (thrustingLeft) // these elses are for minor performance gains and should be irrelevant if the controller is working properly
 		{
 			left = GetAddedForce(Vector2.Left, acceleration, PotentialSideThrust);
 			left = left.Rotated(rotation);
@@ -78,7 +78,7 @@ public partial class ThrustManager : IPowerable
 		return Force;
 	}
 
-	public void SetWeight(int weight) => this.weight = weight;
+	public void SetWeight(int weight) => this.Weight = weight;
 
 	public void StartThrustingForward()
 	{
@@ -124,13 +124,13 @@ public partial class ThrustManager : IPowerable
 		thruster.OnDestroyed += OnThrusterDestroyed;
 	}
 
-	public int GetPowerDraw() 
+	public int GetPowerDraw()
 	{
-		if(thrustingBackward || thrustingLeft || thrustingRight || thrustingForward) return powerDraw;
+		if (thrustingBackward || thrustingLeft || thrustingRight || thrustingForward) return powerDraw;
 		return 0;
 	}
 
-	public void KillMomentum() => Force = new(0,0);
+	public void KillMomentum() => Force = new(0, 0);
 
 	private void OnThrusterDestroyed(ShipComponent shipComponent)
 	{
