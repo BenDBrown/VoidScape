@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Cargo" load_steps=3 format=3 uid="uid://727kaje8ni0f"]
+
+[ext_resource type="Script" path="res://Misc/Cargo/Cargo.cs" id="1_ya2i3"]
+[ext_resource type="Texture2D" uid="uid://cs7l8vh6woofd" path="res://Assets/Other/diamond.png" id="2_nw3k7"]
+
+[resource]
+script = ExtResource("1_ya2i3")
+sprite = ExtResource("2_nw3k7")

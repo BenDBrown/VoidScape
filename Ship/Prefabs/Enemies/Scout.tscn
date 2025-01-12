@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_ci1r6"]
 [ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="11_wnhb2"]
 [ext_resource type="Script" path="res://Components/drop_component.gd" id="16_rtnkb"]
-[ext_resource type="Resource" uid="uid://727kaje8ni0f" path="res://Resources/Cargo/Diamond.tres" id="17_glj8x"]
+[ext_resource type="Resource" uid="uid://727kaje8ni0f" path="res://Resources/Presets/Diamond.tres" id="17_glj8x"]
 
 [node name="Scout" instance=ExtResource("1_2os47")]
 collision_layer = 16
@@ -67,6 +67,5 @@ script = ExtResource("10_ci1r6")
 
 [node name="drop_component" type="Node" parent="." index="11"]
 script = ExtResource("16_rtnkb")
+on_exit = true
 cargo = ExtResource("17_glj8x")
-
-[connection signal="OnDestroyed" from="." to="drop_component" method="drop"]

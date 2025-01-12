@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="12_53hi6"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="13_rjeb8"]
 [ext_resource type="Script" path="res://Components/drop_component.gd" id="13_yu3dg"]
-[ext_resource type="Resource" uid="uid://727kaje8ni0f" path="res://Resources/Cargo/Diamond.tres" id="14_8xxu1"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="14_vb10u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_64guh"]
 rough = true
@@ -76,6 +76,6 @@ texture = ExtResource("5_7bx26")
 
 [node name="DropComponent" type="Node" parent="."]
 script = ExtResource("13_yu3dg")
-cargo = ExtResource("14_8xxu1")
+cargo = ExtResource("14_vb10u")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

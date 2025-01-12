@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 
@@ -201,8 +202,10 @@ public partial class PlayerShip : Ship, IShip
 		return gunManager.GetSelectedWeaponIndex();
 	}
 
-	public void CollectCargo(Cargo cargo)
-	{
-		cargoManager.AddCargo(cargo);
-	}
+	public void CollectCargo(Cargo cargo) => cargoManager.AddCargo(cargo);
+
+	public void CollectComponent(ShipComponentData scd) => cargoManager.AddShipComponent(scd);
+
+	public Dictionary GetCargos() => cargoManager.GetCargos();
+
 }
