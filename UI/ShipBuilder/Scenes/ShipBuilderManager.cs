@@ -7,6 +7,7 @@ public partial class ShipBuilderManager : Control
 	private const string ROTATE_RIGHT_ACTION_NAME = "rotate_part_right";
 	private const string ROTATE_LEFT_ACTION_NAME = "rotate_part_left";
 	private const string MIRROR_ACTION_NAME = "mirror_part";
+	private const string RIGHT_CLICK_ACTION_NAME = "right_click";
 
 
 	[Export]
@@ -29,6 +30,8 @@ public partial class ShipBuilderManager : Control
 	private Vector2I rectPos;
 	private bool isMirrored = false;
 	private int currentRotation = 0;
+	private bool canDelete = false;
+	private Piece deletedPiece;
 
 	private GridTile[] gridSquares;
 
@@ -51,6 +54,7 @@ public partial class ShipBuilderManager : Control
 	{
 		RotatePiece();
 		DropPiece();
+		//RemovePiece();
 	}
 
 	public void OnColourChanged(Color colour)
@@ -90,9 +94,26 @@ public partial class ShipBuilderManager : Control
 	{
 		hoveredRect = colorRect;
 		rectPos = gridGenerator.GetCellAt(colorRect);
+
+		if (draggedPreview == null)
+		{
+			for (int i = 0; i < pieces.Count; i++)
+			{
+				if (pieces[i].Coordinate == (Vector2)rectPos)
+				{
+					canDelete = true;
+					deletedPiece = pieces[i];
+				}
+			}
+		}
 	}
 
-	private void MouseExitedSquare() => hoveredRect = null;
+	private void MouseExitedSquare()
+	{
+		hoveredRect = null;
+		deletedPiece = null;
+		canDelete = false;
+	}
 
 	private void DropPiece()
 	{
@@ -172,7 +193,8 @@ public partial class ShipBuilderManager : Control
 		{
 			foreach (GridTile tile in gridGenerator.GridCells.Values)
 			{
-				tile.IsValid = true;
+				tile.IsValid = false;
+				tile.Texture = gridGenerator.FreeCell;
 			}
 		}
 	}
@@ -274,9 +296,45 @@ public partial class ShipBuilderManager : Control
 		}
 	}
 
+	// private void RemovePiece()
+	// {
+	// 	if (canDelete && Input.IsActionJustPressed(RIGHT_CLICK_ACTION_NAME))
+	// 	{
+	// 		if (pieces.Count > 0)
+	// 		{
+	// 			for (int i = 0; i < pieces.Count; i++)
+	// 			{
+	// 				if (deletedPiece == pieces[i])
+	// 				{
+	// 					pieces.Remove(deletedPiece);
+	// 					gridGenerator.GridCells[(Vector2I)deletedPiece.Coordinate].HasComponent = false;
+	// 					gridGenerator.GridCells[(Vector2I)deletedPiece.Coordinate].IsValid = false;
+	// 				}
+	// 				break;
+	// 			}
+	// 		}
+	// 		deletedPiece = null;
+	// 		UpdateAvailability();
+
+	// 	}
+	// }
+
+	private void OnRemoveAllPressed()
+	{
+		pieces.Clear();
+		foreach (GridTile gt in gridGenerator.GridCells.Values)
+		{
+			gt.IsValid = false;
+			gt.HasComponent = false;
+			gt.Texture = gridGenerator.FreeCell;
+		}
+
+	}
+
 	private void ResetPiece()
 	{
 		draggedPreview.QueueFree();
+		draggedPreview = null;
 		currentRotation = 0;
 		isDragging = false;
 		isMirrored = false;

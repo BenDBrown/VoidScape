@@ -48,7 +48,7 @@ public partial class ShipStats : Panel
 
         if (missingParts.Count > 0)
         {
-            string warningmsg = "These parts are missing: ";
+            string warningmsg = "Missing: ";
             foreach (var part in missingParts)
             {
                 warningmsg += $"{part}" + " \n";
