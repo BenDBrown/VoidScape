@@ -11,24 +11,19 @@ public partial class ShipComponents : ItemList
     [Export]
     private BoxContainer infobox;
 
-    private Dictionary<int, ShipComponentData> itemListRef = new();
+    public Dictionary<int, ShipComponentData> ItemListRef { get; private set; } = new();
 
-
-    public override void _Ready()
-    {
-        Clear();
-        PopulateItemList();
-    }
 
     public void PopulateItemList()
     {
+        Clear();
         for (int i = 0; i < datas.Length; i++)
         {
             ShipComponentData data = datas[i];
             if (data != null)
             {
                 int index = AddItem(data.Name, data.Sprite);
-                itemListRef[index] = data;
+                ItemListRef[index] = data;
             }
         }
     }
@@ -36,7 +31,7 @@ public partial class ShipComponents : ItemList
     public void OnItemSelected(int index)
     {
         infobox.Visible = true;
-        ShipComponentData data = itemListRef[index];
+        ShipComponentData data = ItemListRef[index];
         name.Text = data.Name;
         health.Text = "Health: " + data.MaxHealth.ToString();
         defense.Text = "Defense: " + data.Defense.ToString();

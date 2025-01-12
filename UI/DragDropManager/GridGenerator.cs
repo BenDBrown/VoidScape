@@ -21,6 +21,9 @@ public partial class GridGenerator : Control
 	[Export]
 	private Vector2 cellSize = new Vector2(32, 32);
 
+	[Export]
+	private ShaderMaterial shaderMat;
+
 
 
 	public Dictionary<Vector2I, GridTile> GridCells { get; private set; }
@@ -37,7 +40,8 @@ public partial class GridGenerator : Control
 					Name = $"Cell_{row}_{col}",
 					CustomMinimumSize = cellSize,
 					ClipContents = true,
-					Texture = FreeCell
+					Texture = FreeCell,
+					Material = shaderMat
 				};
 
 				gridCell.Position = new Vector2(col * cellSize.X, row * cellSize.Y);
