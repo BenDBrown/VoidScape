@@ -157,6 +157,7 @@ inventory={
 2d_physics/layer_4="Ally"
 2d_physics/layer_5="Enemy"
 2d_physics/layer_6="Obstacle"
+2d_physics/layer_7="WormSegment"
 
 [physics]
 
