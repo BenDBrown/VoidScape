@@ -2,14 +2,13 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 public partial class CargoManager
 {
 	public delegate void CargoLostEventHandler(Dictionary<Cargo, int> lostCargoDict);
 
 	public event CargoLostEventHandler CargoLost;
-
 	Dictionary<Cargo, int> cargoDict = new();
+	Dictionary<ShipComponentData, int> shipCargos = new();
 	public int MaxCargoCapacity { get; private set; } = 0;
 	public int CargoAmount { get; private set; } = 0;
 	public int CurrentCargoCapacity => MaxCargoCapacity - CargoAmount;
@@ -20,7 +19,17 @@ public partial class CargoManager
 	{
 		if (cargoDict.ContainsKey(cargo)) { cargoDict[cargo]++; }
 		else { cargoDict.Add(cargo, 1); }
-		GD.Print(cargoDict[cargo]);
+	}
+	public void AddShipComponent(ShipComponentData shipComponentData)
+	{
+		if (shipCargos.ContainsKey(shipComponentData))
+		{
+			shipCargos[shipComponentData]++;
+		}
+		else
+		{
+			shipCargos.Add(shipComponentData, 1);
+		}
 	}
 
 	public bool TryAddCargo(Cargo cargo, int quantity, out int cargoAdded)
@@ -86,4 +95,17 @@ public partial class CargoManager
 		}
 	}
 
+	public Godot.Collections.Dictionary GetCargos()
+	{
+		Godot.Collections.Dictionary output = new();
+		foreach (var pair in cargoDict)
+		{
+			output.Add(pair.Key, pair.Value);
+		}
+		foreach (var pair in shipCargos)
+		{
+			output.Add(pair.Key, pair.Value);
+		}
+		return output;
+	}
 }
