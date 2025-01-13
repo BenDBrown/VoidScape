@@ -1,13 +1,14 @@
 extends CharacterBody2D
 class_name LootDrop
 
-@onready var sprite = $Sprite2D
+@onready var sprite : Sprite2D = $Sprite2D
 @onready var player_ship = Game.PlayerShip
 @export var magnet_distance: float = 350
 @export var magnet_speed: float = 100
 var found_player = false
 var cargo
 var amount: int = 1
+
 func set_sprite(newSprite):
 	sprite.texture = newSprite
 
@@ -25,5 +26,8 @@ func _physics_process(delta: float) -> void:
 
 
 func collect():
-	player_ship.CollectCargo(cargo)
+	if cargo is Cargo:
+		player_ship.CollectCargo(cargo)
+	elif cargo is ShipComponentData:
+		player_ship.CollectComponent(cargo)
 	queue_free()

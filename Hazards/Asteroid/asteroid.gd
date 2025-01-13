@@ -3,7 +3,7 @@ extends RigidBody2D
 @onready var sprite = $Sprite2D
 @onready var health_component = $HealthComponent
 @onready var death_audio_component = $DeathAudioComponent
-@onready var drop_component = $LootDropComponent
+@onready var drop_component = $DropComponent
 @onready var hitbox_component = $HitboxComponent
 
 @export var direction: Vector2
