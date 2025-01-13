@@ -100,3 +100,4 @@ layout_mode = 2
 text = "QUIT"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsContainer/Quit" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsContainer/Quit" to="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship" method="OnRemoveAllPressed"]
