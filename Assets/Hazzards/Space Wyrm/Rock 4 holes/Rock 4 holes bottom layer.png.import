@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://etti6p3tbyf2"
-path="res://.godot/imported/Rock 2 holes.png-e073465f08df9cc2eae96090677f4003.ctex"
+uid="uid://dfoi4brwop3a"
+path="res://.godot/imported/Rock 4 holes bottom layer.png-50f495fed2835748da9305b8dddaf510.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Hazzards/Space Wyrm/Rock 2 holes.png"
-dest_files=["res://.godot/imported/Rock 2 holes.png-e073465f08df9cc2eae96090677f4003.ctex"]
+source_file="res://Assets/Hazzards/Space Wyrm/Rock 4 holes/Rock 4 holes bottom layer.png"
+dest_files=["res://.godot/imported/Rock 4 holes bottom layer.png-50f495fed2835748da9305b8dddaf510.ctex"]
 
 [params]
 

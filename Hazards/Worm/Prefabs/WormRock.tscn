@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbhtqu5gxp02p"]
+
+[ext_resource type="Script" path="res://Hazards/Worm/Scripts/WormRock.cs" id="1_e0yfq"]
+[ext_resource type="Texture2D" uid="uid://ds5a4nudgpwmi" path="res://Assets/Hazzards/Space Wyrm/Rock 4 holes/Rock 4 holes top layer.png" id="1_rbjku"]
+[ext_resource type="Texture2D" uid="uid://dfoi4brwop3a" path="res://Assets/Hazzards/Space Wyrm/Rock 4 holes/Rock 4 holes bottom layer.png" id="2_x7lma"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fs7ue"]
+radius = 54.0093
+
+[node name="WormRock" type="StaticBody2D" node_paths=PackedStringArray("holeLocations")]
+collision_layer = 4
+collision_mask = 51
+script = ExtResource("1_e0yfq")
+holeLocations = [NodePath("LeftHole"), NodePath("RightHole"), NodePath("TopHole"), NodePath("BottomHole")]
+
+[node name="TopLayer" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("1_rbjku")
+
+[node name="BottomLayer" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_x7lma")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 3
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_fs7ue")
+
+[node name="LeftHole" type="Node2D" parent="."]
+position = Vector2(-59, 1)
+
+[node name="RightHole" type="Node2D" parent="."]
+position = Vector2(56, -1)
+
+[node name="TopHole" type="Node2D" parent="."]
+position = Vector2(3, -52)
+
+[node name="BottomHole" type="Node2D" parent="."]
+position = Vector2(-6, 57)
