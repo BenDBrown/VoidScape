@@ -8,8 +8,17 @@ public partial class Worm : Path2D
     [Signal]
     public delegate void OnWormReachedDestinationEventHandler();
 
+    [Signal]
+    public delegate void OnWormDestroyedEventHandler();
+
     [Export]
     private PathFollow2D[] Segments;
+
+    [Export]
+    private PackedScene deathAnim;
+
+    [Export]
+    private float knockback = 50;
 
     [Export]
     private float curvePeriod = 96; // in pixels
@@ -23,7 +32,6 @@ public partial class Worm : Path2D
     [Export]
     private float targetPosLeeway = 3;
 
-    [Export]
     public bool FoldIntoLocation = false;
 
     public Vector2 GlobalHeadPos => Segments[0].GlobalPosition;
@@ -39,20 +47,33 @@ public partial class Worm : Path2D
 
     private bool reachedTarget = false;
 
-    public void MoveTo(Vector2 targetPos)
+    public void OnPlayerHit()
     {
-        globalTargetLocation = targetPos;
-        reachedTarget = false;
+        GD.Print("hit");
+        PlayerShip player = Game.Instance.PlayerShip;
+        Vector2 perpendicularDirection = Vector2.Right.Rotated(Segments[0].GlobalRotation).Orthogonal();
+        Vector2 knockbackDirA = perpendicularDirection * knockback;
+        Vector2 knockbackDirB = perpendicularDirection * -knockback;
+        if((GlobalHeadPos + knockbackDirA).DistanceTo(player.GlobalPosition) > (GlobalHeadPos + knockbackDirB).DistanceTo(player.GlobalPosition))
+        {
+            
+        }
+        else {}
     }
 
-    /// <summary>
-	/// Takes a global point to move through as a parameter.
-	/// </summary>
-    public void AddPointToMoveThrough(Vector2 point)
+    public void OnDeath()
     {
-        Vector2 newPoint = point - GlobalPosition;
-        Curve.AddPoint(newPoint);
-        GD.Print("added via moveThrough: " + newPoint);
+        GD.Print("worm died");
+        EmitSignal(SignalName.OnWormDestroyed);
+        SingleRunAnimation anim = deathAnim.Instantiate() as SingleRunAnimation;
+        anim.AnimationFinished += QueueFree;
+        foreach(PathFollow2D segment in Segments)
+        {
+            segment.Visible = false;
+        }
+        GetTree().CurrentScene.AddChild(anim);
+        anim.GlobalPosition = GlobalHeadPos;
+        anim.Play();
     }
 
     public override void _Ready()
@@ -75,6 +96,22 @@ public partial class Worm : Path2D
         IncrementProgress((float)(delta * speed));
     }
 
+
+    public void MoveTo(Vector2 targetPos)
+    {
+        globalTargetLocation = targetPos;
+        reachedTarget = false;
+    }
+
+    /// <summary>
+	/// Takes a global point to move through as a parameter.
+	/// </summary>
+    public void AddPointToMoveThrough(Vector2 point)
+    {
+        Vector2 newPoint = point - GlobalPosition;
+        Curve.AddPoint(newPoint);
+    }
+
     /// <summary>
 	/// Will collapse the worm into 1 tile. Should only be called while worm is already fully collapsed.
 	/// </summary>
@@ -84,12 +121,13 @@ public partial class Worm : Path2D
         Curve.ClearPoints();
         Curve.AddPoint(newStartPos);
         foreach(PathFollow2D segment in Segments) segment.Progress = 0;
-        GD.Print("path reset added: " + newStartPos);
+        GD.Print("path reset added");
     }
 
     private void ReachTarget()
     {
         reachedTarget = true;
+        GD.Print("target reached");
         EmitSignal(SignalName.OnWormReachedDestination);
     }
 
@@ -129,11 +167,7 @@ public partial class Worm : Path2D
         Vector2 lineToTarget = targetLocation - currentPathEnd;
         Vector2 directionFromEndOfCurrentPath = lineToTarget.Normalized();
         float distanceFromTarget = lineToTarget.Length();
-        if(distanceFromTarget < curvePeriod)
-        {
-            Curve.AddPoint(targetLocation);
-            GD.Print("added via straight: " + targetLocation);
-        }
+        if(distanceFromTarget < curvePeriod) Curve.AddPoint(targetLocation);
         else ExtendSlitherPath(currentPathEnd, directionFromEndOfCurrentPath);
     }
 
@@ -145,7 +179,6 @@ public partial class Worm : Path2D
         {
             double pointAmplitude = Math.Sin(variable * ((2 * Math.PI) / curvePeriod)) * slitherAmplitude; // think of this as those f(x) sin wave functions from highschool
             Vector2 pointToAdd = currentPathEnd + (directionFromEndOfCurrentPath * variable) + (perpendicularDirection * (float)pointAmplitude);
-            GD.Print("added via slither: " + pointToAdd);
             Curve.AddPoint(pointToAdd);
         }
     }

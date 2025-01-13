@@ -22,6 +22,7 @@ public partial class WormAI : Node
 
     public override void _Ready()
     {
+        worm.OnWormDestroyed += QueueFree;
         patterns = new()
         {
             new()
@@ -94,7 +95,10 @@ public partial class WormAI : Node
     private void FoldOutOfRock(WormRock rock)
     {
         worm.FoldIntoLocation = false;
-        worm.MoveTo(rock.GetRandomHole());
+        Vector2 exit = rock.GetRandomHoleExit();
+        GD.Print("exit pos: " + exit.ToString());
+        GD.Print("worm pos: " + worm.GlobalHeadPos.ToString());
+        worm.AddPointToMoveThrough(exit);
     }
 
     private void ClearWormPath()

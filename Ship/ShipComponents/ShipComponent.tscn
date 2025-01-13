@@ -73,6 +73,8 @@ animations = [{
 
 [node name="ShipComponent" type="CharacterBody2D" node_paths=PackedStringArray("collider", "sprite", "destroyedSprite", "healthComponent", "explosionAnim")]
 use_parent_material = true
+collision_layer = 17
+collision_mask = 61
 script = ExtResource("1_3r3yf")
 collider = NodePath("Collider")
 sprite = NodePath("Sprite")
@@ -87,6 +89,8 @@ script = ExtResource("2_eo80n")
 shape = SubResource("RectangleShape2D_prnpq")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent", "collision_shape")]
+collision_layer = 17
+collision_mask = 63
 script = ExtResource("3_2nmxr")
 healthComponent = NodePath("../HealthComponent")
 collision_shape = NodePath("CollisionShape2D")
