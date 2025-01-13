@@ -1,0 +1,96 @@
+[gd_scene load_steps=16 format=3 uid="uid://cpoepd6p2kdhh"]
+
+[ext_resource type="Script" path="res://Misc/Cave/DestructionCondtionObject.cs" id="1_iox2q"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="2_t07nw"]
+[ext_resource type="Texture2D" uid="uid://cdd2hgtw2np80" path="res://Assets/Ship/ComponentExplosion.png" id="3_k4nth"]
+[ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="4_7hude"]
+[ext_resource type="PackedScene" uid="uid://dom2xqww5mdme" path="res://Structures/Props/Structure Generator/Structure_generator.tscn" id="5_c3fyc"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="6_8tro6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y46pa"]
+size = Vector2(72, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brgc4"]
+atlas = ExtResource("3_k4nth")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfchn"]
+atlas = ExtResource("3_k4nth")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26tpv"]
+atlas = ExtResource("3_k4nth")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etgqf"]
+atlas = ExtResource("3_k4nth")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aosf8"]
+atlas = ExtResource("3_k4nth")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u23bk"]
+atlas = ExtResource("3_k4nth")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cutfo"]
+atlas = ExtResource("3_k4nth")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mnu24"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brgc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfchn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26tpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etgqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aosf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u23bk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cutfo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Destroyable Generator" type="Node2D" node_paths=PackedStringArray("healthComponent", "targetObject", "explosionAnim")]
+script = ExtResource("1_iox2q")
+healthComponent = NodePath("HealthComponent")
+targetObject = NodePath("Generator")
+explosionAnim = NodePath("explosionAnim")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_t07nw")
+max_health = 10
+
+[node name="Generator" parent="." instance=ExtResource("5_c3fyc")]
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent", "collision_shape")]
+script = ExtResource("6_8tro6")
+healthComponent = NodePath("../HealthComponent")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(31, 16.5)
+shape = SubResource("RectangleShape2D_y46pa")
+
+[node name="explosionAnim" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(28, 18)
+scale = Vector2(2.07031, 1.95313)
+sprite_frames = SubResource("SpriteFrames_mnu24")
+script = ExtResource("4_7hude")

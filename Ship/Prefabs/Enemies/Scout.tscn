@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0684gaincluq"]
+[gd_scene load_steps=18 format=3 uid="uid://c0684gaincluq"]
 
 [ext_resource type="PackedScene" uid="uid://bpmtcqfjhik1c" path="res://Ship/Prefabs/NPCShip.tscn" id="1_2os47"]
 [ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_mcc8u"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="9_s3k7d"]
 [ext_resource type="Script" path="res://Ship/AI/follow.gd" id="10_ci1r6"]
 [ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="11_wnhb2"]
+[ext_resource type="Script" path="res://Components/drop_component.gd" id="16_rtnkb"]
+[ext_resource type="Resource" uid="uid://727kaje8ni0f" path="res://Resources/Cargo/Diamond.tres" id="17_glj8x"]
 
 [node name="Scout" instance=ExtResource("1_2os47")]
 collision_layer = 16
@@ -62,3 +64,8 @@ detect_radius = 300.0
 
 [node name="Follow" type="Node" parent="StateManager" index="2"]
 script = ExtResource("10_ci1r6")
+
+[node name="drop_component" type="Node" parent="." index="11"]
+script = ExtResource("16_rtnkb")
+on_exit = true
+cargo = ExtResource("17_glj8x")

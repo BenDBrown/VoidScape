@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4yj0wo6jrt31"]
+[gd_scene load_steps=19 format=3 uid="uid://b4yj0wo6jrt31"]
 
 [ext_resource type="Script" path="res://Hazards/Asteroid/asteroid.gd" id="1_ulwd2"]
 [ext_resource type="Texture2D" uid="uid://c0ufuitcp5ot1" path="res://Hazards/Asteroid/Art/Astroid 1.png" id="2_431h4"]
@@ -9,10 +9,11 @@
 [ext_resource type="Script" path="res://Components/health_component.gd" id="6_m03hg"]
 [ext_resource type="AudioStream" uid="uid://bdkrn1rhppmys" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/EXPLDsgn_Explosion Impact_14.wav" id="8_vmc48"]
 [ext_resource type="Script" path="res://Components/death_audio_component.gd" id="9_qgru7"]
-[ext_resource type="Script" path="res://Components/loot_drop_component.gd" id="10_h826r"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="10_k154c"]
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="12_53hi6"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="13_rjeb8"]
+[ext_resource type="Script" path="res://Components/drop_component.gd" id="13_yu3dg"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="14_vb10u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_64guh"]
 rough = true
@@ -30,7 +31,7 @@ radius = 16.0
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 32
 collision_mask = 59
-mass = 100.0
+mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_64guh")
 inertia = 1.0
 max_contacts_reported = 10
@@ -73,7 +74,8 @@ from_position = 0.3
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("5_7bx26")
 
-[node name="LootDropComponent" type="Node2D" parent="."]
-script = ExtResource("10_h826r")
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("13_yu3dg")
+cargo = ExtResource("14_vb10u")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

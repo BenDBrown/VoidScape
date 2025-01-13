@@ -23,12 +23,21 @@ public partial class Ship : CharacterBody2D, IShip
 	[Export]
 	private bool buildOnStart = false;
 
-	
+	public int Weight
+	{
+		get { return thrustManager.Weight; }
+		set
+		{
+			thrustManager.SetWeight(value);
+			externalForceManager.SetWeight(value);
+		}
+	}
 
 	protected ThrustManager thrustManager = new();
 	protected CenterCalculator centerCalculator = new();
 	protected RotationManager rotationManager = new();
 	protected GunManager gunManager = new();
+	protected ExternalForceManager externalForceManager = new();
 	protected List<ShipComponent> shipComponents = new();
 	public ShipComponent[] shipParts => shipComponents.ToArray();
 	protected float rotationSpeed = 3;
@@ -41,15 +50,22 @@ public partial class Ship : CharacterBody2D, IShip
 		{
 			TryBuildShip();
 		}
-		
+
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Rotation = rotationManager.GetRotation(Rotation, rotationSpeed, delta, out Vector2 rotVector);
 		Vector2 force = thrustManager.GetForce(delta, Rotation);
-		Velocity = force;
+		Vector2 externalForce = externalForceManager.GetForce(delta);
+		Velocity = force + externalForce;
 		MoveAndSlide();
+
+		for (int i = 0; i < GetSlideCollisionCount(); i++)
+		{
+			KinematicCollision2D collision = GetSlideCollision(i);
+			externalForceManager.HandleBodyCollision(collision, delta, Velocity);
+		}
 	}
 
 	protected virtual void ShipDestroyed()
@@ -64,37 +80,40 @@ public partial class Ship : CharacterBody2D, IShip
 
 	public void ComponentDestroyed(ShipComponent shipComponent)
 	{
-		thrustManager.SetWeight(thrustManager.weight - 1);
+		Weight = thrustManager.Weight - 1;
 		GD.Print(shipComponent.Name + " destroyed");
 		if (IsVitalComponent(shipComponent))
 		{
 			Type destroyedComponentType = shipComponent.GetType();
 			foreach (ShipComponent s in shipComponents)
 			{
-				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent)	return;
+				if (s.GetType() == destroyedComponentType && (!s.IsDestroyed()) && s != shipComponent) return;
 			}
 			ShipDestroyed();
 		}
 	}
 
 	// shooting
-	public void StartShooting() {if(!stalling)gunManager.StartShooting();}
+	public void StartShooting() { if (!stalling) gunManager.StartShooting(); }
 	public void StopShooting() => gunManager.StopShooting();
 
 	// movement
-	public void StartThrustingForward() {if(!stalling)thrustManager.StartThrustingForward();}
-	public void StartThrustingBackward() {if(!stalling)thrustManager.StartThrustingBackward();}
-	public void StartThrustingRight() {if(!stalling)thrustManager.StartThrustingRight();}
-	public void StartThrustingLeft() {if(!stalling)thrustManager.StartThrustingLeft();}
+	public void StartThrustingForward() { if (!stalling) thrustManager.StartThrustingForward(); }
+	public void StartThrustingBackward() { if (!stalling) thrustManager.StartThrustingBackward(); }
+	public void StartThrustingRight() { if (!stalling) thrustManager.StartThrustingRight(); }
+	public void StartThrustingLeft() { if (!stalling) thrustManager.StartThrustingLeft(); }
 	public void StopThrustingForward() => thrustManager.StopThrustingForward();
 	public void StopThrustingBackward() => thrustManager.StopThrustingBackward();
 	public void StopThrustingRight() => thrustManager.StopThrustingRight();
 	public void StopThrustingLeft() => thrustManager.StopThrustingLeft();
 
 	// turning
-	public void StartTurningClockwise() {if(!stalling)rotationManager.StartTurningClockwise();}
-	public void StartTurningCounterClockwise() {if(!stalling)rotationManager.StartTurningCounterClockwise();}
+	public void StartTurningClockwise() { if (!stalling) rotationManager.StartTurningClockwise(); }
+	public void StartTurningCounterClockwise() { if (!stalling) rotationManager.StartTurningCounterClockwise(); }
 	public void StopTurning() => rotationManager.StopTurning();
+
+	public void AddExternalImpulse(Vector2 impulse) => externalForceManager.AddExternalImpulse(impulse);
+
 	public void KillMomentum() => thrustManager.KillMomentum();
 
 	public virtual bool TryBuildShip()
@@ -136,7 +155,7 @@ public partial class Ship : CharacterBody2D, IShip
 				shipComponent.collider.Owner = this;
 			}
 		}
-		thrustManager.SetWeight(shipComponents.Count);
+		Weight = shipComponents.Count;
 
 		return hasThruster;
 	}
@@ -183,5 +202,5 @@ public partial class Ship : CharacterBody2D, IShip
 	}
 
 	protected virtual void EndStall() => stalling = false;
-	
+
 }

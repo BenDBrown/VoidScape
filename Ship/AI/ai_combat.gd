@@ -28,7 +28,7 @@ func enter(parent):
 		cast_vect = create_sweeping_range()
 	if !ray:
 		ray = create_ray()
-		
+
 
 func exit():
 	pass
@@ -85,8 +85,8 @@ func on_area_exited(target: Area2D):
 	if !is_in_detection_cone(target.get_parent()):
 		ship.StopShooting()
 		exited = true
-		
-		
+
+
 #creating a method that has the ability to attack the player on the detected location from the Area2D's that are part of the ship
 func on_area_entered(target: Area2D):
 	var par = target.get_parent()
