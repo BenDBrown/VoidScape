@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerShip.cs" id="1_mwucv"]
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerController.cs" id="2_0hxg2"]
 [ext_resource type="Script" path="res://Ship/Scripts/Managers/PowerManager.cs" id="3_22ycc"]
-[ext_resource type="PackedScene" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
-[ext_resource type="PackedScene" path="res://Ship/Prefabs/Shield.tscn" id="5_u1m7p"]
+[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
+[ext_resource type="PackedScene" uid="uid://bnn3lvinno35i" path="res://Ship/Prefabs/Shield.tscn" id="5_u1m7p"]
 [ext_resource type="Script" path="res://Ship/Scripts/Blinking.cs" id="6_o4rs5"]
 
 [node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("shield", "blinking", "powerManager", "ExplosionAnim")]
