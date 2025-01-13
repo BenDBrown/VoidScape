@@ -4,6 +4,8 @@ extends Node2D
 @export var continue_scene: PackedScene = preload("res://Scenes/continue.tscn")
 @export var ship_builder_scene: PackedScene = preload("res://Ship/ShipBuilder/ship_builder.tscn")
 @export var test_scene: PackedScene = preload("res://Scenes/playtest.tscn")
+@export var worm_scene: PackedScene = preload("res://Hazards/Worm/WormDemo.tscn")
+@export var cave_scene: PackedScene = preload("res://Misc/Cave/CaveRegion.tscn")
 
 @onready var mainScreen = $"Main Screen"
 @onready var settingsMenu = $"SettingsMenu"
@@ -40,6 +42,11 @@ func _on_settings_menu_menu_closed():
 func _on_ship_builder_pressed() -> void:
 	get_tree().change_scene_to_file(ship_builder_scene.resource_path)
 
+func _on_worm_pressed() -> void:
+	get_tree().change_scene_to_file(worm_scene.resource_path)
+	
+func _on_ismet_pressed() -> void:
+	get_tree().change_scene_to_file(cave_scene.resource_path)
 
 func _on_test_menu_pressed() -> void:
 	get_tree().change_scene_to_file(test_scene.resource_path)
