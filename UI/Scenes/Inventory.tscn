@@ -6,8 +6,8 @@
 script = ExtResource("1_qjkj8")
 
 [node name="ItemList" type="ItemList" parent="."]
-offset_left = 448.0
-offset_top = 128.0
-offset_right = 768.0
-offset_bottom = 384.0
+offset_left = 776.0
+offset_top = 345.0
+offset_right = 1096.0
+offset_bottom = 601.0
 item_count = 3

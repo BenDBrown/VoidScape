@@ -126,6 +126,23 @@ offset_bottom = 472.0
 theme = ExtResource("8_vjj0j")
 text = "Test Scene"
 
+[node name="worm menu" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 1011.0
+offset_top = 384.0
+offset_right = 1131.0
+offset_bottom = 472.0
+theme = ExtResource("8_vjj0j")
+text = "Worm Scene"
+
+[node name="Ismet menu" type="Button" parent="Main Screen/CanvasLayer"]
+offset_left = 1013.0
+offset_top = 288.0
+offset_right = 1133.0
+offset_bottom = 376.0
+theme = ExtResource("8_vjj0j")
+text = "Cave Scene
+"
+
 [node name="Remove Save" type="Button" parent="Main Screen/CanvasLayer"]
 offset_left = 880.0
 offset_top = 488.0
@@ -143,5 +160,7 @@ visible = false
 [connection signal="pressed" from="Main Screen/CanvasLayer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Main Screen/CanvasLayer/Ship Builder" to="." method="_on_ship_builder_pressed"]
 [connection signal="pressed" from="Main Screen/CanvasLayer/Test Menu" to="." method="_on_test_menu_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/worm menu" to="." method="_on_worm_pressed"]
+[connection signal="pressed" from="Main Screen/CanvasLayer/Ismet menu" to="." method="_on_ismet_pressed"]
 [connection signal="pressed" from="Main Screen/CanvasLayer/Remove Save" to="." method="_on_remove_save_pressed"]
 [connection signal="menu_closed" from="SettingsMenu" to="." method="_on_settings_menu_menu_closed"]

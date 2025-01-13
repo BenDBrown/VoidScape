@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy0i7yt5gs14t"]
+
+[ext_resource type="PackedScene" uid="uid://bi2al265nsrio" path="res://Hazards/Worm/Prefabs/WormBody.tscn" id="1_xxs07"]
+[ext_resource type="Script" path="res://Hazards/Worm/Scripts/WormAI.cs" id="5_1mduh"]
+
+[node name="Worm" type="Node2D" node_paths=PackedStringArray("worm")]
+script = ExtResource("5_1mduh")
+worm = NodePath("Worm")
+
+[node name="Worm" parent="." instance=ExtResource("1_xxs07")]

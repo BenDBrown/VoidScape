@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqtsjjjhnoskk"
-path="res://.godot/imported/Rock 3 holes.png-1afc89ecc6fa8e2304aac8138976c42a.ctex"
+uid="uid://cf8cn6bjvr7va"
+path="res://.godot/imported/Comet 2.png-762b193503a6b7e98941bc2d72519231.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Hazzards/Space Wyrm/Rock 3 holes.png"
-dest_files=["res://.godot/imported/Rock 3 holes.png-1afc89ecc6fa8e2304aac8138976c42a.ctex"]
+source_file="res://Assets/Hazzards/Comets/Comet 2.png"
+dest_files=["res://.godot/imported/Comet 2.png-762b193503a6b7e98941bc2d72519231.ctex"]
 
 [params]
 
