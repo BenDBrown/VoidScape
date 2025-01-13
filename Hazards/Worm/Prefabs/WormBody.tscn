@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bi2al265nsrio"]
+[gd_scene load_steps=10 format=3 uid="uid://bi2al265nsrio"]
 
-[ext_resource type="Script" path="res://Hazards/Worm/Worm.cs" id="1_nt2kc"]
+[ext_resource type="Script" path="res://Hazards/Worm/Scripts/Worm.cs" id="1_nt2kc"]
 [ext_resource type="Texture2D" uid="uid://c4dh6t1yi5jav" path="res://Assets/Hazzards/Space Wyrm/Space Worm 2.png" id="1_si6aq"]
-[ext_resource type="Curve2D" uid="uid://bgqml01c20vpr" path="res://Hazards/Worm/WormBaseLine.tres" id="1_yvbiv"]
+[ext_resource type="Curve2D" uid="uid://bgqml01c20vpr" path="res://Hazards/Worm/Resources/WormBaseLine.tres" id="1_yvbiv"]
 [ext_resource type="Texture2D" uid="uid://61nkdfent0lb" path="res://Assets/Hazzards/Space Wyrm/Space Worm core.png" id="2_q17d8"]
-[ext_resource type="Script" path="res://Hazards/Worm/WormAI.cs" id="5_1mduh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twb33"]
 atlas = ExtResource("2_q17d8")
@@ -46,11 +45,8 @@ animations = [{
 curve = ExtResource("1_yvbiv")
 script = ExtResource("1_nt2kc")
 Segments = [NodePath("Head"), NodePath("Core"), NodePath("BodySegment0"), NodePath("BodySegment1"), NodePath("BodySegment2"), NodePath("Tail")]
-speed = 20.0
-
-[node name="WormAI" type="Node" parent="." node_paths=PackedStringArray("worm")]
-script = ExtResource("5_1mduh")
-worm = NodePath("..")
+curvePeriod = 320.0
+speed = 170.0
 
 [node name="Head" type="PathFollow2D" parent="."]
 position = Vector2(157, 0)
