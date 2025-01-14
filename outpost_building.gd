@@ -25,7 +25,7 @@ func _on_health_component_died() -> void:
 	death_anim.play()
 	respawn_timer.queue_free()
 
-func fucking_die_you_cunt():
+func create_grunt():
 	grunt = grunt_scene.instantiate()
 	grunts_alive += 1
 	grunt.connect("OnDestroyed",on_enemy_death)
@@ -40,16 +40,16 @@ func start_respawn_timer_enemy():
 		if respawn_timer:
 			if grunts_alive < 2:
 				if respawn_timer.time_left == 0:
-					print("why are toy here")
 					respawn_timer.start(respawn_time)
 					
 
 func first_enemy_wave():
 	respawn_timer = Timer.new()
-	respawn_timer.timeout.connect(fucking_die_you_cunt)
+	respawn_timer.timeout.connect(create_grunt)
 	respawn_timer.name = "respawn_timer"
 	respawn_timer.one_shot = true
 	add_child(respawn_timer)
+	start_respawn_timer_enemy()
 
 func _process(delta: float) -> void:
-	start_respawn_timer_enemy()
+	pass
