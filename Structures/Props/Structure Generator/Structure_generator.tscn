@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://dom2xqww5mdme"]
 
-[ext_resource type="Script" path="res://Misc/Cave/DestroyableObject.cs" id="1_0mn6k"]
+[ext_resource type="Script" path="res://Misc/Cave Region/Destroyable/Scripts/DestroyableObject.cs" id="1_0mn6k"]
 [ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="1_inlvs"]
 [ext_resource type="TileSet" uid="uid://cic6cq1ycfnjo" path="res://Assets/Structures/Tilesets/TilesWithCollision.tres" id="2_lfr2p"]
 [ext_resource type="Texture2D" uid="uid://dndayjr4u74x" path="res://Assets/Structures/Tiles/ui x1.png" id="3_5v2cw"]

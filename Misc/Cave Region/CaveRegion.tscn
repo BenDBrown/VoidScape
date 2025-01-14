@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="1_bngoj"]
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="2_kagxw"]
-[ext_resource type="Script" path="res://Misc/Cave/ActivateOnCondition.cs" id="3_e08xa"]
-[ext_resource type="PackedScene" uid="uid://cpoepd6p2kdhh" path="res://Misc/Cave/destroyable_generator.tscn" id="4_k4db1"]
-[ext_resource type="Script" path="res://Misc/Cave/OpenGate.cs" id="5_r8rr8"]
+[ext_resource type="Script" path="res://Misc/Cave Region/Condition Events/Scripts/ActivateOnCondition.cs" id="3_e08xa"]
+[ext_resource type="PackedScene" uid="uid://cpoepd6p2kdhh" path="res://Misc/Cave Region/Destroyable/Prefab/destroyable_generator.tscn" id="4_k4db1"]
+[ext_resource type="Script" path="res://Misc/Cave Region/OpenGate.cs" id="5_r8rr8"]
 [ext_resource type="TileSet" uid="uid://cic6cq1ycfnjo" path="res://Assets/Structures/Tilesets/TilesWithCollision.tres" id="6_p30us"]
 [ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="7_6em68"]
 [ext_resource type="Texture2D" uid="uid://cb331x20uss8b" path="res://Assets/Structures/Tiles/ui x2.png" id="8_n8srb"]
