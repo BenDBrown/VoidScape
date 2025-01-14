@@ -21,7 +21,7 @@ func enter(parent):
 	print("Combat_Entered")
 	if(!get_parent()):
 		ship = parent
-		ship.add_child(self)
+		ship.add_child.call_deferred(self)
 	if !detection_cone:
 		detection_cone = create_detection_cone()
 	if !cast_vect:
@@ -31,7 +31,8 @@ func enter(parent):
 
 
 func exit():
-	pass
+	queue_free()
+	
 
 func physics_update(target):
 	player = target

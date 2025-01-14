@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bau7711qikeqv"]
+
+[ext_resource type="PackedScene" uid="uid://64fo77bnaoxj" path="res://outpost_building.tscn" id="1_ol3im"]
+[ext_resource type="PackedScene" uid="uid://oqpd0b0f2xcl" path="res://outpost_core.tscn" id="2_16xbg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wmh2"]
+
+[node name="EnemyOupost" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(78.0526, 45.1661)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6wmh2")
+
+[node name="OutpostBuilding" parent="." node_paths=PackedStringArray("core") instance=ExtResource("1_ol3im")]
+position = Vector2(-595, -357)
+core = NodePath("../OutpostCore")
+
+[node name="OutpostBuilding2" parent="." node_paths=PackedStringArray("core") instance=ExtResource("1_ol3im")]
+position = Vector2(-612, 268)
+core = NodePath("../OutpostCore")
+
+[node name="OutpostBuilding3" parent="." node_paths=PackedStringArray("core") instance=ExtResource("1_ol3im")]
+position = Vector2(589, 328)
+core = NodePath("../OutpostCore")
+
+[node name="OutpostBuilding4" parent="." node_paths=PackedStringArray("core") instance=ExtResource("1_ol3im")]
+position = Vector2(581, -366)
+core = NodePath("../OutpostCore")
+
+[node name="OutpostCore" parent="." instance=ExtResource("2_16xbg")]
