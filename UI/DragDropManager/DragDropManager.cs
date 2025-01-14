@@ -161,7 +161,7 @@ public partial class DragDropManager : ItemList
 				{
 					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
 					gridGenerator.GridCells[rectPos].HasComponent = true;
-					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
+					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation, new Color(1, 1, 1, 1));
 					pieces.Add(piece);
 					ResetPiece();
 
@@ -174,7 +174,7 @@ public partial class DragDropManager : ItemList
 						{
 							pieces.Remove(pieces[i]);
 							gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-							Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
+							Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation, new Color(1, 1, 1, 1));
 							pieces.Add(piece);
 							ResetPiece();
 						}

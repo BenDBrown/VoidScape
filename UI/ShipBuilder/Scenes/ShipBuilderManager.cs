@@ -19,6 +19,9 @@ public partial class ShipBuilderManager : Control
 	[Export]
 	public ShipStats shipStats;
 
+	[Export]
+	public ColorPickerButton colourpicker;
+
 
 	private Dictionary<int, ShipComponentData> itemListRef = new();
 	private List<Piece> pieces = new();
@@ -32,7 +35,7 @@ public partial class ShipBuilderManager : Control
 	private int currentRotation = 0;
 	private bool canDelete = false;
 	private Piece deletedPiece;
-
+	private Color pieceColour = new(0.51f, 0.502f, 0.486f, 1);
 	private GridTile[] gridSquares;
 
 
@@ -48,7 +51,8 @@ public partial class ShipBuilderManager : Control
 			cr.MouseEntered += () => MouseEnteredSquare(cr);
 			cr.MouseExited += MouseExitedSquare;
 		}
-		// gridGenerator.CallDeferred("LoadShip");
+		gridGenerator.CallDeferred("LoadShip");
+		pieceColour = new(0.51f, 0.502f, 0.486f, 1);
 	}
 
 	public override void _Process(double delta)
@@ -64,6 +68,7 @@ public partial class ShipBuilderManager : Control
 		{
 			if (gt.Material is not ShaderMaterial shaderMat) return;
 			shaderMat.SetShaderParameter("color", colour);
+			pieceColour = colour;
 		}
 	}
 
@@ -81,6 +86,8 @@ public partial class ShipBuilderManager : Control
 					draggedPreview = new();
 					preview = data;
 					draggedPreview.Texture = data.Sprite;
+
+					//ignore for your own sake
 					Node parent = GetParent();
 					for (int j = 0; j < 20; j++)
 					{
@@ -146,7 +153,7 @@ public partial class ShipBuilderManager : Control
 				{
 					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
 					gridGenerator.GridCells[rectPos].HasComponent = true;
-					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
+					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation, pieceColour);
 					pieces.Add(piece);
 					ResetPiece();
 					shipStats.UpdateStats(pieces);
@@ -160,7 +167,7 @@ public partial class ShipBuilderManager : Control
 						{
 							pieces.Remove(pieces[i]);
 							gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-							Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
+							Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation, pieceColour);
 							pieces.Add(piece);
 							ResetPiece();
 							shipStats.UpdateStats(pieces);

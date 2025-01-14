@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://bbcg4mu0p2j8l" path="res://Resources/ShipData/Arzo/Arzo Hull.tres" id="10_iyfwn"]
 [ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="11_jup1b"]
 
-[node name="ShipBuilderTab" type="Control" node_paths=PackedStringArray("itemList", "gridGenerator", "shipStats")]
+[node name="ShipBuilderTab" type="Control" node_paths=PackedStringArray("itemList", "gridGenerator", "shipStats", "colourpicker")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,6 +28,7 @@ script = ExtResource("1_0so5t")
 itemList = NodePath("MarginContainer/HBoxContainer/ShipComponents/ComponentList")
 gridGenerator = NodePath("MarginContainer/HBoxContainer/Grid")
 shipStats = NodePath("MarginContainer/HBoxContainer/ShipStats")
+colourpicker = NodePath("MarginContainer/HBoxContainer/ShipComponents/PickCoolour/ColorPickerButton")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
