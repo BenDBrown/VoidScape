@@ -21,6 +21,7 @@ func deferred(playerShip:PlayerShip):
 	hud = hud_scene.instantiate()
 	gameOver = game_over_scene.instantiate()
 	inventory = inventory_scene.instantiate()
+	Game.Hud = hud
 	gameOver.hide()
 	inventory.hide()
 	get_parent().add_child(playerShip)

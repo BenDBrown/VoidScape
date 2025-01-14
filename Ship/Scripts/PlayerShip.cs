@@ -17,6 +17,8 @@ public partial class PlayerShip : Ship, IShip
 
 	[Signal]
 	public delegate void WeaponMenuToggledEventHandler(bool isOpen);
+	[Signal]
+	public delegate void InteractableInteractedEventHandler();
 
 	[Signal]
 	public delegate void CreditsChangedEventHandler(float totalCredits);
@@ -160,6 +162,13 @@ public partial class PlayerShip : Ship, IShip
 	{
 		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.GetPowerDraw()) * delta;
 	}
+
+	public void Interact()
+	{
+	 { EmitSignal(SignalName.InteractableInteracted); }
+	}
+
+	
 
 	public void PerformBlink()
 	{
