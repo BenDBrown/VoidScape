@@ -4,6 +4,7 @@ var interact_ui
 var message_box
 var format_string = "You have recieved %s credits" 
 var text_label:RichTextLabel
+var timer
 @export var message_box_scene:PackedScene
 
 func _ready() -> void:
@@ -12,24 +13,18 @@ func _ready() -> void:
 	give_credits()
 
 func dialog():
-	find_hud()
-	message_box = message_box_scene.instantiate()
-	text_label = message_box.get_child(0)
+	text_label = message_box_scene.instantiate()
 	text_label.text= format_string % credit
-	interact_ui.add_child(message_box)
-	var timer = Timer.new()
-	timer.timeout.connect(queue_free)
-	timer.timeout.connect(message_box.queue_free)
-	add_child(timer)
-	timer.start(5)
+	Game.Hud.add_child(text_label)
+	death_timer()
 
 func give_credits():
 	Game.PlayerShip.AddCredits(credit)
 
-func find_hud():
-	for c in get_parent().get_parent().get_children():
-		if c is CanvasLayer:
-			if c.name == "HUD":
-				for ui in c.get_children():
-					if ui is Interactable_ui:
-						interact_ui = ui
+func death_timer():
+	if !timer:
+		timer = Timer.new()
+		timer.timeout.connect(queue_free)
+		timer.timeout.connect(text_label.queue_free)
+		add_child(timer)
+	timer.start(5)

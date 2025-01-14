@@ -36,7 +36,6 @@ public partial class PlayerShip : Ship, IShip
 	private CreditsManager creditsManager = new();
 
 	private bool weaponMenuIsOpen = false;
-	private bool isInteracting = false;
 
 	public void StartShielding()
 	{
@@ -166,13 +165,10 @@ public partial class PlayerShip : Ship, IShip
 
 	public void Interact()
 	{
-		if (isInteracting) { EmitSignal(SignalName.InteractableInteracted); }
+	 { EmitSignal(SignalName.InteractableInteracted); }
 	}
 
-	public void CanInteract(bool CanInteract)
-	{
-		isInteracting = CanInteract;
-	}
+	
 
 	public void PerformBlink()
 	{
