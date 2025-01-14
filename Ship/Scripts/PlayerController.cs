@@ -58,7 +58,10 @@ public partial class PlayerController : Node
             ((PlayerShip) playerShip).CycleGunGroup(CYCLE_WEAPON_DOWN);
         }
 
-
+        //interact controls
+        if(Input.IsActionJustPressed("interact")){
+            playerShip.Interact();
+        }
 
         if (Input.IsActionJustPressed("shielding") && (!Input.IsActionPressed("shoot"))) { playerShip.StartShielding(); }
         if (Input.IsActionJustReleased("shielding")) { playerShip.StopShielding(); }
