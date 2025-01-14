@@ -59,7 +59,7 @@ public partial class PlayerController : Node
         }
 
         //interact controls
-        if(Input.IsActionJustPressed("Interact")){
+        if(Input.IsActionJustPressed("interact")){
             playerShip.Interact();
         }
 
