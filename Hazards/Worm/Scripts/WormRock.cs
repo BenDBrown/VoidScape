@@ -29,6 +29,11 @@ public partial class WormRock : StaticBody2D
         return chosenNode.GlobalPosition;
     }
 
+    public Vector2 GetHoleEntranceNearestToPlayer()
+    {
+        return new(); // placeholder while I pull in the tile error fix
+    }
+
     /// <summary>
 	/// Returns the global position of a random hole entry point.
 	/// </summary>
@@ -41,7 +46,7 @@ public partial class WormRock : StaticBody2D
         return holeLocations[randomHoleIndex].GlobalPosition;
     }
 
-        /// <summary>
+    /// <summary>
 	/// Returns the global position of a random hole exit point.
 	/// </summary>
     public Vector2 GetRandomHoleExit()

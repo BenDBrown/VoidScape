@@ -60,6 +60,30 @@ public partial class WormAI : Node
         currentPattern[patternIndex-1].Invoke();
     }
 
+    private void MoveToNearestRock() => MoveToRock(GetNearestWormRock());
+
+    private void FoldIntoNearestRock() => FoldIntoRock(GetNearestWormRock());
+
+    private void FoldOutOfNearestRock() => FoldOutOfRock(GetNearestWormRock());
+
+    private WormRock GetNearestWormRock()
+    {
+        WormRock rock = null;
+        float distance = 0;
+        foreach(Node node in GetParent().GetChildren())
+        {
+            if(node is not WormRock newRock) continue;
+            float newDistance = worm.GlobalHeadPos.DistanceTo(newRock.GlobalPosition);
+            if(rock == null || newDistance < distance) 
+            {
+                rock = newRock;
+                distance = newDistance;
+            }
+        }
+
+        return rock;
+    }
+
     private void SelectPattern()
     {
         if(patterns.Count <= 0)
@@ -95,9 +119,7 @@ public partial class WormAI : Node
     private void FoldOutOfRock(WormRock rock)
     {
         worm.FoldIntoLocation = false;
-        Vector2 exit = rock.GetRandomHoleExit();
-        GD.Print("exit pos: " + exit.ToString());
-        GD.Print("worm pos: " + worm.GlobalHeadPos.ToString());
+        Vector2 exit = rock.GetRandomHoleEntrance();
         worm.AddPointToMoveThrough(exit);
     }
 

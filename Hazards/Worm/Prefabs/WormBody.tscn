@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi2al265nsrio"]
+[gd_scene load_steps=15 format=3 uid="uid://bi2al265nsrio"]
 
 [ext_resource type="Script" path="res://Hazards/Worm/Scripts/Worm.cs" id="1_nt2kc"]
 [ext_resource type="Texture2D" uid="uid://c4dh6t1yi5jav" path="res://Assets/Hazzards/Space Wyrm/Space Worm 2.png" id="1_si6aq"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="5_lp623"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="7_osq63"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="8_owoaf"]
-[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="9_xcwgs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twb33"]
 atlas = ExtResource("2_q17d8")
@@ -53,7 +52,6 @@ radius = 5.0
 curve = ExtResource("1_yvbiv")
 script = ExtResource("1_nt2kc")
 Segments = [NodePath("Head"), NodePath("Core"), NodePath("BodySegment0"), NodePath("BodySegment1"), NodePath("BodySegment2"), NodePath("Tail")]
-deathAnim = ExtResource("9_xcwgs")
 curvePeriod = 320.0
 speed = 170.0
 
