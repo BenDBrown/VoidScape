@@ -48,6 +48,7 @@ public partial class ShipBuilderManager : Control
 			cr.MouseEntered += () => MouseEnteredSquare(cr);
 			cr.MouseExited += MouseExitedSquare;
 		}
+		// gridGenerator.CallDeferred("LoadShip");
 	}
 
 	public override void _Process(double delta)
@@ -80,7 +81,15 @@ public partial class ShipBuilderManager : Control
 					draggedPreview = new();
 					preview = data;
 					draggedPreview.Texture = data.Sprite;
-					AddChild(draggedPreview);
+					Node parent = GetParent();
+					for (int j = 0; j < 20; j++)
+					{
+						if (parent == null) break;
+						if (parent is CanvasLayer) { parent.AddChild(draggedPreview); break; }
+						GD.Print(parent.Name);
+						parent = parent.GetParent();
+					}
+
 					draggedPreview.GlobalPosition = GetGlobalMousePosition();
 					initialMousePos = GetGlobalMousePosition();
 					isDragging = true;
@@ -124,7 +133,7 @@ public partial class ShipBuilderManager : Control
 				isDragging = false;
 				return;
 			}
-			if (hoveredRect == null || gridGenerator.GridCells[rectPos].Texture == gridGenerator.InvalidCell)
+			if (hoveredRect == null || gridGenerator.GridCells[rectPos].Texture == gridGenerator.InvalidCell || gridGenerator.GridCells[rectPos].HasComponent)
 			{
 				var tween = GetTree().CreateTween();
 				tween.TweenProperty(draggedPreview, "global_position", initialMousePos, 0.7f);
@@ -143,7 +152,7 @@ public partial class ShipBuilderManager : Control
 					shipStats.UpdateStats(pieces);
 
 				}
-				else if (gridGenerator.GridCells[rectPos].IsValid || gridGenerator.GridCells[rectPos].HasComponent)
+				else if (gridGenerator.GridCells[rectPos].IsValid /*|| gridGenerator.GridCells[rectPos].HasComponent*/)
 				{
 					for (int i = 0; i < pieces.Count; i++)
 					{

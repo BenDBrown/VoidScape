@@ -53,6 +53,13 @@ public partial class GridGenerator : Control
 		return GridCells.Values.ToArray();
 	}
 
+	public void LoadShip()
+	{
+		var ship = Game.Instance.PlayerShip;
+
+		GD.Print(ship.shipParts);
+	}
+
 	public Vector2I GetCellAt(TextureRect rect)
 	{
 		foreach (Vector2I gridPos in GridCells.Keys)
