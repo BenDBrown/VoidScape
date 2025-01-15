@@ -6068,7 +6068,8 @@ texture = SubResource("CompressedTexture2D_ky2lt")
 15:88/0 = 0
 
 [resource]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 19
 sources/0 = SubResource("TileSetAtlasSource_jvi24")
 sources/1 = SubResource("TileSetAtlasSource_lq307")
 sources/2 = SubResource("TileSetAtlasSource_stor5")

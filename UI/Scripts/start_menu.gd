@@ -5,7 +5,7 @@ extends Node2D
 @export var ship_builder_scene: PackedScene = preload("res://Ship/ShipBuilder/ship_builder.tscn")
 @export var test_scene: PackedScene = preload("res://Scenes/playtest.tscn")
 @export var worm_scene: PackedScene = preload("res://Hazards/Worm/WormDemo.tscn")
-@export var cave_scene: PackedScene = preload("res://Misc/Cave/CaveRegion.tscn")
+@export var cave_scene: PackedScene = preload("res://Misc/Cave Region/CaveRegion.tscn")
 
 @onready var mainScreen = $"Main Screen"
 @onready var settingsMenu = $"SettingsMenu"

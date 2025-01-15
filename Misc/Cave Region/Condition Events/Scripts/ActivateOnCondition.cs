@@ -47,7 +47,7 @@ public partial class ActivateOnCondition : Node
         }
 
         if(HasRequirementMet(progressCheck)){
-            GD.Print("OPEN DOOR");
+            
             EmitSignal(SignalName.Activate);
         }
     }
