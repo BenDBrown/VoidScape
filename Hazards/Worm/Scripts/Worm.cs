@@ -27,10 +27,10 @@ public partial class Worm : Path2D
     private float slitherAmplitude = 64; // in pixels
 
     [Export]
-    private double speed = 100;
+    private double baseSpeed = 100;
 
     [Export]
-    private float targetPosLeeway = 3;
+    private double boostSpeed = 200;
 
     public bool FoldIntoLocation = false;
 
@@ -45,20 +45,23 @@ public partial class Worm : Path2D
     // should always have the distance to the second to last piece of the worm
     private Dictionary<PathFollow2D, float> segmentGapDict = new(); 
 
+    private double speed;
+
     private bool reachedTarget = false;
+
 
     public void OnPlayerHit()
     {
         GD.Print("hit");
         PlayerShip player = Game.Instance.PlayerShip;
         Vector2 perpendicularDirection = Vector2.Right.Rotated(Segments[0].GlobalRotation).Orthogonal();
-        Vector2 knockbackDirA = perpendicularDirection * knockback;
-        Vector2 knockbackDirB = perpendicularDirection * -knockback;
-        if((GlobalHeadPos + knockbackDirA).DistanceTo(player.GlobalPosition) > (GlobalHeadPos + knockbackDirB).DistanceTo(player.GlobalPosition))
+        Vector2 knockbackA = perpendicularDirection * knockback;
+        Vector2 knockbackB = perpendicularDirection * -knockback;
+        if((GlobalHeadPos + knockbackA).DistanceTo(player.GlobalPosition) > (GlobalHeadPos + knockbackB).DistanceTo(player.GlobalPosition))
         {
-            
+            player.AddExternalImpulse(knockbackB);
         }
-        else {}
+        else player.AddExternalImpulse(knockbackA);
     }
 
     public void OnDeath()
@@ -79,6 +82,7 @@ public partial class Worm : Path2D
     public override void _Ready()
     {
         base._Ready();
+        speed = baseSpeed;
         for(int i = 0; i < Segments.Length; i++)
         {
             if(0 == i)
@@ -97,19 +101,34 @@ public partial class Worm : Path2D
     }
 
 
-    public void MoveTo(Vector2 targetPos)
+    public void MoveTo(Vector2 globalTargetPos)
     {
-        globalTargetLocation = targetPos;
+        globalTargetLocation = globalTargetPos;
         reachedTarget = false;
     }
 
     /// <summary>
 	/// Takes a global point to move through as a parameter.
 	/// </summary>
-    public void AddPointToMoveThrough(Vector2 point)
+    public void MoveToDirect(Vector2 globalTargetPos) 
     {
-        Vector2 newPoint = point - GlobalPosition;
-        Curve.AddPoint(newPoint);
+        globalTargetLocation = globalTargetPos;
+        Curve.AddPoint(targetLocation);
+        reachedTarget = false;
+    }
+
+    public void ChargeAtPlayer()
+    {
+        Boost(true);
+        float overShootValue = 192;
+        Vector2 lineToPlayer =  Game.Instance.PlayerShip.GlobalPosition - GlobalHeadPos;
+        MoveToDirect(Game.Instance.PlayerShip.GlobalPosition + (lineToPlayer.Normalized() * overShootValue));
+    }
+
+    public void Boost(bool yes)
+    {
+        if(yes) speed = boostSpeed;
+        else speed = baseSpeed;
     }
 
     /// <summary>
@@ -127,6 +146,7 @@ public partial class Worm : Path2D
     private void ReachTarget()
     {
         reachedTarget = true;
+        Boost(false);
         GD.Print("target reached");
         EmitSignal(SignalName.OnWormReachedDestination);
     }
@@ -137,12 +157,7 @@ public partial class Worm : Path2D
 
         for(int i = 0; i < Segments.Length; i++)
         {
-            if
-            (
-                Math.Abs(Segments[i].Position.X - targetLocation.X) <= targetPosLeeway
-                &&
-                Math.Abs(Segments[i].Position.Y - targetLocation.Y) <= targetPosLeeway
-            ) 
+            if(Segments[i].ProgressRatio >= 1) 
             {
                 if(i == Segments.Length - 1) ReachTarget();
                 if(FoldIntoLocation) continue;

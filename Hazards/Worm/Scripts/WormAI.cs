@@ -3,22 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public partial class WormAI : Node
+public partial class WormAI : Node2D
 {
     [Export]
     private Worm worm;
 
     [Export]
-    private WormRock rock1;
-
-    [Export]
-    private WormRock rock2;
+    private WormRock[] rocks;
 
     private List<List<Action>> patterns;
     
     private List<Action> currentPattern = null;
 
+    private List<Action> idlePattern;
+
+    private WormRock currentRock = null;
+
+    private Random rng = new();
+
     private int patternIndex = 0;
+
+    private bool aggro = false;
 
     public override void _Ready()
     {
@@ -27,53 +32,70 @@ public partial class WormAI : Node
         {
             new()
             {
-                () => MoveToRock(rock1),
-                () => FoldIntoRock(rock1),
-                ClearWormPath,
-                () => FoldOutOfRock(rock1),
-                () => MoveToRock(rock2),
-                () => FoldIntoRock(rock2),
-                ClearWormPath,
-                () => FoldOutOfRock(rock2),
+                MoveToNearestRock,
+                FoldIntoRock,
+                FoldOutOfRock,
+                ChargeAtPlayer
+            },
+            new()
+            {
+                MoveToRandomRock,
+                FoldIntoRock,
+                FoldOutOfRock,
+                ChargeAtPlayer,
+                ChargeAtPlayer,
+                ChargeAtPlayer
             }
         };
+        idlePattern = new()
+        {
+            MoveToRandomRock,
+            FoldIntoRock,
+            FoldOutOfRock
+        };
+        currentPattern = idlePattern;
         worm.OnWormReachedDestination += NextAction;
         NextAction();
     }
 
+    public void OnBodyEntered(Node2D node) {if(node == Game.Instance.PlayerShip) Aggro();}
+
+    public void OnBodyExited(Node2D node){if(node == Game.Instance.PlayerShip) EndAggro();}
 
     public override void _Process(double delta)
     {
-        // worm.MoveTo(GetViewport().GetMousePosition()); // doesnt work while player is in scene due to viewport getting misaligned and the method expecting global coords
+        // worm.MoveTo(GetViewport().GetMousePosition()); // doesnt work while player is in scene due to viewport getting misaligned and the method expecting global coords // FUN FOR TESTING, DONT REMOVE
     }
 
-
-    public void NextAction()
+    public void Aggro() 
     {
-        if(currentPattern == null || patternIndex >= currentPattern.Count) 
-        {
-            SelectPattern();
-            return;
-        }
-        GD.Print("next action starting");
-        patternIndex++;
-        currentPattern[patternIndex-1].Invoke();
+        GD.Print("aggro");
+        aggro = true;
+    }
+    public void EndAggro()
+    {
+        GD.Print("end of aggro");
+        aggro = false;
     }
 
     private void MoveToNearestRock() => MoveToRock(GetNearestWormRock());
 
-    private void FoldIntoNearestRock() => FoldIntoRock(GetNearestWormRock());
+    private void MoveToRandomRock() => MoveToRock(GetRandomWormRock()); 
 
-    private void FoldOutOfNearestRock() => FoldOutOfRock(GetNearestWormRock());
+    private void ChargeAtPlayer()
+    {
+        GD.Print("charging");
+        worm.ChargeAtPlayer();
+    }
 
     private WormRock GetNearestWormRock()
     {
         WormRock rock = null;
         float distance = 0;
-        foreach(Node node in GetParent().GetChildren())
+        foreach(WormRock newRock in rocks)
         {
-            if(node is not WormRock newRock) continue;
             float newDistance = worm.GlobalHeadPos.DistanceTo(newRock.GlobalPosition);
+            if(newRock == currentRock) continue;
             if(rock == null || newDistance < distance) 
             {
                 rock = newRock;
@@ -84,15 +106,34 @@ public partial class WormAI : Node
         return rock;
     }
 
+    public void NextAction()
+    {
+        if(currentPattern == null || patternIndex >= currentPattern.Count)
+        {
+            SelectPattern();
+            return;
+        }
+        GD.Print("next action starting");
+        patternIndex++;
+        currentPattern[patternIndex-1].Invoke();
+    }
+
     private void SelectPattern()
     {
+        if(!aggro)
+        {
+            GD.Print("going into idle pattern");
+            currentPattern = idlePattern;
+            patternIndex = 0;
+            NextAction();
+            return;
+        }
         if(patterns.Count <= 0)
         {
             GD.Print("no patterns defined");
             return;
         }
-
-        Random rng = new();
+        GD.Print("choosing aggro pattern");
         currentPattern = patterns[rng.Next(0, patterns.Count)];
         if(currentPattern.Count <= 0) 
         {
@@ -107,27 +148,47 @@ public partial class WormAI : Node
     private void MoveToRock(WormRock rock)
     {
         worm.FoldIntoLocation = false;
+        currentRock = rock;
         worm.MoveTo(rock.GetNearestHole(worm.GlobalHeadPos));
     }
 
-    private void FoldIntoRock(WormRock rock)
+    private void FoldIntoRock()
     {
-        worm.MoveTo(rock.GlobalPosition);
+        if(currentRock == null) 
+        {
+            GD.PrintErr("tried folding out of rock that was not set");
+            return;
+        }
+        worm.MoveTo(currentRock.GlobalPosition);
         worm.FoldIntoLocation = true;
     }
 
-    private void FoldOutOfRock(WormRock rock)
+    private void FoldOutOfRock()
     {
-        worm.FoldIntoLocation = false;
-        Vector2 exit = rock.GetRandomHoleEntrance();
-        worm.AddPointToMoveThrough(exit);
-    }
-
-    private void ClearWormPath()
-    {
+        if(currentRock == null) 
+        {
+            GD.PrintErr("tried folding out of rock that was not set");
+            return;
+        }
         worm.ResetPath();
-        NextAction();
+        worm.FoldIntoLocation = false;
+        Vector2 exit = currentRock.GetHoleNearestToPlayer();
+        worm.MoveToDirect(exit);
     }
 
-
+    private WormRock GetRandomWormRock()
+    {
+        WormRock rock = null;
+        int tryCounter = 0;
+        int maxTries = 10000;
+        while (rock == null)
+        {
+            WormRock newRock = rocks[rng.Next(0, rocks.Length)];
+            if(currentRock == newRock) continue;
+            rock = newRock;
+            tryCounter++;
+            if(tryCounter >= maxTries) break;
+        }
+        return rock;
+    }
 }
