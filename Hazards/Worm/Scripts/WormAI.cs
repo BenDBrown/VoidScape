@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 public partial class WormAI : Node2D
 {
     [Export]
+    private bool wormFollowsMouse = false; // for testing only 
+
+    [Export]
     private Worm worm;
 
     [Export]
@@ -27,6 +30,7 @@ public partial class WormAI : Node2D
 
     public override void _Ready()
     {
+        if(wormFollowsMouse) return;
         worm.OnWormDestroyed += QueueFree;
         patterns = new()
         {
@@ -64,29 +68,20 @@ public partial class WormAI : Node2D
 
     public override void _Process(double delta)
     {
-        // worm.MoveTo(GetViewport().GetMousePosition()); // doesnt work while player is in scene due to viewport getting misaligned and the method expecting global coords // FUN FOR TESTING, DONT REMOVE
+        if(wormFollowsMouse) worm.MoveTo(GetViewport().GetMousePosition());
     }
 
-    public void Aggro() 
-    {
-        GD.Print("aggro");
-        aggro = true;
-    }
-    public void EndAggro()
-    {
-        GD.Print("end of aggro");
-        aggro = false;
-    }
+    public void Aggro() => aggro = true;
+    
+    public void EndAggro() => aggro = false;
+
 
     private void MoveToNearestRock() => MoveToRock(GetNearestWormRock());
 
     private void MoveToRandomRock() => MoveToRock(GetRandomWormRock()); 
 
-    private void ChargeAtPlayer()
-    {
-        GD.Print("charging");
-        worm.ChargeAtPlayer();
-    }
+    private void ChargeAtPlayer() => worm.ChargeAtPlayer();
+
 
     private WormRock GetNearestWormRock()
     {
@@ -113,7 +108,6 @@ public partial class WormAI : Node2D
             SelectPattern();
             return;
         }
-        GD.Print("next action starting");
         patternIndex++;
         currentPattern[patternIndex-1].Invoke();
     }
@@ -122,7 +116,6 @@ public partial class WormAI : Node2D
     {
         if(!aggro)
         {
-            GD.Print("going into idle pattern");
             currentPattern = idlePattern;
             patternIndex = 0;
             NextAction();
@@ -130,14 +123,13 @@ public partial class WormAI : Node2D
         }
         if(patterns.Count <= 0)
         {
-            GD.Print("no patterns defined");
+            GD.PrintErr("no patterns defined");
             return;
         }
-        GD.Print("choosing aggro pattern");
         currentPattern = patterns[rng.Next(0, patterns.Count)];
         if(currentPattern.Count <= 0) 
         {
-            GD.Print("pattern was null");
+            GD.PrintErr("pattern was null");
             return;
         }
 

@@ -52,7 +52,6 @@ public partial class Worm : Path2D
 
     public void OnPlayerHit()
     {
-        GD.Print("hit");
         PlayerShip player = Game.Instance.PlayerShip;
         Vector2 perpendicularDirection = Vector2.Right.Rotated(Segments[0].GlobalRotation).Orthogonal();
         Vector2 knockbackA = perpendicularDirection * knockback;
@@ -66,7 +65,6 @@ public partial class Worm : Path2D
 
     public void OnDeath()
     {
-        GD.Print("worm died");
         EmitSignal(SignalName.OnWormDestroyed);
         SingleRunAnimation anim = deathAnim.Instantiate() as SingleRunAnimation;
         anim.AnimationFinished += QueueFree;
@@ -140,14 +138,12 @@ public partial class Worm : Path2D
         Curve.ClearPoints();
         Curve.AddPoint(newStartPos);
         foreach(PathFollow2D segment in Segments) segment.Progress = 0;
-        GD.Print("path reset added");
     }
 
     private void ReachTarget()
     {
         reachedTarget = true;
         Boost(false);
-        GD.Print("target reached");
         EmitSignal(SignalName.OnWormReachedDestination);
     }
 

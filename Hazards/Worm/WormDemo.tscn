@@ -34,6 +34,7 @@ position = Vector2(168, 554)
 
 [node name="WormAggroRange" type="Area2D" parent="."]
 position = Vector2(559, 279)
+collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WormAggroRange"]
 position = Vector2(35.5, 55)
