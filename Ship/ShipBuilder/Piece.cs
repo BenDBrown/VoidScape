@@ -6,6 +6,7 @@ public class Piece
     public ShipComponentData ComponentData;
     public bool IsMirrored;
     public float LocalRotation;
+    public Color Colour;
 
     public Piece(ShipComponentData componentData, Vector2 coordinate, bool isMirrored, float localRotation)
     {
@@ -13,6 +14,7 @@ public class Piece
         Coordinate = coordinate;
         IsMirrored = isMirrored;
         LocalRotation = localRotation;
-
     }
+
+
 }
