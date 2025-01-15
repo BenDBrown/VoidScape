@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbhtqu5gxp02p" path="res://Hazards/Worm/Prefabs/WormRock.tscn" id="4_vc2r0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hmjjw"]
-size = Vector2(1085, 417)
+size = Vector2(1085, 606)
 
 [node name="WormDemo" type="Node2D"]
 
@@ -36,7 +36,7 @@ position = Vector2(168, 554)
 position = Vector2(559, 279)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WormAggroRange"]
-position = Vector2(35.5, -39.5)
+position = Vector2(35.5, 55)
 shape = SubResource("RectangleShape2D_hmjjw")
 
 [connection signal="body_entered" from="WormAggroRange" to="Worm" method="OnBodyEntered"]
