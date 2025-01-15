@@ -43,6 +43,7 @@ public partial class ShipBuilderManager : Control
 
 	public override void _Ready()
 	{
+		pieceColour = new(0.51f, 0.502f, 0.486f, 1);
 		itemList.PopulateItemList();
 		shipStats.PopulateList();
 		gridSquares = gridGenerator.GenerateGrid();
@@ -52,7 +53,7 @@ public partial class ShipBuilderManager : Control
 			cr.MouseExited += MouseExitedSquare;
 		}
 		gridGenerator.CallDeferred("LoadShip");
-		pieceColour = new(0.51f, 0.502f, 0.486f, 1);
+
 	}
 
 	public override void _Process(double delta)
@@ -68,8 +69,9 @@ public partial class ShipBuilderManager : Control
 		{
 			if (gt.Material is not ShaderMaterial shaderMat) return;
 			shaderMat.SetShaderParameter("color", colour);
-			pieceColour = colour;
 		}
+
+		pieceColour = colour;
 	}
 
 	private void OnItemClicked(int index, Vector2 atPosition, int mouseButtonIndex)
@@ -153,7 +155,7 @@ public partial class ShipBuilderManager : Control
 				{
 					gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
 					gridGenerator.GridCells[rectPos].HasComponent = true;
-					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation, pieceColour);
+					Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
 					pieces.Add(piece);
 					ResetPiece();
 					shipStats.UpdateStats(pieces);
@@ -167,7 +169,7 @@ public partial class ShipBuilderManager : Control
 						{
 							pieces.Remove(pieces[i]);
 							gridGenerator.ChangeCellText(hoveredRect, draggedPreview.Texture);
-							Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation, pieceColour);
+							Piece piece = new Piece(preview, rectPos, isMirrored, currentRotation);
 							pieces.Add(piece);
 							ResetPiece();
 							shipStats.UpdateStats(pieces);
@@ -358,6 +360,7 @@ public partial class ShipBuilderManager : Control
 
 	private void OnBuildPressed()
 	{
+		foreach (Piece piece in pieces) piece.Colour = pieceColour;
 		var resolve = Game.Instance.BuildShip(pieces.ToArray());
 		GD.Print(resolve);
 	}
