@@ -23,11 +23,12 @@ shape = SubResource("CircleShape2D_rabfm")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_cgng6")
 
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent", "collision_shape")]
 script = ExtResource("3_ygqii")
+healthComponent = NodePath("../HealthComponent")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-visible = false
 shape = SubResource("CircleShape2D_1xu2j")
 debug_color = Color(0.860185, 0.242689, 0.67432, 0.42)
 

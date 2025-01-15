@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://outpost_building.gd" id="1_dyya1"]
 [ext_resource type="Texture2D" uid="uid://dg1lc46oit6bf" path="res://icon.svg" id="2_kpim2"]
 [ext_resource type="PackedScene" uid="uid://wml28sk30xju" path="res://Ship/Prefabs/Enemies/outpost_grunt.tscn" id="2_l3tn0"]
-[ext_resource type="PackedScene" uid="uid://bpi5xtyl1vg1v" path="res://Ship/Prefabs/BulletDeathAnimation.tscn" id="2_x3w1m"]
+[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="3_0gne7"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_mps48"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="4_tog3c"]
 
@@ -11,21 +11,23 @@
 
 [node name="OutpostBuilding" type="Node2D" node_paths=PackedStringArray("death_anim")]
 script = ExtResource("1_dyya1")
-death_anim = NodePath("BulletDeathAnimation")
+death_anim = NodePath("ExplosionAnim")
 grunt_scene = ExtResource("2_l3tn0")
 respawn_time = 5
 
-[node name="BulletDeathAnimation" parent="." instance=ExtResource("2_x3w1m")]
+[node name="ExplosionAnim" parent="." instance=ExtResource("3_0gne7")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.712704, 0.512075)
+texture = ExtResource("2_kpim2")
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(5.00266, 3.68349)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_8upl8")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-scale = Vector2(0.142465, 0.139019)
-texture = ExtResource("2_kpim2")
+debug_color = Color(0.796874, 0.311881, 0.727191, 0.42)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_mps48")

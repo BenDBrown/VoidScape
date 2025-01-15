@@ -4,7 +4,8 @@ extends Node2D
 @export var respawn_time:int
 @export var core:Node2D
 @onready var health_comp = $HealthComponent
-
+@onready var hitbox =$HitboxComponent
+@onready var sprite = $Sprite2D
 
 var grunts_alive:int = 0
 var grunt
@@ -23,7 +24,11 @@ func _on_health_component_died() -> void:
 	allowed_to_spawn = false
 	death_anim.visible = true
 	death_anim.play()
-	respawn_timer.queue_free()
+	if hitbox:
+		hitbox.queue_free()
+	sprite.visible = false
+	if respawn_timer:
+		respawn_timer.set_paused(true)
 
 func create_grunt():
 	grunt = grunt_scene.instantiate()
