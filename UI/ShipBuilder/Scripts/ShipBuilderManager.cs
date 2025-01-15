@@ -11,16 +11,16 @@ public partial class ShipBuilderManager : Control
 
 
 	[Export]
-	public ShipComponents itemList;
+	private ShipComponents itemList;
 
 	[Export]
-	public GridGenerator gridGenerator;
+	private GridGenerator gridGenerator;
 
 	[Export]
-	public ShipStats shipStats;
+	private ShipStats shipStats;
 
 	[Export]
-	public ColorPickerButton colourpicker;
+	private ColorPickerButton colourpicker;
 
 
 	private Dictionary<int, ShipComponentData> itemListRef = new();

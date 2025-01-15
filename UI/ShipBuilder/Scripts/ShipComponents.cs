@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class ShipComponents : ItemList
 {
     [Export]
-    public ShipComponentData[] datas;
+    private ShipComponentData[] datas;
     [Export]
     private Label name, health, defense, description;
     [Export]
