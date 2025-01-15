@@ -132,6 +132,14 @@ public partial class ThrustManager : IPowerable
 
 	public void KillMomentum() => Force = new(0, 0);
 
+	public void RemoveForceInDirection(Vector2 direction)
+	{
+		direction = direction.Normalized();
+		float dot = Force.Dot(direction);
+		if (dot <= 0) return;
+		Force -= direction * dot;
+	}
+
 	private void OnThrusterDestroyed(ShipComponent shipComponent)
 	{
 		if (shipComponent is not Thruster thruster) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
