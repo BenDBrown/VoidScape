@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcirm10uh4o83"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="1_lsid4"]
+[ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="2_m6n2y"]
+[ext_resource type="PackedScene" uid="uid://dy0i7yt5gs14t" path="res://Hazards/Worm/Prefabs/Worm.tscn" id="3_ifvsc"]
+[ext_resource type="PackedScene" uid="uid://cbhtqu5gxp02p" path="res://Hazards/Worm/Prefabs/WormRock.tscn" id="4_vc2r0"]
+
+[node name="WormDemo" type="Node2D"]
+
+[node name="PlayerSpawner" type="Node2D" parent="."]
+position = Vector2(525, 519)
+script = ExtResource("1_lsid4")
+
+[node name="Background" parent="." instance=ExtResource("2_m6n2y")]
+
+[node name="Worm" parent="." node_paths=PackedStringArray("rock1", "rock2") instance=ExtResource("3_ifvsc")]
+position = Vector2(501, 173)
+rock1 = NodePath("../WormRock2")
+rock2 = NodePath("../WormRock")
+
+[node name="WormRock" parent="." instance=ExtResource("4_vc2r0")]
+position = Vector2(180, 146)
+
+[node name="WormRock2" parent="." instance=ExtResource("4_vc2r0")]
+position = Vector2(1059, 556)

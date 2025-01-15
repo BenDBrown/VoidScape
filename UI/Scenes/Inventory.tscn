@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciad6a8p0fr8i"]
+
+[ext_resource type="Script" path="res://UI/Scripts/inventory.gd" id="1_qjkj8"]
+
+[node name="Inventory" type="CanvasLayer"]
+script = ExtResource("1_qjkj8")
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 776.0
+offset_top = 345.0
+offset_right = 1096.0
+offset_bottom = 601.0
+item_count = 3

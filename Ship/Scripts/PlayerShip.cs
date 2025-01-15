@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 
@@ -16,6 +17,11 @@ public partial class PlayerShip : Ship, IShip
 
 	[Signal]
 	public delegate void WeaponMenuToggledEventHandler(bool isOpen);
+	[Signal]
+	public delegate void InteractableInteractedEventHandler();
+
+	[Signal]
+	public delegate void CreditsChangedEventHandler(float totalCredits);
 
 	[Export]
 	private Shield shield;
@@ -26,6 +32,8 @@ public partial class PlayerShip : Ship, IShip
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
 	private FuelManager fuelManager = new();
+
+	private CreditsManager creditsManager = new();
 
 	private bool weaponMenuIsOpen = false;
 
@@ -51,6 +59,8 @@ public partial class PlayerShip : Ship, IShip
 
 		shield.ShieldHit += UsePowerChunk;
 		blinking.Blink += UsePowerChunk;
+
+		creditsManager.CreditsChanged += (totalCredits) => EmitSignal(SignalName.CreditsChanged, totalCredits);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -153,11 +163,20 @@ public partial class PlayerShip : Ship, IShip
 		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.GetPowerDraw()) * delta;
 	}
 
+	public void Interact()
+	{
+	 { EmitSignal(SignalName.InteractableInteracted); }
+	}
+
+	
+
 	public void PerformBlink()
 	{
 		if (stalling) return;
 		blinking.Async_PerformBlink();
 	}
+
+	#region GUN
 	public void ToggleWeaponMenu(bool isOpen)
 	{
 		weaponMenuIsOpen = isOpen;
@@ -177,32 +196,49 @@ public partial class PlayerShip : Ship, IShip
 	/// This is used to create a correct overview for the weapon menu UI.
 	/// </summary>
 	/// <returns>A list of the gun types</returns>
-	public List<GunType> GetAvailableGunTypes()
-	{
-		return gunManager.GetGunGroupTypes();
-	}
+	public List<GunType> GetAvailableGunTypes() => gunManager.GetGunGroupTypes();
 
 	/// <summary>
 	/// Return the corresponding icon for the gun type. this is used in the weapon menu
 	/// </summary>
 	/// <param name="type">The gun type where you want the icon for.</param>
 	/// <returns>Texture of the gun type icon</returns>
-	public Texture2D GetGunTypeIcon(GunType type)
-	{
-		return gunManager.GetGunTypeIcon(type);
-	}
+	public Texture2D GetGunTypeIcon(GunType type) => gunManager.GetGunTypeIcon(type);
 
 	/// <summary>
 	/// This is used by the weapon menu ui to know which weapon is selected in the list of available weapons
 	/// </summary>
 	/// <returns> the index of the gungroup that is selected</returns>
-	public int GetActiveWeaponIndex()
-	{
-		return gunManager.GetSelectedWeaponIndex();
-	}
+	public int GetActiveWeaponIndex() => gunManager.GetSelectedWeaponIndex();
+	#endregion GUN
 
-	public void CollectCargo(Cargo cargo)
-	{
-		cargoManager.AddCargo(cargo);
-	}
+	#region CARGO
+	public void CollectCargo(Cargo cargo) => cargoManager.AddCargo(cargo);
+	public void CollectComponent(ShipComponentData scd) => cargoManager.AddShipComponent(scd);
+	public Dictionary GetCargos() => cargoManager.GetCargos();
+	#endregion CARGO
+
+	#region CREDITS
+
+	/// <summary>
+	/// Add the credits currency to the player.
+	/// </summary>
+	/// <param name="amountToAdd">Amount of credits to add</param>
+	public void AddCredits(float amountToAdd) => creditsManager.AddCredits(amountToAdd);
+
+	/// <summary>
+	/// Removing credits from the players available credits.
+	/// </summary>
+	/// <param name="decreaseAmount">Amount to take away.</param>
+	/// <returns>Returns wether this action has succeeded or not. A false means that no money was taking away.</returns>
+	public bool TryTakeCredits(float decreaseAmount) => creditsManager.TryDecreaseCredits(decreaseAmount);
+
+	/// <summary>
+	/// A check to see wether the player has enough credits to purchase something with the given price.
+	/// </summary>
+	/// <param name="priceToCheck"></param>
+	/// <returns></returns>
+	public bool HasEnoughCredits(float priceToCheck) => creditsManager.HasEnoughMoney(priceToCheck);
+
+	#endregion CREDITS
 }

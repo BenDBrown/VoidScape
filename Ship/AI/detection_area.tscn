@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ctlkswf0fn6x0"]
 
 [node name="Node2D" type="Area2D"]
+collision_layer = 0
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
