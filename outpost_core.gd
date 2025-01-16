@@ -24,6 +24,7 @@ func add_destruction_message():
 	Game.Hud.add_child(message)
 	create_death_timer()
 
+
 func create_death_timer():
 	if death_timer:
 		return
@@ -32,3 +33,4 @@ func create_death_timer():
 	death_timer.timeout.connect(death_timer.queue_free)
 	add_child(death_timer)
 	death_timer.start(3)
+	
