@@ -27,8 +27,8 @@ script = ExtResource("8_a0yns")
 
 [node name="Comet_tracker" type="Node" parent="."]
 script = ExtResource("2_tbh8l")
-spawn_time_min = 10
-spawn_time_max = 30
+spawn_time_min = 1
+spawn_time_max = 10
 allowed_to_spawn = true
 
 [node name="BlackHole" type="Node2D" parent="."]
