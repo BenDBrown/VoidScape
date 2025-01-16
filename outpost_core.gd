@@ -2,8 +2,10 @@ extends Node2D
 signal core_destroyed
 @onready var death_anim = $BulletDeathAnimation
 @onready var hitbox =$HitboxComponent
-@onready var sprite = $Sprite2D
+@onready var sprite_alive = $Alive
+@onready var sprite_destroyed = $Destroyed
 @export var message_scene:PackedScene
+
 var message:RichTextLabel
 var death_timer:Timer
 var died = false
@@ -12,10 +14,11 @@ func _on_health_component_died() -> void:
 	if !died:
 		died = true
 		emit_signal("core_destroyed")
-		sprite.visible = false
+		sprite_alive.visible = false
 		hitbox.queue_free()
 		death_anim.visible = true
 		death_anim.play()
+		sprite_destroyed.visible = true
 		add_destruction_message()
 
 func add_destruction_message():

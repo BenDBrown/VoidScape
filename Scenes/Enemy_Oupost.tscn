@@ -31,25 +31,25 @@ monitorable = false
 shape = SubResource("RectangleShape2D_6wmh2")
 
 [node name="OutpostBuilding" parent="." node_paths=PackedStringArray("core") instance=ExtResource("1_ol3im")]
-position = Vector2(-2294, -857)
+position = Vector2(-2225, -777)
 core = NodePath("../OutpostCore")
 
 [node name="OutpostBuilding2" parent="." node_paths=PackedStringArray("core") instance=ExtResource("1_ol3im")]
-position = Vector2(-2294, 870)
+position = Vector2(-2201, 793)
 core = NodePath("../OutpostCore")
 
 [node name="OutpostBuilding3" parent="." node_paths=PackedStringArray("core") instance=ExtResource("1_ol3im")]
-position = Vector2(2297, 824)
+position = Vector2(2085, 753)
 core = NodePath("../OutpostCore")
 
 [node name="OutpostBuilding4" parent="." node_paths=PackedStringArray("core") instance=ExtResource("1_ol3im")]
-position = Vector2(2314, -870)
+position = Vector2(2152, -760)
 core = NodePath("../OutpostCore")
 
 [node name="OutpostCore" parent="." instance=ExtResource("2_16xbg")]
 
-[node name="Core Gaurd" parent="OutpostCore" instance=ExtResource("6_egwha")]
-position = Vector2(-296, -2)
+[node name="Core Gaurd" parent="." instance=ExtResource("6_egwha")]
+position = Vector2(-281, -11)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
