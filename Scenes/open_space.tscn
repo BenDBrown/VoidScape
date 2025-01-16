@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvxfnsxy0sf0c"]
+[gd_scene load_steps=13 format=3 uid="uid://bvxfnsxy0sf0c"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_dsj0j"]
 [ext_resource type="Texture2D" uid="uid://bisny8ancsbfm" path="res://Assets/Hazzards/Blackhole/Blackhole.png" id="2_e8ctp"]
 [ext_resource type="PackedScene" uid="uid://b4yj0wo6jrt31" path="res://Hazards/Asteroid/asteroid.tscn" id="2_g2r1v"]
+[ext_resource type="Script" path="res://Hazards/Comet/comet_tracker.gd" id="2_tbh8l"]
+[ext_resource type="PackedScene" uid="uid://c0684gaincluq" path="res://Ship/Prefabs/Enemies/Scout.tscn" id="3_hh4i0"]
+[ext_resource type="Script" path="res://Structures/Props/Interactables/scripts/interactable_manager.gd" id="3_sun44"]
+[ext_resource type="PackedScene" uid="uid://2hmchkli54en" path="res://Structures/Station 1.tscn" id="4_gkyib"]
+[ext_resource type="PackedScene" uid="uid://b17scoqxflc5w" path="res://Structures/Props/Interactables/interactable_node_reveal.tscn" id="4_r8lle"]
+[ext_resource type="PackedScene" uid="uid://mrios312noqm" path="res://Structures/Props/Interactables/Credit reward/Credit_reward.tscn" id="5_8jmmm"]
+[ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="8_a0yns"]
+[ext_resource type="PackedScene" uid="uid://bvkkqplsiju1m" path="res://Hazards/Comet/Comet_Disable_Area.tscn" id="11_kd5fh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxhda"]
+size = Vector2(1162, 946)
 
 [node name="OpenSpace" type="Node2D"]
 
@@ -10,192 +21,992 @@
 loop = true
 autoplay = true
 
-[node name="Asteroid Belt" type="Node2D" parent="."]
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(1078, 916)
+script = ExtResource("8_a0yns")
 
-[node name="Asteroid Field" type="Node2D" parent="."]
-position = Vector2(2315, 1277)
-
-[node name="Asteroid" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-822, -67)
-direction = Vector2(10, 10)
-
-[node name="Asteroid2" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-758, 53)
-direction = Vector2(10, 10)
-
-[node name="Asteroid3" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-862, 157)
-direction = Vector2(10, 10)
-
-[node name="Asteroid4" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-678, 257)
-direction = Vector2(10, 10)
-
-[node name="Asteroid5" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-566, -103)
-direction = Vector2(10, 10)
-
-[node name="Asteroid6" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-478, -395)
-direction = Vector2(10, 10)
-
-[node name="Asteroid7" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-682, -267)
-direction = Vector2(10, 10)
-
-[node name="Asteroid8" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-218, -503)
-direction = Vector2(10, 10)
-
-[node name="Asteroid9" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-574, -603)
-direction = Vector2(10, 10)
-
-[node name="Asteroid10" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-1074, 469)
-direction = Vector2(10, 10)
-
-[node name="Asteroid11" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-1126, 137)
-direction = Vector2(10, 10)
-
-[node name="Asteroid12" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-882, 709)
-direction = Vector2(10, 10)
-
-[node name="Asteroid13" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-862, 445)
-direction = Vector2(10, 10)
-
-[node name="Asteroid14" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-790, -799)
-direction = Vector2(10, 10)
-
-[node name="Asteroid15" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-934, -367)
-direction = Vector2(10, 10)
-
-[node name="Asteroid16" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-934, -367)
-direction = Vector2(10, 10)
-
-[node name="Asteroid17" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-576, 899)
-direction = Vector2(10, 10)
-
-[node name="Asteroid18" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-517, 536)
-direction = Vector2(10, 10)
-
-[node name="Asteroid19" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-341, 1166)
-direction = Vector2(10, 10)
-
-[node name="Asteroid20" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-362, 899)
-direction = Vector2(10, 10)
-
-[node name="Asteroid21" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-191, 637)
-direction = Vector2(10, 10)
-
-[node name="Asteroid22" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-159, 941)
-direction = Vector2(10, 10)
-
-[node name="Asteroid23" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-351, -746)
-direction = Vector2(10, 10)
-
-[node name="Asteroid24" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(108, -863)
-direction = Vector2(10, 10)
-
-[node name="Asteroid25" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-132, -708)
-direction = Vector2(10, 10)
-
-[node name="Asteroid26" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-52, -1023)
-direction = Vector2(10, 10)
-
-[node name="Asteroid27" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-420, -906)
-direction = Vector2(10, 10)
-
-[node name="Asteroid28" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(370, -847)
-direction = Vector2(10, 10)
-
-[node name="Asteroid29" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(226, -986)
-direction = Vector2(10, 10)
-
-[node name="Asteroid30" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(258, -671)
-direction = Vector2(10, 10)
-
-[node name="Asteroid31" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-78, 1160)
-direction = Vector2(10, 10)
-
-[node name="Asteroid32" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(237, 786)
-direction = Vector2(10, 10)
-
-[node name="Asteroid33" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(333, 562)
-direction = Vector2(10, 10)
-
-[node name="Asteroid34" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(87, 546)
-direction = Vector2(10, 10)
-
-[node name="Asteroid35" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(23, 888)
-direction = Vector2(10, 10)
-
-[node name="Asteroid36" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(557, 391)
-direction = Vector2(10, 10)
-
-[node name="Asteroid37" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(413, 215)
-direction = Vector2(10, 10)
-
-[node name="Asteroid38" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(584, 674)
-direction = Vector2(10, 10)
-
-[node name="Asteroid39" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(541, -639)
-direction = Vector2(10, 10)
-
-[node name="Asteroid40" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(600, -1125)
-direction = Vector2(10, 10)
-
-[node name="Asteroid41" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(408, 941)
-direction = Vector2(10, 10)
-
-[node name="Asteroid42" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(232, 1208)
-direction = Vector2(10, 10)
-
-[node name="Asteroid43" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(-836, 984)
-direction = Vector2(10, 10)
-
-[node name="Stations" type="Node2D" parent="."]
-
-[node name="Interactables" type="Node2D" parent="."]
-
-[node name="Scouts" type="Node2D" parent="."]
+[node name="Comet_tracker" type="Node" parent="."]
+script = ExtResource("2_tbh8l")
+spawn_time_min = 10
+spawn_time_max = 30
+allowed_to_spawn = true
 
 [node name="BlackHole" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="BlackHole"]
-position = Vector2(2334, 1256)
-scale = Vector2(2.04, 2.04)
+position = Vector2(-12002, 9253)
+scale = Vector2(3.74656, 3.74656)
 texture = ExtResource("2_e8ctp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BlackHole"]
+position = Vector2(-11343, -1557)
+rotation = 1.04721
+scale = Vector2(3.74656, 3.74656)
+texture = ExtResource("2_e8ctp")
+
+[node name="Sprite2D3" type="Sprite2D" parent="BlackHole"]
+position = Vector2(13924, 10266)
+rotation = -0.53796
+scale = Vector2(3.74656, 3.74656)
+texture = ExtResource("2_e8ctp")
+
+[node name="Sprite2D4" type="Sprite2D" parent="BlackHole"]
+position = Vector2(16487, -11575)
+rotation = -2.16937
+scale = Vector2(3.74656, 3.74656)
+texture = ExtResource("2_e8ctp")
+
+[node name="Asteroid Field" type="Node2D" parent="."]
+position = Vector2(9975, -6004)
+
+[node name="Asteroid13" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-2802, -2457)
+direction = Vector2(30, 30)
+
+[node name="Asteroid17" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9193, -8322)
+direction = Vector2(30, 30)
+
+[node name="Asteroid18" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-5182, -4758)
+direction = Vector2(30, 30)
+
+[node name="Asteroid20" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-4231, -8239)
+direction = Vector2(30, 30)
+
+[node name="Asteroid23" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(7800, -7992)
+direction = Vector2(30, 30)
+
+[node name="Asteroid26" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(9095, -3888)
+direction = Vector2(30, 30)
+
+[node name="Asteroid30" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(10368, -6317)
+direction = Vector2(30, 30)
+
+[node name="Asteroid33" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(2913, -8304)
+direction = Vector2(30, 30)
+
+[node name="Asteroid39" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(10055, -9806)
+direction = Vector2(30, 30)
+
+[node name="Asteroid42" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(5519, -7428)
+direction = Vector2(30, 30)
+
+[node name="Asteroid46" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-818, -10825)
+direction = Vector2(30, 30)
+
+[node name="Asteroid50" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(2675, -12312)
+direction = Vector2(30, 30)
+
+[node name="Asteroid63" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(12867, -1036)
+direction = Vector2(30, 30)
+
+[node name="Asteroid65" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-2059, -6515)
+direction = Vector2(30, 30)
+
+[node name="Asteroid67" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-7222, -2674)
+direction = Vector2(30, 30)
+
+[node name="Asteroid27" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-6505, -10272)
+direction = Vector2(30, 30)
+
+[node name="Asteroid15" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(3840, -1465)
+direction = Vector2(30, 30)
+
+[node name="Asteroid16" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(2853, -4493)
+direction = Vector2(30, 30)
+
+[node name="Asteroid19" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-2362, 2953)
+direction = Vector2(30, 30)
+
+[node name="Asteroid21" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-7854, 2951)
+direction = Vector2(30, 30)
+
+[node name="Asteroid24" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-3943, 344)
+direction = Vector2(30, 30)
+
+[node name="Asteroid32" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-10601, -2165)
+direction = Vector2(30, 30)
+
+[node name="Asteroid34" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9650, 591)
+direction = Vector2(30, 30)
+
+[node name="Asteroid36" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9650, 5035)
+direction = Vector2(30, 30)
+
+[node name="Asteroid37" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-4316, 4959)
+direction = Vector2(30, 30)
+
+[node name="Asteroid38" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(321, -2843)
+direction = Vector2(30, 30)
+
+[node name="Asteroid40" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(6355, -11665)
+direction = Vector2(30, 30)
+
+[node name="Asteroid44" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(-6737, 261)
+direction = Vector2(30, 30)
+
+[node name="Asteroid45" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(95, 5551)
+direction = Vector2(30, 30)
+
+[node name="Asteroid48" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(4271, 5416)
+direction = Vector2(30, 30)
+
+[node name="Asteroid58" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(8817, -1384)
+direction = Vector2(30, 30)
+
+[node name="Asteroid59" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(12274, -4306)
+direction = Vector2(30, 30)
+
+[node name="Asteroid62" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(11506, 3790)
+direction = Vector2(30, 30)
+
+[node name="Asteroid51" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(1741, 3559)
+direction = Vector2(30, 30)
+
+[node name="Asteroid52" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(9903, 5696)
+direction = Vector2(30, 30)
+
+[node name="Asteroid53" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(5222, 1002)
+direction = Vector2(30, 30)
+
+[node name="Asteroid54" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
+position = Vector2(5725, 3301)
+direction = Vector2(30, 30)
+
+[node name="Asteroid Field2" type="Node2D" parent="."]
+position = Vector2(-7936, -6208)
+
+[node name="Asteroid17" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-5960, -1138)
+direction = Vector2(30, 30)
+
+[node name="Asteroid18" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(254, 1951)
+direction = Vector2(30, 30)
+
+[node name="Asteroid19" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-3841, 1987)
+direction = Vector2(30, 30)
+
+[node name="Asteroid20" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-6715, 3424)
+direction = Vector2(30, 30)
+
+[node name="Asteroid21" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-8475, 5795)
+direction = Vector2(30, 30)
+
+[node name="Asteroid22" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-11277, 7483)
+direction = Vector2(30, 30)
+
+[node name="Asteroid23" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-16054, 1916)
+direction = Vector2(30, 30)
+
+[node name="Asteroid24" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-11133, 3568)
+direction = Vector2(30, 30)
+
+[node name="Asteroid25" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-14473, 4933)
+direction = Vector2(30, 30)
+
+[node name="Asteroid26" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-13611, 120)
+direction = Vector2(30, 30)
+
+[node name="Asteroid27" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-13683, 2311)
+direction = Vector2(30, 30)
+
+[node name="Asteroid28" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9049, 1377)
+direction = Vector2(30, 30)
+
+[node name="Asteroid29" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-11887, -3795)
+direction = Vector2(30, 30)
+
+[node name="Asteroid30" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-11456, 264)
+direction = Vector2(30, 30)
+
+[node name="Asteroid31" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-6391, -7351)
+direction = Vector2(30, 30)
+
+[node name="Asteroid32" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(3630, 695)
+direction = Vector2(30, 30)
+
+[node name="Asteroid33" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(1367, 4215)
+direction = Vector2(30, 30)
+
+[node name="Asteroid34" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(5821, 3353)
+direction = Vector2(30, 30)
+
+[node name="Asteroid35" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(4887, -1891)
+direction = Vector2(30, 30)
+
+[node name="Asteroid36" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(864, -7171)
+direction = Vector2(30, 30)
+
+[node name="Asteroid37" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(5641, -4836)
+direction = Vector2(30, 30)
+
+[node name="Asteroid38" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(720, -3579)
+direction = Vector2(30, 30)
+
+[node name="Asteroid39" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-7613, -4800)
+direction = Vector2(30, 30)
+
+[node name="Asteroid40" parent="Asteroid Field2" instance=ExtResource("2_g2r1v")]
+position = Vector2(-7613, -4800)
+direction = Vector2(30, 30)
+
+[node name="Asteroid Field3" type="Node2D" parent="."]
+position = Vector2(-7808, 6656)
+
+[node name="Asteroid13" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-2838, -2569)
+direction = Vector2(30, 30)
+
+[node name="Asteroid14" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-6712, -5529)
+direction = Vector2(30, 30)
+
+[node name="Asteroid15" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-6591, -1538)
+direction = Vector2(30, 30)
+
+[node name="Asteroid17" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(2930, -4853)
+direction = Vector2(30, 30)
+
+[node name="Asteroid18" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(4617, 1204)
+direction = Vector2(30, 30)
+
+[node name="Asteroid19" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(4577, -2546)
+direction = Vector2(30, 30)
+
+[node name="Asteroid20" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(1392, 3864)
+direction = Vector2(30, 30)
+
+[node name="Asteroid21" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-2116, 1647)
+direction = Vector2(30, 30)
+
+[node name="Asteroid22" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-1471, 5276)
+direction = Vector2(30, 30)
+
+[node name="Asteroid23" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(5464, 4268)
+direction = Vector2(30, 30)
+
+[node name="Asteroid24" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(5101, 9146)
+direction = Vector2(30, 30)
+
+[node name="Asteroid25" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(263, 11202)
+direction = Vector2(30, 30)
+
+[node name="Asteroid26" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-3285, 9589)
+direction = Vector2(30, 30)
+
+[node name="Asteroid27" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-5946, 4872)
+direction = Vector2(30, 30)
+
+[node name="Asteroid28" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-5785, 1002)
+direction = Vector2(30, 30)
+
+[node name="Asteroid29" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-12276, 1445)
+direction = Vector2(30, 30)
+
+[node name="Asteroid30" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-10139, 7049)
+direction = Vector2(30, 30)
+
+[node name="Asteroid31" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-7397, 9710)
+direction = Vector2(30, 30)
+
+[node name="Asteroid32" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-10542, -1740)
+direction = Vector2(30, 30)
+
+[node name="Asteroid33" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-4252, -5610)
+direction = Vector2(30, 30)
+
+[node name="Asteroid34" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-11509, -6940)
+direction = Vector2(30, 30)
+
+[node name="Asteroid35" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-8888, -4037)
+direction = Vector2(30, 30)
+
+[node name="Asteroid36" parent="Asteroid Field3" instance=ExtResource("2_g2r1v")]
+position = Vector2(-14291, -4440)
+direction = Vector2(30, 30)
+
+[node name="Asteroid Field4" type="Node2D" parent="."]
+position = Vector2(12032, 6720)
+
+[node name="Asteroid30" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9318, -751)
+direction = Vector2(30, 30)
+
+[node name="Asteroid41" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-10701, -5133)
+direction = Vector2(30, 30)
+
+[node name="Asteroid58" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9659, -6121)
+direction = Vector2(30, 30)
+
+[node name="Asteroid59" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9857, -5385)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid60" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-11617, -5493)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid61" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-11976, -4541)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid62" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-13233, -4685)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid63" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-13215, -5870)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid64" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-12874, -7091)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid65" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-10755, -7324)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid66" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-11491, -7091)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid67" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-12515, -6013)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid68" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-12443, -5402)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid69" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-8402, -5671)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid70" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9677, -7054)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid71" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9120, -5204)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid72" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9151, -3568)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid73" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-10534, -2508)
+rotation = -2.0438
+direction = Vector2(30, 30)
+
+[node name="Asteroid31" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-5879, 2915)
+direction = Vector2(30, 30)
+
+[node name="Asteroid32" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9454, 2598)
+direction = Vector2(30, 30)
+
+[node name="Asteroid33" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-3254, -3014)
+direction = Vector2(30, 30)
+
+[node name="Asteroid34" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-5653, -615)
+direction = Vector2(30, 30)
+
+[node name="Asteroid35" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(7969, -2063)
+direction = Vector2(30, 30)
+
+[node name="Asteroid36" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(2719, -3873)
+direction = Vector2(30, 30)
+
+[node name="Asteroid37" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(4665, 1965)
+direction = Vector2(30, 30)
+
+[node name="Asteroid38" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(5512, 7400)
+direction = Vector2(30, 30)
+
+[node name="Asteroid39" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-4431, 5812)
+direction = Vector2(30, 30)
+
+[node name="Asteroid40" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(150, 7915)
+direction = Vector2(30, 30)
+
+[node name="Asteroid42" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(8557, 4635)
+direction = Vector2(30, 30)
+
+[node name="Asteroid43" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(10186, 291)
+direction = Vector2(30, 30)
+
+[node name="Asteroid44" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(4484, -569)
+direction = Vector2(30, 30)
+
+[node name="Asteroid45" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(13218, -5230)
+direction = Vector2(30, 30)
+
+[node name="Asteroid46" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(21183, 789)
+direction = Vector2(30, 30)
+
+[node name="Asteroid47" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(19599, 9252)
+direction = Vector2(30, 30)
+
+[node name="Asteroid48" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(15662, -1111)
+direction = Vector2(30, 30)
+
+[node name="Asteroid49" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(13037, 9252)
+direction = Vector2(30, 30)
+
+[node name="Asteroid50" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(13037, 3731)
+direction = Vector2(30, 30)
+
+[node name="Asteroid51" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(8602, 11515)
+direction = Vector2(30, 30)
+
+[node name="Asteroid52" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-3074, 11243)
+direction = Vector2(30, 30)
+
+[node name="Asteroid53" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-9772, 13551)
+direction = Vector2(30, 30)
+
+[node name="Asteroid54" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-10360, 6627)
+direction = Vector2(30, 30)
+
+[node name="Asteroid55" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(2130, 16221)
+direction = Vector2(30, 30)
+
+[node name="Asteroid56" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(-4477, 15406)
+direction = Vector2(30, 30)
+
+[node name="Asteroid57" parent="Asteroid Field4" instance=ExtResource("2_g2r1v")]
+position = Vector2(2901, 12872)
+direction = Vector2(30, 30)
+
+[node name="Stations" type="Node2D" parent="."]
+
+[node name="Station" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(2689, -1715)
+
+[node name="Station2" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(20090, -8333)
+
+[node name="Station3" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(19819, 8840)
+
+[node name="Station4" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(10813, 19746)
+
+[node name="Station5" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(361, 6225)
+
+[node name="Station6" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(-16516, 5266)
+
+[node name="Station7" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(-6351, 19746)
+
+[node name="Station8" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(-19920, -7775)
+
+[node name="Station9" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(-5872, -7487)
+
+[node name="Station10" parent="Stations" instance=ExtResource("4_gkyib")]
+position = Vector2(-10043, -16021)
+
+[node name="Interactables" type="Node2D" parent="."]
+script = ExtResource("3_sun44")
+
+[node name="Satelite" type="Node2D" parent="Interactables"]
+position = Vector2(-1825, -910)
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite2" type="Node2D" parent="Interactables"]
+position = Vector2(-1071, 4803)
+rotation = -4.34832
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite2" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite3" type="Node2D" parent="Interactables"]
+position = Vector2(7182, -522)
+rotation = -5.78069
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite3" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite4" type="Node2D" parent="Interactables"]
+position = Vector2(4863, 2463)
+rotation = -7.91715
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite4" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite5" type="Node2D" parent="Interactables"]
+position = Vector2(10345, 8305)
+rotation = -5.66879
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite5" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite6" type="Node2D" parent="Interactables"]
+position = Vector2(4552, 15688)
+rotation = -4.09488
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite6" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite8" type="Node2D" parent="Interactables"]
+position = Vector2(18408, -2893)
+rotation = -3.37254
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite8" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite9" type="Node2D" parent="Interactables"]
+position = Vector2(2269, -10809)
+rotation = -3.39841
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite9" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite10" type="Node2D" parent="Interactables"]
+position = Vector2(-11122, -9387)
+rotation = -0.353871
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite10" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite11" type="Node2D" parent="Interactables"]
+position = Vector2(-5737, 14812)
+rotation = -4.3107
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite11" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite14" type="Node2D" parent="Interactables"]
+position = Vector2(-16179, 9409)
+rotation = -4.3107
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite14" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite15" type="Node2D" parent="Interactables"]
+position = Vector2(-8479, 1870)
+rotation = -4.3107
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite15" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite12" type="Node2D" parent="Interactables"]
+position = Vector2(29005, 9943)
+rotation = 0.416675
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite12" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Satelite13" type="Node2D" parent="Interactables"]
+position = Vector2(14902, -15662)
+rotation = -1.48135
+
+[node name="Interactable_node_reveal" parent="Interactables/Satelite13" node_paths=PackedStringArray("manager") instance=ExtResource("4_r8lle")]
+scale = Vector2(3.19175, 3.19175)
+node_to_reveal = ExtResource("5_8jmmm")
+manager = NodePath("../..")
+credit_reward = 100
+
+[node name="Scouts" type="Node2D" parent="."]
+
+[node name="Scout" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(1290, 3044)
+
+[node name="Scout2" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(1799, 2349)
+
+[node name="Scout3" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(1833, 5671)
+
+[node name="Scout4" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(4613, 4620)
+
+[node name="Scout5" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(2833, 8248)
+
+[node name="Scout6" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(10071, 7112)
+
+[node name="Scout7" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(6545, 8909)
+
+[node name="Scout8" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(9545, 13249)
+
+[node name="Scout9" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(3561, 14266)
+
+[node name="Scout10" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(2154, 11588)
+
+[node name="Scout11" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(20400, 16805)
+
+[node name="Scout12" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(26073, 12158)
+
+[node name="Scout13" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(28069, 9108)
+
+[node name="Scout14" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(29723, 11218)
+
+[node name="Scout15" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(17065, 11731)
+
+[node name="Scout16" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(30236, 18630)
+
+[node name="Scout17" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(23707, 20027)
+
+[node name="Scout18" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(12532, 18887)
+
+[node name="Scout19" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(30817, 4738)
+
+[node name="Scout20" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(24097, 3938)
+
+[node name="Scout21" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(17473, 322)
+
+[node name="Scout22" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(9057, 418)
+
+[node name="Scout23" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(12481, -4414)
+
+[node name="Scout24" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(20097, -5022)
+
+[node name="Scout25" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(15681, -7166)
+
+[node name="Scout26" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(11393, -5150)
+
+[node name="Scout27" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(3873, -3774)
+
+[node name="Scout28" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(1153, -6430)
+
+[node name="Scout29" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(545, -2782)
+
+[node name="Scout30" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(3809, -9662)
+
+[node name="Scout31" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(865, -12638)
+
+[node name="Scout32" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(545, -9214)
+
+[node name="Scout33" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(6497, -13150)
+
+[node name="Scout34" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(11041, -10270)
+
+[node name="Scout35" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(15233, -9566)
+
+[node name="Scout36" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(14145, -12766)
+
+[node name="Scout37" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(19777, -12254)
+
+[node name="Scout38" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(15937, -16158)
+
+[node name="Scout39" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-3135, -11518)
+
+[node name="Scout40" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-3871, -7550)
+
+[node name="Scout41" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-5759, -5886)
+
+[node name="Scout42" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-4479, -2462)
+
+[node name="Scout43" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-8927, -2654)
+
+[node name="Scout44" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-13535, -3550)
+
+[node name="Scout45" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-10527, -7934)
+
+[node name="Scout46" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-13887, -5982)
+
+[node name="Scout47" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-19197, -8205)
+
+[node name="Scout48" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-21117, -7629)
+
+[node name="Scout49" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-20100, -4462)
+
+[node name="Scout50" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-23364, -2318)
+
+[node name="Scout51" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-15876, -9262)
+
+[node name="Scout52" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-11972, -11982)
+
+[node name="Scout53" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-16100, -14062)
+
+[node name="Scout54" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-8836, -14382)
+
+[node name="Scout55" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-3972, -15886)
+
+[node name="Scout56" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-4894, -10746)
+
+[node name="Scout57" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-6334, -570)
+
+[node name="Scout58" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-10472, 1816)
+
+[node name="Scout59" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-13221, 2571)
+
+[node name="Scout60" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-16332, 5893)
+
+[node name="Scout61" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-17299, 4383)
+
+[node name="Scout62" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-17088, 9004)
+
+[node name="Scout63" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-15517, 10061)
+
+[node name="Scout64" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-10504, 10028)
+
+[node name="Scout65" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-11410, 8065)
+
+[node name="Scout66" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-19085, 5925)
+
+[node name="Scout67" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-20746, 3025)
+
+[node name="Scout68" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-17347, 1062)
+
+[node name="Scout69" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-2366, 6620)
+
+[node name="Scout70" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-2970, 9187)
+
+[node name="Scout71" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-5839, 6650)
+
+[node name="Scout72" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-7056, 11170)
+
+[node name="Scout73" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-8234, 3015)
+
+[node name="Scout74" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-1740, 1324)
+
+[node name="Scout75" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-2978, 3136)
+
+[node name="Scout76" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-4035, 12771)
+
+[node name="Scout77" parent="Scouts" instance=ExtResource("3_hh4i0")]
+position = Vector2(-441, 10627)
+
+[node name="NotSpawningCometArea" type="Node2D" parent="."]
+
+[node name="CometDisableArea" parent="NotSpawningCometArea" instance=ExtResource("11_kd5fh")]
+position = Vector2(4842, 2447)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NotSpawningCometArea/CometDisableArea"]
+position = Vector2(27, 25)
+shape = SubResource("RectangleShape2D_bxhda")
