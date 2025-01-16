@@ -29,29 +29,24 @@ public partial class WormRock : StaticBody2D
         return chosenNode.GlobalPosition;
     }
 
+    public Vector2 GetHoleNearestToPlayer()
+    {
+        if(Game.Instance.PlayerShip == null)
+        {
+            return GetRandomHole();
+        }
+        return GetNearestHole(Game.Instance.PlayerShip.GlobalPosition);
+    }
     /// <summary>
 	/// Returns the global position of a random hole entry point.
 	/// </summary>
-    public Vector2 GetRandomHoleEntrance()
+    public Vector2 GetRandomHole()
     {
         if(!HoleAssignmentCheck()) return Vector2.Zero;
         
         Random rng = new();
         int randomHoleIndex = rng.Next(0, holeLocations.Length);
         return holeLocations[randomHoleIndex].GlobalPosition;
-    }
-
-        /// <summary>
-	/// Returns the global position of a random hole exit point.
-	/// </summary>
-    public Vector2 GetRandomHoleExit()
-    {
-        if(!HoleAssignmentCheck()) return Vector2.Zero;
-        
-        Random rng = new();
-        int randomHoleIndex = rng.Next(0, holeLocations.Length);
-        return holeLocations[randomHoleIndex].GlobalPosition + holeLocations[randomHoleIndex].Position;
-        // this is a gross work around but time pressure
     }
 
     private bool HoleAssignmentCheck()
