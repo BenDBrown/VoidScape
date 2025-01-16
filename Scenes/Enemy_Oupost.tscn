@@ -10,6 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wmh2"]
 
 [node name="EnemyOupost" type="Node2D"]
+position = Vector2(-39, -44)
 script = ExtResource("1_ghhpv")
 
 [node name="TileMap_no_collision" type="TileMapLayer" parent="."]
@@ -22,6 +23,7 @@ tile_map_data = PackedByteArray("AAC1/+H/AAAAAAAAAAC1/+L/AAAAAAEAAAC1/+P/AAAAAAI
 tile_set = ExtResource("2_a1f2d")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2(-8, -8)
 scale = Vector2(242.443, 96.2082)
 collision_layer = 4

@@ -10,7 +10,7 @@
 
 [resource]
 script = ExtResource("4_k32jl")
-BulletsPerSecond = 10.0
+BulletsPerSecond = 1.0
 Attack = 100
 Powerdraw = 10
 type = 1

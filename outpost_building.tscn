@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8upl8"]
 
 [node name="OutpostBuilding" type="Node2D" node_paths=PackedStringArray("death_anim")]
-scale = Vector2(2.51787, 1.67063)
+scale = Vector2(1.67551, 1)
 script = ExtResource("1_dyya1")
 death_anim = NodePath("ExplosionAnim")
 grunt_scene = ExtResource("2_l3tn0")
@@ -19,11 +19,12 @@ respawn_time = 5
 [node name="ExplosionAnim" parent="." instance=ExtResource("3_0gne7")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.50742, 1.13272)
+scale = Vector2(4.58284, 4.11531)
 texture = ExtResource("4_l2ga7")
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(5.00266, 3.68349)
+monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

@@ -20,6 +20,7 @@ script = ExtResource("1_hguve")
 message_scene = ExtResource("2_ui35j")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_rabfm")
@@ -28,6 +29,7 @@ shape = SubResource("CircleShape2D_rabfm")
 script = ExtResource("2_cgng6")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent", "collision_shape")]
+collision_layer = 32
 script = ExtResource("3_ygqii")
 healthComponent = NodePath("../HealthComponent")
 collision_shape = NodePath("CollisionShape2D")

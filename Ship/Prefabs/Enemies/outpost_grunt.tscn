@@ -68,3 +68,5 @@ script = ExtResource("14_kq5nw")
 
 [node name="Outpost_Idle" type="Node" parent="StateManager" index="5"]
 script = ExtResource("17_kna4n")
+
+[connection signal="OnDestroyed" from="." to="StateManager" method="_on_grunt_on_destroyed"]
