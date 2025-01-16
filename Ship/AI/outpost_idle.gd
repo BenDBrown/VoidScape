@@ -1,8 +1,9 @@
 extends AIState
-
+class_name Outpost_Idle
+var detect = 500
 
 func update(_delta):
-	if parent.global_position.distance_to(player.global_position) < detect_radius:
+	if parent.global_position.distance_to(player.global_position) < detect:
 		exit()
 		transitioned.emit(self, "outpost_state")
 func enter():

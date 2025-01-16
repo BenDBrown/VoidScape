@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wml28sk30xju"]
+[gd_scene load_steps=18 format=3 uid="uid://wml28sk30xju"]
 
 [ext_resource type="PackedScene" uid="uid://bpmtcqfjhik1c" path="res://Ship/Prefabs/NPCShip.tscn" id="1_vyb4e"]
 [ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_a68sy"]
@@ -7,15 +7,18 @@
 [ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres" id="5_0amla"]
 [ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="6_13wnl"]
 [ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="7_nifnw"]
+[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="8_4ka5f"]
 [ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="8_5s46v"]
 [ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="9_rt33i"]
 [ext_resource type="Script" path="res://Ship/AI/state_manager.gd" id="10_pbh0l"]
 [ext_resource type="Script" path="res://Ship/AI/idle.gd" id="11_esfou"]
+[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Arzo/Arzo Gun.tres" id="11_u8ewx"]
 [ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="12_t8s5f"]
 [ext_resource type="Script" path="res://Ship/AI/follow.gd" id="13_ufxyh"]
 [ext_resource type="Script" path="res://Ship/AI/outpost_state.gd" id="14_kq5nw"]
+[ext_resource type="Script" path="res://Ship/AI/outpost_idle.gd" id="17_kna4n"]
 
-[node name="Scout" instance=ExtResource("1_vyb4e")]
+[node name="Grunt" instance=ExtResource("1_vyb4e")]
 collision_layer = 16
 collision_mask = 63
 
@@ -39,11 +42,15 @@ data = ExtResource("9_rt33i")
 position = Vector2(32, 32)
 data = ExtResource("5_0amla")
 
-[node name="StateManager2" type="Node2D" parent="." index="6"]
+[node name="Gun" parent="." index="6" instance=ExtResource("8_4ka5f")]
+position = Vector2(32, 0)
+data = ExtResource("11_u8ewx")
+
+[node name="StateManager2" type="Node2D" parent="." index="7"]
 script = ExtResource("10_pbh0l")
 
-[node name="StateManager" parent="." index="7" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("Outpost_State")
+[node name="StateManager" parent="." index="8" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Outpost_Idle")
 
 [node name="Idle2" type="Node" parent="StateManager" index="0"]
 script = ExtResource("11_esfou")
@@ -58,3 +65,6 @@ script = ExtResource("13_ufxyh")
 
 [node name="Outpost_State" type="Node" parent="StateManager" index="4"]
 script = ExtResource("14_kq5nw")
+
+[node name="Outpost_Idle" type="Node" parent="StateManager" index="5"]
+script = ExtResource("17_kna4n")

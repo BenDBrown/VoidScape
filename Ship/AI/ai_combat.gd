@@ -75,7 +75,7 @@ func attack(target):
 func create_detection_cone():
 	var cone = detection_area_scene.instantiate() as Area2D
 	add_child(cone)
-	cone.global_position = ship.global_position
+	cone.position = ship.position
 	cone.name = "eyes_for_guns"
 	cone.area_entered.connect(on_area_entered)
 	cone.area_exited.connect(on_area_exited)

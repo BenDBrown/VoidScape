@@ -1,0 +1,74 @@
+[gd_scene load_steps=18 format=3 uid="uid://cexhxhqdojdw7"]
+
+[ext_resource type="PackedScene" uid="uid://bpmtcqfjhik1c" path="res://Ship/Prefabs/NPCShip.tscn" id="1_vm8y3"]
+[ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_knnso"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo/Arzo Cockpit.tres" id="3_0cd5i"]
+[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="4_8ed62"]
+[ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres" id="5_eu77u"]
+[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="6_2pyd2"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="7_pplh4"]
+[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="8_vvt28"]
+[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="9_0fmdy"]
+[ext_resource type="Script" path="res://Ship/AI/state_manager.gd" id="10_0cwdp"]
+[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="10_iquon"]
+[ext_resource type="Script" path="res://Ship/AI/idle.gd" id="11_11swg"]
+[ext_resource type="Resource" uid="uid://ct3mnas22ksbx" path="res://Resources/ShipData/Bile/Bile Gun.tres" id="11_e4so2"]
+[ext_resource type="Script" path="res://Ship/AI/patrol.gd" id="12_tqvo8"]
+[ext_resource type="Script" path="res://Ship/AI/follow.gd" id="13_myom7"]
+[ext_resource type="Script" path="res://Ship/AI/outpost_state.gd" id="14_llbf0"]
+[ext_resource type="Script" path="res://Ship/AI/outpost_idle.gd" id="17_6m2ye"]
+
+[node name="Core Gaurd" instance=ExtResource("1_vm8y3")]
+collision_layer = 16
+collision_mask = 63
+
+[node name="Cockpit" parent="." index="1" instance=ExtResource("2_knnso")]
+data = ExtResource("3_0cd5i")
+
+[node name="FuelTank" parent="." index="2" instance=ExtResource("4_8ed62")]
+position = Vector2(-32, 32)
+rotation = 3.14159
+data = ExtResource("5_eu77u")
+
+[node name="Generator" parent="." index="3" instance=ExtResource("6_2pyd2")]
+position = Vector2(0, 32)
+data = ExtResource("7_pplh4")
+
+[node name="Thruster" parent="." index="4" instance=ExtResource("8_vvt28")]
+position = Vector2(0, 64)
+data = ExtResource("9_0fmdy")
+
+[node name="FuelTank2" parent="." index="5" instance=ExtResource("4_8ed62")]
+position = Vector2(32, 32)
+data = ExtResource("5_eu77u")
+
+[node name="Gun" parent="." index="6" instance=ExtResource("10_iquon")]
+position = Vector2(32, 0)
+data = ExtResource("11_e4so2")
+
+[node name="Gun2" parent="." index="7" instance=ExtResource("10_iquon")]
+position = Vector2(-32, 0)
+data = ExtResource("11_e4so2")
+
+[node name="StateManager2" type="Node2D" parent="." index="8"]
+script = ExtResource("10_0cwdp")
+
+[node name="StateManager" parent="." index="9" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Outpost_Idle")
+
+[node name="Idle2" type="Node" parent="StateManager" index="0"]
+script = ExtResource("11_11swg")
+detect_radius = 300.0
+
+[node name="Patrol" type="Node" parent="StateManager" index="1"]
+script = ExtResource("12_tqvo8")
+detect_radius = 300.0
+
+[node name="Follow" type="Node" parent="StateManager" index="2"]
+script = ExtResource("13_myom7")
+
+[node name="Outpost_State" type="Node" parent="StateManager" index="4"]
+script = ExtResource("14_llbf0")
+
+[node name="Outpost_Idle" type="Node" parent="StateManager" index="5"]
+script = ExtResource("17_6m2ye")

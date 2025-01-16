@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://64fo77bnaoxj"]
+[gd_scene load_steps=9 format=3 uid="uid://64fo77bnaoxj"]
 
 [ext_resource type="Script" path="res://outpost_building.gd" id="1_dyya1"]
 [ext_resource type="Texture2D" uid="uid://dg1lc46oit6bf" path="res://icon.svg" id="2_kpim2"]
 [ext_resource type="PackedScene" uid="uid://wml28sk30xju" path="res://Ship/Prefabs/Enemies/outpost_grunt.tscn" id="2_l3tn0"]
 [ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="3_0gne7"]
+[ext_resource type="PackedScene" uid="uid://b1sph6itunlh8" path="res://UI/message_box_to_player.tscn" id="3_lokj4"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_mps48"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="4_tog3c"]
 
@@ -14,6 +15,7 @@ script = ExtResource("1_dyya1")
 death_anim = NodePath("ExplosionAnim")
 grunt_scene = ExtResource("2_l3tn0")
 respawn_time = 5
+message_scene = ExtResource("3_lokj4")
 
 [node name="ExplosionAnim" parent="." instance=ExtResource("3_0gne7")]
 

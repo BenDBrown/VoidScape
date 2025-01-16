@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://oqpd0b0f2xcl"]
+[gd_scene load_steps=9 format=3 uid="uid://oqpd0b0f2xcl"]
 
 [ext_resource type="Script" path="res://outpost_core.gd" id="1_hguve"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_cgng6"]
+[ext_resource type="PackedScene" uid="uid://b1sph6itunlh8" path="res://UI/message_box_to_player.tscn" id="2_ui35j"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_ygqii"]
 [ext_resource type="Texture2D" uid="uid://dg1lc46oit6bf" path="res://icon.svg" id="4_nqey7"]
 [ext_resource type="PackedScene" uid="uid://bpi5xtyl1vg1v" path="res://Ship/Prefabs/BulletDeathAnimation.tscn" id="7_1crdi"]
@@ -14,6 +15,7 @@ radius = 23.1948
 
 [node name="OutpostCore" type="Node2D"]
 script = ExtResource("1_hguve")
+message_scene = ExtResource("2_ui35j")
 
 [node name="Area2D" type="Area2D" parent="."]
 
