@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxfnsxy0sf0c"]
+
+[ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_dsj0j"]
+
+[node name="OpenSpace" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_dsj0j")]
+loop = true
+autoplay = true
+
+[node name="Asteroid Belt" type="Node2D" parent="."]
+
+[node name="Asteroid Ring" type="Node2D" parent="."]
+
+[node name="Stations" type="Node2D" parent="."]
+
+[node name="Interactables" type="Node2D" parent="."]
+
+[node name="Scouts" type="Node2D" parent="."]
