@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=4 uid="uid://danl4fet77pr3"]
+
+[ext_resource type="Script" path="res://Misc/Cave Region/Conditions/DestroyableObject.cs" id="1_4jhkh"]
+[ext_resource type="Material" uid="uid://y5ywhtwkwbsx" path="res://Misc/Cave Region/Materials/CaveTilesMaterial.tres" id="2_mprna"]
+[ext_resource type="Texture2D" uid="uid://cbbglo11bhme" path="res://Assets/Structures/Custom tile set/tile set grey.png" id="3_onun3"]
+[ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="4_etls7"]
+[ext_resource type="TileSet" uid="uid://cic6cq1ycfnjo" path="res://Assets/Structures/Tilesets/TilesWithCollision.tres" id="5_2pa8o"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vkq2"]
+texture = ExtResource("3_onun3")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dqnlw"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_5vkq2")
+
+[node name="Explosive Pickup" type="Node2D" node_paths=PackedStringArray("objectToDestroy")]
+script = ExtResource("1_4jhkh")
+objectToDestroy = NodePath("Machine/Pickup")
+
+[node name="Terrain 2" type="TileMapLayer" parent="."]
+z_index = -3
+material = ExtResource("2_mprna")
+tile_map_data = PackedByteArray("AAD/////AQAFAAAAAAABAP//AQAHAAAAAAAAAP//AQAGAAAAAAD//wAAAQAFAAEAAAD//wEAAQAFAAIAAAAAAAEAAQAGAAIAAAABAAEAAQAHAAIAAAABAAAAAQAHAAEAAAAAAAAAAQAGAAEAAAA=")
+tile_set = SubResource("TileSet_dqnlw")
+
+[node name="Terrain" type="TileMapLayer" parent="."]
+visible = false
+z_index = -3
+tile_map_data = PackedByteArray("AAD///7/AAAnAAgAAAAAAP7/AAATAAAAAAABAP7/AAASAAAAAAACAP7/AAAoAAgAAAD//wMAAAAnAAsAAAAAAAMAAAATAAUAAAABAAMAAAASAAUAAAACAAMAAAAoAAsAAAD+//7/AAAmAAgAAAD+/wMAAAAmAAsAAAD+////AAAmAAkAAAD+/wAAAAAQAAIAAAD+/wEAAAAQAAMAAAD+/wIAAAAmAAoAAAADAP7/AAApAAgAAAADAAMAAAApAAsAAAADAP//AAApAAkAAAADAAAAAAAVAAIAAAADAAEAAAAVAAMAAAADAAIAAAApAAoAAAA=")
+tile_set = ExtResource("4_etls7")
+
+[node name="Ground" type="TileMapLayer" parent="."]
+z_index = -3
+tile_map_data = PackedByteArray("AAABAAEAAQAEAAQAAAABAAIAAQAEAAUAAAACAAEAAQAFAAQAAAACAAIAAQAFAAUAAAABAP//AQAEAAgAAAABAAAAAQAEAAkAAAACAP//AQAFAAgAAAACAAAAAQAFAAkAAAD//wEAAQAAAAwAAAD//wIAAQAAAA0AAAAAAAEAAQABAAwAAAAAAAIAAQABAA0AAAD/////AQAAAAAAAAD//wAAAQAAAAEAAAAAAP//AQABAAAAAAAAAAAAAQABAAEAAAA=")
+tile_set = ExtResource("4_etls7")
+
+[node name="Machine" type="Node2D" parent="."]
+
+[node name="Solid" type="TileMapLayer" parent="Machine"]
+tile_map_data = PackedByteArray("AAADAAAAAQAPAAQAAAADAAEAAQAPAAQAACD/////AQAOAA4AAAAAAP//AQAPAA4AAAD//wAAAQAOAA8AAAAAAAAAAQAPAA8AAAA=")
+tile_set = ExtResource("5_2pa8o")
+
+[node name="Solid2" type="TileMapLayer" parent="Machine"]
+z_index = 1
+tile_map_data = PackedByteArray("AAADAAAAAQAPAAQAAAD/////AQAOAA4AAAAAAP//AQAPAA4AAAD//wAAAQAOAA4AAAAAAAAAAQAPAA4AAAD//wEAAQAOAA8AAAAAAAEAAQAPAA8AAAA=")
+tile_set = ExtResource("5_2pa8o")
+
+[node name="Pickup" type="TileMapLayer" parent="Machine"]
+z_index = 1
+tile_map_data = PackedByteArray("AAADAAAAAQAPAAQAAAADAAEAAQAPAAQAACD/////AQAOAA4AAAAAAP//AQAPAA4AAAD//wAAAQAOAA4AAAAAAAAAAQAPAA4AAAD//wEAAQAOAA8AAAAAAAEAAQAPAA8AAAABAAEAAQAGAAYAAAABAAIAAQAGAAcAAAACAAEAAQAHAAYAAAACAAIAAQAHAAcAAAABAP//AQAQAAIAAAABAAAAAQAQAAMAAAACAP//AQARAAIAAAACAAAAAQARAAMAAAA=")
+tile_set = ExtResource("5_2pa8o")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cpoepd6p2kdhh"]
 
-[ext_resource type="Script" path="res://Misc/Cave Region/Condition Events/Scripts/DestructionConditionObject.cs" id="1_iox2q"]
+[ext_resource type="Script" path="res://Misc/Scripts/DestructionConditionObject.cs" id="1_iox2q"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_t07nw"]
 [ext_resource type="Texture2D" uid="uid://cdd2hgtw2np80" path="res://Assets/Ship/ComponentExplosion.png" id="3_k4nth"]
 [ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="4_7hude"]

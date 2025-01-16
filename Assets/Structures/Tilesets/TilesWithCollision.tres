@@ -1,6 +1,8 @@
-[gd_resource type="TileSet" load_steps=31 format=3 uid="uid://cic6cq1ycfnjo"]
+[gd_resource type="TileSet" load_steps=36 format=3 uid="uid://cic6cq1ycfnjo"]
 
 [ext_resource type="Texture2D" uid="uid://dxjsml5hi4q71" path="res://Assets/Structures/Tiles/CelestialObjects.png" id="1_jhiy5"]
+[ext_resource type="Texture2D" uid="uid://coem2w8gtht7a" path="res://Assets/Structures/Tiles2/crystal-1.png" id="2_350go"]
+[ext_resource type="Texture2D" uid="uid://bif22pe532xo4" path="res://Assets/Structures/Tiles2/crystal-2.png" id="3_vpnu0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aegcd"]
 load_path = "res://.godot/imported/CaveBG.png-210d5d908456c5eed007ce6ec4f16950.ctex"
@@ -2569,6 +2571,18 @@ texture = ExtResource("1_jhiy5")
 22:15/0 = 0
 23:15/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8eih4"]
+texture = ExtResource("2_350go")
+texture_region_size = Vector2i(25, 25)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.125, -6.125, 4.25, -11.5, 8, -7.125, 6, 2.75, 11.625, 2.125, 12.5, 4.375, 5.375, 8, -3.375, 12.5, -9.125, 11, -10.25, 6.5, -10.875, -3.75, -3.375, 2.25)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lf5lq"]
+texture = ExtResource("3_vpnu0")
+texture_region_size = Vector2i(26, 20)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4.625, -8, -1.375, -3.875, 5.125, -10, 8, -7.125, 6.75, -1.875, 11.5, -4.75, 12.625, -1.5, 6.25, 9.375, -4.5, 8, -9.625, 9.75, -11.5, 6.5, -11.5, -0.25, -9.125, -1)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ev621"]
 load_path = "res://.godot/imported/tilesets.png-9d06fc808a62bc8b89b33e1427819cf1.ctex"
 
@@ -4932,6 +4946,10 @@ texture = SubResource("CompressedTexture2D_kul4v")
 13:9/0 = 0
 0:10/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7suc1"]
+texture = ExtResource("3_vpnu0")
+0:0/0 = 0
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ky2lt"]
 load_path = "res://.godot/imported/Interiors_free_16x16.png-07f62cd48e78d8b98c4ec7d77ff61ca5.ctex"
 
@@ -6085,3 +6103,6 @@ sources/12 = SubResource("TileSetAtlasSource_4rww0")
 sources/13 = SubResource("TileSetAtlasSource_tv47m")
 sources/14 = SubResource("TileSetAtlasSource_588yy")
 sources/15 = SubResource("TileSetAtlasSource_0so87")
+sources/8 = SubResource("TileSetAtlasSource_7suc1")
+sources/16 = SubResource("TileSetAtlasSource_8eih4")
+sources/17 = SubResource("TileSetAtlasSource_lf5lq")

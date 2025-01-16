@@ -20,6 +20,14 @@ public partial class ActivateOnCondition : Node
         SubscribeToSignals();
     }
 
+    public int GetAmountOfConditions(){
+        return conditionTargets.Length;
+    }
+
+    public int GetAmountCompleted(){
+        return completedTargets;
+    }
+
     private void SubscribeToSignals(){
         foreach( ConditionObject target in conditionTargets){
             target.OnConditionMet += TrackProgress;
