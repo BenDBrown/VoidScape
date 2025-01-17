@@ -10,7 +10,7 @@ public partial class GateManager : Node2D
 	private ActivateOnCondition activationCondition;
 
 	[Export]
-	private Gate[] gates;
+	private AnimatedGate[] gates;
 	
 	[ExportCategory("Progress Feedback Animation")]
 
@@ -31,7 +31,7 @@ public partial class GateManager : Node2D
 	}
 
 	private void Open(){
-		foreach(Gate gate in gates){
+		foreach(AnimatedGate gate in gates){
 			gate.OpenGate();
 		}
 	}

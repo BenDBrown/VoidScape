@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://bgfx40dkqxws3" path="res://Misc/Cave Region/Tiles/CaveTiles.tres" id="3_rb147"]
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="3_se65j"]
 [ext_resource type="PackedScene" uid="uid://ch7dinsb2q3pm" path="res://Misc/Cave Region/Gates/SingleGatePiece.tscn" id="4_tqbj3"]
-[ext_resource type="Script" path="res://Misc/Cave Region/Gates/Gate.cs" id="5_rs08i"]
+[ext_resource type="Script" path="res://Misc/Cave Region/Gates/AnimatedGate.cs" id="5_rs08i"]
 [ext_resource type="Texture2D" uid="uid://c7hl6vgogcpkh" path="res://Assets/Structures/Tiles2/back-walls.png" id="6_4jois"]
 [ext_resource type="Script" path="res://Misc/Cave Region/Conditions/ActivateOnCondition.cs" id="6_4x5eg"]
 [ext_resource type="Texture2D" uid="uid://b1ou2cnr01rh2" path="res://Assets/Structures/Tiles/tilesets.png" id="7_66ebp"]

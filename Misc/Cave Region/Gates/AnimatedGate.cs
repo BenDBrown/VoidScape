@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Gate : Node2D
+public partial class AnimatedGate : Node2D
 {
 	private const string OPEN_GATE_ANIMATION = "Open";
 
