@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://UI/Scripts/FuelBar.cs" id="2_4xhg0"]
 [ext_resource type="PackedScene" path="res://UI/Scenes/weapon_menu.tscn" id="3_m2vvt"]
 [ext_resource type="Script" path="res://Misc/Economy/CreditsPouch.cs" id="4_cf0du"]
-[ext_resource type="PackedScene" path="res://UI/Scenes/Interactable_UI.tscn" id="4_owx0a"]
+[ext_resource type="PackedScene" uid="uid://cbmldx6y2bu8l" path="res://UI/Scenes/Interactable_UI.tscn" id="4_owx0a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmkss"]
 bg_color = Color(0.2754, 0.51, 0.36533, 1)
@@ -23,10 +23,15 @@ corner_radius_bottom_left = 4
 [node name="HUD" type="CanvasLayer"]
 
 [node name="PowerBar" parent="." instance=ExtResource("1_unlij")]
-offset_left = 128.0
-offset_top = 528.0
-offset_right = -704.0
-offset_bottom = -75.0
+anchors_preset = -1
+anchor_left = -0.015625
+anchor_right = 1.01563
+anchor_bottom = 1.00772
+offset_left = 94.0
+offset_top = 19.0
+offset_right = -734.0
+offset_bottom = -584.0
+scale = Vector2(0.5, 0.5)
 theme_override_styles/fill = SubResource("StyleBoxFlat_rmkss")
 metadata/_edit_use_anchors_ = true
 
@@ -34,22 +39,23 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 128.0
-offset_top = 576.0
-offset_right = -704.0
-offset_bottom = -29.0
+offset_left = 77.0
+offset_top = 54.0
+offset_right = -715.0
+offset_bottom = -544.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 theme_override_styles/fill = SubResource("StyleBoxFlat_shmje")
 script = ExtResource("2_4xhg0")
 
 [node name="Power" type="Label" parent="."]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 536.0
-offset_right = 113.0
-offset_bottom = -89.0
+offset_left = 14.0
+offset_top = 19.0
+offset_right = 63.0
+offset_bottom = -606.0
 grow_vertical = 2
 text = "Power"
 metadata/_edit_use_anchors_ = true
@@ -57,10 +63,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Fuel" type="Label" parent="."]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 72.0
-offset_top = 592.0
-offset_right = 105.0
-offset_bottom = -33.0
+offset_left = 14.0
+offset_top = 54.0
+offset_right = 47.0
+offset_bottom = -571.0
 grow_vertical = 2
 text = "Fuel"
 metadata/_edit_use_anchors_ = true
@@ -70,20 +76,20 @@ metadata/_edit_use_anchors_ = true
 [node name="Credits" type="Label" parent="."]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 63.0
-offset_top = 475.0
-offset_right = 118.0
-offset_bottom = -150.0
+offset_left = 14.0
+offset_top = 85.0
+offset_right = 69.0
+offset_bottom = -540.0
 grow_vertical = 2
 text = "Credits"
 
 [node name="CreditsAmount" type="Label" parent="."]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 143.0
-offset_top = 478.0
-offset_right = 370.0
-offset_bottom = -147.0
+offset_left = 75.0
+offset_top = 85.0
+offset_right = 302.0
+offset_bottom = -540.0
 grow_vertical = 2
 text = "0
 "

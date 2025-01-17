@@ -68,7 +68,7 @@ public partial class Ship : CharacterBody2D, IShip
 		}
 	}
 
-	protected virtual void ShipDestroyed()
+	public virtual void ShipDestroyed()
 	{
 		foreach (ShipComponent shipComponent in shipComponents) { shipComponent.Visible = false; }
 		ExplosionAnim.Visible = true;
