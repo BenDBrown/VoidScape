@@ -7,7 +7,7 @@ extends Node2D
 @export var worm_scene: PackedScene = preload("res://Structures/Regions/WormCave/WormCave.tscn")
 @export var cave_scene: PackedScene = preload("res://Scenes/e.tscn")
 
-@onready var mainScreen = $"Main Screen"
+@onready var mainScreen = $"Main Screen/CanvasLayer"
 @onready var settingsMenu = $"SettingsMenu"
 @onready var continueButton = $"Main Screen/CanvasLayer/Continue"
 
