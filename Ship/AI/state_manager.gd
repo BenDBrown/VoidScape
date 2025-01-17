@@ -35,3 +35,7 @@ func on_state_transitioned(state: AIState, new_state: String):
 	if states[new_state.to_lower()]:
 		current_state = states[new_state.to_lower()]
 		current_state.enter()
+
+
+func _on_grunt_on_destroyed(ship: CharacterBody2D) -> void:
+	current_state.exit()

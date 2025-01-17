@@ -11,3 +11,5 @@ rocks = []
 [node name="Worm" parent="." instance=ExtResource("1_xxs07")]
 baseSpeed = 250.0
 boostSpeed = 500.0
+
+[connection signal="OnWormHealthChanged" from="Worm" to="." method="OnHealthChanged"]

@@ -11,6 +11,9 @@ public partial class Worm : Path2D
     [Signal]
     public delegate void OnWormDestroyedEventHandler();
 
+    [Signal]
+    public delegate void OnWormHealthChangedEventHandler(int newHealth);
+
     [Export]
     private PathFollow2D[] Segments;
 
@@ -76,6 +79,8 @@ public partial class Worm : Path2D
         anim.GlobalPosition = GlobalHeadPos;
         anim.Play();
     }
+
+    public void OnHealthChanged(int newHealth) => EmitSignal(SignalName.OnWormHealthChanged, newHealth);
 
     public override void _Ready()
     {

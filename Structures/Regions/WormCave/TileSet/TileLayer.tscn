@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5duuyvjbcm8r"]
+
+[ext_resource type="Material" uid="uid://dd3cbrr3iokxa" path="res://Structures/Regions/WormCave/TileSet/wormTileMat.tres" id="1_so0yl"]
+[ext_resource type="TileSet" uid="uid://b3rysowd64qmf" path="res://Structures/Regions/WormCave/TileSet/WormCaveTileSet.tres" id="2_lonsg"]
+
+[node name="TileLayer" type="TileMapLayer"]
+material = ExtResource("1_so0yl")
+tile_set = ExtResource("2_lonsg")

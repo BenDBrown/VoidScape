@@ -18,10 +18,9 @@ var player
 var ship: Ship
 
 func enter(parent):
-	print("Combat_Entered")
 	if(!get_parent()):
 		ship = parent
-		ship.add_child(self)
+		ship.add_child.call_deferred(self)
 	if !detection_cone:
 		detection_cone = create_detection_cone()
 	if !cast_vect:
@@ -31,23 +30,23 @@ func enter(parent):
 
 
 func exit():
-	pass
+	queue_free()
 
 func physics_update(target):
 	player = target
 	if !in_area:
 		ray.set_target_position(Vector2.ZERO)
 		return
-
 	if is_in_detection_cone(player):
 		attack(player)
 
 func is_in_detection_cone(target):
 	for index in cast_vect:
-		ray.set_target_position(index)
-		ray.force_raycast_update()
-		if target != null && ray.is_colliding() && ray.get_collider() == target:
-			return true
+		if !is_queued_for_deletion():
+			ray.set_target_position(index)
+			ray.force_raycast_update()
+			if target != null && ray.is_colliding() && ray.get_collider() == target:
+				return true
 	return false
 
 func create_sweeping_range():
@@ -73,8 +72,7 @@ func attack(target):
 
 func create_detection_cone():
 	var cone = detection_area_scene.instantiate() as Area2D
-	add_child(cone)
-	cone.global_position = ship.global_position
+	ship.add_child(cone)
 	cone.name = "eyes_for_guns"
 	cone.area_entered.connect(on_area_entered)
 	cone.area_exited.connect(on_area_exited)
