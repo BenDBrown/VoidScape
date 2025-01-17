@@ -1,6 +1,6 @@
 [gd_scene load_steps=50 format=4 uid="uid://cmj60hiki1cwf"]
 
-[ext_resource type="TileSet" uid="uid://bo5oee3gwh4j4" path="res://Misc/Cave Region/Tiles/CaveTiles (2).tres" id="1_xjeui"]
+[ext_resource type="TileSet" uid="uid://bo5oee3gwh4j4" path="res://Misc/Cave Region/Tiles/TilesCaves.tres" id="1_xjeui"]
 [ext_resource type="Material" uid="uid://y5ywhtwkwbsx" path="res://Misc/Cave Region/Materials/CaveTilesMaterial.tres" id="3_fm558"]
 [ext_resource type="Shader" path="res://addons/ColourPicker/ColorPicker.gdshader" id="3_pgxw8"]
 [ext_resource type="TileSet" uid="uid://bgfx40dkqxws3" path="res://Misc/Cave Region/Tiles/CaveTiles.tres" id="3_rb147"]
