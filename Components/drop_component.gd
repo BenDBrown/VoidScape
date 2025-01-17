@@ -10,6 +10,7 @@ func drop() -> void:
 
 
 func defer(lootDrop):
+	if get_tree() == null: return
 	get_tree().current_scene.add_child(lootDrop)
 	lootDrop.global_position = get_parent().global_position
 	lootDrop.cargo = cargo

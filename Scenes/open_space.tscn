@@ -584,6 +584,9 @@ position = Vector2(595, 314)
 texture = ExtResource("12_87wu5")
 
 [connection signal="body_entered" from="DeathWalls/Wall" to="DeathWalls" method="OnBodyEntered"]
+[connection signal="body_entered" from="DeathWalls/Wall2" to="DeathWalls" method="OnBodyEntered"]
+[connection signal="body_entered" from="DeathWalls/Wall3" to="DeathWalls" method="OnBodyEntered"]
+[connection signal="body_entered" from="DeathWalls/Wall4" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="WarningWalls/Wall" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall2" to="WarningWalls" method="OnBodyEntered"]
