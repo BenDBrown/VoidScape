@@ -890,29 +890,23 @@ maxFadeOpacity = 0.75
 [node name="Scout" parent="Enemies" instance=ExtResource("23_3gksy")]
 position = Vector2(1599, 827)
 rotation = 2.2559
-scale = Vector2(1, 1)
 
 [node name="Scout2" parent="Enemies" instance=ExtResource("23_3gksy")]
 position = Vector2(3421, 216)
 rotation = 3.54394
-scale = Vector2(1, 1)
 
 [node name="Scout3" parent="Enemies" instance=ExtResource("23_3gksy")]
 position = Vector2(2765, 157)
 rotation = 2.85863
-scale = Vector2(1, 1)
 
 [node name="Scout4" parent="Enemies" instance=ExtResource("23_3gksy")]
 position = Vector2(3604, 1691)
 rotation = 5.53529
-scale = Vector2(1, 1)
 
 [node name="Scout5" parent="Enemies" instance=ExtResource("23_3gksy")]
 position = Vector2(2629, 1715)
 rotation = 5.53529
-scale = Vector2(1, 1)
 
 [node name="Scout6" parent="Enemies" instance=ExtResource("23_3gksy")]
 position = Vector2(353, 182)
 rotation = 7.51027
-scale = Vector2(1, 1)

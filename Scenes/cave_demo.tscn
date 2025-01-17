@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://fsujb5ue46hl"]
+
+[ext_resource type="PackedScene" uid="uid://cmj60hiki1cwf" path="res://Misc/Cave Region/Scenes/cave_level.tscn" id="1_xpsr1"]
+
+[node name="Cave_Demo" type="Node2D"]
+
+[node name="Cave_Entrance" parent="." instance=ExtResource("1_xpsr1")]
