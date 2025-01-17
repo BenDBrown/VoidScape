@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbvjlucfj2t4s"]
+
+[ext_resource type="Script" path="res://Structures/Regions/WormCave/Scripts/Crystal.cs" id="1_x73ip"]
+[ext_resource type="Shader" path="res://addons/ColourPicker/ColorPicker.gdshader" id="2_pcm75"]
+[ext_resource type="Texture2D" uid="uid://drw72gu51ui0x" path="res://Assets/Other/GrayScaleCrystaScaled.png" id="3_faw6b"]
+[ext_resource type="Script" path="res://addons/ColourPicker/ColourableSprite.cs" id="4_ogws3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g585q"]
+resource_local_to_scene = true
+shader = ExtResource("2_pcm75")
+shader_parameter/color = Color(0.6, 0, 0, 1)
+shader_parameter/shades = PackedColorArray(0.709804, 0.709804, 0.709804, 1)
+shader_parameter/tolerance = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qra0"]
+size = Vector2(43, 52)
+
+[node name="ShootableCrystal" type="Area2D" node_paths=PackedStringArray("sprite", "ConnectedCrystals")]
+collision_layer = 128
+collision_mask = 3
+script = ExtResource("1_x73ip")
+sprite = NodePath("Sprite2D")
+ConnectedCrystals = [NodePath(".")]
+inactiveCol = Color(0.6, 0, 0, 1)
+activeCol = Color(0.109801, 0.487211, 0.903644, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_g585q")
+texture = ExtResource("3_faw6b")
+script = ExtResource("4_ogws3")
+Colour = Color(0.6, 0, 0, 1)
+targetColours = PackedColorArray(0.439216, 0.439216, 0.447059, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_4qra0")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

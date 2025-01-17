@@ -11,14 +11,15 @@ public partial class ColourableSprite : Sprite2D
     public Color Colour {get;private set;} = new(1,1,1,1);
 
     [Export]
-    Color[] targetColours = new Color[MAX_AMOUNT_OF_TARGET_COLOURS];
+    private Color[] targetColours = new Color[MAX_AMOUNT_OF_TARGET_COLOURS];
 
     [Export]
-    ShaderMaterial shaderMat;
+    private ShaderMaterial shaderMat;
 
     public override void _Ready()
     {
         base._Ready();
+        if(shaderMat == null && Material is ShaderMaterial baseShaderMat) shaderMat = baseShaderMat; 
         SetMaterial(shaderMat);
         SetColour(Colour);
         shaderMat.SetShaderParameter("shades", targetColours);

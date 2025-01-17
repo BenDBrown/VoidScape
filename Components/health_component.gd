@@ -2,6 +2,7 @@ extends Node
 class_name HealthComponent
 
 signal died
+signal health_changed(current_health:int)
 
 @export var max_health: int = 100
 @export var defense: int = 10
@@ -12,6 +13,7 @@ func _ready() -> void:
 
 func take_damage(attackComponent: AttackComponent):
 	current_health -= max(1, attackComponent.attack - defense)
+	health_changed.emit(current_health)
 	if current_health <= 0:
 		died.emit()
 
