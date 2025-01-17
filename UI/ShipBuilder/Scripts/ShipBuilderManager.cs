@@ -95,7 +95,6 @@ public partial class ShipBuilderManager : Control
 					{
 						if (parent == null) break;
 						if (parent is CanvasLayer) { parent.AddChild(draggedPreview); break; }
-						GD.Print(parent.Name);
 						parent = parent.GetParent();
 					}
 
@@ -362,6 +361,5 @@ public partial class ShipBuilderManager : Control
 	{
 		foreach (Piece piece in pieces) piece.Colour = pieceColour;
 		var resolve = Game.Instance.BuildShip(pieces.ToArray());
-		GD.Print(resolve);
 	}
 }
