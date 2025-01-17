@@ -130,7 +130,7 @@ public partial class PlayerShip : Ship, IShip
 		return hasFuelTank && hasGenerator && hasThruster;
 	}
 
-	protected override void ShipDestroyed()
+	public override void ShipDestroyed()
 	{
 		base.ShipDestroyed();
 
@@ -165,10 +165,10 @@ public partial class PlayerShip : Ship, IShip
 
 	public void Interact()
 	{
-	 { EmitSignal(SignalName.InteractableInteracted); }
+		{ EmitSignal(SignalName.InteractableInteracted); }
 	}
 
-	
+
 
 	public void PerformBlink()
 	{

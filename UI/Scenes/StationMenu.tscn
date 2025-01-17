@@ -1,20 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwnag7qev53p4"]
+[gd_scene load_steps=11 format=3 uid="uid://dwnag7qev53p4"]
 
 [ext_resource type="FontFile" uid="uid://dm3da8vv2pdur" path="res://UI/Styles/Early GameBoy.ttf" id="1_lag8a"]
 [ext_resource type="Script" path="res://UI/Scripts/Menu.cs" id="2_oc8j1"]
 [ext_resource type="Script" path="res://UI/Scripts/Tabs.cs" id="3_fyd7s"]
 [ext_resource type="Script" path="res://Resources/Scripts/player_ship_save.gd" id="6_bhwvy"]
 [ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo/Arzo Cockpit.tres" id="6_vda0v"]
-[ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Arzo/Arzo Fuel Tank.tres" id="7_xshgl"]
 [ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="8_h0ajs"]
-[ext_resource type="Script" path="res://UI/DragDropManager/GridGenerator.cs" id="9_gbdwd"]
+[ext_resource type="PackedScene" uid="uid://bek4qr7p7b0d7" path="res://UI/ShipBuilder/Scenes/ShipBuilderTab.tscn" id="9_kosew"]
 [ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Arzo/Arzo Gun.tres" id="9_oi2fc"]
-[ext_resource type="Texture2D" uid="uid://vu3txlkmmmux" path="res://Assets/UI/grid.png" id="10_jvqrl"]
-[ext_resource type="Resource" uid="uid://bbcg4mu0p2j8l" path="res://Resources/ShipData/Arzo/Arzo Hull.tres" id="10_wp354"]
 [ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="11_gvtg5"]
-[ext_resource type="Texture2D" uid="uid://cf34idvc4fjwl" path="res://Assets/UI/ValidTile.png" id="11_iblua"]
-[ext_resource type="Texture2D" uid="uid://cdxjsmhlnjd5f" path="res://Assets/UI/InvalidTile.png" id="12_7tqfu"]
-[ext_resource type="Script" path="res://UI/DragDropManager/DragDropManager.cs" id="13_5vg5k"]
 
 [sub_resource type="Theme" id="Theme_t0xj3"]
 default_font = ExtResource("1_lag8a")
@@ -60,12 +54,14 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 
 [node name="StationName" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 35
 text = "STATION MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Tabs" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -79,99 +75,9 @@ size_flags_vertical = 3
 current_tab = 0
 script = ExtResource("3_fyd7s")
 
-[node name="Build Ship" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
+[node name="Build Ship" parent="MarginContainer/VBoxContainer/Tabs/TabContainer" instance=ExtResource("9_kosew")]
 layout_mode = 2
-theme_override_constants/separation = 20
 metadata/_tab_index = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="SnapGrid" type="Control" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_gbdwd")
-FreeCell = ExtResource("10_jvqrl")
-ValidCell = ExtResource("11_iblua")
-InvalidCell = ExtResource("12_7tqfu")
-gridRows = 10
-
-[node name="AvailableParts" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 15
-
-[node name="ShipParts" type="ItemList" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2" node_paths=PackedStringArray("name", "health", "defense", "description", "infobox", "gridGenerator", "menu")]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/v_separation = 16
-item_count = 1
-script = ExtResource("13_5vg5k")
-datas = Array[Object]([ExtResource("6_vda0v"), ExtResource("7_xshgl"), ExtResource("8_h0ajs"), ExtResource("9_oi2fc"), ExtResource("10_wp354"), ExtResource("11_gvtg5")])
-name = NodePath("../../../MarginContainer2/InfoBox/Name")
-health = NodePath("../../../MarginContainer2/InfoBox/Health")
-defense = NodePath("../../../MarginContainer2/InfoBox/Defense")
-description = NodePath("../../../MarginContainer2/InfoBox/Description")
-infobox = NodePath("../../../MarginContainer2/InfoBox")
-gridGenerator = NodePath("../../../MarginContainer/SnapGrid")
-menu = NodePath("../../../../../../../..")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 10
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer"]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-text = "BUILD"
-
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="InfoBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Info" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
-layout_mode = 2
-text = "Information"
-horizontal_alignment = 1
-
-[node name="Space" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="Health" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
-layout_mode = 2
-
-[node name="Defense" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
-layout_mode = 2
-
-[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/MarginContainer2/InfoBox"]
-layout_mode = 2
-autowrap_mode = 2
 
 [node name="Buy Parts" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
 visible = false
@@ -183,58 +89,8 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Buttons" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="MenuButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons"]
-visible = false
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="BuildShipButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/MenuButtons"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Build Ship"
-
-[node name="BuyPartsButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/MenuButtons"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-disabled = true
-text = "Buy Parts"
-
-[node name="SellItemsButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/MenuButtons"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-disabled = true
-text = "Sell Items"
-
-[node name="Content" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="BuildShipMenu" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Content"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Content"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 1
-text = "Welcome to station \"something\"
-What do you want to do?"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ButtonsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 alignment = 2
 
@@ -243,7 +99,5 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "QUIT"
 
-[connection signal="item_clicked" from="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2/ShipParts" to="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2/ShipParts" method="OnItemClicked"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2/ShipParts" to="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2/ShipParts" method="OnItemSelected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer/Button" to="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship/AvailableParts/MarginContainer2/ShipParts" method="OnBuildPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsContainer/Quit" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsContainer/Quit" to="MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship" method="OnRemoveAllPressed"]

@@ -6,6 +6,10 @@ using System.Text;
 
 public partial class ExternalForceManager
 {
+	public delegate void OnCollisionEventHandler(Vector2 direction);
+
+	public event OnCollisionEventHandler Collided;
+
 	private const float BASE_DECCELERATION = 0.4f;
 	private const float RELATIVE_DECCELERATION = 0.1f;
 
@@ -39,6 +43,7 @@ public partial class ExternalForceManager
 		Vector2 impactForceToCollider = -collision.GetNormal() * (velocity.Length() * Weight);
 		rigidBody.ApplyCentralImpulse(impactForceToCollider * (float)deltaTime);
 		Force += impactForceFromCollider;
+		Collided?.Invoke(-collision.GetNormal());
 	}
 
 	//Handle Collision (Kinematic Body) aka Ship
@@ -46,6 +51,7 @@ public partial class ExternalForceManager
 	{
 		Vector2 impactForceFromCollider = collision.GetNormal() * (ship.Velocity.Length() * ship.Weight) / Weight;
 		Force += impactForceFromCollider;
+		Collided?.Invoke(-collision.GetNormal());
 	}
 
 	//Handle Collision (Static Body)
@@ -53,6 +59,7 @@ public partial class ExternalForceManager
 	{
 		Vector2 impactForceFromCollider = collision.GetNormal() / Weight;
 		Force += impactForceFromCollider;
+		Collided?.Invoke(-collision.GetNormal());
 	}
 
 	public void AddExternalImpulse(Vector2 impulse) => Force += impulse;

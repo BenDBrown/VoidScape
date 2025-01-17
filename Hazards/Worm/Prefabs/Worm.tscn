@@ -3,8 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://bi2al265nsrio" path="res://Hazards/Worm/Prefabs/WormBody.tscn" id="1_xxs07"]
 [ext_resource type="Script" path="res://Hazards/Worm/Scripts/WormAI.cs" id="5_1mduh"]
 
-[node name="Worm" type="Node2D" node_paths=PackedStringArray("worm")]
+[node name="Worm" type="Node2D" node_paths=PackedStringArray("worm", "rocks")]
 script = ExtResource("5_1mduh")
 worm = NodePath("Worm")
+rocks = []
 
 [node name="Worm" parent="." instance=ExtResource("1_xxs07")]
+baseSpeed = 250.0
+boostSpeed = 500.0
+
+[connection signal="OnWormHealthChanged" from="Worm" to="." method="OnHealthChanged"]

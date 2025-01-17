@@ -3,11 +3,11 @@ extends Node2D
 @export var start_scene: PackedScene = preload("res://Scenes/start_scene.tscn")
 @export var continue_scene: PackedScene = preload("res://Scenes/continue.tscn")
 @export var ship_builder_scene: PackedScene = preload("res://Ship/ShipBuilder/ship_builder.tscn")
-@export var test_scene: PackedScene = preload("res://Scenes/playtest.tscn")
-@export var worm_scene: PackedScene = preload("res://Hazards/Worm/WormDemo.tscn")
-@export var cave_scene: PackedScene = preload("res://Scenes/cave_demo.tscn")
+@export var test_scene: PackedScene = preload("res://Scenes/open_space.tscn")
+@export var worm_scene: PackedScene = preload("res://Structures/Regions/WormCave/WormCave.tscn")
+@export var cave_scene: PackedScene = preload("res://Scenes/e.tscn")
 
-@onready var mainScreen = $"Main Screen"
+@onready var mainScreen = $"Main Screen/CanvasLayer"
 @onready var settingsMenu = $"SettingsMenu"
 @onready var continueButton = $"Main Screen/CanvasLayer/Continue"
 

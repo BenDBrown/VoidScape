@@ -1,14 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi2al265nsrio"]
+[gd_scene load_steps=15 format=3 uid="uid://bi2al265nsrio"]
 
 [ext_resource type="Script" path="res://Hazards/Worm/Scripts/Worm.cs" id="1_nt2kc"]
 [ext_resource type="Texture2D" uid="uid://c4dh6t1yi5jav" path="res://Assets/Hazzards/Space Wyrm/Space Worm 2.png" id="1_si6aq"]
 [ext_resource type="Curve2D" uid="uid://bgqml01c20vpr" path="res://Hazards/Worm/Resources/WormBaseLine.tres" id="1_yvbiv"]
 [ext_resource type="Texture2D" uid="uid://61nkdfent0lb" path="res://Assets/Hazzards/Space Wyrm/Space Worm core.png" id="2_q17d8"]
+[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="3_2eofl"]
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="4_jjqoa"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="5_lp623"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="7_osq63"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="8_owoaf"]
-[ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="9_xcwgs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twb33"]
 atlas = ExtResource("2_q17d8")
@@ -46,31 +46,30 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k6uhc"]
-radius = 5.0
-
 [node name="Worm" type="Path2D" node_paths=PackedStringArray("Segments")]
 curve = ExtResource("1_yvbiv")
 script = ExtResource("1_nt2kc")
-Segments = [NodePath("Head"), NodePath("Core"), NodePath("BodySegment0"), NodePath("BodySegment1"), NodePath("BodySegment2"), NodePath("Tail")]
-deathAnim = ExtResource("9_xcwgs")
+Segments = [NodePath("Head"), NodePath("Core"), NodePath("BodySegment0"), NodePath("BodySegment1"), NodePath("BodySegment2"), NodePath("BodySegment3"), NodePath("BodySegment4"), NodePath("BodySegment5"), NodePath("BodySegment6"), NodePath("Tail")]
+deathAnim = ExtResource("3_2eofl")
+knockback = 1000.0
 curvePeriod = 320.0
-speed = 170.0
 
 [node name="Head" type="PathFollow2D" parent="."]
-position = Vector2(157, 0)
-progress = 157.0
+position = Vector2(285, 0)
+progress = 285.0
 loop = false
 
-[node name="Head" type="AnimatableBody2D" parent="Head"]
+[node name="Hitbox" type="Area2D" parent="Head" node_paths=PackedStringArray("healthComponent")]
 collision_layer = 64
-sync_to_physics = false
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
 
-[node name="Collider" type="CollisionPolygon2D" parent="Head/Head"]
+[node name="Collider" type="CollisionPolygon2D" parent="Head/Hitbox"]
 rotation = 3.14159
 polygon = PackedVector2Array(-11, 2, -10, 2, -8, 4, -2, 7, -2, 8, 0, 10, 3, 10, 5, 10, 7, 11, 8, 12, 10, 13, 16, 13, 16, 12, 12, 10, 9, 7, 14, 7, 14, 6, 12, 4, 13, 3, 13, -3, 12, -4, 14, -6, 14, -7, 11, -7, 9, -7, 12, -10, 16, -12, 16, -13, 10, -13, 8, -12, 7, -11, 5, -10, 0, -10, -2, -8, -2, -7, -8, -4, -10, -2, -11, -2)
 
-[node name="HeadSprite" type="Sprite2D" parent="Head/Head"]
+[node name="HeadSprite" type="Sprite2D" parent="Head/Hitbox"]
 texture_filter = 1
 rotation = 3.14159
 texture = ExtResource("1_si6aq")
@@ -78,7 +77,7 @@ region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
 [node name="AttackboxComponent" type="Area2D" parent="Head" node_paths=PackedStringArray("attack_component")]
-collision_layer = 65
+collision_layer = 64
 script = ExtResource("4_jjqoa")
 attack_component = NodePath("AttackComponent")
 
@@ -91,44 +90,30 @@ script = ExtResource("5_lp623")
 attack = 1000
 
 [node name="Core" type="PathFollow2D" parent="."]
-position = Vector2(128.013, 0)
-progress = 128.0
+position = Vector2(256.029, 0)
+progress = 256.0
 loop = false
 
-[node name="PhysicsBody" type="AnimatableBody2D" parent="Core"]
+[node name="HitBox" type="Area2D" parent="Core" node_paths=PackedStringArray("healthComponent")]
 collision_layer = 64
-sync_to_physics = false
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
 
-[node name="Collider" type="CollisionPolygon2D" parent="Core/PhysicsBody"]
+[node name="Collider" type="CollisionPolygon2D" parent="Core/HitBox"]
 rotation = 3.14159
 polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
 
-[node name="CoreBodySegmentSprite" type="Sprite2D" parent="Core/PhysicsBody"]
+[node name="CoreBodySegmentSprite" type="Sprite2D" parent="Core/HitBox"]
 rotation = 3.14159
 texture = ExtResource("1_si6aq")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
-[node name="CoreSpriteAnim" type="AnimatedSprite2D" parent="Core/PhysicsBody/CoreBodySegmentSprite"]
+[node name="CoreSpriteAnim" type="AnimatedSprite2D" parent="Core/HitBox/CoreBodySegmentSprite"]
 position = Vector2(-5, 0)
 sprite_frames = SubResource("SpriteFrames_nxa3r")
 frame_progress = 0.608312
-
-[node name="HitboxComponent" type="Area2D" parent="Core/PhysicsBody/CoreBodySegmentSprite" node_paths=PackedStringArray("healthComponent", "collision_shape")]
-collision_layer = 16
-collision_mask = 2
-script = ExtResource("7_osq63")
-healthComponent = NodePath("HealthComponent")
-collision_shape = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Core/PhysicsBody/CoreBodySegmentSprite/HitboxComponent"]
-position = Vector2(-4.98726, -1.26436e-05)
-shape = SubResource("CircleShape2D_k6uhc")
-
-[node name="HealthComponent" type="Node" parent="Core/PhysicsBody/CoreBodySegmentSprite/HitboxComponent"]
-script = ExtResource("8_owoaf")
-max_health = 10
-defense = 1
 
 [node name="AttackboxComponent" type="Area2D" parent="Core" node_paths=PackedStringArray("attack_component")]
 script = ExtResource("4_jjqoa")
@@ -143,19 +128,21 @@ script = ExtResource("5_lp623")
 attack = 1000
 
 [node name="BodySegment0" type="PathFollow2D" parent="."]
-position = Vector2(96.0028, 0)
-progress = 96.0
+position = Vector2(224.003, 0)
+progress = 224.0
 loop = false
 
-[node name="PhysicsBody" type="AnimatableBody2D" parent="BodySegment0"]
+[node name="Hitbox" type="Area2D" parent="BodySegment0" node_paths=PackedStringArray("healthComponent")]
 collision_layer = 64
-sync_to_physics = false
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
 
-[node name="Collider" type="CollisionPolygon2D" parent="BodySegment0/PhysicsBody"]
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment0/Hitbox"]
 rotation = 3.14159
 polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
 
-[node name="SegmentSprite" type="Sprite2D" parent="BodySegment0/PhysicsBody"]
+[node name="SegmentSprite" type="Sprite2D" parent="BodySegment0/Hitbox"]
 rotation = 3.14159
 texture = ExtResource("1_si6aq")
 region_enabled = true
@@ -175,19 +162,21 @@ script = ExtResource("5_lp623")
 attack = 1000
 
 [node name="BodySegment1" type="PathFollow2D" parent="."]
-position = Vector2(63.9995, 0)
-progress = 64.0
+position = Vector2(192.001, 0)
+progress = 192.0
 loop = false
 
-[node name="PhysicsBody" type="AnimatableBody2D" parent="BodySegment1"]
+[node name="Hitbox" type="Area2D" parent="BodySegment1" node_paths=PackedStringArray("healthComponent")]
 collision_layer = 64
-sync_to_physics = false
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
 
-[node name="Collider" type="CollisionPolygon2D" parent="BodySegment1/PhysicsBody"]
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment1/Hitbox"]
 rotation = 3.14159
 polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
 
-[node name="SegmentSprite" type="Sprite2D" parent="BodySegment1/PhysicsBody"]
+[node name="SegmentSprite" type="Sprite2D" parent="BodySegment1/Hitbox"]
 rotation = 3.14159
 texture = ExtResource("1_si6aq")
 region_enabled = true
@@ -207,19 +196,21 @@ script = ExtResource("5_lp623")
 attack = 1000
 
 [node name="BodySegment2" type="PathFollow2D" parent="."]
-position = Vector2(31.9882, 0)
-progress = 32.0
+position = Vector2(160.001, 0)
+progress = 160.0
 loop = false
 
-[node name="PhysicsBody" type="AnimatableBody2D" parent="BodySegment2"]
+[node name="Hitbox" type="Area2D" parent="BodySegment2" node_paths=PackedStringArray("healthComponent")]
 collision_layer = 64
-sync_to_physics = false
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
 
-[node name="Collider" type="CollisionPolygon2D" parent="BodySegment2/PhysicsBody"]
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment2/Hitbox"]
 rotation = 3.14159
 polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
 
-[node name="SegmentSprite" type="Sprite2D" parent="BodySegment2/PhysicsBody"]
+[node name="SegmentSprite" type="Sprite2D" parent="BodySegment2/Hitbox"]
 rotation = 3.14159
 texture = ExtResource("1_si6aq")
 region_enabled = true
@@ -238,18 +229,156 @@ polygon = PackedVector2Array(-16, 3, -13.9873, 5.99996, -13.9873, 8.99996, -9.98
 script = ExtResource("5_lp623")
 attack = 1000
 
+[node name="BodySegment3" type="PathFollow2D" parent="."]
+position = Vector2(127.999, 0)
+progress = 128.0
+loop = false
+
+[node name="Hitbox" type="Area2D" parent="BodySegment3" node_paths=PackedStringArray("healthComponent")]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
+
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment3/Hitbox"]
+rotation = 3.14159
+polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
+
+[node name="SegmentSprite" type="Sprite2D" parent="BodySegment3/Hitbox"]
+rotation = 3.14159
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="AttackboxComponent" type="Area2D" parent="BodySegment3" node_paths=PackedStringArray("attack_component")]
+collision_layer = 65
+script = ExtResource("4_jjqoa")
+attack_component = NodePath("AttackComponent")
+
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment3/AttackboxComponent"]
+rotation = 3.14159
+polygon = PackedVector2Array(-16, 3, -13.9873, 5.99996, -13.9873, 8.99996, -9.98729, 12, -7.98729, 13, -2.98729, 13, -0.987289, 12, 5.01271, 12, 6.01272, 10, 10.0127, 10, 11.0127, 8.00003, 14.0127, 8.00004, 15.0127, 6.00004, 16.0127, 6.00004, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16.0128, -5.99996, 15.0128, -5.99996, 14.0128, -7.99996, 11.0128, -7.99997, 10.0128, -9.99998, 6.01276, -9.99998, 5.01277, -12, -0.987228, -12, -2.98723, -13, -7.98723, -13, -9.98723, -12, -13.9872, -9.00004, -13.9872, -6.00004, -16, -3)
+
+[node name="AttackComponent" type="Node" parent="BodySegment3/AttackboxComponent"]
+script = ExtResource("5_lp623")
+attack = 1000
+
+[node name="BodySegment4" type="PathFollow2D" parent="."]
+position = Vector2(95.9985, 0)
+progress = 96.0
+loop = false
+
+[node name="Hitbox" type="Area2D" parent="BodySegment4" node_paths=PackedStringArray("healthComponent")]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
+
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment4/Hitbox"]
+rotation = 3.14159
+polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
+
+[node name="SegmentSprite" type="Sprite2D" parent="BodySegment4/Hitbox"]
+rotation = 3.14159
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="AttackboxComponent" type="Area2D" parent="BodySegment4" node_paths=PackedStringArray("attack_component")]
+collision_layer = 65
+script = ExtResource("4_jjqoa")
+attack_component = NodePath("AttackComponent")
+
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment4/AttackboxComponent"]
+rotation = 3.14159
+polygon = PackedVector2Array(-16, 3, -13.9873, 5.99996, -13.9873, 8.99996, -9.98729, 12, -7.98729, 13, -2.98729, 13, -0.987289, 12, 5.01271, 12, 6.01272, 10, 10.0127, 10, 11.0127, 8.00003, 14.0127, 8.00004, 15.0127, 6.00004, 16.0127, 6.00004, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16.0128, -5.99996, 15.0128, -5.99996, 14.0128, -7.99996, 11.0128, -7.99997, 10.0128, -9.99998, 6.01276, -9.99998, 5.01277, -12, -0.987228, -12, -2.98723, -13, -7.98723, -13, -9.98723, -12, -13.9872, -9.00004, -13.9872, -6.00004, -16, -3)
+
+[node name="AttackComponent" type="Node" parent="BodySegment4/AttackboxComponent"]
+script = ExtResource("5_lp623")
+attack = 1000
+
+[node name="BodySegment5" type="PathFollow2D" parent="."]
+position = Vector2(63.9961, 0)
+progress = 64.0
+loop = false
+
+[node name="Hitbox" type="Area2D" parent="BodySegment5" node_paths=PackedStringArray("healthComponent")]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
+
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment5/Hitbox"]
+rotation = 3.14159
+polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
+
+[node name="SegmentSprite" type="Sprite2D" parent="BodySegment5/Hitbox"]
+rotation = 3.14159
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="AttackboxComponent" type="Area2D" parent="BodySegment5" node_paths=PackedStringArray("attack_component")]
+collision_layer = 65
+script = ExtResource("4_jjqoa")
+attack_component = NodePath("AttackComponent")
+
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment5/AttackboxComponent"]
+rotation = 3.14159
+polygon = PackedVector2Array(-16, 3, -13.9873, 5.99996, -13.9873, 8.99996, -9.98729, 12, -7.98729, 13, -2.98729, 13, -0.987289, 12, 5.01271, 12, 6.01272, 10, 10.0127, 10, 11.0127, 8.00003, 14.0127, 8.00004, 15.0127, 6.00004, 16.0127, 6.00004, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16.0128, -5.99996, 15.0128, -5.99996, 14.0128, -7.99996, 11.0128, -7.99997, 10.0128, -9.99998, 6.01276, -9.99998, 5.01277, -12, -0.987228, -12, -2.98723, -13, -7.98723, -13, -9.98723, -12, -13.9872, -9.00004, -13.9872, -6.00004, -16, -3)
+
+[node name="AttackComponent" type="Node" parent="BodySegment5/AttackboxComponent"]
+script = ExtResource("5_lp623")
+attack = 1000
+
+[node name="BodySegment6" type="PathFollow2D" parent="."]
+position = Vector2(31.9728, 0)
+progress = 32.0
+loop = false
+
+[node name="Hitbox" type="Area2D" parent="BodySegment6" node_paths=PackedStringArray("healthComponent")]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
+
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment6/Hitbox"]
+rotation = 3.14159
+polygon = PackedVector2Array(-16, 3, -13, 6, -13, 8, -10, 11, -8, 12, -3, 12, -1, 11, 5, 11, 5, 9, 10, 9, 10, 7, 14, 7, 14, 5, 16, 5, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16, -5, 14, -5, 14, -7, 10, -7, 10, -9, 5, -9, 5, -11, -1, -11, -3, -12, -8, -12, -10, -11, -13, -8, -13, -6, -16, -3)
+
+[node name="SegmentSprite" type="Sprite2D" parent="BodySegment6/Hitbox"]
+rotation = 3.14159
+texture = ExtResource("1_si6aq")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="AttackboxComponent" type="Area2D" parent="BodySegment6" node_paths=PackedStringArray("attack_component")]
+collision_layer = 65
+script = ExtResource("4_jjqoa")
+attack_component = NodePath("AttackComponent")
+
+[node name="Collider" type="CollisionPolygon2D" parent="BodySegment6/AttackboxComponent"]
+rotation = 3.14159
+polygon = PackedVector2Array(-16, 3, -13.9873, 5.99996, -13.9873, 8.99996, -9.98729, 12, -7.98729, 13, -2.98729, 13, -0.987289, 12, 5.01271, 12, 6.01272, 10, 10.0127, 10, 11.0127, 8.00003, 14.0127, 8.00004, 15.0127, 6.00004, 16.0127, 6.00004, 16, 4, 15, 3, 16, 2, 16, -2, 15, -3, 16, -4, 16.0128, -5.99996, 15.0128, -5.99996, 14.0128, -7.99996, 11.0128, -7.99997, 10.0128, -9.99998, 6.01276, -9.99998, 5.01277, -12, -0.987228, -12, -2.98723, -13, -7.98723, -13, -9.98723, -12, -13.9872, -9.00004, -13.9872, -6.00004, -16, -3)
+
+[node name="AttackComponent" type="Node" parent="BodySegment6/AttackboxComponent"]
+script = ExtResource("5_lp623")
+attack = 1000
+
 [node name="Tail" type="PathFollow2D" parent="."]
 loop = false
 
-[node name="PhysicsBody" type="AnimatableBody2D" parent="Tail"]
+[node name="Hitbox" type="Area2D" parent="Tail" node_paths=PackedStringArray("healthComponent")]
 collision_layer = 64
-sync_to_physics = false
+collision_mask = 2
+script = ExtResource("7_osq63")
+healthComponent = NodePath("../../HealthComponent")
 
-[node name="Collider" type="CollisionPolygon2D" parent="Tail/PhysicsBody"]
+[node name="Collider" type="CollisionPolygon2D" parent="Tail/Hitbox"]
 rotation = 3.14159
 polygon = PackedVector2Array(-12, 8, -15, 5, -15, 4, -17, 2, -17, -2, -15, -4, -15, -5, -12, -8, -7, -8, -7, -6, -5, -6, -3, -4, -2, -5, 1, -6, 5, -7, 11, -9, 15, -9, 15, -8, 13, -7, 11, -5, 5, -2, 5, 2, 11, 5, 13, 7, 15, 8, 15, 9, 11, 9, 5, 7, 1, 6, -2, 5, -3, 4, -5, 6, -7, 6, -7, 8)
 
-[node name="SegmentSprite" type="Sprite2D" parent="Tail/PhysicsBody"]
+[node name="SegmentSprite" type="Sprite2D" parent="Tail/Hitbox"]
 rotation = 3.14159
 texture = ExtResource("1_si6aq")
 region_enabled = true
@@ -268,10 +397,19 @@ polygon = PackedVector2Array(-12, 8.99997, -15, 5.99996, -15, 4, -17, 2, -17, -2
 script = ExtResource("5_lp623")
 attack = 1000
 
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("8_owoaf")
+max_health = 5000
+
 [connection signal="on_hit" from="Head/AttackboxComponent" to="." method="OnPlayerHit"]
-[connection signal="died" from="Core/PhysicsBody/CoreBodySegmentSprite/HitboxComponent/HealthComponent" to="." method="OnDeath"]
 [connection signal="on_hit" from="Core/AttackboxComponent" to="." method="OnPlayerHit"]
 [connection signal="on_hit" from="BodySegment0/AttackboxComponent" to="." method="OnPlayerHit"]
 [connection signal="on_hit" from="BodySegment1/AttackboxComponent" to="." method="OnPlayerHit"]
 [connection signal="on_hit" from="BodySegment2/AttackboxComponent" to="." method="OnPlayerHit"]
+[connection signal="on_hit" from="BodySegment3/AttackboxComponent" to="." method="OnPlayerHit"]
+[connection signal="on_hit" from="BodySegment4/AttackboxComponent" to="." method="OnPlayerHit"]
+[connection signal="on_hit" from="BodySegment5/AttackboxComponent" to="." method="OnPlayerHit"]
+[connection signal="on_hit" from="BodySegment6/AttackboxComponent" to="." method="OnPlayerHit"]
 [connection signal="on_hit" from="Tail/AttackboxComponent" to="." method="OnPlayerHit"]
+[connection signal="died" from="HealthComponent" to="." method="OnDeath"]
+[connection signal="health_changed" from="HealthComponent" to="." method="OnHealthChanged"]

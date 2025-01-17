@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=4 uid="uid://dtac827wboesc"]
+
+[ext_resource type="Script" path="res://Structures/Regions/WormCave/Scripts/Gate.cs" id="1_08g1e"]
+[ext_resource type="PackedScene" uid="uid://b5duuyvjbcm8r" path="res://Structures/Regions/WormCave/TileSet/TileLayer.tscn" id="2_b3y1t"]
+[ext_resource type="Script" path="res://Components/attackbox_component.gd" id="3_1d4s1"]
+[ext_resource type="Script" path="res://Components/AttackComponent.cs" id="3_krbn5"]
+
+[sub_resource type="Curve2D" id="Curve2D_50n7i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 544, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6payp"]
+size = Vector2(118, 26)
+
+[node name="FallingPillar" type="Path2D" node_paths=PackedStringArray("GateDoor1")]
+curve = SubResource("Curve2D_50n7i")
+script = ExtResource("1_08g1e")
+GateDoor1 = NodePath("Pillar")
+openTime1 = 0.55
+
+[node name="Pillar" type="PathFollow2D" parent="."]
+progress = 544.0
+rotates = false
+loop = false
+
+[node name="TileLayer" parent="Pillar" instance=ExtResource("2_b3y1t")]
+position = Vector2(0, 416)
+tile_map_data = PackedByteArray("AAABAAAAAAAHAAEAAAD+/wAAAAAFAAEAAAD//wAAAAACAAEAAAAAAAAAAAAEAAEAAAD+////AAAFAAEAAAD+//7/AAAFAAEAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAAFAAEAAAD+//r/AAAFAAEAAAD+//n/AAAFAAEAAAD+//j/AAAFAAEAAAD+//f/AAAFAAEAAAD+//b/AAAFAAEAAAD+//X/AAAFAAEAAAD+//T/AAAFAAEAAAD+//P/AAAFAAEAAAABAP//AAAHAAEAAAABAP7/AAAHAAEAAAABAP3/AAAHAAEAAAABAPz/AAAHAAEAAAABAPv/AAAHAAEAAAABAPr/AAAHAAEAAAABAPn/AAAHAAEAAAABAPj/AAAHAAEAAAABAPf/AAAHAAEAAAABAPb/AAAHAAEAAAABAPX/AAAHAAEAAAABAPT/AAAHAAEAAAABAPP/AAAHAAEAAAAAAP//AAAEAAEAAAAAAP7/AAAEAAEAAAAAAP3/AAAEAAEAAAAAAPz/AAAEAAEAAAAAAPv/AAAEAAEAAAAAAPr/AAAEAAEAAAAAAPn/AAAEAAEAAAAAAPj/AAAEAAEAAAAAAPf/AAAEAAEAAAAAAPb/AAAEAAEAAAAAAPX/AAAEAAEAAAAAAPT/AAAEAAEAAAAAAPP/AAAEAAEAAAD///P/AAACAAEAAAD///T/AAACAAEAAAD///X/AAACAAEAAAD///b/AAACAAEAAAD///f/AAACAAEAAAD///j/AAACAAEAAAD///n/AAACAAEAAAD///r/AAACAAEAAAD///v/AAACAAEAAAD///z/AAACAAEAAAD///3/AAACAAEAAAD///7/AAACAAEAAAD/////AAACAAEAAAABAAEAAAAHAAEAAAABAAIAAAAHAAEAAAD+/wEAAAAFAAEAAAD+/wIAAAAFAAEAAAD//wIAAAACAAIAAAAAAAIAAAAEAAIAAAD//wEAAAACAAEAAAAAAAEAAAAEAAEAAAABAAMAAAAHAAIAAAD+/wMAAAAFAAIAAAD//wMAAAAGAAIAAAAAAAMAAAAGAAIAAAA=")
+
+[node name="AttackboxComponent" type="Area2D" parent="Pillar" node_paths=PackedStringArray("attack_component")]
+position = Vector2(0, 538)
+collision_layer = 4
+collision_mask = 17
+script = ExtResource("3_1d4s1")
+attack_component = NodePath("AttackInfo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pillar/AttackboxComponent"]
+position = Vector2(3, -3)
+shape = SubResource("RectangleShape2D_6payp")
+
+[node name="AttackInfo" type="Node" parent="Pillar/AttackboxComponent"]
+script = ExtResource("3_krbn5")
+attack = 9999999
