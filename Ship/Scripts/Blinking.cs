@@ -125,12 +125,10 @@ public partial class Blinking : Node2D
 
 	protected void AreaEntered(Area2D area2d){
 		isAllowedToBlink = false;
-		area.QueueFree();
 	}
 
 	protected void BodyEntereds(Node2D body){
 		isAllowedToBlink = false;
-		area.QueueFree();
 	}
 
 	private async void Async_PreformDirectionBlink() 

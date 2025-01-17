@@ -13,10 +13,12 @@ class_name AIState
 signal transitioned(AIState, new_state:String)
 
 func enter():
-	print(name + " Entered")
+	pass
+	#print(name + " Entered")
 
 func exit():
-	print(name + " Exited")
+	pass
+	#print(name + " Exited")
 
 func update(_delta):
 	pass

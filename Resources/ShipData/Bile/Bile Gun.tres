@@ -10,7 +10,7 @@
 
 [resource]
 script = ExtResource("1_p5fk8")
-BulletsPerSecond = 2.0
+BulletsPerSecond = 0.0
 Attack = 400
 Powerdraw = 10
 type = 2
