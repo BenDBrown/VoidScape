@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dswkpic3qe4jc"]
+
+[ext_resource type="Script" path="res://Misc/Cave Region/Generators/ForceField.cs" id="1_6orlc"]
+[ext_resource type="Material" uid="uid://c6wyw6pbce3cd" path="res://Misc/Cave Region/Generators/force_field_material.tres" id="1_8kssg"]
+[ext_resource type="Texture2D" uid="uid://b3clgwb0n868y" path="res://Misc/Cave Region/Generators/Forcefield.png" id="1_i3auy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85csg"]
+radius = 50.0
+
+[node name="ForceField" type="Node2D" node_paths=PackedStringArray("sprite")]
+position = Vector2(105, 91)
+script = ExtResource("1_6orlc")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.4)
+material = ExtResource("1_8kssg")
+texture = ExtResource("1_i3auy")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_85csg")
+
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]

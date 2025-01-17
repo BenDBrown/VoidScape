@@ -115,7 +115,7 @@ offset_top = 288.0
 offset_right = 1000.0
 offset_bottom = 376.0
 theme = ExtResource("8_vjj0j")
-text = "Ship Builder
+text = "Outpost
 "
 
 [node name="Test Menu" type="Button" parent="Main Screen/CanvasLayer"]
@@ -140,7 +140,7 @@ offset_top = 288.0
 offset_right = 1133.0
 offset_bottom = 376.0
 theme = ExtResource("8_vjj0j")
-text = "Outpost
+text = "Cave
 "
 
 [node name="Remove Save" type="Button" parent="Main Screen/CanvasLayer"]

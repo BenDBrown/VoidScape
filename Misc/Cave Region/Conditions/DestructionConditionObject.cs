@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class DestructionCondtionObject : ConditionObject
+public partial class DestructionConditionObject : ConditionObject
 {
 	[ExportCategory("Developer Input")]
 	[Export]

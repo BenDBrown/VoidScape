@@ -20,11 +20,19 @@ public partial class ActivateOnCondition : Node
 		SubscribeToSignals();
 	}
 
-	private void SubscribeToSignals(){
-		foreach( ConditionObject target in conditionTargets){
-			target.OnConditionMet += TrackProgress;
-		}
-	}
+    public int GetAmountOfConditions(){
+        return conditionTargets.Length;
+    }
+
+    public int GetAmountCompleted(){
+        return completedTargets;
+    }
+
+    private void SubscribeToSignals(){
+        foreach( ConditionObject target in conditionTargets){
+            target.OnConditionMet += TrackProgress;
+        }
+    }
 
 	private void TrackProgress(){
 		completedTargets++;
@@ -46,11 +54,11 @@ public partial class ActivateOnCondition : Node
 				}
 		}
 
-		if(HasRequirementMet(progressCheck)){
-			GD.Print("OPEN DOOR");
-			EmitSignal(SignalName.Activate);
-		}
-	}
+        if(HasRequirementMet(progressCheck)){
+            
+            EmitSignal(SignalName.Activate);
+        }
+    }
 
 	private bool HasRequirementMet(int currentProgress){
 		return conditionTargets.Length == currentProgress;
