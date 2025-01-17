@@ -5,6 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6mue"]
 
 [node name="DraggableComponent" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_1du12")
 
 [node name="Area2D" type="Area2D" parent="."]

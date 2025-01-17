@@ -37,5 +37,9 @@ func on_state_transitioned(state: AIState, new_state: String):
 		current_state.enter()
 
 
-func _on_grunt_on_destroyed(ship: CharacterBody2D) -> void:
+func _on_grunt_on_destroyed(_ship: CharacterBody2D) -> void:
 	current_state.exit()
+
+func ignore_warning():
+	if state_changed:
+		return

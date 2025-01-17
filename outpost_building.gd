@@ -14,10 +14,10 @@ var allowed_to_spawn = true
 var respawn_timer:Timer
 
 func _ready() -> void:
-	#for now the entire structure dies when the core is destroyed. 
+	#for now the entire structure dies when the core is destroyed.
 	if core:
 		core.connect("core_destroyed", _on_health_component_died)
-	else: 
+	else:
 		print("No core connected")
 	first_enemy_wave()
 
@@ -32,7 +32,7 @@ func _on_health_component_died() -> void:
 		sprite.visible = false
 		if respawn_timer:
 			respawn_timer.set_paused(true)
-			
+
 
 func create_grunt():
 	grunt = grunt_scene.instantiate()
@@ -40,7 +40,7 @@ func create_grunt():
 	grunt.connect("OnDestroyed",on_enemy_death)
 	add_child(grunt)
 
-func on_enemy_death(enemy:Ship):
+func on_enemy_death(_enemy:Ship):
 	grunts_alive -=1
 	start_respawn_timer_enemy()
 
@@ -50,7 +50,7 @@ func start_respawn_timer_enemy():
 			if grunts_alive < 2:
 				if respawn_timer.time_left == 0:
 					respawn_timer.start(respawn_time)
-					
+
 
 func first_enemy_wave():
 	respawn_timer = Timer.new()

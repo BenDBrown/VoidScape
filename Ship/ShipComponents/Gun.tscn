@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_2kdol"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Gun.cs" id="2_g548h"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_4keds"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="4_ovesg"]
+[ext_resource type="Script" path="res://Components/SingleRunAudio.cs" id="4_ovesg"]
 
 [node name="Gun" node_paths=PackedStringArray("timer", "attackComponent", "shootSFX", "bulletSpawnPoint") instance=ExtResource("1_2kdol")]
 script = ExtResource("2_g548h")

@@ -9,7 +9,6 @@ class_name AIState
 			return $"../../../PlayerShip"
 		return Game.PlayerShip
 @export var detect_radius = 200.0
-
 signal transitioned(AIState, new_state:String)
 
 func enter():
@@ -24,3 +23,7 @@ func update(_delta):
 	pass
 func physics_update(_delta):
 	pass
+
+func ignore_warning():
+	if transitioned:
+		return

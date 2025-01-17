@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://UI/Scripts/game_over.gd" id="1_shrs3"]
 
 [node name="GameOver" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_shrs3")
 
 [node name="Label" type="Label" parent="."]

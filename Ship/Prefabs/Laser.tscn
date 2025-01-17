@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1xyhviyhxvw" path="res://Assets/Bullets/bullet explotion.png" id="4_ovyox"]
 [ext_resource type="Script" path="res://Components/SingleRunAnimation.cs" id="5_elk2p"]
 [ext_resource type="AudioStream" uid="uid://dwcx0lo8cd0hr" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTImpt_Hit Marker_07.wav" id="7_cblig"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="8_puuca"]
+[ext_resource type="Script" path="res://Components/SingleRunAudio.cs" id="8_puuca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8rxq"]
 size = Vector2(2, 6)

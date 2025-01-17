@@ -4,15 +4,15 @@ signal player_entered
 signal player_exited
 
 func _ready() -> void:
-	for i in get_parent().get_children():
+	for i in get_tree().current_scene.get_children():
 		if i is Comet_tracker:
-			connect("player_entered",i.set_allowed_to_spawn.bind("false"))
-			connect("player_exited",i.set_allowed_to_spawn.bind("true"))
+			player_entered.connect(i.set_allowed_to_spawn.bind("false"))
+			player_exited.connect(i.set_allowed_to_spawn.bind("true"))
 
 func _on_body_entered(body: Node2D) -> void:
 	if body == Game.PlayerShip:
-		emit_signal("player_entered")
+		player_entered.emit()
 
 func _on_body_exited(body: Node2D) -> void:
 	if body == Game.PlayerShip:
-		emit_signal("player_exited")
+		player_exited.emit()

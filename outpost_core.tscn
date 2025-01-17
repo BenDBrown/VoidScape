@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://oqpd0b0f2xcl"]
+[gd_scene load_steps=10 format=3 uid="uid://cjq1r6wcn4w6p"]
 
 [ext_resource type="Script" path="res://outpost_core.gd" id="1_hguve"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_cgng6"]
-[ext_resource type="PackedScene" uid="uid://b1sph6itunlh8" path="res://UI/message_box_to_player.tscn" id="2_ui35j"]
+[ext_resource type="PackedScene" path="res://UI/message_box_to_player.tscn" id="2_ui35j"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_ygqii"]
 [ext_resource type="Texture2D" uid="uid://jjlfednq16n3" path="res://Assets/Structures/Tiles/Ice.png" id="5_rb17v"]
 [ext_resource type="Texture2D" uid="uid://cxgvnditt8jyt" path="res://Assets/Structures/Tiles/Lava.png" id="7_0n6kh"]

@@ -44,7 +44,7 @@ func _on_ship_builder_pressed() -> void:
 
 func _on_worm_pressed() -> void:
 	get_tree().change_scene_to_file(worm_scene.resource_path)
-	
+
 func _on_ismet_pressed() -> void:
 	get_tree().change_scene_to_file(cave_scene.resource_path)
 
@@ -53,4 +53,4 @@ func _on_test_menu_pressed() -> void:
 
 func _on_remove_save_pressed() -> void:
 	var save = PlayerShipSave.new()
-	var result = save.delete_save()
+	save.delete_save()
