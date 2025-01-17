@@ -16,9 +16,8 @@ script = ExtResource("1_lsid4")
 
 [node name="Background" parent="." instance=ExtResource("2_m6n2y")]
 
-[node name="Worm" parent="." node_paths=PackedStringArray("rocks") instance=ExtResource("3_ifvsc")]
+[node name="Worm" parent="." instance=ExtResource("3_ifvsc")]
 position = Vector2(501, 173)
-rocks = [NodePath("../WormRock"), NodePath("../WormRock2"), NodePath("../WormRock3"), NodePath("../WormRock4")]
 
 [node name="WormRock" parent="." instance=ExtResource("4_vc2r0")]
 position = Vector2(180, 146)

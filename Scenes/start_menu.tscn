@@ -124,7 +124,7 @@ offset_top = 384.0
 offset_right = 1000.0
 offset_bottom = 472.0
 theme = ExtResource("8_vjj0j")
-text = "Test Scene"
+text = "Open Space"
 
 [node name="worm menu" type="Button" parent="Main Screen/CanvasLayer"]
 offset_left = 1011.0
@@ -140,7 +140,7 @@ offset_top = 288.0
 offset_right = 1133.0
 offset_bottom = 376.0
 theme = ExtResource("8_vjj0j")
-text = "Cave Scene
+text = "Outpost
 "
 
 [node name="Remove Save" type="Button" parent="Main Screen/CanvasLayer"]
