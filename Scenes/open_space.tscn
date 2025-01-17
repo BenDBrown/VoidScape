@@ -80,7 +80,7 @@ loop = true
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(-1051, -609)
+position = Vector2(838, 344)
 script = ExtResource("8_a0yns")
 
 [node name="Comet_tracker" type="Node" parent="."]
