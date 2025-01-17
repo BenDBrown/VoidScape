@@ -50,7 +50,7 @@ public partial class Ship : CharacterBody2D, IShip
 		{
 			TryBuildShip();
 		}
-
+		externalForceManager.Collided += thrustManager.RemoveForceInDirection;
 	}
 
 	public override void _PhysicsProcess(double delta)
