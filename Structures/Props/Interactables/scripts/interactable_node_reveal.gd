@@ -10,27 +10,27 @@ var reward_given
 @export var cargo_reward:Cargo
 
 func _ready() -> void:
-	connect("send_to_manager",manager.send_to_manager_node_reveal.bind(node_to_reveal,location_of_node,self))
-	connect("change_interact_ui_visibility_true",manager.interact_ui_visibility_true)
-	connect("change_interact_ui_visibility_false",manager.interact_ui_visibility_false)
-	
+	send_to_manager.connect(manager.send_to_manager_node_reveal.bind(node_to_reveal,location_of_node,self))
+	change_interact_ui_visibility_true.connect(manager.interact_ui_visibility_true)
+	change_interact_ui_visibility_false.connect(manager.interact_ui_visibility_false)
+
 
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == Game.PlayerShip:
 		if !reward_given:
-			Game.PlayerShip.connect("InteractableInteracted",send)
-			emit_signal("change_interact_ui_visibility_true")
-		
+			Game.PlayerShip.InteractableInteracted.connect(send)
+			change_interact_ui_visibility_true.emit()
+
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body == Game.PlayerShip:
-		Game.PlayerShip.disconnect("InteractableInteracted",send)
-		emit_signal("change_interact_ui_visibility_false")
-	
+		Game.PlayerShip.InteractableInteracted.disconnect(send)
+		change_interact_ui_visibility_false.emit()
+
 
 func send():
 	if !reward_given:
-		emit_signal("send_to_manager")
+		send_to_manager.emit()
 		reward_given = true

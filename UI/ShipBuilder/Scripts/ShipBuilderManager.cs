@@ -53,6 +53,7 @@ public partial class ShipBuilderManager : Control
 			cr.MouseExited += MouseExitedSquare;
 		}
 		gridGenerator.CallDeferred("LoadShip");
+		ProcessMode = ProcessModeEnum.Always;
 
 	}
 
@@ -144,6 +145,7 @@ public partial class ShipBuilderManager : Control
 			if (hoveredRect == null || gridGenerator.GridCells[rectPos].Texture == gridGenerator.InvalidCell || gridGenerator.GridCells[rectPos].HasComponent)
 			{
 				var tween = GetTree().CreateTween();
+				tween.SetPauseMode(Tween.TweenPauseMode.Process);
 				tween.TweenProperty(draggedPreview, "global_position", initialMousePos, 0.7f);
 				tween.Finished += () => ResetPiece();
 				return;

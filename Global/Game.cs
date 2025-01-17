@@ -10,7 +10,7 @@ public partial class Game : Node
 	public static Game Instance { get; set; }
 	public string SAVE_PATH = "res://saves/";
 	public PlayerShip PlayerShip { get; set; }
-	public CanvasLayer Hud { get; set; }	
+	public CanvasLayer Hud { get; set; }
 	public AudioStreamPlayer2D Fx;
 	private const string SHIP_SAVER_PATH = "res://Resources/Scripts/player_ship_save.gd";
 	private Resource playerShipSaver;
@@ -23,6 +23,7 @@ public partial class Game : Node
 		Fx = new();
 		playerShipSaver = GD.Load(SHIP_SAVER_PATH).Call("new").As<Resource>();
 		AddChild(Fx);
+		ProcessMode = ProcessModeEnum.Always;
 	}
 
 	public override void _Process(double delta)

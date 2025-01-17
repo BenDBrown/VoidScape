@@ -41,8 +41,11 @@ func physics_update(target):
 		attack(player)
 
 func is_in_detection_cone(target):
+
 	for index in cast_vect:
 		if !is_queued_for_deletion():
+			if !ray.is_inside_tree():
+				return
 			ray.set_target_position(index)
 			ray.force_raycast_update()
 			if target != null && ray.is_colliding() && ray.get_collider() == target:

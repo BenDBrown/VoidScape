@@ -1,6 +1,5 @@
 extends Node
 class_name Comet_tracker
-signal not_allowed_to_spawn
 var comets = [] # if at a later stage we want to have this be multiple comets
 var playership: PlayerShip
 var comet_scene: PackedScene = preload("res://Hazards/Comet/Comet.tscn")
@@ -18,8 +17,8 @@ var spawn_timer
 func _ready():
 	set_deferred("playership", Game.PlayerShip)
 	spawn_timer_reset()
-	
-		
+
+
 func spawn_comet():
 	spawn_timer.start(random_spawn_time())
 	if !allowed_to_spawn:
@@ -32,7 +31,7 @@ func spawn_comet():
 	comet.direction = spawn_location
 	add_child(comet)
 	comet.tree_exited.connect(on_comet_exit)
-	
+
 func spawn_timer_reset():
 	if spawn_timer:
 		return
