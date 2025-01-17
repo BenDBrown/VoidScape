@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 public partial class WormAI : Node2D
 {
+    [Signal]
+    public delegate void OnWormHealthChangedEventHandler(int newHealth);
+
     [Export]
     private bool wormFollowsMouse = false; // for testing only 
 
@@ -47,7 +50,6 @@ public partial class WormAI : Node2D
                 FoldIntoRock,
                 FoldOutOfRock,
                 ChargeAtPlayer,
-                ChargeAtPlayer,
                 ChargeAtPlayer
             }
         };
@@ -61,6 +63,8 @@ public partial class WormAI : Node2D
         worm.OnWormReachedDestination += NextAction;
         NextAction();
     }
+
+    public void OnHealthChanged(int newHealth) => EmitSignal(SignalName.OnWormHealthChanged, newHealth);
 
     public void OnBodyEntered(Node2D node) {if(node == Game.Instance.PlayerShip) Aggro();}
 

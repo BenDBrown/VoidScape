@@ -10,6 +10,7 @@ var current_health: int
 
 func _ready() -> void:
 	current_health = max_health
+	health_changed.emit(current_health)
 
 func take_damage(attackComponent: AttackComponent):
 	current_health -= max(1, attackComponent.attack - defense)
@@ -21,3 +22,4 @@ func set_component(maxHealth, def):
 	max_health = maxHealth
 	defense = def
 	current_health = maxHealth
+	health_changed.emit(current_health)
