@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8dxpgd0ptos1"
-path="res://.godot/imported/Pipe Sprite.png-6e48063e99d613f26b969d2d9772d42d.ctex"
+uid="uid://b3clgwb0n868y"
+path="res://.godot/imported/Forcefield.png-1ea8e09ae858b911fb228dedb5dbfd21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc/Cave Region/Pipes/Pipe Sprite.png"
-dest_files=["res://.godot/imported/Pipe Sprite.png-6e48063e99d613f26b969d2d9772d42d.ctex"]
+source_file="res://Misc/Cave Region/Generators/Forcefield.png"
+dest_files=["res://.godot/imported/Forcefield.png-1ea8e09ae858b911fb228dedb5dbfd21.ctex"]
 
 [params]
 
