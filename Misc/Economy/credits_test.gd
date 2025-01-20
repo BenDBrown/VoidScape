@@ -25,7 +25,7 @@ func _on_buy_McNuggets_pressed() -> void:
 	
 	if (purchaseValid):
 		nuggets +=1
-		nuggets_amounts_label.text = "You have " + str(nuggets) + " nuggets."
+		nuggets_amounts_label.text = "You have " + str(nuggets) + " stars."
 		
 
 func _on_add_credits_pressed() -> void:

@@ -32,7 +32,7 @@ offset_top = 219.0
 offset_right = 1136.0
 offset_bottom = 280.0
 theme = ExtResource("3_m4nla")
-text = "McDonalds McNuggets:  150 Credits"
+text = "Stars:  150 Credits"
 
 [node name="Add Credits" type="Button" parent="CanvasLayer/Credits Test"]
 layout_mode = 0
@@ -61,7 +61,7 @@ offset_left = 873.0
 offset_top = 64.0
 offset_right = 1030.0
 offset_bottom = -559.36
-text = "You have 0 Nuggets."
+text = "You have 0 Stars."
 
 [connection signal="pressed" from="CanvasLayer/Credits Test/Buy Nuggets" to="CanvasLayer/Credits Test" method="_on_buy_McNuggets_pressed"]
 [connection signal="pressed" from="CanvasLayer/Credits Test/Add Credits" to="CanvasLayer/Credits Test" method="_on_add_credits_pressed"]
