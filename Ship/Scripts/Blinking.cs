@@ -27,12 +27,14 @@ public partial class Blinking : Node2D
 	private Area2D area = new Area2D();
 
 	private Camera2D camera;
+	private Control hud;
 
 	public async void Async_PerformBlink()
 	{  	
 
 		if (ComponentVectors.Count == 0)
 		{
+			find_blink_hud();
 			FillDictionary();
 		}
 		
@@ -132,11 +134,13 @@ public partial class Blinking : Node2D
 					if(isAllowedToBlink){ 
 					playerShip.KillMomentum();	player_tween( transForm); isBoosting = true;
 					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 					}
 				}
 				else
 				{
 					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 				}
 				
 	
@@ -150,11 +154,14 @@ public partial class Blinking : Node2D
 					if(isAllowedToBlink){
 					playerShip.KillMomentum(); 	player_tween( transForm); isBoosting = true;
 					camera.Position = playerShip.Position;
+					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 					}
 				}
 				else
 				{
 					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 				}
 			}
 			else if (angle > 0.0f)
@@ -166,11 +173,13 @@ public partial class Blinking : Node2D
 					if(isAllowedToBlink){ 
 					playerShip.KillMomentum();	player_tween( transForm); isBoosting = true;
 					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 					}
 				}
 				else
 				{
 					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 				}
 			}
 			else
@@ -182,12 +191,13 @@ public partial class Blinking : Node2D
 					player_tween( transForm); isBoosting = true;
 					playerShip.KillMomentum();
 					isAllowedToBlink = false;
-					
+					hud_notice(isAllowedToBlink);
 					}
 				}
 				else
 				{
 					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 				}
 			}
 		}
@@ -195,6 +205,7 @@ public partial class Blinking : Node2D
 		await ToSignal(GetTree().CreateTimer(3),"timeout");
 		isAllowedToBlink = true;
 		isBoosting = false;
+		hud_notice(isAllowedToBlink);
 	}
 
 	private void player_tween(Transform2D trans){
@@ -203,5 +214,21 @@ public partial class Blinking : Node2D
 		tween.TweenProperty(playerShip, "transform",trans,0.10f );	
 		playerShip.CollisionLayer = 0;
 
+	}
+
+	private void hud_notice(bool visible){
+		hud.Visible =visible;
+		
+	}
+
+	private void find_blink_hud(){
+	foreach (var child in Game.Instance.Hud.GetChildren())
+	{
+		if (child.Name == "BlinkNotice")
+		{
+			hud = (Control)child;
+		}
+		
+	}
 	}
 }
