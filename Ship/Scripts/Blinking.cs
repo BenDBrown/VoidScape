@@ -29,7 +29,7 @@ public partial class Blinking : Node2D
 	private Camera2D camera;
 	private Control hud;
 
-	public async void Async_PerformBlink()
+	public  void Async_PerformBlink()
 	{  	
 
 		if (ComponentVectors.Count == 0)
@@ -118,9 +118,9 @@ public partial class Blinking : Node2D
 
 	private async void Async_PreformDirectionBlink() 
 	{
-		Vector2 lastpos = playerShip.Position;
 		Transform2D transForm;
 		area = new Area2D();
+		
 		if (playerShip.Velocity.Length() > 0.1f)
 		{
 			float angle = Mathf.Atan2(playerShip.Velocity.Y, playerShip.Velocity.X); // angle in [-PI, PI]
@@ -130,11 +130,12 @@ public partial class Blinking : Node2D
 				transForm = playerShip.Transform.Translated(new Vector2(blinkDist,0));
 				if(!playerShip.TestMove(playerShip.Transform, new Vector2(blinkDist,0)))
 				{
-					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(isAllowedToBlink){ 
-					playerShip.KillMomentum();	player_tween( transForm); isBoosting = true;
-					isAllowedToBlink = false;
-					hud_notice(isAllowedToBlink);
+					
+					if(isAllowedToBlink)
+					{ 
+						playerShip.KillMomentum();	player_tween(transForm); isBoosting = true;
+						isAllowedToBlink = false;
+						hud_notice(isAllowedToBlink);
 					}
 				}
 				else
@@ -150,12 +151,13 @@ public partial class Blinking : Node2D
 				transForm = playerShip.Transform.Translated(new Vector2(-blinkDist,0));
 				if(!playerShip.TestMove(playerShip.Transform, new Vector2(-blinkDist,0)))
 				{
-					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(isAllowedToBlink){
-					playerShip.KillMomentum(); 	player_tween( transForm); isBoosting = true;
-					camera.Position = playerShip.Position;
-					isAllowedToBlink = false;
-					hud_notice(isAllowedToBlink);
+				
+					
+					if(isAllowedToBlink)
+					{
+						playerShip.KillMomentum(); 	player_tween( transForm); isBoosting = true;
+						isAllowedToBlink = false;
+						hud_notice(isAllowedToBlink);
 					}
 				}
 				else
@@ -169,11 +171,12 @@ public partial class Blinking : Node2D
 				transForm = playerShip.Transform.Translated(new Vector2(0,blinkDist));
 				if(!playerShip.TestMove(playerShip.Transform, new Vector2(0,blinkDist)))
 				{
-					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(isAllowedToBlink){ 
-					playerShip.KillMomentum();	player_tween( transForm); isBoosting = true;
-					isAllowedToBlink = false;
-					hud_notice(isAllowedToBlink);
+					
+					if(isAllowedToBlink)
+					{ 
+						playerShip.KillMomentum();	player_tween( transForm); isBoosting = true;
+						isAllowedToBlink = false;
+						hud_notice(isAllowedToBlink);
 					}
 				}
 				else
@@ -187,11 +190,12 @@ public partial class Blinking : Node2D
 				transForm = playerShip.Transform.Translated(new Vector2(0,-blinkDist));
 				if(!playerShip.TestMove(playerShip.Transform, new Vector2(0,-blinkDist)))
 				{
-					if(isAllowedToBlink){ 
-					player_tween( transForm); isBoosting = true;
-					playerShip.KillMomentum();
-					isAllowedToBlink = false;
-					hud_notice(isAllowedToBlink);
+					if(isAllowedToBlink)
+					{ 
+						player_tween( transForm); isBoosting = true;
+						playerShip.KillMomentum();
+						isAllowedToBlink = false;
+						hud_notice(isAllowedToBlink);
 					}
 				}
 				else
