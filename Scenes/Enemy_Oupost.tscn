@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=4 uid="uid://cjitas3maqsno"]
 
 [ext_resource type="Script" path="res://Scenes/enemy_oupost.gd" id="1_ghhpv"]
-[ext_resource type="PackedScene" path="res://outpost_building.tscn" id="1_ol3im"]
+[ext_resource type="PackedScene" uid="uid://64fo77bnaoxj" path="res://outpost_building.tscn" id="1_ol3im"]
 [ext_resource type="PackedScene" uid="uid://cjq1r6wcn4w6p" path="res://outpost_core.tscn" id="2_16xbg"]
 [ext_resource type="TileSet" uid="uid://crqivgce5c1n1" path="res://Assets/Structures/Tilesets/out_post_collision.tres" id="2_a1f2d"]
 [ext_resource type="TileSet" uid="uid://bshguyqj7afla" path="res://Assets/Structures/Tilesets/out_post.tres" id="3_qa6sq"]
-[ext_resource type="PackedScene" path="res://Ship/Prefabs/Enemies/core_guard.tscn" id="6_egwha"]
+[ext_resource type="PackedScene" uid="uid://cexhxhqdojdw7" path="res://Ship/Prefabs/Enemies/core_guard.tscn" id="6_egwha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wmh2"]
 

@@ -16,7 +16,14 @@ powerManager = NodePath("PowerManager")
 ExplosionAnim = NodePath("ExplosionAnim")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 position_smoothing_speed = 50.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.07
+drag_top_margin = 0.07
+drag_right_margin = 0.07
+drag_bottom_margin = 0.07
 
 [node name="Player Controller" type="Node" parent="." node_paths=PackedStringArray("playerShipNode")]
 script = ExtResource("2_0hxg2")
