@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="GeneratorData" load_steps=5 format=3 uid="uid://d3hk5yvq6admy"]
+
+[ext_resource type="Texture2D" uid="uid://bqwn3urv557rd" path="res://Ship/Assets/Atlas/Generator/Bile Generator - Broken.atlastex" id="1_obhkv"]
+[ext_resource type="Texture2D" uid="uid://4f5kg0h3of7m" path="res://Ship/Assets/Atlas/Generator/Bile Generator.atlastex" id="2_sd5ce"]
+[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="3_uw672"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GeneratorData.cs" id="4_ytn6n"]
+
+[resource]
+script = ExtResource("4_ytn6n")
+efficiency = 1.0
+maxPowerGenerated = 100
+Name = "Bile Generator"
+Description = "Lv1"
+Sprite = ExtResource("2_sd5ce")
+DestroyedSprite = ExtResource("1_obhkv")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 4
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("3_uw672")

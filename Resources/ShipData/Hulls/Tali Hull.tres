@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://cx1in1n1c03cl"]
+
+[ext_resource type="Texture2D" uid="uid://3seefsr6n353" path="res://Ship/Assets/Atlas/Hull/Tali Hull - Broken.atlastex" id="1_sutxw"]
+[ext_resource type="Texture2D" uid="uid://c1hqkxwvrtgce" path="res://Ship/Assets/Atlas/Hull/Tali Hull.atlastex" id="2_w7qbl"]
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="3_d2kb5"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="4_53ac0"]
+
+[resource]
+script = ExtResource("4_53ac0")
+Name = "Arzo Hull"
+Description = "Hello"
+Sprite = ExtResource("2_w7qbl")
+DestroyedSprite = ExtResource("1_sutxw")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 2
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("3_d2kb5")

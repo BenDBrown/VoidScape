@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ThrusterData" load_steps=5 format=3 uid="uid://cl6j86mc6ya4t"]
+
+[ext_resource type="Texture2D" uid="uid://bana5djk768we" path="res://Ship/Assets/Atlas/Thruster/Zentri Thruster - Broken.atlastex" id="1_j63wf"]
+[ext_resource type="Texture2D" uid="uid://74u0v03y8u8l" path="res://Ship/Assets/Atlas/Thruster/Zentri Thruster.atlastex" id="2_pet3v"]
+[ext_resource type="PackedScene" uid="uid://cvjo3o6k4j254" path="res://Ship/ShipComponents/Thruster.tscn" id="3_o35w7"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ThrusterData.cs" id="4_hgelc"]
+
+[resource]
+script = ExtResource("4_hgelc")
+Thrust = 400.0
+Name = "Arzo Thruster"
+Description = "Lv1"
+Sprite = ExtResource("2_pet3v")
+DestroyedSprite = ExtResource("1_j63wf")
+TopAttachable = true
+BottomAttachable = false
+LeftAttachable = false
+RightAttachable = false
+Type = 0
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("3_o35w7")

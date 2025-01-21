@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=3 format=3 uid="uid://sqvrj6wjuf1p"]
+
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="1_1ufvt"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="2_2i7vp"]
+
+[resource]
+script = ExtResource("2_2i7vp")
+Name = "Halfies slope"
+Description = "This is a slope"
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = false
+Type = 2
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("1_1ufvt")

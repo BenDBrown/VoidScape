@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://1bka2d318svm"]
+
+[ext_resource type="Texture2D" uid="uid://bqmqbyo3r6k8e" path="res://Ship/Assets/Atlas/Cockpit/Arzo Cockpit  - Broken.atlastex" id="1_77mnb"]
+[ext_resource type="Texture2D" uid="uid://cjwh804qbb02v" path="res://Ship/Assets/Atlas/Cockpit/Arzo Cockpit.atlastex" id="2_c5bpv"]
+[ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="3_y16n5"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="4_2mow0"]
+
+[resource]
+script = ExtResource("4_2mow0")
+Name = "Arzo Cockpit"
+Description = "Lv1"
+Sprite = ExtResource("2_c5bpv")
+DestroyedSprite = ExtResource("1_77mnb")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 1
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("3_y16n5")

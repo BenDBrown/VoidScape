@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b6as0rle2crqg"]
+
+[ext_resource type="Texture2D" uid="uid://bw0edjqjmnb0c" path="res://Ship/Assets/Ship PNGs/Slopes.png" id="1_olpoa"]
+
+[resource]
+atlas = ExtResource("1_olpoa")
+region = Rect2(0, 0, 32, 32)
