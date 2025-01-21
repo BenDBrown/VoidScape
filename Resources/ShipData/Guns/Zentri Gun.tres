@@ -1,30 +1,30 @@
 [gd_resource type="Resource" script_class="GunData" load_steps=8 format=3 uid="uid://dhobp4c3cdd6k"]
 
-[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_oq8hn"]
-[ext_resource type="Texture2D" uid="uid://bnulmtmya3x0u" path="res://Ship/Assets/Atlas/Gun/Zentri Gun - Broken.atlastex" id="2_nuvch"]
-[ext_resource type="Texture2D" uid="uid://cfn3axbcnvw8q" path="res://Ship/Assets/Atlas/Gun/Zentri Gun.atlastex" id="3_e1ljs"]
-[ext_resource type="Texture2D" uid="uid://ca0uukjkjkino" path="res://Assets/UI/Weapon Cycling/gun_icon_placeholder.png" id="3_qomok"]
-[ext_resource type="AudioStream" uid="uid://08v4qw5dtrk6" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNAuto_Assault Rifle A Fire_01.wav" id="4_2rto0"]
-[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="4_ccck2"]
-[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="5_gpmh3"]
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_mlqxk"]
+[ext_resource type="Texture2D" uid="uid://bnulmtmya3x0u" path="res://Ship/Assets/Atlas/Gun/Zentri Gun - Broken.atlastex" id="2_li5ch"]
+[ext_resource type="Texture2D" uid="uid://ca0uukjkjkino" path="res://Assets/UI/Weapon Cycling/gun_icon_placeholder.png" id="3_v4vnr"]
+[ext_resource type="AudioStream" uid="uid://08v4qw5dtrk6" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNAuto_Assault Rifle A Fire_01.wav" id="4_misme"]
+[ext_resource type="Texture2D" uid="uid://cfn3axbcnvw8q" path="res://Ship/Assets/Atlas/Gun/Zentri Gun.atlastex" id="5_5j5ve"]
+[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="6_tam4w"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="7_5v03y"]
 
 [resource]
-script = ExtResource("5_gpmh3")
+script = ExtResource("7_5v03y")
 BulletsPerSecond = 10.0
 Attack = 100
 Powerdraw = 10
 type = 0
-GunTypeIcon = ExtResource("3_qomok")
-ShootSFX = ExtResource("4_2rto0")
+GunTypeIcon = ExtResource("3_v4vnr")
+ShootSFX = ExtResource("4_misme")
 ShootingAudioStartTime = 0.0
 ShootingAudioEndTime = -1.0
 BulletSpeed = 150
 BulletSpawnPoint = Vector2(8, -32)
-BulletPrefab = ExtResource("1_oq8hn")
+BulletPrefab = ExtResource("1_mlqxk")
 Name = "Arzo Gun"
 Description = "Lv1"
-Sprite = ExtResource("3_e1ljs")
-DestroyedSprite = ExtResource("2_nuvch")
+Sprite = ExtResource("5_5j5ve")
+DestroyedSprite = ExtResource("2_li5ch")
 TopAttachable = false
 BottomAttachable = false
 LeftAttachable = true
@@ -32,4 +32,4 @@ RightAttachable = false
 Type = 5
 MaxHealth = 100
 Defense = 10
-prefab = ExtResource("4_ccck2")
+prefab = ExtResource("6_tam4w")

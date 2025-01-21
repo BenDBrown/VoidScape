@@ -1,15 +1,21 @@
-[gd_resource type="Resource" script_class="ShipComponentData" load_steps=2 format=3 uid="uid://c3y1gjyt6ba5t"]
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://c3y1gjyt6ba5t"]
 
-[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_l7lcn"]
+[ext_resource type="Texture2D" uid="uid://f37fhepi221i" path="res://Ship/Assets/Atlas/Fill/Zentri Fill - Broken.atlastex" id="1_8yoi4"]
+[ext_resource type="Texture2D" uid="uid://cedckt8expacf" path="res://Ship/Assets/Atlas/Fill/Zentri Fill.atlastex" id="2_i2vbj"]
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="3_ljjp7"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="4_rnvax"]
 
 [resource]
-script = ExtResource("1_l7lcn")
-Name = "Component"
-Description = "Hello"
-TopAttachable = false
-BottomAttachable = false
-LeftAttachable = false
-RightAttachable = false
-Type = 0
+script = ExtResource("4_rnvax")
+Name = "Zentri filler"
+Description = "This is a filler piece"
+Sprite = ExtResource("2_i2vbj")
+DestroyedSprite = ExtResource("1_8yoi4")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 2
 MaxHealth = 100
 Defense = 10
+prefab = ExtResource("3_ljjp7")

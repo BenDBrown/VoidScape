@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bo0sy8fss6itw"]
+[gd_scene load_steps=37 format=3 uid="uid://bo0sy8fss6itw"]
 
 [ext_resource type="Script" path="res://Ship/ShipBuilder/ShipBuilder.cs" id="1_njo3u"]
 [ext_resource type="PackedScene" uid="uid://c3vc3aagjqvgj" path="res://Ship/ShipBuilder/GridSquare.tscn" id="2_scqii"]
@@ -25,7 +25,6 @@
 [ext_resource type="Resource" uid="uid://rdkxlekri7yj" path="res://Resources/ShipData/Hulls/O'Mano Hull.tres" id="22_gt4gn"]
 [ext_resource type="Resource" uid="uid://b0cu6intmhaph" path="res://Resources/ShipData/Thrusters/O'Mano Thruster.tres" id="23_8nt4t"]
 [ext_resource type="Resource" uid="uid://d2qdwbbvt725r" path="res://Resources/ShipData/Cockpits/Tali Cockpit.tres" id="24_0hlep"]
-[ext_resource type="Resource" path="res://Resources/ShipData/Tali/Tali Fuel Tank.tres" id="25_bm70s"]
 [ext_resource type="Resource" uid="uid://qiucae7gxati" path="res://Resources/ShipData/Generators/Tali Generator.tres" id="26_i72mm"]
 [ext_resource type="Resource" uid="uid://bnpfn7k64mki7" path="res://Resources/ShipData/Guns/Tali Gun.tres" id="27_mwn65"]
 [ext_resource type="Resource" uid="uid://cx1in1n1c03cl" path="res://Resources/ShipData/Hulls/Tali Hull.tres" id="28_l3f64"]
@@ -51,7 +50,7 @@ shipScene = ExtResource("3_8k774")
 [node name="ItemLister" type="Node2D" parent="."]
 position = Vector2(377, 0)
 script = ExtResource("4_hykmt")
-datas = Array[Resource]([ExtResource("6_pmkxr"), ExtResource("7_su60o"), ExtResource("8_05yi3"), ExtResource("9_h4fsj"), ExtResource("10_4q1fy"), ExtResource("11_qw5gn"), ExtResource("12_em7a1"), ExtResource("13_ywas0"), ExtResource("14_tx13t"), ExtResource("15_82slx"), ExtResource("16_5j8vt"), ExtResource("17_rtlne"), ExtResource("18_7fxuj"), ExtResource("19_nny40"), ExtResource("20_mlsvl"), ExtResource("21_tmgir"), ExtResource("22_gt4gn"), ExtResource("23_8nt4t"), ExtResource("24_0hlep"), ExtResource("25_bm70s"), ExtResource("26_i72mm"), ExtResource("27_mwn65"), ExtResource("28_l3f64"), ExtResource("29_d4eoi"), ExtResource("30_2bj38"), ExtResource("31_kov3x"), ExtResource("32_10qpi"), ExtResource("33_ll8ne"), ExtResource("34_y4plk"), ExtResource("35_necx1")])
+datas = Array[Resource]([ExtResource("6_pmkxr"), ExtResource("7_su60o"), ExtResource("8_05yi3"), ExtResource("9_h4fsj"), ExtResource("10_4q1fy"), ExtResource("11_qw5gn"), ExtResource("12_em7a1"), ExtResource("13_ywas0"), ExtResource("14_tx13t"), ExtResource("15_82slx"), ExtResource("16_5j8vt"), ExtResource("17_rtlne"), ExtResource("18_7fxuj"), ExtResource("19_nny40"), ExtResource("20_mlsvl"), ExtResource("21_tmgir"), ExtResource("22_gt4gn"), ExtResource("23_8nt4t"), ExtResource("24_0hlep"), ExtResource("26_i72mm"), ExtResource("27_mwn65"), ExtResource("28_l3f64"), ExtResource("29_d4eoi"), ExtResource("30_2bj38"), ExtResource("31_kov3x"), ExtResource("32_10qpi"), ExtResource("33_ll8ne"), ExtResource("34_y4plk"), ExtResource("35_necx1")])
 
 [node name="Button" type="Button" parent="."]
 offset_left = 168.0

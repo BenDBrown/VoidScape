@@ -1,22 +1,22 @@
 [gd_resource type="Resource" script_class="FuelTankData" load_steps=5 format=3 uid="uid://dr6qampoysb5j"]
 
-[ext_resource type="Texture2D" uid="uid://008c428ohb37" path="res://Ship/Assets/Atlas/Fuel tank/Zentri Fuel Tank - Broken.atlastex" id="1_hgaqq"]
-[ext_resource type="Texture2D" uid="uid://b8wuhbu5ioij" path="res://Ship/Assets/Atlas/Fuel tank/Zentri Fuel Tank.atlastex" id="2_om83f"]
-[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_kv2j1"]
-[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/FuelTankData.cs" id="4_4q5fv"]
+[ext_resource type="Texture2D" uid="uid://008c428ohb37" path="res://Ship/Assets/Atlas/Fuel tank/Zentri Fuel Tank - Broken.atlastex" id="1_p0jtq"]
+[ext_resource type="Texture2D" uid="uid://b8wuhbu5ioij" path="res://Ship/Assets/Atlas/Fuel tank/Zentri Fuel Tank.atlastex" id="2_tuiok"]
+[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_82svn"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/FuelTankData.cs" id="4_4he7f"]
 
 [resource]
-script = ExtResource("4_4q5fv")
+script = ExtResource("4_4he7f")
 fuelCapacity = 100
 Name = "Zentri Fuel Tank"
 Description = "Lv1"
-Sprite = ExtResource("2_om83f")
-DestroyedSprite = ExtResource("1_hgaqq")
-TopAttachable = false
-BottomAttachable = false
+Sprite = ExtResource("2_tuiok")
+DestroyedSprite = ExtResource("1_p0jtq")
+TopAttachable = true
+BottomAttachable = true
 LeftAttachable = true
-RightAttachable = false
+RightAttachable = true
 Type = 3
 MaxHealth = 100
 Defense = 10
-prefab = ExtResource("3_kv2j1")
+prefab = ExtResource("3_82svn")

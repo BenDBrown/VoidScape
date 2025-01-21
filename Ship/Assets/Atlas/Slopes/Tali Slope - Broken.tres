@@ -1,7 +1,7 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://ccjfkrwfmd1ef"]
 
-[ext_resource type="Texture2D" uid="uid://bw0edjqjmnb0c" path="res://Ship/Assets/Ship PNGs/Slopes.png" id="1_6mojk"]
+[ext_resource type="Texture2D" uid="uid://bw0edjqjmnb0c" path="res://Ship/Assets/Ship PNGs/Slopes.png" id="1_lwgkx"]
 
 [resource]
-atlas = ExtResource("1_6mojk")
-region = Rect2(0, 0, 32, 32)
+atlas = ExtResource("1_lwgkx")
+region = Rect2(0, 288, 32, 32)

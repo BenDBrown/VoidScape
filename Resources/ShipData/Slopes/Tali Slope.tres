@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="ShipComponentData" load_steps=3 format=3 uid="uid://dhq0w1u0vdkn8"]
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://dhq0w1u0vdkn8"]
 
 [ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="1_3cnni"]
+[ext_resource type="Texture2D" uid="uid://ccjfkrwfmd1ef" path="res://Ship/Assets/Atlas/Slopes/Tali Slope - Broken.tres" id="1_qvjdo"]
+[ext_resource type="Texture2D" uid="uid://btu5evtpy4u33" path="res://Ship/Assets/Atlas/Slopes/Tali Slope.tres" id="2_0a0wm"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="2_31ppe"]
 
 [resource]
 script = ExtResource("2_31ppe")
-Name = "Halfies slope"
+Name = "Tali slope"
 Description = "This is a slope"
+Sprite = ExtResource("2_0a0wm")
+DestroyedSprite = ExtResource("1_qvjdo")
 TopAttachable = false
 BottomAttachable = true
 LeftAttachable = true
