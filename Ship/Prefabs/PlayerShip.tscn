@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerController.cs" id="2_0hxg2"]
 [ext_resource type="Script" path="res://Ship/Scripts/Managers/PowerManager.cs" id="3_22ycc"]
 [ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
-[ext_resource type="PackedScene" uid="uid://bnn3lvinno35i" path="res://Ship/Prefabs/Shield.tscn" id="5_u1m7p"]
+[ext_resource type="PackedScene" path="res://Ship/Prefabs/Shield.tscn" id="5_u1m7p"]
 [ext_resource type="Script" path="res://Ship/Scripts/Blinking.cs" id="6_o4rs5"]
 
 [node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("shield", "blinking", "powerManager", "ExplosionAnim")]
@@ -16,14 +16,9 @@ powerManager = NodePath("PowerManager")
 ExplosionAnim = NodePath("ExplosionAnim")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
 position_smoothing_enabled = true
 position_smoothing_speed = 50.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.07
-drag_top_margin = 0.07
-drag_right_margin = 0.07
-drag_bottom_margin = 0.07
 
 [node name="Player Controller" type="Node" parent="." node_paths=PackedStringArray("playerShipNode")]
 script = ExtResource("2_0hxg2")
@@ -38,7 +33,6 @@ stallTimer = NodePath("Timer")
 [node name="ExplosionAnim" parent="." instance=ExtResource("4_48l4l")]
 
 [node name="Shield" parent="." instance=ExtResource("5_u1m7p")]
-position = Vector2(16, 0)
 
 [node name="Blink" type="Node2D" parent="." node_paths=PackedStringArray("playerShip")]
 script = ExtResource("6_o4rs5")
