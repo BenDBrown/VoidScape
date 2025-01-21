@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cnyth2ocvgyc8"]
+
+[node name="BlinkNotice" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.176935, 0.224922)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 191.0
+offset_bottom = 24.0
+scale = Vector2(5.70858, 4.18214)
+text = "You can blink, Press shift
+"

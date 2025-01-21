@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://6kl08g15r5ty"]
+[gd_scene load_steps=9 format=3 uid="uid://6kl08g15r5ty"]
 
 [ext_resource type="PackedScene" uid="uid://ddunimkojubhv" path="res://UI/Scenes/PowerBar.tscn" id="1_unlij"]
 [ext_resource type="Script" path="res://UI/Scripts/FuelBar.cs" id="2_4xhg0"]
 [ext_resource type="PackedScene" uid="uid://ot5etuqeaw7o" path="res://UI/Scenes/weapon_menu.tscn" id="3_m2vvt"]
 [ext_resource type="Script" path="res://Misc/Economy/CreditsPouch.cs" id="4_cf0du"]
 [ext_resource type="PackedScene" uid="uid://bvpjp1yk6nx7n" path="res://UI/Scenes/Interactable_UI.tscn" id="4_owx0a"]
+[ext_resource type="PackedScene" uid="uid://cnyth2ocvgyc8" path="res://UI/Scenes/Blink notice.tscn" id="6_2ixiv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmkss"]
 bg_color = Color(0.2754, 0.51, 0.36533, 1)
@@ -96,3 +97,9 @@ text = "0
 script = ExtResource("4_cf0du")
 
 [node name="InteractableUi" parent="." instance=ExtResource("4_owx0a")]
+
+[node name="BlinkNotice" parent="." instance=ExtResource("6_2ixiv")]
+offset_left = 5.0
+offset_top = 116.0
+offset_right = 5.0
+offset_bottom = 116.0
