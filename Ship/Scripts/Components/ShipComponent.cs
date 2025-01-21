@@ -83,6 +83,7 @@ public partial class ShipComponent : CharacterBody2D
         sprite.FlipH = IsMirrored;
         healthComponent.Call("set_component", this.data.MaxHealth, this.data.Defense);
         destroyedSprite.Texture = this.data.DestroyedSprite;
+        destroyedSprite.FlipH = IsMirrored;
         TopAttachable = this.data.TopAttachable;
         BottomAttachable = this.data.BottomAttachable;
         RightAttachable = this.data.RightAttachable;
