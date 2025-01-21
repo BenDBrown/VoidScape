@@ -14,7 +14,7 @@ public partial class Blinking : Node2D
 	private Vector2 center = new Vector2(0,0);
 
 	[Export]
-	private int blinkDist = 150;
+	private int blinkDist = 300;
 	[Export]
 	private PlayerShip playerShip;
 
@@ -26,21 +26,22 @@ public partial class Blinking : Node2D
 	private bool isAllowedToBlink = true;
 	private Area2D area = new Area2D();
 
-	public async void Async_PerformBlink()
+	private Camera2D camera;
+	private Control hud;
+
+	public  void Async_PerformBlink()
 	{  	
 
 		if (ComponentVectors.Count == 0)
 		{
+			find_blink_hud();
 			FillDictionary();
 		}
-
 		
+
 		Async_PreformDirectionBlink();
 		
-		await ToSignal(GetTree().CreateTimer(1),"timeout");
-		isAllowedToBlink = true;
-		isBoosting = false;
-		}
+	}
 
 	public int GetPowerDraw()
 	{
@@ -106,23 +107,7 @@ public partial class Blinking : Node2D
 		return convexPolygon;
 	}
 
-	private bool AllowedToBlink(Transform2D transform)
-	{
-		if (!isAllowedToBlink) {return false;}
-		area = new Area2D();
-		var col = new CollisionShape2D();
-		col.Shape = CreateConvexPolygon();
-		area.AddChild(col);
-		GetParent().AddChild(area);
-		area.Monitoring = true;
-		area.AreaEntered += AreaEntered;
-		area.BodyEntered += BodyEntereds;
-		area.Transform = area.Transform.Translated(new Vector2(0,-(blinkDist*2)));
-		return isAllowedToBlink;
-		
-		
-	}
-
+	
 	protected void AreaEntered(Area2D area2d){
 		isAllowedToBlink = false;
 	}
@@ -135,6 +120,7 @@ public partial class Blinking : Node2D
 	{
 		Transform2D transForm;
 		area = new Area2D();
+		
 		if (playerShip.Velocity.Length() > 0.1f)
 		{
 			float angle = Mathf.Atan2(playerShip.Velocity.Y, playerShip.Velocity.X); // angle in [-PI, PI]
@@ -142,56 +128,111 @@ public partial class Blinking : Node2D
 			{
 
 				transForm = playerShip.Transform.Translated(new Vector2(blinkDist,0));
-				if(AllowedToBlink(transForm))
+				if(!playerShip.TestMove(playerShip.Transform, new Vector2(blinkDist,0)))
 				{
 					
-					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(isAllowedToBlink){ 
-					playerShip.KillMomentum();
-					playerShip.Transform = transForm; isBoosting = true;
+					if(isAllowedToBlink)
+					{ 
+						playerShip.KillMomentum();	player_tween(transForm); isBoosting = true;
+						isAllowedToBlink = false;
+						hud_notice(isAllowedToBlink);
 					}
 				}
+				else
+				{
+					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
+				}
+				
+	
 			}
 			else if (Mathf.Abs(angle) > 0.75f * Mathf.Pi)
 			{	
 				transForm = playerShip.Transform.Translated(new Vector2(-blinkDist,0));
-				if(AllowedToBlink(transForm))
+				if(!playerShip.TestMove(playerShip.Transform, new Vector2(-blinkDist,0)))
 				{
-					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(isAllowedToBlink){
-					playerShip.KillMomentum(); 
-					playerShip.Transform = transForm; isBoosting = true;
+				
+					
+					if(isAllowedToBlink)
+					{
+						playerShip.KillMomentum(); 	player_tween( transForm); isBoosting = true;
+						isAllowedToBlink = false;
+						hud_notice(isAllowedToBlink);
 					}
+				}
+				else
+				{
+					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 				}
 			}
 			else if (angle > 0.0f)
 			{
 				transForm = playerShip.Transform.Translated(new Vector2(0,blinkDist));
-				if(AllowedToBlink(transForm))
+				if(!playerShip.TestMove(playerShip.Transform, new Vector2(0,blinkDist)))
 				{
-					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(isAllowedToBlink){ 
-					playerShip.KillMomentum();
-					playerShip.Transform = transForm; isBoosting = true;
+					
+					if(isAllowedToBlink)
+					{ 
+						playerShip.KillMomentum();	player_tween( transForm); isBoosting = true;
+						isAllowedToBlink = false;
+						hud_notice(isAllowedToBlink);
 					}
+				}
+				else
+				{
+					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 				}
 			}
 			else
 			{
 				transForm = playerShip.Transform.Translated(new Vector2(0,-blinkDist));
-				if(AllowedToBlink(transForm))
+				if(!playerShip.TestMove(playerShip.Transform, new Vector2(0,-blinkDist)))
 				{
-					await ToSignal(GetTree().CreateTimer(0.05),"timeout");
-					if(isAllowedToBlink){ 
-					playerShip.KillMomentum();
-					playerShip.Transform = transForm; isBoosting = true;
+					if(isAllowedToBlink)
+					{ 
+						player_tween( transForm); isBoosting = true;
+						playerShip.KillMomentum();
+						isAllowedToBlink = false;
+						hud_notice(isAllowedToBlink);
 					}
+				}
+				else
+				{
+					isAllowedToBlink = false;
+					hud_notice(isAllowedToBlink);
 				}
 			}
 		}
-		area.QueueFree();
-		await ToSignal(GetTree().CreateTimer(1),"timeout");
+		//area.QueueFree();
+		await ToSignal(GetTree().CreateTimer(3),"timeout");
 		isAllowedToBlink = true;
 		isBoosting = false;
+		hud_notice(isAllowedToBlink);
+	}
+
+	private void player_tween(Transform2D trans){
+		
+		Tween tween = GetTree().CreateTween().BindNode(playerShip).SetTrans(Tween.TransitionType.Linear);
+		tween.TweenProperty(playerShip, "transform",trans,0.10f );	
+		playerShip.CollisionLayer = 0;
+
+	}
+
+	private void hud_notice(bool visible){
+		hud.Visible =visible;
+		
+	}
+
+	private void find_blink_hud(){
+	foreach (var child in Game.Instance.Hud.GetChildren())
+	{
+		if (child.Name == "BlinkNotice")
+		{
+			hud = (Control)child;
+		}
+		
+	}
 	}
 }

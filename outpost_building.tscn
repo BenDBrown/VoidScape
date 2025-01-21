@@ -10,7 +10,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8upl8"]
 
 [node name="OutpostBuilding" type="Node2D" node_paths=PackedStringArray("death_anim")]
-scale = Vector2(1.67551, 1)
 script = ExtResource("1_dyya1")
 death_anim = NodePath("ExplosionAnim")
 grunt_scene = ExtResource("2_l3tn0")

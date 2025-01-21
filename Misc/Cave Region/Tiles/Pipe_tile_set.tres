@@ -1,0 +1,10 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://csjcgkrm628ih"]
+
+[ext_resource type="Texture2D" uid="uid://8dxpgd0ptos1" path="res://Misc/Cave Region/Generators/Pipe Sprite.png" id="1_dmap1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arkma"]
+texture = ExtResource("1_dmap1")
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_arkma")

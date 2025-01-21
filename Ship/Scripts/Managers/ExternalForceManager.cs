@@ -9,7 +9,7 @@ public partial class ExternalForceManager
 	public delegate void OnCollisionEventHandler(Vector2 direction);
 
 	public event OnCollisionEventHandler Collided;
-
+	private const float BASE_KNOCKBACK = 1000;
 	private const float BASE_DECCELERATION = 0.4f;
 	private const float RELATIVE_DECCELERATION = 0.1f;
 
@@ -57,7 +57,7 @@ public partial class ExternalForceManager
 	//Handle Collision (Static Body)
 	public void HandleStaticBodyCollision(KinematicCollision2D collision)
 	{
-		Vector2 impactForceFromCollider = collision.GetNormal() / Weight;
+		Vector2 impactForceFromCollider = (BASE_KNOCKBACK * collision.GetNormal()) / Weight;
 		Force += impactForceFromCollider;
 		Collided?.Invoke(-collision.GetNormal());
 	}

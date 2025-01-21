@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c6wyw6pbce3cd"]
+
+[ext_resource type="Shader" path="res://addons/ColourPicker/ColorPicker.gdshader" id="1_rc8u7"]
+
+[resource]
+shader = ExtResource("1_rc8u7")
+shader_parameter/color = Color(0, 0.576471, 1, 1)
+shader_parameter/shades = PackedColorArray(0.635294, 0.635294, 0.635294, 1, 0.364706, 0.364706, 0.364706, 1, 0.2, 0.2, 0.2, 1, 0.117647, 0.117647, 0.117647, 1, 0.129412, 0.129412, 0.129412, 1)
+shader_parameter/tolerance = 0.001
