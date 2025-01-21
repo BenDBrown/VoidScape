@@ -2,7 +2,7 @@ extends Node2D
 class_name interactable_manager
 var interact_ui:Control
 
-func send_to_manager_map_reveal(map_location, _raduis_of_reveal):
+func send_to_manager_map_reveal(_map_location, _raduis_of_reveal):
 	pass
 	#ToDo add the money system from Ismet
 
@@ -21,6 +21,8 @@ func interact_ui_visibility_false():
 
 
 func find_hud():
+	if interact_ui:
+		return
 	for c in Game.Hud.get_children():
 		if c is Interactable_ui:
 			interact_ui = c

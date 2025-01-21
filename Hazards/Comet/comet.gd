@@ -16,8 +16,8 @@ var vel_timer
 func _ready() -> void:
 	global_transform.origin = direction
 	random_forcetype()
-	
-func _physics_process(delta: float) -> void:
+
+func _physics_process(_delta: float) -> void:
 	direction = playership.global_position
 	if forceType == "Player":
 		check_distance_to_target_vector2(direction)
@@ -39,7 +39,7 @@ func randomize_force():
 func random_forcetype():
 	var rng = RandomNumberGenerator.new()
 	var rng_number = rng.randf_range(0, 10)
-	
+
 	if rng_number >= 5:
 		forceType = "Player"
 	else:
@@ -82,5 +82,5 @@ func update_linear_velocity(target: Vector2):
 		linear_velocity = ((target - global_transform.origin)).normalized() * speed
 
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	create_death_timer(0.2)

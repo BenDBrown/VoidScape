@@ -13,7 +13,7 @@ var died = false
 func _on_health_component_died() -> void:
 	if !died:
 		died = true
-		emit_signal("core_destroyed")
+		core_destroyed.emit()
 		sprite_alive.visible = false
 		hitbox.queue_free()
 		death_anim.visible = true
@@ -36,4 +36,3 @@ func create_death_timer():
 	death_timer.timeout.connect(death_timer.queue_free)
 	add_child(death_timer)
 	death_timer.start(3)
-	

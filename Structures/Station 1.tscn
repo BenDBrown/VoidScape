@@ -8,6 +8,7 @@
 size = Vector2(45, 44.5)
 
 [node name="Hub" type="Sprite2D" node_paths=PackedStringArray("menu", "popup")]
+process_mode = 3
 scale = Vector2(4, 4)
 texture = ExtResource("1_cvbei")
 region_enabled = true
@@ -40,7 +41,7 @@ grow_vertical = 0
 [node name="Label" type="Label" parent="CanvasLayer/PopUp"]
 z_index = 10
 layout_mode = 2
-text = "Press Enter to enter HUB"
+text = "Press F to enter HUB"
 horizontal_alignment = 1
 vertical_alignment = 1
 

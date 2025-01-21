@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.IO;
 
 
 public partial class Station : Sprite2D
@@ -34,10 +32,10 @@ public partial class Station : Sprite2D
 
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("confirm") && isOnBody)
+		if (Input.IsActionJustPressed("interact") && isOnBody)
 		{
-			ShrinkShip();
 			Game.Instance.IsUiOpen = true;
+			ShrinkShip();
 		}
 	}
 
@@ -64,6 +62,7 @@ public partial class Station : Sprite2D
 		menu.QuitPressed += OnQuitPressed;
 		menu.Visible = true;
 		popup.Visible = false;
+		GetTree().Paused = true;
 	}
 
 	public void OnQuitPressed()
@@ -77,6 +76,7 @@ public partial class Station : Sprite2D
 	private void ShrinkShip()
 	{
 		tween = GetTree().CreateTween();
+		tween.SetPauseMode(Tween.TweenPauseMode.Process);
 		tween.TweenProperty(playerShip, "position", spritePos, 1f).SetTrans(Tween.TransitionType.Linear);
 		tween.TweenProperty(playerShip, "scale", Vector2.Zero, 0.8f).SetTrans(Tween.TransitionType.Linear);
 		tween.Finished += FinishedTweening;
@@ -84,12 +84,14 @@ public partial class Station : Sprite2D
 	private void GrowShip()
 	{
 		Tween tween = GetTree().CreateTween();
+		tween.SetPauseMode(Tween.TweenPauseMode.Process);
 		tween.TweenProperty(playerShip, "scale", OriginalScale, 0.8f).SetTrans(Tween.TransitionType.Linear);
 		tween.Finished += () => OnGrowFinished(tween);
 	}
 	private void OnGrowFinished(Tween t)
 	{
 		popup.Visible = isOnBody;
+		GetTree().Paused = false;
 	}
 
 }

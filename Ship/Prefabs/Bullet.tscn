@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bayrj47b7me0d" path="res://Assets/Bullets/SpaceShooterAssetPack_Projectiles.png" id="2_por51"]
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="3_clinb"]
 [ext_resource type="AudioStream" uid="uid://dwcx0lo8cd0hr" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTImpt_Hit Marker_07.wav" id="6_jhqyn"]
-[ext_resource type="Script" path="res://SingleRunAudio.cs" id="7_quqnm"]
+[ext_resource type="Script" path="res://Components/SingleRunAudio.cs" id="7_quqnm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ifwps"]
 atlas = ExtResource("2_por51")
@@ -47,7 +47,7 @@ shape = SubResource("CircleShape2D_afrp6")
 
 [node name="AttackboxComponent" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 85
+collision_mask = 117
 script = ExtResource("3_clinb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
