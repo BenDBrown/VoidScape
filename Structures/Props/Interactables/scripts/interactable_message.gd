@@ -14,11 +14,12 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		Game.PlayerShip.InteractableInteracted.disconnect(interact)
 
 func interact():
-	print("trigger")
 	if !timer:
 		timer = Timer.new()
+		timer.one_shot = true
 		add_child(timer)
 		timer.timeout.connect(text.hide)
-	if timer.is_stopped() || timer.paused:
+
+	if timer.is_stopped():
 		text.show()
 		timer.start(2)

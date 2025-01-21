@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://2ypum1pmn3ak"]
+[gd_scene load_steps=8 format=4 uid="uid://2ypum1pmn3ak"]
 
 [ext_resource type="Script" path="res://Scenes/Zone 1/city.gd" id="1_3j0pw"]
 [ext_resource type="TileSet" uid="uid://crqivgce5c1n1" path="res://Assets/Structures/Tilesets/out_post_collision.tres" id="3_dacya"]
 [ext_resource type="Script" path="res://Structures/Props/Interactables/scripts/interactable_manager.gd" id="3_glb65"]
-[ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="3_wwfw7"]
 [ext_resource type="TileSet" uid="uid://bshguyqj7afla" path="res://Assets/Structures/Tilesets/out_post.tres" id="4_c8ln3"]
 [ext_resource type="PackedScene" uid="uid://2hmchkli54en" path="res://Structures/Station 1.tscn" id="5_o31qi"]
 [ext_resource type="Script" path="res://Structures/Props/Interactables/scripts/interactable_message.gd" id="7_jegp4"]
@@ -14,11 +13,7 @@ size = Vector2(296, 360)
 [node name="City" type="Node2D"]
 script = ExtResource("1_3j0pw")
 
-[node name="PlayerSpawner" type="Node2D" parent="."]
-position = Vector2(424, 856)
-script = ExtResource("3_wwfw7")
-
-[node name="interactable_manager" type="Node2D" parent="."]
+[node name="Interactable Manager" type="Node2D" parent="."]
 script = ExtResource("3_glb65")
 
 [node name="CollisionTiles" type="TileMapLayer" parent="."]
@@ -37,13 +32,15 @@ position = Vector2(736, 280)
 [node name="Interact with Shop" type="Node2D" parent="." node_paths=PackedStringArray("manager", "text")]
 position = Vector2(104, 560)
 script = ExtResource("7_jegp4")
-manager = NodePath("../interactable_manager")
+manager = NodePath("../Interactable Manager")
 text = NodePath("Label")
 
 [node name="Area2D" type="Area2D" parent="Interact with Shop"]
+position = Vector2(46, 2)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact with Shop/Area2D"]
-position = Vector2(32, -4)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_f7oqe")
 
 [node name="Label" type="Label" parent="Interact with Shop"]
@@ -54,5 +51,29 @@ offset_right = 183.0
 offset_bottom = -73.0
 text = "Sorry, We aren't open at the moment"
 
+[node name="Interact with Shop2" type="Node2D" parent="." node_paths=PackedStringArray("manager", "text")]
+position = Vector2(1165, 336)
+script = ExtResource("7_jegp4")
+manager = NodePath("../Interactable Manager")
+text = NodePath("Label")
+
+[node name="Area2D" type="Area2D" parent="Interact with Shop2"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact with Shop2/Area2D"]
+position = Vector2(32, -4)
+shape = SubResource("RectangleShape2D_f7oqe")
+
+[node name="Label" type="Label" parent="Interact with Shop2"]
+visible = false
+offset_left = -113.0
+offset_top = -186.0
+offset_right = 174.0
+offset_bottom = -137.0
+text = "The City seemed to be closed off at the moment"
+autowrap_mode = 2
+
 [connection signal="body_entered" from="Interact with Shop/Area2D" to="Interact with Shop" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Interact with Shop/Area2D" to="Interact with Shop" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Interact with Shop2/Area2D" to="Interact with Shop2" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Interact with Shop2/Area2D" to="Interact with Shop2" method="_on_area_2d_body_exited"]
