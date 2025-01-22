@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="2_fafp0"]
 [ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="2_gke03"]
 [ext_resource type="Script" path="res://Components/SingleRunAudio.cs" id="3_li4ml"]
+[ext_resource type="PackedScene" uid="uid://dufs2v05oh01y" path="res://Misc/Cave Region/Turrets/Prefabs/turret_base.tscn" id="3_o11hp"]
 [ext_resource type="SpriteFrames" uid="uid://dex82dgvm1ufw" path="res://Misc/Cave Region/Turrets/Resource/Turret_animation.tres" id="3_w1puq"]
-[ext_resource type="Texture2D" uid="uid://dxec8ojt1yxme" path="res://Misc/Cave Region/Turrets/Assets/Turret +  bullet/turret_BASE.png" id="3_xg0d0"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_oyyo8"]
 [ext_resource type="AudioStream" uid="uid://b0x8va6761xt3" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNTech_Tormentor Shotgun Fire_05.wav" id="5_h0ndf"]
 [ext_resource type="Texture2D" uid="uid://cdd2hgtw2np80" path="res://Assets/Ship/ComponentExplosion.png" id="5_osr45"]
@@ -71,11 +71,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Turret" type="Node2D" node_paths=PackedStringArray("gun", "raycast", "laserLine", "gunSprite", "shootSFX", "leftBulletSpawnPoint", "rightBulletSpawnPoint", "deathAnimation", "attackComponent", "timer", "healthComponent")]
+[node name="Turret" type="Node2D" node_paths=PackedStringArray("gun", "raycast", "laserLine", "gunSprite", "shootSFX", "leftBulletSpawnPoint", "rightBulletSpawnPoint", "deathAnimation", "attackComponent", "timer", "healthComponent", "turretBase")]
 script = ExtResource("1_3ierb")
 gun = NodePath("Gun")
 raycast = NodePath("Gun/RayCast")
 laserLine = NodePath("Gun/RayCast/LaserLine")
+greenLaser = Color(0, 0.823529, 0, 0.286275)
+redLaser = Color(0.823529, 0, 0, 0.286275)
 gunSprite = NodePath("Gun/Gun Animation")
 shootAnimationFrame = 7
 shootSFX = NodePath("Gun/ShootingAudio")
@@ -88,9 +90,10 @@ deathAnimation = NodePath("Explosion Animation")
 attackComponent = NodePath("AttackComponent")
 timer = NodePath("Timer")
 healthComponent = NodePath("HealthComponent")
+turretBasePrefab = ExtResource("3_o11hp")
+turretBase = NodePath("Turret Base")
 
-[node name="Turret Base" type="Sprite2D" parent="."]
-texture = ExtResource("3_xg0d0")
+[node name="Turret Base" parent="." instance=ExtResource("3_o11hp")]
 
 [node name="Gun" type="Node2D" parent="."]
 
@@ -119,7 +122,7 @@ position = Vector2(3.9685, -1.41925e-05)
 scale = Vector2(0.984252, 1)
 points = PackedVector2Array(0, 0)
 width = 2.0
-default_color = Color(0.823529, 0, 0, 0.286275)
+default_color = Color(1, 0, 0, 0.286275)
 
 [node name="ShootingAudio" type="AudioStreamPlayer2D" parent="Gun"]
 stream = ExtResource("5_h0ndf")
@@ -127,6 +130,8 @@ volume_db = -20.0
 script = ExtResource("3_li4ml")
 
 [node name="HitboxComponent" type="Area2D" parent="Gun" node_paths=PackedStringArray("healthComponent", "collision_shape")]
+collision_layer = 16
+collision_mask = 55
 script = ExtResource("2_fafp0")
 healthComponent = NodePath("../../HealthComponent")
 collision_shape = NodePath("CollisionShape2D")

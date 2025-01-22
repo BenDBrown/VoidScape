@@ -23,6 +23,10 @@ public partial class Turret : Node2D
 	private Line2D laserLine;
 	[Export]
 	private float rayCastRange = 300f;
+	[Export]
+	private Color greenLaser;
+	[Export]
+	private Color redLaser;
 
 	[ExportCategory("Shooting Animation Configuration")]
 	[Export]
@@ -55,6 +59,10 @@ public partial class Turret : Node2D
 	private Timer timer;
 	[Export]
 	private Node healthComponent;
+	[Export]
+	private PackedScene turretBasePrefab;
+	[Export]
+	private Sprite2D turretBase; 
 
 	// Idle Animation
 	private float elapsedTime = 0f;
@@ -85,18 +93,15 @@ public partial class Turret : Node2D
 		SetupShootingAnimation();
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
-        if(isShooting){
+		if(isDestroyed) { return;}
+
+		if(isShooting){
 			if(IsShootingAnimFrame(gunSprite.Frame)){
 				Shoot();
 			}
 		}
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-		if(isDestroyed) { return;}
 
 		targetIsInSight = IsTargetInSight();
 
@@ -106,6 +111,7 @@ public partial class Turret : Node2D
 
 		if(targetIsInSight){
 			LockOnTarget(delta);
+			laserLine.DefaultColor = redLaser;
 			StartShooting();
 			isIdle = false;
 		}
@@ -118,6 +124,7 @@ public partial class Turret : Node2D
 			if(!targetIsInSight){
 				isIdle = true;
 
+				laserLine.DefaultColor = greenLaser;
 				StopShooting();
 				StartIdleAnimationFromCurrentPosition();
 			}
@@ -185,6 +192,7 @@ public partial class Turret : Node2D
 		raycast.TargetPosition = trackerRangeV2;
 
 		laserLine.AddPoint(trackerRangeV2);
+		laserLine.DefaultColor = greenLaser;
 	}
 
 		private void Destroyed(){
@@ -200,6 +208,12 @@ public partial class Turret : Node2D
 
 	private void DisableDeathAnimation(){
 		deathAnimation.Visible = false;
+
+		Sprite2D newTurretBase = turretBasePrefab.Instantiate() as Sprite2D;
+		newTurretBase.GlobalTransform = turretBase.GlobalTransform;
+		GetTree().CurrentScene.AddChild(newTurretBase);
+		
+		QueueFree();
 	}
 
 	private bool IsShootingAnimFrame(int frame){
