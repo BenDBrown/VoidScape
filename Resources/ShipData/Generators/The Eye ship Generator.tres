@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_6kcjb")
-maxPowerGenerated = 200
+maxPowerGenerated = 500
 Name = "The Eye Ship Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_wdbv7")

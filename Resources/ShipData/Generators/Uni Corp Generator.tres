@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_jlar7")
-maxPowerGenerated = 200
+maxPowerGenerated = 500
 Name = "Uni corp Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_31gha")

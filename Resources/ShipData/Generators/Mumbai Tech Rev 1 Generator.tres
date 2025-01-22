@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_we7qm")
-maxPowerGenerated = 200
+maxPowerGenerated = 500
 Name = "Mumbai tech Rev 1 Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_svvlq")

@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_ytn6n")
-maxPowerGenerated = 200
+maxPowerGenerated = 500
 Name = "East Space Company Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_sd5ce")
