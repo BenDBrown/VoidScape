@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dpd1aa4ydd0xw"]
+[gd_scene load_steps=46 format=3 uid="uid://dpd1aa4ydd0xw"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_dsj0j"]
 [ext_resource type="Texture2D" uid="uid://bisny8ancsbfm" path="res://Assets/Hazzards/Blackhole/Blackhole.png" id="2_e8ctp"]
@@ -37,6 +37,7 @@
 [ext_resource type="Resource" uid="uid://ct3mnas22ksbx" path="res://Resources/ShipData/Guns/The Eye ship laser.tres" id="27_qku0t"]
 [ext_resource type="Resource" uid="uid://lec7dbe2yle8" path="res://Resources/ShipData/Hulls/The Eye ship Hull.tres" id="28_86onh"]
 [ext_resource type="Resource" uid="uid://cl6j86mc6ya4t" path="res://Resources/ShipData/Thrusters/The Eye ship Thruster.tres" id="30_imron"]
+[ext_resource type="PackedScene" uid="uid://86y0byhp3o6v" path="res://Misc/SpawnPoint/SpawnPoint.tscn" id="38_7biaf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fi5be"]
 radius = 220.792
@@ -95,6 +96,9 @@ _data = {
 "RESET": SubResource("Animation_sxydc"),
 "warning_animation": SubResource("Animation_g6qi6")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53yk0"]
+radius = 179.338
 
 [node name="OpenSpace" type="Node2D"]
 
@@ -609,6 +613,12 @@ color = Color(0.894118, 0.0941176, 0, 0)
 modulate = Color(1, 1, 1, 0)
 position = Vector2(595, 314)
 texture = ExtResource("12_87wu5")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("38_7biaf")]
+position = Vector2(3112, 3258)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoint"]
+shape = SubResource("CircleShape2D_53yk0")
 
 [connection signal="body_entered" from="DeathWalls/Wall" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="DeathWalls/Wall2" to="DeathWalls" method="OnBodyEntered"]

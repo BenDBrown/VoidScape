@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://86y0byhp3o6v"]
+
+[ext_resource type="Script" path="res://Misc/SpawnPoint/spawn_point.gd" id="1_hrhve"]
+
+[node name="SpawnPoint" type="Area2D"]
+collision_layer = 128
+monitorable = false
+script = ExtResource("1_hrhve")
+
+[connection signal="body_entered" from="." to="." method="_on_area_entered"]

@@ -9,6 +9,8 @@ public partial class Blinking : Node2D
 	[Signal]
 	public delegate void BlinkEventHandler(int power);
 	[Signal]
+	public delegate void IFrameStartedEventHandler();
+	[Signal]
 	public delegate void BodyEnteredEventHandler(Node2D body);
 	private Vector2 center = new Vector2(0, 0);
 	[Export]
@@ -25,6 +27,7 @@ public partial class Blinking : Node2D
 
 	private Control hud;
 	private Timer time;
+	private Timer BlinkTimer;
 
 	public void Async_PerformBlink(Vector2 direction)
 	{
@@ -115,14 +118,26 @@ public partial class Blinking : Node2D
 		isAllowedToBlink = false;
 	}
 
-	private async void Async_PreformDirectionBlink(Vector2 direction)
+	private void Async_PreformDirectionBlink(Vector2 direction)
 	{
+		if(BlinkTimer == null){
+			BlinkTimer = new();
+			BlinkTimer.OneShot = true;
+			BlinkTimer.Timeout += ()=> Cooldown();
+			AddChild(BlinkTimer);
+				
+		}
+		if(!BlinkTimer.IsStopped()){
+			return;
+		}
+
 		Transform2D transForm;
 
 
 		float angleDeg = ConvertRadiansToDegrees(direction.Angle());
 		if (angleDeg == 0)
 		{
+			
 
 			transForm = playerShip.Transform.TranslatedLocal(new Vector2(blinkDist, 0));
 			if (!playerShip.TestMove(playerShip.Transform, new Vector2(blinkDist, 0)))
@@ -193,12 +208,10 @@ public partial class Blinking : Node2D
 				}
 			}
 
-			//area.QueueFree();
-
-			await ToSignal(GetTree().CreateTimer(3), "timeout");
-			isAllowedToBlink = true;
-			isBoosting = false;
-			HudNotice(isAllowedToBlink);
+			
+			BlinkTimer.Start(3);
+			
+			
 		}
 	}
 
@@ -241,30 +254,31 @@ public partial class Blinking : Node2D
 			time = new();
 			time.OneShot = true;
 			AddChild(time);
+			foreach (ShipComponent c in playerShip.shipParts)
+			{
+				Node health = null;
+				foreach (Node h in c.GetChildren())
+				{
+					if (h.Name == "HealthComponent")
+					{
+						health = h;
+						break;
+					}
+				}
+				if (health == null)
+				{
+					continue;
+				}
+				IFrameStarted += ()=> HealthSet(health);
+			time.Timeout += () => DisableIFrame(health);
+
+			}
 		}
 		if (!time.IsStopped())
 		{
 			return;
 		}
-		foreach (ShipComponent c in playerShip.shipParts)
-		{
-			Node health = null;
-			foreach (Node h in c.GetChildren())
-			{
-				if (h.Name == "HealthComponent")
-				{
-					health = h;
-					break;
-				}
-			}
-			if (health == null)
-			{
-				continue;
-			}
-			health.Set("i_bool", true);
-			time.Timeout += () => DisableIFrame(health);
-
-		}
+		
 		time.Start(2);
 		GD.Print("I Frames set");
 	}
@@ -275,6 +289,10 @@ public partial class Blinking : Node2D
 		time.Timeout -= () => DisableIFrame(health);
 	}
 
+	private void HealthSet(Node health){
+		health.Set("i_bool", true);
+	}
+
 	private void Blinked(Transform2D transForm)
 	{
 		IFrame();
@@ -282,6 +300,12 @@ public partial class Blinking : Node2D
 		PlayerTween(transForm);
 		isBoosting = true;
 		isAllowedToBlink = false;
+		HudNotice(isAllowedToBlink);
+	}
+
+	private void Cooldown(){
+		isAllowedToBlink = true;
+		isBoosting = false;
 		HudNotice(isAllowedToBlink);
 	}
 
