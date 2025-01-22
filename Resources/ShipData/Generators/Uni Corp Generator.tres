@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("4_jlar7")
 maxPowerGenerated = 200
-Name = "Tali Generator"
+Name = "Uni corp Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_31gha")
 DestroyedSprite = ExtResource("1_n8v8j")

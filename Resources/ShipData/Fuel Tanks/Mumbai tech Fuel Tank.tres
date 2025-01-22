@@ -7,8 +7,8 @@
 
 [resource]
 script = ExtResource("4_4he7f")
-fuelCapacity = 1000
-Name = "Zentri Fuel Tank"
+fuelCapacity = 50000
+Name = "Mumbai tech Fuel Tank"
 Description = "Lv1"
 Sprite = ExtResource("2_tuiok")
 DestroyedSprite = ExtResource("1_p0jtq")

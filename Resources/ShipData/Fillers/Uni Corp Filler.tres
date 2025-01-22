@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_rnvax")
-Name = "Zentri filler"
+Name = "Uni corp filler"
 Description = "This is a filler piece"
 Sprite = ExtResource("2_i2vbj")
 DestroyedSprite = ExtResource("1_8yoi4")

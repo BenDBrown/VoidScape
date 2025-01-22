@@ -10,14 +10,14 @@
 script = ExtResource("1_p5fk8")
 BulletsPerSecond = 2.0
 Attack = 13
-Powerdraw = 10
+Powerdraw = 26
 type = 2
 ShootingAudioStartTime = 0.0
 ShootingAudioEndTime = -1.0
 BulletSpeed = 250
 BulletSpawnPoint = Vector2(0, -100)
 BulletPrefab = ExtResource("1_y46bx")
-Name = "Bile Laser"
+Name = "The Eye Ship Laser"
 Description = "Shoots a cool blue laser"
 Sprite = ExtResource("3_731f2")
 DestroyedSprite = ExtResource("2_b8y30")

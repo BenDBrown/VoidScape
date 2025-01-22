@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_pk866")
-Name = "Arzo Hull"
+Name = "East Space Company Fan Hull"
 Description = "Hello"
 Sprite = ExtResource("2_wxx0s")
 DestroyedSprite = ExtResource("1_qxgmc")

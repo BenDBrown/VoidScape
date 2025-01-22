@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_rloec")
-Name = "Arzo slope"
+Name = "Uni corp slope"
 Description = "This is a slope"
 Sprite = ExtResource("2_wr0la")
 DestroyedSprite = ExtResource("1_8106i")

@@ -9,7 +9,7 @@
 script = ExtResource("4_p3yfh")
 Thrust = 400.0
 FuelUsage = 5
-Name = "O'Mano Thruster"
+Name = "The Eye Ship Thruster"
 Description = "Lv1"
 Sprite = ExtResource("2_84r2a")
 DestroyedSprite = ExtResource("1_gs5wl")

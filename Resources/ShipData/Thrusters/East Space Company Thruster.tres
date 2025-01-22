@@ -9,7 +9,7 @@
 script = ExtResource("1_k8crt")
 Thrust = 400.0
 FuelUsage = 5
-Name = "Arzo Thruster"
+Name = "East Space Company Thruster"
 Description = "Lv1"
 Sprite = ExtResource("2_e5jjp")
 DestroyedSprite = ExtResource("1_33kgk")

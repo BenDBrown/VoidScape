@@ -9,7 +9,7 @@
 script = ExtResource("4_2vuud")
 Thrust = 400.0
 FuelUsage = 5
-Name = "Zentri Thruster"
+Name = "The Eye Ship Thruster"
 Description = "Lv1"
 Sprite = ExtResource("2_akqb8")
 DestroyedSprite = ExtResource("1_38ti0")

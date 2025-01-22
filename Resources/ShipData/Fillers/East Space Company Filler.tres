@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_kgfq7")
-Name = "Bile Filler"
+Name = "East Space Company Filler"
 Description = "This is a filler piece"
 Sprite = ExtResource("2_fy4sc")
 DestroyedSprite = ExtResource("1_edvsa")

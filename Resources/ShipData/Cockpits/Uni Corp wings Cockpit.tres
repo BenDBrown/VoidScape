@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_e2474")
-Name = "Uni Corp Cockpit"
+Name = "Uni Corp winged Cockpit"
 Description = "Lv1"
 Sprite = ExtResource("2_j14ug")
 DestroyedSprite = ExtResource("1_iktux")

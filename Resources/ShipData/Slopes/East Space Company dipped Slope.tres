@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("2_31ppe")
-Name = "Tali slope"
+Name = "East Space Company Dipped Slope"
 Description = "This is a slope"
 Sprite = ExtResource("2_0a0wm")
 DestroyedSprite = ExtResource("1_qvjdo")

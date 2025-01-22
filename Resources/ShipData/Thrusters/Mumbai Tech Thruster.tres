@@ -9,7 +9,7 @@
 script = ExtResource("4_3ux6i")
 Thrust = 400.0
 FuelUsage = 5
-Name = "Bile Thruster"
+Name = "Mumbai tech Thruster"
 Description = "Lv1"
 Sprite = ExtResource("2_8mejd")
 DestroyedSprite = ExtResource("1_pbeqf")

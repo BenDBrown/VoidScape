@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("4_lt5r6")
 maxPowerGenerated = 200
-Name = "O'Mano Generator"
+Name = "Mumbai tech  v1 Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_v1lkd")
 DestroyedSprite = ExtResource("1_gh5y4")

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://dfebu2jeqmpg6"]
 
 [ext_resource type="PackedScene" uid="uid://cum7a4fabqn8w" path="res://Ship/Prefabs/Laser.tscn" id="1_c5j2q"]
-[ext_resource type="Texture2D" uid="uid://ba4uwq372kjgu" path="res://Ship/Assets/Atlas/Gun/Bile Gun - Broken.atlastex" id="2_ldrft"]
-[ext_resource type="Texture2D" uid="uid://cp77corciktxw" path="res://Ship/Assets/Atlas/Gun/Bile Gun.atlastex" id="3_i26k5"]
+[ext_resource type="Texture2D" uid="uid://caagh0aoe1koa" path="res://Ship/Assets/Atlas/Gun/Uni Corp laser - Broken.atlastex" id="2_r1k4y"]
+[ext_resource type="Texture2D" uid="uid://cevnxqchn57a8" path="res://Ship/Assets/Atlas/Gun/Uni Corp laser.atlastex" id="3_mg52s"]
 [ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="4_jdfjg"]
 [ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="5_c78k7"]
 
@@ -10,17 +10,17 @@
 script = ExtResource("5_c78k7")
 BulletsPerSecond = 2.0
 Attack = 13
-Powerdraw = 10
+Powerdraw = 26
 type = 2
 ShootingAudioStartTime = 0.0
 ShootingAudioEndTime = -1.0
 BulletSpeed = 250
 BulletSpawnPoint = Vector2(0, -100)
 BulletPrefab = ExtResource("1_c5j2q")
-Name = "Bile Laser"
+Name = "Uni corp Laser"
 Description = "Shoots a cool blue laser"
-Sprite = ExtResource("3_i26k5")
-DestroyedSprite = ExtResource("2_ldrft")
+Sprite = ExtResource("3_mg52s")
+DestroyedSprite = ExtResource("2_r1k4y")
 TopAttachable = false
 BottomAttachable = true
 LeftAttachable = false
