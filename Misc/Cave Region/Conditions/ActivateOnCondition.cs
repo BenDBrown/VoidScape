@@ -20,10 +20,18 @@ public partial class ActivateOnCondition : Node
 		SubscribeToSignals();
 	}
 
+	/// <summary>
+	/// This provides an overview of the total required conditions that are part of this event.
+	/// </summary>
+	/// <returns>Returns the number of required conditions.</returns>
     public int GetAmountOfConditions(){
         return conditionTargets.Length;
     }
 
+	/// <summary>
+	/// This provides an overview on the amount of completed condition for the main event.
+	/// </summary>
+	/// <returns>Returns the amount of completed conditions.</returns>
     public int GetAmountCompleted(){
         return completedTargets;
     }
@@ -44,7 +52,6 @@ public partial class ActivateOnCondition : Node
 	}
 
 	private void TryCompleteCondition(){
-
 		// Re-checking wether the condition is actually met.
 		int progressCheck = 0;
 		foreach(ConditionObject target in conditionTargets){

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dufs2v05oh01y"]
+
+[ext_resource type="Texture2D" uid="uid://dxec8ojt1yxme" path="res://Misc/Cave Region/Turrets/Assets/Turret +  bullet/turret_BASE.png" id="1_e35n7"]
+
+[node name="Turret Base" type="Sprite2D"]
+texture = ExtResource("1_e35n7")
