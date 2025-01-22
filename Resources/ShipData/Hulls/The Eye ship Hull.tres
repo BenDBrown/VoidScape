@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://lec7dbe2yle8"]
+
+[ext_resource type="Texture2D" uid="uid://byoqrced67q3l" path="res://Ship/Assets/Atlas/Hull/Bile Hull - Broken.atlastex" id="1_d4y4u"]
+[ext_resource type="Texture2D" uid="uid://cvd7hw23s3jq7" path="res://Ship/Assets/Atlas/Hull/Bile Hull.atlastex" id="2_ogrns"]
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="3_fuqgc"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="4_k8xih"]
+
+[resource]
+script = ExtResource("4_k8xih")
+Name = "The Eye Ship Hull"
+Description = "Hello"
+Sprite = ExtResource("2_ogrns")
+DestroyedSprite = ExtResource("1_d4y4u")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 2
+MaxHealth = 100
+Defense = 15
+prefab = ExtResource("3_fuqgc")

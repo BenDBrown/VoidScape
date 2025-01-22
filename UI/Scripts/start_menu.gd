@@ -41,7 +41,7 @@ func _on_settings_menu_menu_closed():
 
 
 func _on_ship_builder_pressed() -> void:
-	get_tree().change_scene_to_file(outpost_scene.resource_path)
+	get_tree().change_scene_to_file(ship_builder_scene.resource_path)
 
 func _on_worm_pressed() -> void:
 	get_tree().change_scene_to_file(worm_scene.resource_path)

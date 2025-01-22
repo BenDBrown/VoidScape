@@ -17,6 +17,12 @@ public partial class FuelManager
 
 	public FuelManager() { }
 
+	public void Reset()
+	{
+		FuelCapacity = 0;
+		Fuel = 0;
+	}
+
 	public void AddFuel(float fuel)
 	{
 		fuel = Math.Max(fuel, 0);

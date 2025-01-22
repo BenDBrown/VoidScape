@@ -13,7 +13,7 @@ func _ready() -> void:
 	health_changed.emit(current_health)
 
 func take_damage(attackComponent: AttackComponent):
-	current_health -= max(1, attackComponent.attack - defense)
+	current_health -= max(1, attackComponent.attack - calculate_defense(attackComponent.attack))
 	health_changed.emit(current_health)
 	if current_health <= 0:
 		died.emit()
@@ -23,3 +23,8 @@ func set_component(maxHealth, def):
 	defense = def
 	current_health = maxHealth
 	health_changed.emit(current_health)
+
+func calculate_defense(attack) -> float:
+	var attackpercent = attack/ 100
+	attackpercent = attackpercent * defense
+	return attackpercent

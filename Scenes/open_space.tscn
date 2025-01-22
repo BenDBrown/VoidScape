@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ck7jschg6olwg"]
+[gd_scene load_steps=44 format=3 uid="uid://dpd1aa4ydd0xw"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_dsj0j"]
 [ext_resource type="Texture2D" uid="uid://bisny8ancsbfm" path="res://Assets/Hazzards/Blackhole/Blackhole.png" id="2_e8ctp"]
@@ -9,11 +9,34 @@
 [ext_resource type="PackedScene" uid="uid://2hmchkli54en" path="res://Structures/Station 1.tscn" id="4_gkyib"]
 [ext_resource type="PackedScene" uid="uid://b17scoqxflc5w" path="res://Structures/Props/Interactables/interactable_node_reveal.tscn" id="4_r8lle"]
 [ext_resource type="PackedScene" uid="uid://mrios312noqm" path="res://Structures/Props/Interactables/Credit reward/Credit_reward.tscn" id="5_8jmmm"]
+[ext_resource type="Resource" uid="uid://d2qdwbbvt725r" path="res://Resources/ShipData/Cockpits/Uni Corp wings Cockpit.tres" id="7_wamet"]
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="8_a0yns"]
+[ext_resource type="Resource" uid="uid://qiucae7gxati" path="res://Resources/ShipData/Generators/Uni Corp Generator.tres" id="9_ijx3h"]
+[ext_resource type="Resource" uid="uid://c3y1gjyt6ba5t" path="res://Resources/ShipData/Fillers/Uni Corp Filler.tres" id="9_n8bpe"]
+[ext_resource type="Resource" uid="uid://dfebu2jeqmpg6" path="res://Resources/ShipData/Guns/Uni Corp laser.tres" id="11_5jbce"]
+[ext_resource type="Resource" uid="uid://cx1in1n1c03cl" path="res://Resources/ShipData/Hulls/Mumbai Tech Hull.tres" id="11_jjye7"]
 [ext_resource type="PackedScene" uid="uid://bvkkqplsiju1m" path="res://Hazards/Comet/Comet_Disable_Area.tscn" id="11_kd5fh"]
 [ext_resource type="Script" path="res://UI/Scripts/WarningWalls.cs" id="11_ogu1x"]
 [ext_resource type="Texture2D" uid="uid://bblf5h8yefb5" path="res://Assets/Other/warningSign.png" id="12_87wu5"]
 [ext_resource type="Script" path="res://Scenes/DeathWalls.cs" id="12_773b4"]
+[ext_resource type="Resource" uid="uid://b1n3cc6ubv315" path="res://Resources/ShipData/Thrusters/Uni Corp Thruster.tres" id="12_q2id4"]
+[ext_resource type="Resource" uid="uid://d2k8teoaq2t8m" path="res://Resources/ShipData/Cockpits/The Eye ship wing Cockpit.tres" id="13_mtmd0"]
+[ext_resource type="Resource" uid="uid://cek8h02am0hxa" path="res://Resources/ShipData/Fuel Tanks/The Eye ship Fuel Tank.tres" id="14_0c4gh"]
+[ext_resource type="Resource" uid="uid://d3hk5yvq6admy" path="res://Resources/ShipData/Generators/East Space Company Generator.tres" id="15_1j2rl"]
+[ext_resource type="Resource" uid="uid://b70fhd1e4anfr" path="res://Resources/ShipData/Guns/East Space Company Gun.tres" id="16_g3mh2"]
+[ext_resource type="Resource" uid="uid://rdkxlekri7yj" path="res://Resources/ShipData/Hulls/East Space Company cpu Hull.tres" id="17_vbn6v"]
+[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Cockpits/Mumbai tech wing Cockpit.tres" id="19_0p6ks"]
+[ext_resource type="Resource" uid="uid://btsesvosi62ol" path="res://Resources/ShipData/Fuel Tanks/Uni Corp Fuel Tank.tres" id="20_nrjed"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Generators/The Eye ship Generator.tres" id="21_kdabr"]
+[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Guns/Mumbai Tech Gun.tres" id="22_qq4sl"]
+[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Thrusters/East Space Company Thruster.tres" id="24_domeo"]
+[ext_resource type="Resource" uid="uid://br6ua7w6qbnpr" path="res://Resources/ShipData/Thrusters/Mumbai Tech Thruster.tres" id="24_jwcr7"]
+[ext_resource type="Resource" uid="uid://c261yp5mbqbms" path="res://Resources/ShipData/Cockpits/The Eye ship Cockpit.tres" id="25_r878d"]
+[ext_resource type="Resource" uid="uid://dr6qampoysb5j" path="res://Resources/ShipData/Fuel Tanks/Mumbai tech Fuel Tank.tres" id="26_0u3hf"]
+[ext_resource type="Resource" uid="uid://b6wi7lh5sy378" path="res://Resources/ShipData/Generators/Mumbai Tech Rev 1 Generator.tres" id="27_p02e3"]
+[ext_resource type="Resource" uid="uid://ct3mnas22ksbx" path="res://Resources/ShipData/Guns/The Eye ship laser.tres" id="27_qku0t"]
+[ext_resource type="Resource" uid="uid://lec7dbe2yle8" path="res://Resources/ShipData/Hulls/The Eye ship Hull.tres" id="28_86onh"]
+[ext_resource type="Resource" uid="uid://cl6j86mc6ya4t" path="res://Resources/ShipData/Thrusters/The Eye ship Thruster.tres" id="30_imron"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fi5be"]
 radius = 220.792
@@ -80,7 +103,7 @@ loop = true
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(838, 344)
+position = Vector2(4427, 2207)
 script = ExtResource("8_a0yns")
 
 [node name="Comet_tracker" type="Node" parent="."]
@@ -288,24 +311,24 @@ direction = Vector2(40, 40)
 [node name="Stations" type="Node2D" parent="."]
 
 [node name="Station" parent="Stations" instance=ExtResource("4_gkyib")]
-process_mode = 3
 position = Vector2(938, 1018)
 scale = Vector2(4.97656, 4.97656)
+Datas = Array[Object]([ExtResource("7_wamet"), ExtResource("9_ijx3h"), ExtResource("9_n8bpe"), ExtResource("12_q2id4"), ExtResource("11_5jbce"), ExtResource("20_nrjed")])
 
 [node name="Station2" parent="Stations" instance=ExtResource("4_gkyib")]
-process_mode = 3
 position = Vector2(-104, 4008)
 scale = Vector2(4.97656, 4.97656)
+Datas = Array[Object]([ExtResource("13_mtmd0"), ExtResource("14_0c4gh"), ExtResource("15_1j2rl"), ExtResource("16_g3mh2"), ExtResource("17_vbn6v"), ExtResource("24_domeo")])
 
 [node name="Station3" parent="Stations" instance=ExtResource("4_gkyib")]
-process_mode = 3
 position = Vector2(2862, -1357)
 scale = Vector2(4.97656, 4.97656)
+Datas = Array[Object]([ExtResource("19_0p6ks"), ExtResource("26_0u3hf"), ExtResource("27_p02e3"), ExtResource("22_qq4sl"), ExtResource("11_jjye7"), ExtResource("24_jwcr7")])
 
 [node name="Station4" parent="Stations" instance=ExtResource("4_gkyib")]
-process_mode = 3
 position = Vector2(4830, 2237)
 scale = Vector2(4.97656, 4.97656)
+Datas = Array[Object]([ExtResource("25_r878d"), ExtResource("14_0c4gh"), ExtResource("21_kdabr"), ExtResource("27_qku0t"), ExtResource("28_86onh"), ExtResource("30_imron")])
 
 [node name="Interactables" type="Node2D" parent="."]
 script = ExtResource("3_sun44")

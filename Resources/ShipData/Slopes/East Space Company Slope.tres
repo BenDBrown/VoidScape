@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://eqg22l183gmn"]
+
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="1_68e4e"]
+[ext_resource type="Texture2D" uid="uid://dytiq6ft0uvyw" path="res://Ship/Assets/Atlas/Slopes/Zentri Slope - Broken.atlastex" id="1_uftey"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="2_0i3ch"]
+[ext_resource type="Texture2D" uid="uid://gdv7eqqkwq1x" path="res://Ship/Assets/Atlas/Slopes/Zentri Slope.atlastex" id="2_y1gvn"]
+
+[resource]
+script = ExtResource("2_0i3ch")
+Name = "East Space Companny Slope"
+Description = "This is a slope"
+Sprite = ExtResource("2_y1gvn")
+DestroyedSprite = ExtResource("1_uftey")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = false
+Type = 2
+MaxHealth = 100
+Defense = 15
+prefab = ExtResource("1_68e4e")

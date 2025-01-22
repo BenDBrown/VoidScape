@@ -3,6 +3,8 @@ using Godot;
 
 public partial class Station : Sprite2D
 {
+	[Export]
+	public ShipComponentData[] Datas { get; private set; }
 	private bool isOnBody = false;
 
 	private Tween tween;
@@ -75,6 +77,10 @@ public partial class Station : Sprite2D
 
 	private void ShrinkShip()
 	{
+		FinishedTweening(); 
+		// band aid solution to prevent issue with scaling causing offset on the physics colliders
+		// on the components
+		return;
 		tween = GetTree().CreateTween();
 		tween.SetPauseMode(Tween.TweenPauseMode.Process);
 		tween.TweenProperty(playerShip, "position", spritePos, 1f).SetTrans(Tween.TransitionType.Linear);
@@ -83,12 +89,14 @@ public partial class Station : Sprite2D
 	}
 	private void GrowShip()
 	{
+		OnGrowFinished();
+		return;
 		Tween tween = GetTree().CreateTween();
 		tween.SetPauseMode(Tween.TweenPauseMode.Process);
 		tween.TweenProperty(playerShip, "scale", OriginalScale, 0.8f).SetTrans(Tween.TransitionType.Linear);
-		tween.Finished += () => OnGrowFinished(tween);
+		tween.Finished += OnGrowFinished;
 	}
-	private void OnGrowFinished(Tween t)
+	private void OnGrowFinished()
 	{
 		popup.Visible = isOnBody;
 		GetTree().Paused = false;
