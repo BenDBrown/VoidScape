@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://cyujh6afsq3bv"]
+
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="1_8c3m7"]
+[ext_resource type="Texture2D" uid="uid://bpginjeq5yyp0" path="res://Ship/Assets/Atlas/Slopes/Bile Slope - Broken.tres" id="1_aif35"]
+[ext_resource type="Texture2D" uid="uid://77co7uht8ekb" path="res://Ship/Assets/Atlas/Slopes/Bile Slope.tres" id="2_8oggb"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="2_nm67w"]
+
+[resource]
+script = ExtResource("2_nm67w")
+Name = "Bile slope"
+Description = "This is a slope"
+Sprite = ExtResource("2_8oggb")
+DestroyedSprite = ExtResource("1_aif35")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = false
+Type = 2
+MaxHealth = 100
+Defense = 15
+prefab = ExtResource("1_8c3m7")

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://cqv2bunmydgdg"]
+
+[ext_resource type="Texture2D" uid="uid://b4v35j24epscv" path="res://Ship/Assets/Atlas/Fill/Bile Fill - Broken.atlastex" id="1_edvsa"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_kgfq7"]
+[ext_resource type="Texture2D" uid="uid://b7y54v3dlp4w6" path="res://Ship/Assets/Atlas/Fill/Bile Fill.atlastex" id="2_fy4sc"]
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="3_j1hty"]
+
+[resource]
+script = ExtResource("1_kgfq7")
+Name = "Bile Filler"
+Description = "This is a filler piece"
+Sprite = ExtResource("2_fy4sc")
+DestroyedSprite = ExtResource("1_edvsa")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 2
+MaxHealth = 100
+Defense = 15
+prefab = ExtResource("3_j1hty")

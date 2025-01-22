@@ -6,3 +6,4 @@
 [resource]
 script = ExtResource("1_ya2i3")
 sprite = ExtResource("2_nw3k7")
+sellPrice = 10

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://bn1jb45pvhn61"]
+
+[ext_resource type="Texture2D" uid="uid://cybx8yo012c3e" path="res://Ship/Assets/Atlas/Fill/Arzo Fill  - Broken.atlastex" id="1_c1r37"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_ux5tw"]
+[ext_resource type="Texture2D" uid="uid://ddwqfx5f38qc" path="res://Ship/Assets/Atlas/Fill/Arzo Fill.atlastex" id="2_m07te"]
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="3_r6c3c"]
+
+[resource]
+script = ExtResource("1_ux5tw")
+Name = "Arzo filler"
+Description = "This is a filler piece"
+Sprite = ExtResource("2_m07te")
+DestroyedSprite = ExtResource("1_c1r37")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 2
+MaxHealth = 100
+Defense = 15
+prefab = ExtResource("3_r6c3c")

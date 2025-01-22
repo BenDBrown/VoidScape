@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuelTankData" load_steps=5 format=3 uid="uid://btsesvosi62ol"]
+
+[ext_resource type="Texture2D" uid="uid://dpnxvb6x6frli" path="res://Ship/Assets/Atlas/Fuel tank/Arzo Fuel Tank - Broken.atlastex" id="1_fcapc"]
+[ext_resource type="Texture2D" uid="uid://bnycir3khstxs" path="res://Ship/Assets/Atlas/Fuel tank/Arzo Fuel Tank.atlastex" id="2_bmd2d"]
+[ext_resource type="PackedScene" uid="uid://ib1gvygexbsf" path="res://Ship/ShipComponents/FuelTank.tscn" id="3_gw74s"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/FuelTankData.cs" id="4_7wjpe"]
+
+[resource]
+script = ExtResource("4_7wjpe")
+fuelCapacity = 1000
+Name = "Arzo Fuel Tank"
+Description = "Hello"
+Sprite = ExtResource("2_bmd2d")
+DestroyedSprite = ExtResource("1_fcapc")
+TopAttachable = false
+BottomAttachable = false
+LeftAttachable = true
+RightAttachable = false
+Type = 3
+MaxHealth = 100
+Defense = 5
+prefab = ExtResource("3_gw74s")
