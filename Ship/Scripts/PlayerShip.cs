@@ -137,14 +137,14 @@ public partial class PlayerShip : Ship
 		GC.Collect();
 	}
 
-    public override void Reset()
-    {
+	public override void Reset()
+	{
 		powerManager.Reset();
 		fuelManager.Reset();
-        base.Reset();
-    }
+		base.Reset();
+	}
 
-    protected override bool IsVitalComponent(ShipComponent shipComponent)
+	protected override bool IsVitalComponent(ShipComponent shipComponent)
 	{
 		// gun intentionally not included as vital atm
 		return shipComponent is Cockpit || shipComponent is Thruster || shipComponent is Generator || shipComponent is FuelTank;
@@ -154,6 +154,16 @@ public partial class PlayerShip : Ship
 	{
 		base.InitiateStall(stallTime);
 		shield.StopShielding();
+
+		AnimationPlayer player = Game.Instance.Hud.StallAnimPlayer;
+		player.Play("stalling_warning");
+	}
+
+	protected override void EndStall()
+	{
+		base.EndStall();
+		AnimationPlayer player = Game.Instance.Hud.StallAnimPlayer;
+		player.Stop();
 	}
 
 	/// <summary>
