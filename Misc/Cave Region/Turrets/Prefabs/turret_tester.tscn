@@ -25,3 +25,4 @@ tile_set = ExtResource("3_j6j2r")
 position = Vector2(1045, 427)
 rotation = 2.54972
 scale = Vector2(2, 2)
+maxRotationDegrees = 270.0

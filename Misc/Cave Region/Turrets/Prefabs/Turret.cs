@@ -3,19 +3,36 @@ using System;
 
 public partial class Turret : Node2D
 {
-	[ExportCategory("Turret Configuration")]
 	[Export]
 	private Node2D gun;
+
+	[ExportCategory("Idle Animation Configuration")]
+	[Export]
+	private float minRotationDegrees = 0f;
+	[Export]
+	private float maxRotationDegrees = 180f;
+	[Export]
+	private float rotationSpeed = 1f;
+
+	[ExportCategory("Raycast")]
 	[Export]
 	private RayCast2D raycast;
 	[Export]
-	private float rayCastRange = 300;
-	[Export] 
+	private float turretFollowSpeed = 5f;
+	[Export]
 	private Line2D laserLine;
 	[Export]
-	private AnimatedSprite2D deathAnimation;
+	private float rayCastRange = 300f;
+
+	[ExportCategory("Shooting Animation Configuration")]
 	[Export]
-	private AnimationPlayer idleAnimation;
+	private AnimatedSprite2D gunSprite;
+	[Export]
+	private string shootAnimationName = "shoot";
+	[Export]
+	private int shootAnimationFrame = 0;
+	[Export]
+	private SingleRunAudio shootSFX;
 
 	[ExportCategory("Bullet Configuration")]
 	[Export]
@@ -29,17 +46,9 @@ public partial class Turret : Node2D
 	[Export]
 	private Node2D rightBulletSpawnPoint;
 
-	[ExportCategory("Shooting Animation Configuration")]
+	[ExportCategory("General")]
 	[Export]
-	private AnimatedSprite2D gunSprite;
-	[Export]
-	private string shootAnimationName = "shoot";
-	[Export]
-	private int shootAnimationFrame = 0;
-	[Export]
-	private SingleRunAudio shootSFX;
-
-	[ExportCategory("General Components")]
+	private AnimatedSprite2D deathAnimation;
 	[Export]
 	private AttackComponent attackComponent;
 	[Export]
@@ -47,28 +56,130 @@ public partial class Turret : Node2D
 	[Export]
 	private Node healthComponent;
 
-	private PlayerShip playerShip;
-	private bool canShoot = true;
-	private bool isDestroyed = false;
-	private bool isShooting = false;
+	// Idle Animation
+	private float elapsedTime = 0f;
 	private bool isIdle = true;
-	private bool targetInSight = false;
 
-	public override void _Ready()
-	{
-		playerShip = Game.Instance.PlayerShip;
+	// General
+	private bool isDestroyed = false;
+	
+	private PlayerShip playerShip;
+
+	// Shooting
+	private bool isShooting = false;
+	private bool canShoot = true;
+	private bool targetIsInSight = false;
+	private bool isFollowingPlayer = false;
+
+    public override void _Ready()
+    {
+        playerShip = Game.Instance.PlayerShip;
 
         if (healthComponent != null && healthComponent.HasSignal("died"))
         {
             healthComponent.Connect("died", Callable.From(Destroyed));
         }
 
-		canShoot = true;
-		timer.Timeout += () => canShoot = true;
-		timer.Timeout += StartShooting;
-
+		SetupTimer();
+		SetupRaycastAndLaser();
 		SetupShootingAnimation();
+    }
+
+    public override void _Process(double delta)
+    {
+        if(isShooting){
+			if(IsShootingAnimFrame(gunSprite.Frame)){
+				Shoot();
+			}
+		}
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+		if(isDestroyed) { return;}
+
+		targetIsInSight = IsTargetInSight();
+
+		if(targetIsInSight && isIdle){
+			canShoot = true;
+		}
+
+		if(targetIsInSight){
+			LockOnTarget(delta);
+			StartShooting();
+			isIdle = false;
+		}
 		
+		if(isIdle){
+			PlayIdleAnimation((float)delta);
+		}
+		else{
+
+			if(!targetIsInSight){
+				isIdle = true;
+
+				StopShooting();
+				StartIdleAnimationFromCurrentPosition();
+			}
+		}
+
+		UpdateLaserDistance();
+    }
+
+    private void PlayIdleAnimation(float delta){
+		elapsedTime += delta * rotationSpeed;
+
+		// Convert min and max rotations to radians
+        float minRotation = Mathf.DegToRad(minRotationDegrees);
+        float maxRotation = Mathf.DegToRad(maxRotationDegrees);
+
+        // Calculate the rotation using sine
+        float t = Mathf.Sin(elapsedTime); // Oscillates between -1 and 1
+        float rotation = Mathf.Lerp(minRotation, maxRotation, (t + 1.0f) / 2.0f); // Map -1..1 to 0..1 and interpolate
+
+        // Apply the rotation to the node
+        gun.GlobalRotation = rotation;
+	}
+
+	private void StartIdleAnimationFromCurrentPosition(){
+
+		// Convert current rotation to a normalized sine phase
+		float minRotation = Mathf.DegToRad(minRotationDegrees);
+		float maxRotation = Mathf.DegToRad(maxRotationDegrees);
+
+		float normalizedRotation = Mathf.InverseLerp(minRotation, maxRotation, gun.GlobalRotation);
+		float sinePhase = Mathf.Asin(2 * normalizedRotation - 1); // Map 0..1 to sine phase (-1..1)
+
+		// Determine the nearest extreme and adjust the sine phase to move in that direction
+		float midPoint = (minRotation + maxRotation) / 2.0f;
+		if (gun.GlobalRotation < midPoint)
+		{
+			// Closer to min rotation, adjust sine phase to move toward it
+			sinePhase = Mathf.Max(sinePhase, -Mathf.Pi / 2); // -1 on sine wave
+		}
+		else
+		{
+			// Closer to max rotation, adjust sine phase to move toward it
+			sinePhase = Mathf.Min(sinePhase, Mathf.Pi / 2); // +1 on sine wave
+		}
+
+		// Update elapsed time based on adjusted sine phase
+		elapsedTime = sinePhase / rotationSpeed;
+	}
+
+	private bool IsTargetInSight(){
+		return raycast.IsColliding() && raycast.GetCollider() is PlayerShip;
+	}
+	
+	private void LockOnTarget(double delta){
+		float currentRotation = gun.GlobalRotation;		
+		float angleToTarget = gun.GlobalPosition.DirectionTo(playerShip.GlobalPosition).Angle();
+		
+		gun.GlobalRotation = Mathf.LerpAngle(currentRotation, angleToTarget, turretFollowSpeed * (float)delta);
+		raycast.GlobalRotation = gun.GlobalRotation;
+	}
+
+	private void SetupRaycastAndLaser(){
 		// Setting the distance of the raycast that tracks the playership
 		Vector2 trackerRangeV2 = new Vector2{X = rayCastRange};
 		raycast.TargetPosition = trackerRangeV2;
@@ -76,53 +187,23 @@ public partial class Turret : Node2D
 		laserLine.AddPoint(trackerRangeV2);
 	}
 
-	public override void _Process(double delta)
-	{
-		if(isShooting){
-			if(IsShootingAnimFrame(gunSprite.Frame)){
-				Shoot();
-			}
-		}
+		private void Destroyed(){
+		if(isDestroyed) {return;}
+
+		deathAnimation.Visible = true;
+		deathAnimation.AnimationFinished += DisableDeathAnimation;
+		deathAnimation.Play();
+
+		isDestroyed = true;
+		gun.QueueFree();
 	}
 
-    public override void _PhysicsProcess(double delta)
-    {
-        if(playerShip == null){ return; }
-		if(isDestroyed) { return;}
-
-		if(!isIdle && !targetInSight){
-			isIdle = true;
-
-			if(idleAnimation != null){
-				idleAnimation.Play();
-			}
-		}
-
-		UpdateLaserDistance();
-		
-		if(targetInSight){
-			LockOnTarget();
-			StartShooting();
-		}
-		else{
-			LookForPlayer();
-			StopShooting();
-		}
-    }
-
-    private void StartShooting(){
-		if(isDestroyed) { return;}
-		if(!canShoot) {return;}
-		canShoot = false;
-		
-		isShooting = true;
-		gunSprite.Play();	
+	private void DisableDeathAnimation(){
+		deathAnimation.Visible = false;
 	}
 
-	private void StopShooting(){
-		if(!targetInSight){
-			gunSprite.Stop();
-		}
+	private bool IsShootingAnimFrame(int frame){
+		return shootAnimationFrame == frame;
 	}
 
 	private void Shoot(){
@@ -148,14 +229,6 @@ public partial class Turret : Node2D
 		timer.Start(1 / bulletsPerSecond);
 	}
 
-	private void LockOnTarget(){
-		float angleToTarget = gun.GlobalPosition.DirectionTo(playerShip.GlobalPosition).Angle();
-		raycast.GlobalRotation = angleToTarget;
-		gun.GlobalRotation = angleToTarget;
-
-		targetInSight = IsTargetInSight();
-	}
-
 	private void UpdateLaserDistance(){
 		if(raycast.IsColliding()){
 			Vector2 collisionPoint = raycast.GetCollisionPoint();
@@ -166,8 +239,27 @@ public partial class Turret : Node2D
 		}
 	}
 
-	private bool IsShootingAnimFrame(int frame){
-		return shootAnimationFrame == frame;
+    private void StartShooting(){
+		if(isDestroyed) { return;}
+		if(!canShoot) {return;}
+		if(!targetIsInSight) {return;}
+		canShoot = false;
+		
+		isShooting = true;
+		gunSprite.Play();	
+	}
+
+	private void StopShooting(){
+		if(!targetIsInSight){
+			gunSprite.Stop();
+			timer.Stop();
+		}
+	}
+
+	private void SetupTimer(){
+		canShoot = true;
+		timer.Timeout += () => canShoot = true;
+		timer.Timeout += StartShooting;
 	}
 
 	private void SetupShootingAnimation(){
@@ -177,35 +269,5 @@ public partial class Turret : Node2D
 		gunSprite.SpriteFrames.SetAnimationSpeed(shootAnimationName ,frameFPS);
 	
 		gunSprite.AnimationFinished += StopShooting;
-	}
-
-	private void Destroyed(){
-		if(isDestroyed) {return;}
-
-		deathAnimation.Visible = true;
-		deathAnimation.AnimationFinished += DisableDeathAnimation;
-		deathAnimation.Play();
-
-		isDestroyed = true;
-		gun.QueueFree();
-	}
-
-	private void DisableDeathAnimation(){
-		deathAnimation.Visible = false;
-	}
-
-	private void LookForPlayer(){
-		if(IsTargetInSight()){
-			targetInSight = true;
-
-			isIdle = false;
-			if(idleAnimation != null){
-				idleAnimation.Pause();
-			}
-		}
-	}
-
-	private bool IsTargetInSight(){
-		return raycast.IsColliding() && raycast.GetCollider() is PlayerShip;
 	}
 }

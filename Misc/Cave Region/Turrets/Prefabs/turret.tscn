@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://co1ah1np4mw3u"]
+[gd_scene load_steps=20 format=3 uid="uid://co1ah1np4mw3u"]
 
 [ext_resource type="Script" path="res://Misc/Cave Region/Turrets/Prefabs/Turret.cs" id="1_3ierb"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="1_ae1ql"]
@@ -71,59 +71,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_cndxh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Gun:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_el6on"]
-resource_name = "idle_anim"
-length = 6.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Gun:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 3.14159, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g8pm1"]
-_data = {
-"RESET": SubResource("Animation_cndxh"),
-"idle_anim": SubResource("Animation_el6on")
-}
-
-[node name="Turret" type="Node2D" node_paths=PackedStringArray("gun", "raycast", "laserLine", "deathAnimation", "idleAnimation", "leftBulletSpawnPoint", "rightBulletSpawnPoint", "gunSprite", "shootSFX", "attackComponent", "timer", "healthComponent")]
+[node name="Turret" type="Node2D" node_paths=PackedStringArray("gun", "raycast", "laserLine", "gunSprite", "shootSFX", "leftBulletSpawnPoint", "rightBulletSpawnPoint", "deathAnimation", "attackComponent", "timer", "healthComponent")]
 script = ExtResource("1_3ierb")
 gun = NodePath("Gun")
 raycast = NodePath("Gun/RayCast")
 laserLine = NodePath("Gun/RayCast/LaserLine")
-deathAnimation = NodePath("Explosion Animation")
-idleAnimation = NodePath("IdleAnimation")
+gunSprite = NodePath("Gun/Gun Animation")
+shootAnimationFrame = 7
+shootSFX = NodePath("Gun/ShootingAudio")
 bulletPrefab = ExtResource("2_gke03")
 bulletSpeed = 80.0
 bulletsPerSecond = 2.0
 leftBulletSpawnPoint = NodePath("Gun/Gun Animation/BulletSpawnPoints/Left BulletSpawnPoint")
 rightBulletSpawnPoint = NodePath("Gun/Gun Animation/BulletSpawnPoints/Right BulletSpawnPoint")
-gunSprite = NodePath("Gun/Gun Animation")
-shootAnimationFrame = 7
-shootSFX = NodePath("Gun/ShootingAudio")
+deathAnimation = NodePath("Explosion Animation")
 attackComponent = NodePath("AttackComponent")
 timer = NodePath("Timer")
 healthComponent = NodePath("HealthComponent")
@@ -150,7 +111,7 @@ rotation = 1.5708
 
 [node name="RayCast" type="RayCast2D" parent="Gun"]
 target_position = Vector2(250, 0)
-collision_mask = 5
+collision_mask = 53
 
 [node name="LaserLine" type="Line2D" parent="Gun/RayCast"]
 z_as_relative = false
@@ -187,9 +148,3 @@ script = ExtResource("4_oyyo8")
 attack = 15
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="IdleAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_g8pm1")
-}
-autoplay = "idle_anim"
