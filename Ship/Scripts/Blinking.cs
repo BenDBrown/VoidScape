@@ -133,6 +133,7 @@ public partial class Blinking : Node2D
 
 		Transform2D transForm;
 
+
 		float angleDeg = ConvertRadiansToDegrees(direction.Angle());
 		if (angleDeg == 0)
 		{
@@ -143,8 +144,7 @@ public partial class Blinking : Node2D
 			{
 
 				if (isAllowedToBlink)
-				{	
-					GD.Print("blinking");
+				{
 					Blinked(transForm);
 				}
 			}
@@ -191,8 +191,7 @@ public partial class Blinking : Node2D
 					HudNotice(isAllowedToBlink);
 				}
 			}
-		}
-		else
+			else
 			{
 				transForm = playerShip.Transform.TranslatedLocal(new Vector2(0, -blinkDist));
 				if (!playerShip.TestMove(playerShip.Transform, new Vector2(0, -blinkDist)))
@@ -214,7 +213,7 @@ public partial class Blinking : Node2D
 			
 			
 		}
-	
+	}
 
 	private void PlayerTween(Transform2D trans)
 	{
@@ -281,11 +280,13 @@ public partial class Blinking : Node2D
 		}
 		
 		time.Start(2);
+		GD.Print("I Frames set");
 	}
 
 	private void DisableIFrame(Node health)
 	{
 		health.Set("i_bool", false);
+		time.Timeout -= () => DisableIFrame(health);
 	}
 
 	private void HealthSet(Node health){
