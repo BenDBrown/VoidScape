@@ -24,7 +24,6 @@ public partial class ShipComponents : ItemList
 			}
 		}
 	}
-
 	public void OnItemSelected(int index)
 	{
 		infobox.Visible = true;

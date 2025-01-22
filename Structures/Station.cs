@@ -64,6 +64,7 @@ public partial class Station : Sprite2D
 		menu.QuitPressed += OnQuitPressed;
 		menu.Visible = true;
 		popup.Visible = false;
+		Game.Instance.Hud.Visible = false;
 		GetTree().Paused = true;
 	}
 
@@ -71,13 +72,14 @@ public partial class Station : Sprite2D
 	{
 		menu.QuitPressed -= OnQuitPressed;
 		menu.Visible = false;
+		Game.Instance.Hud.Visible = true;
 		GrowShip();
 		Game.Instance.IsUiOpen = false;
 	}
 
 	private void ShrinkShip()
 	{
-		FinishedTweening(); 
+		FinishedTweening();
 		// band aid solution to prevent issue with scaling causing offset on the physics colliders
 		// on the components
 		return;
