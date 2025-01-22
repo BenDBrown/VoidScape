@@ -24,22 +24,13 @@ public partial class ShipComponents : ItemList
 			}
 		}
 	}
-    public void OnItemSelected(int index)
-    {
-        infobox.Visible = true;
-        ShipComponentData data = ItemListRefData[index];
-        name.Text = data.Name;
-        health.Text = "Health: " + data.MaxHealth.ToString();
-        defense.Text = "Defense: " + data.Defense.ToString();
-        description.Text = "Description: " + data.Description;
-    }
-
-    public void OnItemClicked(int index, Vector2 atPosition, int mouseButtonIndex)
-    {
-        if (mouseButtonIndex == (int)MouseButton.Left)
-        {
-            GD.Print("Item name: " + ItemListRefData[index].Name);
-        }
-
-    }
+	public void OnItemSelected(int index)
+	{
+		infobox.Visible = true;
+		ShipComponentData data = ItemListRefData[index];
+		name.Text = data.Name;
+		health.Text = "Health: " + data.MaxHealth.ToString();
+		defense.Text = "Defense: " + data.Defense.ToString();
+		description.Text = "Description: " + data.Description;
+	}
 }

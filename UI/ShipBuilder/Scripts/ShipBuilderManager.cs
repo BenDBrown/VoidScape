@@ -90,18 +90,14 @@ public partial class ShipBuilderManager : Control
 		if (mouseButtonIndex == (int)MouseButton.Left)
 		{
 			if (isDragging) return;
-			Rect2 itemRect = itemList.GetItemRect(index);
-			if (itemRect.HasPoint(atPosition))
-			{
-				ShipComponentData data = itemList.ItemListRefData[index];
-				draggedPreview = new();
-				preview = data;
-				draggedPreview.Texture = data.Sprite;
-				stationMenu.GetParent().AddChild(draggedPreview);
-				draggedPreview.GlobalPosition = GetGlobalMousePosition();
-				initialMousePos = GetGlobalMousePosition();
-				isDragging = true;
-			}
+			ShipComponentData data = itemList.ItemListRefData[index];
+			draggedPreview = new();
+			preview = data;
+			draggedPreview.Texture = data.Sprite;
+			stationMenu.GetParent().AddChild(draggedPreview);
+			draggedPreview.GlobalPosition = GetGlobalMousePosition();
+			initialMousePos = GetGlobalMousePosition();
+			isDragging = true;
 		}
 	}
 
