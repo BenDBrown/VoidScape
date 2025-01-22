@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class GunManager
 {
-	public int PowerDraw => GetFuelUsage();
+	public int PowerDraw => GetPowerDraw();
 	private GunGroup selectedGroup = null;
 	private List<GunGroup> gunGroups = new();
 	private bool shooting = false;
@@ -41,9 +41,9 @@ public partial class GunManager
 		gunGroups.Remove(gunGroup);
 	}
 
-	public int GetFuelUsage()
+	public int GetPowerDraw()
 	{
-	if(shooting && selectedGroup != null) return selectedGroup.PowerDraw;
+		if(shooting && selectedGroup != null) return selectedGroup.PowerDraw;
 		return 0;
 	}
 

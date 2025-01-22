@@ -57,7 +57,7 @@ public partial class Gun : ShipComponent
 		shootSFX.PlayOnce();
 	}
 
-	public int GetFuelUsage() => powerdraw;
+	public int GetPowerDraw() => powerdraw;
 
 	public override void SetupData(ShipComponentData data)
 	{

@@ -35,7 +35,7 @@ public class GunGroup
 	public void AddGun(Gun gun)
 	{
 		guns.Add(gun);
-		PowerDraw += gun.GetFuelUsage();
+		PowerDraw += gun.GetPowerDraw();
 		StartedShooting += gun.StartShooting;
 		StoppedShooting += gun.StopShooting;
 		gun.OnDestroyed += OnGunDestroyed;
@@ -44,14 +44,12 @@ public class GunGroup
 	public void RemoveGun(Gun gun, out bool groupEmpty)
 	{
 		guns.Remove(gun);
-		PowerDraw -= gun.GetFuelUsage();
+		PowerDraw -= gun.GetPowerDraw();
 		StartedShooting -= gun.StartShooting;
 		StoppedShooting -= gun.StopShooting;
 		groupEmpty = guns.Count <= 0;
 		gun.OnDestroyed -= OnGunDestroyed;
 	}
-
-	public int GetFuelUsage() => PowerDraw;
 
 	private void OnGunDestroyed(ShipComponent shipComponent)
 	{
