@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://cnge6ulfaq4xv"]
+
+[ext_resource type="Texture2D" uid="uid://dd05o6vy8jvpb" path="res://Ship/Assets/Atlas/Slopes/Arzo Slope - Broken.tres" id="1_8106i"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_rloec"]
+[ext_resource type="Texture2D" uid="uid://bed8na7j23v17" path="res://Ship/Assets/Atlas/Slopes/Arzo Slope.tres" id="2_wr0la"]
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="3_yc152"]
+
+[resource]
+script = ExtResource("1_rloec")
+Name = "Uni corp slope"
+Description = "This is a slope"
+Sprite = ExtResource("2_wr0la")
+DestroyedSprite = ExtResource("1_8106i")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = false
+Type = 2
+MaxHealth = 100
+Defense = 15
+prefab = ExtResource("3_yc152")

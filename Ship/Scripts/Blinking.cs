@@ -219,7 +219,6 @@ public partial class Blinking : Node2D
 		
 		Tween tween = GetTree().CreateTween().BindNode(playerShip).SetTrans(Tween.TransitionType.Linear);
 		tween.TweenProperty(playerShip, "transform",trans,0.10f );	
-		playerShip.CollisionLayer = 0;
 
 	}
 

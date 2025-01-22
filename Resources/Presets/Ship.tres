@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerShipSave" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="PlayerShipSave" load_steps=2 format=3 uid="uid://b3qb3dxien3sb"]
 
 [ext_resource type="Script" path="res://Resources/Scripts/player_ship_save.gd" id="1_pjlfy"]
 

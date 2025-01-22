@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://bnpfn7k64mki7"]
+
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="1_3resj"]
+[ext_resource type="Texture2D" uid="uid://qj7uem23gsea" path="res://Ship/Assets/Atlas/Gun/Tali Gun - Broken.atlastex" id="2_u8587"]
+[ext_resource type="Texture2D" uid="uid://cgklyp4062jws" path="res://Ship/Assets/Atlas/Gun/Tali Gun.atlastex" id="3_jk5yc"]
+[ext_resource type="PackedScene" uid="uid://bgqy8786pscn" path="res://Ship/ShipComponents/Gun.tscn" id="4_kl1s1"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GunData.cs" id="5_vq0ls"]
+
+[resource]
+script = ExtResource("5_vq0ls")
+BulletsPerSecond = 1.0
+Attack = 40
+Powerdraw = 40
+type = 1
+ShootingAudioStartTime = 0.0
+ShootingAudioEndTime = -1.0
+BulletSpeed = 125
+BulletSpawnPoint = Vector2(8, -32)
+BulletPrefab = ExtResource("1_3resj")
+Name = "The Eye Ship Cannon"
+Description = "Lv1"
+Sprite = ExtResource("3_jk5yc")
+DestroyedSprite = ExtResource("2_u8587")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = false
+RightAttachable = false
+Type = 5
+MaxHealth = 100
+Defense = 10
+prefab = ExtResource("4_kl1s1")

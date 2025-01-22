@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="GeneratorData" load_steps=5 format=3 uid="uid://b6wi7lh5sy378"]
+
+[ext_resource type="Texture2D" uid="uid://b61wqj1dnw112" path="res://Ship/Assets/Atlas/Generator/Zentri Generator - Broken.atlastex" id="1_v0ka5"]
+[ext_resource type="Texture2D" uid="uid://cn636vxs2182p" path="res://Ship/Assets/Atlas/Generator/Zentri Generator.atlastex" id="2_svvlq"]
+[ext_resource type="PackedScene" uid="uid://br8hk0g01ph4a" path="res://Ship/ShipComponents/Generator.tscn" id="3_ys7pf"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/GeneratorData.cs" id="4_we7qm"]
+
+[resource]
+script = ExtResource("4_we7qm")
+maxPowerGenerated = 500
+Name = "Mumbai tech Rev 1 Generator"
+Description = "Lv1"
+Sprite = ExtResource("2_svvlq")
+DestroyedSprite = ExtResource("1_v0ka5")
+TopAttachable = true
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 4
+MaxHealth = 100
+Defense = 5
+prefab = ExtResource("3_ys7pf")

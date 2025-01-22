@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://Components/attackbox_component.gd" id="12_53hi6"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="13_rjeb8"]
 [ext_resource type="Script" path="res://Components/drop_component.gd" id="13_yu3dg"]
-[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="14_vb10u"]
+[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Generators/The Eye ship Generator.tres" id="14_vb10u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_64guh"]
 rough = true

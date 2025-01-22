@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://cnge6ulfaq4xv"]
+
+[ext_resource type="PackedScene" uid="uid://dinvhpe3fbygh" path="res://Ship/ShipComponents/Hull.tscn" id="1_5kq8w"]
+[ext_resource type="Texture2D" uid="uid://b6as0rle2crqg" path="res://Ship/Assets/Atlas/Slopes/Halfies Slope - Broken.tres" id="1_vo2u3"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_ycr5f"]
+[ext_resource type="Texture2D" uid="uid://bvyaeyl5piuxv" path="res://Ship/Assets/Atlas/Slopes/Halfies Slope.tres" id="2_cgnfc"]
+
+[resource]
+script = ExtResource("1_ycr5f")
+Name = "Uni corp Wing slope"
+Description = "This is a slope"
+Sprite = ExtResource("2_cgnfc")
+DestroyedSprite = ExtResource("1_vo2u3")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = false
+Type = 2
+MaxHealth = 100
+Defense = 15
+prefab = ExtResource("1_5kq8w")

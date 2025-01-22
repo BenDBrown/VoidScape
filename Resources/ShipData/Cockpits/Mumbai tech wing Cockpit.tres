@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://d1wj1c1q8xjf4"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="1_by474"]
+[ext_resource type="Texture2D" uid="uid://bqmqbyo3r6k8e" path="res://Ship/Assets/Atlas/Cockpit/Arzo Cockpit  - Broken.atlastex" id="1_imuuq"]
+[ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="2_681ka"]
+[ext_resource type="Texture2D" uid="uid://cjwh804qbb02v" path="res://Ship/Assets/Atlas/Cockpit/Arzo Cockpit.atlastex" id="2_l14rc"]
+
+[resource]
+script = ExtResource("1_by474")
+Name = "Mumbai tech wing Cockpit"
+Description = "Lv1"
+Sprite = ExtResource("2_l14rc")
+DestroyedSprite = ExtResource("1_imuuq")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = true
+RightAttachable = true
+Type = 1
+MaxHealth = 100
+Defense = 20
+prefab = ExtResource("2_681ka")
