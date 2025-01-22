@@ -195,7 +195,7 @@ public partial class Turret : Node2D
 		laserLine.DefaultColor = greenLaser;
 	}
 
-		private void Destroyed(){
+	private void Destroyed(){
 		if(isDestroyed) {return;}
 
 		deathAnimation.Visible = true;

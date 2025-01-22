@@ -149,6 +149,7 @@ sprite_frames = SubResource("SpriteFrames_oxe0i")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("1_ae1ql")
+max_health = 50
 
 [node name="AttackComponent" type="Node" parent="."]
 script = ExtResource("4_oyyo8")
