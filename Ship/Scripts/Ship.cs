@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 [GlobalClass]
-public partial class Ship : CharacterBody2D, IShip
+public partial class Ship : CharacterBody2D
 {
 	[Signal]
 	public delegate void OnDestroyedEventHandler(Ship ship);

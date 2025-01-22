@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 [GlobalClass]
-public partial class PlayerShip : Ship, IShip
+public partial class PlayerShip : Ship
 {
 	[Signal]
 	public delegate void PowerChangedEventHandler(float powerToMaxPowerPercentage);
