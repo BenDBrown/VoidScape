@@ -14,6 +14,7 @@ texture = ExtResource("1_cvbei")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 64)
 script = ExtResource("2_x4w6x")
+Datas = Array[Object]([])
 menu = NodePath("CanvasLayer/StationMenu")
 popup = NodePath("CanvasLayer/PopUp")
 
@@ -45,9 +46,10 @@ text = "Press F to enter HUB"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StationMenu" parent="CanvasLayer" instance=ExtResource("3_3d0kp")]
+[node name="StationMenu" parent="CanvasLayer" node_paths=PackedStringArray("stationHub") instance=ExtResource("3_3d0kp")]
 process_mode = 0
 visible = false
+stationHub = NodePath("../..")
 
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
 [connection signal="body_exited" from="Area2D" to="." method="OnBodyExited"]
