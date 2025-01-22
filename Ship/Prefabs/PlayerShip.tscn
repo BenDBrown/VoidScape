@@ -29,11 +29,15 @@ drag_bottom_margin = 0.07
 script = ExtResource("2_0hxg2")
 playerShipNode = NodePath("..")
 
-[node name="PowerManager" type="Node" parent="." node_paths=PackedStringArray("stallTimer")]
+[node name="PowerManager" type="Node" parent="." node_paths=PackedStringArray("stallTimer", "powerGenerationCooldownTimer")]
 script = ExtResource("3_22ycc")
-stallTimer = NodePath("Timer")
+powerGenerationCooldown = 1.0
+stallTimer = NodePath("StallTimer")
+powerGenerationCooldownTimer = NodePath("PowerGenCooldownTimer")
 
-[node name="Timer" type="Timer" parent="PowerManager"]
+[node name="StallTimer" type="Timer" parent="PowerManager"]
+
+[node name="PowerGenCooldownTimer" type="Timer" parent="PowerManager"]
 
 [node name="ExplosionAnim" parent="." instance=ExtResource("4_48l4l")]
 

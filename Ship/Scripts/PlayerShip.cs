@@ -66,9 +66,9 @@ public partial class PlayerShip : Ship
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta); // done in physics process after base so that power draw values on ThrustManager are updated first in the same thread
-		powerManager.TryUsePower(GetPowerDraw((float)delta), out float fuelUsed);
+		powerManager.TryUsePower(GetPowerDraw((float)delta));
 		// ToDo add fuel manager logic with fuel used
-		fuelManager.UseFuel(fuelUsed);
+		fuelManager.UseFuel(thrustManager.FuelUsage);
 	}
 
 	public override bool TryBuildShip()
@@ -159,23 +159,14 @@ public partial class PlayerShip : Ship
 	/// <summary>
 	/// Intended for power usage which does not occur as part of process
 	/// </summary>
-	private void UsePowerChunk(int powerUsed)
-	{
-		powerManager.TryUsePower(powerUsed, out float fuelUsed);
-		fuelManager.UseFuel(fuelUsed);
-	}
+	private void UsePowerChunk(int powerUsed) => powerManager.TryUsePower(powerUsed);
 
 	private float GetPowerDraw(float delta) // add per frame power draw here
 	{
-		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.GetPowerDraw()) * delta;
+		return (gunManager.PowerDraw + shield.PowerDraw + blinking.PowerDraw) * delta;
 	}
 
-	public void Interact()
-	{
-		{ EmitSignal(SignalName.InteractableInteracted); }
-	}
-
-
+	public void Interact() => EmitSignal(SignalName.InteractableInteracted);
 
 	public void PerformBlink()
 	{

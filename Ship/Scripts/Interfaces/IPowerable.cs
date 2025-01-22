@@ -1,4 +1,4 @@
 public interface IPowerable
 {
-	int GetPowerDraw();
+	int GetFuelUsage();
 }

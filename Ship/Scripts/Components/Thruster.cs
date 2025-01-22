@@ -7,12 +7,12 @@ public partial class Thruster : ShipComponent, IPowerable
 	private AnimatedSprite2D thrustAnim;
 
 	[Export]
-	private int powerdraw;
+	private int fuelUsage;
 
 	[Export]
 	private float thrust;
 
-	public int GetPowerDraw() => powerdraw;
+	public int GetFuelUsage() => fuelUsage;
 
 	public float GetThrust() => thrust;
 
@@ -22,7 +22,7 @@ public partial class Thruster : ShipComponent, IPowerable
 		if (data is ThrusterData thrustData)
 		{
 			thrust = thrustData.Thrust;
-			powerdraw = thrustData.Powerdraw;
+			fuelUsage = thrustData.FuelUsage;
 		}
 	}
 

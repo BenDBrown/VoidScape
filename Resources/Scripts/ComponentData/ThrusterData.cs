@@ -8,5 +8,5 @@ public partial class ThrusterData : ShipComponentData
 	public float Thrust { get; private set; }
 
 	[Export]
-	public int Powerdraw = 50;
+	public int FuelUsage = 50;
 }

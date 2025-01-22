@@ -14,9 +14,9 @@ public partial class ThrustManager : IPowerable
 
 	public float PotentialSideThrust { get; private set; } = 0;
 
-	public int PowerDraw => GetPowerDraw();
+	public int FuelUsage => GetFuelUsage();
 
-	private int powerDraw = 0;
+	private int fuelUsage = 0;
 
 	public int Weight { get; private set; } = 1; // to avoid division by 0 errors
 
@@ -120,13 +120,13 @@ public partial class ThrustManager : IPowerable
 		PotentialForwardThrust += thruster.GetThrust();
 		UpdateThrust();
 		thrusters.Add(thruster);
-		powerDraw += thruster.GetPowerDraw();
+		fuelUsage += thruster.GetFuelUsage();
 		thruster.OnDestroyed += OnThrusterDestroyed;
 	}
 
-	public int GetPowerDraw()
+	public int GetFuelUsage()
 	{
-		if (thrustingBackward || thrustingLeft || thrustingRight || thrustingForward) return powerDraw;
+		if (thrustingBackward || thrustingLeft || thrustingRight || thrustingForward) return fuelUsage;
 		return 0;
 	}
 
@@ -145,7 +145,7 @@ public partial class ThrustManager : IPowerable
 		thrusters.Clear();
 		PotentialForwardThrust = 0;
 		UpdateThrust();
-		powerDraw = 0;
+		fuelUsage = 0;
 	}
 
 	private void OnThrusterDestroyed(ShipComponent shipComponent)
@@ -154,7 +154,7 @@ public partial class ThrustManager : IPowerable
 		PotentialForwardThrust -= thruster.GetThrust();
 		UpdateThrust();
 		thrusters.Remove(thruster);
-		powerDraw -= thruster.GetPowerDraw();
+		fuelUsage -= thruster.GetFuelUsage();
 		thruster.OnDestroyed -= OnThrusterDestroyed;
 	}
 
