@@ -163,10 +163,10 @@ public partial class Ship : CharacterBody2D, IShip
 	/// <summary>
 	/// Removes all ShipComponents from the ship. Used when reusing ship.
 	/// </summary>
-	public void Reset() //Change it to be better, maybe keep track of old parts before trybuild and replace if it fails?
+	public virtual void Reset() //Change it to be better, maybe keep track of old parts before trybuild and replace if it fails?
 	{
-		thrustManager = new(); //preferably a reset method that removes all existing thrusters
-		gunManager = new();
+		thrustManager.Reset();
+		gunManager.Reset();
 		Node[] children = GetChildren().ToArray();
 		for (int i = 0; i < children.Length; i++)
 		{
@@ -177,6 +177,7 @@ public partial class Ship : CharacterBody2D, IShip
 				component.Free();
 			}
 		}
+		shipComponents.Clear();
 	}
 
 	/// <summary>

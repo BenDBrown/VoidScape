@@ -1,8 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvjo3o6k4j254"]
+[gd_scene load_steps=12 format=3 uid="uid://cvjo3o6k4j254"]
 
 [ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_fpp3g"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Thruster.cs" id="2_e55n0"]
 [ext_resource type="Texture2D" uid="uid://beaghydkn6hxq" path="res://Assets/Ship/Thruster-animation.png" id="3_6duj7"]
+[ext_resource type="Shader" path="res://addons/ColourPicker/ColorPicker.gdshader" id="3_i721f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nog6n"]
+resource_local_to_scene = true
+shader = ExtResource("3_i721f")
+shader_parameter/color = Color(0.509804, 0.501961, 0.486275, 1)
+shader_parameter/shades = PackedColorArray(0.690196, 0.690196, 0.690196, 1, 0.635294, 0.635294, 0.635294, 1, 0.552941, 0.552941, 0.552941, 1, 0.435294, 0.435294, 0.435294, 1, 0.356863, 0.356863, 0.356863, 1, 0.333333, 0.333333, 0.333333, 1)
+shader_parameter/tolerance = 0.001
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lkar3"]
 atlas = ExtResource("3_6duj7")
@@ -53,9 +61,16 @@ thrustAnim = NodePath("ThrustAnim")
 powerdraw = 100
 thrust = 400.0
 
+[node name="Sprite" parent="." index="3"]
+material = SubResource("ShaderMaterial_nog6n")
+shaderMat = SubResource("ShaderMaterial_nog6n")
+
 [node name="ThrustAnim" type="AnimatedSprite2D" parent="." index="4"]
 visible = false
 position = Vector2(0, 32)
 sprite_frames = SubResource("SpriteFrames_ch5lw")
 animation = &"thrust"
 frame_progress = 0.634195
+
+[node name="DestroyedSprite" parent="." index="5"]
+shaderMat = SubResource("ShaderMaterial_nog6n")

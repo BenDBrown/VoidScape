@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-public partial class CargoManager
+public partial class CargoManager // to be added: reset method
 {
 	public delegate void CargoLostEventHandler(Dictionary<Cargo, int> lostCargoDict);
 
