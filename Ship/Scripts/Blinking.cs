@@ -130,10 +130,7 @@ public partial class Blinking : Node2D
 
 				if (isAllowedToBlink)
 				{
-					IFrame();
-					playerShip.KillMomentum(); PlayerTween(transForm); isBoosting = true;
-					isAllowedToBlink = false;
-					HudNotice(isAllowedToBlink);
+					Blinked(transForm);
 				}
 			}
 			else
@@ -153,7 +150,7 @@ public partial class Blinking : Node2D
 
 				if (isAllowedToBlink)
 				{
-					Blink(transForm);
+					Blinked(transForm);
 				}
 			}
 			else
@@ -170,7 +167,7 @@ public partial class Blinking : Node2D
 
 				if (isAllowedToBlink)
 				{
-					Blink(transForm);
+					Blinked(transForm);
 
 				}
 				else
@@ -186,7 +183,7 @@ public partial class Blinking : Node2D
 				{
 					if (isAllowedToBlink)
 					{
-						Blink(transForm);
+						Blinked(transForm);
 					}
 				}
 				else
@@ -278,7 +275,7 @@ public partial class Blinking : Node2D
 		time.Timeout -= () => DisableIFrame(health);
 	}
 
-	private void Blink(Transform2D transForm)
+	private void Blinked(Transform2D transForm)
 	{
 		IFrame();
 		playerShip.KillMomentum();

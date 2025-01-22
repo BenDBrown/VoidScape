@@ -8,8 +8,8 @@
 [resource]
 script = ExtResource("4_2vuud")
 Thrust = 400.0
-FuelUsage = 5
-Name = "The Eye Ship Thruster"
+FuelUsage = 50
+Name = "Eye Ship Thruster"
 Description = "Lv1"
 Sprite = ExtResource("2_akqb8")
 DestroyedSprite = ExtResource("1_38ti0")
