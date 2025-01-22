@@ -119,13 +119,10 @@ public partial class PlayerShip : Ship, IShip
 			if (n is Camera2D) { continue; }
 			if (n is ShipComponent shipComponent)
 			{
-				GD.Print($"{shipComponent.Name} pre move, comp global pos: {shipComponent.GlobalPosition}\ncomp collider pos{shipComponent.collider.GlobalPosition}");
 				shipComponent.Position -= ToLocal(center);
-				GD.Print($"{shipComponent.Name} post move, comp global pos: {shipComponent.GlobalPosition}\ncomp collider pos{shipComponent.collider.GlobalPosition}");
 				shipComponent.collider.Owner = null; //prevents warning.
 				shipComponent.collider.Reparent(this);
 				shipComponent.collider.Owner = this;
-				GD.Print($"{shipComponent.Name} post reParent, comp global pos: {shipComponent.GlobalPosition}\ncomp collider pos{shipComponent.collider.GlobalPosition}");
 			}
 		}
 		Weight = shipComponents.Count;
