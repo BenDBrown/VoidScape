@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_dsj0j"]
 [ext_resource type="Texture2D" uid="uid://bisny8ancsbfm" path="res://Assets/Hazzards/Blackhole/Blackhole.png" id="2_e8ctp"]
 [ext_resource type="PackedScene" uid="uid://b4yj0wo6jrt31" path="res://Hazards/Asteroid/asteroid.tscn" id="2_g2r1v"]
-[ext_resource type="Script" path="res://Hazards/Comet/comet_tracker.gd" id="2_tbh8l"]
+[ext_resource type="Script" path="res://Hazards/Comet/comet_tracker.gd" id="2_tbh8l"] 
 [ext_resource type="PackedScene" uid="uid://c0684gaincluq" path="res://Ship/Prefabs/Enemies/Scout.tscn" id="3_hh4i0"]
 [ext_resource type="Script" path="res://Structures/Props/Interactables/scripts/interactable_manager.gd" id="3_sun44"]
 [ext_resource type="PackedScene" uid="uid://2hmchkli54en" path="res://Structures/Station 1.tscn" id="4_gkyib"]
@@ -99,6 +99,9 @@ _data = {
 "RESET": SubResource("Animation_sxydc"),
 "warning_animation": SubResource("Animation_g6qi6")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53yk0"]
+radius = 179.338
 
 [node name="OpenSpace" type="Node2D"]
 
