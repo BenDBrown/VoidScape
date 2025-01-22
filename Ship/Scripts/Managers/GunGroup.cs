@@ -2,7 +2,7 @@ using System;
 using Godot;
 using System.Collections.Generic;
 
-public class GunGroup : IPowerable
+public class GunGroup
 {
 	public delegate void GunGroupDestroyedEventHandler(GunGroup gunGroup);
 

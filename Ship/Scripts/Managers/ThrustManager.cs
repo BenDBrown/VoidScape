@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class ThrustManager : IPowerable
+public partial class ThrustManager
 {
 	private const double ACCELERATION = 0.4f;
 

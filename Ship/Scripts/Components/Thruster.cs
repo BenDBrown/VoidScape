@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Thruster : ShipComponent, IPowerable
+public partial class Thruster : ShipComponent
 {
 	[Export]
 	private AnimatedSprite2D thrustAnim;

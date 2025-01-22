@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class GunManager : IPowerable
+public partial class GunManager
 {
 	public int PowerDraw => GetFuelUsage();
 	private GunGroup selectedGroup = null;
