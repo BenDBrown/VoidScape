@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=4 uid="uid://b2kprwhdidgfx"]
+
+[ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="1_t3ubi"]
+[ext_resource type="PackedScene" uid="uid://co1ah1np4mw3u" path="res://Misc/Cave Region/Turrets/Prefabs/turret.tscn" id="2_16mid"]
+[ext_resource type="TileSet" uid="uid://bgfx40dkqxws3" path="res://Misc/Cave Region/Tiles/CaveTiles.tres" id="3_j6j2r"]
+
+[node name="Turret tester" type="Node2D"]
+
+[node name="Player Spawner" type="Node2D" parent="."]
+position = Vector2(1054, 240)
+rotation = 3.14159
+script = ExtResource("1_t3ubi")
+
+[node name="Turret" parent="." instance=ExtResource("2_16mid")]
+position = Vector2(365, 200)
+scale = Vector2(2, 2)
+bulletSpeed = 75.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 100)
+tile_map_data = PackedByteArray("AAAPAAYAAAAFAAEAAAAPAAcAAAAFAAEAAAAPAAgAAAAFAAEAAAAPAAkAAAAFAAEAAAAPAAsAAAAFAAEAAAAPAAwAAAAFAAEAAAAPAAoAAAAFAAEAAAA=")
+tile_set = ExtResource("3_j6j2r")
+
+[node name="Turret2" parent="." instance=ExtResource("2_16mid")]
+position = Vector2(1045, 427)
+rotation = 2.54972
+scale = Vector2(2, 2)
