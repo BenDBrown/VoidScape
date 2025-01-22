@@ -7,8 +7,7 @@
 
 [resource]
 script = ExtResource("4_ytn6n")
-efficiency = 1.0
-maxPowerGenerated = 100
+maxPowerGenerated = 200
 Name = "Bile Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_sd5ce")

@@ -26,7 +26,7 @@
 [ext_resource type="Resource" uid="uid://b0cu6intmhaph" path="res://Resources/ShipData/Thrusters/The Eye ship  Thruster 2.tres" id="23_8nt4t"]
 [ext_resource type="Resource" uid="uid://d2qdwbbvt725r" path="res://Resources/ShipData/Cockpits/Uni Corp wings Cockpit.tres" id="24_0hlep"]
 [ext_resource type="Resource" uid="uid://qiucae7gxati" path="res://Resources/ShipData/Generators/Uni Corp Generator.tres" id="26_i72mm"]
-[ext_resource type="Resource" uid="uid://bnpfn7k64mki7" path="res://Resources/ShipData/Guns/Tali Gun.tres" id="27_mwn65"]
+[ext_resource type="Resource" uid="uid://bnpfn7k64mki7" path="res://Resources/ShipData/Guns/The Eye Ship Cannon.tres" id="27_mwn65"]
 [ext_resource type="Resource" uid="uid://cx1in1n1c03cl" path="res://Resources/ShipData/Hulls/Mumbai Tech Hull.tres" id="28_l3f64"]
 [ext_resource type="Resource" uid="uid://b1n3cc6ubv315" path="res://Resources/ShipData/Thrusters/Uni Corp Thruster.tres" id="29_d4eoi"]
 [ext_resource type="Resource" uid="uid://c261yp5mbqbms" path="res://Resources/ShipData/Cockpits/The Eye ship Cockpit.tres" id="30_2bj38"]

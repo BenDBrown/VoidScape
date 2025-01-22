@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("4_i4cm7")
 Thrust = 400.0
-Powerdraw = 50
+FuelUsage = 5
 Name = "Tali Thruster"
 Description = "Lv1"
 Sprite = ExtResource("2_t4173")

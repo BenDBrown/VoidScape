@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("4_p3yfh")
 Thrust = 400.0
-Powerdraw = 50
+FuelUsage = 5
 Name = "O'Mano Thruster"
 Description = "Lv1"
 Sprite = ExtResource("2_84r2a")

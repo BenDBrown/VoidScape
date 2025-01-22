@@ -7,8 +7,7 @@
 
 [resource]
 script = ExtResource("4_jlar7")
-efficiency = 1.0
-maxPowerGenerated = 100
+maxPowerGenerated = 200
 Name = "Tali Generator"
 Description = "Lv1"
 Sprite = ExtResource("2_31gha")
