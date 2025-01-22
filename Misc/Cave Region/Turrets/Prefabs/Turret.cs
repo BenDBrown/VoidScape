@@ -78,6 +78,8 @@ public partial class Turret : Node2D
 	private bool canShoot = true;
 	private bool targetIsInSight = false;
 	private bool isFollowingPlayer = false;
+	private float minRotation;
+	private float maxRotation;
 
     public override void _Ready()
     {
@@ -91,6 +93,9 @@ public partial class Turret : Node2D
 		SetupTimer();
 		SetupRaycastAndLaser();
 		SetupShootingAnimation();
+
+		minRotation = Mathf.DegToRad(minRotationDegrees);
+		maxRotation = Mathf.DegToRad(maxRotationDegrees);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -150,10 +155,6 @@ public partial class Turret : Node2D
 
 	private void StartIdleAnimationFromCurrentPosition(){
 
-		// Convert current rotation to a normalized sine phase
-		float minRotation = Mathf.DegToRad(minRotationDegrees);
-		float maxRotation = Mathf.DegToRad(maxRotationDegrees);
-
 		float normalizedRotation = Mathf.InverseLerp(minRotation, maxRotation, gun.GlobalRotation);
 		float sinePhase = Mathf.Asin(2 * normalizedRotation - 1); // Map 0..1 to sine phase (-1..1)
 
@@ -170,7 +171,6 @@ public partial class Turret : Node2D
 			sinePhase = Mathf.Min(sinePhase, Mathf.Pi / 2); // +1 on sine wave
 		}
 
-		// Update elapsed time based on adjusted sine phase
 		elapsedTime = sinePhase / rotationSpeed;
 	}
 
@@ -199,18 +199,19 @@ public partial class Turret : Node2D
 		if(isDestroyed) {return;}
 
 		deathAnimation.Visible = true;
-		deathAnimation.AnimationFinished += DisableDeathAnimation;
+		deathAnimation.AnimationFinished += DespawnTurret;
 		deathAnimation.Play();
 
-		isDestroyed = true;
 		gun.QueueFree();
+		isDestroyed = true;
 	}
 
-	private void DisableDeathAnimation(){
-		deathAnimation.Visible = false;
-
+	private void DespawnTurret(){
+		// Create a turretbase object and place it separately in the scene as a remnant of the 
+		
 		Sprite2D newTurretBase = turretBasePrefab.Instantiate() as Sprite2D;
 		newTurretBase.GlobalTransform = turretBase.GlobalTransform;
+		newTurretBase.ZIndex = turretBase.ZIndex;
 		GetTree().CurrentScene.AddChild(newTurretBase);
 		
 		QueueFree();

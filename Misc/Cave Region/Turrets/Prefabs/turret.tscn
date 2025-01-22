@@ -94,6 +94,7 @@ turretBasePrefab = ExtResource("3_o11hp")
 turretBase = NodePath("Turret Base")
 
 [node name="Turret Base" parent="." instance=ExtResource("3_o11hp")]
+z_index = -1
 
 [node name="Gun" type="Node2D" parent="."]
 
@@ -130,6 +131,7 @@ volume_db = -20.0
 script = ExtResource("3_li4ml")
 
 [node name="HitboxComponent" type="Area2D" parent="Gun" node_paths=PackedStringArray("healthComponent", "collision_shape")]
+visible = false
 collision_layer = 16
 collision_mask = 55
 script = ExtResource("2_fafp0")
