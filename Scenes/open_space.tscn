@@ -288,22 +288,18 @@ direction = Vector2(40, 40)
 [node name="Stations" type="Node2D" parent="."]
 
 [node name="Station" parent="Stations" instance=ExtResource("4_gkyib")]
-process_mode = 3
 position = Vector2(938, 1018)
 scale = Vector2(4.97656, 4.97656)
 
 [node name="Station2" parent="Stations" instance=ExtResource("4_gkyib")]
-process_mode = 3
 position = Vector2(-104, 4008)
 scale = Vector2(4.97656, 4.97656)
 
 [node name="Station3" parent="Stations" instance=ExtResource("4_gkyib")]
-process_mode = 3
 position = Vector2(2862, -1357)
 scale = Vector2(4.97656, 4.97656)
 
 [node name="Station4" parent="Stations" instance=ExtResource("4_gkyib")]
-process_mode = 3
 position = Vector2(4830, 2237)
 scale = Vector2(4.97656, 4.97656)
 
