@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_tlnsq")
-shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/color = Color(0.258824, 1, 0.603922, 1)
 shader_parameter/shades = PackedColorArray(0.14902, 0.14902, 0.14902, 1, 0.160784, 0.172549, 0.219608, 1, 0.211765, 0.227451, 0.262745, 1, 0.376471, 0.376471, 0.376471, 1, 0.282353, 0.313726, 0.337255, 1)
 shader_parameter/tolerance = 0.001
