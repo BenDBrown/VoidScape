@@ -37,6 +37,7 @@ powerGenerationCooldownTimer = NodePath("PowerGenCooldownTimer")
 [node name="ExplosionAnim" parent="." instance=ExtResource("4_48l4l")]
 
 [node name="Shield" parent="." instance=ExtResource("5_u1m7p")]
+position = Vector2(16, 0)
 
 [node name="Blink" type="Node2D" parent="." node_paths=PackedStringArray("playerShip")]
 script = ExtResource("6_o4rs5")
