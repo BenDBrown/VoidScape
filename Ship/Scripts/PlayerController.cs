@@ -45,17 +45,17 @@ public partial class PlayerController : Node
 
         // Weapon Menu Controls
         if(Input.IsActionJustPressed("toggle_weapon_menu")){        // Change name of action to toggle weapon menu
-            ((PlayerShip) playerShip).ToggleWeaponMenu(true);
+            (playerShip).ToggleWeaponMenu(true);
         }
         else if( Input.IsActionJustReleased("toggle_weapon_menu")){
-            ((PlayerShip) playerShip).ToggleWeaponMenu(false);
+            (playerShip).ToggleWeaponMenu(false);
         }
 
         if(Input.IsActionJustPressed("cycle_weapon_up")){
-            ((PlayerShip) playerShip).CycleGunGroup(CYCLE_WEAPON_UP);
+            (playerShip).CycleGunGroup(CYCLE_WEAPON_UP);
         }
         else if(Input.IsActionJustPressed("cycle_weapon_down")){
-            ((PlayerShip) playerShip).CycleGunGroup(CYCLE_WEAPON_DOWN);
+            (playerShip).CycleGunGroup(CYCLE_WEAPON_DOWN);
         }
 
         //interact controls
@@ -65,5 +65,15 @@ public partial class PlayerController : Node
 
         if (Input.IsActionJustPressed("shielding") && (!Input.IsActionPressed("shoot"))) { playerShip.StartShielding(); }
         if (Input.IsActionJustReleased("shielding")) { playerShip.StopShielding(); }
+    }
+
+    public Vector2 GetPlayerInputDirection()
+    {
+        Vector2 returnVect = Vector2.Zero;
+        if(Input.IsActionJustPressed("forward")) returnVect += Vector2.Up;
+        else if (Input.IsActionJustPressed("back")) returnVect += Vector2.Down;
+        if(Input.IsActionJustPressed("right")) returnVect += Vector2.Right;
+        else if(Input.IsActionJustPressed("forward")) returnVect += Vector2.Left;
+        return returnVect.Normalized();
     }
 }

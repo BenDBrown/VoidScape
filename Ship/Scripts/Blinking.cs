@@ -20,6 +20,9 @@ public partial class Blinking : Node2D
 
 	[Export]
 	private bool DirectionByMovement = false;
+
+	public int PowerDraw => GetPowerDraw();
+
 	private Dictionary<Vector2 , Vector2> ComponentVectors = new Dictionary<Vector2, Vector2>();
 	private bool isBoosting = false;
 	private int power = 15;
@@ -216,7 +219,6 @@ public partial class Blinking : Node2D
 		
 		Tween tween = GetTree().CreateTween().BindNode(playerShip).SetTrans(Tween.TransitionType.Linear);
 		tween.TweenProperty(playerShip, "transform",trans,0.10f );	
-		playerShip.CollisionLayer = 0;
 
 	}
 

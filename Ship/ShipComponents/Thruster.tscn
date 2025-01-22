@@ -58,7 +58,7 @@ animations = [{
 [node name="Thruster" node_paths=PackedStringArray("thrustAnim") instance=ExtResource("1_fpp3g")]
 script = ExtResource("2_e55n0")
 thrustAnim = NodePath("ThrustAnim")
-powerdraw = 100
+fuelUsage = 0
 thrust = 400.0
 
 [node name="Sprite" parent="." index="3"]

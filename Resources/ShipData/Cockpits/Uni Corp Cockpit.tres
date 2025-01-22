@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShipComponentData" load_steps=5 format=3 uid="uid://1bka2d318svm"]
+
+[ext_resource type="Texture2D" uid="uid://cgy4whomv3pvs" path="res://Ship/Assets/Atlas/Cockpit/Halfies Cockpit  - Broken.atlastex" id="1_i3v61"]
+[ext_resource type="Texture2D" uid="uid://dla8lwfuujgxv" path="res://Ship/Assets/Atlas/Cockpit/Halfies Cockpit.atlastex" id="2_oaler"]
+[ext_resource type="PackedScene" uid="uid://dy5flx5mxxwce" path="res://Ship/ShipComponents/Cockpit.tscn" id="3_53v3p"]
+[ext_resource type="Script" path="res://Resources/Scripts/ComponentData/ShipComponentData.cs" id="4_5uiwq"]
+
+[resource]
+script = ExtResource("4_5uiwq")
+Name = "Uni Corp Cockpit"
+Description = "Lv1"
+Sprite = ExtResource("2_oaler")
+DestroyedSprite = ExtResource("1_i3v61")
+TopAttachable = false
+BottomAttachable = true
+LeftAttachable = false
+RightAttachable = false
+Type = 1
+MaxHealth = 100
+Defense = 20
+prefab = ExtResource("3_53v3p")

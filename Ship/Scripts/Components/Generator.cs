@@ -5,9 +5,6 @@ using System;
 public partial class Generator : ShipComponent
 {
 	[Export]
-	public float efficiency { get; private set; }
-
-	[Export]
 	public int maxPowerGenerated { get; private set; }
 
 	public override void SetupData(ShipComponentData data)
@@ -15,7 +12,6 @@ public partial class Generator : ShipComponent
 		base.SetupData(data);
 		if (data is GeneratorData generatorData)
 		{
-			efficiency = generatorData.efficiency;
 			maxPowerGenerated = generatorData.maxPowerGenerated;
 		}
 		else GD.PushError("tried assigning non generator component data to generator");

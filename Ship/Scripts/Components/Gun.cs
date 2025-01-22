@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Gun : ShipComponent, IPowerable
+public partial class Gun : ShipComponent
 {
 	[Export]
 	private Timer timer;

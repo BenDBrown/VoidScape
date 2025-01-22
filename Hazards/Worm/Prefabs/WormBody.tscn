@@ -399,7 +399,8 @@ attack = 1000
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("8_owoaf")
-max_health = 5000
+max_health = 1000
+defense = 50
 
 [connection signal="on_hit" from="Head/AttackboxComponent" to="." method="OnPlayerHit"]
 [connection signal="on_hit" from="Core/AttackboxComponent" to="." method="OnPlayerHit"]

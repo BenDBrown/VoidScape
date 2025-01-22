@@ -2,7 +2,7 @@ using System;
 using Godot;
 using System.Collections.Generic;
 
-public class GunGroup : IPowerable
+public class GunGroup
 {
 	public delegate void GunGroupDestroyedEventHandler(GunGroup gunGroup);
 
@@ -50,8 +50,6 @@ public class GunGroup : IPowerable
 		groupEmpty = guns.Count <= 0;
 		gun.OnDestroyed -= OnGunDestroyed;
 	}
-
-	public int GetPowerDraw() => PowerDraw;
 
 	private void OnGunDestroyed(ShipComponent shipComponent)
 	{
