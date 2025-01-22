@@ -278,7 +278,7 @@ public partial class Blinking : Node2D
 		time.Timeout -= () => DisableIFrame(health);
 	}
 
-	private void Blink(Transform2D transForm)
+	private void Blinked(Transform2D transForm)
 	{
 		IFrame();
 		playerShip.KillMomentum();
