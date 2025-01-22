@@ -3,6 +3,8 @@ using Godot;
 
 public partial class Station : Sprite2D
 {
+	[Export]
+	public ShipComponentData[] Datas { get; private set; }
 	private bool isOnBody = false;
 
 	private Tween tween;
