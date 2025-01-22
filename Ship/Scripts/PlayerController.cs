@@ -66,4 +66,14 @@ public partial class PlayerController : Node
         if (Input.IsActionJustPressed("shielding") && (!Input.IsActionPressed("shoot"))) { playerShip.StartShielding(); }
         if (Input.IsActionJustReleased("shielding")) { playerShip.StopShielding(); }
     }
+
+    public Vector2 GetPlayerInputDirection()
+    {
+        Vector2 returnVect = Vector2.Zero;
+        if(Input.IsActionJustPressed("forward")) returnVect += Vector2.Up;
+        else if (Input.IsActionJustPressed("back")) returnVect += Vector2.Down;
+        if(Input.IsActionJustPressed("right")) returnVect += Vector2.Right;
+        else if(Input.IsActionJustPressed("forward")) returnVect += Vector2.Left;
+        return returnVect.Normalized();
+    }
 }
