@@ -1,14 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwnag7qev53p4"]
+[gd_scene load_steps=7 format=3 uid="uid://dwnag7qev53p4"]
 
 [ext_resource type="FontFile" uid="uid://dm3da8vv2pdur" path="res://UI/Styles/Early GameBoy.ttf" id="1_lag8a"]
 [ext_resource type="Script" path="res://UI/Scripts/Menu.cs" id="2_oc8j1"]
 [ext_resource type="Script" path="res://UI/Scripts/Tabs.cs" id="3_fyd7s"]
 [ext_resource type="Script" path="res://Resources/Scripts/player_ship_save.gd" id="6_bhwvy"]
-[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Arzo/Arzo Cockpit.tres" id="6_vda0v"]
-[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Arzo/Arzo Generator.tres" id="8_h0ajs"]
 [ext_resource type="PackedScene" uid="uid://bek4qr7p7b0d7" path="res://UI/ShipBuilder/Scenes/ShipBuilderTab.tscn" id="9_kosew"]
-[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Arzo/Arzo Gun.tres" id="9_oi2fc"]
-[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Arzo/Arzo Thruster.tres" id="11_gvtg5"]
 
 [sub_resource type="Theme" id="Theme_t0xj3"]
 default_font = ExtResource("1_lag8a")
@@ -26,7 +22,6 @@ grow_vertical = 2
 mouse_filter = 1
 theme = SubResource("Theme_t0xj3")
 script = ExtResource("2_oc8j1")
-datas = Array[Object]([ExtResource("6_vda0v"), ExtResource("8_h0ajs"), ExtResource("11_gvtg5"), ExtResource("9_oi2fc")])
 shipSaverClass = ExtResource("6_bhwvy")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -75,8 +70,9 @@ size_flags_vertical = 3
 current_tab = 0
 script = ExtResource("3_fyd7s")
 
-[node name="Build Ship" parent="MarginContainer/VBoxContainer/Tabs/TabContainer" instance=ExtResource("9_kosew")]
+[node name="Build Ship" parent="MarginContainer/VBoxContainer/Tabs/TabContainer" node_paths=PackedStringArray("stationMenu") instance=ExtResource("9_kosew")]
 layout_mode = 2
+stationMenu = NodePath("../../../../..")
 metadata/_tab_index = 0
 
 [node name="Buy Parts" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/TabContainer"]
