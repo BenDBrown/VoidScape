@@ -1,9 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://br8hk0g01ph4a"]
+[gd_scene load_steps=5 format=3 uid="uid://br8hk0g01ph4a"]
 
 [ext_resource type="PackedScene" uid="uid://b8yixlufb8hme" path="res://Ship/ShipComponents/ShipComponent.tscn" id="1_ygkwo"]
 [ext_resource type="Script" path="res://Ship/Scripts/Components/Generator.cs" id="2_xhv8o"]
+[ext_resource type="Shader" path="res://addons/ColourPicker/ColorPicker.gdshader" id="3_j165m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxius"]
+resource_local_to_scene = true
+shader = ExtResource("3_j165m")
+shader_parameter/color = Color(0.509804, 0.501961, 0.486275, 1)
+shader_parameter/shades = PackedColorArray(0.690196, 0.690196, 0.690196, 1, 0.635294, 0.635294, 0.635294, 1, 0.552941, 0.552941, 0.552941, 1, 0.435294, 0.435294, 0.435294, 1, 0.356863, 0.356863, 0.356863, 1, 0.333333, 0.333333, 0.333333, 1)
+shader_parameter/tolerance = 0.001
 
 [node name="Generator" instance=ExtResource("1_ygkwo")]
 script = ExtResource("2_xhv8o")
 efficiency = 1.0
 maxPowerGenerated = 100
+
+[node name="Sprite" parent="." index="3"]
+material = SubResource("ShaderMaterial_nxius")
+shaderMat = SubResource("ShaderMaterial_nxius")
+
+[node name="DestroyedSprite" parent="." index="4"]
+shaderMat = SubResource("ShaderMaterial_nxius")

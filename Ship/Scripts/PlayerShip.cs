@@ -117,9 +117,9 @@ public partial class PlayerShip : Ship, IShip
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
-			if (n is Node2D n2 && n is not SingleRunAnimation && n is not Shield) { n2.Position -= ToLocal(center); } // is not, for bandaid solution to prevent ship destruction anim from being off centre
 			if (n is ShipComponent shipComponent)
 			{
+				shipComponent.Position -= ToLocal(center);
 				shipComponent.collider.Owner = null; //prevents warning.
 				shipComponent.collider.Reparent(this);
 				shipComponent.collider.Owner = this;
@@ -137,7 +137,14 @@ public partial class PlayerShip : Ship, IShip
 		GC.Collect();
 	}
 
-	protected override bool IsVitalComponent(ShipComponent shipComponent)
+    public override void Reset()
+    {
+		powerManager.Reset();
+		fuelManager.Reset();
+        base.Reset();
+    }
+
+    protected override bool IsVitalComponent(ShipComponent shipComponent)
 	{
 		// gun intentionally not included as vital atm
 		return shipComponent is Cockpit || shipComponent is Thruster || shipComponent is Generator || shipComponent is FuelTank;

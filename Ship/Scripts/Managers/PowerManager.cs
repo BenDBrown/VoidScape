@@ -78,6 +78,14 @@ public partial class PowerManager : Node
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 	}
 
+	public void Reset()
+	{
+		generators.Clear();
+		MaxPower = GetMaxPowerGenerated();
+		CalculateEfficiency();
+		Power = Math.Min(MaxPower, Power);
+	}
+
 	private void OnGeneratorDestroyed(ShipComponent shipComponent)
 	{
 		if(shipComponent is not Generator generator) {GD.PushError("non generator component sent to power manager on destroy event"); return;}
@@ -114,6 +122,7 @@ public partial class PowerManager : Node
 	private float CalculateEfficiency()
 	{
 		Efficiency = 0;
+		if(generators.Count <= 0) return Efficiency;
 		foreach(Generator generator in generators) Efficiency += generator.efficiency;
 		Efficiency /= generators.Count;
 		return Efficiency;

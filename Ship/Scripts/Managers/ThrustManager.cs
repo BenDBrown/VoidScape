@@ -140,6 +140,14 @@ public partial class ThrustManager : IPowerable
 		Force -= direction * dot;
 	}
 
+	public void Reset()
+	{
+		thrusters.Clear();
+		PotentialForwardThrust = 0;
+		UpdateThrust();
+		powerDraw = 0;
+	}
+
 	private void OnThrusterDestroyed(ShipComponent shipComponent)
 	{
 		if (shipComponent is not Thruster thruster) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
