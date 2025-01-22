@@ -30,12 +30,14 @@ func enter(parent):
 
 
 func exit():
+	detection_cone.queue_free()
 	queue_free()
 
 func physics_update(target):
 	player = target
 	if !in_area:
 		ray.set_target_position(Vector2.ZERO)
+		ship.StopShooting()
 		return
 	if is_in_detection_cone(player):
 		attack(player)

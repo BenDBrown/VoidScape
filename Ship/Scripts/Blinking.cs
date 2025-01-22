@@ -8,47 +8,41 @@ public partial class Blinking : Node2D
 {
 	[Signal]
 	public delegate void BlinkEventHandler(int power);
-
 	[Signal]
 	public delegate void BodyEnteredEventHandler(Node2D body);
-	private Vector2 center = new Vector2(0,0);
-
+	private Vector2 center = new Vector2(0, 0);
 	[Export]
 	private int blinkDist = 300;
 	[Export]
 	private PlayerShip playerShip;
-
 	[Export]
 	private bool DirectionByMovement = false;
-
 	public int PowerDraw => GetPowerDraw();
-
-	private Dictionary<Vector2 , Vector2> ComponentVectors = new Dictionary<Vector2, Vector2>();
+	private Dictionary<Vector2, Vector2> ComponentVectors = new Dictionary<Vector2, Vector2>();
 	private bool isBoosting = false;
 	private int power = 15;
 	private bool isAllowedToBlink = true;
-	private Area2D area = new Area2D();
 
-	private Camera2D camera;
 	private Control hud;
+	private Timer time;
 
-	public  void Async_PerformBlink()
-	{  	
+	public void Async_PerformBlink(Vector2 direction)
+	{
 
 		if (ComponentVectors.Count == 0)
 		{
-			find_blink_hud();
+			FindBlinkHud();
 			FillDictionary();
 		}
-		
 
-		Async_PreformDirectionBlink();
-		
+
+		Async_PreformDirectionBlink(direction);
+
 	}
 
 	public int GetPowerDraw()
 	{
-		if(isBoosting){ ; return power;}
+		if (isBoosting) {; return power; }
 		return 0;
 	}
 
@@ -58,41 +52,41 @@ public partial class Blinking : Node2D
 		{
 			if (childer is ShipComponent component)
 			{
-				foreach(var child in component.GetChildren())
-				{ 
-					if(child is Area2D)
+				foreach (var child in component.GetChildren())
+				{
+					if (child is Area2D)
 					{
 						Area2D Area2d = (Area2D)child;
 						CollisionShape2D CS = (CollisionShape2D)Area2d.GetChild(0);
 						RectangleShape2D RS = CS.GetShape() as RectangleShape2D;
-						var pos  = component.Position;
-						var upRight  = new Vector2(pos.X +(RS.Size.X/2), pos.Y + (RS.Size.Y/2));
-						var downLeft = new Vector2(pos.X +(RS.Size.X/2), pos.Y + (RS.Size.Y/2));
-						var upLeft= new Vector2(pos.X +(RS.Size.X/2), pos.Y + (RS.Size.Y/2));
-						var downRight= new Vector2(pos.X +(RS.Size.X/2), pos.Y + (RS.Size.Y/2));
+						var pos = component.Position;
+						var upRight = new Vector2(pos.X + (RS.Size.X / 2), pos.Y + (RS.Size.Y / 2));
+						var downLeft = new Vector2(pos.X + (RS.Size.X / 2), pos.Y + (RS.Size.Y / 2));
+						var upLeft = new Vector2(pos.X + (RS.Size.X / 2), pos.Y + (RS.Size.Y / 2));
+						var downRight = new Vector2(pos.X + (RS.Size.X / 2), pos.Y + (RS.Size.Y / 2));
 
-						if(pos.X >= 0 && pos.Y >= 0)
+						if (pos.X >= 0 && pos.Y >= 0)
 						{
-							ComponentVectors.Add(downRight,Vector2.Zero);
+							ComponentVectors.Add(downRight, Vector2.Zero);
 						}
-						else if(pos.X <= 0 && pos.Y >= 0)
+						else if (pos.X <= 0 && pos.Y >= 0)
 						{
-							
-							ComponentVectors.Add(downLeft,Vector2.Zero);
+
+							ComponentVectors.Add(downLeft, Vector2.Zero);
 						}
-						else if(pos.X <= 0 && pos.Y <= 0)
+						else if (pos.X <= 0 && pos.Y <= 0)
 						{
-							ComponentVectors.Add(upLeft,Vector2.Zero);
+							ComponentVectors.Add(upLeft, Vector2.Zero);
 						}
-						else if(pos.X >= 0 && pos.Y <= 0)
+						else if (pos.X >= 0 && pos.Y <= 0)
 						{
-							ComponentVectors.Add(upRight,Vector2.Zero);
+							ComponentVectors.Add(upRight, Vector2.Zero);
 						}
 					}
 				}
 			}
 		}
-		
+
 	}
 
 	private ConvexPolygonShape2D CreateConvexPolygon()
@@ -110,131 +104,185 @@ public partial class Blinking : Node2D
 		return convexPolygon;
 	}
 
-	
-	protected void AreaEntered(Area2D area2d){
+
+	protected void AreaEntered(Area2D area2d)
+	{
 		isAllowedToBlink = false;
 	}
 
-	protected void BodyEntereds(Node2D body){
+	protected void BodyEntereds(Node2D body)
+	{
 		isAllowedToBlink = false;
 	}
 
-	private async void Async_PreformDirectionBlink() 
+	private async void Async_PreformDirectionBlink(Vector2 direction)
 	{
 		Transform2D transForm;
-		area = new Area2D();
-		
-		if (playerShip.Velocity.Length() > 0.1f)
+
+
+		float angleDeg = ConvertRadiansToDegrees(direction.Angle());
+		if (angleDeg == 0)
 		{
-			float angle = Mathf.Atan2(playerShip.Velocity.Y, playerShip.Velocity.X); // angle in [-PI, PI]
-			if (Mathf.Abs(angle) < 0.25f * Mathf.Pi)
+
+			transForm = playerShip.Transform.TranslatedLocal(new Vector2(blinkDist, 0));
+			if (!playerShip.TestMove(playerShip.Transform, new Vector2(blinkDist, 0)))
 			{
 
-				transForm = playerShip.Transform.Translated(new Vector2(blinkDist,0));
-				if(!playerShip.TestMove(playerShip.Transform, new Vector2(blinkDist,0)))
+				if (isAllowedToBlink)
 				{
-					
-					if(isAllowedToBlink)
-					{ 
-						playerShip.KillMomentum();	player_tween(transForm); isBoosting = true;
-						isAllowedToBlink = false;
-						hud_notice(isAllowedToBlink);
-					}
-				}
-				else
-				{
-					isAllowedToBlink = false;
-					hud_notice(isAllowedToBlink);
-				}
-				
-	
-			}
-			else if (Mathf.Abs(angle) > 0.75f * Mathf.Pi)
-			{	
-				transForm = playerShip.Transform.Translated(new Vector2(-blinkDist,0));
-				if(!playerShip.TestMove(playerShip.Transform, new Vector2(-blinkDist,0)))
-				{
-				
-					
-					if(isAllowedToBlink)
-					{
-						playerShip.KillMomentum(); 	player_tween( transForm); isBoosting = true;
-						isAllowedToBlink = false;
-						hud_notice(isAllowedToBlink);
-					}
-				}
-				else
-				{
-					isAllowedToBlink = false;
-					hud_notice(isAllowedToBlink);
-				}
-			}
-			else if (angle > 0.0f)
-			{
-				transForm = playerShip.Transform.Translated(new Vector2(0,blinkDist));
-				if(!playerShip.TestMove(playerShip.Transform, new Vector2(0,blinkDist)))
-				{
-					
-					if(isAllowedToBlink)
-					{ 
-						playerShip.KillMomentum();	player_tween( transForm); isBoosting = true;
-						isAllowedToBlink = false;
-						hud_notice(isAllowedToBlink);
-					}
-				}
-				else
-				{
-					isAllowedToBlink = false;
-					hud_notice(isAllowedToBlink);
+					Blinked(transForm);
 				}
 			}
 			else
 			{
-				transForm = playerShip.Transform.Translated(new Vector2(0,-blinkDist));
-				if(!playerShip.TestMove(playerShip.Transform, new Vector2(0,-blinkDist)))
+				isAllowedToBlink = false;
+				HudNotice(isAllowedToBlink);
+			}
+
+
+		}
+		else if (angleDeg == 180)
+		{
+			transForm = playerShip.Transform.TranslatedLocal(new Vector2(-blinkDist, 0));
+			if (!playerShip.TestMove(playerShip.Transform, new Vector2(-blinkDist, 0)))
+			{
+
+
+				if (isAllowedToBlink)
 				{
-					if(isAllowedToBlink)
-					{ 
-						player_tween( transForm); isBoosting = true;
-						playerShip.KillMomentum();
-						isAllowedToBlink = false;
-						hud_notice(isAllowedToBlink);
+					Blinked(transForm);
+				}
+			}
+			else
+			{
+				isAllowedToBlink = false;
+				HudNotice(isAllowedToBlink);
+			}
+		}
+		else if (angleDeg == 90)
+		{
+			transForm = playerShip.Transform.TranslatedLocal(new Vector2(0, blinkDist));
+			if (!playerShip.TestMove(playerShip.Transform, new Vector2(0, blinkDist)))
+			{
+
+				if (isAllowedToBlink)
+				{
+					Blinked(transForm);
+
+				}
+				else
+				{
+					isAllowedToBlink = false;
+					HudNotice(isAllowedToBlink);
+				}
+			}
+			else
+			{
+				transForm = playerShip.Transform.TranslatedLocal(new Vector2(0, -blinkDist));
+				if (!playerShip.TestMove(playerShip.Transform, new Vector2(0, -blinkDist)))
+				{
+					if (isAllowedToBlink)
+					{
+						Blinked(transForm);
 					}
 				}
 				else
 				{
 					isAllowedToBlink = false;
-					hud_notice(isAllowedToBlink);
+					HudNotice(isAllowedToBlink);
 				}
 			}
+
+			//area.QueueFree();
+
+			await ToSignal(GetTree().CreateTimer(3), "timeout");
+			isAllowedToBlink = true;
+			isBoosting = false;
+			HudNotice(isAllowedToBlink);
 		}
-		//area.QueueFree();
-		await ToSignal(GetTree().CreateTimer(3),"timeout");
-		isAllowedToBlink = true;
-		isBoosting = false;
-		hud_notice(isAllowedToBlink);
 	}
 
-	private void player_tween(Transform2D trans){
-		
-		Tween tween = GetTree().CreateTween().BindNode(playerShip).SetTrans(Tween.TransitionType.Linear);
-		tween.TweenProperty(playerShip, "transform",trans,0.10f );	
-
-	}
-
-	private void hud_notice(bool visible){
-		hud.Visible =visible;
-		
-	}
-
-	private void find_blink_hud(){
-	foreach (var child in Game.Instance.Hud.GetChildren())
+	private void PlayerTween(Transform2D trans)
 	{
-		if (child.Name == "BlinkNotice")
+
+		Tween tween = GetTree().CreateTween().BindNode(playerShip).SetTrans(Tween.TransitionType.Linear);
+		tween.TweenProperty(playerShip, "transform", trans, 0.10f);
+
+	}
+
+	private void HudNotice(bool visible)
+	{
+		hud.Visible = visible;
+
+	}
+
+	private void FindBlinkHud()
+	{
+		foreach (var child in Game.Instance.Hud.GetChildren())
 		{
-			hud = (Control)child;
+			if (child.Name == "BlinkNotice")
+			{
+				hud = (Control)child;
+			}
+
 		}
-		
 	}
+
+	private static float ConvertRadiansToDegrees(double radians)
+	{
+		double degrees = (180 / Math.PI) * radians;
+		return (float)(degrees);
 	}
+
+	private void IFrame()
+	{
+		if (time == null)
+		{
+			time = new();
+			time.OneShot = true;
+			AddChild(time);
+		}
+		if (!time.IsStopped())
+		{
+			return;
+		}
+		foreach (ShipComponent c in playerShip.shipParts)
+		{
+			Node health = null;
+			foreach (Node h in c.GetChildren())
+			{
+				if (h.Name == "HealthComponent")
+				{
+					health = h;
+					break;
+				}
+			}
+			if (health == null)
+			{
+				continue;
+			}
+			health.Set("i_bool", true);
+			time.Timeout += () => DisableIFrame(health);
+
+		}
+		time.Start(2);
+		GD.Print("I Frames set");
+	}
+
+	private void DisableIFrame(Node health)
+	{
+		health.Set("i_bool", false);
+		time.Timeout -= () => DisableIFrame(health);
+	}
+
+	private void Blinked(Transform2D transForm)
+	{
+		IFrame();
+		playerShip.KillMomentum();
+		PlayerTween(transForm);
+		isBoosting = true;
+		isAllowedToBlink = false;
+		HudNotice(isAllowedToBlink);
+	}
+
 }

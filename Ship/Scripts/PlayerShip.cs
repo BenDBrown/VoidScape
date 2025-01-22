@@ -168,10 +168,10 @@ public partial class PlayerShip : Ship
 
 	public void Interact() => EmitSignal(SignalName.InteractableInteracted);
 
-	public void PerformBlink()
+	public void PerformBlink(Vector2 vector2)
 	{
 		if (stalling) return;
-		blinking.Async_PerformBlink();
+		blinking.Async_PerformBlink(vector2);
 	}
 
 	#region GUN

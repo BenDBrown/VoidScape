@@ -7,12 +7,15 @@ signal health_changed(current_health:int)
 @export var max_health: int = 100
 @export var defense: int = 10
 var current_health: int
+var i_bool:bool
 
 func _ready() -> void:
 	current_health = max_health
 	health_changed.emit(current_health)
 
 func take_damage(attackComponent: AttackComponent):
+	if i_bool:
+		return
 	current_health -= max(1, attackComponent.attack - calculate_defense(attackComponent.attack))
 	health_changed.emit(current_health)
 	if current_health <= 0:
