@@ -299,6 +299,7 @@ layout_mode = 2
 text = "Build Ship"
 
 [connection signal="item_clicked" from="MarginContainer/HBoxContainer/ShipComponents/ComponentList" to="." method="OnItemClicked"]
+[connection signal="item_clicked" from="MarginContainer/HBoxContainer/ShipComponents/ComponentList" to="MarginContainer/HBoxContainer/ShipComponents/ComponentList" method="OnItemClicked"]
 [connection signal="item_selected" from="MarginContainer/HBoxContainer/ShipComponents/ComponentList" to="MarginContainer/HBoxContainer/ShipComponents/ComponentList" method="OnItemSelected"]
 [connection signal="color_changed" from="MarginContainer/HBoxContainer/ShipComponents/PickCoolour/ColorPickerButton" to="." method="OnColourChanged"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/ShipComponents/RemoveAll" to="." method="OnRemoveAllPressed"]
