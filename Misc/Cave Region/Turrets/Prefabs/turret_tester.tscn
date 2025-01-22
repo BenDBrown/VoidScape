@@ -15,6 +15,7 @@ script = ExtResource("1_t3ubi")
 position = Vector2(365, 200)
 scale = Vector2(2, 2)
 bulletSpeed = 75.0
+bulletsPerSecond = 5.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, 100)

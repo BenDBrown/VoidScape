@@ -73,6 +73,8 @@ animations = [{
 }]
 
 [node name="Laser" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attackboxComponent", "bulletSprite", "onHitAudio")]
+collision_layer = 2
+collision_mask = 23
 script = ExtResource("1_nqjkm")
 timer = NodePath("Timer")
 attackboxComponent = NodePath("AttackboxComponent")
@@ -85,8 +87,8 @@ z_index = -2
 shape = SubResource("RectangleShape2D_c8rxq")
 
 [node name="AttackboxComponent" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 7
+collision_layer = 2
+collision_mask = 23
 script = ExtResource("3_ulkoc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]

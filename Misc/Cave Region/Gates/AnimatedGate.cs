@@ -3,7 +3,8 @@ using System;
 
 public partial class AnimatedGate : Node2D
 {
-	private const string OPEN_GATE_ANIMATION = "Open";
+	[Export]
+	private string animationName = "Open";
 
 	[Export]
 	private AnimationPlayer animation;
@@ -12,7 +13,7 @@ public partial class AnimatedGate : Node2D
 
     public override void _Ready()
     {
-        animation.CurrentAnimation = OPEN_GATE_ANIMATION;
+        animation.CurrentAnimation = animationName;
 		animation.Pause();
     }
 
