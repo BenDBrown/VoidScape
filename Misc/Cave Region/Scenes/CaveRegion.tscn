@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://g7alqgq18gj"]
+[gd_scene load_steps=31 format=4 uid="uid://g7alqgq18gj"]
 
 [ext_resource type="Script" path="res://Ship/Scripts/player_spawner.gd" id="1_5oldp"]
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="2_b5qdu"]
@@ -9,95 +9,7 @@
 [ext_resource type="TileSet" uid="uid://blf4sntdwcxyn" path="res://Assets/Structures/Tilesets/TilesNoCollision.tres" id="7_m52ob"]
 [ext_resource type="Texture2D" uid="uid://cb331x20uss8b" path="res://Assets/Structures/Tiles/ui x2.png" id="8_gwuqt"]
 [ext_resource type="Texture2D" uid="uid://dndayjr4u74x" path="res://Assets/Structures/Tiles/ui x1.png" id="9_sssdm"]
-
-[sub_resource type="Animation" id="Animation_ivv2r"]
-resource_name = "Close"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bottom:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 25), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Top:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -25), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vvw0d"]
-resource_name = "Open"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Top:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -145)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Bottom:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 145)]
-}
-
-[sub_resource type="Animation" id="Animation_mv8po"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Top:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Bottom:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3wmo"]
-_data = {
-"Close": SubResource("Animation_ivv2r"),
-"Open": SubResource("Animation_vvw0d"),
-"RESET": SubResource("Animation_mv8po")
-}
+[ext_resource type="Script" path="res://Misc/Cave Region/Gates/AnimatedGate.cs" id="10_2rn7w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mm3m"]
 atlas = ExtResource("8_gwuqt")
@@ -213,6 +125,95 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="Animation" id="Animation_ivv2r"]
+resource_name = "Close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 25), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Top:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -25), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vvw0d"]
+resource_name = "Open"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -145)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 145)]
+}
+
+[sub_resource type="Animation" id="Animation_mv8po"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3wmo"]
+_data = {
+"Close": SubResource("Animation_ivv2r"),
+"Open": SubResource("Animation_vvw0d"),
+"RESET": SubResource("Animation_mv8po")
+}
+
 [node name="Fake Door Test" type="Node2D"]
 
 [node name="Player Spawner" type="Node2D" parent="."]
@@ -226,47 +227,22 @@ autoplay = true
 [node name="Door Puzzle" type="Node2D" parent="."]
 position = Vector2(156, 103)
 
-[node name="Fake Door" type="Node2D" parent="Door Puzzle" node_paths=PackedStringArray("conditionTargets")]
+[node name="Generators" type="Node2D" parent="Door Puzzle" node_paths=PackedStringArray("conditionTargets")]
 position = Vector2(36, 6)
 scale = Vector2(1.42, 1.42)
 script = ExtResource("3_rkkx6")
 conditionTargets = [NodePath("Destroyable Generator"), NodePath("Destroyable Generator2"), NodePath("Destroyable Generator3")]
 
-[node name="Destroyable Generator" parent="Door Puzzle/Fake Door" instance=ExtResource("4_wqe05")]
+[node name="Destroyable Generator" parent="Door Puzzle/Generators" instance=ExtResource("4_wqe05")]
 position = Vector2(66, 203)
 objectHealth = 100.0
 
-[node name="Destroyable Generator2" parent="Door Puzzle/Fake Door" instance=ExtResource("4_wqe05")]
+[node name="Destroyable Generator2" parent="Door Puzzle/Generators" instance=ExtResource("4_wqe05")]
 position = Vector2(347, 394)
 objectHealth = 50.0
 
-[node name="Destroyable Generator3" parent="Door Puzzle/Fake Door" instance=ExtResource("4_wqe05")]
+[node name="Destroyable Generator3" parent="Door Puzzle/Generators" instance=ExtResource("4_wqe05")]
 position = Vector2(391, 62)
-
-[node name="ShortcutGate" type="Node2D" parent="Door Puzzle" node_paths=PackedStringArray("activationCondition", "gates", "gateHealthAnims", "gateChargerAnim")]
-position = Vector2(1204, -1371)
-rotation = 3.14159
-scale = Vector2(2, 2)
-script = ExtResource("5_uopp5")
-activationCondition = NodePath("../Fake Door")
-gates = []
-gateHealthAnims = []
-gateChargerAnim = NodePath("../ChargeAnimation")
-
-[node name="Top" type="TileMapLayer" parent="Door Puzzle/ShortcutGate"]
-z_index = -2
-tile_map_data = PackedByteArray("AAAIAML/AQAPAAQAAHAIAMP/AQAOAAQAAHAIAMT/AQAPAAQAAHAIAMX/AQAOAAQAAHAIAMb/AQAPAAQAAHAIAMf/AQAOAAQAAHAIAMj/AQAPAAQAAHAIAMn/AQAOAAQAAHAIAMr/AQADAAcAABAJAML/AQAIAAUAAEAJAMP/AQAJAAUAAEAJAMT/AQAIAAUAAEAJAMX/AQAJAAUAAEAJAMb/AQAIAAUAAEAJAMf/AQAJAAUAAEAJAMj/AQAIAAUAAEAJAMn/AQAJAAUAAEAJAMr/AQACAAcAABAIAL3/AQAPAAQAAHAIAL7/AQAOAAQAAHAIAL//AQAPAAQAAHAIAMD/AQAOAAQAAHAIAMH/AQAPAAQAAHAJAL3/AQAIAAUAAEAJAL7/AQAJAAUAAEAJAL//AQAIAAUAAEAJAMD/AQAJAAUAAEAJAMH/AQAIAAUAAEA=")
-tile_set = ExtResource("6_evdo5")
-
-[node name="Bottom" type="TileMapLayer" parent="Door Puzzle/ShortcutGate"]
-z_index = -2
-tile_map_data = PackedByteArray("AAAIAMv/AQACAAYAAEAIAMz/AQAPAAQAAHAIAM3/AQAOAAQAAHAIAM7/AQAPAAQAAHAIAM//AQAOAAQAAHAIAND/AQAPAAQAAHAIANH/AQAOAAQAAHAIANL/AQAPAAQAAHAIANP/AQAOAAQAAHAIANT/AQAOAAQAAHAIANX/AQAPAAQAAHAIANb/AQAOAAQAAHAIANf/AQAPAAQAAHAIANj/AQAOAAQAAHAJAMv/AQACAAcAAEAJAMz/AQAIAAUAAEAJAM3/AQAJAAUAAEAJAM7/AQAIAAUAAEAJAM//AQAJAAUAAEAJAND/AQAIAAUAAEAJANH/AQAJAAUAAEAJANL/AQAIAAUAAEAJANP/AQAJAAUAAEAJANT/AQAJAAUAAEAJANX/AQAIAAUAAEAJANb/AQAJAAUAAEAJANf/AQAIAAUAAEAJANj/AQAJAAUAAEA=")
-tile_set = ExtResource("6_evdo5")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Door Puzzle/ShortcutGate"]
-libraries = {
-"": SubResource("AnimationLibrary_r3wmo")
-}
 
 [node name="Walls" type="TileMapLayer" parent="Door Puzzle"]
 position = Vector2(-123, -65)
@@ -291,6 +267,35 @@ scale = Vector2(2.6875, 1.9375)
 sprite_frames = SubResource("SpriteFrames_usyrk")
 autoplay = "default"
 frame_progress = 0.547146
+
+[node name="Gates" type="Node2D" parent="Door Puzzle" node_paths=PackedStringArray("activationCondition", "gates", "gateHealthAnims", "gateChargerAnim")]
+script = ExtResource("5_uopp5")
+activationCondition = NodePath("../Generators")
+gates = [NodePath("Gate")]
+gateHealthAnims = [NodePath("../GateHealth")]
+gateChargerAnim = NodePath("../ChargeAnimation")
+
+[node name="Gate" type="Node2D" parent="Door Puzzle/Gates" node_paths=PackedStringArray("animation")]
+position = Vector2(1204, -1371)
+rotation = 3.14159
+scale = Vector2(2, 2)
+script = ExtResource("10_2rn7w")
+animation = NodePath("AnimationPlayer")
+
+[node name="Top" type="TileMapLayer" parent="Door Puzzle/Gates/Gate"]
+z_index = -2
+tile_map_data = PackedByteArray("AAAIAML/AQAPAAQAAHAIAMP/AQAOAAQAAHAIAMT/AQAPAAQAAHAIAMX/AQAOAAQAAHAIAMb/AQAPAAQAAHAIAMf/AQAOAAQAAHAIAMj/AQAPAAQAAHAIAMn/AQAOAAQAAHAIAMr/AQADAAcAABAJAML/AQAIAAUAAEAJAMP/AQAJAAUAAEAJAMT/AQAIAAUAAEAJAMX/AQAJAAUAAEAJAMb/AQAIAAUAAEAJAMf/AQAJAAUAAEAJAMj/AQAIAAUAAEAJAMn/AQAJAAUAAEAJAMr/AQACAAcAABAIAL3/AQAPAAQAAHAIAL7/AQAOAAQAAHAIAL//AQAPAAQAAHAIAMD/AQAOAAQAAHAIAMH/AQAPAAQAAHAJAL3/AQAIAAUAAEAJAL7/AQAJAAUAAEAJAL//AQAIAAUAAEAJAMD/AQAJAAUAAEAJAMH/AQAIAAUAAEA=")
+tile_set = ExtResource("6_evdo5")
+
+[node name="Bottom" type="TileMapLayer" parent="Door Puzzle/Gates/Gate"]
+z_index = -2
+tile_map_data = PackedByteArray("AAAIAMv/AQACAAYAAEAIAMz/AQAPAAQAAHAIAM3/AQAOAAQAAHAIAM7/AQAPAAQAAHAIAM//AQAOAAQAAHAIAND/AQAPAAQAAHAIANH/AQAOAAQAAHAIANL/AQAPAAQAAHAIANP/AQAOAAQAAHAIANT/AQAOAAQAAHAIANX/AQAPAAQAAHAIANb/AQAOAAQAAHAIANf/AQAPAAQAAHAIANj/AQAOAAQAAHAJAMv/AQACAAcAAEAJAMz/AQAIAAUAAEAJAM3/AQAJAAUAAEAJAM7/AQAIAAUAAEAJAM//AQAJAAUAAEAJAND/AQAIAAUAAEAJANH/AQAJAAUAAEAJANL/AQAIAAUAAEAJANP/AQAJAAUAAEAJANT/AQAJAAUAAEAJANX/AQAIAAUAAEAJANb/AQAJAAUAAEAJANf/AQAIAAUAAEAJANj/AQAJAAUAAEA=")
+tile_set = ExtResource("6_evdo5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Door Puzzle/Gates/Gate"]
+libraries = {
+"": SubResource("AnimationLibrary_r3wmo")
+}
 
 [node name="Shape puzzle" type="Node2D" parent="."]
 

@@ -1,0 +1,157 @@
+[gd_scene load_steps=20 format=3 uid="uid://co1ah1np4mw3u"]
+
+[ext_resource type="Script" path="res://Misc/Cave Region/Turrets/Prefabs/Turret.cs" id="1_3ierb"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="1_ae1ql"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="2_fafp0"]
+[ext_resource type="PackedScene" uid="uid://bckeoopmbomi8" path="res://Ship/Prefabs/Bullet.tscn" id="2_gke03"]
+[ext_resource type="Script" path="res://Components/SingleRunAudio.cs" id="3_li4ml"]
+[ext_resource type="PackedScene" uid="uid://dufs2v05oh01y" path="res://Misc/Cave Region/Turrets/Prefabs/turret_base.tscn" id="3_o11hp"]
+[ext_resource type="SpriteFrames" uid="uid://dex82dgvm1ufw" path="res://Misc/Cave Region/Turrets/Resource/Turret_animation.tres" id="3_w1puq"]
+[ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_oyyo8"]
+[ext_resource type="AudioStream" uid="uid://b0x8va6761xt3" path="res://Assets/Audio/Shapeforms Audio Free Sound Effects/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNTech_Tormentor Shotgun Fire_05.wav" id="5_h0ndf"]
+[ext_resource type="Texture2D" uid="uid://cdd2hgtw2np80" path="res://Assets/Ship/ComponentExplosion.png" id="5_osr45"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tby84"]
+size = Vector2(28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1np7w"]
+atlas = ExtResource("5_osr45")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pon0q"]
+atlas = ExtResource("5_osr45")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nlmf"]
+atlas = ExtResource("5_osr45")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cilio"]
+atlas = ExtResource("5_osr45")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpe0e"]
+atlas = ExtResource("5_osr45")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s0u7"]
+atlas = ExtResource("5_osr45")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffwep"]
+atlas = ExtResource("5_osr45")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxe0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1np7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pon0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nlmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cilio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpe0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s0u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffwep")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Turret" type="Node2D" node_paths=PackedStringArray("gun", "raycast", "laserLine", "gunSprite", "shootSFX", "leftBulletSpawnPoint", "rightBulletSpawnPoint", "deathAnimation", "attackComponent", "timer", "healthComponent", "turretBase")]
+script = ExtResource("1_3ierb")
+gun = NodePath("Gun")
+raycast = NodePath("Gun/RayCast")
+laserLine = NodePath("Gun/RayCast/LaserLine")
+greenLaser = Color(0, 0.823529, 0, 0.286275)
+redLaser = Color(0.823529, 0, 0, 0.286275)
+gunSprite = NodePath("Gun/Gun Animation")
+shootAnimationFrame = 7
+shootSFX = NodePath("Gun/ShootingAudio")
+bulletPrefab = ExtResource("2_gke03")
+bulletSpeed = 80.0
+bulletsPerSecond = 2.0
+leftBulletSpawnPoint = NodePath("Gun/Gun Animation/BulletSpawnPoints/Left BulletSpawnPoint")
+rightBulletSpawnPoint = NodePath("Gun/Gun Animation/BulletSpawnPoints/Right BulletSpawnPoint")
+deathAnimation = NodePath("Explosion Animation")
+attackComponent = NodePath("AttackComponent")
+timer = NodePath("Timer")
+healthComponent = NodePath("HealthComponent")
+turretBasePrefab = ExtResource("3_o11hp")
+turretBase = NodePath("Turret Base")
+
+[node name="Turret Base" parent="." instance=ExtResource("3_o11hp")]
+z_index = -1
+
+[node name="Gun" type="Node2D" parent="."]
+
+[node name="Gun Animation" type="AnimatedSprite2D" parent="Gun"]
+sprite_frames = ExtResource("3_w1puq")
+animation = &"shoot"
+
+[node name="BulletSpawnPoints" type="Node2D" parent="Gun/Gun Animation"]
+position = Vector2(16, 0)
+
+[node name="Left BulletSpawnPoint" type="Node2D" parent="Gun/Gun Animation/BulletSpawnPoints"]
+position = Vector2(18, -5)
+rotation = 1.5708
+
+[node name="Right BulletSpawnPoint" type="Node2D" parent="Gun/Gun Animation/BulletSpawnPoints"]
+position = Vector2(18, 5)
+rotation = 1.5708
+
+[node name="RayCast" type="RayCast2D" parent="Gun"]
+target_position = Vector2(250, 0)
+collision_mask = 53
+
+[node name="LaserLine" type="Line2D" parent="Gun/RayCast"]
+z_as_relative = false
+position = Vector2(3.9685, -1.41925e-05)
+scale = Vector2(0.984252, 1)
+points = PackedVector2Array(0, 0)
+width = 2.0
+default_color = Color(1, 0, 0, 0.286275)
+
+[node name="ShootingAudio" type="AudioStreamPlayer2D" parent="Gun"]
+stream = ExtResource("5_h0ndf")
+volume_db = -20.0
+script = ExtResource("3_li4ml")
+
+[node name="HitboxComponent" type="Area2D" parent="Gun" node_paths=PackedStringArray("healthComponent", "collision_shape")]
+visible = false
+collision_layer = 16
+collision_mask = 55
+script = ExtResource("2_fafp0")
+healthComponent = NodePath("../../HealthComponent")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/HitboxComponent"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_tby84")
+
+[node name="Explosion Animation" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_oxe0i")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("1_ae1ql")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("4_oyyo8")
+attack = 15
+
+[node name="Timer" type="Timer" parent="."]

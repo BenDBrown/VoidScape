@@ -5562,7 +5562,6 @@ texture = ExtResource("15_dmtj3")
 15:88/0 = 0
 
 [resource]
-tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_igy2h")
 sources/1 = SubResource("TileSetAtlasSource_4e3pq")
 sources/2 = SubResource("TileSetAtlasSource_m423e")
