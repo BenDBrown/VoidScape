@@ -30,18 +30,9 @@ func deferred(playerShip:PlayerShip):
 	get_parent().add_child(inventory)
 	saver.build_ship(playerShip)
 	playerShip.TryBuildShip()
-	set_spawn(playerShip)
+	playerShip.global_position = global_position
 	playerShip.OnDestroyed.connect(on_destroyed)
 
 func on_destroyed(ship):
 	hud.hide()
 	gameOver.show()
-	
-func set_spawn(ship: PlayerShip):
-	var spawnPointSave = SpawnPointSave.new()
-	spawnPointSave = spawnPointSave.load_save()
-	if(spawnPointSave.spawn_point != Vector2.ZERO):
-		ship.global_position = spawnPointSave.spawn_point
-	else: 
-		ship.global_position = global_position
-	

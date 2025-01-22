@@ -20,8 +20,6 @@ func _ready():
 
 
 func _on_new_game_pressed():
-	var spawnPointSave = SpawnPointSave.new()
-	spawnPointSave.delete_save()
 	get_tree().change_scene_to_file(start_scene.resource_path)
 
 

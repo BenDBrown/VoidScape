@@ -100,9 +100,6 @@ _data = {
 "warning_animation": SubResource("Animation_g6qi6")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_53yk0"]
-radius = 179.338
-
 [node name="OpenSpace" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_dsj0j")]
