@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class GunManager : IPowerable
+public partial class GunManager
 {
 	public int PowerDraw => GetPowerDraw();
 	private GunGroup selectedGroup = null;
@@ -43,7 +43,7 @@ public partial class GunManager : IPowerable
 
 	public int GetPowerDraw()
 	{
-	if(shooting && selectedGroup != null) return selectedGroup.PowerDraw;
+		if(shooting && selectedGroup != null) return selectedGroup.PowerDraw;
 		return 0;
 	}
 

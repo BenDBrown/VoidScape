@@ -20,6 +20,9 @@ public partial class Blinking : Node2D
 
 	[Export]
 	private bool DirectionByMovement = false;
+
+	public int PowerDraw => GetPowerDraw();
+
 	private Dictionary<Vector2 , Vector2> ComponentVectors = new Dictionary<Vector2, Vector2>();
 	private bool isBoosting = false;
 	private int power = 15;

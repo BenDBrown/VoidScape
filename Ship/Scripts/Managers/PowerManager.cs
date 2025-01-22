@@ -19,20 +19,26 @@ public partial class PowerManager : Node
 	private double stallDuration = 5;
 
 	[Export]
-	private float powerRegenTime = 1; // in seconds
+	private double powerGenerationCooldown;
+
+	[Export]
+	private float powerRegenTime = 5; // in seconds
 
 	[Export]
 	private Timer stallTimer;
 
+	[Export]
+	private Timer powerGenerationCooldownTimer;
+
 	public bool Stalling {get; private set;} = false;
-
-	public float Efficiency {get; private set;} = 0;
-
-	private List<Generator> generators = new ();
 
 	public float MaxPower {get; private set;} = 0;
 
 	public float Power {get; private set;} = 0;
+
+	private List<Generator> generators = new ();
+
+	private bool powerGenerationOnCooldown = false;
 
     public override void _Ready()
     {
@@ -40,11 +46,12 @@ public partial class PowerManager : Node
 		stallTimer.OneShot = true;
 		stallTimer.Stop();
 		stallTimer.Timeout += StallEnd;
+		powerGenerationCooldownTimer.Timeout += () => powerGenerationOnCooldown = false;
     }
 
     public override void _Process(double delta)
     {
-        if(Stalling) return;
+        if(Stalling || powerGenerationOnCooldown) return;
 		Power += (MaxPower * (float)delta) / powerRegenTime;
 		Power = Math.Min(Power, MaxPower);
     }
@@ -55,17 +62,23 @@ public partial class PowerManager : Node
 	/// Will also return false if called while stalling.
 	/// Fuel usage checking is not done here as this should be managed by FuelManager.
     /// </summary>
-	public bool TryUsePower(float powerWanted, out float fuelUsed)
+	public bool TryUsePower(float powerWanted)
 	{
-		fuelUsed = 0;
 		if (Stalling) return false;
+		if(powerWanted > 0) TriggerPowerRegenCooldown();
 		Power -= powerWanted;
 		Power = Math.Max(Power, 0);
 		bool enoughPower = Power > 0;
-		fuelUsed = powerWanted / Efficiency;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 		if(!enoughPower) StallStart();
 		return enoughPower;
+	}
+
+	public void Reset()
+	{
+		generators.Clear();
+		MaxPower = GetMaxPowerGenerated();
+		Power = Math.Min(MaxPower, Power);
 	}
 
 	public void AddGenerator(Generator generator) 
@@ -73,17 +86,14 @@ public partial class PowerManager : Node
 		generators.Add(generator); 
 		MaxPower = GetMaxPowerGenerated();
 		Power = MaxPower;
-		CalculateEfficiency();
 		generator.OnDestroyed += OnGeneratorDestroyed;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
 	}
 
-	public void Reset()
+	private void TriggerPowerRegenCooldown()
 	{
-		generators.Clear();
-		MaxPower = GetMaxPowerGenerated();
-		CalculateEfficiency();
-		Power = Math.Min(MaxPower, Power);
+		powerGenerationOnCooldown = true;
+		powerGenerationCooldownTimer.Start(powerGenerationCooldown);
 	}
 
 	private void OnGeneratorDestroyed(ShipComponent shipComponent)
@@ -92,7 +102,6 @@ public partial class PowerManager : Node
 		if(!generators.Contains(generator)) {GD.PushError("destroyed generator was not in power manager dict"); return;}
 		generators.Remove(generator);
 		MaxPower = GetMaxPowerGenerated();
-		CalculateEfficiency();
 		Power = Math.Min(MaxPower, Power);
 		generator.OnDestroyed -= OnGeneratorDestroyed;
 		EmitSignal(SignalName.PowerChanged, GetPowerPercentage());
@@ -117,15 +126,6 @@ public partial class PowerManager : Node
 		float maxPowerGenerated = 0;
 		foreach (Generator generator in generators){ maxPowerGenerated += generator.maxPowerGenerated; }
 		return maxPowerGenerated;
-	}
-
-	private float CalculateEfficiency()
-	{
-		Efficiency = 0;
-		if(generators.Count <= 0) return Efficiency;
-		foreach(Generator generator in generators) Efficiency += generator.efficiency;
-		Efficiency /= generators.Count;
-		return Efficiency;
 	}
 
 	private float GetPowerPercentage() => (Power / MaxPower) * 100;

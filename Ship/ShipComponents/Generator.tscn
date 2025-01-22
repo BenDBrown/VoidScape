@@ -13,7 +13,6 @@ shader_parameter/tolerance = 0.001
 
 [node name="Generator" instance=ExtResource("1_ygkwo")]
 script = ExtResource("2_xhv8o")
-efficiency = 1.0
 maxPowerGenerated = 100
 
 [node name="Sprite" parent="." index="3"]
