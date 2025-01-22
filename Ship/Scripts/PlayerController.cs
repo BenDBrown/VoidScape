@@ -29,7 +29,7 @@ public partial class PlayerController : Node
         if (Input.IsActionJustReleased("back")) { playerShip.StopThrustingBackward(); }
         if (Input.IsActionJustReleased("right")) { playerShip.StopThrustingRight(); }
         if (Input.IsActionJustReleased("left")) { playerShip.StopThrustingLeft(); }
-        if (Input.IsActionJustPressed("boosting")){playerShip.PerformBlink( );}
+        if (Input.IsActionJustPressed("boosting")){playerShip.PerformBlink(GetPlayerInputDirection());}
 
         if (Input.IsActionJustPressed("shoot"))
         {
@@ -70,10 +70,10 @@ public partial class PlayerController : Node
     public Vector2 GetPlayerInputDirection()
     {
         Vector2 returnVect = Vector2.Zero;
-        if(Input.IsActionJustPressed("forward")) returnVect += Vector2.Up;
-        else if (Input.IsActionJustPressed("back")) returnVect += Vector2.Down;
-        if(Input.IsActionJustPressed("right")) returnVect += Vector2.Right;
-        else if(Input.IsActionJustPressed("forward")) returnVect += Vector2.Left;
+        if(Input.IsActionPressed("forward")) returnVect += Vector2.Up;
+        else if (Input.IsActionPressed("back")) returnVect += Vector2.Down;
+        if(Input.IsActionPressed("rotate_right")) returnVect += Vector2.Right;
+        else if(Input.IsActionPressed("rotate_left")) returnVect += Vector2.Left;
         return returnVect.Normalized();
     }
 }
