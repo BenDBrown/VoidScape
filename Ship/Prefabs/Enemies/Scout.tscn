@@ -45,6 +45,7 @@ data = ExtResource("9_ka13x")
 
 [node name="Thruster" parent="." index="6" instance=ExtResource("6_f3s73")]
 position = Vector2(0, 64)
+fuelUsage = 0
 data = ExtResource("11_wnhb2")
 
 [node name="FuelTank2" parent="." index="7" instance=ExtResource("3_kk4qs")]

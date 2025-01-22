@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class ShipBuilderManager : Control
 {
@@ -22,8 +23,11 @@ public partial class ShipBuilderManager : Control
 	[Export]
 	private ColorPickerButton colourpicker;
 
+	[Export]
+	private Menu stationMenu;
 
-	private Dictionary<int, ShipComponentData> itemListRef = new();
+
+	private ShipComponentData[] itemListRef;
 	private List<Piece> pieces = new();
 	private ShipComponentData preview;
 	private Sprite2D draggedPreview;
@@ -39,12 +43,18 @@ public partial class ShipBuilderManager : Control
 	private GridTile[] gridSquares;
 
 
-
-
 	public override void _Ready()
 	{
+		base._Ready();
+		stationMenu.OnReadyFinished += SetUp;
+	}
+
+
+	public void SetUp()
+	{
+		itemListRef = stationMenu.Datas;
 		pieceColour = new(0.51f, 0.502f, 0.486f, 1);
-		itemList.PopulateItemList();
+		itemList.PopulateItemList(itemListRef);
 		shipStats.PopulateList();
 		gridSquares = gridGenerator.GenerateGrid();
 		foreach (TextureRect cr in gridSquares)
@@ -85,7 +95,7 @@ public partial class ShipBuilderManager : Control
 				Rect2 itemRect = itemList.GetItemRect(i);
 				if (itemRect.HasPoint(atPosition))
 				{
-					ShipComponentData data = itemList.ItemListRef[i];
+					ShipComponentData data = itemList.ItemListRefData[i];
 					draggedPreview = new();
 					preview = data;
 					draggedPreview.Texture = data.Sprite;

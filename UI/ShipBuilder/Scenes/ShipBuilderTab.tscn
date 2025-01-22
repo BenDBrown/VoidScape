@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bek4qr7p7b0d7"]
+[gd_scene load_steps=9 format=3 uid="uid://bek4qr7p7b0d7"]
 
 [ext_resource type="Script" path="res://UI/ShipBuilder/Scripts/ShipBuilderManager.cs" id="1_0so5t"]
 [ext_resource type="Script" path="res://UI/ShipBuilder/Scripts/GridGenerator.cs" id="1_u6ua3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Guns/Arzo Gun.tres" id="9_5etr4"]
 [ext_resource type="Resource" uid="uid://bbcg4mu0p2j8l" path="res://Resources/ShipData/Hulls/Arzo Hull.tres" id="10_iyfwn"]
 [ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Thrusters/Arzo Thruster.tres" id="11_jup1b"]
+[ext_resource type="Material" uid="uid://cscvae43ltjeu" path="res://addons/ColourPicker/ColourableMat.tres" id="7_gt8iq"]
 
 [node name="ShipBuilderTab" type="Control" node_paths=PackedStringArray("itemList", "gridGenerator", "shipStats", "colourpicker")]
 layout_mode = 3
@@ -227,7 +228,6 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(10, 200)
 layout_mode = 2
 script = ExtResource("5_4r2wq")
-datas = Array[Object]([ExtResource("6_oqe7q"), ExtResource("7_yk4xg"), ExtResource("8_tr5fq"), ExtResource("9_5etr4"), ExtResource("10_iyfwn"), ExtResource("11_jup1b")])
 name = NodePath("../ComponentInformation/ScrollContainer/Stats/Name")
 health = NodePath("../ComponentInformation/ScrollContainer/Stats/Health")
 defense = NodePath("../ComponentInformation/ScrollContainer/Stats/Defense")

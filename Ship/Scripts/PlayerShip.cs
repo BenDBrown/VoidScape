@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 [GlobalClass]
-public partial class PlayerShip : Ship, IShip
+public partial class PlayerShip : Ship
 {
 	[Signal]
 	public delegate void PowerChangedEventHandler(float powerToMaxPowerPercentage);
@@ -66,9 +66,9 @@ public partial class PlayerShip : Ship, IShip
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta); // done in physics process after base so that power draw values on ThrustManager are updated first in the same thread
-		powerManager.TryUsePower(GetPowerDraw((float)delta), out float fuelUsed);
+		powerManager.TryUsePower(GetPowerDraw((float)delta));
 		// ToDo add fuel manager logic with fuel used
-		fuelManager.UseFuel(fuelUsed);
+		fuelManager.UseFuel(thrustManager.FuelUsage);
 	}
 
 	public override bool TryBuildShip()
@@ -117,9 +117,9 @@ public partial class PlayerShip : Ship, IShip
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
-			if (n is Node2D n2 && n is not SingleRunAnimation && n is not Shield) { n2.Position -= ToLocal(center); } // is not, for bandaid solution to prevent ship destruction anim from being off centre
 			if (n is ShipComponent shipComponent)
 			{
+				shipComponent.Position -= ToLocal(center);
 				shipComponent.collider.Owner = null; //prevents warning.
 				shipComponent.collider.Reparent(this);
 				shipComponent.collider.Owner = this;
@@ -137,7 +137,14 @@ public partial class PlayerShip : Ship, IShip
 		GC.Collect();
 	}
 
-	protected override bool IsVitalComponent(ShipComponent shipComponent)
+    public override void Reset()
+    {
+		powerManager.Reset();
+		fuelManager.Reset();
+        base.Reset();
+    }
+
+    protected override bool IsVitalComponent(ShipComponent shipComponent)
 	{
 		// gun intentionally not included as vital atm
 		return shipComponent is Cockpit || shipComponent is Thruster || shipComponent is Generator || shipComponent is FuelTank;
@@ -152,23 +159,14 @@ public partial class PlayerShip : Ship, IShip
 	/// <summary>
 	/// Intended for power usage which does not occur as part of process
 	/// </summary>
-	private void UsePowerChunk(int powerUsed)
-	{
-		powerManager.TryUsePower(powerUsed, out float fuelUsed);
-		fuelManager.UseFuel(fuelUsed);
-	}
+	private void UsePowerChunk(int powerUsed) => powerManager.TryUsePower(powerUsed);
 
 	private float GetPowerDraw(float delta) // add per frame power draw here
 	{
-		return (thrustManager.PowerDraw + gunManager.PowerDraw + shield.PowerDraw + blinking.GetPowerDraw()) * delta;
+		return (gunManager.PowerDraw + shield.PowerDraw + blinking.PowerDraw) * delta;
 	}
 
-	public void Interact()
-	{
-		{ EmitSignal(SignalName.InteractableInteracted); }
-	}
-
-
+	public void Interact() => EmitSignal(SignalName.InteractableInteracted);
 
 	public void PerformBlink()
 	{

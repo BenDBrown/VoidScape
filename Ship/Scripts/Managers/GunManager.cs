@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class GunManager : IPowerable
+public partial class GunManager
 {
 	public int PowerDraw => GetPowerDraw();
 	private GunGroup selectedGroup = null;
@@ -22,16 +22,28 @@ public partial class GunManager : IPowerable
 				break;
 			}
 		}
-		if (!gunAdded) { gunGroups.Add(new(gun)); }
+		if (!gunAdded) 
+		{ 
+			GunGroup newGroup = new(gun);
+			gunGroups.Add(newGroup); 
+			newGroup.GroupDestroyed += OnGunGroupDestroyed;
+		}
 		if (selectedGroup == null)
 		{
 			selectedGroup = gunGroups[0];
 		}
 	}
 
+	public void OnGunGroupDestroyed(GunGroup gunGroup)
+	{
+		gunGroup.GroupDestroyed -= OnGunGroupDestroyed;
+		if(!gunGroups.Contains(gunGroup)) return; 
+		gunGroups.Remove(gunGroup);
+	}
+
 	public int GetPowerDraw()
 	{
-		if(shooting) return selectedGroup.PowerDraw;
+		if(shooting && selectedGroup != null) return selectedGroup.PowerDraw;
 		return 0;
 	}
 
@@ -92,5 +104,15 @@ public partial class GunManager : IPowerable
 		}
 
 		selectedGroup = gunGroups[newIndex];
+	}
+
+	public void Reset()
+	{
+		foreach(GunGroup gg in gunGroups)
+		{
+			gg.GroupDestroyed -= OnGunGroupDestroyed;
+		}
+		gunGroups.Clear();
+		selectedGroup = null;
 	}
 }
