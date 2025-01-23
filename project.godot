@@ -28,7 +28,6 @@ Game="*res://Global/Game.cs"
 
 [display]
 
-window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 
 [dotnet]
