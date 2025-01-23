@@ -31,8 +31,15 @@ func build_ship(parent: Node2D):
 		else:
 			parent.add_child(component)
 			component.position = pos * 32
-		component.IsMirrored = ship[pos]["component"]["Mirrored"] as bool
-		component.rotation = ship[pos]["component"]["LocalRotation"]
+		if(ship[pos]["component"]["Mirrored"] as bool):
+			component.Mirror()
+		var rotations = ship[pos]["component"]["LocalRotation"]/90
+		var rotatingRight = rotations >= 0
+		for i in abs(rotations):
+			if(rotatingRight):
+				component.RotateRight()
+			else:
+				component.RotateLeft()
 		component.SetColour(ship[pos]["colour"])
 		if ship[pos].has("data_path"):
 			var data_path = ship[pos]["data_path"]

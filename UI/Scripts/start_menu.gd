@@ -1,12 +1,6 @@
 extends Node2D
 
-@export var start_scene: PackedScene = preload("res://Scenes/start_scene.tscn")
-@export var continue_scene: PackedScene = preload("res://Scenes/continue.tscn")
-@export var ship_builder_scene: PackedScene = preload("res://Ship/ShipBuilder/ship_builder.tscn")
-@export var test_scene: PackedScene = preload("res://Scenes/open_space.tscn")
-@export var worm_scene: PackedScene = preload("res://Structures/Regions/WormCave/WormCave.tscn")
-@export var cave_scene: PackedScene = preload("res://Scenes/cave_demo.tscn")
-@export var outpost_scene: PackedScene = preload("res://Scenes/e.tscn")
+@export var open_space: PackedScene = preload("res://Scenes/open_space.tscn")
 
 @onready var mainScreen = $"Main Screen/CanvasLayer"
 @onready var settingsMenu = $"SettingsMenu"
@@ -22,11 +16,11 @@ func _ready():
 func _on_new_game_pressed():
 	var spawnPointSave = SpawnPointSave.new()
 	spawnPointSave.delete_save()
-	get_tree().change_scene_to_file(start_scene.resource_path)
+	get_tree().change_scene_to_file(open_space.resource_path)
 
 
 func _on_continue_pressed():
-	get_tree().change_scene_to_file(continue_scene.resource_path)
+	get_tree().change_scene_to_file(open_space.resource_path)
 
 
 func _on_settings_pressed():
@@ -40,19 +34,6 @@ func _on_quit_pressed():
 
 func _on_settings_menu_menu_closed():
 	mainScreen.show()
-
-
-func _on_ship_builder_pressed() -> void:
-	get_tree().change_scene_to_file(ship_builder_scene.resource_path)
-
-func _on_worm_pressed() -> void:
-	get_tree().change_scene_to_file(worm_scene.resource_path)
-
-func _on_ismet_pressed() -> void:
-	get_tree().change_scene_to_file(cave_scene.resource_path)
-
-func _on_test_menu_pressed() -> void:
-	get_tree().change_scene_to_file(test_scene.resource_path)
 
 func _on_remove_save_pressed() -> void:
 	var save = PlayerShipSave.new()
