@@ -107,7 +107,7 @@ loop = true
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(4559, 4012)
+position = Vector2(-4438, 1628)
 script = ExtResource("8_a0yns")
 
 [node name="Comet_tracker" type="Node" parent="."]
@@ -529,9 +529,9 @@ polygon = PackedVector2Array(-4587, -2171, -625, -2501, 1610, -2463, 4429, -2374
 script = ExtResource("12_773b4")
 
 [node name="Wall" type="Area2D" parent="DeathWalls"]
-position = Vector2(-2034, -2527)
+position = Vector2(-2282, -2415)
 rotation = -3.65841
-scale = Vector2(0.263354, 1.77105)
+scale = Vector2(0.203059, 1.12735)
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall"]
@@ -564,7 +564,7 @@ scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
 [node name="Wall3" type="Area2D" parent="DeathWalls"]
-position = Vector2(15359, 510)
+position = Vector2(16004, -357)
 rotation = 0.785397
 scale = Vector2(-1.29783, -9.0174)
 monitorable = false
@@ -623,18 +623,6 @@ script = ExtResource("11_ogu1x")
 canvasLayer = NodePath("../CanvasLayer")
 animationPlayer = NodePath("../CanvasLayer/AnimationPlayer")
 
-[node name="Wall" type="Area2D" parent="WarningWalls"]
-position = Vector2(-2068, -1978)
-rotation = 0.121718
-scale = Vector2(0.278095, 0.206105)
-collision_layer = 128
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall"]
-position = Vector2(364.252, -364.252)
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_ehh5d")
-
 [node name="Wall2" type="Area2D" parent="WarningWalls"]
 position = Vector2(-5893, 175)
 rotation = -0.538571
@@ -647,13 +635,23 @@ rotation = -0.785398
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall3" type="Area2D" parent="WarningWalls"]
-position = Vector2(10791, -641)
+position = Vector2(12847, -217.999)
 rotation = 0.785398
 scale = Vector2(1.1135, -1.215)
 collision_layer = 128
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall3"]
+shape = SubResource("RectangleShape2D_ehh5d")
+
+[node name="Wall6" type="Area2D" parent="WarningWalls"]
+position = Vector2(-1897, -2005)
+rotation = 2.61799
+scale = Vector2(0.23466, -0.641787)
+collision_layer = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall6"]
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall4" type="Area2D" parent="WarningWalls"]
@@ -668,13 +666,24 @@ position = Vector2(-135.759, 0)
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall5" type="Area2D" parent="WarningWalls"]
-position = Vector2(8868, 5010)
+position = Vector2(10340, 4902)
 rotation = -0.491526
 scale = Vector2(1.75655, 2.07035)
 collision_layer = 128
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall5"]
+position = Vector2(-135.759, 0)
+shape = SubResource("RectangleShape2D_ehh5d")
+
+[node name="Wall7" type="Area2D" parent="WarningWalls"]
+position = Vector2(3281, 8454)
+rotation = -0.491526
+scale = Vector2(0.420134, 1.56638)
+collision_layer = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall7"]
 position = Vector2(-135.759, 0)
 shape = SubResource("RectangleShape2D_ehh5d")
 
@@ -723,13 +732,15 @@ position = Vector2(408, -4095)
 [connection signal="body_entered" from="DeathWalls/Wall6" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="DeathWalls/Wall8" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="DeathWalls/Wall5" to="DeathWalls" method="OnBodyEntered"]
-[connection signal="body_entered" from="WarningWalls/Wall" to="WarningWalls" method="OnBodyEntered"]
-[connection signal="body_exited" from="WarningWalls/Wall" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall2" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall2" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall3" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall3" to="WarningWalls" method="OnBodyExited"]
+[connection signal="body_entered" from="WarningWalls/Wall6" to="WarningWalls" method="OnBodyEntered"]
+[connection signal="body_exited" from="WarningWalls/Wall6" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall4" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall4" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall5" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall5" to="WarningWalls" method="OnBodyExited"]
+[connection signal="body_entered" from="WarningWalls/Wall7" to="WarningWalls" method="OnBodyEntered"]
+[connection signal="body_exited" from="WarningWalls/Wall7" to="WarningWalls" method="OnBodyExited"]
