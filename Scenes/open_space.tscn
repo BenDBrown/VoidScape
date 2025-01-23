@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ck7jschg6olwg"]
+[gd_scene load_steps=48 format=3 uid="uid://dpd1aa4ydd0xw"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_dsj0j"]
 [ext_resource type="Texture2D" uid="uid://bisny8ancsbfm" path="res://Assets/Hazzards/Blackhole/Blackhole.png" id="2_e8ctp"]
@@ -107,7 +107,7 @@ loop = true
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(4427, 2207)
+position = Vector2(2512, -1645)
 script = ExtResource("8_a0yns")
 
 [node name="Comet_tracker" type="Node" parent="."]
@@ -507,9 +507,9 @@ shape = SubResource("CircleShape2D_fi5be")
 script = ExtResource("12_773b4")
 
 [node name="Wall" type="Area2D" parent="DeathWalls"]
-position = Vector2(-6243, -9848)
-rotation = -0.73009
-scale = Vector2(3.206, 12.957)
+position = Vector2(-2034, -2527)
+rotation = -3.65841
+scale = Vector2(0.263354, 1.77105)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall"]
 position = Vector2(-466.336, -0.000732422)
@@ -517,9 +517,20 @@ rotation = -3.14159
 scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
+[node name="Wall7" type="Area2D" parent="DeathWalls"]
+position = Vector2(-6676, -282)
+rotation = -4.46603
+scale = Vector2(0.389485, 1.77105)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall7"]
+position = Vector2(-466.336, -0.000732422)
+rotation = -3.14159
+scale = Vector2(25.5983, 20.9709)
+shape = SubResource("RectangleShape2D_ilolr")
+
 [node name="Wall2" type="Area2D" parent="DeathWalls"]
-position = Vector2(12848, 9917)
-rotation = -0.785398
+position = Vector2(10660, 7731)
+rotation = 2.6508
 scale = Vector2(1.99577, 10.8956)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall2"]
@@ -528,9 +539,9 @@ scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
 [node name="Wall3" type="Area2D" parent="DeathWalls"]
-position = Vector2(17069, -4866)
+position = Vector2(15359, 510)
 rotation = 0.785397
-scale = Vector2(-3.504, -11.167)
+scale = Vector2(-1.29783, -9.0174)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall3"]
 rotation = -3.14159
@@ -538,11 +549,41 @@ scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
 [node name="Wall4" type="Area2D" parent="DeathWalls"]
-position = Vector2(-10293, 6272)
-rotation = 0.785398
-scale = Vector2(2.34366, -12.1103)
+position = Vector2(-4205, 3948)
+rotation = 0.88344
+scale = Vector2(0.157784, -1.34128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall4"]
+rotation = -3.14159
+scale = Vector2(25.5983, 20.9709)
+shape = SubResource("RectangleShape2D_ilolr")
+
+[node name="Wall6" type="Area2D" parent="DeathWalls"]
+position = Vector2(-6755, 2217)
+rotation = 0.88344
+scale = Vector2(0.157784, -1.34128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall6"]
+rotation = -3.14159
+scale = Vector2(25.5983, 20.9709)
+shape = SubResource("RectangleShape2D_ilolr")
+
+[node name="Wall8" type="Area2D" parent="DeathWalls"]
+position = Vector2(-5316, -2350)
+rotation = 0.0402296
+scale = Vector2(0.157784, -1.34128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall8"]
+rotation = -3.14159
+scale = Vector2(25.5983, 20.9709)
+shape = SubResource("RectangleShape2D_ilolr")
+
+[node name="Wall5" type="Area2D" parent="DeathWalls"]
+position = Vector2(1588, 9084)
+rotation = 1.04208
+scale = Vector2(0.157784, -1.34128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall5"]
 rotation = -3.14159
 scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
@@ -553,8 +594,9 @@ canvasLayer = NodePath("../CanvasLayer")
 animationPlayer = NodePath("../CanvasLayer/AnimationPlayer")
 
 [node name="Wall" type="Area2D" parent="WarningWalls"]
-position = Vector2(-4963, -5757)
-scale = Vector2(2.594, 2.357)
+position = Vector2(-2068, -1978)
+rotation = 0.121718
+scale = Vector2(0.278095, 0.206105)
 collision_layer = 128
 monitorable = false
 
@@ -563,10 +605,21 @@ position = Vector2(364.252, -364.252)
 rotation = -0.785398
 shape = SubResource("RectangleShape2D_ehh5d")
 
+[node name="Wall2" type="Area2D" parent="WarningWalls"]
+position = Vector2(-5893, 175)
+rotation = -0.538571
+collision_layer = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall2"]
+position = Vector2(364.252, -364.252)
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_ehh5d")
+
 [node name="Wall3" type="Area2D" parent="WarningWalls"]
-position = Vector2(12293, -5089)
+position = Vector2(10791, -641)
 rotation = 0.785398
-scale = Vector2(2.556, -1.215)
+scale = Vector2(1.1135, -1.215)
 collision_layer = 128
 monitorable = false
 
@@ -574,9 +627,9 @@ monitorable = false
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall4" type="Area2D" parent="WarningWalls"]
-position = Vector2(-4908, 7105)
-rotation = 0.785398
-scale = Vector2(2.59661, 1.10884)
+position = Vector2(-3547, 3954)
+rotation = 0.866545
+scale = Vector2(0.22073, 0.51487)
 collision_layer = 128
 monitorable = false
 
@@ -585,8 +638,8 @@ position = Vector2(-135.759, 0)
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall5" type="Area2D" parent="WarningWalls"]
-position = Vector2(12613, 5976)
-rotation = -0.785397
+position = Vector2(8868, 5010)
+rotation = -0.491526
 scale = Vector2(1.75655, 2.07035)
 collision_layer = 128
 monitorable = false
@@ -620,25 +673,30 @@ position = Vector2(595, 314)
 texture = ExtResource("12_87wu5")
 
 [node name="EnemyOupost" parent="." instance=ExtResource("38_sa6uf")]
-position = Vector2(4205, -8785)
+position = Vector2(-4437, 513)
+rotation = -1.31708
 
 [node name="Cave" parent="." instance=ExtResource("39_v2k43")]
-position = Vector2(-8065, 743)
-rotation = -6.28319
+position = Vector2(-2718, 5842)
 
 [node name="City" parent="." instance=ExtResource("40_fgjdu")]
-position = Vector2(9141, 1524)
+position = Vector2(6986, 2430)
 
 [node name="WormCave" parent="." instance=ExtResource("41_omwle")]
-position = Vector2(4993, 12157)
-rotation = 2.35619
+position = Vector2(408, -4095)
 
 [connection signal="body_entered" from="DeathWalls/Wall" to="DeathWalls" method="OnBodyEntered"]
+[connection signal="body_entered" from="DeathWalls/Wall7" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="DeathWalls/Wall2" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="DeathWalls/Wall3" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="DeathWalls/Wall4" to="DeathWalls" method="OnBodyEntered"]
+[connection signal="body_entered" from="DeathWalls/Wall6" to="DeathWalls" method="OnBodyEntered"]
+[connection signal="body_entered" from="DeathWalls/Wall8" to="DeathWalls" method="OnBodyEntered"]
+[connection signal="body_entered" from="DeathWalls/Wall5" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="WarningWalls/Wall" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall" to="WarningWalls" method="OnBodyExited"]
+[connection signal="body_entered" from="WarningWalls/Wall2" to="WarningWalls" method="OnBodyEntered"]
+[connection signal="body_exited" from="WarningWalls/Wall2" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall3" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall3" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall4" to="WarningWalls" method="OnBodyEntered"]
