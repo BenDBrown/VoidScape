@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://dkyso38nhof5y"]
+[gd_scene load_steps=10 format=4 uid="uid://dkyso38nhof5y"]
 
 [ext_resource type="PackedScene" uid="uid://b5duuyvjbcm8r" path="res://Structures/Regions/WormCave/TileSet/TileLayer.tscn" id="1_evx8c"]
 [ext_resource type="Shader" path="res://addons/ColourPicker/ColorPicker.gdshader" id="2_57sbf"]
 [ext_resource type="PackedScene" uid="uid://8ut68lhndecc" path="res://Structures/Regions/WormCave/SubStructures/Room1.tscn" id="4_c0bsb"]
 [ext_resource type="PackedScene" uid="uid://cqevjsnjobogc" path="res://Structures/Regions/WormCave/SubStructures/Room4.tscn" id="5_wi116"]
+[ext_resource type="PackedScene" uid="uid://86y0byhp3o6v" path="res://Misc/SpawnPoint/SpawnPoint.tscn" id="6_44e74"]
 [ext_resource type="PackedScene" uid="uid://ckk5kpgparrmb" path="res://Structures/Regions/WormCave/SubStructures/WormBossRoom.tscn" id="6_q2lq0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_djv54"]
@@ -11,6 +12,12 @@ shader = ExtResource("2_57sbf")
 shader_parameter/color = Color(0.164645, 0.200462, 0.14283, 1)
 shader_parameter/shades = PackedColorArray(0.376471, 0.376471, 0.376471, 1, 0.282353, 0.313726, 0.337255, 1, 0.211765, 0.227451, 0.262745, 1, 0.160784, 0.172549, 0.219608, 1, 0.14902, 0.14902, 0.14902, 1)
 shader_parameter/tolerance = 0.001
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gp0nk"]
+size = Vector2(330, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7maw"]
+size = Vector2(65, 485)
 
 [node name="WormCave" type="Node2D"]
 
@@ -30,3 +37,17 @@ tile_map_data = PackedByteArray("AAAWAPr/AAAFAAAAAAAWAPv/AAAFAAEAAAAWAPz/AAAFAAE
 
 [node name="WormBossRoom" parent="." instance=ExtResource("6_q2lq0")]
 position = Vector2(4320, -640)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("6_44e74")]
+position = Vector2(573, 397)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoint"]
+position = Vector2(5, 218)
+shape = SubResource("RectangleShape2D_gp0nk")
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("6_44e74")]
+position = Vector2(4306, -376)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoint2"]
+position = Vector2(-183.5, -49.5)
+shape = SubResource("RectangleShape2D_a7maw")
