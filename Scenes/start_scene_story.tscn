@@ -1,23 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmc7vm3udj4oo"]
+[gd_scene load_steps=9 format=3 uid="uid://cmc7vm3udj4oo"]
 
 [ext_resource type="Texture2D" uid="uid://d15m4iaae7bvs" path="res://Assets/Frames/Kaboom etc.png" id="1_cvpwp"]
+[ext_resource type="Script" path="res://Scenes/StartSceneStory.cs" id="1_rnnng"]
 [ext_resource type="Texture2D" uid="uid://b7bps2xvugi43" path="res://Assets/Frames/Explotion frame/Explotion Frame.png" id="2_1e2f2"]
-
-[sub_resource type="Animation" id="Animation_3i8ye"]
-resource_name = "story_scene"
-length = 20.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FrameOne:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.141176), Color(1, 1, 1, 0.529412), Color(1, 1, 1, 1)]
-}
+[ext_resource type="PackedScene" uid="uid://dpd1aa4ydd0xw" path="res://Scenes/open_space.tscn" id="2_rw0bh"]
+[ext_resource type="FontFile" uid="uid://dm3da8vv2pdur" path="res://UI/Styles/Early GameBoy.ttf" id="3_8878g"]
 
 [sub_resource type="Animation" id="Animation_wp8rn"]
 length = 0.001
@@ -33,6 +20,70 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.141176)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Critical "]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FrameTwo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3i8ye"]
+resource_name = "story_scene"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrameOne:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3.03333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.141176), Color(1, 1, 1, 0.529412), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.86667, 2.96667, 4.5, 4.8, 5.06667, 7.4, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Critical Warning: Containment failing", "Critical Warning: Containment failing", "I have to stop it before it's too late!", "I have to stop it before it's too late!", "", "I was too late ....", "I was too late ....", ""]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FrameTwo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5, 6, 7, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.411765), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_31174"]
 _data = {
@@ -40,7 +91,10 @@ _data = {
 "story_scene": SubResource("Animation_3i8ye")
 }
 
-[node name="StartSceneStory" type="CanvasLayer"]
+[node name="StartSceneStory" type="CanvasLayer" node_paths=PackedStringArray("FrameAnimPlayer")]
+script = ExtResource("1_rnnng")
+FrameAnimPlayer = NodePath("AnimationPlayer")
+OpenScene = ExtResource("2_rw0bh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -57,19 +111,31 @@ color = Color(0.122252, 0.122252, 0.122252, 1)
 
 [node name="FrameOne" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.141176)
-position = Vector2(581, 276)
-scale = Vector2(3, 3)
+position = Vector2(574, 322)
+scale = Vector2(3.5, 3.5)
 texture = ExtResource("1_cvpwp")
 
 [node name="FrameTwo" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(581, 277)
-scale = Vector2(3, 3)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(576, 323)
+scale = Vector2(3.5, 3.5)
 texture = ExtResource("2_1e2f2")
 
-[node name="Text" type="Label" parent="."]
-offset_left = 103.0
-offset_top = 577.0
-offset_right = 143.0
-offset_bottom = 600.0
-scale = Vector2(24.0076, 2.22667)
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.892941, 0.693856, 0.31176, 1)
+theme_override_fonts/font = ExtResource("3_8878g")
+theme_override_font_sizes/font_size = 21
+text = "Critical "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="OnAnimationFinished"]
