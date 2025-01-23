@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bdfv43vv4fen8"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://eov4r317kd25"]
 
 [ext_resource type="Texture2D" uid="uid://8dxpgd0ptos1" path="res://Misc/Cave Region/Generators/Pipe Sprite.png" id="1_57sak"]
 [ext_resource type="Texture2D" uid="uid://biwy3p8qaa0uu" path="res://Misc/Cave Region/Generators/Updated Pipe Sheet.png" id="2_ju1q2"]

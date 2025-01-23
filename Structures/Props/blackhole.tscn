@@ -1,10 +1,39 @@
-[gd_scene load_steps=2 format=4 uid="uid://bw0swwhxxdmdu"]
+[gd_scene load_steps=7 format=3 uid="uid://bw0swwhxxdmdu"]
 
-[ext_resource type="TileSet" uid="uid://cic6cq1ycfnjo" path="res://Assets/Structures/Tilesets/TilesWithCollision.tres" id="1_674ei"]
+[ext_resource type="Script" path="res://Structures/Props/blackhole.gd" id="1_ap3rd"]
+[ext_resource type="Texture2D" uid="uid://bisny8ancsbfm" path="res://Assets/Hazzards/Blackhole/Blackhole.png" id="1_jasxe"]
+[ext_resource type="Script" path="res://Components/AttackComponent.cs" id="2_8gcx0"]
+[ext_resource type="Script" path="res://Components/attackbox_component.gd" id="4_ahjar"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47346"]
+radius = 834.029
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_curf1"]
+radius = 65.1153
 
 [node name="Blackhole" type="Node2D"]
+script = ExtResource("1_ap3rd")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-z_index = -2
-tile_map_data = PackedByteArray("AAD8//7/DwAQAAEAAAD8////DwAQAAIAAAD8/wAADwAQAAMAAAD8/wEADwAQAAQAAAD9//3/DwARAAAAAAD9//7/DwARAAEAAAD9////DwARAAIAAAD9/wAADwARAAMAAAD9/wEADwARAAQAAAD+//3/DwASAAAAAAD+//7/DwASAAEAAAD+////DwASAAIAAAD+/wAADwASAAMAAAD+/wEADwASAAQAAAD+/wIADwASAAUAAAD///3/DwATAAAAAAD///7/DwATAAEAAAD/////DwATAAIAAAD//wAADwATAAMAAAD//wEADwATAAQAAAD//wIADwATAAUAAAAAAP3/DwAUAAAAAAAAAP7/DwAUAAEAAAAAAP//DwAUAAIAAAAAAAAADwAUAAMAAAAAAAEADwAUAAQAAAAAAAIADwAUAAUAAAABAP3/DwAVAAAAAAABAP7/DwAVAAEAAAABAP//DwAVAAIAAAABAAAADwAVAAMAAAABAAEADwAVAAQAAAABAAIADwAVAAUAAAACAP3/DwAWAAAAAAACAP7/DwAWAAEAAAACAP//DwAWAAIAAAACAAAADwAWAAMAAAACAAEADwAWAAQAAAACAAIADwAWAAUAAAADAP7/DwAXAAEAAAADAP//DwAXAAIAAAADAAAADwAXAAMAAAA=")
-tile_set = ExtResource("1_674ei")
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("2_8gcx0")
+attack = 99999999
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jasxe")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_47346")
+
+[node name="AttackboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack_component")]
+script = ExtResource("4_ahjar")
+attack_component = NodePath("../AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
+shape = SubResource("CircleShape2D_curf1")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
