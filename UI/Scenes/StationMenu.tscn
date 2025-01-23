@@ -4,16 +4,12 @@
 [ext_resource type="Script" path="res://UI/Scripts/Menu.cs" id="2_oc8j1"]
 [ext_resource type="Script" path="res://UI/Scripts/Tabs.cs" id="3_fyd7s"]
 [ext_resource type="Script" path="res://Resources/Scripts/player_ship_save.gd" id="6_bhwvy"]
-[ext_resource type="Resource" uid="uid://d1wj1c1q8xjf4" path="res://Resources/ShipData/Cockpits/Mumbai tech wing Cockpit.tres" id="6_vda0v"]
-[ext_resource type="Resource" uid="uid://bn45f5ywhhqpf" path="res://Resources/ShipData/Generators/The Eye ship Generator.tres" id="8_h0ajs"]
 [ext_resource type="PackedScene" uid="uid://bek4qr7p7b0d7" path="res://UI/ShipBuilder/Scenes/ShipBuilderTab.tscn" id="9_kosew"]
-[ext_resource type="Resource" uid="uid://50ho5luwhv1m" path="res://Resources/ShipData/Guns/Mumbai Tech Gun.tres" id="9_oi2fc"]
-[ext_resource type="Resource" uid="uid://dc0h7q8fch0n0" path="res://Resources/ShipData/Thrusters/East Space Company Thruster.tres" id="11_gvtg5"]
 
 [sub_resource type="Theme" id="Theme_t0xj3"]
 default_font = ExtResource("1_lag8a")
 
-[node name="StationMenu" type="Control"]
+[node name="StationMenu" type="Control" node_paths=PackedStringArray("shipBuilderManager")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -27,6 +23,7 @@ mouse_filter = 1
 theme = SubResource("Theme_t0xj3")
 script = ExtResource("2_oc8j1")
 shipSaverClass = ExtResource("6_bhwvy")
+shipBuilderManager = NodePath("MarginContainer/VBoxContainer/Tabs/TabContainer/Build Ship")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

@@ -33,13 +33,10 @@ func build_ship(parent: Node2D):
 			component.position = pos * 32
 		if(ship[pos]["component"]["Mirrored"] as bool):
 			component.Mirror()
-		var rotations = ship[pos]["component"]["LocalRotation"]/90
-		var rotatingRight = rotations >= 0
-		for i in abs(rotations):
-			if(rotatingRight):
-				component.RotateRight()
-			else:
-				component.RotateLeft()
+		component.rotation = ship[pos]["component"]["LocalRotation"]
+
+		if (component is Thruster):
+			component.SetRotate();
 		component.SetColour(ship[pos]["colour"])
 		if ship[pos].has("data_path"):
 			var data_path = ship[pos]["data_path"]
@@ -57,3 +54,6 @@ func load_save():
 
 func get_save_name():
 	return NAME
+
+func get_location():
+	return SAVE_PATH + NAME

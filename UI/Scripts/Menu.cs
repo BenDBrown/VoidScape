@@ -11,12 +11,14 @@ public partial class Menu : Control
 	[Export]
 	public Station stationHub;
 	public ShipComponentData[] Datas { get; private set; }
-
+	[Export]
+	private ShipBuilderManager shipBuilderManager;
 	public override void _Ready()
 	{
 		GD.Print("Items: " + stationHub.Datas.Length);
 		Datas = stationHub.Datas;
 		EmitSignal(SignalName.OnReadyFinished);
+		shipBuilderManager.BuildSucceeded += OnQuitPressed;
 	}
 
 	public void OnQuitPressed()

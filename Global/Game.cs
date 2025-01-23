@@ -33,8 +33,14 @@ public partial class Game : Node
 
 	private void Debug()
 	{
+		if (Input.IsKeyPressed(Key.Escape))
+		{
+			GetTree().ChangeSceneToFile(START_MENU_SCENE);
+		}
+
 		if (Input.IsKeyPressed(Key.F4))
 		{
+
 			playerShipSaver.Call("delete_save");
 			GetTree().ChangeSceneToFile(START_MENU_SCENE);
 		}
@@ -46,7 +52,10 @@ public partial class Game : Node
 		Fx.Play(time);
 	}
 
-	public bool LoadGame() { return false; }
+	public bool LoadGame()
+	{
+		return FileAccess.FileExists((string)playerShipSaver.Call("get_location"));
+	}
 	public bool SaveGame() { return false; }
 
 	public ShipBuildStatus BuildShip(Piece[] pieces)
@@ -61,12 +70,13 @@ public partial class Game : Node
 			component.SetColour(piece.Colour);
 			if (piece.IsMirrored) component.Mirror();
 			PlayerShip.AddComponent(component, piece.Coordinate);
-			int rotations = (int)Math.Round(piece.LocalRotation / 90);
-			for (int i = 0; i < Math.Abs(rotations); i++)
+			component.RotationDegrees = piece.LocalRotation;
+			GD.Print(piece.LocalRotation);
+			if (component is Thruster thruster)
 			{
-				if (rotations >= 0) component.RotateRight();
-				else component.RotateLeft();
+				thruster.SetRotate();
 			}
+
 			comps.Add(piece.Coordinate, component);
 		}
 

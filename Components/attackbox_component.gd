@@ -13,4 +13,3 @@ func on_area_entered(area):
 	if area is HitboxComponent && area.get_parent() != get_parent():
 		on_hit.emit()
 		area.damage(attack_component)
-	

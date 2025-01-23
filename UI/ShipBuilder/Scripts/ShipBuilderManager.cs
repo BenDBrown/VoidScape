@@ -5,11 +5,15 @@ using System.Linq;
 
 public partial class ShipBuilderManager : Control
 {
+
 	private const string ROTATE_RIGHT_ACTION_NAME = "rotate_part_right";
 	private const string ROTATE_LEFT_ACTION_NAME = "rotate_part_left";
 	private const string MIRROR_ACTION_NAME = "mirror_part";
 	private const string RIGHT_CLICK_ACTION_NAME = "right_click";
 
+
+	[Signal]
+	public delegate void BuildSucceededEventHandler();
 
 	[Export]
 	private ShipComponents itemList;
@@ -356,5 +360,9 @@ public partial class ShipBuilderManager : Control
 	{
 		foreach (Piece piece in pieces) piece.Colour = pieceColour;
 		var resolve = Game.Instance.BuildShip(pieces.ToArray());
+		if (resolve == Desktop.Ship.Scripts.ShipBuildStatus.OK)
+		{
+			EmitSignal(SignalName.BuildSucceeded);
+		}
 	}
 }
