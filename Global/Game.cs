@@ -57,9 +57,14 @@ public partial class Game : Node
 			ShipComponent component = piece.ComponentData.GetPrefab();
 			component.SetupData(piece.ComponentData);
 			component.SetColour(piece.Colour);
-			component.IsMirrored = piece.IsMirrored;
+			if(piece.IsMirrored) component.Mirror();
 			PlayerShip.AddComponent(component, piece.Coordinate);
-			component.RotationDegrees = piece.LocalRotation;
+			int rotations = (int)Math.Round(piece.LocalRotation/90);
+			for(int i = 0; i < Math.Abs(rotations); i++)
+			{
+				if(rotations >= 0) component.RotateRight();
+				else component.RotateLeft();
+			}
 			comps.Add(piece.Coordinate, component);
 		}
 

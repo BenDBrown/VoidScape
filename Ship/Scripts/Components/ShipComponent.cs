@@ -95,7 +95,7 @@ public partial class ShipComponent : CharacterBody2D
     public bool BottomAttachable { get; private set; }
     public bool RightAttachable { get; private set; }
     public bool LeftAttachable { get; private set; }
-    public void Mirror()
+    public virtual void Mirror()
     {
         IsMirrored = !IsMirrored;
         bool newAttachableA;
@@ -119,7 +119,7 @@ public partial class ShipComponent : CharacterBody2D
             destroyedSprite.FlipV = !destroyedSprite.FlipV;
         }
     }
-    public void RotateRight()
+    public virtual void RotateRight()
     {
         bool newTop;
         bool newRight;
@@ -137,7 +137,7 @@ public partial class ShipComponent : CharacterBody2D
         if (RotationDegrees >= 360) { RotationDegrees = 0; }
     }
 
-    public void RotateLeft()
+    public virtual void RotateLeft()
     {
         bool newTop;
         bool newLeft;

@@ -6,16 +6,30 @@ public partial class ThrustManager
 {
 	private const double ACCELERATION = 0.4f;
 
+	public delegate void ThrustChangedEventHandler(bool active);
+
+	public event ThrustChangedEventHandler ForwardThrustChanged;
+
+	public event ThrustChangedEventHandler BackwardThrustChanged;
+
+	public event ThrustChangedEventHandler RightThrustChanged;
+
+	public event ThrustChangedEventHandler LeftThrustChanged;
+
 	public Vector2 Force { get; private set; } = Vector2.Zero;
 
 	public float PotentialForwardThrust { get; private set; } = 0;
 
 	public float PotentialBackwardThrust { get; private set; } = 0;
 
-	public float PotentialSideThrust { get; private set; } = 0;
+	public float PotentialRightThrust { get; private set; } = 0;
+
+	public float PotentialLeftThrust { get; private set; } = 0;
 
 	public int FuelUsage => GetFuelUsage();
 
+	// this is wrong atm cuz it is total fuel usage for all thrusters even when not all of them are in use
+	// will see if i can fix tmrw
 	private int fuelUsage = 0;
 
 	public int Weight { get; private set; } = 1; // to avoid division by 0 errors
@@ -39,40 +53,34 @@ public partial class ThrustManager
 		Vector2 backward = Vector2.Zero;
 		Vector2 right = Vector2.Zero;
 		Vector2 left = Vector2.Zero;
-		if (thrustingBackward || thrustingRight || thrustingLeft || thrustingForward) foreach (Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(true); }
-		else foreach (Thruster thruster in thrusters) { thruster.SetThrustAnimationActive(false); }
 
 		if (thrustingForward)
 		{
-			forward = GetAddedForce(Vector2.Up, acceleration, PotentialForwardThrust);
-			forward = forward.Rotated(rotation);
+			forward = Vector2.Up.Rotated(rotation);
+			float currentForceInDirection = Force.Dot(forward);
+			forward = GetAddedForce(forward, acceleration, PotentialForwardThrust, currentForceInDirection);
 		}
 		else if (thrustingBackward)
 		{
-			backward = GetAddedForce(Vector2.Down, acceleration, PotentialBackwardThrust);
-			backward = backward.Rotated(rotation);
+			backward = Vector2.Down.Rotated(rotation);
+			float currentForceInDirection = Force.Dot(backward);
+			backward = GetAddedForce(backward, acceleration, PotentialBackwardThrust, currentForceInDirection);
 		}
-
 		if (thrustingRight)
 		{
-			right = GetAddedForce(Vector2.Right, acceleration, PotentialSideThrust);
-			right = right.Rotated(rotation);
+			right = Vector2.Right.Rotated(rotation);
+			float currentForceInDirection = Force.Dot(right);
+			right = GetAddedForce(right, acceleration, PotentialRightThrust, currentForceInDirection);
 		}
 		else if (thrustingLeft) // these elses are for minor performance gains and should be irrelevant if the controller is working properly
 		{
-			left = GetAddedForce(Vector2.Left, acceleration, PotentialSideThrust);
-			left = left.Rotated(rotation);
+			left = Vector2.Left.Rotated(rotation);
+			float currentForceInDirection = Force.Dot(left);
+			left = GetAddedForce(left, acceleration, PotentialLeftThrust, currentForceInDirection);
+			
 		}
 
 		Force = forward + backward + left + right + momentum;
-
-		float limitedX = Math.Min(PotentialForwardThrust, Force.X); // choosing to use potential forward thrust so that it doesnt affect momentum too much
-		limitedX = Math.Max(-PotentialForwardThrust, Force.X);
-
-		float limitedY = Math.Min(PotentialForwardThrust, Force.Y);
-		limitedY = Math.Max(-PotentialForwardThrust, Force.Y);
-		Force = new(limitedX, limitedY);
-
 		// current limiting methodology does not allow ship to be pushed by an object to move faster than its max speed ie Potential forward thrust
 
 		return Force;
@@ -84,29 +92,49 @@ public partial class ThrustManager
 	{
 		thrustingBackward = false;
 		thrustingForward = true;
+		ForwardThrustChanged?.Invoke(thrustingForward);
 	}
 
 	public void StartThrustingBackward()
 	{
 		thrustingForward = false;
 		thrustingBackward = true;
+		BackwardThrustChanged?.Invoke(thrustingBackward);
 	}
 
 	public void StartThrustingRight()
 	{
 		thrustingLeft = false;
 		thrustingRight = true;
+		RightThrustChanged?.Invoke(thrustingRight);
 	}
 
 	public void StartThrustingLeft()
 	{
 		thrustingRight = false;
 		thrustingLeft = true;
+		LeftThrustChanged?.Invoke(thrustingLeft);
 	}
-	public void StopThrustingForward() => thrustingForward = false;
-	public void StopThrustingBackward() => thrustingBackward = false;
-	public void StopThrustingRight() => thrustingRight = false;
-	public void StopThrustingLeft() => thrustingLeft = false;
+	public void StopThrustingForward() 
+	{
+		thrustingForward = false;
+		ForwardThrustChanged?.Invoke(thrustingForward);
+	}
+	public void StopThrustingBackward()
+	{
+		thrustingBackward = false;
+		BackwardThrustChanged?.Invoke(thrustingBackward);
+	}
+	public void StopThrustingRight()
+	{
+		thrustingRight = false;
+		RightThrustChanged?.Invoke(thrustingRight);
+	}
+	public void StopThrustingLeft()
+	{
+		thrustingLeft = false;
+		LeftThrustChanged?.Invoke(thrustingLeft);
+	}
 	public void StopThrusting()
 	{
 		thrustingForward = false;
@@ -117,8 +145,28 @@ public partial class ThrustManager
 
 	public void AddThruster(Thruster thruster)
 	{
-		PotentialForwardThrust += thruster.GetThrust();
-		UpdateThrust();
+		if(thruster.ThrustDirection == Vector2.Up) 
+		{
+			PotentialForwardThrust += thruster.GetThrust();
+			ForwardThrustChanged += thruster.SetThrustAnimationActive;
+		}
+		else if (thruster.ThrustDirection == Vector2.Down)
+		{
+			PotentialBackwardThrust += thruster.GetThrust();
+			BackwardThrustChanged += thruster.SetThrustAnimationActive;
+		}
+		else if (thruster.ThrustDirection == Vector2.Right) 
+		{
+			PotentialRightThrust += thruster.GetThrust();
+			RightThrustChanged += thruster.SetThrustAnimationActive;
+		}
+		else if (thruster.ThrustDirection == Vector2.Left) 
+		{
+			PotentialLeftThrust += thruster.GetThrust();
+			LeftThrustChanged += thruster.SetThrustAnimationActive;
+		}
+		else GD.PrintErr($"thruster direction was not in cardinal direction vector: {thruster.ThrustDirection.X},{thruster.ThrustDirection.Y}");
+		
 		thrusters.Add(thruster);
 		fuelUsage += thruster.GetFuelUsage();
 		thruster.OnDestroyed += OnThrusterDestroyed;
@@ -142,29 +190,54 @@ public partial class ThrustManager
 
 	public void Reset()
 	{
+		ForwardThrustChanged = null;
+		BackwardThrustChanged = null;
+		RightThrustChanged = null;
+		LeftThrustChanged = null;
 		thrusters.Clear();
 		PotentialForwardThrust = 0;
-		UpdateThrust();
+		PotentialBackwardThrust = 0;
+		PotentialRightThrust = 0;
+		PotentialLeftThrust = 0;
 		fuelUsage = 0;
 	}
 
 	private void OnThrusterDestroyed(ShipComponent shipComponent)
 	{
 		if (shipComponent is not Thruster thruster) { GD.PushError("non thruster ship component sent to thrust manager on destroy event"); return; }
-		PotentialForwardThrust -= thruster.GetThrust();
-		UpdateThrust();
+		if(thruster.ThrustDirection == Vector2.Up) 
+		{
+			PotentialForwardThrust -= thruster.GetThrust();
+			ForwardThrustChanged -= thruster.SetThrustAnimationActive;
+		}
+		else if (thruster.ThrustDirection == Vector2.Down)
+		{
+			PotentialBackwardThrust -= thruster.GetThrust();
+			BackwardThrustChanged -= thruster.SetThrustAnimationActive;
+		}
+		else if (thruster.ThrustDirection == Vector2.Right) 
+		{
+			PotentialRightThrust -= thruster.GetThrust();
+			RightThrustChanged -= thruster.SetThrustAnimationActive;
+		}
+		else if (thruster.ThrustDirection == Vector2.Left) 
+		{
+			PotentialLeftThrust -= thruster.GetThrust();
+			LeftThrustChanged -= thruster.SetThrustAnimationActive;
+		}
+		else GD.PrintErr($"thruster direction was not in cardinal direction vector: {thruster.ThrustDirection.X},{thruster.ThrustDirection.Y}");
+		thruster.SetThrustAnimationActive(false);
 		thrusters.Remove(thruster);
 		fuelUsage -= thruster.GetFuelUsage();
 		thruster.OnDestroyed -= OnThrusterDestroyed;
 	}
 
-	private void UpdateThrust()
+	private Vector2 GetAddedForce(Vector2 direction, double acceleration, float potentialForce, float currentForceInDirection) 
 	{
-		PotentialBackwardThrust = PotentialForwardThrust / 2;
-		PotentialSideThrust = PotentialBackwardThrust * 1.5f;
+		Vector2 addedForce = direction * ((float)acceleration * potentialForce);
+		addedForce = addedForce.LimitLength(potentialForce - currentForceInDirection);
+		return addedForce;
 	}
-
-	private Vector2 GetAddedForce(Vector2 direction, double acceleration, float potentialForce) => direction * ((float)acceleration * potentialForce);
 
 	private Vector2 DecayMomentum(Vector2 momentum, float decceleration)
 	{
