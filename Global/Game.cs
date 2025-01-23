@@ -33,9 +33,11 @@ public partial class Game : Node
 
 	private void Debug()
 	{
-		if (!OS.HasFeature("debug")) { return; }
-		if (Input.IsKeyPressed(Key.F4)) { GetTree().Quit(); }
-		if (Input.IsKeyPressed(Key.Escape)) { GetTree().ChangeSceneToFile(START_MENU_SCENE); }
+		if (Input.IsKeyPressed(Key.F4))
+		{
+			playerShipSaver.Call("delete_save");
+			GetTree().ChangeSceneToFile(START_MENU_SCENE);
+		}
 	}
 
 	public void PlayFx(AudioStream sound, float time = 0)
@@ -57,12 +59,12 @@ public partial class Game : Node
 			ShipComponent component = piece.ComponentData.GetPrefab();
 			component.SetupData(piece.ComponentData);
 			component.SetColour(piece.Colour);
-			if(piece.IsMirrored) component.Mirror();
+			if (piece.IsMirrored) component.Mirror();
 			PlayerShip.AddComponent(component, piece.Coordinate);
-			int rotations = (int)Math.Round(piece.LocalRotation/90);
-			for(int i = 0; i < Math.Abs(rotations); i++)
+			int rotations = (int)Math.Round(piece.LocalRotation / 90);
+			for (int i = 0; i < Math.Abs(rotations); i++)
 			{
-				if(rotations >= 0) component.RotateRight();
+				if (rotations >= 0) component.RotateRight();
 				else component.RotateLeft();
 			}
 			comps.Add(piece.Coordinate, component);

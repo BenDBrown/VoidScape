@@ -17,6 +17,7 @@ func _ready():
 func _on_new_game_pressed():
 	var spawnPointSave = SpawnPointSave.new()
 	spawnPointSave.delete_save()
+	_on_remove_save_pressed()
 	get_tree().change_scene_to_file(start_cinematic.resource_path)
 
 
