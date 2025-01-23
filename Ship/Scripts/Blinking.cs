@@ -191,6 +191,7 @@ public partial class Blinking : Node2D
 					HudNotice(isAllowedToBlink);
 				}
 			}
+		}
 			else
 			{
 				transForm = playerShip.Transform.TranslatedLocal(new Vector2(0, -blinkDist));
@@ -213,7 +214,7 @@ public partial class Blinking : Node2D
 			
 			
 		}
-	}
+	
 
 	private void PlayerTween(Transform2D trans)
 	{
@@ -270,7 +271,7 @@ public partial class Blinking : Node2D
 					continue;
 				}
 				IFrameStarted += ()=> HealthSet(health);
-			time.Timeout += () => DisableIFrame(health);
+				time.Timeout += () => DisableIFrame(health);
 
 			}
 		}
@@ -286,7 +287,6 @@ public partial class Blinking : Node2D
 	private void DisableIFrame(Node health)
 	{
 		health.Set("i_bool", false);
-		time.Timeout -= () => DisableIFrame(health);
 	}
 
 	private void HealthSet(Node health){
