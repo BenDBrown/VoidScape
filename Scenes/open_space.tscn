@@ -107,7 +107,7 @@ loop = true
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(-4438, 1628)
+position = Vector2(918, 1473)
 script = ExtResource("8_a0yns")
 
 [node name="Comet_tracker" type="Node" parent="."]
@@ -154,7 +154,7 @@ position = Vector2(196, 1176)
 direction = Vector2(40, 40)
 
 [node name="Asteroid8" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
-position = Vector2(495, 1364)
+position = Vector2(433, 1150)
 direction = Vector2(40, 40)
 
 [node name="Asteroid9" parent="Asteroid Field" instance=ExtResource("2_g2r1v")]
@@ -416,10 +416,10 @@ position = Vector2(1968, 393)
 position = Vector2(1963, 655)
 
 [node name="Scout17" parent="Scouts" instance=ExtResource("3_hh4i0")]
-position = Vector2(495, 890)
+position = Vector2(-273, -6)
 
 [node name="Scout18" parent="Scouts" instance=ExtResource("3_hh4i0")]
-position = Vector2(634, 1130)
+position = Vector2(-134, 234)
 
 [node name="Scout19" parent="Scouts" instance=ExtResource("3_hh4i0")]
 position = Vector2(-1481, 537)
@@ -449,10 +449,10 @@ position = Vector2(2466, -1207)
 position = Vector2(3151, -166)
 
 [node name="Scout30" parent="Scouts" instance=ExtResource("3_hh4i0")]
-position = Vector2(799, 2642)
+position = Vector2(920, 2508)
 
 [node name="Scout32" parent="Scouts" instance=ExtResource("3_hh4i0")]
-position = Vector2(2111, 2671)
+position = Vector2(2232, 2537)
 
 [node name="NotSpawningCometArea" type="Node2D" parent="."]
 
