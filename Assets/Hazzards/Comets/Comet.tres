@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://jvs1fmxos42w"]
+
+[ext_resource type="Texture2D" uid="uid://drl8p8x84s7cl" path="res://Assets/Hazzards/Comets/Comet 1.png" id="1_rb8mn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b4e7"]
+atlas = ExtResource("1_rb8mn")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibgyn"]
+atlas = ExtResource("1_rb8mn")
+region = Rect2(96, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb4js"]
+atlas = ExtResource("1_rb8mn")
+region = Rect2(192, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj0ju"]
+atlas = ExtResource("1_rb8mn")
+region = Rect2(288, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te22j"]
+atlas = ExtResource("1_rb8mn")
+region = Rect2(384, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvpi7"]
+atlas = ExtResource("1_rb8mn")
+region = Rect2(480, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1dd5"]
+atlas = ExtResource("1_rb8mn")
+region = Rect2(576, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coiqb"]
+atlas = ExtResource("1_rb8mn")
+region = Rect2(672, 0, 96, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b4e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibgyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb4js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj0ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te22j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvpi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1dd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coiqb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]

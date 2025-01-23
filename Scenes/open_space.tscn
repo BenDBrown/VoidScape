@@ -107,13 +107,13 @@ loop = true
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(2512, -1645)
+position = Vector2(4559, 4012)
 script = ExtResource("8_a0yns")
 
 [node name="Comet_tracker" type="Node" parent="."]
 script = ExtResource("2_tbh8l")
-spawn_time_min = 10
-spawn_time_max = 20
+spawn_time_min = 15
+spawn_time_max = 30
 allowed_to_spawn = true
 extra_distance = 3000
 
@@ -496,6 +496,35 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NotSpawningCometArea/CometDisableArea5"]
 shape = SubResource("CircleShape2D_fi5be")
 
+[node name="CometDisableArea6" parent="NotSpawningCometArea" instance=ExtResource("11_kd5fh")]
+position = Vector2(-4463, 475)
+scale = Vector2(9.71883, 1.91796)
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NotSpawningCometArea/CometDisableArea6"]
+polygon = PackedVector2Array(-25.5175, -1317.54, 162.365, -1074.58, 38.0704, 1355.61, -158.661, 1112.64)
+
+[node name="CometDisableArea7" parent="NotSpawningCometArea" instance=ExtResource("11_kd5fh")]
+position = Vector2(-1222, 6358)
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NotSpawningCometArea/CometDisableArea7"]
+polygon = PackedVector2Array(-1223, -2618, -199, -2618, 339, -2034, 860, -1549, 1812, -1424, 2855, -1164, 3543, -412, 3399, 1220, 2567, 2292, 911, 2370, -80, 2852, -1299, 3081, -2289, 2522, -2569, 1709, -2010, 1201, -3077, 541, -3839, -94, -3661, -1364, -2823, -1872)
+
+[node name="CometDisableArea8" parent="NotSpawningCometArea" instance=ExtResource("11_kd5fh")]
+position = Vector2(10381, 862)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NotSpawningCometArea/CometDisableArea8"]
+polygon = PackedVector2Array(-1886, -717, 1830, -738, 2161, 319, 1958, 1312, 1083, 1686, -701, 1718, -1630, 1494, -2164, 906, -2612, -55)
+
+[node name="CometDisableArea9" parent="NotSpawningCometArea" instance=ExtResource("11_kd5fh")]
+position = Vector2(3934, -3678)
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NotSpawningCometArea/CometDisableArea9"]
+position = Vector2(-364, -43)
+polygon = PackedVector2Array(-4587, -2171, -625, -2501, 1610, -2463, 4429, -2374, 5940, -2056, 6969, -1447, 6766, 90, 6512, 1144, 5636, 1779, 4328, 1893, 1140, 1957, -1819, 1665, -4092, 1449, -5197, 1131, -5476, -342)
+
 [node name="DeathWalls" type="Node2D" parent="."]
 script = ExtResource("12_773b4")
 
@@ -503,6 +532,7 @@ script = ExtResource("12_773b4")
 position = Vector2(-2034, -2527)
 rotation = -3.65841
 scale = Vector2(0.263354, 1.77105)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall"]
 position = Vector2(-466.336, -0.000732422)
@@ -514,6 +544,7 @@ shape = SubResource("RectangleShape2D_ilolr")
 position = Vector2(-6676, -282)
 rotation = -4.46603
 scale = Vector2(0.389485, 1.77105)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall7"]
 position = Vector2(-466.336, -0.000732422)
@@ -525,6 +556,7 @@ shape = SubResource("RectangleShape2D_ilolr")
 position = Vector2(10660, 7731)
 rotation = 2.6508
 scale = Vector2(1.99577, 10.8956)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall2"]
 rotation = -3.14159
@@ -535,6 +567,7 @@ shape = SubResource("RectangleShape2D_ilolr")
 position = Vector2(15359, 510)
 rotation = 0.785397
 scale = Vector2(-1.29783, -9.0174)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall3"]
 rotation = -3.14159
@@ -545,6 +578,7 @@ shape = SubResource("RectangleShape2D_ilolr")
 position = Vector2(-4205, 3948)
 rotation = 0.88344
 scale = Vector2(0.157784, -1.34128)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall4"]
 rotation = -3.14159
@@ -555,6 +589,7 @@ shape = SubResource("RectangleShape2D_ilolr")
 position = Vector2(-6755, 2217)
 rotation = 0.88344
 scale = Vector2(0.157784, -1.34128)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall6"]
 rotation = -3.14159
@@ -565,6 +600,7 @@ shape = SubResource("RectangleShape2D_ilolr")
 position = Vector2(-5316, -2350)
 rotation = 0.0402296
 scale = Vector2(0.157784, -1.34128)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall8"]
 rotation = -3.14159
@@ -575,6 +611,7 @@ shape = SubResource("RectangleShape2D_ilolr")
 position = Vector2(1588, 9084)
 rotation = 1.04208
 scale = Vector2(0.157784, -1.34128)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall5"]
 rotation = -3.14159
