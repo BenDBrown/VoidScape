@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var open_space: PackedScene = preload("res://Scenes/open_space.tscn")
+@export var start_cinematic: PackedScene = preload("res://Scenes/start_scene_story.tscn")
 
 @onready var mainScreen = $"Main Screen/CanvasLayer"
 @onready var settingsMenu = $"SettingsMenu"
@@ -16,7 +17,7 @@ func _ready():
 func _on_new_game_pressed():
 	var spawnPointSave = SpawnPointSave.new()
 	spawnPointSave.delete_save()
-	get_tree().change_scene_to_file(open_space.resource_path)
+	get_tree().change_scene_to_file(start_cinematic.resource_path)
 
 
 func _on_continue_pressed():
