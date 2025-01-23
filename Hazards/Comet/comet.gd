@@ -3,7 +3,7 @@ extends RigidBody2D
 @export var min_distance: float = 500
 @export var min_distance_linear_update = 50
 @export_enum("Random Direction", "Player", "Same Direction") var forceType = "Player"
-@export var speed = 1000
+@export var speed = 800
 
 var playership: PlayerShip
 var direction: Vector2
@@ -83,4 +83,11 @@ func update_linear_velocity(target: Vector2):
 
 
 func _on_body_entered(_body: Node) -> void:
-	create_death_timer(0.2)
+	queue_free()
+
+
+func _on_attackbox_component_body_entered(body: Node2D) -> void:
+	create_death_timer(0.01)
+	if body == Game.PlayerShip:
+		var  perpendicular:Vector2 = direction.orthogonal().normalized();
+		Game.PlayerShip.AddExternalImpulse(perpendicular * 2);

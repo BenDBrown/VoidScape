@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="2_o0ikq"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_1tly3"]
 [ext_resource type="Script" path="res://Components/AttackComponent.cs" id="4_myhf0"]
-[ext_resource type="Texture2D" uid="uid://cluyudio333vu" path="res://Assets/Hazzards/astroid/Astroid 4.png" id="5_ttorw"]
+[ext_resource type="SpriteFrames" uid="uid://jvs1fmxos42w" path="res://Assets/Hazzards/Comets/Comet.tres" id="6_lu3vr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kn005"]
 radius = 14.3178
@@ -28,6 +28,7 @@ shape = SubResource("CircleShape2D_kn005")
 debug_color = Color(2.88785e-06, 0.618082, 0.580813, 0.42)
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("healthComponent", "collision_shape")]
+scale = Vector2(1.2, 1.32)
 script = ExtResource("2_o0ikq")
 healthComponent = NodePath("../HealthComponent")
 collision_shape = NodePath("../CollisionShape2D")
@@ -47,10 +48,12 @@ attack = 100
 shape = SubResource("CircleShape2D_slwb3")
 debug_color = Color(0.729965, 0.0680868, 0.816896, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.973831, 0.554194, 0.596613, 1)
-self_modulate = Color(0.772936, 0.286818, 0.307435, 1)
-texture = ExtResource("5_ttorw")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-34, 1)
+sprite_frames = ExtResource("6_lu3vr")
+frame_progress = 0.8161
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="AttackboxComponent" to="." method="_on_attackbox_component_body_entered"]
+[connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
