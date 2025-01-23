@@ -280,7 +280,7 @@ public partial class Blinking : Node2D
 			return;
 		}
 		
-		time.Start(2);
+		time.Start(0.5);
 		GD.Print("I Frames set");
 	}
 
