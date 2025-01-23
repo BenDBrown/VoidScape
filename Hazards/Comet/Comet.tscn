@@ -51,7 +51,8 @@ debug_color = Color(0.729965, 0.0680868, 0.816896, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-34, 1)
 sprite_frames = ExtResource("6_lu3vr")
-frame_progress = 0.8161
+autoplay = "default"
+frame_progress = 0.268485
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="AttackboxComponent" to="." method="_on_attackbox_component_body_entered"]
