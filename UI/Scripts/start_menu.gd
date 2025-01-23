@@ -19,6 +19,9 @@ func _on_new_game_pressed():
 	spawnPointSave.delete_save()
 	_on_remove_save_pressed()
 	get_tree().change_scene_to_file(start_cinematic.resource_path)
+	var save = PlayerShipSave.new()
+	save = save.load_save()
+	save.save()
 
 
 func _on_continue_pressed():

@@ -22,6 +22,7 @@ public partial class Game : Node
 		Instance = this;
 		Fx = new();
 		playerShipSaver = GD.Load(SHIP_SAVER_PATH).Call("new").As<Resource>();
+		playerShipSaver = playerShipSaver.Call("load_save").As<Resource>();
 		AddChild(Fx);
 		ProcessMode = ProcessModeEnum.Always;
 	}
@@ -82,7 +83,14 @@ public partial class Game : Node
 
 		try
 		{
-			PlayerShip.TryBuildShip();
+			var res = PlayerShip.TryBuildShip();
+			if (!res)
+			{
+				PlayerShip.Reset();
+				playerShipSaver.Call("build_ship", PlayerShip);
+				PlayerShip.TryBuildShip();
+				return ShipBuildStatus.ComponentMissing;
+			}
 			playerShipSaver.Call("add_components", comps);
 			playerShipSaver.Call("save");
 		}

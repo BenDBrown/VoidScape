@@ -126,7 +126,6 @@ public partial class PlayerShip : Ship
 			}
 		}
 		Weight = shipComponents.Count;
-
 		return hasFuelTank && hasGenerator && hasThruster;
 	}
 

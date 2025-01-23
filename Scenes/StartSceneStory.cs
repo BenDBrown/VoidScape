@@ -16,6 +16,14 @@ public partial class StartSceneStory : CanvasLayer
         FrameAnimPlayer.Play("story_scene");
     }
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        if (Input.IsKeyPressed(Key.F12))
+        {
+            GetTree().ChangeSceneToPacked(OpenScene);
+        }
+    }
     public void OnAnimationFinished(StringName animation)
     {
         if (animation == "story_scene")

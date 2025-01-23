@@ -48,7 +48,6 @@ func clear():
 func load_save():
 	var result = super.load_save()
 	if result == self:
-		print("self")
 		return ResourceLoader.load(PRESET_SHIP)
 	return result
 

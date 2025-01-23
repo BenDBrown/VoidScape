@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://cmj60hiki1cwf"]
+[gd_scene load_steps=57 format=4 uid="uid://cmj60hiki1cwf"]
 
 [ext_resource type="Material" uid="uid://y5ywhtwkwbsx" path="res://Misc/Cave Region/Materials/CaveTilesMaterial.tres" id="3_fm558"]
 [ext_resource type="Shader" path="res://addons/ColourPicker/ColorPicker.gdshader" id="3_pgxw8"]
@@ -17,14 +17,15 @@
 [ext_resource type="PackedScene" uid="uid://clmr2ows4md6i" path="res://Misc/Cave Region/Generators/destroyable_force_generator.tscn" id="10_b4dn6"]
 [ext_resource type="Texture2D" uid="uid://cb331x20uss8b" path="res://Assets/Structures/Tiles/ui x2.png" id="12_32vyk"]
 [ext_resource type="Texture2D" uid="uid://dndayjr4u74x" path="res://Assets/Structures/Tiles/ui x1.png" id="13_v1ksg"]
-[ext_resource type="TileSet" uid="uid://bdfv43vv4fen8" path="res://Misc/Cave Region/Tiles/UpdatedPipeTiles.tres" id="15_lypwj"]
+[ext_resource type="TileSet" uid="uid://eov4r317kd25" path="res://Misc/Cave Region/Tiles/UpdatedPipeTiles.tres" id="15_lypwj"]
 [ext_resource type="Script" path="res://Misc/Cave Region/Scenes/ForceFieldManager.cs" id="17_eyyoq"]
-[ext_resource type="Material" uid="uid://c1w4mgd0wee07" path="res://Misc/Cave Region/Generators/ForceFieldPipes.tres" id="20_0kwhr"]
+[ext_resource type="Material" path="res://Misc/Cave Region/Generators/ForceFieldPipes.tres" id="20_0kwhr"]
 [ext_resource type="PackedScene" uid="uid://dswkpic3qe4jc" path="res://Misc/Cave Region/Generators/force_field.tscn" id="21_tccnl"]
 [ext_resource type="PackedScene" uid="uid://c0684gaincluq" path="res://Ship/Prefabs/Enemies/Scout.tscn" id="23_3gksy"]
 [ext_resource type="PackedScene" uid="uid://srj2a0twg7of" path="res://Structures/Trailer_Fake/worm_curved.tscn" id="25_bk7oc"]
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="25_l8rno"]
 [ext_resource type="PackedScene" uid="uid://co1ah1np4mw3u" path="res://Misc/Cave Region/Turrets/Prefabs/turret.tscn" id="25_qlmba"]
+[ext_resource type="PackedScene" uid="uid://86y0byhp3o6v" path="res://Misc/SpawnPoint/SpawnPoint.tscn" id="26_xs56b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ff3y"]
 texture = ExtResource("6_4jois")
@@ -540,6 +541,9 @@ texture = ExtResource("10_aisj5")
 [sub_resource type="TileSet" id="TileSet_b4785"]
 sources/0 = SubResource("TileSetAtlasSource_5reci")
 sources/1 = SubResource("TileSetAtlasSource_7nnqt")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jiwr4"]
+radius = 195.0
 
 [node name="Cave_Entrance" type="Node2D"]
 
@@ -1304,3 +1308,9 @@ scale = Vector2(4, 4)
 position = Vector2(-862, 278)
 rotation = -3.59334
 scale = Vector2(4, 4)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("26_xs56b")]
+position = Vector2(1116, -1359)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoint"]
+shape = SubResource("CircleShape2D_jiwr4")
