@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dpd1aa4ydd0xw"]
+[gd_scene load_steps=48 format=3 uid="uid://ck7jschg6olwg"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_dsj0j"]
 [ext_resource type="Texture2D" uid="uid://bisny8ancsbfm" path="res://Assets/Hazzards/Blackhole/Blackhole.png" id="2_e8ctp"]
@@ -507,9 +507,9 @@ shape = SubResource("CircleShape2D_fi5be")
 script = ExtResource("12_773b4")
 
 [node name="Wall" type="Area2D" parent="DeathWalls"]
-position = Vector2(-8219, -5985)
-rotation = -0.785398
-scale = Vector2(2.00551, 12.9573)
+position = Vector2(-6243, -9848)
+rotation = -0.73009
+scale = Vector2(3.206, 12.957)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall"]
 position = Vector2(-466.336, -0.000732422)
@@ -528,9 +528,9 @@ scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
 [node name="Wall3" type="Area2D" parent="DeathWalls"]
-position = Vector2(19060, -1960)
+position = Vector2(17069, -4866)
 rotation = 0.785397
-scale = Vector2(-2.59442, -11.532)
+scale = Vector2(-3.504, -11.167)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall3"]
 rotation = -3.14159
@@ -553,8 +553,8 @@ canvasLayer = NodePath("../CanvasLayer")
 animationPlayer = NodePath("../CanvasLayer/AnimationPlayer")
 
 [node name="Wall" type="Area2D" parent="WarningWalls"]
-position = Vector2(-7863, -2979)
-scale = Vector2(2.59414, 2.29221)
+position = Vector2(-4963, -5757)
+scale = Vector2(2.594, 2.357)
 collision_layer = 128
 monitorable = false
 
@@ -564,9 +564,9 @@ rotation = -0.785398
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall3" type="Area2D" parent="WarningWalls"]
-position = Vector2(13477, -3690)
+position = Vector2(12293, -5089)
 rotation = 0.785398
-scale = Vector2(2.15137, -1.3046)
+scale = Vector2(2.556, -1.215)
 collision_layer = 128
 monitorable = false
 
@@ -620,12 +620,11 @@ position = Vector2(595, 314)
 texture = ExtResource("12_87wu5")
 
 [node name="EnemyOupost" parent="." instance=ExtResource("38_sa6uf")]
-position = Vector2(-5115, -221)
-rotation = -0.918236
+position = Vector2(4205, -8785)
 
-[node name="Cave_Entrance" parent="." instance=ExtResource("39_v2k43")]
-position = Vector2(5536, -12027)
-rotation = -3.40339
+[node name="Cave" parent="." instance=ExtResource("39_v2k43")]
+position = Vector2(-8065, 743)
+rotation = -6.28319
 
 [node name="City" parent="." instance=ExtResource("40_fgjdu")]
 position = Vector2(9141, 1524)
