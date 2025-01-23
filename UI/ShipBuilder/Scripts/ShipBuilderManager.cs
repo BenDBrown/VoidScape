@@ -45,7 +45,7 @@ public partial class ShipBuilderManager : Control
 	private Piece deletedPiece;
 	private Color pieceColour = new(0.51f, 0.502f, 0.486f, 1);
 	private GridTile[] gridSquares;
-
+	private bool isInGrid = false;
 
 	public override void _Ready()
 	{
@@ -75,6 +75,7 @@ public partial class ShipBuilderManager : Control
 	{
 		RotatePiece();
 		DropPiece();
+		PickUpPiece();
 		//RemovePiece();
 	}
 
@@ -109,7 +110,7 @@ public partial class ShipBuilderManager : Control
 	{
 		hoveredRect = colorRect;
 		rectPos = gridGenerator.GetCellAt(colorRect);
-
+		isInGrid = true;
 		if (draggedPreview == null)
 		{
 			for (int i = 0; i < pieces.Count; i++)
@@ -125,6 +126,7 @@ public partial class ShipBuilderManager : Control
 
 	private void MouseExitedSquare()
 	{
+		isInGrid = false;
 		hoveredRect = null;
 		deletedPiece = null;
 		canDelete = false;
@@ -181,6 +183,59 @@ public partial class ShipBuilderManager : Control
 		else if (isDragging)
 		{
 			draggedPreview.Position = GetGlobalMousePosition();
+		}
+	}
+
+	private void PickUpPiece()
+	{
+		if (Input.IsActionJustPressed("right_click") && isInGrid)
+		{
+			for (int i = 0; i < pieces.Count; i++)
+			{
+				if (pieces[i].Coordinate == rectPos)
+				{
+					GridTile tile = gridGenerator.GridCells[rectPos];
+					tile.HasComponent = false;
+					tile.IsValid = true;
+					tile.Texture = gridGenerator.ValidCell;
+					pieces[i].ComponentData = new ShipComponentData();
+					Vector2I coord = (Vector2I)pieces[i].Coordinate;
+					Vector2I vRight = new(coord.X + 1, coord.Y);
+					Vector2I vLeft = new(coord.X - 1, coord.Y);
+					Vector2I vUp = new(coord.X, coord.Y - 1);
+					Vector2I vDown = new(coord.X, coord.Y + 1);
+					(bool top, bool right, bool bottom, bool left) attachable = GetAttachableSides(pieces[i]);
+
+					if (gridGenerator.GridCells.ContainsKey(vRight))
+					{
+						if (pieces[i].Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && attachable.right) { gridGenerator.GridCells[vRight].IsValid = true; }
+						else { gridGenerator.GridCells[vRight].IsValid = false; }
+					}
+					if (gridGenerator.GridCells.ContainsKey(vLeft))
+					{
+						if (pieces[i].Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && attachable.left) { gridGenerator.GridCells[vLeft].IsValid = true; }
+						else { gridGenerator.GridCells[vLeft].IsValid = false; }
+					}
+					if (gridGenerator.GridCells.ContainsKey(vDown))
+					{
+						if (pieces[i].Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && attachable.bottom) { gridGenerator.GridCells[vDown].IsValid = true; }
+						else { gridGenerator.GridCells[vDown].IsValid = false; }
+					}
+					if (gridGenerator.GridCells.ContainsKey(vUp))
+					{
+						if (pieces[i].Coordinate == gridGenerator.GetCellAt(gridGenerator.GridCells[coord]) && attachable.top) { gridGenerator.GridCells[vUp].IsValid = true; }
+						else { gridGenerator.GridCells[vUp].IsValid = false; }
+					}
+
+					UpdateAvailability();
+					pieces.Remove(pieces[i]);
+					if (pieces.Count == 0)
+					{
+						OnRemoveAllPressed();
+					}
+					break;
+				}
+			}
 		}
 	}
 

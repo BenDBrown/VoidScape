@@ -247,4 +247,16 @@ public partial class PlayerShip : Ship
 	public bool HasEnoughCredits(float priceToCheck) => creditsManager.HasEnoughMoney(priceToCheck);
 
 	#endregion CREDITS
+
+	public void Refuel(int fuelAmount = -1)
+	{
+		if (fuelAmount == -1)
+		{
+			fuelManager.AddFuel(fuelManager.FuelCapacity);
+		}
+		else
+		{
+			fuelManager.AddFuel(fuelAmount);
+		}
+	}
 }

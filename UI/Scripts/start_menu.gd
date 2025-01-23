@@ -20,6 +20,7 @@ func _on_new_game_pressed():
 	_on_remove_save_pressed()
 	get_tree().change_scene_to_file(start_cinematic.resource_path)
 	var save = PlayerShipSave.new()
+	save.delete_save()
 	save = save.load_save()
 	save.save()
 

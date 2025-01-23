@@ -45,6 +45,7 @@ public partial class Station : Sprite2D
 	{
 		if (node2D == playerShip)
 		{
+			playerShip.Refuel();
 			popup.Visible = true;
 			isOnBody = true;
 		}
