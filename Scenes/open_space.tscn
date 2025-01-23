@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dpd1aa4ydd0xw"]
+[gd_scene load_steps=48 format=3 uid="uid://dpd1aa4ydd0xw"]
 
 [ext_resource type="PackedScene" uid="uid://bnebyucsoprtc" path="res://Scenes/background.tscn" id="1_dsj0j"]
 [ext_resource type="Texture2D" uid="uid://bisny8ancsbfm" path="res://Assets/Hazzards/Blackhole/Blackhole.png" id="2_e8ctp"]
@@ -37,7 +37,10 @@
 [ext_resource type="Resource" uid="uid://ct3mnas22ksbx" path="res://Resources/ShipData/Guns/The Eye ship laser.tres" id="27_qku0t"]
 [ext_resource type="Resource" uid="uid://lec7dbe2yle8" path="res://Resources/ShipData/Hulls/The Eye ship Hull.tres" id="28_86onh"]
 [ext_resource type="Resource" uid="uid://cl6j86mc6ya4t" path="res://Resources/ShipData/Thrusters/The Eye ship Thruster.tres" id="30_imron"]
-[ext_resource type="PackedScene" uid="uid://86y0byhp3o6v" path="res://Misc/SpawnPoint/SpawnPoint.tscn" id="38_7biaf"]
+[ext_resource type="PackedScene" uid="uid://cjitas3maqsno" path="res://Scenes/Enemy_Oupost.tscn" id="38_sa6uf"]
+[ext_resource type="PackedScene" uid="uid://cmj60hiki1cwf" path="res://Misc/Cave Region/Scenes/cave_level.tscn" id="39_v2k43"]
+[ext_resource type="PackedScene" uid="uid://2ypum1pmn3ak" path="res://Scenes/Zone 1/City.tscn" id="40_fgjdu"]
+[ext_resource type="PackedScene" uid="uid://dkyso38nhof5y" path="res://Structures/Regions/WormCave/WormCave.tscn" id="41_omwle"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fi5be"]
 radius = 220.792
@@ -96,9 +99,6 @@ _data = {
 "RESET": SubResource("Animation_sxydc"),
 "warning_animation": SubResource("Animation_g6qi6")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_53yk0"]
-radius = 179.338
 
 [node name="OpenSpace" type="Node2D"]
 
@@ -507,9 +507,9 @@ shape = SubResource("CircleShape2D_fi5be")
 script = ExtResource("12_773b4")
 
 [node name="Wall" type="Area2D" parent="DeathWalls"]
-position = Vector2(-2616, -1524)
+position = Vector2(-8219, -5985)
 rotation = -0.785398
-scale = Vector2(1, 1.82024)
+scale = Vector2(2.00551, 12.9573)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall"]
 position = Vector2(-466.336, -0.000732422)
@@ -518,9 +518,9 @@ scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
 [node name="Wall2" type="Area2D" parent="DeathWalls"]
-position = Vector2(5018, 4542)
+position = Vector2(12848, 9917)
 rotation = -0.785398
-scale = Vector2(1, 1.82024)
+scale = Vector2(1.99577, 10.8956)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall2"]
 rotation = -3.14159
@@ -528,9 +528,9 @@ scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
 [node name="Wall3" type="Area2D" parent="DeathWalls"]
-position = Vector2(5276, -1401)
-rotation = 0.785398
-scale = Vector2(1, 1.82024)
+position = Vector2(19060, -1960)
+rotation = 0.785397
+scale = Vector2(-2.59442, -11.532)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall3"]
 rotation = -3.14159
@@ -538,9 +538,9 @@ scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
 [node name="Wall4" type="Area2D" parent="DeathWalls"]
-position = Vector2(-2383, 4645)
+position = Vector2(-10293, 6272)
 rotation = 0.785398
-scale = Vector2(1, 1.82024)
+scale = Vector2(2.34366, -12.1103)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall4"]
 rotation = -3.14159
@@ -553,7 +553,8 @@ canvasLayer = NodePath("../CanvasLayer")
 animationPlayer = NodePath("../CanvasLayer/AnimationPlayer")
 
 [node name="Wall" type="Area2D" parent="WarningWalls"]
-position = Vector2(-1895, -988)
+position = Vector2(-7863, -2979)
+scale = Vector2(2.59414, 2.29221)
 collision_layer = 128
 monitorable = false
 
@@ -562,18 +563,10 @@ position = Vector2(364.252, -364.252)
 rotation = -0.785398
 shape = SubResource("RectangleShape2D_ehh5d")
 
-[node name="Wall2" type="Area2D" parent="WarningWalls"]
-position = Vector2(4415, 3890)
-collision_layer = 128
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall2"]
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_ehh5d")
-
 [node name="Wall3" type="Area2D" parent="WarningWalls"]
-position = Vector2(4573, -863)
+position = Vector2(13477, -3690)
 rotation = 0.785398
+scale = Vector2(2.15137, -1.3046)
 collision_layer = 128
 monitorable = false
 
@@ -581,12 +574,24 @@ monitorable = false
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall4" type="Area2D" parent="WarningWalls"]
-position = Vector2(-1774, 3971)
+position = Vector2(-4908, 7105)
 rotation = 0.785398
+scale = Vector2(2.59661, 1.10884)
 collision_layer = 128
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall4"]
+position = Vector2(-135.759, 0)
+shape = SubResource("RectangleShape2D_ehh5d")
+
+[node name="Wall5" type="Area2D" parent="WarningWalls"]
+position = Vector2(12613, 5976)
+rotation = -0.785397
+scale = Vector2(1.75655, 2.07035)
+collision_layer = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningWalls/Wall5"]
 position = Vector2(-135.759, 0)
 shape = SubResource("RectangleShape2D_ehh5d")
 
@@ -614,11 +619,20 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(595, 314)
 texture = ExtResource("12_87wu5")
 
-[node name="SpawnPoint" parent="." instance=ExtResource("38_7biaf")]
-position = Vector2(3112, 3258)
+[node name="EnemyOupost" parent="." instance=ExtResource("38_sa6uf")]
+position = Vector2(-5115, -221)
+rotation = -0.918236
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoint"]
-shape = SubResource("CircleShape2D_53yk0")
+[node name="Cave_Entrance" parent="." instance=ExtResource("39_v2k43")]
+position = Vector2(5536, -12027)
+rotation = -3.40339
+
+[node name="City" parent="." instance=ExtResource("40_fgjdu")]
+position = Vector2(9141, 1524)
+
+[node name="WormCave" parent="." instance=ExtResource("41_omwle")]
+position = Vector2(4993, 12157)
+rotation = 2.35619
 
 [connection signal="body_entered" from="DeathWalls/Wall" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="DeathWalls/Wall2" to="DeathWalls" method="OnBodyEntered"]
@@ -626,9 +640,9 @@ shape = SubResource("CircleShape2D_53yk0")
 [connection signal="body_entered" from="DeathWalls/Wall4" to="DeathWalls" method="OnBodyEntered"]
 [connection signal="body_entered" from="WarningWalls/Wall" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall" to="WarningWalls" method="OnBodyExited"]
-[connection signal="body_entered" from="WarningWalls/Wall2" to="WarningWalls" method="OnBodyEntered"]
-[connection signal="body_exited" from="WarningWalls/Wall2" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall3" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall3" to="WarningWalls" method="OnBodyExited"]
 [connection signal="body_entered" from="WarningWalls/Wall4" to="WarningWalls" method="OnBodyEntered"]
 [connection signal="body_exited" from="WarningWalls/Wall4" to="WarningWalls" method="OnBodyExited"]
+[connection signal="body_entered" from="WarningWalls/Wall5" to="WarningWalls" method="OnBodyEntered"]
+[connection signal="body_exited" from="WarningWalls/Wall5" to="WarningWalls" method="OnBodyExited"]
