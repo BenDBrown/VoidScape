@@ -107,7 +107,7 @@ loop = true
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(-4438, 1628)
+position = Vector2(3147, -1419)
 script = ExtResource("8_a0yns")
 
 [node name="Comet_tracker" type="Node" parent="."]
@@ -440,10 +440,10 @@ position = Vector2(-271, -1029)
 position = Vector2(-57, -644)
 
 [node name="Scout26" parent="Scouts" instance=ExtResource("3_hh4i0")]
-position = Vector2(3257, -1200)
+position = Vector2(3816, -157)
 
 [node name="Scout27" parent="Scouts" instance=ExtResource("3_hh4i0")]
-position = Vector2(2466, -1207)
+position = Vector2(1725, -335)
 
 [node name="Scout29" parent="Scouts" instance=ExtResource("3_hh4i0")]
 position = Vector2(3151, -166)
