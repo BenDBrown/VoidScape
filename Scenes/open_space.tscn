@@ -528,7 +528,7 @@ scale = Vector2(25.5983, 20.9709)
 shape = SubResource("RectangleShape2D_ilolr")
 
 [node name="Wall3" type="Area2D" parent="DeathWalls"]
-position = Vector2(12294, -9028)
+position = Vector2(19060, -1960)
 rotation = 0.785397
 scale = Vector2(-2.59442, -11.532)
 
@@ -540,7 +540,7 @@ shape = SubResource("RectangleShape2D_ilolr")
 [node name="Wall4" type="Area2D" parent="DeathWalls"]
 position = Vector2(-10293, 6272)
 rotation = 0.785398
-scale = Vector2(1.66588, 12.1715)
+scale = Vector2(2.34366, -12.1103)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWalls/Wall4"]
 rotation = -3.14159
@@ -553,7 +553,7 @@ canvasLayer = NodePath("../CanvasLayer")
 animationPlayer = NodePath("../CanvasLayer/AnimationPlayer")
 
 [node name="Wall" type="Area2D" parent="WarningWalls"]
-position = Vector2(-7991, -3620)
+position = Vector2(-7863, -2979)
 scale = Vector2(2.59414, 2.29221)
 collision_layer = 128
 monitorable = false
@@ -564,7 +564,7 @@ rotation = -0.785398
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall3" type="Area2D" parent="WarningWalls"]
-position = Vector2(11829, -5462)
+position = Vector2(13477, -3690)
 rotation = 0.785398
 scale = Vector2(2.15137, -1.3046)
 collision_layer = 128
@@ -576,7 +576,7 @@ shape = SubResource("RectangleShape2D_ehh5d")
 [node name="Wall4" type="Area2D" parent="WarningWalls"]
 position = Vector2(-4908, 7105)
 rotation = 0.785398
-scale = Vector2(2.01111, 2.07035)
+scale = Vector2(2.59661, 1.10884)
 collision_layer = 128
 monitorable = false
 
@@ -585,7 +585,7 @@ position = Vector2(-135.759, 0)
 shape = SubResource("RectangleShape2D_ehh5d")
 
 [node name="Wall5" type="Area2D" parent="WarningWalls"]
-position = Vector2(13581, 5255)
+position = Vector2(12613, 5976)
 rotation = -0.785397
 scale = Vector2(1.75655, 2.07035)
 collision_layer = 128
@@ -624,8 +624,8 @@ position = Vector2(-5115, -221)
 rotation = -0.918236
 
 [node name="Cave_Entrance" parent="." instance=ExtResource("39_v2k43")]
-position = Vector2(3999, -9932)
-rotation = -2.35619
+position = Vector2(5536, -12027)
+rotation = -3.40339
 
 [node name="City" parent="." instance=ExtResource("40_fgjdu")]
 position = Vector2(9141, 1524)

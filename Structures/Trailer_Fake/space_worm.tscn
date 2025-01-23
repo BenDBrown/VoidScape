@@ -36,5 +36,4 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qtlvb")
 autoplay = "default"
-frame = 2
-frame_progress = 0.300685
+frame_progress = 0.406389
