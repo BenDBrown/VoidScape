@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Ship/Scripts/PlayerController.cs" id="2_0hxg2"]
 [ext_resource type="Script" path="res://Ship/Scripts/Managers/PowerManager.cs" id="3_22ycc"]
 [ext_resource type="PackedScene" uid="uid://dv0dhvqb124yl" path="res://Ship/Prefabs/ExplosionAnim.tscn" id="4_48l4l"]
-[ext_resource type="PackedScene" path="res://Ship/Prefabs/Shield.tscn" id="5_u1m7p"]
+[ext_resource type="PackedScene" uid="uid://cjxayq73qlamp" path="res://Ship/Prefabs/Shield.tscn" id="5_u1m7p"]
 [ext_resource type="Script" path="res://Ship/Scripts/Blinking.cs" id="6_o4rs5"]
 
 [node name="PlayerShip" type="CharacterBody2D" node_paths=PackedStringArray("shield", "blinking", "powerManager", "ExplosionAnim")]
@@ -39,6 +39,14 @@ powerGenerationCooldownTimer = NodePath("PowerGenCooldownTimer")
 [node name="Shield" parent="." instance=ExtResource("5_u1m7p")]
 position = Vector2(16, 0)
 
-[node name="Blink" type="Node2D" parent="." node_paths=PackedStringArray("playerShip")]
+[node name="Blink" type="Node2D" parent="." node_paths=PackedStringArray("playerShip", "rayCast2D")]
 script = ExtResource("6_o4rs5")
 playerShip = NodePath("..")
+rayCast2D = NodePath("../RayCast2D")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 53
+hit_from_inside = true

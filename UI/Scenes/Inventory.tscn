@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://UI/Scripts/inventory.gd" id="1_qjkj8"]
 
 [node name="Inventory" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_qjkj8")
 
 [node name="ItemList" type="ItemList" parent="."]

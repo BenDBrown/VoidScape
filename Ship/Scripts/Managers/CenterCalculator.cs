@@ -32,14 +32,14 @@ public partial class CenterCalculator
 		float maxY = float.MinValue;
 		foreach (Vector2 vector in shipVectors)
 		{
-			if(vector.X > maxX) maxX = vector.X;
-			if(vector.X < minX) minX = vector.X;
-			if(vector.Y > maxY) maxY = vector.Y;
-			if(vector.Y < minY) minY = vector.Y;
+			if (vector.X > maxX) maxX = vector.X;
+			if (vector.X < minX) minX = vector.X;
+			if (vector.Y > maxY) maxY = vector.Y;
+			if (vector.Y < minY) minY = vector.Y;
 		}
 
 		int shieldSpriteSize = 32; // base shield asset is designed to enclose a 32x32 square
-		return new((maxX - minX)/shieldSpriteSize, (maxY - minY)/shieldSpriteSize);
+		return new((maxX - minX) / shieldSpriteSize, (maxY - minY) / shieldSpriteSize);
 	}
 
 	private float GetDownRightMagnitude(Vector2 vector) => vector.X + vector.Y;

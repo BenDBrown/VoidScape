@@ -37,6 +37,7 @@ public partial class Station : Sprite2D
 		if (Input.IsActionJustPressed("interact") && isOnBody)
 		{
 			Game.Instance.IsUiOpen = true;
+			menu.LoadCurrentShip();
 			ShrinkShip();
 		}
 	}

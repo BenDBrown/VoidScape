@@ -33,13 +33,14 @@ public partial class Ship : CharacterBody2D
 		}
 	}
 
+	public Dictionary<Vector2I, ShipComponent> GridData = new();
 	protected ThrustManager thrustManager = new();
 	protected CenterCalculator centerCalculator = new();
 	protected RotationManager rotationManager = new();
 	protected GunManager gunManager = new();
 	protected ExternalForceManager externalForceManager = new();
 	protected List<ShipComponent> shipComponents = new();
-	public ShipComponent[] shipParts => shipComponents.ToArray();
+	public ShipComponent[] ShipComponents => shipComponents.ToArray();
 	protected float rotationSpeed = 3;
 	protected bool stalling = false;
 
@@ -167,10 +168,11 @@ public partial class Ship : CharacterBody2D
 	{
 		thrustManager.Reset();
 		gunManager.Reset();
-		Node[] children = GetChildren().ToArray();
-		for (int i = 0; i < children.Length; i++)
+		GridData.Clear();
+		ShipComponent[] parts = ShipComponents;
+		for (int i = 0; i < parts.Length; i++)
 		{
-			if (children[i] is ShipComponent component)
+			if (parts[i] is ShipComponent component)
 			{
 				component.OnDestroyed -= ComponentDestroyed;
 				component.collider.Free();
@@ -188,8 +190,9 @@ public partial class Ship : CharacterBody2D
 	/// <param name="coordinate"></param>
 	public void AddComponent(ShipComponent component, Vector2 coordinate)
 	{
-		AddChild(component);
+		AddChild(component, true);
 		component.Position = coordinate * 32;
+		GridData.Add((Vector2I)coordinate, component);
 	}
 
 	protected virtual bool IsVitalComponent(ShipComponent shipComponent) => shipComponent is Cockpit;

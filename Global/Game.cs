@@ -23,7 +23,7 @@ public partial class Game : Node
 		Fx = new();
 		playerShipSaver = GD.Load(SHIP_SAVER_PATH).Call("new").As<Resource>();
 		playerShipSaver = playerShipSaver.Call("load_save").As<Resource>();
-		AddChild(Fx);
+		AddChild(Fx, true);
 		ProcessMode = ProcessModeEnum.Always;
 	}
 
@@ -62,7 +62,7 @@ public partial class Game : Node
 	public ShipBuildStatus BuildShip(Piece[] pieces)
 	{
 		if (PlayerShip is null) { return ShipBuildStatus.Unknown; }
-		Dictionary<Vector2, ShipComponent> comps = new();
+		Dictionary<Vector2, ShipComponent> components = new();
 		PlayerShip.Reset();
 		foreach (Piece piece in pieces)
 		{
@@ -72,13 +72,12 @@ public partial class Game : Node
 			if (piece.IsMirrored) component.Mirror();
 			PlayerShip.AddComponent(component, piece.Coordinate);
 			component.RotationDegrees = piece.LocalRotation;
-			GD.Print(piece.LocalRotation);
 			if (component is Thruster thruster)
 			{
 				thruster.SetRotate();
 			}
 
-			comps.Add(piece.Coordinate, component);
+			components.Add(piece.Coordinate, component);
 		}
 
 		try
@@ -91,7 +90,7 @@ public partial class Game : Node
 				PlayerShip.TryBuildShip();
 				return ShipBuildStatus.ComponentMissing;
 			}
-			playerShipSaver.Call("add_components", comps);
+			playerShipSaver.Call("add_components", components);
 			playerShipSaver.Call("save");
 		}
 		catch (Exception e)

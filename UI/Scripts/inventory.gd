@@ -8,7 +8,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
-		print("pressed Inventory Button")
 		populate_list()
 		if visible:
 			hide()

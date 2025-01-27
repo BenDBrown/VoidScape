@@ -15,7 +15,6 @@ public partial class Menu : Control
 	private ShipBuilderManager shipBuilderManager;
 	public override void _Ready()
 	{
-		GD.Print("Items: " + stationHub.Datas.Length);
 		Datas = stationHub.Datas;
 		EmitSignal(SignalName.OnReadyFinished);
 		shipBuilderManager.BuildSucceeded += OnQuitPressed;
@@ -24,5 +23,10 @@ public partial class Menu : Control
 	public void OnQuitPressed()
 	{
 		EmitSignal(SignalName.QuitPressed);
+	}
+
+	public void LoadCurrentShip()
+	{
+		shipBuilderManager.LoadCurrentShip();
 	}
 }

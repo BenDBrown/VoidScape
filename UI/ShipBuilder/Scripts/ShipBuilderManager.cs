@@ -89,7 +89,28 @@ public partial class ShipBuilderManager : Control
 
 		pieceColour = colour;
 	}
+	public void LoadCurrentShip()
+	{
+		Dictionary<Vector2I, ShipComponent> gridData = Game.Instance.PlayerShip.GridData;
+		pieces.Clear();
+		foreach (var coordinate in gridData.Keys)
+		{
+			if (gridGenerator.GridCells.ContainsKey(coordinate))
+			{
+				Piece piece = new(gridData[coordinate], coordinate);
+				pieces.Add(piece);
+				var img = gridData[coordinate].Data.Sprite.GetImage();
+				if (piece.LocalRotation == 90 || piece.LocalRotation == -270) img.Rotate90(ClockDirection.Clockwise);
+				else if (piece.LocalRotation == 180 || piece.LocalRotation == -180) img.Rotate180();
+				else if (piece.LocalRotation == -90 || piece.LocalRotation == 270) img.Rotate90(ClockDirection.Counterclockwise);
 
+				gridGenerator.GridCells[coordinate].Texture = ImageTexture.CreateFromImage(img);
+				gridGenerator.GridCells[coordinate].IsValid = false;
+				gridGenerator.GridCells[coordinate].HasComponent = true;
+			}
+		}
+		UpdateAvailability();
+	}
 	private void OnItemClicked(int index, Vector2 atPosition, int mouseButtonIndex)
 	{
 		if (mouseButtonIndex == (int)MouseButton.Left)

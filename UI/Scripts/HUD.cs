@@ -5,5 +5,7 @@ public partial class HUD : CanvasLayer
 {
 	[Export]
 	public AnimationPlayer StallAnimPlayer { get; private set; }
+	[Export]
+	public Control BlinkHUD { get; private set; }
 
 }

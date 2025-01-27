@@ -28,6 +28,7 @@ public partial class PlayerShip : Ship
 
 	[Export]
 	private Blinking blinking;
+
 	[Export]
 	private PowerManager powerManager;
 	private CargoManager cargoManager = new();
@@ -58,7 +59,7 @@ public partial class PlayerShip : Ship
 		fuelManager.NoFuel += ShipDestroyed;
 
 		shield.ShieldHit += UsePowerChunk;
-		blinking.Blink += UsePowerChunk;
+		blinking.Blinked += UsePowerChunk;
 
 		creditsManager.CreditsChanged += (totalCredits) => EmitSignal(SignalName.CreditsChanged, totalCredits);
 	}
@@ -114,6 +115,8 @@ public partial class PlayerShip : Ship
 
 		Vector2 center = centerCalculator.GetGlobalShipCenter(globalVertices);
 		shield.Scale = centerCalculator.GetNrOfComponentsScale(globalVertices);
+		shield.Position = center / 32 + Vector2.One / 2;
+		blinking.SetRaycastScale(shield.Scale);
 		foreach (Node n in GetChildren())
 		{
 			if (n is Camera2D) { continue; }
@@ -179,7 +182,7 @@ public partial class PlayerShip : Ship
 	public void PerformBlink(Vector2 vector2)
 	{
 		if (stalling) return;
-		blinking.Async_PerformBlink(vector2);
+		blinking.PerformBlink(vector2);
 	}
 
 	#region GUN
@@ -248,6 +251,7 @@ public partial class PlayerShip : Ship
 
 	#endregion CREDITS
 
+	#region FUEL
 	public void Refuel(int fuelAmount = -1)
 	{
 		if (fuelAmount == -1)
@@ -259,4 +263,5 @@ public partial class PlayerShip : Ship
 			fuelManager.AddFuel(fuelAmount);
 		}
 	}
+	#endregion
 }

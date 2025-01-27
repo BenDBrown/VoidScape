@@ -23,14 +23,13 @@ func add_component(pos, component: ShipComponent):
 
 func build_ship(parent: Node2D):
 	for pos in ship.keys():
-
 		var scene = load(ship[pos].path) as PackedScene;
 		var component = scene.instantiate() as ShipComponent;
 		if parent is Ship:
 			parent.AddComponent(component, pos)
 		else:
-			parent.add_child(component)
-			component.position = pos * 32
+			push_error("Parent isn't of type ship")
+
 		if(ship[pos]["component"]["Mirrored"] as bool):
 			component.Mirror()
 		component.rotation = ship[pos]["component"]["LocalRotation"]

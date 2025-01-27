@@ -22,9 +22,13 @@ buses/default_bus_layout="res://Assets/Audio/Audio Mixer.tres"
 
 [autoload]
 
+Game="*res://Global/Game.cs"
 Utils="*res://Global/utils.gd"
 QuestManager="*res://Global/quest_manager.gd"
-Game="*res://Global/Game.cs"
+
+[debug]
+
+gdscript/warnings/unused_variable=0
 
 [display]
 

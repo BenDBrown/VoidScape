@@ -5,6 +5,7 @@
 
 [node name="GameOver" type="CanvasLayer"]
 process_mode = 3
+visible = false
 script = ExtResource("1_shrs3")
 
 [node name="Label" type="Label" parent="."]

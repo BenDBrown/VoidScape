@@ -56,7 +56,7 @@ public partial class GridGenerator : Control
 	public void LoadShip()
 	{
 		var ship = Game.Instance.PlayerShip;
-		var parts = ship.shipParts;
+		var parts = ship.ShipComponents;
 	}
 
 	public Vector2I GetCellAt(TextureRect rect)
